@@ -76,7 +76,7 @@ title: 'Docs',
 items: [
 {
 label: 'Tutorial',
-to: '/docs/intro',
+to: '/docs/Overview/What%20is%20Stirling-PDF',
 },
 ],
 },
