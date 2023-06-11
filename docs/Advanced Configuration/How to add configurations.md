@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
 ---
-# UI Customisation
+# How to add Configurations
 
-Stirling PDF allows straightforward customisation of the application name to make Stirling-PDF your own using environment variables `APP_HOME_NAME`, `APP_HOME_DESCRIPTION`, and `APP_NAVBAR_NAME` with Docker or Java. 
+Stirling PDF has configuration added in multiple ways, Either ENvironment variables or directly passed into java via commandline parameter 
 
 
 ### Local 

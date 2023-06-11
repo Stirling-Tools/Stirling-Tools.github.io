@@ -11,7 +11,7 @@ Please note Stirling PDF has [three different versions](http://TODO) for those w
 For those that want the latest and greatest continue with latest tag as refereced below.
 
 
-###Docker Run
+### Docker Run
 ```
 docker run -d \
   -p 8080:8080 \
@@ -29,7 +29,7 @@ docker run -d \
   -e APP_LOCALE="en_GB" \
 ```
 
-###Docker Compose
+### Docker Compose
 ```
 version: '3.3'
 services:
@@ -38,7 +38,7 @@ services:
     ports:
       - '8080:8080'
     volumes:
-      - /location/of/trainingData:/usr/share/tesseract-ocr/4.00/tessdata #Required for extra OCR languages
+      - /location/of/trainingData:/usr/share/tesseract-ocr/4.00/tessdata # Required for extra OCR languages
 #      - /location/of/extraConfigs:/configs
 #    environment:
 #      APP_LOCALE: en_GB

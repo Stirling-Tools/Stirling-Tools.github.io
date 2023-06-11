@@ -84,6 +84,10 @@ const sidebars = {
       type: 'category',
       label: 'Advanced Configuration',
       items: [
+	  {
+          type: 'doc',
+          id: 'Advanced Configuration/How to add configurations'
+        },
         {
           type: 'doc',
           id: 'Advanced Configuration/UI Customisation'
@@ -96,6 +100,11 @@ const sidebars = {
           type: 'doc',
           id: 'Advanced Configuration/Other Customisations'
         },
+		{
+          type: 'doc',
+          id: 'Advanced Configuration/OCR'
+        },
+		
       ]
     },
     {
