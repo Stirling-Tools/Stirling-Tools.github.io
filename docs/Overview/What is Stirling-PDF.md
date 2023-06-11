@@ -21,7 +21,7 @@ Stirling-PDF has a active community of users giving new ideas and helping as par
 
 ## Options
 Stirling-PDF is yours.
-You are free to do with it what you like and customise it however you wish. We offer various [customisation features](TODO) for you or your business. 
+You are free to do with it what you like and customise it however you wish. We offer various [customisation features](http://TODO) for you or your business. 
 
 
 Please feel free to request new features or report bugs through our GitHub issues or [Discord](https://discord.gg/Cn8pWhQRxZ).
