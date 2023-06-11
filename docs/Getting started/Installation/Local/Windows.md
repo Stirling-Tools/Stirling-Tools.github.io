@@ -3,14 +3,11 @@ sidebar_position: 2
 id: Windows Installation
 title: Windows installation Guide
 ---
-# Docker Installation Guide for Stirling PDF
+# Windows Installation Guide for Stirling PDF
 
-You can get Stirling PDF up and running using Docker with the following command:
+Stirling PDF provides Windows compatibility through a downloadable .exe file, which can be obtained from [here](https://github.com/Frooodle/Stirling-PDF/releases/latest). 
+This is a streamlined version of the application, offering the same capabilities as the Stirling-PDF-Ultra-lite found in Docker, but in a compact 50MB executable!
 
-```bash
-docker run -d \
-  -p 8080:8080 \
-  -v /location/of/trainingData:/usr/share/tesseract-ocr/4.00/tessdata \
-  --name stirling-pdf \
-  frooodle/s-pdf:latest
-```
+Simply download and launch the .exe file to access the Stirling-PDF Web-UI. It is important to note that this application requires JAVA 17. If the application identifies that this version of JAVA isn't installed on your system, it will prompt a link to download the appropriate version.
+
+Once launched, the application hosts a web server that is accessible and usable by anyone on your network.
