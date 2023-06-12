@@ -61,6 +61,7 @@ label: 'Docs',
 },
 {to: '/about', label: 'About', position: 'left'},
 {to: '/Donate', label: 'Donate', position: 'left'},
+{to: '/Demos', label: 'Demos', position: 'left'},
 {
 href: 'https://github.com/Frooodle/Stirling-PDF',
 label: 'GitHub',
