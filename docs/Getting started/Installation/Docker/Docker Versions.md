@@ -5,7 +5,12 @@ title: Docker Versions
 ---
 # Docker Versions of Stirling PDF
 
-Stirling PDF offers three unique Docker versions: Full, Lite, and Ultra-Lite. Each version caters to different needs based on the specific features required and the storage space available. 
+Stirling PDF offers three unique Docker versions: 
+- ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/frooodle/s-pdf/latest?label=Stirling-PDF%20Full)
+- ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/frooodle/s-pdf/latest-lite?label=Stirling-PDF%20Lite)
+- ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/frooodle/s-pdf/latest-ultra-lite?label=Stirling-PDF%20Ultra-Lite)
+
+Each version caters to different needs based on the specific features required and the storage space available. 
 
 For an in-depth comparison of what each version offers, please refer to the graph below.
 If storage optimization is not a concern, we recommend using the latest tag for the most complete set of features.

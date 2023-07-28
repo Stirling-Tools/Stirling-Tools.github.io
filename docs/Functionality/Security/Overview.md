@@ -3,7 +3,12 @@ sidebar_position: 1
 ---
 # Features - Security
 
-Stirling PDF is equipped with robust security features:
+- `add-password`: This feature allows users to secure their PDFs by adding a password.
 
-- Add or modify password protections for your PDFs
-- Customize access permissions, such as print and copy restrictions
+- `remove-password`: With this feature, users can remove the password from a secured PDF.
+
+- `change-permissions`: This functionality allows users to change the permissions of a PDF, controlling how others can view and edit it.
+
+- `add-watermark`: This feature enables users to add custom watermarks to their PDFs.
+
+- `cert-sign`: This feature enables users to digitally sign their PDFs using a certificate.

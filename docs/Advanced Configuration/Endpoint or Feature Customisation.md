@@ -3,4 +3,16 @@ sidebar_position: 2
 ---
 # Endpoints Customisation
 
-You can selectively disable and remove endpoints and functionalities from Stirling PDF as per your requirements. `ENDPOINTS_TO_REMOVE` and `GROUPS_TO_REMOVE` can include comma-separated lists of endpoints and groups to disable. For example, `ENDPOINTS_TO_REMOVE=img-to-pdf,remove-pages` would disable both the "image to PDF" and "remove pages" functionalities. A complete list of all endpoints and groups is available [here](https://github.com/Frooodle/Stirling-PDF/blob/main/groups.md).
+You can selectively disable and remove endpoints and functionalities from Stirling PDF as per your requirements.
+There are many usecases for this such as 
+- Avoid confusion for users for functionality you/your business dont use. 
+- Running a reduced version of Stirling-PDF that doesn't have the necicary backend to support the other apps.
+- Cleanup interface for features you dont use
+
+
+To do this `ENDPOINTS_TO_REMOVE` and `GROUPS_TO_REMOVE` have been setup. 
+They can include comma-separated lists of endpoints and groups to disable. For example, `ENDPOINTS_TO_REMOVE=img-to-pdf,remove-pages` would disable both the "image to PDF" and "remove pages" functionalities.
+`GROUPS_TO_REMOVE=Libre` Would disable a group of endpoints, in this case all endpoints which use Libre in the backend.
+
+A complete list of all endpoints and groups is available [here](https://github.com/Frooodle/Stirling-PDF/blob/main/groups.md).
+TODO?
