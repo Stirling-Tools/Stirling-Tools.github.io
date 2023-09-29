@@ -3,19 +3,24 @@ sidebar_position: 1
 ---
 # UI Customisation
 
-Stirling PDF allows straightforward customisation of the application name to make Stirling-PDF your own 
-These are
-- ``appName`` This defines the visable application name showed in the window name and navbar if navbar is not defined seperatly 
-- ``homeDescription`` The description to be displayed on the homepage under the navbar that first greets the user
-- ``appNameNavbar`` The app name to be shown within to navbar for all pages
+Stirling PDF allows custommisation of system and securit settings
+For security please note this section is only enabled if you are using the security jar, for docker that means setting ``DOCKER_ENABLE_SECURITY`` to ``true``  via a environment variable
+- ``enableLogin`` This enables or disables the login functionality with
+- ``csrfDisabled`` The description to be displayed on the homepage under the navbar that first greets the user
+and
+- ``defaultLocale`` The app name to be shown within to navbar for all pages
+- ``googlevisibility`` The app name to be shown within to navbar for all pages
 
 
 ## Settings file
 ```
-ui:
-  appName: exampleAppName # Application's visible name
-  homeDescription: I am a description # Short description or tagline shown on homepage.
-  appNameNavbar: navbarName # Name displayed on the navigation bar
+security:
+  enableLogin: false # set to 'true' to enable login
+  csrfDisabled: true
+
+system:
+  defaultLocale: 'en-US' # Set the default language (e.g. 'de-DE', 'fr-FR', etc)
+  googlevisibility: false # 'true' to allow Google visibility (via robots.txt), 'false' to disallow
 ```
 
 ## Local 

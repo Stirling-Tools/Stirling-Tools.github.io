@@ -3,8 +3,6 @@ sidebar_position: 1
 ---
 # Features - Page Operations
 
-- `remove-pages`: This feature allows users to remove specified pages from a PDF document.
-
 - `merge-pdfs`: With this feature, users can merge multiple PDF documents into a single PDF.
 
 - `split-pdfs`: This functionality enables users to split a single PDF document into multiple separate PDFs.
@@ -13,6 +11,19 @@ sidebar_position: 1
 
 - `rotate-pdf`: With this feature, users can rotate pages within a PDF document to their desired orientation.
 
+- `remove-pages`: This feature allows users to remove specified pages from a PDF document.
+
 - `multi-page-layout`: This functionality allows users to create a layout involving multiple pages of a PDF.
 
 - `scale-pages`: This feature enables users to adjust the scale of pages in a PDF document.
+
+- `auto-split-pdfs`: This allows a user to insert physical divider pages between their documents in their scanner to allow S-PDF to auto seperate them
+
+- `adjust-contrast`: Lets the user adjust the contrast, brightness and saturation
+
+- `crop`: Allows user to crop the pages to set size
+
+- `extract pages`: Extracts the defined pages from the PDF into a new PDF document
+
+- `pdf-to-single-page`: Converts multi pages PDF files into a single long pdf page.
+

@@ -16,17 +16,15 @@ For those that want the latest and greatest continue with latest tag as referece
 docker run -d \
   -p 8080:8080 \
   -v /location/of/trainingData:/usr/share/tesseract-ocr/4.00/tessdata \
+  -v /location/of/extraConfigs:/configs \
+  -e DOCKER_ENABLE_SECURITY=false \
   --name stirling-pdf \
   frooodle/s-pdf:latest
   
   
   Can also add these for customisation but are not required
-  -e APP_HOME_NAME="Stirling PDF" \
-  -e APP_HOME_DESCRIPTION="Your locally hosted one-stop-shop for all your PDF needs." \
-  -e APP_NAVBAR_NAME="Stirling PDF" \
-  -e ALLOW_GOOGLE_VISIBILITY="true" \
-  -e APP_ROOT_PATH="/" \
-  -e APP_LOCALE="en_GB" \
+  
+  -v /location/of/customFiles:/customFiles \
 ```
 
 ### Docker Compose
@@ -38,14 +36,13 @@ services:
     ports:
       - '8080:8080'
     volumes:
-      - /location/of/trainingData:/usr/share/tesseract-ocr/4.00/tessdata # Required for extra OCR languages
-#      - /location/of/extraConfigs:/configs
-#    environment:
-#      APP_LOCALE: en_GB
-#      APP_HOME_NAME: Stirling PDF
-#      APP_HOME_DESCRIPTION: Your locally hosted one-stop-shop for all your PDF needs.
-#      APP_NAVBAR_NAME: Stirling PDF
-#      APP_ROOT_PATH: /
-#      ALLOW_GOOGLE_VISIBILITY: true
+      - /location/of/trainingData:/usr/share/tesseract-ocr/4.00/tessdata #Required for extra OCR languages
+      - /location/of/extraConfigs:/configs
+#      - /location/of/customFiles:/customFiles/
+    environment:
+      - DOCKER_ENABLE_SECURITY=false
 
 ```
+
+### Extras
+For extra parameters and customisation please check the [advanced configuration](http://todo) page!

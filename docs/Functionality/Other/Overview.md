@@ -24,3 +24,11 @@ sidebar_position: 1
 - `remove-blanks`: With this feature, users can remove blank pages from a PDF document.
 
 - `compare`: This functionality enables users to compare two PDFs and highlight the differences.
+
+- `add-page-numbers`: Add page numbers (and custom text) to edges of page
+
+- `auto-rename`: Auto renames a PDF based on its header, title or any starter text it can find (tries to use largest font text)
+
+- `get-info-on-pdf`: Grabs and displays all information of a PDF and allows export of info into JSON format
+
+- `show-javascript`: Shows any embedded javascript within a PDF.

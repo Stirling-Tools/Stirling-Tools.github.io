@@ -8,8 +8,8 @@ Stirling PDF harnesses several technologies throughout.
 
 # Java
 As part of the JAVA framework to host the WebUI itself we use
-Spring Boot, Thymeleaf, PDFBox and IText7.
-PDFBox and IText7 are the core of the PDF functionality within Stirling-PDF.
+Spring Boot, Thymeleaf and PDFBox.
+Apache PDFBox is the core of the PDF functionality within Stirling-PDF.
 They offer a vaierty of methods to edit PDFs which we have then build Stirling-PDF on.
 
 # JavaScript

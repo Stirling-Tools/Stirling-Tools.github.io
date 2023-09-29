@@ -15,3 +15,38 @@ Stirling-PDF's feature set is not entirely confined to the backend, hence not al
 
 Stirling-PDF also has statistic and health endpoints to integrate with monitoring/dashboard applications such as [Heimdall](https://TODOAAAAAAAAAAAAAAAAAAAAAAAAA) and [Fenrus](https://TODO)
 
+
+# Example CURL Commands
+
+## Unix
+
+```
+curl -X POST "http://localhost:8080/add-watermark" \
+     -H "Content-Type: multipart/form-data" \
+     -F "fileInput=@/Users/username/Downloads/sample-1_cropped.pdf" \
+     -F "watermarkType=text" \
+     -F "watermarkText=YOUR_WATERMARK_TEXT" \
+     -F "alphabet=roman" \
+     -F "fontSize=30" \
+     -F "rotation=0" \
+     -F "opacity=0.5" \
+     -F "widthSpacer=50" \
+     -F "heightSpacer=50" \
+     > "/Users/username/Downloads/output.pdf"
+```
+## Windows CMD (Not powershell) 
+
+```
+curl -X POST "http://localhost:8080/add-watermark" ^
+     -H "Content-Type: multipart/form-data" ^
+     -F "fileInput=@C:\Users\systo\Downloads\sample-1_cropped.pdf" ^
+     -F "watermarkType=text" ^
+     -F "watermarkText=YOUR_WATERMARK_TEXT" ^
+     -F "alphabet=roman" ^
+     -F "fontSize=30" ^
+     -F "rotation=0" ^
+     -F "opacity=0.5" ^
+     -F "widthSpacer=50" ^
+     -F "heightSpacer=50" ^
+     > "C:\Users\systo\Downloads\output.pdf"
+```
