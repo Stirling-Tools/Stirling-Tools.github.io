@@ -8,7 +8,7 @@ title: Installation Guide
 Stirling-PDF is hosted in [dockerhub](https://hub.docker.com/r/frooodle/s-pdf) at frooodle/s-pdf and [Github.io](https://TODO) also gh.io/froodle/s-pdf
  
 Please note Stirling PDF has [three different versions](http://TODO) for those wanting to run it on lower end hardware.
-For those that want the latest and greatest continue with latest tag as refereced below.
+For those that want the latest and greatest continue with latest tag as referenced below.
 
 
 ### Docker Run
@@ -22,7 +22,7 @@ docker run -d \
   frooodle/s-pdf:latest
   
   
-  Can also add these for customisation but are not required
+  Can also add these for customization but are not required
   
   -v /location/of/customFiles:/customFiles \
 ```
@@ -45,4 +45,4 @@ services:
 ```
 
 ### Extras
-For extra parameters and customisation please check the [advanced configuration](http://todo) page!
+For extra parameters and customization please check the [advanced configuration](http://todo) page!

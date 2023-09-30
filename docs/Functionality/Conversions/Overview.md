@@ -13,7 +13,7 @@ sidebar_position: 1
 
 - `url-to-pdf`: Renders a URL and converts it to PDF
 
-- `marddown-to-pdf`: Converts a markdown (.md) file to PDF
+- `markdown-to-pdf`: Converts a markdown (.md) file to PDF
 
 ## From PDF
 - `pdf-to-img`: This feature converts PDF documents into image files.

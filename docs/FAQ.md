@@ -17,7 +17,7 @@ Some of the upcoming features include:
 This is often caused by your NGINX configuration. NGINX's default file upload size is 1MB, and any file larger than this will cause an .htm file to be downloaded instead. To fix this issue, you should modify your NGINX configuration to increase the maximum file upload size.
 
 ### Q4: Can I customize the appearance and language of the Stirling PDF application?
-Yes, Stirling PDF provides several environment variables to allow customization of the application, including the name, description, default language, and visibility to search engines. Please refer to the "Customisation" section for more details.
+Yes, Stirling PDF provides several environment variables to allow customization of the application, including the name, description, default language, and visibility to search engines. Please refer to the "Customization" section for more details.
 
 ### Q5: I want to add a new feature to Stirling PDF. How can I contribute?
 We welcome contributions from the community! Please open an issue on our GitHub page to discuss any large features before making any changes. Any small changes are fully welcome without discussion! After the feature has been discussed and approved, you can make the changes and submit a pull request.

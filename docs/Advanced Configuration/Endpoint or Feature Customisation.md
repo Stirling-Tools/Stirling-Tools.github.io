@@ -4,10 +4,10 @@ sidebar_position: 2
 # Endpoints Customisation
 
 You can selectively disable and remove endpoints and functionalities from Stirling PDF as per your requirements.
-There are many usecases for this such as 
-- Avoid confusion for users for functionality you/your business dont use. 
-- Running a reduced version of Stirling-PDF that doesn't have the necicary backend to support the other apps.
-- Cleanup interface for features you dont use
+There are many use-cases for this such as 
+- Avoid confusion for users for functionality you/your business don't use. 
+- Running a reduced version of Stirling-PDF that doesn't have the necessary server power to support the more advanced features.
+- Cleanup interface for features you don't use
 
 
 To do this `ENDPOINTS_TO_REMOVE` and `GROUPS_TO_REMOVE` have been setup. 

@@ -3,9 +3,9 @@ sidebar_position: 1
 ---
 # UI Customisation
 
-Stirling PDF allows straightforward customisation of the application name to make Stirling-PDF your own 
+Stirling PDF allows straightforward customization of the application name to make Stirling-PDF your own 
 These are
-- ``appName`` This defines the visable application name showed in the window name and navbar if navbar is not defined seperatly 
+- ``appName`` This defines the visible application name showed in the window name and navbar if navbar is not defined separately 
 - ``homeDescription`` The description to be displayed on the homepage under the navbar that first greets the user
 - ``appNameNavbar`` The app name to be shown within to navbar for all pages
 

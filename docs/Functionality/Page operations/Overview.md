@@ -17,7 +17,7 @@ sidebar_position: 1
 
 - `scale-pages`: This feature enables users to adjust the scale of pages in a PDF document.
 
-- `auto-split-pdfs`: This allows a user to insert physical divider pages between their documents in their scanner to allow S-PDF to auto seperate them
+- `auto-split-pdfs`: This allows a user to insert physical divider pages between their documents in their scanner to allow S-PDF to auto separate them
 
 - `adjust-contrast`: Lets the user adjust the contrast, brightness and saturation
 

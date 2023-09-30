@@ -3,7 +3,7 @@ sidebar_position: 1
 ---
 # UI Customisation
 
-Stirling PDF allows custommisation of system and securit settings
+Stirling PDF allows custommization of system and security settings
 For security please note this section is only enabled if you are using the security jar, for docker that means setting ``DOCKER_ENABLE_SECURITY`` to ``true``  via a environment variable
 - ``enableLogin`` This enables or disables the login functionality with
 - ``csrfDisabled`` The description to be displayed on the homepage under the navbar that first greets the user

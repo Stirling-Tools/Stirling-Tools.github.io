@@ -62,7 +62,7 @@ sudo make install
 ```
 
 ### Step 3: Install Additional Software
-Next we need to install LibreOffice for conversions, ocrmypdf for OCR, and opencv for patern recognition functionality.
+Next we need to install LibreOffice for conversions, ocrmypdf for OCR, and opencv for pattern recognition functionality.
 
 Install the following software:
 
@@ -193,7 +193,7 @@ Note: Currently the app will run in the background until manually closed.
 
 Remember to set the necessary environment variables before running the project if you want to customize the application the list can be seen in the main readme.
 
-You can do this in the terminal by using the `export` command or -D arguements to java -jar command:
+You can do this in the terminal by using the `export` command or -D arguments to java -jar command:
 
 ```bash
 export APP_HOME_NAME="Stirling PDF"
