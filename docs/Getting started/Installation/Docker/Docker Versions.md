@@ -5,7 +5,7 @@ title: Docker Versions
 ---
 # Docker Versions of Stirling PDF
 
-Stirling PDF offers three unique Docker versions: 
+Stirling PDF is avaiable in three distinct docker images:
 - ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/frooodle/s-pdf/latest?label=Stirling-PDF%20Full)
 - ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/frooodle/s-pdf/latest-lite?label=Stirling-PDF%20Lite)
 - ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/frooodle/s-pdf/latest-ultra-lite?label=Stirling-PDF%20Ultra-Lite)
