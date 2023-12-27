@@ -3,15 +3,21 @@ sidebar_position: 2
 id: Docker Install
 title: Installation Guide
 ---
-# Docker Installation Guide for Stirling PDF
 
-Stirling-PDF is hosted in [dockerhub](https://hub.docker.com/r/frooodle/s-pdf) at frooodle/s-pdf and [Github.io](https://TODO) also gh.io/froodle/s-pdf
- 
-Please note Stirling PDF has [three different versions](http://TODO) for those wanting to run it on lower end hardware.
-For those that want the latest and greatest continue with latest tag as referenced below.
+# Docker Images for Stirling-PDF
 
+The docker image for Stirling-PDF is available on Docker Hub at [frooodle/s-pdf](https://hub.docker.com/r/frooodle/s-pdf) or on Github at [s-pdf](https://github.com/frooodle/Stirling-PDF/pkgs/container/s-pdf).
 
-### Docker Run
+Please note that Stirling PDF offers three distinct versions tailored for various hardware configurations. Users seeking optimal performance on lower-end hardware can choose from the specific versions provided. For those who prefer the most recent features and updates, it is recommended to continue using the latest tag.
+
+| Version    | Latest Tag          |
+| ---------- | ------------------- |
+| Standard   | `latest`            |
+| Lite       | `latest-lite`       |
+| Ultra Lite | `latest-ultra-lite` |
+
+### Run docker container with `docker run`
+
 ```
 docker run -d \
   -p 8080:8080 \
@@ -20,14 +26,16 @@ docker run -d \
   -e DOCKER_ENABLE_SECURITY=false \
   --name stirling-pdf \
   frooodle/s-pdf:latest
-  
-  
+
+
   Can also add these for customization but are not required
-  
+
   -v /location/of/customFiles:/customFiles \
 ```
 
-### Docker Compose
+### Run docker container with `docker compose`
+
+- `docker-compose.yml`
 ```
 version: '3.3'
 services:
@@ -45,4 +53,5 @@ services:
 ```
 
 ### Extras
+
 For extra parameters and customization please check the [advanced configuration](http://todo) page!
