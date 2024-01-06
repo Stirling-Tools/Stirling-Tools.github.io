@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-![](https://raw.githubusercontent.com/Frooodle/Stirling-PDF/main/docs/stirling.png)
+![](https://raw.githubusercontent.com/Stirling-Tools/Stirling-PDF/main/docs/stirling.png)
 
 # Introduction to Stirling PDF
 

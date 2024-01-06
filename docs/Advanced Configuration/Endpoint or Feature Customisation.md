@@ -14,5 +14,5 @@ To do this `ENDPOINTS_TO_REMOVE` and `GROUPS_TO_REMOVE` have been setup.
 They can include comma-separated lists of endpoints and groups to disable. For example, `ENDPOINTS_TO_REMOVE=img-to-pdf,remove-pages` would disable both the "image to PDF" and "remove pages" functionalities.
 `GROUPS_TO_REMOVE=Libre` Would disable a group of endpoints, in this case all endpoints which use Libre in the backend.
 
-A complete list of all endpoints and groups is available [here](https://github.com/Frooodle/Stirling-PDF/blob/main/groups.md).
+A complete list of all endpoints and groups is available [here](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/Endpoint-groups.md).
 TODO?

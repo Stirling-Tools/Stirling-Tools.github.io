@@ -96,7 +96,7 @@ pip3 install uno opencv-python-headless unoconv pngquant
 
 ```bash
 cd ~/.git &&\
-git clone https://github.com/Frooodle/Stirling-PDF.git &&\
+git clone https://github.com/Stirling-Tools/Stirling-PDF.git &&\
 cd Stirling-PDF &&\
 chmod +x ./gradlew &&\
 ./gradlew build

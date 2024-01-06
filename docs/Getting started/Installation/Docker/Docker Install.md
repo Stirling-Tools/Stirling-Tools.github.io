@@ -6,7 +6,7 @@ title: Installation Guide
 
 # Docker Images for Stirling-PDF
 
-The docker image for Stirling-PDF is available on Docker Hub at [frooodle/s-pdf](https://hub.docker.com/r/frooodle/s-pdf) or on Github at [s-pdf](https://github.com/frooodle/Stirling-PDF/pkgs/container/s-pdf).
+The docker image for Stirling-PDF is available on Docker Hub at [frooodle/s-pdf](https://hub.docker.com/r/frooodle/s-pdf) or on Github at [s-pdf](https://github.com/Stirling-Tools/Stirling-PDF/pkgs/container/s-pdf).
 
 Please note that Stirling PDF offers three distinct versions tailored for various hardware configurations. Users seeking optimal performance on lower-end hardware can choose from the specific versions provided. For those who prefer the most recent features and updates, it is recommended to continue using the latest tag.
 

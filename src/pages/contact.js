@@ -27,7 +27,7 @@ export default function Contact() {
           </a>
           
           <a 
-            href="https://github.com/Frooodle/Stirling-PDF/issues" 
+            href="https://github.com/Stirling-Tools/Stirling-PDF/issues"
             target="_blank" 
             rel="noopener noreferrer"
             style={{ fontSize: '20px', textDecoration: 'underline', color: '#0366d6', cursor: 'pointer' }} // Enhanced GitHub link styling
@@ -36,7 +36,7 @@ export default function Contact() {
           </a>
 
           <a 
-            href="https://github.com/Frooodle/Stirling-PDF/discussions" 
+            href="https://github.com/Stirling-Tools/Stirling-PDF/discussions"
             target="_blank" 
             rel="noopener noreferrer"
             style={{ fontSize: '20px', textDecoration: 'underline', color: '#0366d6', cursor: 'pointer' }} // Enhanced GitHub link styling
