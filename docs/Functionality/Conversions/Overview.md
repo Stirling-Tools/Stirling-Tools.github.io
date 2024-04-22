@@ -29,3 +29,5 @@ sidebar_position: 1
 - `pdf-to-xml`: This feature enables users to convert PDFs into XML files.
 
 - `pdf-to-pdfa`: This feature transforms PDF files into PDF/A format for long-term archiving.
+
+- `pdf-to-csv`: 
