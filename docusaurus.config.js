@@ -33,7 +33,7 @@ const config = {
             ({
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    editUrl: 'https://github.com/Stirling-Tools/Stirling-PDF/tree/main/',
+                    editUrl: 'https://github.com/Stirling-Tools/Stirling-Tools.github.io/tree/main/',
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
