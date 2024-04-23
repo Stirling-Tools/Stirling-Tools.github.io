@@ -20,6 +20,6 @@ They offer a vaierty of methods to edit PDFs which we have then build Stirling-P
 # Others
 We also use other open source applications along side ours to offer additional functionality.
 - LibreOffice Is used for conversions
-- [OcrMyPdf](https://github.com/ocrmypdf/OCRmyPDF) used for OCR (Optical CHaracter recognition) To change PDF images into text
+- [OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) is used for OCR (Optical CHaracter recognition) to change PDF images into text.
 - GhostScript, Bundled with OCRmyPDF, this is used to compress PDF documents.
 
