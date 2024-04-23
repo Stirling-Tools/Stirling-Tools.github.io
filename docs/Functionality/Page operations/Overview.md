@@ -27,3 +27,8 @@ sidebar_position: 1
 
 - `pdf-to-single-page`: Converts multi pages PDF files into a single long pdf page.
 
+- `split-by-size-or-count`: Splits one or multiple PDF files into parts consisting of a maximum file size or page count definde by the user.
+
+- `overlay-pdf`: 
+  
+- `split-pdf-by-sections`:
