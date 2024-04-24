@@ -11,7 +11,7 @@ sidebar_position: 1
 
 - `add-watermark`: This feature enables users to add custom watermarks to their PDFs.
 
-- `cert-sign`: This feature enables users to digitally sign their PDFs using a certificate.
+- `cert-sign`: This feature enables users to digitally sign their PDFs using a certificate. For (hand-)written signatures see Features - Additional Utilities --> `sign`
 
 - `sanitize-pdf`: This allows the user to remove various things within the PDF which may cause security concern such as javascript, files, links, fonts and metadata
 
