@@ -33,6 +33,6 @@ sidebar_position: 1
 
 - `get-info-on-pdf`: Grabs and displays all information of a PDF and allows export of info into JSON format
 
-- `show-javascript`: Shows any embedded javascript within a PDF.
+- `show-javascript`: Shows any embedded javascript within a PDF
 
-- `stamp`: Adds a user-defined text or image to the corner of certain or all PDF pages. 
+- `stamp`: Adds a user-defined text or image to the corner of certain or all PDF pages
