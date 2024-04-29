@@ -12,6 +12,10 @@ These are
 - ``oauth2.clientSecret`` Client Secret from your provider
 - ``oauth2.autoCreateUser`` Set this to 'true' to allow auto-creation of non-existing users
 
+After the OAUTH2 login is enabled, a new button shows up on the login page as per the screenshot below:
+
+![image](https://github.com/sahilph/Stirling-Tools.github.io/assets/812110/b0a84120-e8bb-4ea2-ac9e-4ec37520f7af)
+
 
 ## Settings file
 ```
