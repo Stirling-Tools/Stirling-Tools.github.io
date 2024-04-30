@@ -26,20 +26,21 @@ const sidebars = {
       items: [
         {
           type: 'doc',
-          id: 'Functionality/Security/Overview'
-        },
-        {
-          type: 'doc',
           id: 'Functionality/Page operations/Overview'
-        },
-        {
-          type: 'doc',
-          id: 'Functionality/Other/Overview'
         },
         {
           type: 'doc',
           id: 'Functionality/Conversions/Overview'
         },
+        {
+          type: 'doc',
+          id: 'Functionality/Security/Overview'
+        },
+        {
+          type: 'doc',
+          id: 'Functionality/Other/Overview'
+        },
+
       ]
     },
     {
