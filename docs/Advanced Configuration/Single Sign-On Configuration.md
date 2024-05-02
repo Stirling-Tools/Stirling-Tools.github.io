@@ -1,4 +1,3 @@
-
 ---
 sidebar_position: 1
 ---
@@ -12,7 +11,7 @@ These are
 - ``oauth2.clientSecret`` Client Secret from your provider
 - ``oauth2.autoCreateUser`` Set this to 'true' to allow auto-creation of non-existing users
 
-The Callback URL (Redirect URL) for entering in your IdP is: ``https://<striling-pdf.yourdomain>/oauth2/authorization/oidc`` 
+The Callback URL (Redirect URL) for entering in your IdP is:  ``https://<striling-pdf.yourdomain>/oauth2/authorization/oidc`` 
 
 It is highly recommended to use a SSL-enabled reverse-proxy, if the application is going to be exposed to the internet.
 
