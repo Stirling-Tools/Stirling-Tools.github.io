@@ -49,7 +49,7 @@ export default function About() {
         
 
         <p>
-          Anthony Stilring - Hailing from the UK, my journey began as a passionate software developer, evolving into a dedicated DevOps enthusiast. My love for crafting, making things, and improving systems is what fuels me every day. My interests span from software development to local hosting my own servers with Docker and Unraid.
+          Anthony Stirling - Hailing from the UK, my journey began as a passionate software developer, evolving into a dedicated DevOps enthusiast. My love for crafting, making things, and improving systems is what fuels me every day. My interests span from software development to local hosting my own servers with Docker and Unraid.
         </p>
 
         <h2>Professional Journey</h2>
