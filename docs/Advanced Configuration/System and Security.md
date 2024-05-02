@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 ---
-# UI Customisation
+# System and Security
 
 Stirling PDF allows custommization of system and security settings
 For security please note this section is only enabled if you are using the security jar, for docker that means setting ``DOCKER_ENABLE_SECURITY`` to ``true``  via a environment variable
