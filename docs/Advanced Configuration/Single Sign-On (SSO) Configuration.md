@@ -12,6 +12,10 @@ These are
 - ``oauth2.clientSecret`` Client Secret from your provider
 - ``oauth2.autoCreateUser`` Set this to 'true' to allow auto-creation of non-existing users
 
+The Callback URL (Redirect URL) for entering in your IdP is: ``https://<striling-pdf.yourdomain>/oauth2/authorization/oidc`` 
+
+It is highly recommended to use a SSL-enabled reverse-proxy, if the application is going to be exposed to the internet.
+
 After the OAUTH2 login is enabled, a new button shows up on the login page as per the screenshot below:
 
 ![image](https://github.com/Stirling-Tools/Stirling-PDF/assets/812110/6ec3b233-2eb7-4838-bcc9-f93ca0c21cec)
