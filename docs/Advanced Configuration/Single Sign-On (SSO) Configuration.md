@@ -14,7 +14,7 @@ These are
 
 After the OAUTH2 login is enabled, a new button shows up on the login page as per the screenshot below:
 
-![image](https://github.com/sahilph/Stirling-Tools.github.io/assets/812110/b0a84120-e8bb-4ea2-ac9e-4ec37520f7af)
+![image](https://github.com/Stirling-Tools/Stirling-PDF/assets/812110/6ec3b233-2eb7-4838-bcc9-f93ca0c21cec)
 
 
 ## Settings file
