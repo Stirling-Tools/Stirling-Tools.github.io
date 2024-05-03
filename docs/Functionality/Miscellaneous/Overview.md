@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 ---
-# Features - Additional Utilities
+# Features - Miscellaneous
 
 - `ocr-pdf`: This feature allows users to perform optical character recognition (OCR) on PDFs, making them searchable and editable.
 
