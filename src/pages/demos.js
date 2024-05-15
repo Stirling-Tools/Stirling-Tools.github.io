@@ -13,17 +13,17 @@ export default function Donate() {
         padding: '3% 10%',
       }}>
 
-        <h1>Demos will go here eventually</h1>
+        <h1>Check out our Demos</h1>
 		
 		 <p>
-          Stirling-PDF
-               </p>
-		 <p>
-          Stirling-PDF Lite
-                
-		 </p>
-		 <p>
-          Stirling-PDF Ultra Lite
+          <a href="https://stirlingpdf.io/" target="_blank" rel="noopener noreferrer">
+            <strong>Stirling-PDF:</strong> The demo of the latest tag with security mode enabled and running the full version.
+          </a>
+        </p>
+        <p>
+          <a href="https://stirlingpdf.io:8081/" target="_blank" rel="noopener noreferrer">
+            <strong>Stirling-PDF Ultra Lite:</strong> This version is without security enabled.
+          </a>
         </p>
       </div>
     </Layout>

@@ -8,4 +8,4 @@ tags:
   
 ---
 # Donate
-Donate
+See [Donate](/Donate)
