@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[338],{6776:e=>{e.exports=JSON.parse('{"tag":{"label":"API","permalink":"/docs/tags/api","allTagsPath":"/docs/tags","count":1,"items":[{"id":"API","title":"API","description":"Overview of API offering in S-PDF","permalink":"/docs/API"}],"unlisted":false}}')}}]);

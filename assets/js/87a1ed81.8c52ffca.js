@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[84],{9279:e=>{e.exports=JSON.parse('{"label":"Donate","permalink":"/docs/tags/donate","allTagsPath":"/docs/tags","count":1,"items":[{"id":"Contribute/Donate","title":"Donate","description":"Create a doc page with rich content.","permalink":"/docs/Contribute/Donate"}]}')}}]);
