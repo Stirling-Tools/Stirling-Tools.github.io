@@ -30,4 +30,4 @@ sidebar_position: 2
 
 - `pdf-to-pdfa`: This feature transforms PDF files into PDF/A format for long-term archiving.
 
-- `pdf-to-csv`: 
+- `pdf-to-csv`: This feature Tries to detect tables within a PDF which can be exported, This only works with digital PDFs not scanned and is a Work in progress feature due to its complexity 
