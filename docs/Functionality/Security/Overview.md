@@ -17,3 +17,4 @@ sidebar_position: 3
 
 - `auto-redact`: This features lets the user input text (or regex) to be redacted/blacked out from the pdf document.
 
+- `get-info-on-pdf`: This grabs all info on a PDF such as version, font types, width height and any and all information it can find and puts it within a formatted JSON doc (or visual tables within UI)

@@ -35,4 +35,6 @@ sidebar_position: 4
 
 - `show-javascript`: Shows any embedded javascript within a PDF
 
-- `stamp`: Adds a user-defined text or image to the corner of certain or all PDF pages
+- `auto-split-pdf`: This Automatically splits documents into seperate files based on the QR code detected between each. It's intent is that a "seperator" page be placed between scans so that bulk scanning can be achieved with splitting as a post process.
+
+- `add-stamp`: Adds a user-defined text or image to the corner of certain or all PDF pages
