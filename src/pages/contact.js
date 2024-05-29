@@ -45,6 +45,25 @@ export default function Contact() {
           </a>
         </div>
 
+        <p>For private business inquiries, please reach out via email or LinkedIn:</p>
+        <div style={{ margin: '20px 0', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <a 
+            href="mailto:contact@stirlingtools.com"
+            style={{ fontSize: '20px', textDecoration: 'underline', color: '#D44638', cursor: 'pointer' }}
+          >
+            📧 Email Us
+          </a>
+
+          <a 
+            href="https://www.linkedin.com/company/stirling-tools-stirling-pdf"
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ fontSize: '20px', textDecoration: 'underline', color: '#0077B5', cursor: 'pointer' }}
+          >
+            💼 Connect on LinkedIn
+          </a>
+        </div>
+
         <p>Thank you for being a part of our community!</p>
 
       </div>

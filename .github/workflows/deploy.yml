@@ -22,7 +22,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --force
       - name: Build website
         run: npm run build
       - name: Copy CNAME to build dir

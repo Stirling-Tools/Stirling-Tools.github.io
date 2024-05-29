@@ -29,6 +29,6 @@ sidebar_position: 1
 
 - `split-by-size-or-count`: Splits one or multiple PDF files into parts consisting of a maximum file size or page count definde by the user.
 
-- `overlay-pdf`: 
+- `overlay-pdf`: Can merge multiple PDFs into one another (ontop/behind etc) in various ways
   
-- `split-pdf-by-sections`:
+- `split-pdf-by-sections`: Splits a page in multiple section vertically, horizontally or both. Can be used to split a page in half etc.
