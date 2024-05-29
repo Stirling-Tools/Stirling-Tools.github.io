@@ -59,9 +59,9 @@ const config = {
                         label: 'Docs',
                     },
                     { to: '/about', label: 'About', position: 'left' },
-                    { to: '/Demos', label: 'Demos', position: 'left' },
-                    { to: '/Donate', label: 'Donate', position: 'left' },
-                    { to: '/Contact', label: 'Contact', position: 'left' },
+                    { to: '/demos', label: 'Demos', position: 'left' },
+                    { to: '/donate', label: 'Donate', position: 'left' },
+                    { to: '/contact', label: 'Contact', position: 'left' },
                     {
                         href: 'https://github.com/Stirling-Tools/Stirling-PDF',
                         label: 'GitHub',

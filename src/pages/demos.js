@@ -12,17 +12,10 @@ export default function Donate() {
         alignItems: 'center',
         padding: '3% 10%',
       }}>
-
-        <h1>Check out our Demos</h1>
-		
-		 <p>
-          <a href="https://stirlingpdf.io/" target="_blank" rel="noopener noreferrer">
-            <strong>Stirling-PDF:</strong> The demo of the latest tag with security mode enabled and running the full version.
-          </a>
-        </p>
+        <h1>Check out our Demo</h1>
         <p>
-          <a href="https://stirlingpdf.io:8081/" target="_blank" rel="noopener noreferrer">
-            <strong>Stirling-PDF Ultra Lite:</strong> This version is without security enabled.
+          <a href="https://stirlingpdf.io/" target="_blank" rel="noopener noreferrer">
+            <strong>Stirling-PDF:</strong> The demo of the latest tag without security mode enabled and running the full version with all its features!.
           </a>
         </p>
       </div>

@@ -11,7 +11,6 @@ export default function About() {
           fontSize: '18px',
         }}>
 
-        <h1 style={{ borderBottom: '2px solid #333', paddingBottom: '10px' }}>About Stirling-PDF</h1>
  <h1 style={{ borderBottom: '2px solid #333', paddingBottom: '10px' }}>About Stirling-PDF</h1>
 
 <h2>Stirling-PDF: Our Vision</h2>
