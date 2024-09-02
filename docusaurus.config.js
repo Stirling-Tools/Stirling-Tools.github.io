@@ -60,7 +60,6 @@ const config = {
                     },
                     { to: '/about', label: 'About', position: 'left' },
                     { to: '/demos', label: 'Demos', position: 'left' },
-                    { to: '/donate', label: 'Donate', position: 'left' },
                     { to: '/contact', label: 'Contact', position: 'left' },
                     {
                         href: 'https://github.com/Stirling-Tools/Stirling-PDF',

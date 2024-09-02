@@ -3,58 +3,45 @@ import Layout from '@theme/Layout';
 
 export default function About() {
   return (
-    <Layout title="About Me" description="About Stirling-PDF">
-
+    <Layout title="About" description="About Stirling-PDF">
       <div
         style={{
-          padding: '3% 10%',
+          padding: '3% 25%',
           fontSize: '18px',
         }}>
+        <h1 style={{ borderBottom: '2px solid #333', paddingBottom: '10px' }}>About Stirling-PDF</h1>
+        
+        <p>
+          Stirling PDF is a powerful, locally-hosted web application for PDF manipulation and processing, designed with privacy as a core principles. Developed as an open-source project, Stirling PDF offers a comprehensive suite of tools to handle all your PDF needs efficiently, while ensuring that your documents never leave your control. Unlike cloud-based web solutions, Stirling PDF processes everything locally meaning all files never leave your network. This privacy-first approach makes Stirling PDF an ideal choice for handling sensitive documents in both personal and professional contexts.
+        </p>
 
- <h1 style={{ borderBottom: '2px solid #333', paddingBottom: '10px' }}>About Stirling-PDF</h1>
+        <h2>Our Vision</h2>
+        <p>
+          Stirling-PDF was created to provide a locally-hosted alternative to online PDF tools, ensuring complete privacy and control over your documents. The application is continuously improved through community contributions, with new features and language support added regularly. Our long-term goal is to provide comprehensive PDF manipulation capabilities, eliminating the need for expensive Adobe subscriptions. In the short term, we're focused on revolutionizing PDF interactions through seamless automation and ensuring a quick clean UI for simple operations.
+        </p>
 
-<h2>Stirling-PDF: Our Vision</h2>
-<p>
-  Stirling-PDF is a locally hosted web application designed to perform various operations on PDF files. Born out of a passion for creating reliable, user-friendly tools, Stirling-PDF is free, secure, and private, with no outbound calls for tracking or record-keeping. Your files stay on your device, ensuring complete control and privacy.
-</p>
-<p>
-  Our focus is on providing a top-notch self-hosted PDF manipulation tool. With features like splitting, merging, converting, and more, Stirling-PDF is equipped to handle all your PDF needs. We're excited to announce that Version 1.0.0 is coming soon, featuring automation support!
-</p>
+        <h2>Milestones</h2>
+        <p>
+          Our community has shown tremendous support, with two Reddit posts receiving over 400 upvotes each. Stirling-PDF is ranked among the top 20 Java apps by GitHub stars and in the top 400 overall, with over 5 million Docker downloads.
+        </p>
 
-<h2>Milestones</h2>
-<p>
-  Our community has shown tremendous support, with two Reddit posts receiving over 400 upvotes each. Stirling-PDF is ranked among the top 50 Java apps by GitHub stars and in the top 800 overall, with millions of Docker downloads.
-</p>
+        <h2>Get Involved</h2>
+        <p>
+          Whether you're an individual user, part of a business, or a developer looking to integrate PDF capabilities into your workflow, Stirling PDF offers a flexible and powerful solution for all your PDF manipulation needs. Join our community on Discord or GitHub and discuss at upcoming features. We'd love to hear your feedback and ideas!
+        </p>
 
-<h2>The Road Ahead</h2>
-<p>
-  Our long-term goal is to provide comprehensive PDF manipulation capabilities, eliminating the need for expensive Adobe subscriptions. In the short term, we're focused on revolutionizing PDF interactions through seamless automation.
-</p>
-<p>
-  Join our community on Discord and participate in our discussions on GitHub. We'd love to hear your feedback and ideas!
-</p>
+        <hr style={{ margin: '40px 0' }} />
 
-<h2>Funding Model</h2>
-<p>
-  Stirling-PDF is fully open-source, free, and transparent. This approach has allowed us to build a strong community, but it also means we rely heavily on voluntary contributions. If you find Stirling-PDF valuable, please consider supporting us. Your contributions help us continue to improve Stirling PDF
-</p>
+        <h1 style={{ borderBottom: '2px solid #333', paddingBottom: '10px' }}>About the Founder</h1>
+        <p>
+          I'm Anthony Stirling from the UK. I started as a passionate software developer and grew into a dedicated DevOps enthusiast. My love for creating, making things, and improving systems drives me every day. My interests range from software development to hosting my own privacy focused selfhosted tech.
+        </p>
 
-<hr style={{ margin: '40px 0' }} />
-
-<h1 style={{ borderBottom: '2px solid #333', paddingBottom: '10px' }}>About the Founder</h1>
-
-<p>
-  I'm Anthony Stirling from the UK. I started as a passionate software developer and grew into a dedicated DevOps enthusiast. My love for creating, making things, and improving systems drives me every day. My interests range from software development to hosting my own applications and services with NAS's etc
-</p>
-
-<h2>Professional Journey</h2>
-<p>
-  With 4 years in development and 2 years as a DevOps specialist, I've gained a lot of experience. A proud moment for me was being nominated and becoming a runner-up for "Innovation of the Year" at the UK IT Industry Awards.
-</p>
-
-
+        <h2>Professional Journey</h2>
+        <p>
+          With 5 years in development and 3 years as a DevOps specialist, I've gained a lot of experience. A proud moment for me was being nominated and becoming a runner-up for "Innovation of the Year" at the UK IT Industry Awards representing my previous employer.
+        </p>
       </div>
-
     </Layout>
   );
 }
