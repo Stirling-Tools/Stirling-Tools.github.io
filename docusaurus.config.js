@@ -1,6 +1,3 @@
-// @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
-
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
@@ -11,9 +8,9 @@ const config = {
     favicon: 'img/favicon.ico',
 
     // Set the production url of your site here
-    url: 'https://stirlingtools.com',
+    url: 'https://stirlingpdf.com/docs/Overview/What%20is%20Stirling-PDF',
     // Set the /<baseUrl>/ pathname under which your site is served
-    baseUrl: '/',
+    baseUrl: '/docs/Overview/What%20is%20Stirling-PDF',
 
     organizationName: 'Stirling-Tools', // Usually your GitHub org/user name.
     projectName: 'Stirling-PDF', // Usually your repo name.
