@@ -33,6 +33,7 @@ const config = {
             ({
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
+                    routeBasePath: '/',
                     editUrl: 'https://github.com/Stirling-Tools/Stirling-Tools.github.io/tree/main/',
                 },
                 theme: {
@@ -58,9 +59,6 @@ const config = {
                         position: 'left',
                         label: 'Docs',
                     },
-                    { to: '/about', label: 'About', position: 'left' },
-                    { to: '/demos', label: 'Demos', position: 'left' },
-                    { to: '/contact', label: 'Contact', position: 'left' },
                     {
                         href: 'https://github.com/Stirling-Tools/Stirling-PDF',
                         label: 'GitHub',
@@ -71,11 +69,14 @@ const config = {
             footer: {
                 style: 'dark',
                 links: [{
-                        title: 'Docs',
+                        title: 'Stirling-PDF',
                         items: [{
-                            label: 'Tutorial',
-                            to: '/docs/Overview/What%20is%20Stirling-PDF',
-                        }, ],
+                            label: 'Homepage',
+                            to: 'https://www.stirlingpdf.com/',
+                        }, {
+                            label: 'Demo',
+                            to: 'https://stirlingpdf.io/',
+                        }],
                     },
                     {
                         title: 'Community',
