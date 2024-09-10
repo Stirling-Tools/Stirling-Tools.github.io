@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.3.2">
 <title data-rh="true">Single Sign-On (SSO) Configuration | Stirling-PDF</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://stirlingtools.com/img/stirling-social-card.png"><meta data-rh="true" name="twitter:image" content="https://stirlingtools.com/img/stirling-social-card.png"><meta data-rh="true" property="og:url" content="https://stirlingtools.com/Advanced Configuration/Single Sign-On Configuration"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Single Sign-On (SSO) Configuration | Stirling-PDF"><meta data-rh="true" name="description" content="Stirling PDF allows login via Single Sign-On (SSO) using OAUTH2 OpenID Connect (OIDC)"><meta data-rh="true" property="og:description" content="Stirling PDF allows login via Single Sign-On (SSO) using OAUTH2 OpenID Connect (OIDC)"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://stirlingtools.com/Advanced Configuration/Single Sign-On Configuration"><link data-rh="true" rel="alternate" href="https://stirlingtools.com/Advanced Configuration/Single Sign-On Configuration" hreflang="en"><link data-rh="true" rel="alternate" href="https://stirlingtools.com/Advanced Configuration/Single Sign-On Configuration" hreflang="x-default"><link rel="stylesheet" href="/assets/css/styles.b9e01cf1.css">
-<script src="/assets/js/runtime~main.5e58a98d.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.65214924.js" defer="defer"></script>
 <script src="/assets/js/main.493cdd52.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -18,7 +18,7 @@ These are</p>
 <li><code>oauth2.clientSecret</code> Client Secret from your provider</li>
 <li><code>oauth2.autoCreateUser</code> Set this to &#x27;true&#x27; to allow auto-creation of non-existing users</li>
 </ul>
-<p>The Callback URL (Redirect URL) for entering in your IdP is:  <code>https://&lt;striling-pdf.yourdomain&gt;/login/oauth2/code/oidc</code></p>
+<p>The Callback URL (Redirect URL) for entering in your IdP is:  <code>https://&lt;striling-pdf.yourdomain&gt;/login/oauth2/code/&lt;oidc-provider&gt;</code> eg <code>https://&lt;striling-pdf.yourdomain&gt;/login/oauth2/code/keycloak</code></p>
 <p>It is highly recommended to use a SSL-enabled reverse-proxy, if the application is going to be exposed to the internet.</p>
 <p>After the OAUTH2 login is enabled, a new button shows up on the login page as per the screenshot below:</p>
 <p><img src="https://github.com/Stirling-Tools/Stirling-PDF/assets/812110/6ec3b233-2eb7-4838-bcc9-f93ca0c21cec" alt="image"></p>
