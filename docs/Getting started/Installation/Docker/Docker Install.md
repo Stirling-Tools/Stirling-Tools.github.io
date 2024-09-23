@@ -57,4 +57,4 @@ services:
 
 ### Extras
 
-For extra parameters and customization please check the [advanced configuration](https://stirlingtools.com/docs/Advanced%20Configuration/How%20to%20add%20configurations) page!
+For extra parameters and customization please check the [advanced configuration](https://docs.stirlingpdf.com/Advanced%20Configuration/How%20to%20add%20configurations) page!
