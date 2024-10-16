@@ -21,6 +21,6 @@ We also show all licenses used within our Java application [here](https://stirli
 # Others
 We also use other open source applications along side ours to offer additional functionality.
 - [LibreOffice](https://www.libreoffice.org/discover/libreoffice/) for advanced conversions
-- [OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) is used for OCR (Optical CHaracter recognition) to change PDF images into text.
+- [OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) is used for OCR (Optical Character Recognition) to change PDF images into text.
 - GhostScript, Bundled with OCRmyPDF, this is used to compress PDF documents.
 
