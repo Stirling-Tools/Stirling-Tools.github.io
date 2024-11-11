@@ -14,7 +14,7 @@ Although the application is OpenSource the majority of work is done by a single 
 # Benefits  
 
 ## Privacy comes first
-Originally developed as a purely ChatGPT-powered application, Stirling PDF has evolved to accommodate a plethora of PDF-related needs. Most importantly, the platform guarantees utmost privacy and security as it doesn't make outbound calls for tracking or record keeping. All files and PDFs remain either on the client side, stored temporarily on the server during the execution of tasks, or within a transient file created specifically for task execution. Once the user downloads a file, it is immediately purged from the server.
+Originally developed as a purely ChatGPT-powered application, Stirling PDF has evolved to accommodate a plethora of PDF-related needs. Most importantly, the platform guarantees privacy and security as it doesn't make outbound calls for file processing ensuring file data is safe. All files and PDFs remain either on the client side, stored temporarily on the server during the execution of tasks, or within a transient file created specifically for task execution. Once the user downloads a file, it is immediately purged from the server.
 
 
 ## Always improving
