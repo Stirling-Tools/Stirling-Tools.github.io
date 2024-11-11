@@ -5,11 +5,14 @@ title: Docker Versions
 ---
 # Docker Versions of Stirling PDF
 
-Stirling PDF is avaiable in two distinct docker images:
+Stirling PDF is avaiable in three distinct docker images:
+- ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/frooodle/s-pdf/latest-fat?label=Stirling-PDF%20Fat)
 - ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/frooodle/s-pdf/latest?label=Stirling-PDF%20Full)
 - ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/frooodle/s-pdf/latest-ultra-lite?label=Stirling-PDF%20Ultra-Lite)
 
 Each version caters to different needs based on the specific features required and the storage space available. 
+
+The Fat version contains the same from Full but with additional fonts for conversion and the Security jar pre-bundled. It is the recommended version for those unconcerned about storage
 
 For an in-depth comparison of what each version offers, please refer to the graph below.
 If storage optimization is not a concern, we recommend using the latest tag for the most complete set of features.
@@ -70,3 +73,16 @@ compress-pdf             |            |  ✔️
 extract-image-scans      |            |  ✔️
 ocr-pdf                  |            |  ✔️
 pdf-to-pdfa              |            |  ✔️
+pdf-to-text             |     ✔️      |  ✔️
+pdf-to-html             |            |  ✔️
+pdf-to-word             |            |  ✔️
+pdf-to-presentation     |            |  ✔️
+pdf-to-xml              |            |  ✔️
+remove-annotations      |     ✔️      |  ✔️
+remove-cert-sign        |     ✔️      |  ✔️
+remove-image-pdf        |     ✔️      |  ✔️
+file-to-pdf             |            |  ✔️
+xlsx-to-pdf             |            |  ✔️
+html-to-pdf             |            |  ✔️
+url-to-pdf              |            |  ✔️
+repair                  |            |  ✔️

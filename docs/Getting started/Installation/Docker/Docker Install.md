@@ -12,6 +12,7 @@ Please note that Stirling PDF offers three distinct versions tailored for variou
 
 | Version    | Latest Tag          |
 | ---------- | ------------------- |
+| Fat        | `latest-fat`            |
 | Standard   | `latest`            |
 | Ultra Lite | `latest-ultra-lite` |
 
@@ -19,18 +20,17 @@ Please note that Stirling PDF offers three distinct versions tailored for variou
 
 ```
 docker run -d \
+  --name stirling-pdf \
   -p 8080:8080 \
-  -v /location/of/trainingData:/usr/share/tessdata \
-  -v /location/of/extraConfigs:/configs \
-  -v /location/of/logs:/logs \
+  -v "./StirlingPDF/trainingData:/usr/share/tessdata" \
+  -v "./StirlingPDF/extraConfigs:/configs" \
+  -v "./StirlingPDF/customFiles:/customFiles/" \
+  -v "./StirlingPDF/logs:/logs/" \
+  -v "./StirlingPDF/pipeline:/pipeline/" \
   -e DOCKER_ENABLE_SECURITY=false \
   -e INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false \
   -e LANGS=en_GB \
-  --name stirling-pdf \
   frooodle/s-pdf:latest
-
-  Can also add these for customisation but are not required
-  -v /location/of/customFiles:/customFiles \
 ```
 
 
@@ -45,10 +45,11 @@ services:
     ports:
       - '8080:8080'
     volumes:
-      - /location/of/trainingData:/usr/share/tessdata #Required for extra OCR languages
-      - /location/of/extraConfigs:/configs
-#      - /location/of/customFiles:/customFiles/
-#      - /location/of/logs:/logs/
+      - ./StirlingPDF/trainingData:/usr/share/tessdata # Required for extra OCR languages
+      - ./StirlingPDF/extraConfigs:/configs
+      - ./StirlingPDF/customFiles:/customFiles/
+      - ./StirlingPDF/logs:/logs/
+      - ./StirlingPDF/pipeline:/pipeline/
     environment:
       - DOCKER_ENABLE_SECURITY=false
       - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
