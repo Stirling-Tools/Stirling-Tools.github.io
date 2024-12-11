@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.3.2">
 <title data-rh="true">System and Security | Stirling-PDF</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://stirlingtools.com/img/stirling-social-card.png"><meta data-rh="true" name="twitter:image" content="https://stirlingtools.com/img/stirling-social-card.png"><meta data-rh="true" property="og:url" content="https://stirlingtools.com/Advanced Configuration/System and Security"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="System and Security | Stirling-PDF"><meta data-rh="true" name="description" content="Stirling PDF allows custommization of system and security settings"><meta data-rh="true" property="og:description" content="Stirling PDF allows custommization of system and security settings"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://stirlingtools.com/Advanced Configuration/System and Security"><link data-rh="true" rel="alternate" href="https://stirlingtools.com/Advanced Configuration/System and Security" hreflang="en"><link data-rh="true" rel="alternate" href="https://stirlingtools.com/Advanced Configuration/System and Security" hreflang="x-default"><link rel="stylesheet" href="/assets/css/styles.b9e01cf1.css">
-<script src="/assets/js/runtime~main.b425f422.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.2be410f8.js" defer="defer"></script>
 <script src="/assets/js/main.1355e7f4.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -13,10 +13,10 @@
 For security please note this section is only enabled if you are using the security jar, for docker that means setting <code>DOCKER_ENABLE_SECURITY</code> to <code>true</code>  via a environment variable</p>
 <ul>
 <li><code>enableLogin</code> This enables or disables the login functionality with</li>
-<li><code>csrfDisabled</code> The description to be displayed on the homepage under the navbar that first greets the user
+<li><code>csrfDisabled</code> Set to &#x27;true&#x27; to disable CSRF protection (not recommended for production)
 and</li>
-<li><code>defaultLocale</code> The app name to be shown within to navbar for all pages</li>
-<li><code>googlevisibility</code> The app name to be shown within to navbar for all pages</li>
+<li><code>defaultLocale</code> Set the default language (e.g. &#x27;de-DE&#x27;, &#x27;fr-FR&#x27;, etc)</li>
+<li><code>googlevisibility</code> &#x27;true&#x27; to allow Google visibility (via robots.txt), &#x27;false&#x27; to disallow</li>
 </ul>
 <h2 id="settings-file">Settings file</h2>
 <pre><code>security:
