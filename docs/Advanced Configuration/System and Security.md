@@ -6,10 +6,10 @@ sidebar_position: 1
 Stirling PDF allows custommization of system and security settings
 For security please note this section is only enabled if you are using the security jar, for docker that means setting ``DOCKER_ENABLE_SECURITY`` to ``true``  via a environment variable
 - ``enableLogin`` This enables or disables the login functionality with
-- ``csrfDisabled`` The description to be displayed on the homepage under the navbar that first greets the user
+- ``csrfDisabled`` Set to 'true' to disable CSRF protection (not recommended for production)
 and
-- ``defaultLocale`` The app name to be shown within to navbar for all pages
-- ``googlevisibility`` The app name to be shown within to navbar for all pages
+- ``defaultLocale`` Set the default language (e.g. 'de-DE', 'fr-FR', etc)
+- ``googlevisibility`` 'true' to allow Google visibility (via robots.txt), 'false' to disallow
 
 
 ## Settings file
