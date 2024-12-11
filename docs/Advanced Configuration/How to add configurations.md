@@ -106,12 +106,12 @@ export UI_APP_NAME="Stirling PDF"
 
 #### Windows (CMD)
 ```
-export UI_APP_NAME="Stirling PDF"
+set UI_APP_NAME=Stirling PDF
 ```
 
 #### Windows (PowerShell)
 ```
-export UI_APP_NAME="Stirling PDF"
+$env:UI_APP_NAME = "Stirling PDF"
 ```
 
 ### Docker
@@ -120,9 +120,9 @@ Simply add these to the end of your script/file
 
 #### Docker run
 ```
--e UI_APP_NAME=Stirling PDF \
--e UI_HOME_DESCRIPTION=Your locally hosted one-stop-shop for all your PDF needs. \
--e UI_APP_NAVBAR_NAME=Stirling PDF \
+-e "UI_APP_NAME=Stirling PDF" \
+-e "UI_HOME_DESCRIPTION=Your locally hosted one-stop-shop for all your PDF needs." \
+-e "UI_APP_NAVBAR_NAME=Stirling PDF" \
 ```
 #### Docker Compose
 ```
