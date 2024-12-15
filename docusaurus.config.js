@@ -25,7 +25,7 @@ const config = {
         defaultLocale: 'en',
         locales: ['en'],
     },
-
+    themes: ['@docusaurus/theme-search-algolia'],
     presets: [
         [
             'classic',
