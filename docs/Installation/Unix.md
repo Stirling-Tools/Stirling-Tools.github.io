@@ -35,7 +35,7 @@ Install the following software, if not already installed:
 
 - Autoconf
 
-- libtool
+- libtool[Windows.md](Windows.md)
 
 - pkg-config
 
@@ -83,50 +83,35 @@ nix-env -iA nixpkgs.jbig2enc
 ```
 
 ### Step 3: Install Additional Software
-Next we need to install LibreOffice for conversions, ocrmypdf for OCR, and opencv for pattern recognition functionality.
+Next we need to install LibreOffice for conversions, tesseract for OCR, and opencv for pattern recognition functionality.
 
 Install the following software:
 
-- libreoffice-core
-
-- libreoffice-common
-
-- libreoffice-writer
-
-- libreoffice-calc
-
-- libreoffice-impress
-
+- libreoffice (libreoffice-core libreoffice-common libreoffice-writer libreoffice-calc libreoffice-impress)
 - python3-uno
-
 - unoconv
-
 - pngquant
-
-- unpaper
-
-- ocrmypdf
-
+- tesseract
 - opencv-python-headless
 
 For Debian-based systems, you can use the following command:
 
 ```bash
-sudo apt-get install -y libreoffice-writer libreoffice-calc libreoffice-impress unpaper ocrmypdf
+sudo apt-get install -y libreoffice-writer libreoffice-calc libreoffice-impress tesseract
 pip3 install uno opencv-python-headless unoconv pngquant WeasyPrint --break-system-packages
 ```
 
 For Fedora:
 
 ```bash
-sudo dnf install -y libreoffice-writer libreoffice-calc libreoffice-impress unpaper ocrmypdf
+sudo dnf install -y libreoffice-writer libreoffice-calc libreoffice-impress tesseract
 pip3 install uno opencv-python-headless unoconv pngquant WeasyPrint
 ```
 
 For Nix:
 
 ```bash
-nix-env -iA nixpkgs.unpaper nixpkgs.libreoffice nixpkgs.ocrmypdf nixpkgs.poppler_utils
+nix-env -iA nixpkgs.libreoffice nixpkgs.tesseract nixpkgs.poppler_utils
 pip3 install uno opencv-python-headless unoconv pngquant WeasyPrint
 ```
 
@@ -170,7 +155,7 @@ Manual:
 
 1. Download the desired language pack(s) by selecting the `.traineddata` file(s) for the language(s) you need.
 2. Place the `.traineddata` files in the Tesseract tessdata directory: `/usr/share/tessdata`
-3. Please view  [OCRmyPDF install guide](https://ocrmypdf.readthedocs.io/en/latest/installation.html) for more info.
+3. Please view  [tesseract install guide](https://tesseract.readthedocs.io/en/latest/installation.html) for more info.
 
 **IMPORTANT:** DO NOT REMOVE EXISTING `eng.traineddata`, IT'S REQUIRED.
 

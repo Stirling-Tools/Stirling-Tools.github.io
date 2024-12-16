@@ -11,7 +11,7 @@ This document provides instructions on how to add additional language packs for 
 The paths have changed for the tessadata locations on new docker images, please use ``/usr/share/tessdata`` (Others should still work for backwards compatibility but might not)
 
 ## How does the OCR Work
-Stirling-PDF uses [OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) which in turn uses tesseract for its text recognition.
+Stirling-PDF uses tesseract for its text recognition.
 All credit goes to them for this awesome work!
 
 ## Language Packs
@@ -53,8 +53,7 @@ Add the following to your existing docker run command
 ```
 
 #### Non-Docker
-If you are not using Docker, you need to install the OCR components, including the ocrmypdf app.
-You can see [OCRmyPDF install guide](https://ocrmypdf.readthedocs.io/en/latest/installation.html)
+If you are not using Docker, you need to install the OCR components, including the tesseract app.
 
 Debian based systems, install languages with this command:
 

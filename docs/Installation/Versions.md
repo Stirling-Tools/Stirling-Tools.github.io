@@ -1,23 +1,42 @@
 ---
 sidebar_position: 1
-id: Docker Versions
-title: Docker Versions
+id: Versions
+title: Versions
 ---
-# Docker Versions of Stirling PDF
+# Versions of Stirling PDF
 
-Stirling PDF is avaiable in three distinct docker images:
-- ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/frooodle/s-pdf/latest-fat?label=Stirling-PDF%20Fat)
-- ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/frooodle/s-pdf/latest?label=Stirling-PDF%20Full)
-- ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/frooodle/s-pdf/latest-ultra-lite?label=Stirling-PDF%20Ultra-Lite)
+Stirling PDF is available in several formats, each catering to different needs and use cases:
 
-Each version caters to different needs based on the specific features required and the storage space available. 
+## Docker Versions
+For server deployments, we offer three pre-configured Docker images:
+- ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/stirlingtools/stirling-pdf/latest-fat?label=Stirling-PDF%20Fat)
+- ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/stirlingtools/stirling-pdf/latest?label=Stirling-PDF%20Full)
+- ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/stirlingtools/stirling-pdf/latest-ultra-lite?label=Stirling-PDF%20Ultra-Lite)
 
-The Fat version contains the same from Full but with additional fonts for conversion and the Security jar pre-bundled. It is the recommended version for those unconcerned about storage
+- **Fat**: Includes all Full features plus additional fonts and pre-bundled jar security version
+- **Full**: All features pre-configured and ready to use
+- **Ultra-Lite**: Minimal installation with core features only
 
-For an in-depth comparison of what each version offers, please refer to the graph below.
-If storage optimization is not a concern, we recommend using the latest tag for the most complete set of features.
 
-Here are the different technologies each version uses.
+## Desktop Versions (Windows & Unix)
+The desktop versions of Stirling PDF use a dynamic feature system. They start with Ultra-Lite features as the base and automatically enable additional functionality based on installed dependencies:
+
+Base Features (Ultra-Lite):
+- Core PDF operations (merge, split, rotate, etc.)
+- Basic conversions
+- Password protection
+- All features marked with ✔️ in the Ultra-Lite column below
+
+Additional features become available automatically when you install:
+- LibreOffice: Enables document format conversions (PDF to Word, Excel, etc.)
+- Tesseract: Enables OCR functionality
+- QPDF: Enables compression and repair features
+- Other dependencies: Enable their respective features
+
+
+## Feature Comparison
+
+Here are the different technologies each version uses:
 
 | Technology     | Ultra-Lite | Full |
 |----------------|:----------:|:----:|
@@ -26,7 +45,7 @@ Here are the different technologies each version uses.
 | Libre          |            |  ✔️  |
 | Python         |            |  ✔️  |
 | OpenCV         |            |  ✔️  |
-| OCRmyPDF       |            |  ✔️  |
+| Tesseract       |            |  ✔️  |
 
 And here you see what functions are offered as part of each.
 
