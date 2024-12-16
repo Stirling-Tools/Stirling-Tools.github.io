@@ -15,7 +15,7 @@ sidebar_position: 4
 
 - `extract-image-scans`: This feature enables users to extract scanned images from PDF files.
 
-- `sign`: This feature allows users to add their writen signature to PDF documents. For digitally signing PDFs see Features - Security --> `cert_sign`
+- `sign`: This feature allows users to add their writen signature to PDF documents. For cert signing see [Features-Security](/Functionality/Security/)
 
 - `flatten`: This functionality enables users to flatten a PDF, merging interactive form fields with the document.
 

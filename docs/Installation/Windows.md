@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 id: Windows Installation
-title: Windows installation Guide
+title: Windows Guide
 ---
 # Windows Installation Guide for Stirling PDF
 

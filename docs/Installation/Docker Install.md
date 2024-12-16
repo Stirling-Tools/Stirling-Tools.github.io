@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 id: Docker Install
-title: Installation Guide
+title: Docker Guide
 ---
 
 # Docker Images for Stirling-PDF
