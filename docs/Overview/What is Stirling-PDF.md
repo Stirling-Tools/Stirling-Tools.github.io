@@ -9,8 +9,8 @@ slug: /
 
 Stirling PDF is a robust, locally hosted, web-based PDF manipulation platform powered by Docker. Our application offers an extensive range of functionalities, from simple operations like merging and splitting PDFs, to advanced features such as compressing, OCR and Conversions. 
 
-Although the application is OpenSource the majority of work is done by a single developer in their spare time. Please consider donating to keep this work active!
-
+[Get started with Stirling PDF!](/Overview/Getting%20Started)
+ 
 # Benefits  
 
 ## Privacy comes first
@@ -22,7 +22,7 @@ Stirling-PDF has a active community of users giving new ideas and helping as par
 
 ## Options
 Stirling-PDF is yours.
-You are free to do with it what you like and customize it however you wish. We offer various [customization features](http://TODO) for you or your business. 
+You are free to do with it what you like and customize it however you wish. We offer various [customization features](/Advanced%20Configuration/How%20to%20add%20configurations) for you or your business. 
 
 
 Please feel free to request new features or report bugs through our GitHub issues or [Discord](https://discord.gg/Cn8pWhQRxZ).

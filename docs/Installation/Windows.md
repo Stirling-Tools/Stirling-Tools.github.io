@@ -5,14 +5,14 @@ title: Windows Guide
 ---
 # Windows Installation Guide for Stirling PDF
 
-Stirling PDF provides Windows compatibility through a downloadable .exe file, which can be obtained from [here](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest).
-This is a streamlined version of the application, offering the same capabilities as the Stirling-PDF-Ultra-lite found in Docker, but in a compact 80MB executable!
+Stirling PDF provides Windows compatibility through a downloadable .exe files depending on your usecase!
+For personal user we recommend the latest
+[Stirling-PDF-installer](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/Stirling-PDF-win-installer.exe)
 
-## Prerequisites
+For Server use (wanting to host Stirling-PDF as a server to share with multiple users)
+We recommend downloading the [Stirling-PDF-server.exe](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/Stirling-PDF-server.exe)
+This version also requires you to install the latest [java jdk21](https://www.oracle.com/uk/java/technologies/downloads/#jdk21-windows) you can get the installer [here](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe)
 
-### Required Dependencies
-- JAVA 17 or 21 (21 preferred) - If not installed, the application will provide a download link
-  - Download from [Oracle's official site](https://www.oracle.com/java/technologies/downloads/) or [Eclipse Temurin](https://adoptium.net/temurin/releases/)
 
 ### Optional Dependencies
 These dependencies enable additional features in Stirling PDF. Install only the ones you need:
@@ -63,19 +63,18 @@ After installing dependencies, you'll need to add their directories to your syst
    - For QPDF: The installation directory (usually `C:\Program Files\qpdf\bin`)
 7. Click "OK" on all windows to save changes
 
-## Installation Steps
+## Server Installation Steps
 
-1. Download the latest Stirling PDF .exe from the [releases page](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest)
+1. Download the latest Stirling PDF-server.exe or jar from the [releases page](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest)
 2. Install any desired optional dependencies following the instructions above
 3. Launch the Stirling PDF executable
-4. Access the web interface through your browser (the application will provide the URL)
+4. Access the web interface through your browser (the application will provide the URL) in the console logs normally http://localhost:8080
 
 ## Notes
 - The application hosts a web server that is accessible to anyone on your network
 - If you install multiple Python-based dependencies, ensure they're using the same Python installation to avoid conflicts
 - Make sure to restart Stirling PDF after installing new dependencies or modifying PATH variables
 - Some features will be unavailable until their required dependencies are installed
-- The web interface will indicate which features require additional dependencies
 
 ## Troubleshooting
 
