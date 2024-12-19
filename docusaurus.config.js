@@ -25,6 +25,16 @@ const config = {
         defaultLocale: 'en',
         locales: ['en'],
     },
+	plugins: [
+    [
+      "posthog-docusaurus",
+      {
+        apiKey: "phc_qy9V53BkvTATJESFrSBvg8Rw5m3KvYuTmmk9IojIjyZ",
+        appUrl: "https://eu.i.posthog.com", // optional, defaults to "https://us.i.posthog.com"
+        enableInDevelopment: true, // optional
+      },
+    ],
+  ],
     presets: [
         [
             'classic',
