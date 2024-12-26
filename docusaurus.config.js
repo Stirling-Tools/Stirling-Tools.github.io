@@ -25,6 +25,15 @@ const config = {
         defaultLocale: 'en',
         locales: ['en'],
     },
+	scripts: [
+    {
+      src: 'https://app.termly.io/resource-blocker/aa66d813-045f-4a28-b465-6aab431924d6',
+      type: 'text/javascript',
+      attributes: {
+        autoBlock: 'on'
+      }
+    },
+  ],
 	plugins: [
     [
       "posthog-docusaurus",
@@ -130,15 +139,29 @@ const config = {
                                 label: 'Docker',
                                 href: 'https://hub.docker.com/r/frooodle/s-pdf',
                             },
+							{
+								label: 'GitHub',
+								href: 'https://github.com/Stirling-Tools/Stirling-PDF',	
+							},
                         ],
                     },
-                    {
-                        title: 'More',
-                        items: [{
-                            label: 'GitHub',
-                            href: 'https://github.com/Stirling-Tools/Stirling-PDF',
-                        }, ],
-                    },
+					{
+						title: 'Legal',
+						items: [
+							{
+								label: 'Privacy Policy',
+								href: 'https://app.termly.io/policy-viewer/policy.html?policyUUID=09506b8c-1f83-48e2-bf2e-6fce9df4b61b',
+							},
+							{
+								label: 'Cookie Policy',
+								href: 'https://app.termly.io/policy-viewer/policy.html?policyUUID=1bedd860-0cb2-49c1-a9dc-bc0886c1f6ca',
+							},
+							{
+								label: 'Terms & Conditions',
+								href: 'https://app.termly.io/policy-viewer/policy.html?policyUUID=de68b39f-5e58-4c09-b260-8bdee9b99500',
+							},
+						],
+					},
                 ],
                 copyright: `Copyright © ${new Date().getFullYear()} Stirling-PDF, Inc. Built with Docusaurus.`,
             },
