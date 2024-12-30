@@ -70,3 +70,29 @@ environment:
   SECURITY_OAUTH2_CLIENTID: "<client-id>"
   SECURITY_OAUTH2_CLIENTSECRET: "<client-secret>"
 ```
+
+# Disable Form Login
+
+Once you successfully enabled Single Sign-on (with OAuth2 or SAML), you might want to disable the form login.
+This can be done by changing the ``loginMethod`` setting accordingly to your needs, like so:
+
+## Settings file
+```
+security:
+  ...
+  loginMethod: oauth2 # Accepts values like 'all' and 'normal'(only Login with Username/Password), 'oauth2'(only Login with OAuth2) or 'saml2'(only Login with SAML2)
+```
+
+## Docker
+
+### Docker run
+```
+-e  SECURITY_LOGINMETHOD="oauth2" # to enable oauth2 only
+```
+
+### Docker Compose
+```
+environment:
+  ...
+  SECURITY_LOGINMETHOD: "oauth2" # to enable oauth2 only
+```
