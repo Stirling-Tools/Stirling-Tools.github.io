@@ -23,32 +23,34 @@ system:
   googlevisibility: false # 'true' to allow Google visibility (via robots.txt), 'false' to disallow
 ```
 
-## Local 
-If running Java directly, you can also pass these as properties using `-D` arguments such as:
-```
-java -jar Stirling-PDF.jar -DAPP_HOME_NAME="New Application Name"
-```
+## Local
 
-Alternatively you can set these via environment variables by running before starting the application
 ```
-export UI_APP_NAME="Stirling PDF"
-export UI_HOME_DESCRIPTION="Your locally hosted one-stop-shop for all your PDF needs."
-export UI_APP_NAVBAR_NAME="Stirling PDF"
+export DOCKER_ENABLE_SECURITY=true
+export SECURITY_ENABLELOGIN=true
+export SECURITY_CSRFDISABLED=false
+export SECURITY_DEFAULTLOCALE=en-US
+export SECURITY_GOOGLEVISIBILITY=false
 ```
 
 ## Docker
 
 ### Docker run
 ```
--e UI_APP_NAME=Stirling PDF \
--e UI_HOME_DESCRIPTION=Your locally hosted one-stop-shop for all your PDF needs. \
--e UI_APP_NAVBAR_NAME=Stirling PDF \
+-e  DOCKER_ENABLE_SECURITY=true \
+-e  SECURITY_ENABLELOGIN=true \
+-e  SECURITY_CSRFDISABLED=false \
+-e  SECURITY_DEFAULTLOCALE=en-US \
+-e  SECURITY_GOOGLEVISIBILITY=false
 ```
 
 ### Docker Compose
 ```
 environment:
-  UI_APP_NAME: Stirling PDF
-  UI_HOME_DESCRIPTION: Your locally hosted one-stop-shop for all your PDF needs.
-  UI_APP_NAVBAR_NAME: Stirling PDF
+  ...
+  DOCKER_ENABLE_SECURITY: true
+  SECURITY_ENABLELOGIN: true
+  SECURITY_CSRFDISABLED: false
+  SECURITY_DEFAULTLOCALE: en-US
+  SECURITY_GOOGLEVISIBILITY: false
 ```
