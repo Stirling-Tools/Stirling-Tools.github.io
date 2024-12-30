@@ -21,7 +21,7 @@ After the OAUTH2 login is enabled, a new button shows up on the login page as pe
 
 
 ## Settings file
-```
+```yaml
 security:
   enableLogin: true # set to 'true' to enable login
   ...
@@ -36,7 +36,7 @@ security:
 
 ## Local 
 If running Java directly, you can set these via environment variables by running before starting the application
-```
+```bash
 export DOCKER_ENABLE_SECURITY=true
 export SECURITY_ENABLELOGIN=true
 export SECURITY_OAUTH2_ENABLED=true
@@ -49,7 +49,7 @@ export SECURITY_OAUTH2_CLIENTSECRET="<client-secret>"
 ## Docker
 
 ### Docker run
-```
+```bash
 -e  DOCKER_ENABLE_SECURITY=true \
 -e  SECURITY_ENABLELOGIN=true \
 -e  SECURITY_OAUTH2_ENABLED=true \
@@ -60,7 +60,7 @@ export SECURITY_OAUTH2_CLIENTSECRET="<client-secret>"
 ```
 
 ### Docker Compose
-```
+```yaml
 environment:
   DOCKER_ENABLE_SECURITY: true
   SECURITY_ENABLELOGIN: true
@@ -77,7 +77,7 @@ Once you successfully enabled Single Sign-on (with OAuth2 or SAML), you might wa
 This can be done by changing the ``loginMethod`` setting accordingly to your needs, like so:
 
 ## Settings file
-```
+```yaml
 security:
   ...
   loginMethod: oauth2 # Accepts values like 'all' and 'normal'(only Login with Username/Password), 'oauth2'(only Login with OAuth2) or 'saml2'(only Login with SAML2)
@@ -86,12 +86,12 @@ security:
 ## Docker
 
 ### Docker run
-```
+```bash
 -e  SECURITY_LOGINMETHOD="oauth2" # to enable oauth2 only
 ```
 
 ### Docker Compose
-```
+```yaml
 environment:
   ...
   SECURITY_LOGINMETHOD: "oauth2" # to enable oauth2 only

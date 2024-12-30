@@ -24,7 +24,7 @@ To have this via an environment variable you would have ``SYSTEM_ENABLELOGIN``
 
 The Current list of settings is
 
-```
+```yaml
 security:
   enableLogin: false # set to 'true' to enable login
   csrfDisabled: true # Set to 'true' to disable CSRF protection (not recommended for production)

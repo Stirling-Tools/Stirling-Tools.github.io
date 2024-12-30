@@ -37,7 +37,7 @@ For Pro you will be redirected to Stripe to setup and handle a subscription, aft
 
 To activate, navigate to the Stirling PDF config folder and open the ``settings.yml``
 Scroll down to the enterprise section, it should look like:
-```
+```yaml
 enterpriseEdition:
   enabled: false # set to 'true' to enable enterprise edition
   key: 00000000-0000-0000-0000-000000000000

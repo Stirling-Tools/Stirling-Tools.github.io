@@ -88,7 +88,7 @@ curl -X POST "http://localhost:8080/add-watermark" \
 ```
 
 ### Windows CMD (Not PowerShell) 
-```cmd
+```bash
 curl -X POST "http://localhost:8080/add-watermark" ^
      -H "Content-Type: multipart/form-data" ^
      -F "fileInput=@C:\Users\systo\Downloads\sample-1_cropped.pdf" ^

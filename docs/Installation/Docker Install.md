@@ -18,7 +18,7 @@ Please note that Stirling PDF offers three distinct versions tailored for variou
 
 ### Run docker container with `docker run`
 
-```
+```bash
 docker run -d \
   --name stirling-pdf \
   -p 8080:8080 \
@@ -37,7 +37,7 @@ docker run -d \
 ### Run docker container with `docker compose`
 
 - `docker-compose.yml`
-```
+```yaml
 version: '3.3'
 services:
   stirling-pdf:

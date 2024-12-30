@@ -29,10 +29,11 @@ There are additional Prerequisites:
  ```
 
  For Tesseract OCR, add to config/settings.yml (generated once you first run the jar):
- ```yaml
- system:
-   tessdataDir: /usr/local/share/tessdata
- ```
+
+```yaml
+system:
+  tessdataDir: /usr/local/share/tessdata
+```
 
 ## Running Stirling PDF
 1. Open Terminal
