@@ -13,6 +13,10 @@ sidebar_position: 3
 
 - `cert-sign`: This feature enables users to digitally sign their PDFs using a certificate. For (hand-)written signatures see Features - Additional Utilities --> `sign`
 
+- `validate-signature`: Verify digital signatures and certificates in PDF documents, checking against custom certificate files
+
+- `remove-cert-sign`: Removes digital signatures from any inputted PDF
+
 - `sanitize-pdf`: This allows the user to remove various things within the PDF which may cause security concern such as javascript, files, links, fonts and metadata.
 
 - `auto-redact`: This features lets the user input text (or regex) to be redacted/blacked out from the pdf document.
