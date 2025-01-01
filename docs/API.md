@@ -5,8 +5,10 @@ title: API
 description: Overview of API offering in S-PDF
 tags:
   - API
-  
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Stirling PDF API
 
 Stirling PDF exposes a simple API for easy integration with external scripts. You can access the API documentation in two ways:
@@ -71,34 +73,37 @@ Stirling-PDF also has statistic and health endpoints to integrate with monitorin
 
 ## Example CURL Commands
 
-### Unix
-```bash
-curl -X POST "http://localhost:8080/add-watermark" \
-     -H "Content-Type: multipart/form-data" \
-     -F "fileInput=@/Users/username/Downloads/sample-1_cropped.pdf" \
-     -F "watermarkType=text" \
-     -F "watermarkText=YOUR_WATERMARK_TEXT" \
-     -F "alphabet=roman" \
-     -F "fontSize=30" \
-     -F "rotation=0" \
-     -F "opacity=0.5" \
-     -F "widthSpacer=50" \
-     -F "heightSpacer=50" \
-     > "/Users/username/Downloads/output.pdf"
-```
-
-### Windows CMD (Not PowerShell) 
-```bash
-curl -X POST "http://localhost:8080/add-watermark" ^
-     -H "Content-Type: multipart/form-data" ^
-     -F "fileInput=@C:\Users\systo\Downloads\sample-1_cropped.pdf" ^
-     -F "watermarkType=text" ^
-     -F "watermarkText=YOUR_WATERMARK_TEXT" ^
-     -F "alphabet=roman" ^
-     -F "fontSize=30" ^
-     -F "rotation=0" ^
-     -F "opacity=0.5" ^
-     -F "widthSpacer=50" ^
-     -F "heightSpacer=50" ^
-     > "C:\Users\systo\Downloads\output.pdf"
-```
+<Tabs groupId="operating-systems">
+  <TabItem value="unix" label="Unix/Linux/MacOS">
+    ```bash
+    curl -X POST "http://localhost:8080/add-watermark" \
+         -H "Content-Type: multipart/form-data" \
+         -F "fileInput=@/Users/username/Downloads/sample-1_cropped.pdf" \
+         -F "watermarkType=text" \
+         -F "watermarkText=YOUR_WATERMARK_TEXT" \
+         -F "alphabet=roman" \
+         -F "fontSize=30" \
+         -F "rotation=0" \
+         -F "opacity=0.5" \
+         -F "widthSpacer=50" \
+         -F "heightSpacer=50" \
+         > "/Users/username/Downloads/output.pdf"
+    ```
+  </TabItem>
+  <TabItem value="windows" label="Windows CMD">
+    ```bash
+    curl -X POST "http://localhost:8080/add-watermark" ^
+         -H "Content-Type: multipart/form-data" ^
+         -F "fileInput=@C:\Users\systo\Downloads\sample-1_cropped.pdf" ^
+         -F "watermarkType=text" ^
+         -F "watermarkText=YOUR_WATERMARK_TEXT" ^
+         -F "alphabet=roman" ^
+         -F "fontSize=30" ^
+         -F "rotation=0" ^
+         -F "opacity=0.5" ^
+         -F "widthSpacer=50" ^
+         -F "heightSpacer=50" ^
+         > "C:\Users\systo\Downloads\output.pdf"
+    ```
+  </TabItem>
+</Tabs>
