@@ -1,6 +1,10 @@
 ---
 sidebar_position: 1
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # How to add Configurations
 
 Stirling PDF allows easy customization of the app.
@@ -97,37 +101,45 @@ There is an additional config file ``/configs/custom_settings.yml`` were users f
 - ``LANGS`` to define custom font libraries to install for use for document conversions
 
 ### Local 
-If running Java directly outside of docker, you can set these environment variables before starting the app
+If running Java directly outside of docker, you can set these environment variables before starting the app:
 
-#### Unix
-```
-export UI_APP_NAME="Stirling PDF"
-```
+<Tabs groupId="operating-systems">
+  <TabItem value="unix" label="Unix">
+    ```bash
+    export UI_APP_NAME="Stirling PDF"
+    ```
+  </TabItem>
+  <TabItem value="cmd" label="Windows (CMD)">
+    ```batch
+    set UI_APP_NAME=Stirling PDF
+    ```
+  </TabItem>
+  <TabItem value="powershell" label="Windows (PowerShell)">
+    ```powershell
+    $env:UI_APP_NAME = "Stirling PDF"
+    ```
+  </TabItem>
+</Tabs>
 
-#### Windows (CMD)
-```
-set UI_APP_NAME=Stirling PDF
-```
+## Docker Configuration
 
-#### Windows (PowerShell)
-```
-$env:UI_APP_NAME = "Stirling PDF"
-```
+If using Docker, you can set environment variables via either Docker run or Docker Compose as part of your installation.
+Simply add these to the end of your script/file:
 
-### Docker
-If in docker you can do it via docker run or compose whichever you are using are part of installation.
-Simply add these to the end of your script/file
-
-#### Docker run
-```
--e "UI_APP_NAME=Stirling PDF" \
--e "UI_HOME_DESCRIPTION=Your locally hosted one-stop-shop for all your PDF needs." \
--e "UI_APP_NAVBAR_NAME=Stirling PDF" \
-```
-#### Docker Compose
-```
-environment:
-  UI_APP_NAME: Stirling PDF
-  UI_HOME_DESCRIPTION: Your locally hosted one-stop-shop for all your PDF needs.
-  UI_APP_NAVBAR_NAME: Stirling PDF
-```
+<Tabs groupId="docker-config">
+  <TabItem value="docker-run" label="Docker Run">
+    ```bash
+    -e "UI_APP_NAME=Stirling PDF" \
+    -e "UI_HOME_DESCRIPTION=Your locally hosted one-stop-shop for all your PDF needs." \
+    -e "UI_APP_NAVBAR_NAME=Stirling PDF" \
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    environment:
+      UI_APP_NAME: Stirling PDF
+      UI_HOME_DESCRIPTION: Your locally hosted one-stop-shop for all your PDF needs.
+      UI_APP_NAVBAR_NAME: Stirling PDF
+    ```
+  </TabItem>
+</Tabs>

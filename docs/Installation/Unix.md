@@ -3,7 +3,11 @@ sidebar_position: 2
 id: Unix Installation
 title: Unix installation Guide
 ---
-# Unix Installation Guide for Stirling PDF
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Unix Installation
+
 To run the application without Docker/Podman, you will need to manually install all dependencies and build the necessary components.
 
 Note that some dependencies might not be available in the standard repositories of all Linux distributions, and may require additional steps to install.
@@ -20,73 +24,72 @@ You could theoretically use a Distrobox/Toolbox, if your Distribution has old or
 Install the following software, if not already installed:
 
 - Java 17 or later (21 recommended)
-
 - Gradle 7.0 or later (included within repo so not needed on server)
-
 - Git
-
 - Python 3.8 (with pip)
-
 - Make
-
 - GCC/G++
-
 - Automake
-
 - Autoconf
-
-- libtool[Windows.md](Windows.md)
-
+- libtool
 - pkg-config
-
 - zlib1g-dev
-
 - libleptonica-dev
 
-For Debian-based systems, you can use the following command:
-
-```bash
-sudo apt-get update
-sudo apt-get install -y git  automake  autoconf  libtool  libleptonica-dev  pkg-config zlib1g-dev make g++ openjdk-21-jdk python3 python3-pip
-```
-
-For Fedora-based systems use this command:
-
-```bash
-sudo dnf install -y git automake autoconf libtool leptonica-devel pkg-config zlib-devel make gcc-c++ java-21-openjdk python3 python3-pip
-```
-
-For non-root users with Nix Package Manager, use the following command:
-```bash
-nix-channel --update
-nix-env -iA nixpkgs.jdk21 nixpkgs.git nixpkgs.python38 nixpkgs.gnumake nixpkgs.libgcc nixpkgs.automake nixpkgs.autoconf nixpkgs.libtool nixpkgs.pkg-config nixpkgs.zlib nixpkgs.leptonica
-```
+<Tabs groupId="unix-systems">
+  <TabItem value="debian" label="Debian-based Systems">
+    ```bash
+    sudo apt-get update
+    sudo apt-get install -y git automake autoconf libtool \
+        libleptonica-dev pkg-config zlib1g-dev make g++ \
+        openjdk-21-jdk python3 python3-pip
+    ```
+  </TabItem>
+  <TabItem value="fedora" label="Fedora-based Systems">
+    ```bash
+    sudo dnf install -y git automake autoconf libtool \
+        leptonica-devel pkg-config zlib-devel make gcc-c++ \
+        java-21-openjdk python3 python3-pip
+    ```
+  </TabItem>
+  <TabItem value="nix" label="Nix Package Manager">
+    ```bash
+    nix-channel --update
+    nix-env -iA nixpkgs.jdk21 nixpkgs.git nixpkgs.python38 \
+        nixpkgs.gnumake nixpkgs.libgcc nixpkgs.automake \
+        nixpkgs.autoconf nixpkgs.libtool nixpkgs.pkg-config \
+        nixpkgs.zlib nixpkgs.leptonica
+    ```
+  </TabItem>
+</Tabs>
 
 ### Step 2: Clone and Build jbig2enc (Only required for certain OCR functionality)
 
-For Debian and Fedora, you can build it from source using the following commands:
-
-```bash
-mkdir ~/.git
-cd ~/.git &&\
-git clone https://github.com/agl/jbig2enc.git &&\
-cd jbig2enc &&\
-./autogen.sh &&\
-./configure &&\
-make &&\
-sudo make install
-```
-
-For Nix, you will face `Leptonica not detected`. Bypass this by installing it directly using the following command:
-```bash
-nix-env -iA nixpkgs.jbig2enc
-```
+<Tabs groupId="unix-systems">
+  <TabItem value="debian-fedora" label="Debian/Fedora">
+    ```bash
+    mkdir ~/.git
+    cd ~/.git &&\
+    git clone https://github.com/agl/jbig2enc.git &&\
+    cd jbig2enc &&\
+    ./autogen.sh &&\
+    ./configure &&\
+    make &&\
+    sudo make install
+    ```
+  </TabItem>
+  <TabItem value="nix" label="Nix Package Manager">
+    ```bash
+    nix-env -iA nixpkgs.jbig2enc
+    ```
+  </TabItem>
+</Tabs>
 
 ### Step 3: Install Additional Software
+
 Next we need to install LibreOffice for conversions, tesseract for OCR, and opencv for pattern recognition functionality.
 
 Install the following software:
-
 - libreoffice (libreoffice-core libreoffice-common libreoffice-writer libreoffice-calc libreoffice-impress)
 - python3-uno
 - unoconv
@@ -94,26 +97,26 @@ Install the following software:
 - tesseract
 - opencv-python-headless
 
-For Debian-based systems, you can use the following command:
-
-```bash
-sudo apt-get install -y libreoffice-writer libreoffice-calc libreoffice-impress tesseract
-pip3 install uno opencv-python-headless unoconv pngquant WeasyPrint --break-system-packages
-```
-
-For Fedora:
-
-```bash
-sudo dnf install -y libreoffice-writer libreoffice-calc libreoffice-impress tesseract
-pip3 install uno opencv-python-headless unoconv pngquant WeasyPrint
-```
-
-For Nix:
-
-```bash
-nix-env -iA nixpkgs.libreoffice nixpkgs.tesseract nixpkgs.poppler_utils
-pip3 install uno opencv-python-headless unoconv pngquant WeasyPrint
-```
+<Tabs groupId="unix-systems">
+  <TabItem value="debian" label="Debian-based Systems">
+    ```bash
+    sudo apt-get install -y libreoffice-writer libreoffice-calc libreoffice-impress tesseract
+    pip3 install uno opencv-python-headless unoconv pngquant WeasyPrint --break-system-packages
+    ```
+  </TabItem>
+  <TabItem value="fedora" label="Fedora-based Systems">
+    ```bash
+    sudo dnf install -y libreoffice-writer libreoffice-calc libreoffice-impress tesseract
+    pip3 install uno opencv-python-headless unoconv pngquant WeasyPrint
+    ```
+  </TabItem>
+  <TabItem value="nix" label="Nix Package Manager">
+    ```bash
+    nix-env -iA nixpkgs.libreoffice nixpkgs.tesseract nixpkgs.poppler_utils
+    pip3 install uno opencv-python-headless unoconv pngquant WeasyPrint
+    ```
+  </TabItem>
+</Tabs>
 
 ### Step 4: Clone and Build Stirling-PDF
 
@@ -132,93 +135,92 @@ You can move this file to a desired location, for example, `/opt/Stirling-PDF/`.
 You must also move the Script folder within the Stirling-PDF repo that you have downloaded to this directory.
 This folder is required for the python scripts using OpenCV.
 
-```bash
-sudo mkdir /opt/Stirling-PDF &&\
-sudo mv ./build/libs/Stirling-PDF-*.jar /opt/Stirling-PDF/ &&\
-sudo mv scripts /opt/Stirling-PDF/ &&\
-echo "Scripts installed."
-```
+<Tabs groupId="user-type">
+  <TabItem value="root" label="Root User">
+    ```bash
+    sudo mkdir /opt/Stirling-PDF &&\
+    sudo mv ./build/libs/Stirling-PDF-*.jar /opt/Stirling-PDF/ &&\
+    sudo mv scripts /opt/Stirling-PDF/ &&\
+    echo "Scripts installed."
+    ```
+  </TabItem>
+  <TabItem value="non-root" label="Non-root User">
+    ```bash
+    mv ./build/libs/Stirling-PDF-*.jar ./Stirling-PDF-*.jar
+    ```
+  </TabItem>
+</Tabs>
 
-For non-root users, you can just keep the jar in the main directory of Stirling-PDF using the following command:
-```bash
-mv ./build/libs/Stirling-PDF-*.jar ./Stirling-PDF-*.jar
-```
+### Step 6: OCR Language Support
 
-### Step 6: Other files
-#### OCR
 If you plan to use the OCR (Optical Character Recognition) functionality, you might need to install language packs for Tesseract if running non-english scanning.
 
-##### Installing Language Packs
-Easiest is to use the langpacks provided by your repositories. Skip the other steps.
+<Tabs groupId="unix-systems">
+  <TabItem value="debian" label="Debian-based Systems">
+    ```bash
+    sudo apt update &&\
+    # All languages
+    # sudo apt install -y 'tesseract-ocr-*'
+    
+    # Find languages:
+    apt search tesseract-ocr-
+    
+    # View installed languages:
+    dpkg-query -W tesseract-ocr- | sed 's/tesseract-ocr-//g'
+    ```
+  </TabItem>
+  <TabItem value="fedora" label="Fedora-based Systems">
+    ```bash
+    # All languages
+    # sudo dnf install -y tesseract-langpack-*
+    
+    # Find languages:
+    dnf search -C tesseract-langpack-
+    
+    # View installed languages:
+    rpm -qa | grep tesseract-langpack | sed 's/tesseract-langpack-//g'
+    ```
+  </TabItem>
+  <TabItem value="nix" label="Nix Package Manager">
+    ```bash
+    nix-env -iA nixpkgs.tesseract
+    ```
+    Note: Nix Package Manager pre-installs almost all the language packs when tesseract is installed.
+  </TabItem>
+  <TabItem value="manual" label="Manual Installation">
+    1. Download the desired language pack(s) by selecting the `.traineddata` file(s) for the language(s) you need.
+    2. Place the `.traineddata` files in the Tesseract tessdata directory: `/usr/share/tessdata`
+    3. Please view [tesseract install guide](https://tesseract.readthedocs.io/en/latest/installation.html) for more info.
 
-Manual:
-
-1. Download the desired language pack(s) by selecting the `.traineddata` file(s) for the language(s) you need.
-2. Place the `.traineddata` files in the Tesseract tessdata directory: `/usr/share/tessdata`
-3. Please view  [tesseract install guide](https://tesseract.readthedocs.io/en/latest/installation.html) for more info.
-
-**IMPORTANT:** DO NOT REMOVE EXISTING `eng.traineddata`, IT'S REQUIRED.
-
-Debian based systems, install languages with this command:
-
-```bash
-sudo apt update &&\
-# All languages
-# sudo apt install -y 'tesseract-ocr-*'
-
-# Find languages:
-apt search tesseract-ocr-
-
-# View installed languages:
-dpkg-query -W tesseract-ocr- | sed 's/tesseract-ocr-//g'
-```
-
-Fedora:
-
-```bash
-# All languages
-# sudo dnf install -y tesseract-langpack-*
-
-# Find languages:
-dnf search -C tesseract-langpack-
-
-# View installed languages:
-rpm -qa | grep tesseract-langpack | sed 's/tesseract-langpack-//g'
-```
-
-Nix:
-
-```bash
-nix-env -iA nixpkgs.tesseract
-```
-
-**Note:** Nix Package Manager pre-installs almost all the language packs when tesseract is installed.
+    **IMPORTANT:** DO NOT REMOVE EXISTING `eng.traineddata`, IT'S REQUIRED.
+  </TabItem>
+</Tabs>
 
 ### Step 7: Run Stirling-PDF
 
-Those who have pushed to the root directory, run the following commands:
+<Tabs groupId="run-method">
+  <TabItem value="java" label="Using Java">
+    ```bash
+    java -jar /opt/Stirling-PDF/Stirling-PDF-*.jar
+    ```
+  </TabItem>
+  <TabItem value="gradle" label="Using Gradle">
+    ```bash
+    ./gradlew bootRun
+    ```
+  </TabItem>
+</Tabs>
+Since libreoffice, soffice, and conversion tools have their dbus_tmp_dir set as `dbus_tmp_dir="/run/user/$(id -u)/libreoffice-dbus"`, you might get the following error:
+    ```
+    [Thread-7] INFO  s.s.SPDF.utils.ProcessExecutor - mkdir: cannot create directory '/run/user/1501': Permission denied
+    ```
+    To resolve this, use:
+    ```bash
+    mkdir temp
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=./temp"
+	```
 
-```bash
-./gradlew bootRun
-or
-java -jar /opt/Stirling-PDF/Stirling-PDF-*.jar
-```
-
-Since libreoffice, soffice, and conversion tools have their dbus_tmp_dir set as `dbus_tmp_dir="/run/user/$(id -u)/libreoffice-dbus"`, you might get the following error when using their endpoints:
-```
-[Thread-7] INFO  s.s.SPDF.utils.ProcessExecutor - mkdir: cannot create directory ‘/run/user/1501’: Permission denied
-```
-To resolve this, before starting the Stirling-PDF, you have to set the environment variable to a directory you have write access to by using the following commands:
-
-```bash
-mkdir temp
-export DBUS_SESSION_BUS_ADDRESS="unix:path=./temp"
-./gradlew bootRun
-or
-java -jar ./Stirling-PDF-*.jar
-```
-
-### Step 8: Adding a Desktop icon
+### Step 8: Adding a Desktop Icon
 
 This will add a modified Appstarter to your Appmenu.
 ```bash
@@ -241,11 +243,11 @@ EOF
 
 Note: Currently the app will run in the background until manually closed.
 
-### Optional: Changing the host and port of the application:
+### Optional: Changing the Host and Port
 
 To override the default configuration, you can add the following to `/.git/Stirling-PDF/configs/custom_settings.yml` file:
 
-```bash
+```yaml
 server:
   host: 0.0.0.0
   port: 3000
@@ -320,13 +322,3 @@ sudo systemctl restart stirlingpdf.service
 ```
 
 ---
-
-Remember to set the necessary environment variables before running the project if you want to customize the application the list can be seen in the main readme.
-
-You can do this in the terminal by using the `export` command or -D argument to java -jar command:
-
-```bash
-export APP_HOME_NAME="Stirling PDF"
-or
--DAPP_HOME_NAME="Stirling PDF"
-```

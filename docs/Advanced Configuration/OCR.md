@@ -3,17 +3,13 @@ sidebar_position: 1
 id: OCR
 title: OCR (Optical Character Recognition)
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # OCR Language Packs and Setup
-
 This document provides instructions on how to add additional language packs for the OCR tab in Stirling-PDF, both inside and outside of Docker.
 
-## My OCR used to work and now doesn't!
-
-The paths have changed for the tessdata locations on new Docker images. Please use `/usr/share/tessdata` (Others should still work for backward compatibility but might not).
-
 ## How does the OCR Work
-
 Stirling-PDF uses Tesseract for its text recognition. All credit goes to them for this awesome work!
 
 ## Language Packs
@@ -25,10 +21,10 @@ Tesseract OCR supports a variety of languages. You can find additional language 
 
 Depending on your requirements, you can choose the appropriate language pack for your use case. By default, Stirling-PDF uses `tessdata_fast` for English, but this can be replaced.
 
-### Installing Language Packs
+### Installing Language Packs mannually
 
 1. Download the desired language pack(s) by selecting the `.traineddata` file(s) for the language(s) you need.
-2. Place the `.traineddata` files in the Tesseract tessdata directory: `/usr/share/tessdata`
+2. Place the `.traineddata` files in the Tesseract tessdata directory: `/usr/share/tessdata` (or equivalent)
 
 **DO NOT REMOVE EXISTING `eng.traineddata`, IT'S REQUIRED.**
 
@@ -36,64 +32,78 @@ Depending on your requirements, you can choose the appropriate language pack for
 
 If you are using Docker, you need to expose the Tesseract tessdata directory as a volume in order to use the additional language packs.
 
-#### Docker Compose
+<Tabs groupId="docker-config">
+  <TabItem value="docker-compose" label="Docker Compose">
+    Modify your `docker-compose.yml` file to include the following volume configuration:
 
-Modify your `docker-compose.yml` file to include the following volume configuration:
+    ```yaml
+    services:
+      your_service_name:
+        image: your_docker_image_name
+        volumes:
+          - /location/of/trainingData:/usr/share/tessdata
+    ```
+  </TabItem>
+  <TabItem value="docker-run" label="Docker Run">
+    Add the following to your existing Docker run command:
 
-```yaml
-services:
-  your_service_name:
-    image: your_docker_image_name
-    volumes:
-      - /location/of/trainingData:/usr/share/tessdata
-```
-
-#### Docker Run
-
-Add the following to your existing Docker run command:
-
-```bash
--v /location/of/trainingData:/usr/share/tessdata
-```
+    ```bash
+    -v /location/of/trainingData:/usr/share/tessdata
+    ```
+  </TabItem>
+</Tabs>
 
 ### Non-Docker Setup
 
-For Debian-based systems, install languages with this command:
+<Tabs groupId="operating-systems">
+  <TabItem value="debian" label="Debian-based Systems">
+    For Debian-based systems, use the following commands to manage Tesseract languages:
 
-```bash
-sudo apt update &&\
-# All languages
-# sudo apt install -y 'tesseract-ocr-*'
-# Find languages:
-apt search tesseract-ocr-
-# View installed languages:
-dpkg-query -W tesseract-ocr- | sed 's/tesseract-ocr-//g'
-```
+    ```bash
+    sudo apt update &&\
+    # All languages
+    # sudo apt install -y 'tesseract-ocr-*'
+    
+    # Find available languages:
+    apt search tesseract-ocr-
+    
+    # View installed languages:
+    dpkg-query -W tesseract-ocr- | sed 's/tesseract-ocr-//g'
+    ```
+  </TabItem>
+  <TabItem value="fedora" label="Fedora">
+    For Fedora systems, use the following commands:
 
-For Fedora:
+    ```bash
+    # All languages
+    # sudo dnf install -y tesseract-langpack-*
+    
+    # Find available languages:
+    dnf search -C tesseract-langpack-
+    
+    # View installed languages:
+    rpm -qa | grep tesseract-langpack | sed 's/tesseract-langpack-//g'
+    ```
+  </TabItem>
+  <TabItem value="windows" label="Windows">
+    Follow these steps to set up Tesseract languages on Windows:
 
-```bash
-# All languages
-# sudo dnf install -y tesseract-langpack-*
-# Find languages:
-dnf search -C tesseract-langpack-
-# View installed languages:
-rpm -qa | grep tesseract-langpack | sed 's/tesseract-langpack-//g'
-```
-
-### Windows Setup
-
-You must ensure Tesseract is installed on your system. Additional languages must be downloaded manually:
-
-1. Download desired `.traineddata` files from [tessdata](https://github.com/tesseract-ocr/tessdata) or [tessdata_fast](https://github.com/tesseract-ocr/tessdata_fast)
-2. Place them in the tessdata folder within your Tesseract installation directory (e.g., `C:\Program Files\Tesseract-OCR\tessdata`)
-3. Verify installation by running:
-   ```bash
-   tesseract --list-langs
-   ```
-4. Edit your `/configs/settings.yml` and change the `system.tessdataDir` to match the directory containing language files:
-
-```yaml
-system:
-  tessdataDir: C:/Program Files/Tesseract-OCR/tessdata # path to the directory containing the Tessdata files. This setting is relevant for Windows systems. For Windows users, this path should be adjusted to point to the appropriate directory where the Tessdata files are stored.
-```
+    1. Download desired `.traineddata` files from [tessdata](https://github.com/tesseract-ocr/tessdata) or [tessdata_fast](https://github.com/tesseract-ocr/tessdata_fast)
+    
+    2. Place them in the tessdata folder within your Tesseract installation directory:
+       ```
+       C:\Program Files\Tesseract-OCR\tessdata
+       ```
+    
+    3. Verify the installation by running:
+       ```powershell
+       tesseract --list-langs
+       ```
+    
+    4. Edit your `/configs/settings.yml` and update the `system.tessdataDir`:
+       ```yaml
+       system:
+         tessdataDir: C:/Program Files/Tesseract-OCR/tessdata # path to Tessdata files
+       ```
+  </TabItem>
+</Tabs>
