@@ -253,7 +253,14 @@ server:
   port: 3000
 ```
 
-**Note:** This file is created after the first application launch. To have it before that, you can create the directory and add the file yourself.
+For systemd add in the .env file (see run as service for setting environment variables):
+
+```bash
+SERVER_HOST="0.0.0.0"
+SERVER_PORT="3000"
+```
+
+**Note:** The file `custom_settings.yml` is created after the first application launch. To have it before that, you can create the directory and add the file yourself.
 
 ### Optional: Run Stirling-PDF as a service (requires root).
 
