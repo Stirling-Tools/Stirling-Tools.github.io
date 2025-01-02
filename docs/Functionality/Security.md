@@ -3,7 +3,7 @@ sidebar_position: 3
 ---
 # Features - Security
 
-- `add-password`: This feature allows users to secure their PDFs by adding a password.
+- `add-password`: This feature allows users to secure their PDFs by adding a password. This feature also encrypts the PDF
 
 - `remove-password`: With this feature, users can remove the password from a secured PDF.
 
