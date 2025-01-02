@@ -5,7 +5,7 @@ sidebar_position: 3
 
 - `add-password`: This feature allows users to secure their PDFs by adding a password. This feature also encrypts the PDF
 
-- `remove-password`: With this feature, users can remove the password from a secured PDF.
+- `remove-password`: With this feature, users can remove the password from a secured PDF. This decrypts the PDF
 
 - `change-permissions`: This functionality allows users to change the permissions of a PDF, controlling how others can view and edit it.
 
