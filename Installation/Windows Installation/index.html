@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://eu.i.posthog.com">
 <script>!function(t,e){var o,r,s,a;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,n,p){function c(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(s=t.createElement("script")).type="text/javascript",s.async=!0,s.src=n.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(a=t.getElementsByTagName("script")[0]).parentNode.insertBefore(s,a);var g=e;for(void 0!==p?g=e[p]=[]:p="posthog",g.people=g.people||[],g.toString=function(t){var e="posthog";return"posthog"!==p&&(e+="."+p),t||(e+=" (stub)"),e},g.people.toString=function(){return g.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),r=0;r<o.length;r++)c(g,o[r]);e._i.push([i,n,p])},e.__SV=1)}(document,window.posthog||[]),posthog.init("phc_qy9V53BkvTATJESFrSBvg8Rw5m3KvYuTmmk9IojIjyZ",{api_host:"https://eu.i.posthog.com",id:"default"})</script>
 <script src="https://app.termly.io/resource-blocker/aa66d813-045f-4a28-b465-6aab431924d6" attributes="[object Object]"></script><link rel="stylesheet" href="/assets/css/styles.463e7b15.css">
-<script src="/assets/js/runtime~main.a74cb0e5.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.551da828.js" defer="defer"></script>
 <script src="/assets/js/main.394f6dcc.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -20,6 +20,53 @@ We recommend downloading the <a href="https://github.com/Stirling-Tools/Stirling
 This version also requires you to install the latest <a href="https://www.oracle.com/uk/java/technologies/downloads/#jdk21-windows" target="_blank" rel="noopener noreferrer">java jdk21</a> you can get the installer <a href="https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe" target="_blank" rel="noopener noreferrer">here</a></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="optional-dependencies">Optional Dependencies<a href="#optional-dependencies" class="hash-link" aria-label="Direct link to Optional Dependencies" title="Direct link to Optional Dependencies">​</a></h3>
 <p>These dependencies enable additional features in Stirling PDF. Install only the ones you need:</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="python-and-related-tools">Python and Related Tools<a href="#python-and-related-tools" class="hash-link" aria-label="Direct link to Python and Related Tools" title="Direct link to Python and Related Tools">​</a></h4>
+<p>Python and its related tools enable various features in Stirling PDF:</p>
+<ul>
+<li>OpenCV: Enables image scan extraction features</li>
+<li>Unoconv: Enables file to PDF conversion features</li>
+<li>Python: Required base for OpenCV and other Python-based features</li>
+</ul>
+<ol>
+<li>
+<p>Python Installation:</p>
+<ul>
+<li>Download Python from <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">Python&#x27;s official site</a></li>
+<li>During installation, <strong>IMPORTANT</strong>: Check &quot;Add Python to PATH&quot;</li>
+<li>Verify installation by opening Command Prompt and running:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">python </span><span class="token parameter variable" style="color:#36acaa">--version</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>OpenCV Installation:</p>
+<ul>
+<li>After Python is installed, open Command Prompt as administrator</li>
+<li>Install OpenCV by running:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">pip </span><span class="token function" style="color:#d73a49">install</span><span class="token plain"> opencv-python</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>Verify installation:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">python </span><span class="token parameter variable" style="color:#36acaa">-c</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;import cv2&quot;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>Enables Extract Image Scans operation</li>
+</ul>
+</li>
+<li>
+<p>Unoconv Installation:</p>
+<ul>
+<li>First install LibreOffice (see LibreOffice section below)</li>
+<li>Open Command Prompt as administrator</li>
+<li>Install unoconv:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">pip </span><span class="token function" style="color:#d73a49">install</span><span class="token plain"> unoconv</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>Verify installation:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">unoconv </span><span class="token parameter variable" style="color:#36acaa">--version</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>Enables File To PDF operation
+Note: Unoconv requires both Python and LibreOffice to function properly</li>
+</ul>
+</li>
+</ol>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="qpdf">QPDF<a href="#qpdf" class="hash-link" aria-label="Direct link to QPDF" title="Direct link to QPDF">​</a></h4>
 <ul>
 <li>Download from <a href="https://qpdf.sourceforge.io/" target="_blank" rel="noopener noreferrer">QPDF&#x27;s official site</a></li>
@@ -68,6 +115,7 @@ This version also requires you to install the latest <a href="https://www.oracle
 <li>Click &quot;Edit&quot;</li>
 <li>Click &quot;New&quot; to add each required path:<!-- -->
 <ul>
+<li>For Python: Should be added automatically during installation if &quot;Add Python to PATH&quot; was checked</li>
 <li>For LibreOffice: <code>C:\Program Files\LibreOffice\program</code></li>
 <li>For Tesseract: <code>C:\Program Files\Tesseract-OCR</code></li>
 <li>For Weasyprint: <code>C:\weasyprint</code> (or your chosen directory)</li>
@@ -98,7 +146,9 @@ This version also requires you to install the latest <a href="https://www.oracle
 <ul>
 <li>Open Command Prompt (cmd)</li>
 <li>Type <code>echo %PATH%</code> to see all directories in your PATH</li>
-<li>For each dependency, try running its command (e.g., <code>tesseract --version</code>) to verify it&#x27;s accessible</li>
+<li>For each dependency, try running its command to verify it&#x27;s accessible:<!-- -->
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">python </span><span class="token parameter variable" style="color:#36acaa">--version</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">unoconv </span><span class="token parameter variable" style="color:#36acaa">--version</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">python </span><span class="token parameter variable" style="color:#36acaa">-c</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;import cv2&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">tesseract </span><span class="token parameter variable" style="color:#36acaa">--version</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
 </ul>
 </li>
 <li>
@@ -114,6 +164,20 @@ This version also requires you to install the latest <a href="https://www.oracle
 <li>If a dependency isn&#x27;t found, double-check the exact path in File Explorer</li>
 <li>For Tesseract issues, verify the tessdata directory contains language files</li>
 <li>For LibreOffice conversions, ensure no LibreOffice windows are open when converting</li>
+<li>For Python/OpenCV issues:<!-- -->
+<ul>
+<li>Make sure pip is up to date: <code>python -m pip install --upgrade pip</code></li>
+<li>Try installing with administrator privileges</li>
+<li>Check if Python is properly added to PATH</li>
+</ul>
+</li>
+<li>For unoconv issues:<!-- -->
+<ul>
+<li>Verify both Python and LibreOffice are properly installed</li>
+<li>Make sure LibreOffice is in PATH</li>
+<li>Try running LibreOffice once before using unoconv</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
