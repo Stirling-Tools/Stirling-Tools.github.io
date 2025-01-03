@@ -17,6 +17,11 @@ This version also requires you to install the latest [java jdk21](https://www.or
 These dependencies enable additional features in Stirling PDF. Install only the ones you need:
 
 #### Python and Related Tools
+Python and its related tools enable various features in Stirling PDF:
+- OpenCV: Enables image scan extraction features
+- Unoconv: Enables file to PDF conversion features
+- Python: Required base for OpenCV and other Python-based features
+
 1. Python Installation:
    - Download Python from [Python's official site](https://www.python.org/downloads/)
    - During installation, **IMPORTANT**: Check "Add Python to PATH"
