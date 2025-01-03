@@ -40,8 +40,9 @@ Python and its related tools enable various features in Stirling PDF:
      ```bash
      python -c "import cv2"
      ```
-
-3. Unoconv Installation:
+   - Enables Extract Image Scans operation
+     
+4. Unoconv Installation:
    - First install LibreOffice (see LibreOffice section below)
    - Open Command Prompt as administrator
    - Install unoconv:
@@ -52,6 +53,7 @@ Python and its related tools enable various features in Stirling PDF:
      ```bash
      unoconv --version
      ```
+   - Enables File To PDF operation
    Note: Unoconv requires both Python and LibreOffice to function properly
 
 #### QPDF
