@@ -13,9 +13,48 @@ For Server use (wanting to host Stirling-PDF as a server to share with multiple 
 We recommend downloading the [Stirling-PDF-server.exe](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/Stirling-PDF-server.exe)
 This version also requires you to install the latest [java jdk21](https://www.oracle.com/uk/java/technologies/downloads/#jdk21-windows) you can get the installer [here](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe)
 
-
 ### Optional Dependencies
 These dependencies enable additional features in Stirling PDF. Install only the ones you need:
+
+#### Python and Related Tools
+Python and its related tools enable various features in Stirling PDF:
+- OpenCV: Enables image scan extraction features
+- Unoconv: Enables file to PDF conversion features
+- Python: Required base for OpenCV and other Python-based features
+
+1. Python Installation:
+   - Download Python from [Python's official site](https://www.python.org/downloads/)
+   - During installation, **IMPORTANT**: Check "Add Python to PATH"
+   - Verify installation by opening Command Prompt and running:
+     ```bash
+     python --version
+     ```
+
+2. OpenCV Installation:
+   - After Python is installed, open Command Prompt as administrator
+   - Install OpenCV by running:
+     ```bash
+     pip install opencv-python
+     ```
+   - Verify installation:
+     ```bash
+     python -c "import cv2"
+     ```
+   - Enables Extract Image Scans operation
+     
+4. Unoconv Installation:
+   - First install LibreOffice (see LibreOffice section below)
+   - Open Command Prompt as administrator
+   - Install unoconv:
+     ```bash
+     pip install unoconv
+     ```
+   - Verify installation:
+     ```bash
+     unoconv --version
+     ```
+   - Enables File To PDF operation
+   Note: Unoconv requires both Python and LibreOffice to function properly
 
 #### QPDF
 - Download from [QPDF's official site](https://qpdf.sourceforge.io/)
@@ -56,6 +95,7 @@ After installing dependencies, you'll need to add their directories to your syst
 4. Under "System variables", find and select "Path"
 5. Click "Edit"
 6. Click "New" to add each required path:
+   - For Python: Should be added automatically during installation if "Add Python to PATH" was checked
    - For LibreOffice: `C:\Program Files\LibreOffice\program`
    - For Tesseract: `C:\Program Files\Tesseract-OCR`
    - For Weasyprint: `C:\weasyprint` (or your chosen directory)
@@ -81,7 +121,13 @@ After installing dependencies, you'll need to add their directories to your syst
 1. Verifying PATH Settings:
    - Open Command Prompt (cmd)
    - Type `echo %PATH%` to see all directories in your PATH
-   - For each dependency, try running its command (e.g., `tesseract --version`) to verify it's accessible
+   - For each dependency, try running its command to verify it's accessible:
+     ```bash
+     python --version
+     unoconv --version
+     python -c "import cv2"
+     tesseract --version
+     ```
 
 2. Common Issues:
    - If changes to PATH don't take effect, try:
@@ -91,5 +137,13 @@ After installing dependencies, you'll need to add their directories to your syst
    - If a dependency isn't found, double-check the exact path in File Explorer
    - For Tesseract issues, verify the tessdata directory contains language files
    - For LibreOffice conversions, ensure no LibreOffice windows are open when converting
+   - For Python/OpenCV issues:
+     - Make sure pip is up to date: `python -m pip install --upgrade pip`
+     - Try installing with administrator privileges
+     - Check if Python is properly added to PATH
+   - For unoconv issues:
+     - Verify both Python and LibreOffice are properly installed
+     - Make sure LibreOffice is in PATH
+     - Try running LibreOffice once before using unoconv
 
 Need help? Visit the [Stirling PDF GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues) page.
