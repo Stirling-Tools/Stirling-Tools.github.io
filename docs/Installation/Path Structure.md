@@ -1,4 +1,4 @@
-# Application Path Structure
+# Path Structure
 
 ## Server Deployment
 When running in server mode, the base path defaults to `./` (current directory)
