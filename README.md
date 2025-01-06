@@ -19,6 +19,9 @@ npm install
 npm start
 ```
 
+3. Edit files
+   All our files are within the ``/docs`` directory, any edit made to the files here should instantly show on your local site
+
 The site will be available at `http://localhost:3000`
 
 ## Contributing
