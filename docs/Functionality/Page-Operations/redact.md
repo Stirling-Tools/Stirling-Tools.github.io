@@ -89,6 +89,22 @@ Used when you need to redact entire pages.
 
 ![redaction_removal](https://github.com/user-attachments/assets/9bd3be2a-d2ec-4468-a229-bf81efb36bcc)
 
+### Converting PDF to PDF-image (Used in removing text behind the box)
+To enable PDF to PDF-image option:
+   1. Click on the image icon
+   
+         ![image](https://github.com/user-attachments/assets/8c480923-05e1-46d3-8f59-5f78db6d87f8)
+
+To disable PDF to PDF-image option:
+   1. Click on the image icon
+   
+         ![image](https://github.com/user-attachments/assets/e2e07e31-8eb0-41ac-80ab-ffd8520f5795)
+
+
+- If the image icon is green, then the option is enabled, if it is red then it is disabled.
+
+
+
 
 ## Keyboard Shortcuts
 - `Ctrl + S`: Save/apply redaction
