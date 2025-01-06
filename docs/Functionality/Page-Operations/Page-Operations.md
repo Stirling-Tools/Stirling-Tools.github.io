@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+id: Page-Operations
+title: Page Operations
 ---
 # Features - Page Operations
 
