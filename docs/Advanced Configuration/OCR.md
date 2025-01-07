@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 6
 id: OCR
 title: OCR (Optical Character Recognition)
 ---
@@ -21,7 +21,7 @@ Tesseract OCR supports a variety of languages. You can find additional language 
 
 Depending on your requirements, you can choose the appropriate language pack for your use case. By default, Stirling-PDF uses `tessdata_fast` for English, but this can be replaced.
 
-### Installing Language Packs mannually
+### Installing Language Packs manually
 
 1. Download the desired language pack(s) by selecting the `.traineddata` file(s) for the language(s) you need.
 2. Place the `.traineddata` files in the Tesseract tessdata directory: `/usr/share/tessdata` (or equivalent)
