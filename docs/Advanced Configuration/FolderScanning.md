@@ -1,12 +1,12 @@
 ---
-sidebar_position: 4
+sidebar_position: 7
 id: Folder Scanning
 title: Folder Scanning
 ---
 
 ## User Guide for Local Directory Scanning and File Processing
 
-Folder scanning uses settings configured from our pipeline tool, it is adviced you first read the [Pipeline Guide](/Advanced%20Configuration/Pipeline)
+Folder scanning uses settings configured from our pipeline tool, it is advised you first read the [Pipeline Guide](/Advanced%20Configuration/Pipeline)
 ### Setting Up Watched Folders
 
 - Create a folder where you want your files to be monitored. This is your 'watched folder'.

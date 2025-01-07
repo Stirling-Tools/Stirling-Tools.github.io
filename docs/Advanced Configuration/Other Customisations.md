@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 12
 ---
 # Other Customisations
 
@@ -8,7 +8,7 @@ Stirling PDF offers various other customisation options, such as:
 ### Defaulting Language
 Default language selection via the `APP_LOCALE` environment variable. Accepted values include `de-DE`, `fr-FR`, `ar-AR` and all other languages codes that are within Stirling-PDFs current list.
 
-### Google Search Visability (robots.txt)
+### Google Search Visibility (robots.txt)
 Enable or disable search engine visibility with the `ALLOW_GOOGLE_VISIBILITY` variable.
 
 ### Custom Root path

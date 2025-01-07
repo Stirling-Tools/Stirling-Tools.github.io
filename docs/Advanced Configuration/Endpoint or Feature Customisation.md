@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 5
 ---
 # Endpoints Customisation
 
@@ -10,7 +10,7 @@ There are many use-cases for this such as
 - Cleanup interface for features you don't use
 
 
-To do this `ENDPOINTS_TO_REMOVE` and `GROUPS_TO_REMOVE` have been setup. 
+To do this `ENDPOINTS_TO_REMOVE` and `GROUPS_TO_REMOVE` have been set up. 
 They can include comma-separated lists of endpoints and groups to disable. For example, `ENDPOINTS_TO_REMOVE=img-to-pdf,remove-pages` would disable both the "image to PDF" and "remove pages" functionalities.
 `GROUPS_TO_REMOVE=Libre` Would disable a group of endpoints, in this case all endpoints which use Libre in the backend.
 
