@@ -1,5 +1,6 @@
 ---
 sidebar_position: 4
+description: List of all miscellaneous features
 ---
 # Features - Miscellaneous
 

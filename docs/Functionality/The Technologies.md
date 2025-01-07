@@ -1,5 +1,6 @@
 ---
 sidebar_position: 0
+description: List of all technologies Stirling-PDF uses!
 ---
 # The Technologies Behind Stirling PDF
 Stirling PDF harnesses several technologies throughout its implementation.

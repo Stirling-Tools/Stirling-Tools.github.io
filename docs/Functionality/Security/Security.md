@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: List of all Security related features
 ---
 # Features - Security
 

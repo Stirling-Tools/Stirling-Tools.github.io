@@ -2,6 +2,7 @@
 sidebar_position: 1
 id: Page-Operations
 title: Page Operations
+description: List of all Page related features
 ---
 # Features - Page Operations
 
