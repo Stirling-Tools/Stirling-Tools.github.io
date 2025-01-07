@@ -3,14 +3,23 @@ sidebar_position: 8
 id: External Database
 title: External Database
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 
 # Using an External Database
 
 It is possible to use your own external database with Stirling PDF rather than the default H2 database if you wish. 
-PostgreSQL is currently supported with others soon to follow.
+PostgreSQL is currently the only supported variant, others will be added on request.
 
 ### Setting Up External Database Configuration
 You can configure the new `Datasource` property in your `settings.yml` to connect to your external database:
+
+> #### ⚠️ Note
+> _To use the external database feature, you will need to have a valid enterprise license and set the environment variable `DOCKER_ENABLE_SECURITY` to `true`._
+
+<Tabs groupId="external-db-config">
+  <TabItem value="settings" label="Settings File">
 
 ```yaml
   datasource:
@@ -24,12 +33,12 @@ You can configure the new `Datasource` property in your `settings.yml` to connec
     name: postgres
 ```
 
-- `enableCustomDatabase`: Set this property to `true` to enable use of the custom database
+- `enableCustomDatabase`: Set this property to `true` to enable use of the custom database **Note: An enterprise license to use this feature**
 - `customDatabaseUrl`: Enter the database connection url for the database here. **Note: If you set the `customDatabaseUrl` you do not need to set the type, hostName, port and name, they will all be automatically derived from the url.**
 - `username`: The username for the database
 - `password`: The password for the database
 
-If you would like more fine-grained control of the database connection, you can also use the following properties:  
+If you would like more fine-grained control of the database connection, you can also use the following properties:
 
 #### Fine-grained Database Configuration
 - `type`: The database type. Available options are `h2` and `postgresql`
@@ -37,11 +46,8 @@ If you would like more fine-grained control of the database connection, you can 
 - `port`: The port number of the database connection url (e.g. 8080)
 - `name`: The name of the custom database. This should match the name you have set for your database
 
-### Docker Based Configuration
-You can also configure an external database within using Docker. 
-
-#### Adding a Database Container to Docker Compose
-Simply add another service to your Docker Compose file for with the configuration details for the database container. 
+</TabItem>
+  <TabItem value="docker" label="Docker Compose">
 
 ```yaml
 services:
@@ -62,7 +68,7 @@ services:
 - `POSTGRES_USER`: An environment variable for the database container. Specify the username for the database
 - `POSTGRES_PASSWORD`: An environment variable for the database container. Specify the password for the database
 
-You will also need to update the Docker configuration in your app in order to connect to the database: 
+You will also need to update the Docker configuration in your app in order to connect to the database:
 
 ```yaml
 services:
@@ -79,7 +85,7 @@ services:
 ```
 
 - `depends_on`: This specifies any services that your app will need in order to run. Ensure the name matches the container name for your database
-- `DOCKER_ENABLE_SECURITY`: Set this to `true` to enable security features (required for external database configuration)
+- `DOCKER_ENABLE_SECURITY`: Set this to `true` to enable security features
 - `SYSTEM_DATASOURCE_ENABLECUSTOMDATABASE`: An environment variable to connect to the database container. Set this to `true` to enable use of the external database
 - `SYSTEM_DATASOURCE_CUSTOMDATABASEURL`: An environment variable to connect to the database container. Set the connection url for the database here. **Note: If you set this url you do not need to set the type, hostName, port and name (namely `SYSTEM_DATASOURCETYPE`, `SYSTEM_DATASOURCEHOSTNAME`, `SYSTEM_DATASOURCEPORT`, `SYSTEM_DATASOURCENAME`), they will all be automatically derived from the url.**
 - `SYSTEM_DATASOURCE_USERNAME`: An environment variable to connect to the database container. Set the username for the database. Ensure this matches the corresponding property in your database container
@@ -111,4 +117,7 @@ services:
       POSTGRES_PASSWORD: "stirling"
 ```
 
-*Example configuration can be found in `/exampleYmlFiles/docker-compose-latest-fat-security-postgres.yml`*
+  </TabItem>
+</Tabs>
+
+*Example configuration can be found in [exampleYmlFiles/docker-compose-latest-fat-security-postgres.yml](https://github.com/Stirling-Tools/Stirling-PDF/blob/428b4238e3a7280d71697d994a66174a250387a7/exampleYmlFiles/docker-compose-latest-fat-security-postgres.yml)*
