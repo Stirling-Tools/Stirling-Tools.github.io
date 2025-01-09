@@ -28,7 +28,6 @@ docker run -d \
   -v "./StirlingPDF/logs:/logs/" \
   -v "./StirlingPDF/pipeline:/pipeline/" \
   -e DOCKER_ENABLE_SECURITY=false \
-  -e INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false \
   -e LANGS=en_GB \
   stirlingtools/stirling-pdf:latest
 ```
@@ -52,7 +51,6 @@ services:
       - ./StirlingPDF/pipeline:/pipeline/
     environment:
       - DOCKER_ENABLE_SECURITY=false
-      - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
       - LANGS=en_GB
 ```
 
