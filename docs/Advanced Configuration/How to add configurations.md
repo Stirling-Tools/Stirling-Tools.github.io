@@ -97,7 +97,6 @@ There is an additional config file ``/configs/custom_settings.yml`` were users f
 - ``SYSTEM_ROOTURIPATH`` ie set to ``/pdf-app`` to Set the application's root URI to ``localhost:8080/pdf-app``
 - ``SYSTEM_CONNECTIONTIMEOUTMINUTES`` to set custom connection timeout values
 - ``DOCKER_ENABLE_SECURITY`` to tell docker to download security jar (required as true for auth login)
-- ``INSTALL_BOOK_AND_ADVANCED_HTML_OPS`` to download calibre onto stirling-pdf enabling pdf to/from book and advanced html conversion
 - ``LANGS`` to define custom font libraries to install for use for document conversions
 
 ### Local 
