@@ -7,8 +7,11 @@ import TabItem from '@theme/TabItem';
 
 # Single Sign-On (SSO) Configuration
 
-Stirling PDF allows login via Single Sign-On (SSO) using OAUTH2 OpenID Connect (OIDC)
-These are
+Stirling PDF allows login via Single Sign-On (SSO) using OAUTH2 OpenID Connect (OIDC). This allows you to sign in to the 
+app using an account you may have with another provider such as Google or GitHub. 
+
+## Set Up
+These are:
 - ``oauth2.enabled`` Set this to 'true' to enable login (Note: ``enableLogin`` must also be 'true' for this to work)
 - ``oauth2.issuer`` Set this to any provider that supports OpenID Connect Discovery ``/.well-known/openid-configuration`` end-point
 - ``oauth2.clientId`` Client ID from your provider
