@@ -18,7 +18,7 @@ to `true` and `security.loginMethod` to `oauth2` in your `/configs/settings.yml`
 security:
   enableLogin: true
   ...
-  loginMethod: <all|normal|oauth2|saml2>
+  loginMethod: all | normal | oauth2 | saml2
 ```
 
 - `enableLogin`: Set to `true` to enable login
@@ -34,7 +34,7 @@ Next, you will need to configure the OAuth 2 properties for your chosen provider
 You also have the option to use a different provider apart from the aforementioned if you wish.
 
 > #### ⚠️ Note
-> _The `enableLogin` property must be set to `true` for this to work._
+> _The `enableLogin` property must be set to `true` for SSO to work._
 
 <Tabs groupId="provider-configs">
   <TabItem value="google" label="Google">
@@ -44,11 +44,12 @@ You also have the option to use a different provider apart from the aforemention
       client:
         google:
           clientId: <YOUR_CLIENT_ID>
-          clientSecret: <YOUR_CLIENT_SECRET></YOUR_CLIENT_SECRET> 
-          scopes: https://www.googleapis.com/auth/userinfo.email, https://www.googleapis.com/auth/userinfo.profile # scopes for Google OAuth2
-          useAsUsername: email
+          clientSecret: <YOUR_CLIENT_SECRET>
+          scopes: email, profile
+          useAsUsername: email | name | given_name | family_name
       provider: google
     ```
+> _For the list of scopes Google offers, see [here](https://developers.google.com/identity/protocols/oauth2/scopes#oauth2)_
   </TabItem>
   <TabItem value="github" label="GitHub">
     ```yaml
@@ -59,9 +60,10 @@ You also have the option to use a different provider apart from the aforemention
           clientId: <YOUR_CLIENT_ID>
           clientSecret: <YOUR_CLIENT_SECRET>
           scopes: read:user
-          useAsUsername: email 
+          useAsUsername: email | login | name 
       provider: github
     ```
+> _For the list of scopes Github offers, see [here](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#available-scopes)_
   </TabItem>
   <TabItem value="keycloak" label="Keycloak">
     ```yaml
@@ -73,7 +75,7 @@ You also have the option to use a different provider apart from the aforemention
           clientId: <YOUR_CLIENT_ID>
           clientSecret: <YOUR_CLIENT_SECRET>
           scopes: openid, profile, email
-          useAsUsername: email
+          useAsUsername: email | preferred_name
       provider: keycloak
     ```
   </TabItem>
@@ -87,7 +89,7 @@ You also have the option to use a different provider apart from the aforemention
     clientSecret: <YOUR_CLIENT_SECRET>
     autoCreateUser: true
     blockRegistration: false
-    useAsUsername: email
+    useAsUsername: email | name | given_name | nickname | preferred_name
     scopes: openid, profile, email
     provider: authentik
     ```
