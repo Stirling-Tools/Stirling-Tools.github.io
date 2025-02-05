@@ -41,7 +41,7 @@ After the OAUTH2 login is enabled, a new button shows up on the login page as pe
   <TabItem value="local" label="Local Environment">
     ```bash
     export DOCKER_ENABLE_SECURITY=true
-    export SECURITY_ENABLELOGIN=true
+    export SECURITY_ENABLE_LOGIN=true
     export SECURITY_OAUTH2_ENABLED=true
     export SECURITY_OAUTH2_AUTOCREATEUSER=false
     export SECURITY_OAUTH2_ISSUER="<issuer-url>"
@@ -52,7 +52,7 @@ After the OAUTH2 login is enabled, a new button shows up on the login page as pe
   <TabItem value="docker-run" label="Docker Run">
     ```bash
     -e DOCKER_ENABLE_SECURITY=true \
-    -e SECURITY_ENABLELOGIN=true \
+    -e SECURITY_ENABLE_LOGIN=true \
     -e SECURITY_OAUTH2_ENABLED=true \
     -e SECURITY_OAUTH2_AUTOCREATEUSER=false \
     -e SECURITY_OAUTH2_ISSUER="<issuer-url>" \
@@ -64,7 +64,7 @@ After the OAUTH2 login is enabled, a new button shows up on the login page as pe
     ```yaml
     environment:
       DOCKER_ENABLE_SECURITY: true
-      SECURITY_ENABLELOGIN: true
+      SECURITY_ENABLE_LOGIN: true
       SECURITY_OAUTH2_ENABLED: true
       SECURITY_OAUTH2_AUTOCREATEUSER: false
       SECURITY_OAUTH2_ISSUER: "<issuer-url>"
