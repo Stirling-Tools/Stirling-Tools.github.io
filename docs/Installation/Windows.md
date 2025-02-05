@@ -7,7 +7,7 @@ title: Windows Guide
 
 Stirling PDF provides Windows compatibility through a downloadable .exe files depending on your usecase!
 For personal user we recommend the latest
-[Stirling-PDF-installer](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/Stirling-PDF-win-installer.exe)
+[Stirling-PDF-installer](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/win-Stirling-PDF-portable-Server.exe)
 
 For Server use (wanting to host Stirling-PDF as a server to share with multiple users)
 We recommend downloading the [Stirling-PDF-server.exe](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/Stirling-PDF-server.exe)
