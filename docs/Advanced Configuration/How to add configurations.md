@@ -24,7 +24,7 @@ security:
   enableLogin: 'true'
 ```
 
-To have this via an environment variable you would have ``SECURITY_ENABLELOGIN``
+To have this via an environment variable you would have ``SECURITY_ENABLE_LOGIN``
 
 The Current list of settings is
 
