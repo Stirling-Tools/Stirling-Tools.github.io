@@ -7,10 +7,10 @@ title: Windows Guide
 
 Stirling PDF provides Windows compatibility through a downloadable .exe files depending on your usecase!
 For personal user we recommend the latest
-[Stirling-PDF-installer](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/win-Stirling-PDF-portable-Server.exe)
+[Stirling-PDF-installer](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/Stirling-PDF-win-installer.exe)
 
 For Server use (wanting to host Stirling-PDF as a server to share with multiple users)
-We recommend downloading the [Stirling-PDF-server.exe](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/Stirling-PDF-server.exe)
+We recommend downloading the [Stirling-PDF-server.exe](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/win-Stirling-PDF-portable-Server.exe) or [Stirling-PDF-server-with-login.exe](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/win-Stirling-PDF-portable-Server-with-login.exe)
 This version also requires you to install the latest [java jdk21](https://www.oracle.com/uk/java/technologies/downloads/#jdk21-windows) you can get the installer [here](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe)
 
 ### Optional Dependencies
