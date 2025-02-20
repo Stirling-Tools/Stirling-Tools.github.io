@@ -120,20 +120,21 @@ you will be redirected to your Provider in order to login and authorise Stirling
 ## SAML 2 Set Up
 
 > #### ⚠️ Note
-> _SAML 2 is an enterprise-only feature._
+> _SAML 2 is an enterprise-only feature. To use it you must have `enterpriseEnabled` set to `true` and have a valid license key._
 
 Begin by setting `security.enableLogin` to `true` and `security.loginMethod` to `saml2` in your `/configs/settings.yml`.
 
 ```yaml
 saml2:
   enabled: true
+  provider: <PROVIDER_NAME>
   autoCreateUser: true
   blockRegistration: false
   registrationId: <REGISTRATION_ID>
   idpMetadataUri: <PROVIDER_METADATA_URI>
   idpSingleLoginUrl: <PROVIDER_SSO_URL>
   idpSingleLogoutUrl: <PROVIDER_SLO_URL>
-  idpIssuer: <PROVIDER_NAME>
+  idpIssuer: <PROVIDER_ISSUER_ID>
   idpCert: classpath:<PROVIDER_SELF-SIGNED_CERTIFICATE>
   privateKey: classpath:<YOUR_PRIVATE_KEY>
   spCert: classpath:<YOUR_CERTIFICATE>
@@ -176,8 +177,12 @@ Move the files to `src/main/resources`.
 Once you have added your configuration, you should see the button for your chosen Provider on the login page prompting you to log in:
 
 | ![sso-login-dark-mode.png](../../static/img/sso-login-dark-mode.png) | ![sso-saml-login.png](../../static/img/sso-saml-login.png) |
-|-------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
+|----------------------------------------------------------------------|------------------------------------------------------------|
 
+### Auto-login
+It is also possible to automatically log in to Stirling PDF on start-up using SAML 2. To enable this feature, set the 
+property `enterpriseEdition.SSOAutoLogin` to `true`. `enterpriseEdition.enabled` must also be set to `true` and you must 
+provide a valid license key in `enterpriseEdition.key`.
 
 ## Configurations Examples
 Below are examples of the full configuration for both OAuth 2 and SAML 2:
@@ -195,7 +200,7 @@ Below are examples of the full configuration for both OAuth 2 and SAML 2:
         blockRegistration: false
         useAsUsername: email
         scopes: openid, profile, email
-        provider: <PROVIDER>
+        provider: <PROVIDER_NAME>
       saml2:
         enabled: true
         autoCreateUser: true
@@ -222,7 +227,7 @@ Below are examples of the full configuration for both OAuth 2 and SAML 2:
     export SECURITY_OAUTH2_BLOCKREGISTRATION=false
     export SECURITY_OAUTH2_SCOPES="openid, profile, email"
     export SECURITY_OAUTH2_USEASUSERNAME=email
-    export SECURITY_OAUTH2_PROVIDER="<PROVIDER>"
+    export SECURITY_OAUTH2_PROVIDER="<PROVIDER_NAME>"
 
     export SECURITY_SAML2_ENABLED=true
     export SECURITY_SAML2_AUTOCREATEUSER=false
