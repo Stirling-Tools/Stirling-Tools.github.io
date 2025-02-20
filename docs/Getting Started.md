@@ -35,7 +35,7 @@ If you want to run Stirling PDF on your personal computer:
    - Follow our comprehensive [Unix Installation Guide](/Installation/Unix%20Installation) for a native installation
 
 2. **Mac Users**
-   - Download our installer ([Stirling-PDF-mac-installer.dmg](https://github.com/Stirling-Tools/Stirling-PDF/releases/download/v0.42.0/Stirling-PDF-mac-installer.dmg)) for a simple, standalone experience
+   - Download our installer ([Stirling-PDF-mac-installer.dmg](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/Stirling-PDF-mac-installer.dmg)) for a simple, standalone experience
    - Follow our comprehensive [Mac Installation Guide](/Installation/Mac%20Installation) for a native installation
    
 ### For Server Deployments
