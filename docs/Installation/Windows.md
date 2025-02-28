@@ -19,7 +19,7 @@ These dependencies enable additional features in Stirling PDF. Install only the 
 #### Python and Related Tools
 Python and its related tools enable various features in Stirling PDF:
 - OpenCV: Enables image scan extraction features
-- Unoconv: Enables file to PDF conversion features
+- Unoserver: Enables file to PDF conversion features
 - Python: Required base for OpenCV and other Python-based features
 
 1. Python Installation:
@@ -42,19 +42,19 @@ Python and its related tools enable various features in Stirling PDF:
      ```
    - Enables Extract Image Scans operation
      
-4. Unoconv Installation:
+4. Unoserver Installation:
    - First install LibreOffice (see LibreOffice section below)
    - Open Command Prompt as administrator
-   - Install unoconv:
+   - Install unoserver:
      ```bash
-     pip install unoconv
+     pip install unoserver
      ```
    - Verify installation:
      ```bash
-     unoconv --version
+     unoserver --version
      ```
    - Enables File To PDF operation
-   Note: Unoconv requires both Python and LibreOffice to function properly
+   Note: Unoserver requires both Python and LibreOffice to function properly
 
 #### QPDF
 - Download from [QPDF's official site](https://qpdf.sourceforge.io/)
@@ -124,7 +124,7 @@ After installing dependencies, you'll need to add their directories to your syst
    - For each dependency, try running its command to verify it's accessible:
      ```bash
      python --version
-     unoconv --version
+     unoserver --version
      python -c "import cv2"
      tesseract --version
      ```
@@ -141,9 +141,20 @@ After installing dependencies, you'll need to add their directories to your syst
      - Make sure pip is up to date: `python -m pip install --upgrade pip`
      - Try installing with administrator privileges
      - Check if Python is properly added to PATH
-   - For unoconv issues:
+   - For unoserver issues:
      - Verify both Python and LibreOffice are properly installed
      - Make sure LibreOffice is in PATH
-     - Try running LibreOffice once before using unoconv
+     - Try running LibreOffice once before using unoserver
+
+## Starting unoserver alongside Stirling PDF
+
+To ensure that unoserver is running alongside Stirling PDF, you need to start it with the following command:
+
+```bash
+unoserver --port 2003 --interface 0.0.0.0
+```
+
+You can add this command to your startup script or systemd service file to ensure it starts automatically with Stirling PDF.
+
 
 Need help? Visit the [Stirling PDF GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues) page.

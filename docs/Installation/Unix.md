@@ -92,7 +92,7 @@ Next we need to install LibreOffice for conversions, tesseract for OCR, and open
 Install the following software:
 - libreoffice (libreoffice-core libreoffice-common libreoffice-writer libreoffice-calc libreoffice-impress)
 - python3-uno
-- unoconv
+- unoserver
 - pngquant
 - tesseract
 - opencv-python-headless
@@ -101,19 +101,19 @@ Install the following software:
   <TabItem value="debian" label="Debian-based Systems">
     ```bash
     sudo apt-get install -y libreoffice-writer libreoffice-calc libreoffice-impress tesseract
-    pip3 install uno opencv-python-headless unoconv pngquant WeasyPrint --break-system-packages
+    pip3 install uno opencv-python-headless unoserver pngquant WeasyPrint --break-system-packages
     ```
   </TabItem>
   <TabItem value="fedora" label="Fedora-based Systems">
     ```bash
     sudo dnf install -y libreoffice-writer libreoffice-calc libreoffice-impress tesseract
-    pip3 install uno opencv-python-headless unoconv pngquant WeasyPrint
+    pip3 install uno opencv-python-headless unoserver pngquant WeasyPrint
     ```
   </TabItem>
   <TabItem value="nix" label="Nix Package Manager">
     ```bash
     nix-env -iA nixpkgs.libreoffice nixpkgs.tesseract nixpkgs.poppler_utils
-    pip3 install uno opencv-python-headless unoconv pngquant WeasyPrint
+    pip3 install uno opencv-python-headless unoserver pngquant WeasyPrint
     ```
   </TabItem>
 </Tabs>
@@ -321,4 +321,27 @@ sudo systemctl stop stirlingpdf.service
 sudo systemctl restart stirlingpdf.service
 ```
 
----
+### Starting unoserver alongside Stirling PDF
+
+To ensure that unoserver is running alongside Stirling PDF, you need to start it with the following command:
+
+```bash
+unoserver --port 2003 --interface 0.0.0.0
+```
+
+You can add this command to your startup script or systemd service file to ensure it starts automatically with Stirling PDF.
+
+### Customizing Paths in settings.yml
+
+If the install path is different, it can be customized in `settings.yml`:
+
+```yaml
+system:
+  customPaths:
+    pipeline:
+      watchedFoldersDir: "" #Defaults to /pipeline/watchedFolders
+      finishedFoldersDir: "" #Defaults to /pipeline/finishedFolders
+    operations:
+      weasyprint: "" #Defaults to /opt/venv/bin/weasyprint
+      unoconvert: "" #Defaults to /opt/venv/bin/unoconvert
+```
