@@ -56,6 +56,7 @@ Install these via [Homebrew](https://brew.sh/) to enable additional features lik
  brew install tesseract-lang      # Additional OCR languages
  brew install poppler             # PDF to HTML conversion
  pip3 install weasyprint          # URL to PDF conversion
+ pip3 install unoserver           # File to PDF conversion
  ```
 
 For Tesseract OCR, add to `config/settings.yml` (generated once you first run the jar):
@@ -73,3 +74,14 @@ system:
  - Verify installations with: `[command] --version` (e.g., `java --version`)
  - LibreOffice issues? Ensure no LibreOffice processes are running
  - Need help? Visit [GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues)
+
+### Starting unoserver alongside Stirling PDF
+
+To ensure that unoserver is running alongside Stirling PDF, you need to start it with the following command:
+
+```bash
+unoserver --port 2003 --interface 0.0.0.0
+```
+
+You can add this command to your startup script or systemd service file to ensure it starts automatically with Stirling PDF.
+

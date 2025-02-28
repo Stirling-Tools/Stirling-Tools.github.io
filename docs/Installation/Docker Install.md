@@ -32,7 +32,6 @@ docker run -d \
   stirlingtools/stirling-pdf:latest
 ```
 
-
 ### Run docker container with `docker compose`
 
 - `docker-compose.yml`
