@@ -62,6 +62,19 @@ const config = {
             }),
         ],
     ],
+	headTags: [
+	  {
+		tagName: 'img',
+		attributes: {
+		  referrerpolicy: 'no-referrer-when-downgrade',
+		  src: 'https://static.scarf.sh/a.png?x-pxid=5d074971-2ecb-4c54-8397-30c0f91896b3',
+		  height: '1',
+		  width: '1',
+		  style: 'display:none',
+		  alt: 'x',
+		},
+	  },
+	],
 
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */

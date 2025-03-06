@@ -45,3 +45,5 @@ enterpriseEdition:
 Enter the key provided in the email and change enabled from false to true, then restart the Stirling-PDF instance.
 You should now see logs of your Stirling-PDF instance registering and authenticating the license and enabling the Enterprise features.
 
+<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=421cf4e2-5028-4383-913e-31afed203780" alt="Analytics Pixel" width="1" height="1" />
+

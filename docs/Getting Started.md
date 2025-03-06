@@ -27,7 +27,7 @@ We prioritise and focus on our Server deployment options however we also offer a
 If you want to run Stirling PDF on your personal computer:
 
 1. **Windows Users**
-   - Download our installer ([Stirling-PDF-win-installer.exe](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/Stirling-PDF-win-installer.exe)) for a simple, standalone experience
+   - Download our installer ([Stirling-PDF-win-installer.exe](https://files.stirlingpdf.com/win-installer.exe)) for a simple, standalone experience
    - Refer to our [Windows Installation Guide](/Installation/Windows%20Installation) for detailed setup instructions
 
 2. **Linux/Unix Users**
@@ -35,7 +35,7 @@ If you want to run Stirling PDF on your personal computer:
    - Follow our comprehensive [Unix Installation Guide](/Installation/Unix%20Installation) for a native installation
 
 2. **Mac Users**
-   - Download our installer ([Stirling-PDF-mac-installer.dmg](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/Stirling-PDF-mac-installer.dmg)) for a simple, standalone experience
+   - Download our installer ([Stirling-PDF-mac-installer.dmg](https://files.stirlingpdf.com/mac-installer.dmg)) for a simple, standalone experience
    - Follow our comprehensive [Mac Installation Guide](/Installation/Mac%20Installation) for a native installation
    
 ### For Server Deployments

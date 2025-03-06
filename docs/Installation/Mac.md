@@ -5,9 +5,8 @@ title: Mac installation Guide
 ---
  # MacOS Installation Guide for Stirling PDF
 
-Stirling PDF can be run on macOS via the dedicated app found 
-[here](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/Stirling-PDF-mac-installer.dmg), 
-or the JAR file which can be found [here](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest/download/Stirling-PDF.jar).
+Stirling PDF can be run on macOS via the dedicated [dmg installer here](https://files.stirlingpdf.com/mac-installer.dmg), 
+or the JAR file which can be found [here](https://files.stirlingpdf.com/Stirling-PDF.jar).
 
 ## Prerequisites:
  - Java 17 or 21 (_21 preferred_)

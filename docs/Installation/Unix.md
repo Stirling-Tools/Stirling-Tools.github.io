@@ -118,19 +118,10 @@ Install the following software:
   </TabItem>
 </Tabs>
 
-### Step 4: Clone and Build Stirling-PDF
-
-```bash
-cd ~/.git &&\
-git clone https://github.com/Stirling-Tools/Stirling-PDF.git &&\
-cd Stirling-PDF &&\
-chmod +x ./gradlew &&\
-./gradlew build
-```
+### Step 4: Grab latest Stirling-PDF Jar
+The JAR can be downloaded in two versions, [normal](https://files.stirlingpdf.com/Stirling-PDF.jar) and [security](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)  
 
 ### Step 5: Move jar to desired location
-
-After the build process, a `.jar` file will be generated in the `build/libs` directory.
 You can move this file to a desired location, for example, `/opt/Stirling-PDF/`.
 You must also move the Script folder within the Stirling-PDF repo that you have downloaded to this directory.
 This folder is required for the python scripts using OpenCV.
@@ -198,18 +189,10 @@ If you plan to use the OCR (Optical Character Recognition) functionality, you mi
 
 ### Step 7: Run Stirling-PDF
 
-<Tabs groupId="run-method">
-  <TabItem value="java" label="Using Java">
     ```bash
     java -jar /opt/Stirling-PDF/Stirling-PDF-*.jar
     ```
-  </TabItem>
-  <TabItem value="gradle" label="Using Gradle">
-    ```bash
-    ./gradlew bootRun
-    ```
-  </TabItem>
-</Tabs>
+
 Since libreoffice, soffice, and conversion tools have their dbus_tmp_dir set as `dbus_tmp_dir="/run/user/$(id -u)/libreoffice-dbus"`, you might get the following error:
     ```
     [Thread-7] INFO  s.s.SPDF.utils.ProcessExecutor - mkdir: cannot create directory '/run/user/1501': Permission denied
@@ -232,7 +215,7 @@ cat > ~/.local/share/applications/Stirling-PDF.desktop <<EOF
 Name=Stirling PDF;
 GenericName=Launch StirlingPDF and open its WebGUI;
 Category=Office;
-Exec=xdg-open http://localhost:8080 && nohup $location bootRun &;
+Exec=xdg-open http://localhost:8080 && nohup $location java -jar /opt/Stirling-PDF/Stirling-PDF-*.jar &;
 Icon=$image;
 Keywords=pdf;
 Type=Application;

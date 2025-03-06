@@ -29,7 +29,7 @@ docker run -d \
   -v "./StirlingPDF/pipeline:/pipeline/" \
   -e DOCKER_ENABLE_SECURITY=false \
   -e LANGS=en_GB \
-  stirlingtools/stirling-pdf:latest
+  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
 
 ### Run docker container with `docker compose`
@@ -39,7 +39,7 @@ docker run -d \
 version: '3.3'
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ports:
       - '8080:8080'
     volumes:
