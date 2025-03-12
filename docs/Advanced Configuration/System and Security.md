@@ -20,7 +20,7 @@ Stirling PDF allows customization of system and security settings. For security 
 ### Prerequisites
 1. Ensure the `/configs` directory is mounted as a volume in Docker for persistence across updates
 2. For Docker users: Set `DOCKER_ENABLE_SECURITY=true` in environment variables
-3. Enable login either via `settings.yml` or set `SECURITY_ENABLE_LOGIN=true`
+3. Enable login either via `settings.yml` or set `SECURITY_ENABLELOGIN=true`
 
 ### Initial Login Credentials
 - Default Username: `admin`
@@ -31,7 +31,7 @@ Stirling PDF allows customization of system and security settings. For security 
   - `SECURITY_INITIALLOGIN_PASSWORD`
 
 ### Database Location
-Upon successful setup, a new `stirling-pdf-DB.mv.db` file will be created in your configured storage location. This file contains user data and should be backed up regularly.
+Upon successful setup, a new `stirling-pdf-DB-2.3.232.mv.db` file will be created in your configured storage location. This file contains user data and should be backed up regularly.
 
 ### Account Management
 1. Access Account Settings:
@@ -76,26 +76,26 @@ When using the API:
 
     **Option 1: Using Java Properties**
     ```bash
-    java -jar Stirling-PDF.jar -DDOCKER_ENABLE_SECURITY=true -DSECURITY_ENABLE_LOGIN=true
+    java -jar Stirling-PDF.jar -DDOCKER_ENABLE_SECURITY=true -DSECURITY_ENABLELOGIN=true
     ```
 
     **Option 2: Using Environment Variables**
     ```bash
     export DOCKER_ENABLE_SECURITY=true
-    export SECURITY_ENABLE_LOGIN=true
+    export SECURITY_ENABLELOGIN=true
     ```
   </TabItem>
   <TabItem value="docker-run" label="Docker Run">
     ```bash
     -e DOCKER_ENABLE_SECURITY=true \
-    -e SECURITY_ENABLE_LOGIN=true \
+    -e SECURITY_ENABLELOGIN=true \
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
       DOCKER_ENABLE_SECURITY: true
-      SECURITY_ENABLE_LOGIN: true
+      SECURITY_ENABLELOGIN: true
     ```
   </TabItem>
 </Tabs>

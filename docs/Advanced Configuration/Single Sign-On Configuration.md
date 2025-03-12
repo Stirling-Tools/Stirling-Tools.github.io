@@ -7,11 +7,11 @@ import TabItem from '@theme/TabItem';
 
 # Single Sign-On (SSO) Configuration
 
-Stirling-PDF allows login via Single Sign-On (SSO) using OAuth 2 OpenID Connect (OIDC) and SAML 2. This allows you to log in to the 
-app using an account you may have with another Provider such as Google or GitHub. 
+Stirling-PDF allows login via Single Sign-On (SSO) using OAuth 2 OpenID Connect (OIDC) and SAML 2. This allows you to log in to the
+app using an account you may have with another Provider such as Google or GitHub.
 
 ## OAuth 2 Set Up
-To enable OAuth 2 in Stirling-PDF there are a number of properties you must set. Begin by setting `security.enableLogin` 
+To enable OAuth 2 in Stirling-PDF there are a number of properties you must set. Begin by setting `security.enableLogin`
 to `true` and `security.loginMethod` to `oauth2` in your `/configs/settings.yml`.
 
 ```yaml
@@ -28,9 +28,9 @@ security:
   - `oauth2`: Enables the OAuth 2 login method. Use this if you only want to log in via OAuth 2
   - `saml2`: Enables the SAML 2 login method
 
-Next, you will need to configure the OAuth 2 properties for your chosen Provider. Start by setting 
-`security.oauth2.enabled` to `true`. Stirling-PDF supports multiple Providers, in particular 
-[Google](https://console.cloud.google.com/), [GitHub](https://github.com/settings/developers) and [Keycloak](https://www.keycloak.org/). 
+Next, you will need to configure the OAuth 2 properties for your chosen Provider. Start by setting
+`security.oauth2.enabled` to `true`. Stirling-PDF supports multiple Providers, in particular
+[Google](https://console.cloud.google.com/), [GitHub](https://github.com/settings/developers) and [Keycloak](https://www.keycloak.org/).
 You also have the option to use a different Provider apart from the aforementioned if you wish.
 
 > #### ⚠️ Note
@@ -59,7 +59,7 @@ You also have the option to use a different Provider apart from the aforemention
           clientId: <YOUR_CLIENT_ID>
           clientSecret: <YOUR_CLIENT_SECRET>
           scopes: read:user
-          useAsUsername: email | login | name 
+          useAsUsername: email | login | name
       provider: github
     ```
   </TabItem>
@@ -82,7 +82,7 @@ You also have the option to use a different Provider apart from the aforemention
     ```yaml
     oauth2:
       enabled: true
-    issuer: <YOUR_ISSUER_URI> 
+    issuer: <YOUR_ISSUER_URI>
     clientId: <YOUR_CLIENT_ID>
     clientSecret: <YOUR_CLIENT_SECRET>
     autoCreateUser: true
@@ -102,15 +102,15 @@ You also have the option to use a different Provider apart from the aforemention
 - `security.oauth2.blockRegistration`: Set to `true` to deny login with SSO without prior registration by an admin
 - `security.oauth2.useAsUsername`: The value from the Provider to use as the username for the application. Check with your
 Provider for specific options. The default is `email`
-- `security.oauth2.scopes`: Specifies the list of scopes for which the application will request permissions. The available scopes 
+- `security.oauth2.scopes`: Specifies the list of scopes for which the application will request permissions. The available scopes
 for Google and GitHub can be found [here](https://developers.google.com/identity/protocols/oauth2/scopes#oauth2) and
   [here](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#available-scopes)
 - `security.oauth2.provider`: The name of the Provider
 
-The Callback URL (Redirect URL) for entering in your IdP is:  `https://<striling-pdf.yourdomain>/login/oauth2/code/<oidc-provider>` eg `https://<striling-pdf.yourdomain>/login/oauth2/code/keycloak`. 
+The Callback URL (Redirect URL) for entering in your IdP is:  `https://<striling-pdf.yourdomain>/login/oauth2/code/<oidc-provider>` eg `https://<striling-pdf.yourdomain>/login/oauth2/code/keycloak`.
 It is highly recommended to use an SSL-enabled reverse-proxy, if the application is going to be exposed to the internet.
 
-After the OAuth 2 login is enabled, a new button will show up on the login page as per the screenshot below. Clicking the 
+After the OAuth 2 login is enabled, a new button will show up on the login page as per the screenshot below. Clicking the
 'Login via Single Sign-On' button will present you with the login for your Provider of choice. Once you have clicked the button,
 you will be redirected to your Provider in order to login and authorise Stirling-PDF to use your profile:
 
@@ -143,7 +143,7 @@ saml2:
 - `security.saml2.enabled`: Set to `true` to activate SAML 2 SSO # Only enabled for paid enterprise clients (enterpriseEdition.enabled must be true)
 - `security.saml2.autoCreateUser`: Set this to `true` to allow auto-creation of non-existing users
 - `security.saml2.blockRegistration`: Set to `true` to deny login with SSO without prior registration by an admin
-- `security.saml2.registrationId`: The registration ID for your Provider. Should match the name in the path for your 
+- `security.saml2.registrationId`: The registration ID for your Provider. Should match the name in the path for your
 Assertion Consumer Service (ACS) URL The default is `stirling`
 - `security.saml2.idpMetadataUri`: The location of the metadata file from your Provider. Can be a file or URI
 - `security.saml2.idpSingleLoginUrl`: The URL given by your Provider to initiate the SSO flow
@@ -161,9 +161,9 @@ openssl req -newkey rsa:2048 -nodes -keyout private_key.key -x509 -days 365 -out
 ```
 
 - `openssl req`: This starts the OpenSSL command to create or manage a certificate signing request (CSR) or certificate
-- `newkey rsa:2048`: This generates a new key pair using the RSA algorithm with a key size of 2048 bits. RSA 2048 is a 
+- `newkey rsa:2048`: This generates a new key pair using the RSA algorithm with a key size of 2048 bits. RSA 2048 is a
 common and secure key size
-- `nodes`: Skips encrypting the private key (no passphrase). If omitted, you would be prompted to set a password for 
+- `nodes`: Skips encrypting the private key (no passphrase). If omitted, you would be prompted to set a password for
 the key, which would be required whenever using it. With -nodes, the private key is generated in plain text for easier use in automated systems
 - `keyout private_key.key`: Specifies the file name where the private key will be saved
 - `x509`: This tells OpenSSL to create a self-signed certificate instead of generating a certificate signing request (CSR)
@@ -180,8 +180,8 @@ Once you have added your configuration, you should see the button for your chose
 |----------------------------------------------------------------------|------------------------------------------------------------|
 
 ### Auto-login
-It is also possible to automatically log in to Stirling PDF on start-up using SAML 2. To enable this feature, set the 
-property `enterpriseEdition.SSOAutoLogin` to `true`. `enterpriseEdition.enabled` must also be set to `true` and you must 
+It is also possible to automatically log in to Stirling PDF on start-up using SAML 2. To enable this feature, set the
+property `enterpriseEdition.SSOAutoLogin` to `true`. `enterpriseEdition.enabled` must also be set to `true` and you must
 provide a valid license key in `enterpriseEdition.key`.
 
 ## Configurations Examples
@@ -218,7 +218,7 @@ Below are examples of the full configuration for both OAuth 2 and SAML 2:
   <TabItem value="local" label="Local Environment">
     ```bash
     export DOCKER_ENABLE_SECURITY=true
-    export SECURITY_ENABLE_LOGIN=true
+    export SECURITY_ENABLELOGIN=true
     export SECURITY_OAUTH2_ENABLED=true
     export SECURITY_OAUTH2_AUTOCREATEUSER=false
     export SECURITY_OAUTH2_ISSUER="<ISSUER_URI>"
@@ -245,7 +245,7 @@ Below are examples of the full configuration for both OAuth 2 and SAML 2:
   <TabItem value="docker-run" label="Docker Run">
     ```bash
     -e DOCKER_ENABLE_SECURITY=true \
-    -e SECURITY_ENABLE_LOGIN=true \
+    -e SECURITY_ENABLELOGIN=true \
     -e SECURITY_OAUTH2_ENABLED=true \
     -e SECURITY_OAUTH2_AUTOCREATEUSER=false \
     -e SECURITY_OAUTH2_ISSUER="<ISSUER_URI>" \
@@ -272,7 +272,7 @@ Below are examples of the full configuration for both OAuth 2 and SAML 2:
     ```yaml
     environment:
       DOCKER_ENABLE_SECURITY=true
-      SECURITY_ENABLE_LOGIN=true
+      SECURITY_ENABLELOGIN=true
       SECURITY_OAUTH2_ENABLED=true
       SECURITY_OAUTH2_AUTOCREATEUSER=false
       SECURITY_OAUTH2_ISSUER="<ISSUER_URI>"
@@ -282,7 +282,7 @@ Below are examples of the full configuration for both OAuth 2 and SAML 2:
       SECURITY_OAUTH2_SCOPES="openid, profile, email"
       SECURITY_OAUTH2_USEASUSERNAME=email
       SECURITY_OAUTH2_PROVIDER="<PROVIDER>"
-      
+
       SECURITY_SAML2_ENABLED=true
       SECURITY_SAML2_AUTOCREATEUSER=false
       SECURITY_SAML2_REGISTRATIONID=<REGISTRATION_ID>

@@ -6,11 +6,11 @@ import TabItem from '@theme/TabItem';
 
 # UI Customisation
 
-Stirling PDF allows straightforward customization of the application name and appearance to make Stirling-PDF your own. 
+Stirling PDF allows straightforward customization of the application name and appearance to make Stirling-PDF your own.
 
 ## Application Name Settings
 These settings control the visible application name:
-- `appName` - Defines the visible application name shown in the window name and navbar if navbar is not defined separately 
+- `appName` - Defines the visible application name shown in the window name and navbar if navbar is not defined separately
 - `homeDescription` - The description displayed on the homepage under the navbar that first greets the user
 - `appNameNavbar` - The app name shown within the navbar for all pages
 
@@ -106,33 +106,33 @@ The original files can be found in the GitHub repository under:
 
     **Option 2: Using Environment Variables**
     ```bash
-    export UI_APP_NAME="Stirling PDF"
-    export UI_HOME_DESCRIPTION="Your locally hosted one-stop-shop for all your PDF needs."
-    export UI_APP_NAVBAR_NAME="Stirling PDF"
-    export SYSTEM_SHOW_UPDATE=false
-    export SYSTEM_SHOW_UPDATE_ONLY_ADMIN=false
-    export SYSTEM_CUSTOM_HTML_FILES=true
+    export UI_APPNAME="Stirling PDF"
+    export UI_HOMEDESCRIPTION="Your locally hosted one-stop-shop for all your PDF needs."
+    export UI_APPNAVBARNAME="Stirling PDF"
+    export SYSTEM_SHOWUPDATE=false
+    export SYSTEM_SHOWUPDATEONLYADMIN=false
+    export SYSTEM_CUSTOMHTMLFILES=true
     ```
   </TabItem>
   <TabItem value="docker-run" label="Docker Run">
     ```bash
-    -e UI_APP_NAME=Stirling PDF \
-    -e UI_HOME_DESCRIPTION=Your locally hosted one-stop-shop for all your PDF needs. \
-    -e UI_APP_NAVBAR_NAME=Stirling PDF \
-    -e SYSTEM_SHOW_UPDATE=false \
-    -e SYSTEM_SHOW_UPDATE_ONLY_ADMIN=false \
-    -e SYSTEM_CUSTOM_HTML_FILES=true
+    -e UI_APPNAME=Stirling PDF \
+    -e UI_HOMEDESCRIPTION=Your locally hosted one-stop-shop for all your PDF needs. \
+    -e UI_APPNAVBARNAME=Stirling PDF \
+    -e SYSTEM_SHOWUPDATE=false \
+    -e SYSTEM_SHOWUPDATEONLYADMIN=false \
+    -e SYSTEM_CUSTOMHTMLFILES=true
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
-      UI_APP_NAME: Stirling PDF
-      UI_HOME_DESCRIPTION: Your locally hosted one-stop-shop for all your PDF needs.
-      UI_APP_NAVBAR_NAME: Stirling PDF
-      SYSTEM_SHOW_UPDATE: "false"
-      SYSTEM_SHOW_UPDATE_ONLY_ADMIN: "false"
-      SYSTEM_CUSTOM_HTML_FILES: "true"
+      UI_APPNAME: Stirling PDF
+      UI_HOMEDESCRIPTION: Your locally hosted one-stop-shop for all your PDF needs.
+      UI_APPNAVBARNAME: Stirling PDF
+      SYSTEM_SHOWUPDATE: "false"
+      SYSTEM_SHOWUPDATEONLYADMIN: "false"
+      SYSTEM_CUSTOMHTMLFILES: "true"
     volumes:
       - ./customFiles:/app/customFiles # Mount custom files directory
     ```

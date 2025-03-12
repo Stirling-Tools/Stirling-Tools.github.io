@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Using an External Database
 
-It is possible to use your own external database with Stirling PDF rather than the default H2 database if you wish. 
+It is possible to use your own external database with Stirling PDF rather than the default H2 database if you wish.
 PostgreSQL is currently the only supported variant, others will be added on request.
 
 ### Setting Up External Database Configuration
@@ -29,7 +29,7 @@ You can configure the new `Datasource` property in your `settings.yml` to connec
     password: postgres
     type: postgresql
     hostName: localhost
-    port: 5432 
+    port: 5432
     name: postgres
 ```
 
@@ -87,7 +87,7 @@ services:
 - `depends_on`: This specifies any services that your app will need in order to run. Ensure the name matches the container name for your database
 - `DOCKER_ENABLE_SECURITY`: Set this to `true` to enable security features
 - `SYSTEM_DATASOURCE_ENABLECUSTOMDATABASE`: An environment variable to connect to the database container. Set this to `true` to enable use of the external database
-- `SYSTEM_DATASOURCE_CUSTOMDATABASEURL`: An environment variable to connect to the database container. Set the connection url for the database here. **Note: If you set this url you do not need to set the type, hostName, port and name (namely `SYSTEM_DATASOURCETYPE`, `SYSTEM_DATASOURCEHOSTNAME`, `SYSTEM_DATASOURCEPORT`, `SYSTEM_DATASOURCENAME`), they will all be automatically derived from the url.**
+- `SYSTEM_DATASOURCE_CUSTOMDATABASEURL`: An environment variable to connect to the database container. Set the connection url for the database here. **Note: If you set this url you do not need to set the type, hostName, port and name (namely `SYSTEM_DATASOURCE_TYPE`, `SYSTEM_DATASOURCE_HOSTNAME`, `SYSTEM_DATASOURCE_PORT`, `SYSTEM_DATASOURCE_NAME`), they will all be automatically derived from the url.**
 - `SYSTEM_DATASOURCE_USERNAME`: An environment variable to connect to the database container. Set the username for the database. Ensure this matches the corresponding property in your database container
 - `SYSTEM_DATASOURCE_PASSWORD`: An environment variable to connect to the database container. Set the password for the database. Ensure this matches the corresponding property in your database container
 

@@ -11,7 +11,7 @@ Stirling PDF allows easy customization of the app.
 Includes things like
 
 - Custom application name
-- Custom slogans, icons, HTML, images CSS etc (via file overrides) 
+- Custom slogans, icons, HTML, images CSS etc (via file overrides)
 
 There are two options for this, either using the generated settings file ``settings.yml``
 This file is located in the ``/configs`` directory and follows standard YAML formatting
@@ -24,7 +24,7 @@ security:
   enableLogin: 'true'
 ```
 
-To have this via an environment variable you would have ``SECURITY_ENABLE_LOGIN``
+To have this via an environment variable you would have ``SECURITY_ENABLELOGIN``
 
 The Current list of settings is
 
@@ -89,7 +89,7 @@ There is an additional config file ``/configs/custom_settings.yml`` were users f
 
 
 #### Extra notes
-- Endpoints. Currently, the endpoints ENDPOINTS_TO_REMOVE and GROUPS_TO_REMOVE can include comma separate lists of endpoints and groups to disable as example ENDPOINTS_TO_REMOVE=img-to-pdf,remove-pages would disable both image-to-pdf and remove pages, GROUPS_TO_REMOVE=LibreOffice Would disable all things that use LibreOffice. You can see a list of all endpoints and groups [here](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/Endpoint-groups.md)
+- Endpoints. Currently, the endpoints ENDPOINTS_TOREMOVE and ENDPOINTS_GROUPSTOREMOVE can include comma separate lists of endpoints and groups to disable as example ENDPOINTS_TOREMOVE=img-to-pdf,remove-pages would disable both image-to-pdf and remove pages, ENDPOINTS_GROUPSTOREMOVE=LibreOffice Would disable all things that use LibreOffice. You can see a list of all endpoints and groups [here](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/Endpoint-groups.md)
 - customStaticFilePath. Customise static files such as the app logo by placing files in the /customFiles/static/ directory. An example of customising app logo is placing a /customFiles/static/favicon.svg to override current SVG. This can be used to change any images/icons/css/fonts/js etc in Stirling-PDF
 
 ### Environment only parameters
@@ -99,23 +99,23 @@ There is an additional config file ``/configs/custom_settings.yml`` were users f
 - ``DOCKER_ENABLE_SECURITY`` to tell docker to download security jar (required as true for auth login)
 - ``LANGS`` to define custom font libraries to install for use for document conversions
 
-### Local 
+### Local
 If running Java directly outside of docker, you can set these environment variables before starting the app:
 
 <Tabs groupId="operating-systems">
   <TabItem value="unix" label="Unix">
     ```bash
-    export UI_APP_NAME="Stirling PDF"
+    export UI_APPNAME="Stirling PDF"
     ```
   </TabItem>
   <TabItem value="cmd" label="Windows (CMD)">
     ```batch
-    set UI_APP_NAME=Stirling PDF
+    set UI_APPNAME=Stirling PDF
     ```
   </TabItem>
   <TabItem value="powershell" label="Windows (PowerShell)">
     ```powershell
-    $env:UI_APP_NAME = "Stirling PDF"
+    $env:UI_APPNAME = "Stirling PDF"
     ```
   </TabItem>
 </Tabs>
@@ -128,17 +128,17 @@ Simply add these to the end of your script/file:
 <Tabs groupId="docker-config">
   <TabItem value="docker-run" label="Docker Run">
     ```bash
-    -e "UI_APP_NAME=Stirling PDF" \
-    -e "UI_HOME_DESCRIPTION=Your locally hosted one-stop-shop for all your PDF needs." \
-    -e "UI_APP_NAVBAR_NAME=Stirling PDF" \
+    -e "UI_APPNAME=Stirling PDF" \
+    -e "UI_HOMEDESCRIPTION=Your locally hosted one-stop-shop for all your PDF needs." \
+    -e "UI_APPNAVBARNAME=Stirling PDF" \
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
-      UI_APP_NAME: Stirling PDF
-      UI_HOME_DESCRIPTION: Your locally hosted one-stop-shop for all your PDF needs.
-      UI_APP_NAVBAR_NAME: Stirling PDF
+      UI_APPNAME: Stirling PDF
+      UI_HOMEDESCRIPTION: Your locally hosted one-stop-shop for all your PDF needs.
+      UI_APPNAVBARNAME: Stirling PDF
     ```
   </TabItem>
 </Tabs>
