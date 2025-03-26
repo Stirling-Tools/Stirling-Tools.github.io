@@ -17,10 +17,11 @@ Stirling PDF offers an Enterprise edition of its software. This is the same grea
 
 - Prioritised Support tickets via support@stirlingpdf.com to reach the Stirling-PDF team for support and 1:1 meetings where applicable (Provided they come from same email domain registered with us)
 - Prioritised Enhancements to Stirling-PDF where applicable 
-- Base SSO support
 - [Advanced SSO](/Advanced%20Configuration/Single%20Sign-On%20Configuration), OAuth2 and SAML with automated login handling
 - [External Database](/Advanced%20Configuration/External%20Database) support for optimised deployments and load-balancing support
 - Custom automated metadata handling
+- Usage Monitoring UI
+- Prometheus endpoint for advancing Usage monitoring
 - Advanced user configurations (Coming soon)
 - Plus other exciting features to come.
 
