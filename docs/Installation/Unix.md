@@ -328,3 +328,91 @@ system:
       weasyprint: "" #Defaults to /opt/venv/bin/weasyprint
       unoconvert: "" #Defaults to /opt/venv/bin/unoconvert
 ```
+
+### Updating Stirling-PDF to the Latest release
+
+This depends on the above mentioned installation on Debian based Linux and running Stirling-PDF as a service with systemd:
+Prerequisites:
+
+- jq
+- curl
+- unzip
+- wget
+
+Copy the script to a file located in /opt/Stirling-PDF called Update-Stirling-PDF.sh, give the file execute perissions with ```chmod +x /opt/Stirling-PDF/Update-Stirling-PDF.sh```
+
+```#!/bin/bash
+
+# Config
+SERVICE_NAME="stirlingpdf"
+JAR_NAME="Stirling-PDF-with-login.jar"
+INSTALL_DIR="/opt/Stirling-PDF"
+JAR_PATH="$INSTALL_DIR/$JAR_NAME"
+GITHUB_API="https://api.github.com/repos/Stirling-Tools/Stirling-PDF/releases/latest"
+
+# === Check required commands ===
+REQUIRED_COMMANDS=("jq" "curl" "unzip" "grep" "cut" "wget" "systemctl" "tr")
+
+for cmd in "${REQUIRED_COMMANDS[@]}"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        echo "Error: Required command '$cmd' is not installed or not in PATH."
+        exit 1
+    fi
+done
+
+# Get local version
+if [ -f "$JAR_PATH" ]; then
+    LOCAL_VERSION=$(unzip -p "$JAR_PATH" META-INF/MANIFEST.MF | grep 'Implementation-Version:' | cut -d ' ' -f2 | tr -d '\r')
+else
+    echo "No local jar found, assuming no version installed."
+    LOCAL_VERSION="none"
+fi
+
+# Get latest version from GitHub release metadata
+LATEST_VERSION=$(curl -s "$GITHUB_API" | jq -r '.tag_name' | tr -d '\"' | tr -d 'v')
+
+if [ -z "$LATEST_VERSION" ]; then
+    echo "Error: Failed to get latest version from GitHub."
+    exit 1
+fi
+
+echo "Local version : $LOCAL_VERSION"
+echo "Latest version: $LATEST_VERSION"
+
+# Skip update if versions match
+if [[ "$LOCAL_VERSION" == "$LATEST_VERSION" ]]; then
+    echo "Already up to date. No action taken."
+    exit 0
+fi
+
+echo "New version available. Updating..."
+
+echo "Stopping $SERVICE_NAME"
+# Stop the service
+sudo systemctl stop "$SERVICE_NAME"
+
+echo "Removing $JAR_PATH"
+# Remove old jar
+[ -f "$JAR_PATH" ] && sudo rm "$JAR_PATH"
+
+echo "Downloading Stirling-PDF Latest version: $LATEST_VERSION"
+# Download the latest jar
+DOWNLOAD_URL=$(curl -s "$GITHUB_API" \
+  | jq -r '.assets[] | select(.name == "'"$JAR_NAME"'") | .browser_download_url')
+
+if [ -z "$DOWNLOAD_URL" ]; then
+    echo "Error: Download URL not found."
+    exit 1
+fi
+
+sudo wget -q -O "$JAR_PATH" "$DOWNLOAD_URL"
+echo "Setting permissions"
+# Set permissions
+sudo chown root:root "$JAR_PATH"
+sudo chmod 755 "$JAR_PATH"
+echo "Restarting Stirling-PDF Service"
+# Start the service
+sudo systemctl start "$SERVICE_NAME"
+
+echo "Stirling-PDF updated to version $LATEST_VERSION."
+```
