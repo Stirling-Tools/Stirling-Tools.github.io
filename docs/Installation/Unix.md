@@ -3,6 +3,7 @@ sidebar_position: 2
 id: Unix Installation
 title: Unix installation Guide
 ---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -66,7 +67,19 @@ Install the following software, if not already installed:
 ### Step 2: Clone and Build jbig2enc (Only required for certain OCR functionality)
 
 <Tabs groupId="unix-systems">
-  <TabItem value="debian-fedora" label="Debian/Fedora">
+  <TabItem value="debian" label="Debian">
+    ```bash
+    mkdir ~/.git
+    cd ~/.git &&\
+    git clone https://github.com/agl/jbig2enc.git &&\
+    cd jbig2enc &&\
+    ./autogen.sh &&\
+    ./configure &&\
+    make &&\
+    sudo make install
+    ```
+  </TabItem>
+  <TabItem value="fedora" label="Fedora">
     ```bash
     mkdir ~/.git
     cd ~/.git &&\
@@ -90,6 +103,7 @@ Install the following software, if not already installed:
 Next we need to install LibreOffice for conversions, tesseract for OCR, and opencv for pattern recognition functionality.
 
 Install the following software:
+
 - libreoffice (libreoffice-core libreoffice-common libreoffice-writer libreoffice-calc libreoffice-impress)
 - python3-uno
 - unoserver
@@ -119,15 +133,17 @@ Install the following software:
 </Tabs>
 
 ### Step 4: Grab latest Stirling-PDF Jar
-The JAR can be downloaded in two versions, [normal](https://files.stirlingpdf.com/Stirling-PDF.jar) and [security](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)  
+
+The JAR can be downloaded in two versions, [normal](https://files.stirlingpdf.com/Stirling-PDF.jar) and [security](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)
 
 ### Step 5: Move jar to desired location
+
 You can move this file to a desired location, for example, `/opt/Stirling-PDF/`.
 You must also move the Script folder within the Stirling-PDF repo that you have downloaded to this directory.
 This folder is required for the python scripts using OpenCV.
 
 <Tabs groupId="user-type">
-  <TabItem value="root" label="Root User">
+  <TabItem value="debian" label="Debian (Root)">
     ```bash
     sudo mkdir /opt/Stirling-PDF &&\
     sudo mv ./build/libs/Stirling-PDF-*.jar /opt/Stirling-PDF/ &&\
@@ -135,7 +151,15 @@ This folder is required for the python scripts using OpenCV.
     echo "Scripts installed."
     ```
   </TabItem>
-  <TabItem value="non-root" label="Non-root User">
+  <TabItem value="fedora" label="Fedora (Root)">
+    ```bash
+    sudo mkdir /opt/Stirling-PDF &&\
+    sudo mv ./build/libs/Stirling-PDF-*.jar /opt/Stirling-PDF/ &&\
+    sudo mv scripts /opt/Stirling-PDF/ &&\
+    echo "Scripts installed."
+    ```
+  </TabItem>
+  <TabItem value="nix" label="Nix (Non-root)">
     ```bash
     mv ./build/libs/Stirling-PDF-*.jar ./Stirling-PDF-*.jar
     ```
@@ -184,28 +208,41 @@ If you plan to use the OCR (Optical Character Recognition) functionality, you mi
     3. Please view [tesseract install guide](https://tesseract.readthedocs.io/en/latest/installation.html) for more info.
 
     **IMPORTANT:** DO NOT REMOVE EXISTING `eng.traineddata`, IT'S REQUIRED.
+
   </TabItem>
 </Tabs>
 
 ### Step 7: Run Stirling-PDF
 
+<Tabs groupId="unix-systems">
+  <TabItem value="debian" label="Debian-based Systems">
     ```bash
     java -jar /opt/Stirling-PDF/Stirling-PDF-*.jar
     ```
-
-Since libreoffice, soffice, and conversion tools have their dbus_tmp_dir set as `dbus_tmp_dir="/run/user/$(id -u)/libreoffice-dbus"`, you might get the following error:
-    ```
-    [Thread-7] INFO  s.s.SPDF.utils.ProcessExecutor - mkdir: cannot create directory '/run/user/1501': Permission denied
-    ```
-    To resolve this, use:
+  </TabItem>
+  <TabItem value="fedora" label="Fedora-based Systems">
     ```bash
-    mkdir temp
-    export DBUS_SESSION_BUS_ADDRESS="unix:path=./temp"
-	```
+    java -jar /opt/Stirling-PDF/Stirling-PDF-*.jar
+    ```
+  </TabItem>
+  <TabItem value="nix" label="Nix Package Manager">
+    ```bash
+    java -jar /opt/Stirling-PDF/Stirling-PDF-*.jar
+    ```
+  Since libreoffice, soffice, and conversion tools have their dbus_tmp_dir set as `dbus_tmp_dir="/run/user/$(id -u)/libreoffice-dbus"`, you get the following error:
+  `[Thread-7] INFO  s.s.SPDF.utils.ProcessExecutor - mkdir: cannot create directory '/run/user/1501': Permission denied`
+  To resolve this, use:
+  `bash
+      mkdir temp
+      export DBUS_SESSION_BUS_ADDRESS="unix:path=./temp"
+    `
+  </TabItem>
+</Tabs>
 
 ### Step 8: Adding a Desktop Icon
 
 This will add a modified Appstarter to your Appmenu.
+
 ```bash
 location=$(pwd)/gradlew
 image=$(pwd)/docs/stirling-transparent.svg
@@ -248,17 +285,21 @@ SERVER_PORT="3000"
 ### Optional: Run Stirling-PDF as a service (requires root).
 
 First create a .env file, where you can store environment variables:
+
 ```
 touch /opt/Stirling-PDF/.env
 ```
+
 In this file you can add all variables, one variable per line, as stated in the main readme (for example SYSTEM_DEFAULTLOCALE="de-DE").
 
 Create a new file where we store our service settings and open it with nano editor:
+
 ```
 nano /etc/systemd/system/stirlingpdf.service
 ```
 
 Paste this content, make sure to update the filename of the jar-file. Press Ctrl+S and Ctrl+X to save and exit the nano editor:
+
 ```
 [Unit]
 Description=Stirling-PDF service
@@ -288,16 +329,19 @@ sudo systemctl daemon-reload
 ```
 
 Enable the service to tell the service to start it automatically:
+
 ```
 sudo systemctl enable stirlingpdf.service
 ```
 
 See the status of the service:
+
 ```
 sudo systemctl status stirlingpdf.service
 ```
 
 Manually start/stop/restart the service:
+
 ```
 sudo systemctl start stirlingpdf.service
 sudo systemctl stop stirlingpdf.service
