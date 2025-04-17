@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 id: Unix Installation
-title: Unix installation Guide
+title: Unix Installation Guide
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
