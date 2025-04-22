@@ -27,7 +27,7 @@ Stirling PDF offers an Enterprise edition of its software. This is the same grea
 
 ## Cost
 
-We charge 12$ per seat per month. This means for a company that requires 5 simultaneously logged in users, they would require 5 seats.
+We charge 12$ per seat per month. This means that for a company that requires 5 separate users logged in at any time, they would need 5 totalseats.
 
 ## Purchase
 
