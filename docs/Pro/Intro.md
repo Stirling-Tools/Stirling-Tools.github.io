@@ -1,7 +1,7 @@
 ---
 sidebar_position: 8
-id: Enterprise Edition
-title: Enterprise Edition
+id: Intro
+title: Intro
 description: Enterprise/Pro edition for stirling PDF
 tags:
   - Enterprise

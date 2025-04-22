@@ -114,7 +114,7 @@ After the OAuth 2 login is enabled, a new button will show up on the login page 
 'Login via Single Sign-On' button will present you with the login for your Provider of choice. Once you have clicked the button,
 you will be redirected to your Provider in order to login and authorise Stirling-PDF to use your profile:
 
-| ![login-page.png](../../static/img/login-page.png) | ![sso-login-option.png](../../static/img/sso-login-option.png) |
+| ![login-page.png](/img/login-page.png) | ![sso-login-option.png](/img/sso-login-option.png) |
 |-------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
 
 ## SAML 2 Set Up
@@ -176,7 +176,7 @@ Move the files to `src/main/resources`.
 
 Once you have added your configuration, you should see the button for your chosen Provider on the login page prompting you to log in:
 
-| ![sso-login-dark-mode.png](../../static/img/sso-login-dark-mode.png) | ![sso-saml-login.png](../../static/img/sso-saml-login.png) |
+| ![sso-login-dark-mode.png](/img/sso-login-dark-mode.png) | ![sso-saml-login.png](/img/sso-saml-login.png) |
 |----------------------------------------------------------------------|------------------------------------------------------------|
 
 ### Auto-login
