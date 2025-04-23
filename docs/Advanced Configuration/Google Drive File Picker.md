@@ -1,5 +1,6 @@
 ---
 sidebar_position: 5
+tags: [pro, enterprise, management, feature, advanced feature]
 ---
 
 import Tabs from '@theme/Tabs';

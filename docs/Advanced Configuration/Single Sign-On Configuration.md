@@ -1,11 +1,13 @@
 ---
 sidebar_position: 3
+tags: [pro, enterprise, management, feature, advanced feature]
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Single Sign-On (SSO) Configuration
+> **Tier**: Pro, Enterprise
 
 Stirling-PDF allows login via Single Sign-On (SSO) using OAuth 2 OpenID Connect (OIDC) and SAML 2. This allows you to log in to the
 app using an account you may have with another Provider such as Google or GitHub.
@@ -120,7 +122,7 @@ you will be redirected to your Provider in order to login and authorise Stirling
 ## SAML 2 Set Up
 
 > #### ⚠️ Note
-> _SAML 2 is an enterprise-only feature. To use it you must have `enterpriseEnabled` set to `true` and have a valid license key._
+> _SAML 2 is an enterprise-only feature. To use it you must have `premium.enabled` set to `true` and have a valid license key._
 
 Begin by setting `security.enableLogin` to `true` and `security.loginMethod` to `saml2` in your `/configs/settings.yml`.
 
@@ -180,9 +182,12 @@ Once you have added your configuration, you should see the button for your chose
 |----------------------------------------------------------------------|------------------------------------------------------------|
 
 ### Auto-login
-It is also possible to automatically log in to Stirling PDF on start-up using SAML 2. To enable this feature, set the
-property `enterpriseEdition.SSOAutoLogin` to `true`. `enterpriseEdition.enabled` must also be set to `true` and you must
-provide a valid license key in `enterpriseEdition.key`.
+> #### ⚠️ Note
+> _Auto Login is an enterprise-only feature. To use it you must have `premium.enabled` set to `true` and have a valid license key._
+
+It is also possible to automatically log in to Stirling PDF on start-up using SSO. To enable this feature, set the
+property `premium.proFeatures.SSOAutoLogin` to `true`.
+This will redirect to your SSO's URL when any user navigates to stirlingpdfs default login screen. If a login fails 3 times this redirection is disabled
 
 ## Configurations Examples
 Below are examples of the full configuration for both OAuth 2 and SAML 2:

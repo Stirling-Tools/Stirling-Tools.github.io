@@ -2,12 +2,14 @@
 sidebar_position: 9
 id: External Database
 title: External Database
+tags: [enterprise, database]
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
 # Using an External Database
+> **Tier**: Enterprise
 
 It is possible to use your own external database with Stirling PDF rather than the default H2 database if you wish.
 PostgreSQL is currently the only supported variant, others will be added on request.
