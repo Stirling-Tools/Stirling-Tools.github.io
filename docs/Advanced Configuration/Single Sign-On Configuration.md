@@ -187,7 +187,7 @@ Once you have added your configuration, you should see the button for your chose
 
 It is also possible to automatically log in to Stirling PDF on start-up using SSO. To enable this feature, set the
 property `premium.proFeatures.SSOAutoLogin` to `true`.
-This will redirect to your SSO's URL when any user navigates to stirlingpdfs default login screen. If a login fails 3 times this redirection is disabled
+This will redirect to your SSO's URL when any user navigates to Stirling-PDF's default login screen. If a login fails 3 times this redirection is disabled
 
 ## Configurations Examples
 Below are examples of the full configuration for both OAuth 2 and SAML 2:
