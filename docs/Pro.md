@@ -19,7 +19,7 @@ Some users that seek additional features, bulk user discounts or SLA support may
 - [Advanced SSO](/Advanced%20Configuration/Single%20Sign-On%20Configuration), OAuth2 and SAML with automated login handling
 - [External Database](/Advanced%20Configuration/External%20Database) support for optimised deployments and load-balancing support
 - Custom automated metadata handling
-- Google drive integration
+- Google Drive integration
 - Advanced user configurations (Coming soon)
 - Plus other exciting features to come.
 
