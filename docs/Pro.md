@@ -50,7 +50,14 @@ premium:
   key: 00000000-0000-0000-0000-000000000000
   enabled: false # Enable license key checks for pro/enterprise features
 ```
-Enter the key provided in the email and change enabled from false to true, then restart the Stirling-PDF instance.
+
+If you need your application to be in a 100% offline air-gapped environment and are unable to authenticate a license key, we also offer a a certificate file, which can be provided on request (For enterprise users only) in the format
+```yaml
+premium:
+  key: file:config/cert.crt
+  enabled: false # Enable license key checks for pro/enterprise features
+```
+Enter the general license key provided in the email received from purchasing Stirling PDF Pro and change enabled from false to true, then restart the Stirling-PDF instance.
 You should now see logs of your Stirling-PDF instance registering and authenticating the license and enabling the Pro features.
 
 Under these settings, you will be able to customise other premium features such as
@@ -70,6 +77,8 @@ premium:
       apiKey: ''
       appId: ''
 ```
+
+
 
 <img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=421cf4e2-5028-4383-913e-31afed203780" alt="Analytics Pixel" width="1" height="1" />
 
