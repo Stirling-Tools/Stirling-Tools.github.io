@@ -5,7 +5,7 @@ id: Contribute
 
 # Contribution guidelines
 Thanks for taking a look at how to contribute to Stirling PDFs open-source codebase
-Please checkout our github documentation
+Please checkout our GitHub documentation
 
 ## Adding/Update translations
 See [How To Add New Language guidelines](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/HowToAddNewLanguage.md)
