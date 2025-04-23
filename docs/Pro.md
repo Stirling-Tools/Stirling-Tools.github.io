@@ -53,7 +53,7 @@ premium:
 Enter the key provided in the email and change enabled from false to true, then restart the Stirling-PDF instance.
 You should now see logs of your Stirling-PDF instance registering and authenticating the license and enabling the Pro features.
 
-Under these settings you will be able to customise other premium features such as
+Under these settings, you will be able to customise other premium features such as
 
 ```yaml
 premium:
