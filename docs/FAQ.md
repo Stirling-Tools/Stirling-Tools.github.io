@@ -25,7 +25,7 @@ Stirling-PDF's memory usage can be optimized in several ways:
 
 Disable security features: Set DOCKER_ENABLE_SECURITY=false to reduce RAM consumption. This can significantly lower memory usage, especially during idle periods.
 
-Use the Ultra Lite version: Pull the latest-ultra-lite tag from Docker Hub or GitHub, which is specifically designed for lower-end hardware
+Use the Ultra Lite version: Pull the latest-ultra-lite tag from Docker Hub or GitHub, which is specifically designed for lower-end hardware.
 
 ### Q7: I'm experiencing connection errors when pulling from docker.stirlingpdf.com
 
