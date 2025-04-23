@@ -164,7 +164,7 @@ processExecutor:
     tesseractTimeoutMinutes: 30
 ```
 
-There is an additional config file ``/configs/custom_settings.yml`` were users familiar with java and spring application.properties can input their own settings on-top of Stirling-PDFs existing ones. For more info on any custom settings such as SSL or DEBUG mode please check [here](Extra-Settings)
+There is an additional config file ``/configs/custom_settings.yml`` where users familiar with java and spring application.properties can input their own settings on-top of Stirling-PDFs existing ones. For more info on any custom settings such as SSL or DEBUG mode please check [here](Extra-Settings)
 
 
 #### Extra notes
