@@ -24,7 +24,7 @@ Some users that seek additional features, bulk user discounts or SLA support may
 - Plus other exciting features to come.
 
 
-## Whats included in Enterprise
+## What's included in Enterprise
 - Prioritised Support tickets via support@stirlingpdf.com to reach the Stirling-PDF team for support and 1:1 meetings where applicable (Provided they come from same email domain registered with us)
 - Prioritised Enhancements to Stirling-PDF where applicable 
 - Prometheus endpoint for advancing Usage monitoring
