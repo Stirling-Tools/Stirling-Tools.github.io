@@ -11,7 +11,7 @@ Stirling-PDF provides robust usage monitoring capabilities through its API, allo
 
 ## Non-Persistent Usage Monitoring API
 
-The following API endpoints are available to all users for monitoring usage statistics. These endpoints provide non-persistent usage data that can be queried on demand.
+The following API endpoints are available to all users to monitor usage statistics. These endpoints provide non-persistent usage data that can be queried on demand.
 
 | Endpoint | Description |
 |----------|-------------|
