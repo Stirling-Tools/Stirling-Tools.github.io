@@ -14,7 +14,7 @@ tags:
 Stirling PDF offers an Pro edition of its software. This is the same great software but with added features and comforts.
 Some users that seek additional features, bulk user discounts or SLA support may want our Enterprise package.
 
-## Whats included in pro
+## What's included in pro
 - Support tickets via support@stirlingpdf.com to reach the Stirling-PDF team for support
 - [Advanced SSO](/Advanced%20Configuration/Single%20Sign-On%20Configuration), OAuth2 and SAML with automated login handling
 - [External Database](/Advanced%20Configuration/External%20Database) support for optimised deployments and load-balancing support
