@@ -12,7 +12,7 @@ tags:
 # Stirling PDF Pro 
 
 Stirling PDF offers an Pro edition of its software. This is the same great software but with added features and comforts.
-For some users that seek aditional features, bulk user discounts or SLA support may want our Enterprise package
+Some users that seek additional features, bulk user discounts or SLA support may want our Enterprise package.
 
 ## Whats included in pro
 - Support tickets via support@stirlingpdf.com to reach the Stirling-PDF team for support
