@@ -11,7 +11,7 @@ tags:
 ---
 # Stirling PDF Pro 
 
-Stirling PDF offers an Pro edition of its software. This is the same great software but with added features and comforts.
+Stirling PDF offers a Pro edition of its software. This is the same great software but with added features and comforts.
 Some users that seek additional features, bulk user discounts or SLA support may want our Enterprise package.
 
 ## What's included in pro
