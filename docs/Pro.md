@@ -33,7 +33,7 @@ Some users that seek additional features, bulk user discounts or SLA support may
 
 ## Cost
 
-We charge 12$ per seat per month. This means for a company that requires 5 unique users logged in at any time, they would require 5 seats.
+We charge 12$ per seat per month. This followed the 'Named User' model, meaning a company that requires 5 unique users logged in at any time would require 5 seats.
 
 
 ## Purchase
