@@ -11,8 +11,8 @@ tags:
 ---
 # Stirling PDF Pro 
 
-Stirling PDF offers a Pro edition of its software. This is the same great software but with added features and comforts.
-Some users that seek additional features, bulk user discounts or SLA support may want our Enterprise package.
+Stirling PDF offers a Pro edition of its software. This is the same great software, but with added features and comforts.
+Some users who seek additional features, bulk user discounts or SLA support may want our Enterprise package.
 
 ## What's included in pro
 - Support tickets via support@stirlingpdf.com to reach the Stirling-PDF team for support
@@ -25,7 +25,7 @@ Some users that seek additional features, bulk user discounts or SLA support may
 
 
 ## What's included in Enterprise
-- Prioritised Support tickets via support@stirlingpdf.com to reach the Stirling-PDF team for support and 1:1 meetings where applicable (Provided they come from same email domain registered with us)
+- Prioritised Support tickets via support@stirlingpdf.com to reach the Stirling-PDF team for support and 1:1 meetings where applicable (Provided they come from the same email domain registered with us)
 - Prioritised Enhancements to Stirling-PDF where applicable 
 - Prometheus endpoint for advancing Usage monitoring
 - Usage Monitoring UI
@@ -38,8 +38,8 @@ We charge 12$ per seat per month. This followed the 'Named User' model, meaning 
 
 ## Purchase
 
-To purchase stirling PDF Pro please navigate to https://stirlingpdf.com/pricing and select either pro or Enterprise depending on your use-case.
-For Pro you will be redirected to Stripe to setup and handle a subscription, after which you will be automatically emailed your license key on the email provided to Stripe.
+To purchase stirling PDF Pro, please navigate to https://stirlingpdf.com/pricing and select either Pro or Enterprise, depending on your use-case.
+For Pro, you will be redirected to Stripe to setup and handle a subscription, after which you will be automatically emailed your license key at the email provided to Stripe.
 
 ## Activation
 
@@ -51,7 +51,7 @@ premium:
   enabled: false # Enable license key checks for pro/enterprise features
 ```
 
-If you need your application to be in a 100% offline air-gapped environment and are unable to authenticate a license key, we also offer a a certificate file, which can be provided on request (For enterprise users only) in the format
+If you need your application to be in a 100% offline air-gapped environment and are unable to authenticate a license key, we also offer a certificate file, which can be provided on request (For enterprise users only) in the format
 ```yaml
 premium:
   key: file:config/cert.crt
