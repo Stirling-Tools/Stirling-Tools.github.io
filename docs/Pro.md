@@ -14,7 +14,7 @@ tags:
 Stirling PDF offers a Pro edition of its software. This is the same great software, but with added features and comforts.
 Some users who seek additional features, bulk user discounts or SLA support may want our Enterprise package.
 
-## What's included in pro
+## What's included in Pro
 - Support tickets via support@stirlingpdf.com to reach the Stirling-PDF team for support
 - [Advanced SSO](/Advanced%20Configuration/Single%20Sign-On%20Configuration), OAuth2 and SAML with automated login handling
 - [External Database](/Advanced%20Configuration/External%20Database) support for optimised deployments and load-balancing support
@@ -39,7 +39,7 @@ We charge 12$ per seat per month. This followed the 'Named User' model, meaning 
 ## Purchase
 
 To purchase stirling PDF Pro, please navigate to https://stirlingpdf.com/pricing and select either Pro or Enterprise, depending on your use-case.
-For Pro, you will be redirected to Stripe to setup and handle a subscription, after which you will be automatically emailed your license key at the email provided to Stripe.
+For Pro, you will be redirected to Stripe to set up and handle a subscription, after which you will be automatically emailed your license key at the email provided to Stripe.
 
 ## Activation
 
