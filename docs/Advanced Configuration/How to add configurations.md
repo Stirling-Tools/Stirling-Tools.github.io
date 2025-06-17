@@ -175,7 +175,7 @@ There is an additional config file ``/configs/custom_settings.yml`` where users 
 
 - ``SYSTEM_ROOTURIPATH`` ie set to ``/pdf-app`` to Set the application's root URI to ``localhost:8080/pdf-app``
 - ``SYSTEM_CONNECTIONTIMEOUTMINUTES`` to set custom connection timeout values
-- ``DISABLE_ADDITIONAL_FEATURES`` to tell docker to download security jar (required as false for auth login)
+- ``DOCKER_ENABLE_SECURITY`` to tell docker to download security jar (required as true for auth login)
 - ``LANGS`` to define custom font libraries to install for use for document conversions
 
 ### Local

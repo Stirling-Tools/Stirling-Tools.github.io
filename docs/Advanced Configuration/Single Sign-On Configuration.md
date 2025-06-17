@@ -151,9 +151,9 @@ Assertion Consumer Service (ACS) URL The default is `stirling`
 - `security.saml2.idpSingleLoginUrl`: The URL given by your Provider to initiate the SSO flow
 - `security.saml2.idpSingleLogoutUrl`: The URL given by your Provider to initiate the SLO flow
 - `security.saml2.idpIssuer`: The name of your Provider
-- `security.saml2.idpCert`: The signing certificate given by your Provider in `.pem` format. Place in `stirling-pdf/src/main/resources`
-- `security.saml2.privateKey`: Your private key from your keypair in `.key` format. Place in `stirling-pdf/src/main/resources`
-- `security.saml2.spCert`: classpath:certificate.crt from your keypair in `.crt` format. Place in `stirling-pdf/src/main/resources`
+- `security.saml2.idpCert`: The signing certificate given by your Provider in `.pem` format. Place in `src/main/resources`
+- `security.saml2.privateKey`: Your private key from your keypair in `.key` format. Place in `src/main/resources`
+- `security.saml2.spCert`: classpath:certificate.crt from your keypair in `.crt` format. Place in `src/main/resources`
 
 ### Generating a Keypair
 
@@ -174,7 +174,7 @@ A self-signed certificate is not verified by a Certificate Authority (CA), which
 - `out certificate.crt`: Specifies the output file where the self-signed certificate will be saved
 
 After generating the keypair, the `.key` and `.crt` files should be located in the directory you executed the above command in.
-Move the files to `stirling-pdf/src/main/resources`.
+Move the files to `src/main/resources`.
 
 Once you have added your configuration, you should see the button for your chosen Provider on the login page prompting you to log in:
 
@@ -222,7 +222,7 @@ Below are examples of the full configuration for both OAuth 2 and SAML 2:
   </TabItem>
   <TabItem value="local" label="Local Environment">
     ```bash
-    export DISABLE_ADDITIONAL_FEATURES=false
+    export DOCKER_ENABLE_SECURITY=true
     export SECURITY_ENABLELOGIN=true
     export SECURITY_OAUTH2_ENABLED=true
     export SECURITY_OAUTH2_AUTOCREATEUSER=false
@@ -249,7 +249,7 @@ Below are examples of the full configuration for both OAuth 2 and SAML 2:
   </TabItem>
   <TabItem value="docker-run" label="Docker Run">
     ```bash
-    -e DISABLE_ADDITIONAL_FEATURES=false \
+    -e DOCKER_ENABLE_SECURITY=true \
     -e SECURITY_ENABLELOGIN=true \
     -e SECURITY_OAUTH2_ENABLED=true \
     -e SECURITY_OAUTH2_AUTOCREATEUSER=false \
@@ -276,7 +276,7 @@ Below are examples of the full configuration for both OAuth 2 and SAML 2:
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
-      DISABLE_ADDITIONAL_FEATURES=false
+      DOCKER_ENABLE_SECURITY=true
       SECURITY_ENABLELOGIN=true
       SECURITY_OAUTH2_ENABLED=true
       SECURITY_OAUTH2_AUTOCREATEUSER=false
