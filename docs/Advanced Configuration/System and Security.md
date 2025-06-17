@@ -6,7 +6,7 @@ import TabItem from '@theme/TabItem';
 
 # Login, System and Security
 
-Stirling PDF allows customization of system and security settings. For security features to be enabled, you must use the security jar. For Docker users, this means setting `DOCKER_ENABLE_SECURITY` to `true` via an environment variable.
+Stirling PDF allows customization of system and security settings. For security features to be enabled, you must use the security jar. For Docker users, this means setting `DISABLE_ADDITIONAL_FEATURES` to `false` via an environment variable.
 
 ## Basic Security Settings
 
@@ -19,7 +19,7 @@ Stirling PDF allows customization of system and security settings. For security 
 
 ### Prerequisites
 1. Ensure the `/configs` directory is mounted as a volume in Docker for persistence across updates
-2. For Docker users: Set `DOCKER_ENABLE_SECURITY=true` in environment variables
+2. For Docker users: Set `DISABLE_ADDITIONAL_FEATURES=false` in environment variables
 3. Enable login either via `settings.yml` or set `SECURITY_ENABLELOGIN=true`
 
 ### Initial Login Credentials
@@ -76,25 +76,25 @@ When using the API:
 
     **Option 1: Using Java Properties**
     ```bash
-    java -jar Stirling-PDF.jar -DDOCKER_ENABLE_SECURITY=true -DSECURITY_ENABLELOGIN=true
+    java -jar Stirling-PDF.jar -DDISABLE_ADDITIONAL_FEATURES=false -DSECURITY_ENABLELOGIN=true
     ```
 
     **Option 2: Using Environment Variables**
     ```bash
-    export DOCKER_ENABLE_SECURITY=true
+    export DISABLE_ADDITIONAL_FEATURES=false
     export SECURITY_ENABLELOGIN=true
     ```
   </TabItem>
   <TabItem value="docker-run" label="Docker Run">
     ```bash
-    -e DOCKER_ENABLE_SECURITY=true \
+    -e DISABLE_ADDITIONAL_FEATURES=false \
     -e SECURITY_ENABLELOGIN=true \
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
-      DOCKER_ENABLE_SECURITY: true
+      DISABLE_ADDITIONAL_FEATURES: false true
       SECURITY_ENABLELOGIN: true
     ```
   </TabItem>

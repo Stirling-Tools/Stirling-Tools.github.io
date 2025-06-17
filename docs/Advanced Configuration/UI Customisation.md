@@ -50,29 +50,29 @@ To override a file:
 3. Create the same file path under your `customFiles` directory following the same directory structure
 4. Paste and modify the contents as needed
 
-Note: When overriding templates, first copy the existing template from the [source repository](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/src/main/resources/templates) to maintain the base structure.
+Note: When overriding templates, first copy the existing template from the [source repository](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/stirling-pdf/src/main/resources/templates) to maintain the base structure.
 
 1. To replace the favicon:
    ```
    customFiles/static/favicon.svg
    ```
-   Original file: [src/main/resources/static/favicon.svg](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/src/main/resources/static/favicon.svg)
+   Original file: [stirling-pdf/src/main/resources/static/favicon.svg](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/stirling-pdf/src/main/resources/static/favicon.svg)
 
 2. To override a Bootstrap icon font:
    ```
    customFiles/static/css/fonts/bootstrap-icons.woff
    ```
-   Original file: [src/main/resources/static/css/fonts/bootstrap-icons.woff](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/src/main/resources/static/css/fonts/bootstrap-icons.woff)
+   Original file: [stirling-pdf/src/main/resources/static/css/fonts/bootstrap-icons.woff](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/stirling-pdf/src/main/resources/static/css/fonts/bootstrap-icons.woff)
 
 3. To modify a template:
    ```
    customFiles/templates/fragments/common.html
    ```
-   Original file: [src/main/resources/templates/fragments/common.html](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/src/main/resources/templates/fragments/common.html)
+   Original file: [stirling-pdf/src/main/resources/templates/fragments/common.html](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/stirling-pdf/src/main/resources/templates/fragments/common.html)
 
 The original files can be found in the GitHub repository under:
-- Static files: [src/main/resources/static/](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/src/main/resources/static)
-- Templates (HTML files): [src/main/resources/templates/](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/src/main/resources/templates)
+- Static files: [stirling-pdf/src/main/resources/static/](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/stirling-pdf/src/main/resources/static)
+- Templates (HTML files): [stirling-pdf/src/main/resources/templates/](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/stirling-pdf/src/main/resources/templates)
 
 
 

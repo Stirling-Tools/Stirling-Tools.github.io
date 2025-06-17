@@ -27,7 +27,7 @@ docker run -d \
   -v "./StirlingPDF/customFiles:/customFiles/" \
   -v "./StirlingPDF/logs:/logs/" \
   -v "./StirlingPDF/pipeline:/pipeline/" \
-  -e DOCKER_ENABLE_SECURITY=false \
+  -e DISABLE_ADDITIONAL_FEATURES=true \
   -e LANGS=en_GB \
   docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
@@ -49,7 +49,7 @@ services:
       - ./StirlingPDF/logs:/logs/
       - ./StirlingPDF/pipeline:/pipeline/
     environment:
-      - DOCKER_ENABLE_SECURITY=false
+      - DISABLE_ADDITIONAL_FEATURES=false
       - LANGS=en_GB
 ```
 
