@@ -144,6 +144,9 @@ endpoints:
 metrics:
   enabled: true # 'true' to enable Info APIs (`/api/*`) endpoints, 'false' to disable
 
+disable:
+  pixel=true # 'true' to disable pixel tracking
+
 processExecutor:
   sessionLimit: # Process executor instances limits
     libreOfficeSessionLimit: 1
