@@ -168,7 +168,7 @@ There is an additional config file ``/configs/custom_settings.yml`` where users 
 
 
 #### Extra notes
-- Endpoints. Currently, the endpoints ENDPOINTS_TOREMOVE and ENDPOINTS_GROUPSTOREMOVE can include comma separate lists of endpoints and groups to disable as example ENDPOINTS_TOREMOVE=img-to-pdf,remove-pages would disable both image-to-pdf and remove pages, ENDPOINTS_GROUPSTOREMOVE=LibreOffice Would disable all things that use LibreOffice. You can see a list of all endpoints and groups [here](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/Endpoint-groups.md)
+- Endpoints. Currently, the endpoints ENDPOINTS_TOREMOVE and ENDPOINTS_GROUPSTOREMOVE can include comma separate lists of endpoints and groups to disable as example ENDPOINTS_TOREMOVE=img-to-pdf,remove-pages would disable both image-to-pdf and remove pages, ENDPOINTS_GROUPSTOREMOVE=LibreOffice Would disable all things that use LibreOffice.
 - customStaticFilePath. Customise static files such as the app logo by placing files in the /customFiles/static/ directory. An example of customising app logo is placing a /customFiles/static/favicon.svg to override current SVG. This can be used to change any images/icons/css/fonts/js etc in Stirling-PDF
 
 ### Environment only parameters
