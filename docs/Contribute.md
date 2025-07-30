@@ -8,7 +8,7 @@ Thanks for taking a look at how to contribute to Stirling PDFs open-source codeb
 Please checkout our GitHub documentation
 
 ## Adding/Update translations
-See [How To Add New Language guidelines](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/HowToAddNewLanguage.md)
+See [How To Add New Language guidelines](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/devGuide/HowToAddNewLanguage.md)
 
 ## Wanting to contribute to our codebase
 

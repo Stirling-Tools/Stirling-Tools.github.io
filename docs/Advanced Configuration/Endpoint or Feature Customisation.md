@@ -13,6 +13,3 @@ There are many use-cases for this such as
 To do this `ENDPOINTS_TOREMOVE` and `ENDPOINTS_GROUPSTOREMOVE` have been set up.
 They can include comma-separated lists of endpoints and groups to disable. For example, `ENDPOINTS_TOREMOVE=img-to-pdf,remove-pages` would disable both the "image to PDF" and "remove pages" functionalities.
 `ENDPOINTS_GROUPSTOREMOVE=Libre` Would disable a group of endpoints, in this case all endpoints which use Libre in the backend.
-
-A complete list of all endpoints and groups is available [here](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/Endpoint-groups.md).
-TODO?
