@@ -1,8 +1,10 @@
 ---
 sidebar_position: 10
+tags: [pro, enterprise, database, management]
 ---
 
 # Database Backups
+> **Tier**: Pro, Enterprise
 
 ## Functionality Overview
 

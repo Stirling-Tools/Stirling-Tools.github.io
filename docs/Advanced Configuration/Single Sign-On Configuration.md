@@ -1,11 +1,13 @@
 ---
 sidebar_position: 3
+tags: [pro, enterprise, management, feature, advanced feature]
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Single Sign-On (SSO) Configuration
+> **Tier**: Pro, Enterprise
 
 Stirling-PDF allows login via Single Sign-On (SSO) using OAuth 2 OpenID Connect (OIDC) and SAML 2. This allows you to log in to the
 app using an account you may have with another Provider such as Google or GitHub.
@@ -114,13 +116,13 @@ After the OAuth 2 login is enabled, a new button will show up on the login page 
 'Login via Single Sign-On' button will present you with the login for your Provider of choice. Once you have clicked the button,
 you will be redirected to your Provider in order to login and authorise Stirling-PDF to use your profile:
 
-| ![login-page.png](../../static/img/login-page.png) | ![sso-login-option.png](../../static/img/sso-login-option.png) |
+| ![login-page.png](/img/login-page.png) | ![sso-login-option.png](/img/sso-login-option.png) |
 |-------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
 
 ## SAML 2 Set Up
 
 > #### ⚠️ Note
-> _SAML 2 is an enterprise-only feature. To use it you must have `enterpriseEnabled` set to `true` and have a valid license key._
+> _SAML 2 is an enterprise-only feature. To use it you must have `premium.enabled` set to `true` and have a valid license key._
 
 Begin by setting `security.enableLogin` to `true` and `security.loginMethod` to `saml2` in your `/configs/settings.yml`.
 
@@ -149,9 +151,9 @@ Assertion Consumer Service (ACS) URL The default is `stirling`
 - `security.saml2.idpSingleLoginUrl`: The URL given by your Provider to initiate the SSO flow
 - `security.saml2.idpSingleLogoutUrl`: The URL given by your Provider to initiate the SLO flow
 - `security.saml2.idpIssuer`: The name of your Provider
-- `security.saml2.idpCert`: The signing certificate given by your Provider in `.pem` format. Place in `src/main/resources`
-- `security.saml2.privateKey`: Your private key from your keypair in `.key` format. Place in `src/main/resources`
-- `security.saml2.spCert`: classpath:certificate.crt from your keypair in `.crt` format. Place in `src/main/resources`
+- `security.saml2.idpCert`: The signing certificate given by your Provider in `.pem` format. Place in `stirling-pdf/src/main/resources`
+- `security.saml2.privateKey`: Your private key from your keypair in `.key` format. Place in `stirling-pdf/src/main/resources`
+- `security.saml2.spCert`: classpath:certificate.crt from your keypair in `.crt` format. Place in `stirling-pdf/src/main/resources`
 
 ### Generating a Keypair
 
@@ -172,17 +174,20 @@ A self-signed certificate is not verified by a Certificate Authority (CA), which
 - `out certificate.crt`: Specifies the output file where the self-signed certificate will be saved
 
 After generating the keypair, the `.key` and `.crt` files should be located in the directory you executed the above command in.
-Move the files to `src/main/resources`.
+Move the files to `stirling-pdf/src/main/resources`.
 
 Once you have added your configuration, you should see the button for your chosen Provider on the login page prompting you to log in:
 
-| ![sso-login-dark-mode.png](../../static/img/sso-login-dark-mode.png) | ![sso-saml-login.png](../../static/img/sso-saml-login.png) |
+| ![sso-login-dark-mode.png](/img/sso-login-dark-mode.png) | ![sso-saml-login.png](/img/sso-saml-login.png) |
 |----------------------------------------------------------------------|------------------------------------------------------------|
 
 ### Auto-login
-It is also possible to automatically log in to Stirling PDF on start-up using SAML 2. To enable this feature, set the
-property `enterpriseEdition.SSOAutoLogin` to `true`. `enterpriseEdition.enabled` must also be set to `true` and you must
-provide a valid license key in `enterpriseEdition.key`.
+> #### ⚠️ Note
+> _Auto Login is an enterprise-only feature. To use it you must have `premium.enabled` set to `true` and have a valid license key._
+
+It is also possible to automatically log in to Stirling PDF on start-up using SSO. To enable this feature, set the
+property `premium.proFeatures.SSOAutoLogin` to `true`.
+This will redirect to your SSO's URL when any user navigates to Stirling-PDF's default login screen. If a login fails 3 times this redirection is disabled
 
 ## Configurations Examples
 Below are examples of the full configuration for both OAuth 2 and SAML 2:
@@ -217,7 +222,7 @@ Below are examples of the full configuration for both OAuth 2 and SAML 2:
   </TabItem>
   <TabItem value="local" label="Local Environment">
     ```bash
-    export DOCKER_ENABLE_SECURITY=true
+    export DISABLE_ADDITIONAL_FEATURES=false
     export SECURITY_ENABLELOGIN=true
     export SECURITY_OAUTH2_ENABLED=true
     export SECURITY_OAUTH2_AUTOCREATEUSER=false
@@ -244,7 +249,7 @@ Below are examples of the full configuration for both OAuth 2 and SAML 2:
   </TabItem>
   <TabItem value="docker-run" label="Docker Run">
     ```bash
-    -e DOCKER_ENABLE_SECURITY=true \
+    -e DISABLE_ADDITIONAL_FEATURES=false \
     -e SECURITY_ENABLELOGIN=true \
     -e SECURITY_OAUTH2_ENABLED=true \
     -e SECURITY_OAUTH2_AUTOCREATEUSER=false \
@@ -271,7 +276,7 @@ Below are examples of the full configuration for both OAuth 2 and SAML 2:
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
-      DOCKER_ENABLE_SECURITY=true
+      DISABLE_ADDITIONAL_FEATURES=false
       SECURITY_ENABLELOGIN=true
       SECURITY_OAUTH2_ENABLED=true
       SECURITY_OAUTH2_AUTOCREATEUSER=false

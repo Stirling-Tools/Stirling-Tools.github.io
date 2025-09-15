@@ -2,12 +2,14 @@
 sidebar_position: 9
 id: External Database
 title: External Database
+tags: [enterprise, database]
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
 # Using an External Database
+> **Tier**: Enterprise
 
 It is possible to use your own external database with Stirling PDF rather than the default H2 database if you wish.
 PostgreSQL is currently the only supported variant, others will be added on request.
@@ -16,7 +18,7 @@ PostgreSQL is currently the only supported variant, others will be added on requ
 You can configure the new `Datasource` property in your `settings.yml` to connect to your external database:
 
 > #### ⚠️ Note
-> _To use the external database feature, you will need to have a valid enterprise license and set the environment variable `DOCKER_ENABLE_SECURITY` to `true`._
+> _To use the external database feature, you will need to have a valid enterprise license and set the environment variable `DISABLE_ADDITIONAL_FEATURES` to `false`._
 
 <Tabs groupId="external-db-config">
   <TabItem value="settings" label="Settings File">
@@ -76,7 +78,7 @@ services:
     depends_on:
       - db
     environment:
-      DOCKER_ENABLE_SECURITY: "true"
+      DISABLE_ADDITIONAL_FEATURES: "false" "true"
       SYSTEM_DATASOURCE_ENABLECUSTOMDATABASE: "true"
       SYSTEM_DATASOURCE_CUSTOMDATABASEURL: "jdbc:postgresql://db:5432/stirling_pdf"
       SYSTEM_DATASOURCE_USERNAME: "admin"
@@ -85,7 +87,7 @@ services:
 ```
 
 - `depends_on`: This specifies any services that your app will need in order to run. Ensure the name matches the container name for your database
-- `DOCKER_ENABLE_SECURITY`: Set this to `true` to enable security features
+- `DISABLE_ADDITIONAL_FEATURES`: Set this to `false` to enable security features
 - `SYSTEM_DATASOURCE_ENABLECUSTOMDATABASE`: An environment variable to connect to the database container. Set this to `true` to enable use of the external database
 - `SYSTEM_DATASOURCE_CUSTOMDATABASEURL`: An environment variable to connect to the database container. Set the connection url for the database here. **Note: If you set this url you do not need to set the type, hostName, port and name (namely `SYSTEM_DATASOURCE_TYPE`, `SYSTEM_DATASOURCE_HOSTNAME`, `SYSTEM_DATASOURCE_PORT`, `SYSTEM_DATASOURCE_NAME`), they will all be automatically derived from the url.**
 - `SYSTEM_DATASOURCE_USERNAME`: An environment variable to connect to the database container. Set the username for the database. Ensure this matches the corresponding property in your database container
@@ -99,7 +101,7 @@ services:
     depends_on:
       - db
     environment:
-      DOCKER_ENABLE_SECURITY: "true"
+      DISABLE_ADDITIONAL_FEATURES: "false" "true"
       SYSTEM_DATASOURCE_ENABLECUSTOMDATABASE: "true"
       SYSTEM_DATASOURCE_CUSTOMDATABASEURL: "jdbc:postgresql://db:5432/stirling_pdf"
       SYSTEM_DATASOURCE_USERNAME: "admin"

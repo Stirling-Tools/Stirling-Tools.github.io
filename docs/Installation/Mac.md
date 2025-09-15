@@ -1,18 +1,39 @@
 ---
 sidebar_position: 2
 id: Mac Installation
-title: Mac installation Guide
+title: Mac Installation Guide
 ---
  # MacOS Installation Guide for Stirling PDF
 
-Stirling PDF can be run on macOS via the dedicated [dmg installer here](https://files.stirlingpdf.com/mac-installer.dmg), 
-or the JAR file which can be found [here](https://files.stirlingpdf.com/Stirling-PDF.jar).
+Stirling PDF can be run on MacOS either by using the `.dmg` installer or directly from the `.jar` file.
 
-## Prerequisites:
- - Java 17 or 21 (_21 preferred_)
-   - Install via Homebrew: `brew install openjdk@21`
+### Prerequisites:
+- Java 17 or 21 (_21 preferred_)
+    - Install via Homebrew: `brew install openjdk@21`
 
-## Running Stirling PDF
+## Running via the installer
+| [Apple Silicon chips](https://files.stirlingpdf.com/mac-installer.dmg) | [Intel chips](https://files.stirlingpdf.com/mac-x86_64-installer.dmg) |
+|------------------------------------------------------------------------|-----------------------------------------------------------------------|
+
+Download the `.dmg` file and follow the instructions to install the app. A window should pop up allowing you to copy the 
+app to your Applications folder.
+
+![mac-installer.png](../../static/img/mac-installer.png)
+
+The app should now be located in Applications. Head to your Applications folder to open the app. When you open the app 
+for the first time, it will be blocked by MacOS because it has not been officially verified by Apple yet. 
+
+![mac-app-blocked.png](../../static/img/mac-app-blocked.png)
+
+This is only temporary but in the meantime, open System Settings and go to Privacy & Security and then scroll down to the 
+Security section. You should see the same message indicating the app being blocked. Click 'Open Anyway', you may be 
+prompted to enter your password to allow the app. Once you have done this, head back to Applications and open the app 
+again. It should open with no issue this time.
+
+![mac-security-allow.png](../../static/img/mac-security-allow.png)
+
+## Running via the `.jar` file
+Download the `.jar` file [here](https://files.stirlingpdf.com/Stirling-PDF.jar).
 1. Open Terminal
 2. Navigate to the folder containing the JAR:
    ```bash
@@ -23,7 +44,7 @@ or the JAR file which can be found [here](https://files.stirlingpdf.com/Stirling
    java -jar Stirling-PDF.jar
    ```
 
-For convenience, you can create a simple script:
+_For convenience, you can create a simple script:_
 1. Create a file named run-stirling.sh and add the following contents:
    ```bash    
    #!/bin/bash    
