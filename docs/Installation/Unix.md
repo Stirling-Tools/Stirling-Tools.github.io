@@ -114,7 +114,7 @@ Install the following software:
 <Tabs groupId="unix-systems">
   <TabItem value="debian" label="Debian-based Systems">
     ```bash
-    sudo apt-get install -y libreoffice-writer libreoffice-calc libreoffice-impress tesseract
+    sudo apt-get install -y libreoffice-writer libreoffice-calc libreoffice-impress tesseract-ocr
     pip3 install uno opencv-python-headless unoserver pngquant WeasyPrint --break-system-packages
     ```
   </TabItem>
@@ -135,6 +135,13 @@ Install the following software:
 ### Step 4: Grab latest Stirling-PDF Jar
 
 The JAR can be downloaded in two versions, [normal](https://files.stirlingpdf.com/Stirling-PDF.jar) and [security](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)
+
+Example for the "normal" version 
+
+```bash
+sudo wget https://files.stirlingpdf.com/Stirling-PDF.jar
+sudo chmod +x Stirling-PDF.jar
+```
 
 ### Step 5: Move jar to desired location
 
