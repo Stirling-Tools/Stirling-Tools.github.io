@@ -22,3 +22,12 @@ system:
   enableAnalytics: 'true'
 ```
 In configs/Settings.yml
+
+### Using an outgoing HTTP(S) proxy
+To make Stirling PDF use an outgoing proxy server (e.g. for checking the license validity), the `JAVA_CUSTOM_OPTS` environment variable need to be used to set some Java properties:
+```
+-Dhttp.proxyHost=proxyserver -Dhttp.proxyPort=8888
+-Dhttp.nonProxyHosts="localhost|127.0.0.1|127.0.1.1|127.0.0.0/8|::1|10.0.0.0/8|.svc|.cluster.local"
+-Dhttps.proxyHost=proxyserver -Dhttps.proxyPort=888
+-Dhttps.nonProxyHosts="localhost|127.0.0.1|127.0.1.1|127.0.0.0/8|::1|10.0.0.0/8|.svc|.cluster.local"
+```
