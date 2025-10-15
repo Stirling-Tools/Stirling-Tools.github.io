@@ -6,7 +6,7 @@ id: analytics-telemetry
 
 # Analytics and Telemetry
 
-> Please note all the following applies to version 1.5.0 onward due to be released 15th October
+> Please note all the following applies to version 1.5.0 onward due to be released 16th October
 
 
 Stirling‑PDF uses analytics to understand usage patterns and improve the application. This page explains what data is collected, why we collect it, and how to disable analytics if desired.
