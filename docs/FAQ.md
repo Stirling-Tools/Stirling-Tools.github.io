@@ -39,14 +39,17 @@ All endpoints provide the same functionality.
 ### Q8: What's different in V2.0?
 
 V2.0 is a major frontend rewrite with significant improvements:
-- **Modern React Frontend**: Complete rewrite using React + TypeScript replacing the old Thymeleaf templates
+- **Modern React Frontend**: Complete rewrite using React + TypeScript replacing Thymeleaf
+- **Stateful Processing**: Upload PDFs once and chain multiple tools without reloading
+- **History & Undo**: Full undo/redo functionality and file versioning
 - **Better Performance**: Handles large PDFs (up to 100GB+) with improved memory management
-- **Stateful Processing**: Upload PDFs once and chain multiple tools without reloading files
-- **Client-Side Storage**: Uses IndexedDB for file persistence and thumbnail caching
+- **Client-Side Storage**: Files persist between tool switches using IndexedDB
 - **Native Desktop Apps**: Powered by Tauri for improved native experience
 - **Flexible Deployment**: Can deploy frontend and backend separately for better scalability
 
 The backend and API remain largely unchanged, so existing integrations continue to work.
+
+For a comprehensive overview of all changes and the reasoning behind V2.0, see [Getting Started - Welcome to V2.0](/).
 
 ### Q9: Can I customize the UI in V2.0 like I did in V1.5?
 
