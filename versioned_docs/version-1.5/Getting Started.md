@@ -13,18 +13,10 @@ slug: /
 - **Open-Source:** Community-driven with frequent updates and GitHub support.
 - **Multi-Language Support:** Available in 38+ languages with active translations.
 
-### What's New in V2.0
-- **Modern React Frontend:** Complete rewrite with React + TypeScript for improved performance and user experience
-- **Stateful Document Processing:** Upload PDFs once and chain multiple tools without reloading
-- **Enhanced Performance:** Handles large PDFs (up to 100GB+) with improved memory management
-- **Client-Side File Storage:** IndexedDB for persistent file storage and thumbnail caching
-- **Improved Desktop Experience:** Native desktop apps powered by Tauri
-- **Flexible Deployment:** Separate frontend/backend deployment options for scalability
-
 Please feel free to request new features or report bugs through our [GitHub](https://github.com/Stirling-Tools/Stirling-PDF/issues) or [Discord](https://discord.gg/Cn8pWhQRxZ).
 
 
-## Introduction
+## Introduction 
 
 This guide will help you choose the right installation method based on your needs.
 We prioritise and focus on our Server deployment options however we also offer a [Ultra-Lite model](/Installation/Versions) for desktop users

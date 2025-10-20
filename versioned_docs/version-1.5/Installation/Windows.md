@@ -6,9 +6,6 @@ title: Windows Guide
 # Windows Installation Guide for Stirling PDF
 
 Stirling PDF provides Windows compatibility through a downloadable .exe files depending on your usecase!
-
-**V2.0 Update:** The desktop application now uses Tauri for a native Windows experience with improved performance and a modern React-based interface.
-
 For personal user we recommend the latest
 [Stirling-PDF-installer](https://files.stirlingpdf.com/win-installer.exe)
 

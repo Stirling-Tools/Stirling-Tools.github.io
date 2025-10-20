@@ -44,9 +44,6 @@ For Pro, you will be redirected to Stripe to set up and handle a subscription, a
 ## Activation
 
 To activate, navigate to the Stirling PDF config folder and open the ``settings.yml``
-
-**V2.0 Update:** Administrators can now edit `settings.yml` directly from the frontend UI in the admin settings panel, making configuration easier without needing to access the config folder manually.
-
 Scroll down to the enterprise section, it should look like:
 ```yaml
 premium:

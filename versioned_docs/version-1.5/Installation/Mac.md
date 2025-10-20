@@ -3,11 +3,9 @@ sidebar_position: 2
 id: Mac Installation
 title: Mac Installation Guide
 ---
-# MacOS Installation Guide for Stirling PDF
+ # MacOS Installation Guide for Stirling PDF
 
 Stirling PDF can be run on MacOS either by using the `.dmg` installer or directly from the `.jar` file.
-
-**V2.0 Update:** The desktop application now uses Tauri for a native Mac experience with improved performance and a modern React-based interface.
 
 ### Prerequisites:
 - Java 17 or 21 (_21 preferred_)
@@ -22,14 +20,14 @@ app to your Applications folder.
 
 ![mac-installer.png](/img/mac-installer.png)
 
-The app should now be located in Applications. Head to your Applications folder to open the app. When you open the app
-for the first time, it will be blocked by MacOS because it has not been officially verified by Apple yet.
+The app should now be located in Applications. Head to your Applications folder to open the app. When you open the app 
+for the first time, it will be blocked by MacOS because it has not been officially verified by Apple yet. 
 
 ![mac-app-blocked.png](/img/mac-app-blocked.png)
 
-This is only temporary but in the meantime, open System Settings and go to Privacy & Security and then scroll down to the
-Security section. You should see the same message indicating the app being blocked. Click 'Open Anyway', you may be
-prompted to enter your password to allow the app. Once you have done this, head back to Applications and open the app
+This is only temporary but in the meantime, open System Settings and go to Privacy & Security and then scroll down to the 
+Security section. You should see the same message indicating the app being blocked. Click 'Open Anyway', you may be 
+prompted to enter your password to allow the app. Once you have done this, head back to Applications and open the app 
 again. It should open with no issue this time.
 
 ![mac-security-allow.png](/img/mac-security-allow.png)

@@ -20,62 +20,34 @@ These settings (in Settings.yml) control system behavior and customization capab
 - `showUpdate` - Controls whether update notifications are displayed
 - `showUpdateOnlyAdmin` - When true, restricts update notifications to admin users only (requires `showUpdate: true`)
 
+## V2.0 UI Customization Notes
 
-## System Configuration
-``customHTMLFiles`` In Settings.yml Enables custom HTML file overrides (called fragments) when set to true
+**Important**: Stirling-PDF V2.0 uses a React-based frontend. The V1.5 `customFiles/` folder system for overriding templates **no longer works** in V2.0.
 
-## Custom Files
-When `customHTMLFiles` is enabled, you can override the default templatesby placing your custom files in specific directories. The system uses a resource override mechanism where files in these custom directories take precedence over the default files.
+For advanced UI customization in V2.0:
+1. Clone or download the repository
+2. Modify the React components in the `frontend/src` directory
+3. Build the frontend: `cd frontend && npm install && npm run build`
+4. Volume mount the `frontend/dist` folder into your Docker container to replace the built-in frontend files
 
-### Directory Structure
+Example docker-compose with custom frontend:
+```yaml
+services:
+  stirling-pdf:
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./frontend/dist:/app/frontend/dist  # Mount your custom frontend
+    environment:
+      - MODE=BOTH
 ```
-customFiles/
-├── static/          # Static assets (CSS, JS, images, etc.)
-└── templates/       # HTML template files
-```
 
-### File Locations
-The root path for custom files varies by installation type:
-- **Default/Docker Installation**: `./customFiles/`
-- **Windows Desktop**: `%APPDATA%\Stirling-PDF\customFiles\`
-- **MacOS Desktop**: `~/Library/Application Support/Stirling-PDF/customFiles/`
-- **Linux Desktop**: `~/.config/Stirling-PDF/customFiles/`
-
-### Override Examples
-To override existing files, maintain the same directory structure as the original. Here are some examples with links to the original files you would be overriding:
-
-To override a file:
-1. Navigate to the original file in the GitHub repository
-2. Copy its contents
-3. Create the same file path under your `customFiles` directory following the same directory structure
-4. Paste and modify the contents as needed
-
-Note: When overriding templates, first copy the existing template from the [source repository](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/app/core/src/main/resources/templates) to maintain the base structure.
-
-1. To replace the favicon:
-   ```
-   customFiles/static/favicon.svg
-   ```
-   Original file: [Stirling-PDF/app/core/src/main/resources/static/favicon.svg](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/app/core/src/main/resources/static/favicon.svg)
-
-2. To override a Bootstrap icon font:
-   ```
-   customFiles/static/css/fonts/bootstrap-icons.woff
-   ```
-   Original file: [Stirling-PDF/app/core/src/main/resources/static/css/fonts/bootstrap-icons.woff](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/app/core/src/main/resources/static/css/fonts/bootstrap-icons.woff)
-
-3. To modify a template:
-   ```
-   customFiles/templates/fragments/common.html
-   ```
-   Original file: [Stirling-PDF/app/core/src/main/resources/templates/fragments/common.html](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/app/core/src/main/resources/templates/fragments/common.html)
-
-The original files can be found in the GitHub repository under:
-- Static files: [Stirling-PDF/app/core/src/main/resources/static/](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/app/core/src/main/resources/static)
-- Templates (HTML files): [Stirling-PDF/app/core/src/main/resources/templates/](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/app/core/src/main/resources/templates)
-
-
-
+The following environment-based customizations are still supported without rebuilding:
+- Application name and branding
+- Update notification settings
+- Language settings
+- Theme preferences (via application settings)
 
 ## Configuration Examples
 
@@ -90,7 +62,6 @@ The original files can be found in the GitHub repository under:
     system:
       showUpdate: false # Control update notification visibility
       showUpdateOnlyAdmin: false # Restrict update notifications to admins
-      customHTMLFiles: false # Enable custom HTML/CSS overrides
     ```
   </TabItem>
   <TabItem value="local" label="Local Environment">
@@ -101,8 +72,7 @@ The original files can be found in the GitHub repository under:
     java -jar Stirling-PDF.jar \
       -DAPP_HOME_NAME="New Application Name" \
       -DSHOW_UPDATE=false \
-      -DSHOW_UPDATE_ONLY_ADMIN=false \
-      -DCUSTOM_HTML_FILES=true
+      -DSHOW_UPDATE_ONLY_ADMIN=false
     ```
 
     **Option 2: Using Environment Variables**
@@ -112,7 +82,6 @@ The original files can be found in the GitHub repository under:
     export UI_APPNAVBARNAME="Stirling PDF"
     export SYSTEM_SHOWUPDATE=false
     export SYSTEM_SHOWUPDATEONLYADMIN=false
-    export SYSTEM_CUSTOMHTMLFILES=true
     ```
   </TabItem>
   <TabItem value="docker-run" label="Docker Run">
@@ -121,8 +90,7 @@ The original files can be found in the GitHub repository under:
     -e UI_HOMEDESCRIPTION=Your locally hosted one-stop-shop for all your PDF needs. \
     -e UI_APPNAVBARNAME=Stirling PDF \
     -e SYSTEM_SHOWUPDATE=false \
-    -e SYSTEM_SHOWUPDATEONLYADMIN=false \
-    -e SYSTEM_CUSTOMHTMLFILES=true
+    -e SYSTEM_SHOWUPDATEONLYADMIN=false
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
@@ -133,9 +101,6 @@ The original files can be found in the GitHub repository under:
       UI_APPNAVBARNAME: Stirling PDF
       SYSTEM_SHOWUPDATE: "false"
       SYSTEM_SHOWUPDATEONLYADMIN: "false"
-      SYSTEM_CUSTOMHTMLFILES: "true"
-    volumes:
-      - ./customFiles:/app/customFiles # Mount custom files directory
     ```
   </TabItem>
 </Tabs>

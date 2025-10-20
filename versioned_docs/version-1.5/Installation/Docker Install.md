@@ -16,22 +16,6 @@ Please note that Stirling PDF offers three distinct versions tailored for variou
 | Standard   | `latest`            |
 | Ultra Lite | `latest-ultra-lite` |
 
-## Deployment Architecture (V2.0+)
-
-Stirling-PDF V2.0 introduces flexible deployment options using the `MODE` environment variable:
-
-| Mode | Description | Use Case |
-|------|-------------|----------|
-| `BOTH` (default) | Frontend + Backend in single container | Standard deployment, easiest setup |
-| `FRONTEND` | Frontend only | Separate frontend scaling, CDN deployment |
-| `BACKEND` | Backend API only | Microservices, API-only deployments |
-
-### Additional Environment Variables for V2.0
-
-- `MODE`: Deployment mode (`BOTH`, `FRONTEND`, or `BACKEND`)
-- `BACKEND_INTERNAL_PORT`: Internal backend port when `MODE=BOTH` (default: `8081`)
-- `VITE_API_BASE_URL`: Backend URL when `MODE=FRONTEND` (e.g., `http://backend:8080`)
-
 ### Run docker container with `docker run`
 
 ```bash
@@ -40,9 +24,9 @@ docker run -d \
   -p 8080:8080 \
   -v "./StirlingPDF/trainingData:/usr/share/tessdata" \
   -v "./StirlingPDF/extraConfigs:/configs" \
+  -v "./StirlingPDF/customFiles:/customFiles/" \
   -v "./StirlingPDF/logs:/logs/" \
   -v "./StirlingPDF/pipeline:/pipeline/" \
-  -e MODE=BOTH \
   -e DISABLE_ADDITIONAL_FEATURES=true \
   -e LANGS=en_GB \
   docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
@@ -50,8 +34,7 @@ docker run -d \
 
 ### Run docker container with `docker compose`
 
-#### Standard Deployment (Single Container - MODE=BOTH)
-
+- `docker-compose.yml`
 ```yaml
 version: '3.3'
 services:
@@ -62,43 +45,12 @@ services:
     volumes:
       - ./StirlingPDF/trainingData:/usr/share/tessdata # Required for extra OCR languages
       - ./StirlingPDF/extraConfigs:/configs
+      - ./StirlingPDF/customFiles:/customFiles/
       - ./StirlingPDF/logs:/logs/
       - ./StirlingPDF/pipeline:/pipeline/
     environment:
-      - MODE=BOTH  # Default: Frontend + Backend
       - DISABLE_ADDITIONAL_FEATURES=false
       - LANGS=en_GB
-```
-
-#### Separate Frontend/Backend Deployment
-
-```yaml
-version: '3.3'
-services:
-  stirling-pdf-backend:
-    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
-    container_name: stirling-backend
-    ports:
-      - '8081:8080'
-    volumes:
-      - ./StirlingPDF/trainingData:/usr/share/tessdata
-      - ./StirlingPDF/extraConfigs:/configs
-      - ./StirlingPDF/logs:/logs/
-      - ./StirlingPDF/pipeline:/pipeline/
-    environment:
-      - MODE=BACKEND
-      - DISABLE_ADDITIONAL_FEATURES=false
-
-  stirling-pdf-frontend:
-    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
-    container_name: stirling-frontend
-    ports:
-      - '8080:8080'
-    environment:
-      - MODE=FRONTEND
-      - VITE_API_BASE_URL=http://stirling-pdf-backend:8080
-    depends_on:
-      - stirling-pdf-backend
 ```
 
 ### Extras
