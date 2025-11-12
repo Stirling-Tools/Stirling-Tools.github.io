@@ -27,8 +27,8 @@ Stirling PDF for Mac is available as a **native desktop application** or can run
 
 | Chip Type | Download Link |
 |-----------|--------------|
-| **Apple Silicon** (M1/M2/M3) | [Download for Apple Silicon](https://files.stirlingpdf.com/mac-installer.dmg) |
-| **Intel** processors | [Download for Intel](https://files.stirlingpdf.com/mac-x86_64-installer.dmg) |
+| **Apple Silicon** (M1/M2/M3) | [Download for Apple Silicon](https://files.stirling.com/mac-installer.dmg) |
+| **Intel** processors | [Download for Intel](https://files.stirling.com/mac-x86_64-installer.dmg) |
 
 **Not sure which chip you have?**
 - Click the Apple menu → "About This Mac"
@@ -104,7 +104,7 @@ export PATH="/usr/local/opt/openjdk@21/bin:$PATH"
 
 ### Running the Server
 
-1. **Download the JAR file**: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar)
+1. **Download the JAR file**: [Stirling-PDF.jar](https://files.stirling.com/Stirling-PDF.jar)
 
 2. **Open Terminal** and navigate to the download folder:
    ```bash

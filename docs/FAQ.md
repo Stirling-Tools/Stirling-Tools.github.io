@@ -27,7 +27,7 @@ Disable security features: Set DOCKER_ENABLE_SECURITY=false to reduce RAM consum
 
 Use the Ultra Lite version: Pull the latest-ultra-lite tag from Docker Hub or GitHub, which is specifically designed for lower-end hardware.
 
-### Q7: I'm experiencing connection errors when pulling from docker.stirlingpdf.com
+### Q7: I'm experiencing connection errors when pulling from docker.stirling.com
 
 If you experience connection issues, use these alternative endpoints:
 
