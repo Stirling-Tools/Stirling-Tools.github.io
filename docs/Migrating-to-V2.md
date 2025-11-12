@@ -64,7 +64,7 @@ Upgrading to Stirling-PDF V2.0 is straightforward for most users. This guide hel
 - ✅ Pipeline and automation (now called "Automate" in the frontend with improved UX)
 - ✅ Multi-language support
 - ✅ Custom settings and configurations
-- ✅ Privacy commitment - Your data stays yours, with full control over analytics (see [Analytics and Telemetry](/Analytics-and-telemetry))
+- ✅ Privacy commitment - Your data stays yours, with full control over analytics (see [Analytics and Telemetry](./Analytics-and-telemetry))
 
 ## Upgrading Your Installation
 
@@ -280,8 +280,8 @@ Replace the JAR file with your previous V1 version.
 
 If you encounter issues:
 
-1. **Check the FAQ**: [FAQ](/FAQ) - Many common questions answered
-2. **Review V2 Features**: [V2 Features Guide](/V2-Features) - Understand new behavior
+1. **Check the FAQ**: [FAQ](./FAQ) - Many common questions answered
+2. **Review V2 Features**: [V2 Features Guide](./V2-Features) - Understand new behavior
 3. **Report Issues**: [GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues)
 4. **Join Discord**: Get community help and support
 

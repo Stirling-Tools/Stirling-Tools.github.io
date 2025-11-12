@@ -59,7 +59,7 @@ V2.0 brings major improvements to your PDF workflow:
 - API remains unchanged - existing integrations still work
 - Backend processing is the same reliable engine
 
-See [Getting Started](/) for full V2.0 overview and [V2 Features Guide](/V2-Features) for detailed feature explanations.
+See [Getting Started](/) for full V2.0 overview and [V2 Features Guide](./V2-Features) for detailed feature explanations.
 
 ### Q9: Can I customize the UI in V2.0 like I did in V1?
 
@@ -147,7 +147,7 @@ Yes! V2 includes full undo/redo functionality:
 - Download important versions to save them permanently
 - Desktop app retains history longer than browser
 
-See [V2 Features Guide](/V2-Features#undo-and-redo) for details.
+See [V2 Features Guide](./V2-Features#undo-and-redo) for details.
 
 ### Q15: My browser says "Storage quota exceeded". What should I do?
 
