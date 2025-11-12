@@ -1,15 +1,11 @@
 ---
 sidebar_position: 5
-description: Pipeline and Automate Feature overview
+description: Pipeline Feature overview
 ---
 
-# Features - Pipeline / Automate
+# Features - Pipeline
 
-:::info V2.0 Update
-In V2.0, the pipeline feature's frontend interface has been renamed to **"Automate"** with an improved user experience. All backend functionality remains the same - existing pipeline JSON files work without changes.
-:::
-
-The Pipeline/Automate feature in Stirling PDF enables automated, sequential processing of PDFs through multiple operations. This powerful automation tool allows you to:
+The Pipeline feature in Stirling PDF enables automated, sequential processing of PDFs through multiple operations. This powerful automation tool allows you to:
 
 - `create-pipeline`: Create custom workflows combining multiple PDF operations into a single automated process. For example, you could create a pipeline that:
   - Splits a PDF

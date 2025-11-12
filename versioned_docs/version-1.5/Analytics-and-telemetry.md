@@ -6,12 +6,12 @@ id: analytics-telemetry
 
 # Analytics and Telemetry
 
-> Please note all the following applies to version 1.5.0 onward due to be released 16th October
+> Please note all the following applies to version 1.5.0 onward due to be released 15th October
 
 
 Stirling‑PDF uses analytics to understand usage patterns and improve the application. This page explains what data is collected, why we collect it, and how to disable analytics if desired.
 
-> **User control**: All analytics are **opt‑in via a consent banner** (Disabled untill a user expressly allows it) a self‑hosted administrator can also disables all analytics system‑wide. If analytics are disabled system‑wide, no banner is shown.
+> **User control**: All analytics are **opt‑in via a consent banner** (Disabled unless user allows) unless a self‑hosted administrator disables analytics system‑wide. If analytics are disabled system‑wide, no banner is shown.
 
 ## Overview
 
@@ -82,7 +82,7 @@ PostHog analytics help us:
 
 ### What is Scarf?
 
-[Scarf](https://scarf.sh) provides a simple tracking pixel (`pixel.stirling.com`) that collects basic, non‑personally identifiable information about Stirling‑PDF usage.
+[Scarf](https://scarf.sh) provides a simple tracking pixel (`pixel.stirlingpdf.com`) that collects basic, non‑personally identifiable information about Stirling‑PDF usage.
 
 ### Data collected by Scarf
 
@@ -116,13 +116,13 @@ Scarf is opt‑in by default (via the cookie consent banner). To disable the Sca
 
 **Environment variable**
 ```bash
-SYSTEM_ENABLESCARF=false
+SYSTEM_DISABLEPIXEL=true
 ```
 
 **settings.yml**
 ```yaml
 system:
-  enableScarf: false
+  disablePixel: true
 ```
 
 ---
@@ -168,24 +168,24 @@ system:
 
 **Scarf tracking pixel**
 ```bash
-SYSTEM_ENABLESCARF=false
+SYSTEM_DISABLEPIXEL=true
 ```
 ```yaml
 system:
-  enableScarf: false     # true | false | null
+  disablePixel: true     # true | false
 ```
 
 **Interaction**
 - If `enableAnalytics` is `false`, everything is off regardless of component toggles.
 - If `enableAnalytics` is `true`/`null`, the consent banner is shown (see below). After consent:
   - PostHog runs only if `enablePosthog` is `true`/`null` **and** the user consented.
-  - Scarf runs only if `enableScarf` is `true`/`null` **and** the user consented.
+  - Scarf runs only if `disablePixel` is `false` **and** the user consented.
 
 ### 3) Cookie consent banner
 
 When analytics are allowed globally (`system.enableAnalytics: true` or resolved via the first‑run admin choice), users see a cookie consent banner on their first visit. Users can:
 
-- **Accept all** → enables PostHog (if `enablePosthog` is `true`/`null`) and Scarf (if `enableScarf` is `true`/`null`)
+- **Accept all** → enables PostHog (if `enablePosthog` is `true`/`null`) and Scarf (if `disablePixel: false`)
 - **Accept only necessary** → disables PostHog and Scarf
 - **Customize** → granular selection where applicable
 
@@ -259,7 +259,7 @@ If you're running Stirling‑PDF on your own infrastructure:
 
 If you have questions or concerns about analytics:
 
-- Check our [Privacy Policy](https://www.stirling.com/privacy-policy)
+- Check our [Privacy Policy](https://www.stirlingpdf.com/privacy-policy)
 - Review the [source code](https://github.com/Stirling-Tools/Stirling-PDF)
 - Ask questions on [Discord](https://discord.gg/HYmhKj45pU)
 - Open an issue on [GitHub](https://github.com/Stirling-Tools/Stirling-PDF/issues)
