@@ -11,20 +11,54 @@ Stirling PDF allows easy customization of the app.
 Includes things like
 
 - Custom application name
-- Custom slogans, icons, HTML, images CSS etc (via file overrides)
+- Security settings
+- Feature toggles
+- System behavior
+- And much more
 
-There are two options for this, either using the generated settings file ``settings.yml``
-This file is located in the ``/configs`` directory and follows standard YAML formatting
+## V2.0 - In-App Settings (Recommended)
 
-Environment variables are also supported and would override the settings file
-For example in the settings.yml you have
+:::tip New in V2.0
+**Admin users can now configure all settings directly in the application!**
 
-```
+If you have login enabled (`SECURITY_ENABLELOGIN=true`) and are logged in as an admin, navigate to the **Settings** menu in the application to configure everything through the UI. Changes apply immediately without restarting.
+
+This is the easiest and recommended way to manage Stirling-PDF V2.0.
+:::
+
+## Configuration Methods
+
+There are three ways to configure Stirling-PDF (in order of precedence):
+
+1. **In-App Settings** (V2.0+, requires admin login) - Configure via the Settings menu
+2. **Environment Variables** - Set via Docker, docker-compose, or system environment
+3. **settings.yml file** - Located in the `/configs` directory
+
+**Precedence**: Environment variables override settings.yml. In-app settings update the settings.yml file.
+
+### Using settings.yml
+
+The settings file is located in the `/configs` directory and follows standard YAML formatting.
+
+Example:
+```yaml
 security:
-  enableLogin: 'true'
+  enableLogin: true
 ```
 
-To have this via an environment variable you would have ``SECURITY_ENABLELOGIN``
+### Using Environment Variables
+
+Environment variables override the settings file.
+
+For example, to override the setting above:
+```bash
+SECURITY_ENABLELOGIN=true
+```
+
+**Format rule**: Convert YAML paths to environment variables by:
+- Replacing `.` with `_`
+- Making everything UPPERCASE
+- Example: `security.enableLogin` → `SECURITY_ENABLELOGIN`
 
 The Current list of settings is
 

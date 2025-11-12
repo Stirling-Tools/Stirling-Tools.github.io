@@ -63,10 +63,10 @@ For local testing with full security features:
 
 ```bash
 # Set environment variable
-export DOCKER_ENABLE_SECURITY=true
+export SECURITY_ENABLELOGIN=true
 
 # Or add to your IDE's run configuration
--DDOCKER_ENABLE_SECURITY=true
+-DSECURITY_ENABLELOGIN=true
 ```
 
 ### 3. Frontend Development (V2.0+)
@@ -164,7 +164,7 @@ npm run tauri-build
 - **File Storage**: IndexedDB for client-side persistence
 - **Tool Architecture**: Hook-based pattern using `useToolOperation`
 - **Memory Management**: Manual cleanup for PDF.js documents and blob URLs
-- **Performance Target**: Handle PDFs up to 100GB+
+- **Performance Target**: Improved handling of large PDFs with better memory management
 
 ### Key Frontend Concepts
 

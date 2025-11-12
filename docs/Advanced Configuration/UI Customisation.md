@@ -22,7 +22,22 @@ These settings (in Settings.yml) control system behavior and customization capab
 
 ## V2.0 UI Customization Notes
 
-**Important**: Stirling-PDF V2.0 uses a React-based frontend. The V1.5 `customFiles/` folder system for overriding templates **no longer works** in V2.0.
+### In-App Settings Management (V2.0+)
+
+**New in V2.0**: If you have login enabled and are logged in as an admin, you can now configure all settings directly in the application through the **Settings** menu. No need to edit `settings.yml` manually!
+
+**How to access:**
+1. Enable login: `SECURITY_ENABLELOGIN=true`
+2. Log in as an admin user
+3. Navigate to **Settings** in the application
+4. Configure all options through the UI
+5. Changes apply immediately
+
+This is the recommended way to manage settings in V2.0 for production deployments.
+
+### Template Customization Changes
+
+**Important**: The V1 `customFiles/` folder system for overriding templates has been replaced with a new customization approach due to the UI framework change in V2.0.
 
 For advanced UI customization in V2.0:
 1. Clone or download the repository
@@ -34,7 +49,7 @@ Example docker-compose with custom frontend:
 ```yaml
 services:
   stirling-pdf:
-    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
+    image: stirlingtools/stirling-pdf:latest
     ports:
       - '8080:8080'
     volumes:
@@ -43,11 +58,11 @@ services:
       - MODE=BOTH
 ```
 
-The following environment-based customizations are still supported without rebuilding:
-- Application name and branding
-- Update notification settings
-- Language settings
-- Theme preferences (via application settings)
+The following customizations work without rebuilding:
+- Application name and branding (via environment variables or in-app settings)
+- Update notification settings (via in-app settings if admin)
+- Language settings (via in-app settings)
+- Theme preferences (via in-app settings)
 
 ## Configuration Examples
 

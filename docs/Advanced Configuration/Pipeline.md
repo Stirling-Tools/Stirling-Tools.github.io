@@ -7,6 +7,20 @@ title: Pipeline Automation
 
 # Pipeline Configuration and Usage Tutorial
 
+:::info V2.0 Update - New "Automate" Feature
+In V2.0, the pipeline frontend interface has been replaced with the new **"Automate"** feature, which offers an improved user experience for creating and managing automation workflows. The backend pipeline system (JSON configuration and folder scanning) continues to work the same way.
+
+**What changed:**
+- ✅ Backend pipeline processing - **No changes**
+- ✅ JSON pipeline configurations - **Still work exactly the same**
+- ✅ Folder scanning with pipelines - **Still works the same**
+- 🆕 Frontend interface - **Now called "Automate" with better UX**
+
+If you have existing pipeline JSON files, they continue to work in V2.0's Automate feature.
+:::
+
+## About Pipeline Automation
+
 - Configure the pipeline config file and input files to run files against it.
 - For reuse, download the config file and re-upload it when needed, or place it in `/pipeline/defaultWebUIConfigs/` to auto-load in the web UI for all users.
 

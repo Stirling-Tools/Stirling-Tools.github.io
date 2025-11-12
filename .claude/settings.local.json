@@ -2,9 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(npm run docusaurus:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(tree:*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "/mnt/c/Users/systo/git/Stirling-PDFNew/"
+    ]
   }
 }
