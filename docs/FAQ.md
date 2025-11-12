@@ -131,7 +131,7 @@ You should clear files:
 
 **Recommendation**: Use the desktop app for frequent work, web version for occasional access.
 
-See [V2 Features Guide](/V2-Features) for detailed comparison.
+See [V2 Features Guide](./V2-Features) for detailed comparison.
 
 ### Q14: Can I use undo/redo in V2? How does it work?
 
@@ -231,7 +231,7 @@ Stirling-PDF respects your privacy with full control:
 - Browsing history
 - Uploaded documents
 
-See [Analytics and Telemetry](./Analytics-and-telemetry) for complete details.
+See [Analytics and Telemetry](./analytics-telemetry) for complete details.
 
 ### Q20: What are the Docker deployment modes in V2?
 

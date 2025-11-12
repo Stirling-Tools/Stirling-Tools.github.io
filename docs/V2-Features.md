@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+id: V2-Features
 description: Learn about V2's powerful features for working with PDFs
 ---
 

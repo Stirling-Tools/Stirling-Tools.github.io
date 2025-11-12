@@ -81,7 +81,7 @@ New responsive interface that's faster and more intuitive to use.
 - **Docker deployment** - Same Docker images, same volume mounts (except customFiles)
 - **Security features** - SSO, user management, and permissions unchanged
 - **Pipeline automation** - Now called "Automate" in the frontend with improved UX (backend unchanged)
-- **Privacy commitment** - Your data stays yours, with full control over analytics and telemetry (see [Analytics and Telemetry](./Analytics-and-telemetry))
+- **Privacy commitment** - Your data stays yours, with full control over analytics and telemetry (see [Analytics and Telemetry](./analytics-telemetry))
 
 ### Migration from V1
 

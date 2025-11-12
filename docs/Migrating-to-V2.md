@@ -64,7 +64,7 @@ Upgrading to Stirling-PDF V2.0 is straightforward for most users. This guide hel
 - ✅ Pipeline and automation (now called "Automate" in the frontend with improved UX)
 - ✅ Multi-language support
 - ✅ Custom settings and configurations
-- ✅ Privacy commitment - Your data stays yours, with full control over analytics (see [Analytics and Telemetry](./Analytics-and-telemetry))
+- ✅ Privacy commitment - Your data stays yours, with full control over analytics (see [Analytics and Telemetry](./analytics-telemetry))
 
 ## Upgrading Your Installation
 
