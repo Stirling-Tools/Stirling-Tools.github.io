@@ -1,11 +1,18 @@
 ---
 sidebar_position: 3
-description: Guide for upgrading from V1 to V2.0
+description: Guide for upgrading from V1 to V2
 ---
 
-# Migrating from V1 to V2.0
+# Migrating from V1 to V2
 
-Upgrading to Stirling-PDF V2.0 is straightforward for most users. This guide helps you understand what's changed and how to make the transition smoothly.
+:::info Complete Migration Guide
+This page provides a quick overview. For comprehensive migration documentation, see the **[Migration Guide](./Migration/Overview)** with detailed sections on:
+- [New Features](./Migration/New-Features) - Everything new in V2
+- [Settings Changes](./Migration/Settings-Changes) - Complete configuration updates
+- [Breaking Changes](./Migration/Breaking-Changes) - Important changes and migration paths
+:::
+
+Upgrading to Stirling-PDF V2 is straightforward for most users. This guide helps you understand what's changed and how to make the transition smoothly.
 
 ## Should You Upgrade?
 
@@ -280,10 +287,12 @@ Replace the JAR file with your previous V1 version.
 
 If you encounter issues:
 
-1. **Check the FAQ**: [FAQ](./FAQ) - Many common questions answered
-2. **Review V2 Features**: [V2 Features Guide](./V2-Features) - Understand new behavior
-3. **Report Issues**: [GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues)
-4. **Join Discord**: Get community help and support
+1. **Migration Guide**: [Complete Migration Documentation](./Migration/Overview) - Comprehensive upgrade guide
+2. **Settings Changes**: [Configuration Updates](./Migration/Settings-Changes) - All setting changes
+3. **Breaking Changes**: [What Changed](./Migration/Breaking-Changes) - Important changes
+4. **FAQ**: [Frequently Asked Questions](./FAQ) - Common questions answered
+5. **Report Issues**: [GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues)
+6. **Join Discord**: Get community help and support
 
 ## Deployment Mode Options (Advanced)
 

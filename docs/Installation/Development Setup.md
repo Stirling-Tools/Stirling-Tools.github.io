@@ -12,7 +12,7 @@ This guide covers setting up a local development environment for Stirling-PDF, i
 
 Before getting started, ensure you have the following installed:
 
-- **Java**: JDK 17 or 21 (21 recommended)
+- **Java**: JDK 21 or later
 - **Node.js**: Version 18+ for frontend development
 - **npm**: Comes with Node.js
 - **Docker**: For testing and containerization

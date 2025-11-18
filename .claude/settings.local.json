@@ -3,7 +3,9 @@
     "allow": [
       "Bash(npm run docusaurus:*)",
       "Bash(cat:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(timeout 3 grep:*)"
     ],
     "deny": [],
     "ask": [],

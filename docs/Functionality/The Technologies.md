@@ -2,11 +2,11 @@
 sidebar_position: 0
 description: What makes Stirling-PDF powerful - technologies and capabilities!
 ---
-# What Makes Stirling-PDF V2 Powerful
+# What Makes Stirling-PDF Powerful
 
-Stirling-PDF V2 combines server-side processing power with modern browser capabilities to give you the best PDF experience possible.
+Stirling-PDF combines server-side processing power with modern browser capabilities to give you the best PDF experience possible.
 
-## What You Get with V2
+## Key Features
 
 ### Work Offline with Browser Storage
 - **Your files stay in your browser** - No need to re-upload files when switching between tools
@@ -54,21 +54,39 @@ Stirling-PDF uses powerful open-source tools to handle complex PDF operations:
 - **[OpenCV](https://opencv.org/)** - Image processing and computer vision operations
 
 ### Modern Web Experience (Browser-Side)
-V2 brings you a fast, modern interface with client-side capabilities:
+A fast, modern interface built with powerful frontend technologies:
 
-- **Quick previews** - See your PDFs right in the browser
-- **Local file caching** - Temporarily store files for faster workflows
-- **Responsive interface** - Works smoothly on all screen sizes
-- **Multi-language support** - Interface available in 30+ languages
-- **Offline-capable desktop apps** - Full functionality without internet
+**Core Framework:**
+- **[React](https://react.dev/)** - Modern UI framework for responsive interfaces
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe development
+- **[Vite](https://vitejs.dev/)** - Lightning-fast build tool
+
+**PDF Rendering & Interaction:**
+- **[EmbedPDF](https://github.com/EmbedPDF/EmbedPDF)** - Advanced PDF viewer with annotation support
+- **[PDF.js](https://mozilla.github.io/pdf.js/)** - Mozilla's PDF rendering engine
+- **[pdf-lib](https://pdf-lib.js.org/)** - Client-side PDF manipulation
+
+**UI & Components:**
+- **[Mantine](https://mantine.dev/)** - Modern React component library
+- **[Material UI](https://mui.com/)** - Additional UI components
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first styling
+- **[Iconify](https://iconify.design/)** - Unified icon framework
+
+**Enhanced Features:**
+- **[i18next](https://www.i18next.com/)** - Internationalization (30+ languages)
+- **[signature_pad](https://github.com/szimek/signature_pad)** - Canvas-based signatures
+- **[JSZip](https://stuk.github.io/jszip/)** - Client-side ZIP handling
+- **[Axios](https://axios-http.com/)** - HTTP client for API communication
 
 ### Desktop Applications
-Native applications for Windows, Mac, and Linux:
+Native applications built with modern desktop technology:
 
-- **Automatic PDF file association** - Open PDFs directly in Stirling-PDF
-- **Bundled processing tools** - Everything you need included
-- **System integration** - Feels like a native application
-- **One-click installers** - Easy installation on all platforms
+- **[Tauri](https://tauri.app/)** - Rust-based native app framework
+  - **Automatic PDF file association** - Open PDFs directly in Stirling-PDF
+  - **Bundled processing tools** - Everything you need included
+  - **System integration** - Feels like a native application
+  - **One-click installers** - Easy installation on all platforms
+  - **Small footprint** - Efficient resource usage
 
 ## Open Source and Transparent
 
@@ -81,9 +99,8 @@ All the technologies we use are open source and well-documented:
 
 ## Privacy and Security
 
-V2 is designed with privacy in mind:
+Designed with privacy in mind:
 
-- **Process locally** - Desktop apps work completely offline
 - **Browser storage stays local** - Files cached in your browser never leave your device
 - **Open source** - Audit the code yourself
 - **No tracking required** - Disable analytics completely if desired

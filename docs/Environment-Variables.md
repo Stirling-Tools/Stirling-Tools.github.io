@@ -7,7 +7,7 @@ description: User-friendly guide to configuring Stirling-PDF with environment va
 
 Configure Stirling-PDF easily with environment variables - no need to edit config files!
 
-:::tip V2.0 - In-App Settings Available!
+:::tip In-App Settings Available!
 If you have login enabled and are an admin user, you can configure all settings through the **Settings** menu in the application. This is often easier than managing environment variables or config files.
 
 **To use in-app settings:**
@@ -22,8 +22,8 @@ Environment variables still work and can be used for initial deployment or when 
 ## About This Guide
 
 This guide covers environment variables for configuring Stirling-PDF. You can also:
-- **V2.0 Users**: Use in-app Settings menu (recommended if you have login enabled)
-- **All Versions**: Edit `settings.yml` file directly
+- Use in-app Settings menu (recommended if you have login enabled)
+- Edit `settings.yml` file directly
 
 Environment variables are useful for Docker deployments and infrastructure-as-code setups.
 
@@ -37,7 +37,7 @@ These are the settings you'll use most often:
 |----------|--------------|---------|---------|
 | `SECURITY_ENABLELOGIN` | Require login to use Stirling-PDF | `true` or `false` | `false` |
 | `LANGS` | Interface language(s) | `en_GB` or `en_GB,es_ES,fr_FR` | `en_GB` |
-| `MODE` | Deployment type (V2 only) | `BOTH`, `FRONTEND`, or `BACKEND` | `BOTH` |
+| `MODE` | Deployment type | `BOTH`, `FRONTEND`, or `BACKEND` | `BOTH` |
 | `SYSTEM_DEFAULTLOCALE` | Default language when users first visit | `en-GB`, `es-ES`, `fr-FR`, etc. | `en-GB` |
 
 ### Quick Start Examples
@@ -137,7 +137,7 @@ environment:
 
 Users can change language from the language picker in the interface.
 
-## V2 Deployment Modes
+## Deployment Modes
 
 ### Simple Mode (Default)
 

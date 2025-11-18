@@ -9,7 +9,7 @@ Thanks for taking a look at how to contribute to Stirling PDFs open-source codeb
 ## Development Setup
 
 ### Prerequisites
-- Java 17 or 21 (21 recommended)
+- Java 21 or later
 - Node.js 18+
 - Docker (for testing)
 - Gradle (included in repository)

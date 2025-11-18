@@ -16,21 +16,21 @@ Includes things like
 - System behavior
 - And much more
 
-## V2.0 - In-App Settings (Recommended)
+## In-App Settings (Recommended)
 
-:::tip New in V2.0
-**Admin users can now configure all settings directly in the application!**
+:::tip Best Way to Configure
+**Admin users can configure all settings directly in the application!**
 
 If you have login enabled (`SECURITY_ENABLELOGIN=true`) and are logged in as an admin, navigate to the **Settings** menu in the application to configure everything through the UI. Changes apply immediately without restarting.
 
-This is the easiest and recommended way to manage Stirling-PDF V2.0.
+This is the easiest and recommended way to manage Stirling-PDF.
 :::
 
 ## Configuration Methods
 
 There are three ways to configure Stirling-PDF (in order of precedence):
 
-1. **In-App Settings** (V2.0+, requires admin login) - Configure via the Settings menu
+1. **In-App Settings** (requires admin login) - Configure via the Settings menu
 2. **Environment Variables** - Set via Docker, docker-compose, or system environment
 3. **settings.yml file** - Located in the `/configs` directory
 
