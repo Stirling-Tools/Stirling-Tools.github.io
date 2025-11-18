@@ -141,7 +141,7 @@ corsAllowedOrigins: ['https://pdf.example.com']
 
 **Learn more:**
 - [Split Deployment Configuration](../../Advanced%20Configuration/System%20and%20Security.md#cors-configuration)
-- [Docker Split Mode](../../Installation/Docker%20Install.md#split-deployment)
+- [Docker Split Mode](../../Installation/Docker%20Install.md#split-deployment-advanced-users)
 
 ---
 

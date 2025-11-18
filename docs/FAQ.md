@@ -147,7 +147,7 @@ Yes! V2 includes full undo/redo functionality:
 - Download important versions to save them permanently
 - Desktop app retains history longer than browser
 
-See [V2 Features Guide](./V2-Features#undo-and-redo) for details.
+See [Undo & Redo Guide](./Guides/Undo-and-Redo.md) for details.
 
 ### Q15: My browser says "Storage quota exceeded". What should I do?
 

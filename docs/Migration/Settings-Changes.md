@@ -89,7 +89,7 @@ system:
   frontendUrl: 'https://pdf.example.com'
 ```
 
-**Learn more:** [Docker Installation - Split Mode](../Installation/Docker%20Install.md#split-deployment)
+**Learn more:** [Docker Installation - Split Mode](../Installation/Docker%20Install.md#split-deployment-advanced-users)
 
 ---
 

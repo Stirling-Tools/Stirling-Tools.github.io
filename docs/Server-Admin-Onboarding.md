@@ -527,7 +527,7 @@ security:
 - ✅ Automatic user provisioning
 - ✅ Corporate policy compliance
 
-**See full guide:** [SSO Configuration Guide](../Advanced%20Configuration/Single%20Sign-On%20Configuration.md)
+**See full guide:** [SSO Configuration Guide](./Advanced%20Configuration/Single%20Sign-On%20Configuration.md)
 
 Complete configuration examples for Google, GitHub, Keycloak, Okta, Azure AD, and generic OIDC/SAML2 providers.
 
@@ -595,7 +595,7 @@ endpoints:
 4. Toggle off
 5. Save changes
 
-**See all tool IDs:** [Endpoint Customisation](../Advanced%20Configuration/Endpoint%20or%20Feature%20Customisation.md)
+**See all tool IDs:** [Endpoint Customisation](./Advanced%20Configuration/Endpoint%20or%20Feature%20Customisation.md)
 
 </TabItem>
 </Tabs>
@@ -714,7 +714,7 @@ Stirling-PDF can handle HTTPS directly using built-in SSL configuration.
 - ⚠️ No load balancing
 - ⚠️ Port 8443 instead of standard 443
 
-**Learn more:** [Custom Settings - SSL Configuration](../Advanced%20Configuration/Extra-Settings.md#ssltls-configuration)
+**Learn more:** [Custom Settings - SSL Configuration](./Advanced%20Configuration/Extra-Settings.md#ssltls-configuration)
 
 </TabItem>
 <TabItem value="reverse-proxy" label="Reverse Proxy (Production)">
@@ -1091,7 +1091,7 @@ curl http://localhost:8080/api/v1/health
 
 Stirling-PDF Pro/Enterprise supports Prometheus metrics for advanced monitoring.
 
-**Learn more:** [Usage Monitoring - Prometheus Setup](../Advanced%20Configuration/Usage%20Monitoring.md#prometheus-monitoring-configuration)
+**Learn more:** [Usage Monitoring - Prometheus Setup](./Advanced%20Configuration/Usage%20Monitoring.md#prometheus-monitoring-configuration)
 
 **Features:**
 - JVM metrics (memory, GC, threads)
@@ -1185,7 +1185,7 @@ Protect your users' data and configuration with proper backups.
 :::tip Pro/Enterprise Recommendation
 Pro and Enterprise users should configure an external PostgreSQL database instead of using the local H2 database. This provides better reliability, scalability, and backup capabilities.
 
-**Learn more:** [External Database Configuration](../Advanced%20Configuration/External%20Database.md)
+**Learn more:** [External Database Configuration](./Advanced%20Configuration/External%20Database.md)
 :::
 
 ### 8.2: Backup Strategies
@@ -1425,7 +1425,7 @@ For large organizations, **Pro or Enterprise editions** provide:
 - Performance monitoring
 - Dedicated support
 
-[Learn more](#learn-about-proenterprise)
+[Learn more](#step-10-proenterprise-edition)
 :::
 
 </TabItem>

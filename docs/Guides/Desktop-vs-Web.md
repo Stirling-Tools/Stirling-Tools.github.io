@@ -340,4 +340,3 @@ Stirling-PDF is available as both a **web application** and **native desktop app
 - **[Installation Guides](../Installation/Windows.md)** - Install desktop apps
 - **[Docker Deployment](../Installation/Docker%20Install.md)** - Self-host web version
 - **[File Storage](./File-Storage.md)** - Browser storage details
-- **[Privacy and Data](./Privacy-and-Data.md)** - Data handling in depth

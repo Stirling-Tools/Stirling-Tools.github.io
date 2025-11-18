@@ -22,7 +22,7 @@ Stirling-PDF provides powerful features for working with PDFs. This page helps y
 **60+ powerful PDF tools** organized for easy discovery:
 
 - **[Recommended Tools](./Functionality/Recommended-Tools.md)** (7 tools) - Most commonly used operations
-- **[Standard Tools](./Functionality/Functionality.md#standard-tools)** (40+ tools) - Signing, security, page operations
+- **[Standard Tools](./Functionality/Functionality.md#-tools-by-category)** (40+ tools) - Signing, security, page operations
 - **[Advanced Tools](./Functionality/Advanced-Tools.md)** (11+ tools) - Automation, advanced formatting
 
 **[Complete Tool Reference →](./Functionality/Functionality.md)**

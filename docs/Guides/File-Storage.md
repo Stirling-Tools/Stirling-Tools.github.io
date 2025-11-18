@@ -404,7 +404,6 @@ Some browsers allow requesting "persistent storage" to prevent automatic clearin
 - **[Multi-Tool](../Functionality/Multi-Tool.md)** - Best tool for using file storage
 - **[Undo and Redo](./Undo-and-Redo.md)** - Version history features
 - **[Desktop vs Web](./Desktop-vs-Web.md)** - Choose the right deployment
-- **[Privacy and Data](./Privacy-and-Data.md)** - Data handling details
 
 ---
 

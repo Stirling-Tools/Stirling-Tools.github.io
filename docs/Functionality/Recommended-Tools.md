@@ -78,7 +78,7 @@ Compare two PDF documents side-by-side and visually highlight the differences be
 - Quality assurance and proofreading
 - Legal document comparison
 
-**📖 [Read the complete Compare Guide →](../Compare.md)** for detailed comparison modes, settings, use cases, and best practices.
+**📖 [Read the complete Compare Guide →](./Compare.md)** for detailed comparison modes, settings, use cases, and best practices.
 
 ---
 
@@ -101,7 +101,7 @@ Reduce PDF file size while maintaining acceptable quality for your needs. Stirli
 - Faster PDF loading times
 - Meeting file size upload limits
 
-**📖 [Read the complete Compress Guide →](../Compress.md)** for detailed compression options, quality settings, tips, and best practices.
+**📖 [Read the complete Compress Guide →](./Compress.md)** for detailed compression options, quality settings, tips, and best practices.
 
 ---
 
@@ -168,7 +168,7 @@ Make scanned PDFs searchable and editable by recognizing text in images. Stirlin
 - Creating accessible PDFs from scans
 - Enabling copy/paste from scanned PDFs
 
-**📖 [Read the complete OCR Guide →](../OCR.md)** for detailed instructions, language support, configuration options, and best practices.
+**📖 [Read the complete OCR Guide →](./OCR.md)** for detailed instructions, language support, configuration options, and best practices.
 
 ---
 

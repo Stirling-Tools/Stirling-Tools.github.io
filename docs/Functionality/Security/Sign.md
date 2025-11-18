@@ -349,9 +349,9 @@ See [API Documentation](../../API.md) for complete endpoint reference.
 ## Related Tools
 
 - **[Certificate Signing](./Certificate-Signing.md)** - Digital signatures with certificates
-- **[Add Image](../../Advanced-Tools.md#add-image)** - Add logos or other images
+- **[Add Image](../Advanced-Tools.md#add-image)** - Add logos or other images
 - **[Add Stamp](../Content-Editing/Content-Editing.md)** - Add official stamps
-- **[Flatten](./Security.md#flatten)** - Make signatures non-editable
+- **[Flatten](./Security.md#permissions--access-control)** - Make signatures non-editable
 - **[Add Password](./Security.md#password-protection)** - Protect signed documents
 
 ---
