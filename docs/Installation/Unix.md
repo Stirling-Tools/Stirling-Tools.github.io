@@ -24,7 +24,7 @@ You could theoretically use a Distrobox/Toolbox, if your Distribution has old or
 
 Install the following software, if not already installed:
 
-- Java 17 or later (21 recommended)
+- Java 21 or later
 - Gradle 7.0 or later (included within repo so not needed on server)
 - Git
 - Python 3.8 (with pip)
@@ -134,7 +134,7 @@ Install the following software:
 
 ### Step 4: Grab latest Stirling-PDF Jar
 
-The JAR can be downloaded in two versions, [normal](https://files.stirlingpdf.com/Stirling-PDF.jar) and [security](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)
+The JAR can be downloaded in two versions, [normal](https://files.stirling.com/Stirling-PDF.jar) and [security](https://files.stirling.com/Stirling-PDF-with-login.jar)
 
 Example for the "normal" version 
 

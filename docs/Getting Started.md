@@ -4,7 +4,7 @@ slug: /
 ---
 
 ## Benefits of Stirling-PDF
-- **Extensive PDF Functionality:** Access 50+ tools, including signing, converting, merging, and more.
+- **Extensive PDF Functionality:** Access 60+ tools, including signing, converting, merging, and more.
 - **Advanced Customization:** Deep customization, themes, and environment variables.
 - **Enterprise Features:** SSO, user management, and permission controls.
 - **Data Security:** Local file processing with automatic deletion post-task.
@@ -13,10 +13,70 @@ slug: /
 - **Open-Source:** Community-driven with frequent updates and GitHub support.
 - **Multi-Language Support:** Available in 38+ languages with active translations.
 
+## Welcome to Stirling-PDF
+
+:::tip New to Stirling-PDF?
+If you're upgrading from V1, see the **[Migration Guide](./Migration/Overview)** for what's new and how to upgrade.
+:::
+
+Stirling-PDF provides a powerful, modern PDF processing experience with 60+ tools, browser file storage, and flexible deployment options.
+
+### Key Features
+
+#### 🎨 Modern Interface
+New responsive interface that's faster and more intuitive to use.
+
+#### 🚀 Better Performance
+- Large performance increases for PDF processing
+- Faster page loads and smoother interactions
+- Improved memory management
+- Better handling of large files
+
+#### 📁 Stateful Document Processing
+**This is a game-changer:** Upload your PDFs once, then chain multiple tools without reloading!
+- Split a PDF → View the results → Merge some pages → Compress → Download
+- Files persist between tool switches
+- No more re-uploading the same file for each operation
+
+#### ⏮️ History & Version Control
+- **Undo/Redo functionality** - Made a mistake? Just undo it!
+- **File versioning** - Track, revert, and download any previous version of your documents
+- **All stored locally** - Your file history stays private on your device
+- **Preview before committing** - See the results before replacing your original file
+
+#### 💾 Browser File Storage
+- Files stored locally in your browser with thumbnails
+- Files persist across page refreshes
+- Privacy-first: Files stay on your device until you explicitly process them
+
+#### 🔀 Flexible Deployment Architecture
+- **Unified Mode (default):** Single container with both frontend and backend
+- **Split Mode:** Deploy frontend and backend separately for better scalability
+- **Backend-Only Mode:** Use Stirling-PDF as an API-only service
+- Load balance frontend and backend independently
+
+#### 🖥️ Enhanced Desktop Experience
+- **Lightning-fast startup** - Launches in as little as 0.3 seconds
+- **"Open with Stirling-PDF"** - Right-click PDFs to open directly in the app
+- **Set as default PDF viewer** - Make Stirling-PDF your system's default PDF application
+- **Native performance** - Powered by Tauri for true native OS integration
+
+#### ⚙️ In-App Settings Management
+- **Configure everything in the UI** - Admin users can change all settings through the Settings menu
+- **No config file editing** - Update configurations without touching `settings.yml` or restarting
+- **Visual interface** - See all options with descriptions and validation
+- **Immediate changes** - Settings apply right away
+
+### Learn More
+
+- **[Features & Guides](./V2-Features.md)** - Complete feature overview and documentation navigation
+- **[Migration from V1](./Migration/Overview.md)** - Upgrading guide with what's new
+- **[Tool Reference](./Functionality/Functionality.md)** - Browse all 60+ PDF tools
+
 Please feel free to request new features or report bugs through our [GitHub](https://github.com/Stirling-Tools/Stirling-PDF/issues) or [Discord](https://discord.gg/Cn8pWhQRxZ).
 
 
-## Introduction 
+## Introduction
 
 This guide will help you choose the right installation method based on your needs.
 We prioritise and focus on our Server deployment options however we also offer a [Ultra-Lite model](/Installation/Versions) for desktop users

@@ -10,7 +10,9 @@ description: List of all Page related features
 
 - `split-pdfs`: This functionality enables users to split a single PDF document into multiple separate PDFs.
 
-- `pdf-organizer`: This feature gives users the ability to rearrange, add, or delete pages within a PDF document.
+- `reorganize-pages`: This feature gives users the ability to rearrange, add, or delete pages within a PDF document.
+
+- `extract-pages`: Extracts specific pages from a PDF document into a new separate PDF file
 
 - `rotate-pdf`: With this feature, users can rotate pages within a PDF document to their desired orientation.
 
@@ -26,12 +28,22 @@ description: List of all Page related features
 
 - `crop`: Allows user to crop the pages to set size
 
-- `extract pages`: Extracts the defined pages from the PDF into a new PDF document
-
 - `pdf-to-single-page`: Converts multi pages PDF files into a single long pdf page.
+
+- `booklet-imposition`: Arranges PDF pages for booklet printing with proper page ordering for folding and binding. Creates printer-ready booklets with correct page sequences
 
 - `split-by-size-or-count`: Splits one or multiple PDF files into parts consisting of a maximum file size or page count definde by the user.
 
 - `overlay-pdf`: Can merge multiple PDFs into one another (ontop/behind etc) in various ways
-  
+
+- `add-attachments`: Embed files as attachments within a PDF document. Attached files can be extracted later by PDF readers that support attachments
+
 - `split-pdf-by-sections`: Splits a page in multiple section vertically, horizontally or both. Can be used to split a page in half etc.
+
+- `add-page-numbers`: Add customizable page numbers and text to the edges of PDF pages with options for position, formatting, and page ranges.
+
+- `remove-blanks`: With this feature, users can remove blank pages from a PDF document automatically, detecting pages with little to no content.
+
+- `auto-split-pdf`: Automatically splits documents into separate files based on QR codes detected between pages. Designed for bulk scanning workflows where separator pages with QR codes are placed between documents.
+
+- `edit-table-of-contents`: Edit, add, or modify the table of contents (bookmarks) in a PDF document for better navigation.

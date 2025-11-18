@@ -2,7 +2,7 @@
   "label": "Functionality",
   "position": 2,
   "link": {
-    "type": "generated-index",
-    "description": "All functionality and their categories within Stirling-PDF."
+    "type": "doc",
+    "id": "Functionality/Functionality"
   }
 }

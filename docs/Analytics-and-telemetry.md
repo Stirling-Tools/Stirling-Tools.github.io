@@ -82,7 +82,7 @@ PostHog analytics help us:
 
 ### What is Scarf?
 
-[Scarf](https://scarf.sh) provides a simple tracking pixel (`pixel.stirlingpdf.com`) that collects basic, non‑personally identifiable information about Stirling‑PDF usage.
+[Scarf](https://scarf.sh) provides a simple tracking pixel (`pixel.stirling.com`) that collects basic, non‑personally identifiable information about Stirling‑PDF usage.
 
 ### Data collected by Scarf
 
@@ -259,7 +259,7 @@ If you're running Stirling‑PDF on your own infrastructure:
 
 If you have questions or concerns about analytics:
 
-- Check our [Privacy Policy](https://www.stirlingpdf.com/privacy-policy)
+- Check our [Privacy Policy](https://www.stirling.com/privacy-policy)
 - Review the [source code](https://github.com/Stirling-Tools/Stirling-PDF)
 - Ask questions on [Discord](https://discord.gg/HYmhKj45pU)
 - Open an issue on [GitHub](https://github.com/Stirling-Tools/Stirling-PDF/issues)
