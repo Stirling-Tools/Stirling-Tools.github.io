@@ -87,7 +87,7 @@ You can configure Stirling-PDF to load pre-stored signature files for quick acce
 - Quick signing of multiple documents
 - Team/organization signature standards
 
-**Configuration:** [Sign with Custom Files](../../Advanced%20Configuration/Sign%20with%20custom%20files.md)
+**Configuration:** [Sign with Custom Files](../../Configuration/Sign%20with%20custom%20files.md)
 
 ---
 
@@ -223,7 +223,7 @@ For organizations needing standardized signatures:
 3. Users select from available signatures
 4. Consistent appearance across documents
 
-**Setup:** [Sign with Custom Files](../../Advanced%20Configuration/Sign%20with%20custom%20files.md)
+**Setup:** [Sign with Custom Files](../../Configuration/Sign%20with%20custom%20files.md)
 
 ---
 

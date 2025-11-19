@@ -157,8 +157,7 @@ services:
       - ./stirling-data/pipeline:/pipeline               # Automation configs
     environment:
       # Core Settings
-      - DOCKER_ENABLE_SECURITY=true          # Enable user authentication
-      - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=true  # Advanced features
+      - SECURITY_ENABLELOGIN=true            # Enable user authentication
 
       # Language & Localization
       - LANGS=en_GB                          # Change to your locale
@@ -238,7 +237,7 @@ docker run -d \
   -v ~/stirling-data/configs:/configs \
   -v ~/stirling-data/logs:/logs \
   -v ~/stirling-data/customFiles:/customFiles:rw \
-  -e DOCKER_ENABLE_SECURITY=true \
+  -e SECURITY_ENABLELOGIN=true \
   -e LANGS=en_GB \
   -e SYSTEM_DEFAULTLOCALE=en-GB \
   -e SYSTEM_GOOGLEVISIBILITY=false \
@@ -323,40 +322,55 @@ Now that Stirling-PDF is running with authentication enabled, you need to create
    http://your-server-ip:8080
    ```
 
-2. **Click "Login" or "Sign Up"** in the top-right corner
+2. **Log in with default credentials:**
+   ```
+   Username: admin
+   Password: stirling
+   ```
 
-3. **Create your admin account:**
-   - **Username:** Choose a secure admin username (e.g., `admin`, `sysadmin`)
-   - **Password:** Use a strong password (12+ characters, mixed case, numbers, symbols)
-   - Click **"Sign Up"**
+3. **Change the default password immediately:**
+   - After first login, go to Settings → Account
+   - Change to a strong password (12+ characters, mixed case, numbers, symbols)
 
-:::tip First User is Admin
-**The first user account created automatically becomes the admin.** This user has full access to all settings and user management features.
+:::tip Customizing Default Credentials
+You can set custom default credentials **before first startup** using environment variables:
 
-For subsequent users, you can control registration through settings (Step 4).
+```yaml
+environment:
+  - SECURITY_INITIALLOGIN_USERNAME=youradmin
+  - SECURITY_INITIALLOGIN_PASSWORD=YourSecurePassword123!
+```
+
+**Important:** These only work on first startup. If you change them after the database is created, the old credentials remain active. Always change the password through the UI after first login.
+:::
+
+:::tip User Registration
+After first login, you can control how additional users are created through Settings → Security (covered in Step 4).
 :::
 
 ### 3.2: Verify Admin Access
 
 1. **Log in with your admin account**
 
-2. **Check for the Settings gear icon** in the top navigation bar
-   - If you see the Settings icon ⚙️, you have admin access
-   - If you don't see it, something went wrong - check logs
+2. **Click the Settings gear icon** ⚙️ in the top navigation bar
 
-3. **Click the Settings icon** to open the admin panel
+3. **Verify you have admin access** by checking for admin-only sections:
+   - **General Settings** - System configuration
+   - **Security Settings** - User management, login settings
+   - **UI Customization** - Branding and appearance
+   - **User Management** - Create/manage users
+   - **Endpoint Configuration** - Enable/disable tools
 
-You should see sections like:
-- **General Settings**
-- **Security Settings**
-- **UI Customization**
-- **User Management**
-- **Endpoint Configuration**
+   **Note:** Regular users can also access Settings but only see their personal preferences (language, theme). Only admins see the sections listed above.
+
+4. **If you don't see admin sections:**
+   - Check logs: `docker logs stirling-pdf`
+   - Verify you're the first user created
+   - Confirm `SECURITY_ENABLELOGIN=true` is set
 
 :::caution Secure Your Admin Account
-- Never use default credentials like `admin/admin`
-- Use a password manager
-- Rotate passwords regularly
+- **Change the default password immediately** after first login
+- Use a strong password (12+ characters, mixed case, numbers, symbols)
 - Consider using SSO (OAuth2/SAML2) to avoid password management entirely
 :::
 
@@ -460,22 +474,16 @@ These settings directly impact your organization's security. Review carefully!
 
 **Best for:** Controlled environments, enterprises, security-conscious orgs
 
-**Configuration:**
-```yaml
-security:
-  enableLogin: true
-
-# Note: There is no enableRegistration setting - registration is controlled
-# by whether users can access the signup page. Use in-app settings to manage this.
-```
-
 **How it works:**
 1. Admin creates user accounts manually in Settings → User Management
 2. Admin shares credentials with users securely
 3. Users log in with provided credentials
 
 **Email Invitations (Optional):**
-If you configure email, admins can send invitation links:
+If you configure email, admins can send invitation links instead.
+
+<Tabs groupId="config-type">
+<TabItem value="settings-yml" label="settings.yml" default>
 
 ```yaml
 mail:
@@ -490,7 +498,9 @@ mail:
       enabled: true
 ```
 
-**Environment variables:**
+</TabItem>
+<TabItem value="env-vars" label="Environment Variables">
+
 ```bash
 MAIL_ENABLED=true
 MAIL_ENABLEINVITES=true
@@ -500,6 +510,9 @@ MAIL_SMTP_USERNAME=noreply@yourcompany.com
 MAIL_SMTP_PASSWORD=your-app-password
 MAIL_SMTP_TLS_ENABLED=true
 ```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="sso" label="SSO (OAuth2/SAML2)">
@@ -527,7 +540,7 @@ security:
 - ✅ Automatic user provisioning
 - ✅ Corporate policy compliance
 
-**See full guide:** [SSO Configuration Guide](./Advanced%20Configuration/Single%20Sign-On%20Configuration.md)
+**See full guide:** [SSO Configuration Guide](./Configuration/Single%20Sign-On%20Configuration.md)
 
 Complete configuration examples for Google, GitHub, Keycloak, Okta, Azure AD, and generic OIDC/SAML2 providers.
 
@@ -595,7 +608,7 @@ endpoints:
 4. Toggle off
 5. Save changes
 
-**See all tool IDs:** [Endpoint Customisation](./Advanced%20Configuration/Endpoint%20or%20Feature%20Customisation.md)
+**See all tool IDs:** [Endpoint Customisation](./Configuration/Endpoint%20or%20Feature%20Customisation.md)
 
 </TabItem>
 </Tabs>
@@ -714,7 +727,7 @@ Stirling-PDF can handle HTTPS directly using built-in SSL configuration.
 - ⚠️ No load balancing
 - ⚠️ Port 8443 instead of standard 443
 
-**Learn more:** [Custom Settings - SSL Configuration](./Advanced%20Configuration/Extra-Settings.md#ssltls-configuration)
+**Learn more:** [Custom Settings - SSL Configuration](./Configuration/Extra-Settings.md#ssltls-configuration)
 
 </TabItem>
 <TabItem value="reverse-proxy" label="Reverse Proxy (Production)">
@@ -1091,7 +1104,7 @@ curl http://localhost:8080/api/v1/health
 
 Stirling-PDF Pro/Enterprise supports Prometheus metrics for advanced monitoring.
 
-**Learn more:** [Usage Monitoring - Prometheus Setup](./Advanced%20Configuration/Usage%20Monitoring.md#prometheus-monitoring-configuration)
+**Learn more:** [Usage Monitoring - Prometheus Setup](./Configuration/Usage%20Monitoring.md#prometheus-monitoring-configuration)
 
 **Features:**
 - JVM metrics (memory, GC, threads)
@@ -1185,7 +1198,7 @@ Protect your users' data and configuration with proper backups.
 :::tip Pro/Enterprise Recommendation
 Pro and Enterprise users should configure an external PostgreSQL database instead of using the local H2 database. This provides better reliability, scalability, and backup capabilities.
 
-**Learn more:** [External Database Configuration](./Advanced%20Configuration/External%20Database.md)
+**Learn more:** [External Database Configuration](./Configuration/External%20Database.md)
 :::
 
 ### 8.2: Backup Strategies
@@ -1493,8 +1506,8 @@ Stirling-PDF offers **Pro and Enterprise editions** with additional features for
 - **Email:** support@stirlingtools.com
 - **Website:** https://stirlingtools.com/pricing
 - **Documentation:** [Pro/Enterprise Features](./Pro.md)
-- **External Database Setup:** [External Database Guide](./Advanced%20Configuration/External%20Database.md)
-- **Monitoring Setup:** [Usage Monitoring](./Advanced%20Configuration/Usage%20Monitoring.md)
+- **External Database Setup:** [External Database Guide](./Configuration/External%20Database.md)
+- **Monitoring Setup:** [Usage Monitoring](./Configuration/Usage%20Monitoring.md)
 
 ---
 
@@ -1510,14 +1523,14 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
    - Create internal documentation for your specific workflows
 
 2. **🔧 Advanced configuration**
-   - [OCR Configuration](./Advanced%20Configuration/OCR.md) - Add more languages
-   - [Pipeline Automation](./Advanced%20Configuration/Pipeline.md) - Automate workflows
+   - [OCR Configuration](./Configuration/OCR.md) - Add more languages
+   - [Pipeline Automation](./Configuration/Pipeline.md) - Automate workflows
    - [API Integration](./API.md) - Integrate with other systems
 
 3. **🔒 Harden security**
-   - [Fail2Ban Setup](./Advanced%20Configuration/Fail2Ban.md) - Prevent brute force
-   - [External Database](./Advanced%20Configuration/External%20Database.md) - Use PostgreSQL
-   - Review [System and Security](./Advanced%20Configuration/System%20and%20Security.md) settings
+   - [Fail2Ban Setup](./Configuration/Fail2Ban.md) - Prevent brute force
+   - [External Database](./Configuration/External%20Database.md) - Use PostgreSQL
+   - Review [System and Security](./Configuration/System%20and%20Security.md) settings
 
 4. **📊 Monitor and optimize**
    - Set up regular backup verification
@@ -1548,7 +1561,7 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 
 **Solutions:**
 1. Check logs: `docker logs stirling-pdf | grep ERROR`
-2. Verify `DOCKER_ENABLE_SECURITY=true` is set
+2. Verify `SECURITY_ENABLELOGIN=true` is set
 3. Reset admin password via command line:
    ```bash
    docker exec -it stirling-pdf sh

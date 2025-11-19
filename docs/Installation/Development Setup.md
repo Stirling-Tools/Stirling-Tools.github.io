@@ -156,7 +156,7 @@ npm run tauri-build
 - **PDF Processing**: Apache PDFBox
 - **Document Conversion**: LibreOffice (optional dependency)
 - **PDF Optimization**: qpdf (optional dependency)
-- **Security**: Spring Security (optional, controlled by `DOCKER_ENABLE_SECURITY`)
+- **Security**: Spring Security (optional, controlled by `SECURITY_ENABLELOGIN`)
 
 ### Frontend Architecture (V2.0)
 

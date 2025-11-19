@@ -39,7 +39,7 @@ Create sophisticated multi-step workflows that combine multiple PDF operations i
 - **Report Generation:** Merge → Add page numbers → Add stamp → Export
 - **Bulk Conversion:** Convert → Compress → Add password → Organize
 
-**📖 [Read the complete Pipeline Automation Guide →](../Advanced%20Configuration/Pipeline.md)** for detailed examples, JSON configuration, folder scanning setup, and best practices.
+**📖 [Read the complete Pipeline Automation Guide →](../Configuration/Pipeline.md)** for detailed examples, JSON configuration, folder scanning setup, and best practices.
 
 ---
 
@@ -306,7 +306,7 @@ Quick link to complete API documentation for integrating Stirling-PDF into your 
 
 Link to comprehensive guide for setting up automated folder scanning with pipelines.
 
-**Access:** [Folder Scanning Setup](../Advanced%20Configuration/FolderScanning.md)
+**Access:** [Folder Scanning Setup](../Configuration/FolderScanning.md)
 
 ---
 
@@ -316,7 +316,7 @@ Link to comprehensive guide for setting up automated folder scanning with pipeli
 
 Link to Single Sign-On (SSO) configuration guide for enterprise deployments.
 
-**Access:** [SSO Guide](../Advanced%20Configuration/Single%20Sign-On%20Configuration.md)
+**Access:** [SSO Guide](../Configuration/Single%20Sign-On%20Configuration.md)
 
 ---
 
@@ -326,7 +326,7 @@ Link to Single Sign-On (SSO) configuration guide for enterprise deployments.
 
 Link to guide for deploying Stirling-PDF in offline/air-gapped environments.
 
-**Access:** [Advanced Configuration](../Advanced%20Configuration/How%20to%20add%20configurations.md)
+**Access:** [Configuration](../Configuration/How%20to%20add%20configurations.md)
 
 ---
 
@@ -372,7 +372,7 @@ Use advanced tools when you need to:
 - **[Complete Tool Reference](./Functionality.md)** - All 60+ tools
 - **[Pipeline Configuration](./Features%20Pipeline.md)** - Automation workflows
 - **[API Documentation](../API.md)** - Programmatic access
-- **[Advanced Configuration](../Advanced%20Configuration/How%20to%20add%20configurations.md)** - System setup
+- **[Configuration](../Configuration/How%20to%20add%20configurations.md)** - System setup
 
 ---
 

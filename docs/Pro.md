@@ -37,7 +37,7 @@ Stirling PDF offers Pro and Enterprise editions of its software. These are the s
   - Community support
   - Regular updates
   - Support tickets via support@stirlingpdf.com
-  - [External Database](/Advanced%20Configuration/External%20Database) support for optimized deployments and load-balancing
+  - [External Database](/Configuration/External%20Database) support for optimized deployments and load-balancing
   - Google Drive integration
 - **Perfect for**: Organizations with many users who want predictable, flat-rate pricing
 
@@ -47,7 +47,7 @@ Stirling PDF offers Pro and Enterprise editions of its software. These are the s
 - **Users**: Per-seat licensing (flexible scaling)
 - **Features**:
   - All Server Plan features, plus:
-  - [Advanced SSO](/Advanced%20Configuration/Single%20Sign-On%20Configuration), OAuth2 and SAML with automated login handling
+  - [Advanced SSO](/Configuration/Single%20Sign-On%20Configuration), OAuth2 and SAML with automated login handling
   - Custom automated metadata handling
   - Priority support tickets via support@stirlingpdf.com
   - 1:1 meetings with the Stirling-PDF team (from registered email domain)

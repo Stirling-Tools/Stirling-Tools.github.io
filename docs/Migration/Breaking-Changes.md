@@ -63,7 +63,7 @@ V2 provides in-app settings for most common customizations:
 3. Go to Settings → UI
 4. Configure branding there
 
-**Learn more:** [UI Customisation](../Advanced%20Configuration/UI%20Customisation.md)
+**Learn more:** [UI Customisation](../Configuration/UI%20Customisation.md)
 
 #### Option 2: Edit Static Files in Docker
 
@@ -624,7 +624,7 @@ endpoints:
   toRemove: ['reorganize-pages']
 ```
 
-**Complete tool ID list:** [Endpoint Customisation](../Advanced%20Configuration/Endpoint%20or%20Feature%20Customisation.md)
+**Complete tool ID list:** [Endpoint Customisation](../Configuration/Endpoint%20or%20Feature%20Customisation.md)
 
 ---
 

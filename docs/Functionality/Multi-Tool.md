@@ -424,7 +424,6 @@ Typical browser limits:
 
 - **[Recommended Tools](./Recommended-Tools.md)** - Other frequently used tools
 - **[Automate (Pipeline)](./Features%20Pipeline.md)** - Automated workflows
-- **[V2 Features](../V2-Features.md)** - All V2 improvements
 - **[Complete Tool Reference](./Functionality.md)** - All available tools
 - **[Desktop App Installation](../Installation/Windows.md)** - Get unlimited storage
 

@@ -41,7 +41,7 @@ security:
 
 **Migration:** No action needed, defaults are safe for most users.
 
-**Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing.md) | [Security Configuration](../Advanced%20Configuration/System%20and%20Security.md#signature-validation)
+**Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing.md) | [Security Configuration](../Configuration/System%20and%20Security.md#signature-validation)
 
 ---
 
@@ -62,7 +62,7 @@ system:
 
 **Migration:** Works automatically with defaults.
 
-**Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing.md) | [Certificate Configuration](../Advanced%20Configuration/System%20and%20Security.md#server-certificates)
+**Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing.md) | [Certificate Configuration](../Configuration/System%20and%20Security.md#server-certificates)
 
 ---
 
@@ -176,7 +176,7 @@ ui:
 
 **Why:** In-app settings are more user-friendly and apply immediately.
 
-**Learn more:** [UI Customisation](../Advanced%20Configuration/UI%20Customisation.md)
+**Learn more:** [UI Customisation](../Configuration/UI%20Customisation.md)
 
 ---
 
@@ -424,7 +424,7 @@ ui:
 - **[New Features](./New-Features.md)** - What's new in V2
 - **[Breaking Changes](./Breaking-Changes.md)** - Important changes
 - **[Environment Variables](../Environment-Variables.md)** - All variables
-- **[System and Security](../Advanced%20Configuration/System%20and%20Security.md)** - Advanced config
+- **[System and Security](../Configuration/System%20and%20Security.md)** - Advanced config
 
 ---
 

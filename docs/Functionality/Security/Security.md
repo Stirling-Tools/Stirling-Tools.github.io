@@ -140,7 +140,7 @@ corsAllowedOrigins: ['https://pdf.example.com']
 ```
 
 **Learn more:**
-- [Split Deployment Configuration](../../Advanced%20Configuration/System%20and%20Security.md#cors-configuration)
+- [Split Deployment Configuration](../../Configuration/System%20and%20Security.md#cors-configuration)
 - [Docker Split Mode](../../Installation/Docker%20Install.md#split-deployment-advanced-users)
 
 ---
@@ -149,6 +149,6 @@ corsAllowedOrigins: ['https://pdf.example.com']
 
 For advanced security configuration, see:
 
-- **[System and Security Settings](../../Advanced%20Configuration/System%20and%20Security.md)** - JWT, session management, server certificates
+- **[System and Security Settings](../../Configuration/System%20and%20Security.md)** - JWT, session management, server certificates
 - **[Certificate Signing](./Certificate-Signing.md)** - Comprehensive signing and validation guide
-- **[Single Sign-On](../../Advanced%20Configuration/Single%20Sign-On%20Configuration.md)** - Enterprise authentication
+- **[Single Sign-On](../../Configuration/Single%20Sign-On%20Configuration.md)** - Enterprise authentication

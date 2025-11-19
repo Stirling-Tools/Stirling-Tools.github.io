@@ -88,7 +88,7 @@ Add, extract, and modify PDF content
 - **[Read & Annotate](./Read-and-Annotate.md)** - PDF viewer with annotations
 - **[OCR](./OCR.md)** - Make scanned PDFs searchable
 - **[Compress](./Compress.md)** - Reduce file size
-- **[Automate (Pipeline)](../Advanced%20Configuration/Pipeline.md)** - Workflow automation
+- **[Automate (Pipeline)](../Configuration/Pipeline.md)** - Workflow automation
 
 ### 🔧 [Advanced Tools](./Advanced-Tools.md)
 - Add Background/Stamp
@@ -113,5 +113,5 @@ Add, extract, and modify PDF content
 - Remove content → **Redact** or **Sanitize**
 - Edit pages → **Reorganize Pages** or **[Multi-Tool](./Multi-Tool.md)**
 - Chain operations → **[Multi-Tool](./Multi-Tool.md)**
-- Automate workflow → **[Automate](../Advanced%20Configuration/Pipeline.md)**
+- Automate workflow → **[Automate](../Configuration/Pipeline.md)**
 

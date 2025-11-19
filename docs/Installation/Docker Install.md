@@ -136,7 +136,6 @@ docker run -d \
   -v ./stirling-data/configs:/configs \
   -v ./stirling-data/logs:/logs \
   -v ./stirling-data/pipeline:/pipeline \
-  -e DOCKER_ENABLE_SECURITY=false \
   -e LANGS=en_GB \
   stirlingtools/stirling-pdf:latest
 ```
@@ -169,7 +168,7 @@ services:
       - ./stirling-data/logs:/logs                     # Application logs
       - ./stirling-data/pipeline:/pipeline             # Automation configs
     environment:
-      - DOCKER_ENABLE_SECURITY=false  # Set true to enable user authentication
+      - SECURITY_ENABLELOGIN=false    # Set true to enable user authentication
       - LANGS=en_GB                   # Interface language
     restart: unless-stopped
 ```
@@ -207,7 +206,6 @@ services:
       - ./stirling-data/pipeline:/pipeline
     environment:
       - MODE=BACKEND                    # Backend only
-      - DOCKER_ENABLE_SECURITY=false
     restart: unless-stopped
 
   # Frontend - Web interface
@@ -283,10 +281,10 @@ ports:
 
 ## Next Steps
 
-- **Add OCR Languages**: See [OCR Configuration](/Advanced%20Configuration/OCR)
-- **Enable Authentication**: See [Security Settings](/Advanced%20Configuration/System%20and%20Security)
-- **Setup Automation**: See [Pipeline Configuration](/Advanced%20Configuration/Pipeline)
-- **More Settings**: See [Advanced Configuration](/Advanced%20Configuration/How%20to%20add%20configurations)
+- **Add OCR Languages**: See [OCR Configuration](/Configuration/OCR)
+- **Enable Authentication**: See [Security Settings](/Configuration/System%20and%20Security)
+- **Setup Automation**: See [Pipeline Configuration](/Configuration/Pipeline)
+- **More Settings**: See [Configuration](/Configuration/How%20to%20add%20configurations)
 
 ## Troubleshooting
 

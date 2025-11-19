@@ -170,7 +170,7 @@ The V1 template override system has been replaced with a new customization appro
 2. Build the frontend
 3. Deploy custom build
 
-See [UI Customisation](/Advanced%20Configuration/UI%20Customisation) for alternatives.
+See [UI Customisation](/Configuration/UI%20Customisation) for alternatives.
 
 ## Breaking Changes
 
@@ -241,7 +241,7 @@ This is normal V2 behavior. Files are temporarily stored in your browser:
 V2 no longer uses HTML templates:
 - **Solution**: Use environment variables for basic customization
 - **Alternative**: Modify React source code for extensive changes
-- **See**: [UI Customisation](/Advanced%20Configuration/UI%20Customisation)
+- **See**: [UI Customisation](/Configuration/UI%20Customisation)
 
 ### "Interface looks different"
 

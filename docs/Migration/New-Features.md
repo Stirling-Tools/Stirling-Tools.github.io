@@ -43,8 +43,6 @@ Upload PDF → Stored in Browser → Use in Any Tool → Delete When Done
 | Firefox | ~10GB | User-configurable |
 | Safari | ~1GB | More restrictive |
 
-**Learn More:** [File Storage Guide](../Guides/File-Storage.md)
-
 ---
 
 ## ⏮️ Undo, Redo & Version History
@@ -86,7 +84,6 @@ Original.pdf → [Compress] → v1 → [Add Pages] → v2 → [Watermark] → v3
 4. Click "Restore" on Original
 5. Re-compress with LIGHT setting instead
 
-**Learn More:** [Undo & Redo Guide](../Guides/Undo-and-Redo.md)
 
 ---
 
@@ -130,7 +127,6 @@ After installation:
 4. Process immediately
 
 **Learn More:**
-- [Desktop vs Web Comparison](../Guides/Desktop-vs-Web.md)
 - [Installation Guide](../Installation/Windows.md)
 
 ---
@@ -430,7 +426,7 @@ system:
 
 **Learn More:**
 - [Certificate Signing Guide](../Functionality/Security/Certificate-Signing.md)
-- [Advanced Configuration](../Advanced%20Configuration/System%20and%20Security.md#server-certificates)
+- [Configuration](../Configuration/System%20and%20Security.md#server-certificates)
 
 ---
 

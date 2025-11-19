@@ -50,7 +50,7 @@ Stirling-PDF supports application metrics monitoring using Prometheus. This feat
 
 1. A valid Stirling-PDF enterprise license
 2. Enterprise mode enabled in your configuration
-3. Running with Security jar / DOCKER_ENABLE_SECURITY flag
+3. Running with additional features enabled (DISABLE_ADDITIONAL_FEATURES=false)
 
 ### Settings
 

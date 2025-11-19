@@ -236,7 +236,7 @@ RUN apt-get update && apt-get install -y \
     tesseract-ocr-jpn
 ```
 
-**See:** [OCR Configuration Guide](../Advanced%20Configuration/OCR.md) for detailed setup instructions.
+**See:** [OCR Configuration Guide](../Configuration/OCR.md) for detailed setup instructions.
 
 ### Environment Variables
 

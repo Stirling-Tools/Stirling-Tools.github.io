@@ -15,111 +15,116 @@ slug: /
 
 ## Welcome to Stirling-PDF
 
-:::tip New to Stirling-PDF?
-If you're upgrading from V1, see the **[Migration Guide](./Migration/Overview)** for what's new and how to upgrade.
+:::tip Upgrading from V1?
+See the **[Migration Guide](./Migration/Overview)** for what's new and how to upgrade smoothly.
 :::
 
-Stirling-PDF provides a powerful, modern PDF processing experience with 60+ tools, browser file storage, and flexible deployment options.
+Stirling-PDF is a locally hosted web application that allows you to perform various operations on PDF files. With 60+ tools, flexible deployment options, and enterprise features, it's the comprehensive PDF solution for individuals and organizations.
 
-### Key Features
+---
 
-#### 🎨 Modern Interface
-New responsive interface that's faster and more intuitive to use.
+## What's New in V2
 
-#### 🚀 Better Performance
-- Large performance increases for PDF processing
-- Faster page loads and smoother interactions
-- Improved memory management
-- Better handling of large files
+V2 brings major improvements to performance, workflow, and deployment flexibility:
 
-#### 📁 Stateful Document Processing
-**This is a game-changer:** Upload your PDFs once, then chain multiple tools without reloading!
-- Split a PDF → View the results → Merge some pages → Compress → Download
-- Files persist between tool switches
-- No more re-uploading the same file for each operation
+- **📁 Stateful Processing** - Upload once, use across multiple tools without re-uploading
+- **⏮️ Undo & Redo** - Made a mistake? Just undo it! Full version history included
+- **🖥️ Native Desktop Apps** - Lightning-fast startup, "Open with" integration, offline capable
+- **🔀 Split Deployment** - Scale frontend and backend independently for enterprise use
+- **⚙️ In-App Settings** - Configure everything through the UI, no file editing needed
 
-#### ⏮️ History & Version Control
-- **Undo/Redo functionality** - Made a mistake? Just undo it!
-- **File versioning** - Track, revert, and download any previous version of your documents
-- **All stored locally** - Your file history stays private on your device
-- **Preview before committing** - See the results before replacing your original file
+---
 
-#### 💾 Browser File Storage
-- Files stored locally in your browser with thumbnails
-- Files persist across page refreshes
-- Privacy-first: Files stay on your device until you explicitly process them
+## Documentation Guide
 
-#### 🔀 Flexible Deployment Architecture
-- **Unified Mode (default):** Single container with both frontend and backend
-- **Split Mode:** Deploy frontend and backend separately for better scalability
-- **Backend-Only Mode:** Use Stirling-PDF as an API-only service
-- Load balance frontend and backend independently
+### 👤 For Individual Users
 
-#### 🖥️ Enhanced Desktop Experience
-- **Lightning-fast startup** - Launches in as little as 0.3 seconds
-- **"Open with Stirling-PDF"** - Right-click PDFs to open directly in the app
-- **Set as default PDF viewer** - Make Stirling-PDF your system's default PDF application
-- **Native performance** - Powered by Tauri for true native OS integration
+**[Tool Reference](./Functionality/Functionality.md)**
+Browse all 60+ PDF tools with descriptions and use cases
 
-#### ⚙️ In-App Settings Management
-- **Configure everything in the UI** - Admin users can change all settings through the Settings menu
-- **No config file editing** - Update configurations without touching `settings.yml` or restarting
-- **Visual interface** - See all options with descriptions and validation
-- **Immediate changes** - Settings apply right away
+---
 
-### Learn More
+### 🏢 For Organizations & IT Teams
 
-- **[Features & Guides](./V2-Features.md)** - Complete feature overview and documentation navigation
-- **[Migration from V1](./Migration/Overview.md)** - Upgrading guide with what's new
-- **[Tool Reference](./Functionality/Functionality.md)** - Browse all 60+ PDF tools
+**[Production Deployment Guide](./Server-Admin-Onboarding.md)**
+Complete walkthrough: installation → configuration → security → monitoring
 
-Please feel free to request new features or report bugs through our [GitHub](https://github.com/Stirling-Tools/Stirling-PDF/issues) or [Discord](https://discord.gg/Cn8pWhQRxZ).
+**[Pro & Enterprise Features](./Pro.md)**
+SSO, advanced monitoring, external databases, and priority support
 
+**[Environment Variables](./Environment-Variables.md)**
+All configuration options for Docker and server deployments
 
-## Introduction
+---
 
-This guide will help you choose the right installation method based on your needs.
-We prioritise and focus on our Server deployment options however we also offer a [Ultra-Lite model](/Installation/Versions) for desktop users
+### 🔧 For Developers & Integration
 
-## Choose Your Installation Type
+**[API Documentation](./API.md)**
+Integrate Stirling-PDF into your applications and workflows
 
-### For Desktop Users
-If you want to run Stirling PDF on your personal computer:
+**[Configuration](./Configuration/System%20and%20Security.md)**
+SSO, split deployment, certificates, security settings, and more
 
-1. **Windows Users**
-   - Download our installer ([Stirling-PDF-win-installer.exe](https://files.stirlingpdf.com/win-installer.exe)) for a simple, standalone experience
-   - Refer to our [Windows Installation Guide](/Installation/Windows%20Installation) for detailed setup instructions
+**[Contribute Guide](./Contribute.md)**
+Help improve Stirling-PDF - development setup and guidelines
 
-2. **Linux/Unix Users**
-   - Dedicated Linux installer to be released soon, Currently you must run Stirling-PDF as a java jar
-   - Follow our comprehensive [Unix Installation Guide](/Installation/Unix%20Installation) for a native installation
+---
 
-2. **Mac Users**
-   - Download our installer ([Apple Silicon](https://files.stirlingpdf.com/mac-installer.dmg)/[Intel](https://files.stirlingpdf.com/mac-x86_64-installer.dmg)) for a simple, standalone experience
-   - Follow our comprehensive [Mac Installation Guide](/Installation/Mac%20Installation) for a native installation
-   
-### For Server Deployments
-If you're looking to host Stirling PDF as a service:
+## Installation
 
-1. **Docker Users**
-   - We recommend using our Docker images for the easiest deployment
-   - Check our [Docker Installation Guide](/Installation/Docker%20Install) for setup instructions
-   - Choose from three versions:
-     - Fat (latest-fat): Includes additional fonts and security features
-     - Standard (latest): Balanced features and size
-     - Ultra-Lite (latest-ultra-lite): Minimal size with core features
+Choose how you want to run Stirling-PDF based on your needs:
 
-2. **Manual Server Setup**
-   - For bare metal server installations
-   - Use Stirling-PDF.jar package
-   - Follow our [Unix Installation Guide](/Installation/Unix%20Installation) for setup steps
+### 🖥️ Desktop Applications
 
-## Quick Reference Table
+Native apps with offline support and system integration:
 
-| Installation Type | Best For | Documentation Link |
-|------------------|----------|-------------------|
-| Stirling-PDF-installer.exe | Windows desktop users | [Windows Guide](/Installation/Windows%20Installation) |
-| Stirling-PDF.jar | Server deployments without Docker | [Unix Guide](/Installation/Unix%20Installation) |
-| Docker Images | Server deployments with Docker | [Docker Guide](/Installation/Docker%20Install) |
+| Platform | Download | Guide |
+|----------|----------|-------|
+| **Windows** | [Installer](https://files.stirlingpdf.com/win-installer.exe) | [Windows Guide](./Installation/Windows.md) |
+| **Mac (Apple Silicon)** | [DMG](https://files.stirlingpdf.com/mac-installer.dmg) | [Mac Guide](./Installation/Mac.md) |
+| **Mac (Intel)** | [DMG](https://files.stirlingpdf.com/mac-x86_64-installer.dmg) | [Mac Guide](./Installation/Mac.md) |
+| **Linux** | AppImage/DEB/RPM | [Unix Guide](./Installation/Unix.md) |
 
-Choose the installation method that best suits your needs and environment. Each guide provides detailed instructions for getting Stirling PDF up and running on your system.
+**Features:** Lightning-fast startup, "Open with" integration, works completely offline
+
+---
+
+### 🐳 Docker Deployment
+
+Recommended for server deployments and organizations:
+
+**Quick Start:**
+```bash
+docker run -d \
+  -p 8080:8080 \
+  -v ./stirling-data:/configs \
+  stirlingtools/stirling-pdf:latest
+```
+
+**Available versions:**
+- `latest` - Standard version (recommended)
+- `latest-fat` - Includes extra fonts and security features
+- `latest-ultra-lite` - Minimal size for resource-constrained environments
+
+**Full guide:** [Docker Installation Guide](./Installation/Docker%20Install.md)
+
+---
+
+### ⚙️ Manual Server Setup
+
+For bare metal installations or environments without Docker:
+
+1. Download `Stirling-PDF.jar`
+2. Install Java 21+
+3. Install dependencies (LibreOffice, Tesseract for OCR)
+4. Run the JAR file
+
+**Full guide:** [Unix Installation Guide](./Installation/Unix.md)
+
+---
+
+## Quick Links
+
+- **Questions?** Check our **[FAQ](./FAQ.md)**
+- **Issues?** Report on **[GitHub](https://github.com/Stirling-Tools/Stirling-PDF/issues)**
+- **Community?** Join our **[Discord](https://discord.gg/Cn8pWhQRxZ)**
