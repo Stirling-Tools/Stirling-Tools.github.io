@@ -423,7 +423,7 @@ ui:
 
 - **[New Features](./New-Features.md)** - What's new in V2
 - **[Breaking Changes](./Breaking-Changes.md)** - Important changes
-- **[Environment Variables](../Environment-Variables.md)** - All variables
+- **[Configuration Options](../Configuration/Extra-Settings.md)** - All configuration variables
 - **[System and Security](../Configuration/System%20and%20Security.md)** - Advanced config
 
 ---

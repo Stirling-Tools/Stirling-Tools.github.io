@@ -126,7 +126,7 @@ Automated processing mode:
    - Use the **Validation** button to check your pipeline. A green indicator signifies correct setup; a pop-out error indicates issues.
 
 8. **Download Pipeline Configuration**
-   - To use the configuration for [folder scanning](/Configuration/Folder%20Scanning) (or save it for future use and re-upload it), download a JSON file in this menu. You can also pre-load it for future use by placing it in `/pipeline/defaultWebUIConfigs/`. It will then appear in the dropdown menu for all users to use.
+   - To use the configuration for [folder scanning](./FolderScanning.md) (or save it for future use and re-upload it), download a JSON file in this menu. You can also pre-load it for future use by placing it in `/pipeline/defaultWebUIConfigs/`. It will then appear in the dropdown menu for all users to use.
 
 9. **Submit Files for Processing**
    - If your pipeline is correctly set up, close the configure menu, input the files, and hit **Submit**.
@@ -389,7 +389,7 @@ Create `config.json` in each watched folder:
 - `0 9 * * *` - Daily at 9 AM
 - `0 9 * * 1` - Every Monday at 9 AM
 
-**Learn more:** [Folder Scanning Guide](./Folder%20Scanning.md)
+**Learn more:** [Folder Scanning Guide](./FolderScanning.md)
 
 ---
 
@@ -569,7 +569,7 @@ Create `config.json` in each watched folder:
 
 ## Related Documentation
 
-- **[Folder Scanning Setup](./Folder%20Scanning.md)** - Detailed folder scanning guide
+- **[Folder Scanning Setup](./FolderScanning.md)** - Detailed folder scanning guide
 - **[Multi-Tool](../Functionality/Multi-Tool.md)** - Interactive multi-operation tool
 - **[Endpoint Customisation](./Endpoint%20or%20Feature%20Customisation.md)** - Operation names and IDs
 - **[API Documentation](../API.md)** - Programmatic pipeline execution
