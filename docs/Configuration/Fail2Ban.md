@@ -27,7 +27,7 @@ Stirling-PDF logs failed authentication attempts to a log file which Fail2Ban mo
 ### Important Configuration Notes
 - The `enableLogin` setting must be set to `true` as Fail2Ban integration requires authentication to be active
 - When using Fail2Ban, set `loginAttemptCount` to `-1` to disable the built-in account locking mechanism and let Fail2Ban handle login attempt management
-- For more details on security configuration options, refer to the [System and Security](/Configuration/System%20and%20Security) documentation
+- For more details on security configuration options, refer to the [System and Security](./System%20and%20Security.md) documentation
 
 ## Configuration
 

@@ -812,7 +812,7 @@ curl -X POST http://stirling-pdf:8080/api/v1/security/validate-signature \
 
 **Configuration:**
 - [System and Security Settings](../../Configuration/System%20and%20Security.md#signature-validation) - Technical configuration details
-- [Environment Variables](../../Environment-Variables.md) - All certificate-related variables
+- [Extra Settings](../../Configuration/Extra-Settings.md) - All certificate-related configuration options
 
 **Migration:**
 - [Settings Changes](../../Migration/Settings-Changes.md#pdf-signature-validation) - V2 new settings

@@ -31,8 +31,8 @@ The Pipeline/Automate feature in Stirling PDF enables automated, sequential proc
 - Ability to save and load pipeline configurations
 
 For detailed information on setting up and using pipelines, see:
-- [Pipeline Configuration Guide](/Configuration/Pipeline)
-- [Folder Scanning Guide](/Configuration/Folder%20Scanning)
+- [Pipeline Configuration Guide](../Configuration/Pipeline.md)
+- [Folder Scanning Guide](../Configuration/Folder%20Scanning.md)
 
 ## Current Limitations
 

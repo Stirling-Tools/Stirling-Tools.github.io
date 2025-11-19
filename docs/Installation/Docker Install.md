@@ -298,10 +298,10 @@ ports:
 
 ## Next Steps
 
-- **Add OCR Languages**: See [OCR Configuration](/Configuration/OCR)
-- **Enable Authentication**: See [Security Settings](/Configuration/System%20and%20Security)
-- **Setup Automation**: See [Pipeline Configuration](/Configuration/Pipeline)
-- **More Settings**: See [Configuration](/Configuration/How%20to%20add%20configurations)
+- **Add OCR Languages**: See [OCR Configuration](../Configuration/OCR.md)
+- **Enable Authentication**: See [Security Settings](../Configuration/System%20and%20Security.md)
+- **Setup Automation**: See [Pipeline Configuration](../Configuration/Pipeline.md)
+- **More Settings**: See [Configuration](../Configuration/Configuration.md)
 
 ## Troubleshooting
 

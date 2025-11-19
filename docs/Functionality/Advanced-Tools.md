@@ -326,7 +326,7 @@ Link to Single Sign-On (SSO) configuration guide for enterprise deployments.
 
 Link to guide for deploying Stirling-PDF in offline/air-gapped environments.
 
-**Access:** [Configuration](../Configuration/How%20to%20add%20configurations.md)
+**Access:** [Configuration](../Configuration/Configuration.md)
 
 ---
 
@@ -372,7 +372,7 @@ Use advanced tools when you need to:
 - **[Complete Tool Reference](./Functionality.md)** - All 60+ tools
 - **[Pipeline Configuration](./Features%20Pipeline.md)** - Automation workflows
 - **[API Documentation](../API.md)** - Programmatic access
-- **[Configuration](../Configuration/How%20to%20add%20configurations.md)** - System setup
+- **[Configuration](../Configuration/Configuration.md)** - System setup
 
 ---
 

@@ -52,7 +52,7 @@ Complete walkthrough: installation → configuration → security → monitoring
 **[Pro & Enterprise Features](./Pro.md)**
 SSO, advanced monitoring, external databases, and priority support
 
-**[Environment Variables](./Environment-Variables.md)**
+**[Configuration Options](./Configuration/Extra-Settings.md)**
 All configuration options for Docker and server deployments
 
 ---

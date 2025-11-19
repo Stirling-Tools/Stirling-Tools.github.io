@@ -170,7 +170,7 @@ The V1 template override system has been replaced with a new customization appro
 2. Build the frontend
 3. Deploy custom build
 
-See [UI Customisation](/Configuration/UI%20Customisation) for alternatives.
+See [UI Customisation](./Configuration/UI%20Customisation.md) for alternatives.
 
 ## Breaking Changes
 
@@ -241,7 +241,7 @@ This is normal V2 behavior. Files are temporarily stored in your browser:
 V2 no longer uses HTML templates:
 - **Solution**: Use environment variables for basic customization
 - **Alternative**: Modify React source code for extensive changes
-- **See**: [UI Customisation](/Configuration/UI%20Customisation)
+- **See**: [UI Customisation](./Configuration/UI%20Customisation.md)
 
 ### "Interface looks different"
 
@@ -255,7 +255,7 @@ V2 has a completely new React-based interface:
 V2 actually uses less memory than V1 in most cases:
 - **Check**: Are you using the right variant? (Standard vs Ultra-Lite)
 - **Try**: Disable login if not needed (`SECURITY_ENABLELOGIN=false`)
-- **See**: [FAQ - Memory Optimization](/FAQ#q6-my-stirling-pdf-using-high-ram-at-idle-how-can-i-optimize-memory-usage)
+- **See**: [FAQ - Memory Optimization](./FAQ.md#q6-my-stirling-pdf-using-high-ram-at-idle-how-can-i-optimize-memory-usage)
 
 ### "API integration broken"
 
@@ -323,7 +323,7 @@ docker run -e MODE=FRONTEND -e VITE_API_BASE_URL=http://backend:8080 -p 80:80 st
 - Don't need independent scaling
 - Want easiest setup
 
-See [Docker Installation](/Installation/Docker%20Install) for detailed examples.
+See [Docker Installation](./Installation/Docker%20Install.md) for detailed examples.
 
 ## Summary
 
