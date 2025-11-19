@@ -3,14 +3,17 @@ sidebar_position: 2
 id: Docker Install
 title: Docker Guide
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Docker Installation for Stirling-PDF
 
 Run Stirling-PDF in Docker for easy self-hosting, automatic updates, and flexible deployment.
 
-## Quick Start (Most Users)
+## Quick Start
 
-The simplest way to run Stirling-PDF:
+<Tabs groupId="docker-method">
+<TabItem value="docker-run" label="docker run" default>
 
 ```bash
 docker run -d \
@@ -19,6 +22,32 @@ docker run -d \
   -v ./stirling-data:/configs \
   stirlingtools/stirling-pdf:latest
 ```
+
+</TabItem>
+<TabItem value="docker-compose" label="docker-compose">
+
+Create `docker-compose.yml`:
+
+```yaml
+version: '3.3'
+services:
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf:latest
+    container_name: stirling-pdf
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./stirling-data:/configs
+    restart: unless-stopped
+```
+
+Then run:
+```bash
+docker-compose up -d
+```
+
+</TabItem>
+</Tabs>
 
 Then open `http://localhost:8080` in your browser!
 
@@ -108,25 +137,12 @@ For advanced users who need to scale components independently:
 
 **Most users don't need to set these** - the defaults work great!
 
-## Docker Run Examples
-
-### Basic Command (Minimal Setup)
-
-The simplest way to run Stirling-PDF with just the essentials:
-
-```bash
-docker run -d \
-  --name stirling-pdf \
-  -p 8080:8080 \
-  -v ./stirling-data:/configs \
-  stirlingtools/stirling-pdf:latest
-```
-
-Open `http://localhost:8080` and you're ready!
-
-### Full Command (With All Features)
+## Full Setup (With All Features)
 
 Want OCR, custom settings, and logging? Add more volumes:
+
+<Tabs groupId="docker-method">
+<TabItem value="docker-run" label="docker run" default>
 
 ```bash
 docker run -d \
@@ -136,23 +152,15 @@ docker run -d \
   -v ./stirling-data/configs:/configs \
   -v ./stirling-data/logs:/logs \
   -v ./stirling-data/pipeline:/pipeline \
+  -e SECURITY_ENABLELOGIN=false \
   -e LANGS=en_GB \
   stirlingtools/stirling-pdf:latest
 ```
 
-**What each volume does:**
-- `/configs` - Your settings and database
-- `/usr/share/tessdata` - OCR language files
-- `/logs` - Application logs
-- `/pipeline` - Automation configurations
+</TabItem>
+<TabItem value="docker-compose" label="docker-compose">
 
-## Docker Compose (Recommended for Production)
-
-Docker Compose makes management easier and is great for production use.
-
-### Simple Setup (MODE=BOTH)
-
-Create a file named `docker-compose.yml`:
+Create `docker-compose.yml`:
 
 ```yaml
 version: '3.3'
@@ -177,6 +185,15 @@ Then run:
 ```bash
 docker-compose up -d
 ```
+
+</TabItem>
+</Tabs>
+
+**What each volume does:**
+- `/configs` - Your settings and database
+- `/usr/share/tessdata` - OCR language files
+- `/logs` - Application logs
+- `/pipeline` - Automation configurations
 
 **What this does:**
 - Runs Stirling-PDF on port 8080
