@@ -276,14 +276,14 @@ To override the default configuration, you can add the following to `/.git/Stirl
 
 ```yaml
 server:
-  host: 0.0.0.0
+  address: 0.0.0.0
   port: 3000
 ```
 
 For systemd add in the .env file (see run as service for setting environment variables):
 
 ```bash
-SERVER_HOST="0.0.0.0"
+SERVER_ADDRESS="0.0.0.0"
 SERVER_PORT="3000"
 ```
 
