@@ -55,15 +55,15 @@ const config = {
                     sidebarPath: require.resolve('./sidebars.js'),
                     routeBasePath: '/',
                     editUrl: 'https://github.com/Stirling-Tools/Stirling-Tools.github.io/tree/main/',
-                    lastVersion: '1.5',
+                    lastVersion: 'current',
                     versions: {
                         current: {
-                            label: '2.0 (Beta)',
-                            banner: 'unreleased',
-                            badge: true,
+                            label: '2.0 (Current)',
+                            banner: 'none',
+                            badge: false,
                         },
                         '1.5': {
-                            label: '1.5 (Current)',
+                            label: '1.6.0',
                             banner: 'none',
                         },
                     },
