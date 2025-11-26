@@ -24,7 +24,7 @@ You could theoretically use a Distrobox/Toolbox, if your Distribution has old or
 
 Install the following software, if not already installed:
 
-- Java 17 or later (21 recommended)
+- Java 21 or later
 - Gradle 7.0 or later (included within repo so not needed on server)
 - Git
 - Python 3.8 (with pip)

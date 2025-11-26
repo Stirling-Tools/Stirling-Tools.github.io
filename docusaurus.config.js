@@ -55,6 +55,18 @@ const config = {
                     sidebarPath: require.resolve('./sidebars.js'),
                     routeBasePath: '/',
                     editUrl: 'https://github.com/Stirling-Tools/Stirling-Tools.github.io/tree/main/',
+                    lastVersion: 'current',
+                    versions: {
+                        current: {
+                            label: '2.0 (Current)',
+                            banner: 'none',
+                            badge: false,
+                        },
+                        '1.5': {
+                            label: '1.6.0',
+                            banner: 'none',
+                        },
+                    },
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
@@ -124,6 +136,11 @@ const config = {
                         sidebarId: 'tutorialSidebar',
                         position: 'left',
                         label: 'Docs',
+                    },
+                    {
+                        type: 'docsVersionDropdown',
+                        position: 'right',
+                        dropdownActiveClassDisabled: true,
                     },
                     {
                         href: 'https://github.com/Stirling-Tools/Stirling-PDF',

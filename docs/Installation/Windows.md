@@ -5,13 +5,76 @@ title: Windows Guide
 ---
 # Windows Installation Guide for Stirling PDF
 
-Stirling PDF provides Windows compatibility through a downloadable .exe files depending on your usecase!
-For personal user we recommend the latest
-[Stirling-PDF-installer](https://files.stirlingpdf.com/win-installer.exe)
+Stirling PDF for Windows comes in two versions: a **Desktop Application** for personal use and a **Server Version** for hosting and sharing with others.
 
-For Server use (wanting to host Stirling-PDF as a server to share with multiple users)
-We recommend downloading the [Stirling-PDF-server.exe](https://files.stirlingpdf.com/win-server.exe) or [Stirling-PDF-server-with-login.exe](https://files.stirlingpdf.com/win-server-with-login.exe)
-This version also requires you to install the latest [java jdk21](https://www.oracle.com/uk/java/technologies/downloads/#jdk21-windows) you can get the installer [here](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe)
+## Desktop Application (Recommended for Personal Use)
+
+**V2.0 brings a native Windows desktop experience** with all PDF tools available offline!
+
+### What You Get
+
+- ✅ **Native Windows application** - Feels like a built-in Windows program
+- ✅ **Open PDFs directly** - Double-click any PDF to open in Stirling-PDF
+- ✅ **Works completely offline** - No internet required after installation
+- ✅ **All features included** - Every PDF tool available
+- ✅ **Automatic updates** - Stay current with latest features
+- ✅ **Better performance** - Optimized for Windows
+- ✅ **No browser needed** - Standalone application
+
+### Quick Installation
+
+1. **Download**: [Stirling-PDF Desktop Installer](https://files.stirlingpdf.com/win-installer.exe)
+2. **Run the installer** - Follow the prompts (installs to `C:\Program Files\Stirling-PDF`)
+3. **Launch from Start Menu** - Search for "Stirling-PDF"
+4. **Start working with PDFs!**
+
+### Using the Desktop App
+
+**Opening PDFs:**
+- **Double-click any PDF file** - Opens in Stirling-PDF
+- **Right-click → Open with → Stirling-PDF**
+- **Drag and drop** files into the application
+- **File → Open** from the menu
+
+**Making Stirling-PDF your default PDF viewer:**
+1. Right-click any PDF file
+2. Select "Open with" → "Choose another app"
+3. Select "Stirling-PDF"
+4. Check "Always use this app to open .pdf files"
+5. Click OK
+
+**Benefits of desktop app:**
+- Files stay on your computer (not in browser storage)
+- Work without internet connection
+- Faster performance
+- Unlimited file storage (not limited by browser)
+- System tray icon for quick access
+
+## Server Version (For Hosting and Sharing)
+
+Want to host Stirling-PDF on a Windows server for multiple users? Use the server version.
+
+### Server Downloads
+
+**Without Login (Open Access):**
+- Download: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar)
+- Anyone on your network can access it
+- No user accounts needed
+
+**With Login (User Management):**
+- Download: [Stirling-PDF-with-login.jar](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)
+- Requires user accounts to access
+- Better for shared/business environments
+
+**Required:** [Java JDK 21](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe) - Server versions need Java installed
+
+### Server Installation Steps
+
+1. **Install Java JDK 21** from the link above
+2. **Download** your preferred server version
+3. **Run the .exe file**
+4. **Access** via browser at `http://localhost:8080`
+5. **Share the URL** with users on your network (e.g., `http://your-server-ip:8080`)
 
 ### Optional Dependencies
 These dependencies enable additional features in Stirling PDF. Install only the ones you need:
