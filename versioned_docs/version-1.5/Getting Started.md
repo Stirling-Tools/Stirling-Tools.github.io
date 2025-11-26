@@ -27,7 +27,7 @@ We prioritise and focus on our Server deployment options however we also offer a
 If you want to run Stirling PDF on your personal computer:
 
 1. **Windows Users**
-   - Download our installer ([Stirling-PDF-win-installer.exe](https://files.stirlingpdf.com/win-installer.exe)) for a simple, standalone experience
+   - Download our installer ([Stirling-PDF-windows-x86_64.msi](https://files.stirlingpdf.com/win-installer.exe)) for a simple, standalone experience
    - Refer to our [Windows Installation Guide](/Installation/Windows%20Installation) for detailed setup instructions
 
 2. **Linux/Unix Users**
@@ -58,7 +58,7 @@ If you're looking to host Stirling PDF as a service:
 
 | Installation Type | Best For | Documentation Link |
 |------------------|----------|-------------------|
-| Stirling-PDF-installer.exe | Windows desktop users | [Windows Guide](/Installation/Windows%20Installation) |
+| Stirling-PDF-windows-x86_64.msi | Windows desktop users | [Windows Guide](/Installation/Windows%20Installation) |
 | Stirling-PDF.jar | Server deployments without Docker | [Unix Guide](/Installation/Unix%20Installation) |
 | Docker Images | Server deployments with Docker | [Docker Guide](/Installation/Docker%20Install) |
 

@@ -23,7 +23,7 @@ Stirling PDF for Windows comes in two versions: a **Desktop Application** for pe
 
 ### Quick Installation
 
-1. **Download**: [Stirling-PDF Desktop Installer](https://files.stirling.com/win-installer.exe)
+1. **Download**: [Stirling-PDF Desktop Installer](https://files.stirlingpdf.com/win-installer.exe)
 2. **Run the installer** - Follow the prompts (installs to `C:\Program Files\Stirling-PDF`)
 3. **Launch from Start Menu** - Search for "Stirling-PDF"
 4. **Start working with PDFs!**
@@ -57,12 +57,12 @@ Want to host Stirling-PDF on a Windows server for multiple users? Use the server
 ### Server Downloads
 
 **Without Login (Open Access):**
-- Download: [Stirling-PDF-server.exe](https://files.stirling.com/win-server.exe)
+- Download: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar)
 - Anyone on your network can access it
 - No user accounts needed
 
 **With Login (User Management):**
-- Download: [Stirling-PDF-server-with-login.exe](https://files.stirling.com/win-server-with-login.exe)
+- Download: [Stirling-PDF-with-login.jar](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)
 - Requires user accounts to access
 - Better for shared/business environments
 

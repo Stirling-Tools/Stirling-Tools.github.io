@@ -9,24 +9,23 @@ description: Chain multiple PDF operations together without re-uploading files
 
 **Tool ID:** `multiTool`
 
-The Multi-Tool is a powerful workbench interface that revolutionizes how you work with PDFs in Stirling-PDF V2. Upload your files once, then seamlessly chain multiple operations together without re-uploading between steps.
+Multi-Tool is Stirling-PDF's page editor workspace. Upload your PDFs and manipulate pages visually - rotate, reorder, delete, and split pages with an intuitive interface.
 
 :::tip V2.0 Feature
-Multi-Tool is one of V2's flagship features, taking full advantage of browser file storage to create a fluid, efficient workflow for complex PDF operations.
+Multi-Tool takes advantage of browser file storage, allowing you to upload files once and work with them across multiple page operations without re-uploading.
 :::
 
 ---
 
 ## What is Multi-Tool?
 
-Multi-Tool is an interactive workspace where you can:
-- Upload PDFs once and reuse them across multiple operations
-- Switch between different tools instantly
-- See thumbnail previews of all your files
-- Build complex workflows step-by-step
-- Experiment with different settings without losing progress
-
-Think of it as your PDF workbench - everything you need in one place.
+Multi-Tool is a page manipulation workspace where you can:
+- Upload PDFs and see thumbnail previews of every page
+- Rotate pages individually or in batches
+- Reorder pages by dragging them into position
+- Delete unwanted pages
+- Split PDFs by marking page breaks
+- Undo/redo all changes before exporting
 
 ---
 
@@ -39,19 +38,18 @@ Files stay in your browser's local storage throughout your session:
 - Files persist even when switching tools
 - Clear storage when done for privacy
 
-### 🔄 Seamless Tool Switching
-Move between operations without interruption:
-- Access all 60+ tools from one interface
-- Switch tools instantly
-- Previous results become new inputs
-- Build on your work progressively
+### 📄 Page Manipulation
+Powerful page-level editing:
+- Rotate pages individually or in batches
+- Drag-and-drop page reordering
+- Delete unwanted pages
+- Split PDFs at marked positions
 
 ### 👁️ Visual File Management
 See what you're working with:
 - Thumbnail previews of all PDFs
 - File names and sizes displayed
 - Quick file selection
-- Drag-and-drop reordering
 
 ### ⏮️ Undo/Redo Support
 Made a mistake? No problem:
@@ -158,29 +156,6 @@ Everything in one place:
 
 ---
 
-## Available Tools in Multi-Tool
-
-Multi-Tool provides access to **nearly all 60+ Stirling-PDF tools**, including:
-
-### Most Popular in Multi-Tool:
-- **Merge** - Combine multiple PDFs
-- **Split** - Divide into separate files
-- **Compress** - Reduce file sizes
-- **Rotate** - Fix orientation
-- **Crop** - Adjust page sizes
-- **Add Watermark** - Brand documents
-- **Add Page Numbers** - Number pages
-- **OCR** - Make searchable
-- **Password Protection** - Secure files
-- **Extract Pages** - Pull out specific pages
-
-### Not Available in Multi-Tool:
-Some specialized tools have their own interfaces:
-- **Automate** - Pipeline builder (separate interface)
-- **Compare** - Requires dedicated comparison view
-- **Sign** - Signature pad interface
-
----
 
 ## File Management
 
@@ -190,8 +165,6 @@ Some specialized tools have their own interfaces:
 - **From Previous Operation:** Results automatically added to workspace
 
 ### Organizing Files
-- **Rename:** Click file name to rename for better organization
-- **Reorder:** Drag files to reorder (important for merge operations)
 - **Select:** Click to select files for specific operations
 - **Multi-Select:** Hold Ctrl/Cmd to select multiple files
 
@@ -215,12 +188,6 @@ Some specialized tools have their own interfaces:
 - **Quick Preview:** Click thumbnail for larger preview
 - **Page Count:** Shows number of pages per file
 - **File Info:** See file size and last modified time
-
-### Version History
-- **History Panel:** Access version history for each file
-- **View Versions:** See all operations performed
-- **Restore Version:** Jump back to any previous version
-- **Compare Versions:** See what changed between versions
 
 ### Settings and Options
 - **Tool Settings:** Configure each operation's parameters

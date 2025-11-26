@@ -134,7 +134,7 @@ Install the following software:
 
 ### Step 4: Grab latest Stirling-PDF Jar
 
-The JAR can be downloaded in two versions, [normal](https://files.stirling.com/Stirling-PDF.jar) and [security](https://files.stirling.com/Stirling-PDF-with-login.jar)
+The JAR can be downloaded in two versions, [normal](https://files.stirlingpdf.com/Stirling-PDF.jar) and [security](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)
 
 Example for the "normal" version 
 
