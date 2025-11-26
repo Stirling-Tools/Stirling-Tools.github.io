@@ -16,7 +16,7 @@ description: List of all miscellaneous features
 
 - `extract-image-scans`: This feature enables users to extract scanned images from PDF files.
 
-- `sign`: This feature allows users to add their writen signature to PDF documents. This can also use pre-stored files see [here](/Advanced%20Configuration/Sign%20with%20custom%20files). For cert signing see [Features-Security](/Functionality/Security/)
+- `sign`: This feature allows users to add their writen signature to PDF documents. This can also use pre-stored files see [here](/version-1.5/Advanced%20Configuration/Sign%20with%20custom%20files). For cert signing see [Features-Security](/version-1.5/Functionality/Security/)
 
 - `flatten`: This functionality enables users to flatten a PDF, merging interactive form fields with the document.
 

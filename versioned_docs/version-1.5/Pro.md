@@ -16,8 +16,8 @@ Some users who seek additional features, bulk user discounts or SLA support may 
 
 ## What's included in Pro
 - Support tickets via support@stirlingpdf.com to reach the Stirling-PDF team for support
-- [Advanced SSO](/Advanced%20Configuration/Single%20Sign-On%20Configuration), OAuth2 and SAML with automated login handling
-- [External Database](/Advanced%20Configuration/External%20Database) support for optimised deployments and load-balancing support
+- [Advanced SSO](/version-1.5/Advanced%20Configuration/Single%20Sign-On%20Configuration), OAuth2 and SAML with automated login handling
+- [External Database](/version-1.5/Advanced%20Configuration/External%20Database) support for optimised deployments and load-balancing support
 - Custom automated metadata handling
 - Google Drive integration
 - Advanced user configurations (Coming soon)

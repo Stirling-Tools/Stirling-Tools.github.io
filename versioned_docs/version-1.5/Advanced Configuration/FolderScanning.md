@@ -6,7 +6,7 @@ title: Folder Scanning
 
 ## User Guide for Local Directory Scanning and File Processing
 
-Folder scanning uses settings configured from our pipeline tool, it is advised you first read the [Pipeline Guide](/Advanced%20Configuration/Pipeline)
+Folder scanning uses settings configured from our pipeline tool, it is advised you first read the [Pipeline Guide](/version-1.5/Advanced%20Configuration/Pipeline)
 ### Setting Up Watched Folders
 
 - Create a folder where you want your files to be monitored. This is your 'watched folder'.
@@ -16,7 +16,7 @@ Folder scanning uses settings configured from our pipeline tool, it is advised y
 ### Configuring Processing with JSON Files
 
 - In each directory you want processed (e.g., `./pipeline/watchedFolders/officePrinter`), include a JSON configuration file.
-- This JSON file should specify how you want the files in the directory to be handled (e.g., what operations to perform on them). This can be made, configured, and downloaded from the Stirling-PDF Pipeline interface. For JSON creation guide please see [Pipeline setup](/Advanced%20Configuration/Pipeline)
+- This JSON file should specify how you want the files in the directory to be handled (e.g., what operations to perform on them). This can be made, configured, and downloaded from the Stirling-PDF Pipeline interface. For JSON creation guide please see [Pipeline setup](/version-1.5/Advanced%20Configuration/Pipeline)
 
 ### Automatic Scanning and Processing
 

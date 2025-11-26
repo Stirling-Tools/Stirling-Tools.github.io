@@ -27,8 +27,8 @@ The Pipeline feature in Stirling PDF enables automated, sequential processing of
 - Ability to save and load pipeline configurations
 
 For detailed information on setting up and using pipelines, see:
-- [Pipeline Configuration Guide](/Advanced%20Configuration/Pipeline)
-- [Folder Scanning Guide](/Advanced%20Configuration/Folder%20Scanning)
+- [Pipeline Configuration Guide](/version-1.5/Advanced%20Configuration/Pipeline)
+- [Folder Scanning Guide](/version-1.5/Advanced%20Configuration/Folder%20Scanning)
 
 ## Current Limitations
 
