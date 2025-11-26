@@ -34,7 +34,7 @@ title: Pipeline Automation
    - Use the **Validation** button to check your pipeline. A green indicator signifies correct setup; a pop-out error indicates issues.
 
 8. **Download Pipeline Configuration**
-   - To use the configuration for [folder scanning](/version-1.5/Advanced%20Configuration/Folder%20Scanning) (or save it for future use and re-upload it), download a JSON file in this menu. You can also pre-load it for future use by placing it in `/pipeline/defaultWebUIConfigs/`. It will then appear in the dropdown menu for all users to use.
+   - To use the configuration for [folder scanning](./Folder%20Scanning) (or save it for future use and re-upload it), download a JSON file in this menu. You can also pre-load it for future use by placing it in `/pipeline/defaultWebUIConfigs/`. It will then appear in the dropdown menu for all users to use.
 
 9. **Submit Files for Processing**
    - If your pipeline is correctly set up, close the configure menu, input the files, and hit **Submit**.
