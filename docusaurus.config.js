@@ -46,6 +46,9 @@ const config = {
       },
     ],
   ],
+  clientModules: [
+    require.resolve('./src/clientModules/anchorScroll.js'),
+  ],
     presets: [
         [
             'classic',
@@ -91,6 +94,11 @@ const config = {
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+			// Improve anchor scrolling behavior
+			scrollToTop: true,
+			scrollToTopOptions: {
+				smooth: true,
+			},
 			algolia: {
 			  // The application ID provided by Algolia
 			  appId: 'NJB9CKQAIT',

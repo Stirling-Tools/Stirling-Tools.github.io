@@ -32,7 +32,7 @@ description: Security features for PDFs and deployment configurations
 
 - **`validate-signature`**: Verify digital signatures and certificates in PDF documents. Check against trusted certificate chains including system trust, Adobe AATL, EU EUTL, and Mozilla CA bundle.
 
-  **Learn more:** [Certificate Signing - Validation](./Certificate-Signing.md#validating-signatures)
+  **Learn more:** [Certificate Signing - Validation](./Certificate-Signing#validating-signatures)
 
 - **`remove-cert-sign`**: Remove digital certificate signatures from PDFs. Useful when you need to edit a signed document.
 
@@ -89,7 +89,7 @@ security:
       hardFail: false            # Fail if revocation check fails
 ```
 
-**Learn more:** [Certificate Signing - Configuration](./Certificate-Signing.md#configuration-examples)
+**Learn more:** [Certificate Signing - Configuration](./Certificate-Signing#configuration-examples)
 
 ---
 
@@ -140,8 +140,8 @@ corsAllowedOrigins: ['https://pdf.example.com']
 ```
 
 **Learn more:**
-- [Split Deployment Configuration](../../Configuration/System%20and%20Security.md#cors-configuration)
-- [Docker Split Mode](../../Installation/Docker%20Install.md#split-deployment-advanced-users)
+- [Split Deployment Configuration](../../Configuration/System%20and%20Security#cors-configuration)
+- [Docker Split Mode](../../Installation/Docker%20Install#split-deployment-advanced-users)
 
 ---
 

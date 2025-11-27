@@ -1,17 +1,18 @@
 ---
 sidebar_position: 5
-id: Pro
-title: Pro / Enterprise
-description: Enterprise/Pro edition for stirling PDF
+id: Paid-Offerings
+title: Paid Offerings
+description: Server and Enterprise paid plans for Stirling-PDF
 tags:
   - Enterprise
-  - Pro
-  - Premium
+  - Server
+  - Paid
+  - Pricing
 
 ---
-# Stirling PDF Pro / Enterprise
+# Stirling-PDF Paid Offerings
 
-Stirling PDF offers Pro and Enterprise editions of its software. These are the same great software, but with added features, streamlined license management, and support options.
+Stirling-PDF offers Server and Enterprise paid plans. These provide the same great software with added features, streamlined license management, and support options.
 
 ## Available Plans
 

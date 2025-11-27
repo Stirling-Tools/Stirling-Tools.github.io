@@ -9,7 +9,7 @@ description: Add handwritten, text, or image signatures to PDFs
 
 **Tool ID:** `sign`
 
-Add handwritten signatures, text signatures, or image-based signatures to PDF documents. This tool is for visual/handwritten signatures - for certificate-based digital signatures, see [Certificate Signing](./Certificate-Signing.md).
+Add handwritten signatures, text signatures, or image-based signatures to PDF documents. This tool is for visual/handwritten signatures - for certificate-based digital signatures, see [Certificate Signing](./Certificate-Signing).
 
 ---
 
@@ -34,7 +34,7 @@ There are two types of PDF signatures:
 
 **Use For:** Legal documents, contracts requiring authentication, compliance requirements.
 
-**Learn More:** [Certificate Signing Guide](./Certificate-Signing.md)
+**Learn More:** [Certificate Signing Guide](./Certificate-Signing)
 
 ---
 
@@ -87,7 +87,7 @@ You can configure Stirling-PDF to load pre-stored signature files for quick acce
 - Quick signing of multiple documents
 - Team/organization signature standards
 
-**Configuration:** [Sign with Custom Files](../../Configuration/Sign%20with%20custom%20files.md)
+**Configuration:** [Sign with Custom Files](../../Configuration/Sign%20with%20custom%20files)
 
 ---
 
@@ -172,7 +172,7 @@ You can configure Stirling-PDF to load pre-stored signature files for quick acce
 
 ### Visual vs. Digital Signatures
 
-| Feature | Visual Signature (This Tool) | Digital Signature ([Certificate](./Certificate-Signing.md)) |
+| Feature | Visual Signature (This Tool) | Digital Signature ([Certificate](./Certificate-Signing)) |
 |---------|------------------------------|-------------------------------------------------------------|
 | **Appearance** | Handwritten/image | May include visual + certificate info |
 | **Security** | Visual only, can be copied | Cryptographically secure |
@@ -191,7 +191,7 @@ You can configure Stirling-PDF to load pre-stored signature files for quick acce
 - ✅ Documents that just need a visual signature
 - ✅ No cryptographic verification needed
 
-**Use Digital Signing ([Certificate](./Certificate-Signing.md)) When:**
+**Use Digital Signing ([Certificate](./Certificate-Signing)) When:**
 - ✅ Legal contracts requiring authentication
 - ✅ Compliance and regulatory documents
 - ✅ Documents that must prove integrity
@@ -223,7 +223,7 @@ For organizations needing standardized signatures:
 3. Users select from available signatures
 4. Consistent appearance across documents
 
-**Setup:** [Sign with Custom Files](../../Configuration/Sign%20with%20custom%20files.md)
+**Setup:** [Sign with Custom Files](../../Configuration/Sign%20with%20custom%20files)
 
 ---
 
@@ -297,7 +297,7 @@ For organizations needing standardized signatures:
 - Personal documents
 
 **❌ NOT Appropriate For:**
-- Legal contracts (use [digital signatures](./Certificate-Signing.md))
+- Legal contracts (use [digital signatures](./Certificate-Signing))
 - Financial documents requiring verification
 - Government/regulatory submissions
 - Documents requiring proof of identity
@@ -348,11 +348,11 @@ See [API Documentation](../../API.md) for complete endpoint reference.
 
 ## Related Tools
 
-- **[Certificate Signing](./Certificate-Signing.md)** - Digital signatures with certificates
-- **[Add Image](../Advanced-Tools.md#add-image)** - Add logos or other images
-- **[Add Stamp](../Content-Editing/Content-Editing.md)** - Add official stamps
-- **[Flatten](./Security.md#permissions--access-control)** - Make signatures non-editable
-- **[Add Password](./Security.md#password-protection)** - Protect signed documents
+- **[Certificate Signing](./Certificate-Signing)** - Digital signatures with certificates
+- **[Add Image](../Advanced-Tools#add-image)** - Add logos or other images
+- **[Add Stamp](../Content-Editing#stamps--annotations)** - Add official stamps
+- **[Flatten](../Security#permissions--access-control)** - Make signatures non-editable
+- **[Add Password](../Security#password-protection)** - Protect signed documents
 
 ---
 
@@ -369,4 +369,4 @@ Stirling-PDF's Sign tool provides:
 
 Perfect for forms, applications, and documents needing visual signatures!
 
-**Need authentication and legal validity?** Use [Certificate Signing](./Certificate-Signing.md) instead.
+**Need authentication and legal validity?** Use [Certificate Signing](./Certificate-Signing) instead.

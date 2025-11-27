@@ -106,8 +106,8 @@ For advanced features and specific use cases, see these detailed guides:
 ### Authentication & Security
 
 **[Single Sign-On (SSO)](./Single%20Sign-On%20Configuration.md)**
-- OAuth2 (Google, GitHub, Keycloak, OIDC)
-- SAML2 (Okta, Azure AD) - Pro/Enterprise only
+- OAuth2 (Google, GitHub, Keycloak, OIDC) - Enterprise only
+- SAML2 (Okta, Azure AD) - Enterprise only
 - Complete configuration examples
 
 **[System and Security](./System%20and%20Security.md)**

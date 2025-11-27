@@ -811,12 +811,12 @@ curl -X POST http://stirling-pdf:8080/api/v1/security/validate-signature \
 ## Learn More
 
 **Configuration:**
-- [System and Security Settings](../../Configuration/System%20and%20Security.md#signature-validation) - Technical configuration details
-- [Extra Settings](../../Configuration/Extra-Settings.md) - All certificate-related configuration options
+- [System and Security Settings](../../Configuration/System%20and%20Security#signature-validation) - Technical configuration details
+- [Extra Settings](../../Configuration/Extra-Settings) - All certificate-related configuration options
 
 **Migration:**
-- [Settings Changes](../../Migration/Settings-Changes.md#pdf-signature-validation) - V2 new settings
-- [New Features](../../Migration/New-Features.md#-pdf-signature-validation) - Feature overview
+- [Settings Changes](../../Migration/Settings-Changes#pdf-signature-validation) - V2 new settings
+- [New Features](../../Migration/New-Features#-pdf-signature-validation) - Feature overview
 
 **Related Tools:**
 - [Sign](./Security.md) - Handwritten/image signatures
