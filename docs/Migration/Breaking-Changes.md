@@ -256,7 +256,7 @@ SECURITY_JWT_KEYRETENTIONDAYS=7
 
 **Action:** Users just need to log in again. Normal behavior.
 
-**Learn more:** [Settings Changes - JWT Configuration](./Settings-Changes.md#enhanced-jwt-configuration)
+**Learn more:** [Settings Changes - JWT Configuration](./Settings-Changes#enhanced-jwt-configuration)
 
 ---
 

@@ -114,7 +114,7 @@ SYSTEM_CORSALLOWEDORIGINS=https://pdf.example.com,https://pdf-staging.example.co
 - Always use HTTPS in production
 - Keep list minimal
 
-**Learn more:** [Security - CORS](../Functionality/Security/Security.md#cors-configuration)
+**Learn more:** [Security - CORS](../Functionality/Security/Security#cors-configuration)
 
 ---
 
@@ -235,7 +235,7 @@ security:
 
 **⚠️ Security Note:** Disabled by default. Only enable in controlled environments where outbound HTTPS is secure.
 
-**Learn more:** [Certificate Signing - Validation](../Functionality/Security/Certificate-Signing.md#validating-signatures)
+**Learn more:** [Certificate Signing - Validation](../Functionality/Security/Certificate-Signing#validating-signatures)
 
 ---
 
@@ -276,7 +276,7 @@ If migrating from V1, note these setting name changes:
 - `jwt.keyCleanup` → `jwt.enableKeyCleanup`
 - `jwt.secureCookie` → Removed (always secure in production)
 
-**Learn more:** [Migration - JWT Changes](../Migration/Settings-Changes.md#enhanced-jwt-configuration)
+**Learn more:** [Migration - JWT Changes](../Migration/Settings-Changes#enhanced-jwt-configuration)
 
 ---
 

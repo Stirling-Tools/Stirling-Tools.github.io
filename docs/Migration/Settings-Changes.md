@@ -41,7 +41,7 @@ security:
 
 **Migration:** No action needed, defaults are safe for most users.
 
-**Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing.md) | [Security Configuration](../Configuration/System%20and%20Security.md#signature-validation)
+**Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing) | [Security Configuration](../Configuration/System%20and%20Security#signature-validation)
 
 ---
 
@@ -62,7 +62,7 @@ system:
 
 **Migration:** Works automatically with defaults.
 
-**Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing.md) | [Certificate Configuration](../Configuration/System%20and%20Security.md#server-certificates)
+**Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing) | [Certificate Configuration](../Configuration/System%20and%20Security#server-certificates)
 
 ---
 
@@ -89,7 +89,7 @@ system:
   frontendUrl: 'https://pdf.example.com'
 ```
 
-**Learn more:** [Docker Installation - Split Mode](../Installation/Docker%20Install.md#split-deployment-advanced-users)
+**Learn more:** [Docker Installation - Split Mode](../Installation/Docker%20Install#split-deployment-advanced-users)
 
 ---
 

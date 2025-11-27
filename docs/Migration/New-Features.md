@@ -195,7 +195,7 @@ system:
   frontendUrl: 'https://pdf.example.com'
 ```
 
-**Learn More:** [Docker Installation - Split Mode](../Installation/Docker%20Install.md#split-deployment-advanced-users)
+**Learn More:** [Docker Installation - Split Mode](../Installation/Docker%20Install#split-deployment-advanced-users)
 
 ---
 
@@ -425,8 +425,8 @@ system:
 ```
 
 **Learn More:**
-- [Certificate Signing Guide](../Functionality/Security/Certificate-Signing.md)
-- [Configuration](../Configuration/System%20and%20Security.md#server-certificates)
+- [Certificate Signing Guide](../Functionality/Security/Certificate-Signing)
+- [Configuration](../Configuration/System%20and%20Security#server-certificates)
 
 ---
 

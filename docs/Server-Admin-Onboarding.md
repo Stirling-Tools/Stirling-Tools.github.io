@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 Welcome! This guide will walk you through deploying Stirling-PDF for your organization, from initial installation to advanced configuration and scaling.
 
 :::tip For Organizations & Teams
-This guide is designed for server administrators deploying Stirling-PDF for teams, departments, or entire organizations. If you're interested in **Pro or Enterprise features** (SSO, advanced user management, priority support), we'll highlight upgrade paths throughout this guide.
+This guide is designed for server administrators deploying Stirling-PDF for teams, departments, or entire organizations. If you're interested in **paid plan features** (external database, Google Drive, SSO, advanced user management, priority support), we'll highlight upgrade paths throughout this guide.
 :::
 
 ---
@@ -27,7 +27,7 @@ By the end of this guide, you'll have:
 3. ✅ **Settings customized** for your organization
 4. ✅ **Security hardened** with HTTPS and proper access controls
 5. ✅ **Monitoring setup** to track usage and performance
-6. ✅ **Understanding of Pro/Enterprise** upgrade paths
+6. ✅ **Understanding of paid plan** upgrade paths (Server/Enterprise)
 
 **Time estimate:** 30-60 minutes for basic setup, 2-3 hours for full enterprise configuration
 
@@ -520,8 +520,8 @@ MAIL_SMTP_TLS_ENABLED=true
 **Best for:** Large enterprises, existing SSO infrastructure
 
 **Single Sign-On (SSO) options:**
-- **OAuth2:** Free - Supports Google, GitHub, Keycloak, any OpenID Connect provider
-- **SAML2:** Pro/Enterprise only - Supports Okta, Azure AD, etc.
+- **OAuth2:** Enterprise only - Supports Google, GitHub, Keycloak, any OpenID Connect provider
+- **SAML2:** Enterprise only - Supports Okta, Azure AD, etc.
 
 **Key settings:**
 ```yaml
@@ -727,7 +727,7 @@ Stirling-PDF can handle HTTPS directly using built-in SSL configuration.
 - ⚠️ No load balancing
 - ⚠️ Port 8443 instead of standard 443
 
-**Learn more:** [Custom Settings - SSL Configuration](./Configuration/Extra-Settings.md#ssltls-configuration)
+**Learn more:** [Custom Settings - SSL Configuration](./Configuration/Extra-Settings#ssltls-configuration)
 
 </TabItem>
 <TabItem value="reverse-proxy" label="Reverse Proxy (Production)">
@@ -1100,11 +1100,11 @@ curl http://localhost:8080/api/v1/health
 - Uptime monitoring (Uptime Robot, Pingdom)
 - Custom monitoring scripts
 
-#### Prometheus Integration (Pro/Enterprise)
+#### Prometheus Integration (Enterprise)
 
-Stirling-PDF Pro/Enterprise supports Prometheus metrics for advanced monitoring.
+Stirling-PDF Enterprise plan supports Prometheus metrics for advanced monitoring.
 
-**Learn more:** [Usage Monitoring - Prometheus Setup](./Configuration/Usage%20Monitoring.md#prometheus-monitoring-configuration)
+**Learn more:** [Usage Monitoring - Prometheus Setup](./Configuration/Usage%20Monitoring#prometheus-monitoring-configuration)
 
 **Features:**
 - JVM metrics (memory, GC, threads)
@@ -1193,10 +1193,10 @@ Protect your users' data and configuration with proper backups.
 
 **\*Note on User Database:**
 - **Free edition:** Uses local H2 database (`stirling-pdf.db`) - must be backed up
-- **Pro/Enterprise:** Should use external PostgreSQL database (backed up separately)
+- **Server/Enterprise:** Should use external PostgreSQL database (backed up separately)
 
-:::tip Pro/Enterprise Recommendation
-Pro and Enterprise users should configure an external PostgreSQL database instead of using the local H2 database. This provides better reliability, scalability, and backup capabilities.
+:::tip Server/Enterprise Recommendation
+Server and Enterprise plan users should configure an external PostgreSQL database instead of using the local H2 database. This provides better reliability, scalability, and backup capabilities.
 
 **Learn more:** [External Database Configuration](./Configuration/External%20Database.md)
 :::
@@ -1430,8 +1430,8 @@ system:
 - Redis for session storage
 - CDN for frontend assets
 
-:::tip Pro/Enterprise Recommended
-For large organizations, **Pro or Enterprise editions** provide:
+:::tip Server/Enterprise Recommended
+For large organizations, **Server or Enterprise plans** provide:
 - Advanced load balancing
 - High availability configuration
 - Database clustering
@@ -1482,18 +1482,18 @@ find ./stirling-data/temp -type f -mtime +1 -delete
 
 ---
 
-## Step 10: Pro/Enterprise Edition
+## Step 10: Paid Plans (Server/Enterprise)
 
-Stirling-PDF offers **Pro and Enterprise editions** with additional features for organizations.
+Stirling-PDF offers **Server and Enterprise paid plans** with additional features for organizations.
 
-### Key Pro/Enterprise Features
+### Key Paid Plan Features
 
 **Authentication & Security:**
 - **SAML2 SSO:** Enterprise-grade single sign-on (OAuth2 is free)
 - Enhanced security features
 
 **Database & Infrastructure:**
-- **External PostgreSQL Database:** Required for Pro/Enterprise deployments
+- **External PostgreSQL Database:** Available for Server/Enterprise deployments
 - Better reliability and scalability than local H2 database
 - Professional backup and replication strategies
 
@@ -1505,7 +1505,7 @@ Stirling-PDF offers **Pro and Enterprise editions** with additional features for
 **For pricing and enterprise inquiries:**
 - **Email:** support@stirlingtools.com
 - **Website:** https://stirlingtools.com/pricing
-- **Documentation:** [Pro/Enterprise Features](./Pro.md)
+- **Documentation:** [Paid Offerings](./Paid-Offerings)
 - **External Database Setup:** [External Database Guide](./Configuration/External%20Database.md)
 - **Monitoring Setup:** [Usage Monitoring](./Configuration/Usage%20Monitoring.md)
 
@@ -1605,7 +1605,7 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 - Search GitHub Issues: https://github.com/Stirling-Tools/Stirling-PDF/issues
 
 **For Priority Support:**
-- Upgrade to Pro/Enterprise
+- Upgrade to Server or Enterprise plan
 - Email: support@stirlingtools.com
 - Get dedicated support team
 
@@ -1613,6 +1613,6 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 
 **You're all set!** 🎉
 
-Your Stirling-PDF deployment is ready for production use. If you have any questions or need assistance, don't hesitate to reach out to our community or consider upgrading to Pro/Enterprise for dedicated support.
+Your Stirling-PDF deployment is ready for production use. If you have any questions or need assistance, don't hesitate to reach out to our community or consider upgrading to a paid plan (Server or Enterprise) for dedicated support.
 
 Happy PDF processing! 📄✨

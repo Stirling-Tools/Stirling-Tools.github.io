@@ -1,13 +1,13 @@
 ---
 sidebar_position: 3
-tags: [pro, enterprise, management, feature, advanced feature]
+tags: [enterprise, management, feature, advanced feature]
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Single Sign-On (SSO) Configuration
-> **Tier**: Pro, Enterprise
+> **Tier**: Enterprise
 
 Stirling-PDF allows login via Single Sign-On (SSO) using OAuth 2 OpenID Connect (OIDC) and SAML 2. This allows you to log in to the
 app using an account you may have with another Provider such as Google or GitHub.

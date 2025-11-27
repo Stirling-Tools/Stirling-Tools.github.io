@@ -49,8 +49,8 @@ Browse all 60+ PDF tools with descriptions and use cases
 **[Production Deployment Guide](./Server-Admin-Onboarding.md)**
 Complete walkthrough: installation → configuration → security → monitoring
 
-**[Pro & Enterprise Features](./Pro.md)**
-SSO, advanced monitoring, external databases, and priority support
+**[Paid Offerings (Server & Enterprise)](./Paid-Offerings)**
+External databases, Google Drive integration, SSO, advanced monitoring, and priority support
 
 **[Configuration Options](./Configuration/Extra-Settings.md)**
 All configuration options for Docker and server deployments

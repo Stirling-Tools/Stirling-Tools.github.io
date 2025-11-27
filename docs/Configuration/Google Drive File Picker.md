@@ -1,13 +1,13 @@
 ---
 sidebar_position: 5
-tags: [pro, enterprise, management, feature, advanced feature]
+tags: [server, management, feature, advanced feature]
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Google Drive File Picker
-> **Tier**: Pro, Enterprise
+> **Tier**: Server
 
 Stirling-PDF allows users to select Files for processing through tools via google drive.
 

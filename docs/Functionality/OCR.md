@@ -312,7 +312,7 @@ See [API Documentation](../API.md) for complete endpoint reference.
 - **[Convert](./Convert/Convert.md)** - Convert OCR'd PDFs to Word, text, or other formats
 - **[Compress](./Compress.md)** - Reduce file size after OCR
 - **[Multi-Tool](./Multi-Tool.md)** - Chain OCR with other operations
-- **[Auto-Rename](./Advanced-Tools.md#auto-rename)** - Rename files based on OCR'd content
+- **[Auto-Rename](./Advanced-Tools#auto-rename)** - Rename files based on OCR'd content
 
 ---
 

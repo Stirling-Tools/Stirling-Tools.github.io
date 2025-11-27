@@ -1,11 +1,11 @@
 ---
 sidebar_position: 5
 title: Usage Monitoring
-tags: [pro, enterprise, management, feature, advanced feature]
+tags: [enterprise, management, feature, advanced feature]
 ---
 
 # Usage Monitoring
-> **Tier**: Pro, Enterprise
+> **Tier**: Enterprise
 
 Stirling-PDF provides robust usage monitoring capabilities through its API, allowing you to track application usage patterns and performance metrics.
 
