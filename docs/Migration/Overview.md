@@ -7,55 +7,87 @@ description: Complete guide for upgrading from Stirling-PDF V1 to V2
 
 # Migrating from V1 to V2
 
-Upgrading to Stirling-PDF V2 is straightforward for most users. This section helps you understand what changed and how to migrate smoothly.
+Upgrading to Stirling-PDF V2 is straightforward for most users. This guide will walk you through the upgrade process.
+
+:::warning Backup Your Configuration
+Before upgrading, **back up your configuration folder** (usually mounted as `/configs`) to ensure you can restore your settings if needed:
+```bash
+# Docker volume backup
+docker cp stirling-pdf:/configs ./configs-backup
+
+# Or if using bind mount
+cp -r ./configs ./configs-backup
+```
+:::
 
 ---
 
-## Quick Migration Guide
+## Quick Upgrade Guide
 
-### For Docker Users (Most Common)
+### Docker Users (Most Common)
 
-```bash
-# Stop current container
-docker stop stirling-pdf
+Update your image tag to `latest` (or specific V2 version):
 
-# Pull V2
-docker pull stirlingtools/stirling-pdf:latest
-
-# Start with same configuration
-docker start stirling-pdf
+```yaml
+services:
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf:latest  # Change from 1.x to latest
+    # Keep all your existing environment variables and volumes
 ```
+
+Then pull and restart. See the [Docker Installation Guide - Updating Section](../Installation/Docker%20Install#updating-stirling-pdf) for complete update commands.
 
 **That's it!** Your data and settings migrate automatically.
 
 ---
 
-## Migration Topics
+### Desktop Application Users
 
-### [New Features in V2](./New-Features.md)
-Everything new in V2:
+1. **Windows**: Download new installer from [GitHub Releases](https://github.com/Stirling-Tools/Stirling-PDF/releases), run it (automatically updates)
+2. **Mac**: Download new DMG, drag to Applications (replaces old version)
+3. **Linux**: Install new `.deb`/`.rpm`/`.AppImage`
+
+Your settings carry over automatically.
+
+---
+
+### Manual Installation (JAR)
+
+1. Download the latest V2 release from [GitHub Releases](https://github.com/Stirling-Tools/Stirling-PDF/releases)
+2. Stop the current V1 instance
+3. Replace the JAR file
+4. Start with the same command
+
+---
+
+## Migration Guide Sections
+
+This migration guide is organized into detailed sections:
+
+### 📋 [Settings Changes](./Settings-Changes.md)
+**Start here** if you have custom configuration. Covers:
+- New settings added in V2
+- Deprecated settings to remove
+- Settings that were renamed
+- Configuration examples and migration checklist
+
+### ⚠️ [Breaking Changes](./Breaking-Changes.md)
+**Important** - Review if you have customizations. Covers:
+- Template customization system changes (most impactful)
+- UI settings moved to in-app configuration
+- Session management improvements
+- Database notification changes
+- API compatibility notes
+
+### ✨ [New Features](./New-Features.md)
+**Explore what's new** - Comprehensive list of V2 features:
 - Browser file storage
 - Undo/redo functionality
 - Desktop applications
-- Split deployment architecture
+- Multi-Tool workbench
 - PDF signature validation
-- Server certificate management
-- Enhanced JWT
+- In-app settings management
 - And much more...
-
-### [Settings Changes](./Settings-Changes.md)
-Configuration changes between V1 and V2:
-- New settings added
-- Deprecated settings removed
-- Settings renamed or reorganized
-- Migration examples
-
-### [Breaking Changes](./Breaking-Changes.md)
-Important changes that may affect you:
-- Template customization system replaced
-- UI settings moved to in-app configuration
-- Removed features
-- API compatibility notes
 
 ---
 
@@ -87,9 +119,7 @@ Important changes that may affect you:
 
 ---
 
-## Data Migration
-
-### Your Data is Safe
+## Your Data is Safe
 
 V2 is **fully compatible** with V1 data:
 - ✅ User accounts and permissions
@@ -99,50 +129,13 @@ V2 is **fully compatible** with V1 data:
 - ✅ Custom OCR language files
 - ✅ Custom fonts and certificates
 
-**No manual migration needed** - just upgrade and your data continues working.
-
----
-
-## Deployment Options
-
-### Simple Upgrade
-
-Same as V1, everything in one container:
-```bash
-docker run -d \
-  -p 8080:8080 \
-  -v ./data:/configs \
-  stirlingtools/stirling-pdf:latest
-```
-
-### New: Split Deployment (Optional)
-
-V2 allows separating frontend and backend:
-
-**Backend:**
-```bash
-docker run -d \
-  -e MODE=BACKEND \
-  -p 8081:8080 \
-  stirlingtools/stirling-pdf:latest
-```
-
-**Frontend:**
-```bash
-docker run -d \
-  -e MODE=FRONTEND \
-  -e VITE_API_BASE_URL=http://backend:8080 \
-  -p 8080:8080 \
-  stirlingtools/stirling-pdf:latest
-```
-
-See [Docker Installation](../Installation/Docker%20Install.md) for details.
+**No manual migration needed** - database schema updates automatically on first startup.
 
 ---
 
 ## Post-Upgrade Checklist
 
-After upgrading, verify:
+After upgrading, verify everything works:
 
 - [ ] Can log in with existing credentials
 - [ ] All PDF tools work as expected
@@ -154,15 +147,25 @@ After upgrading, verify:
 
 ---
 
-## Getting Help
+## Troubleshooting
 
-If you encounter issues:
+### Common Issues
 
-1. **[Settings Changes](./Settings-Changes.md)** - Check if your config needs updates
-2. **[Breaking Changes](./Breaking-Changes.md)** - Review what changed
-3. **[FAQ](../FAQ.md)** - Common questions answered
-4. **[GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues)** - Report problems
-5. **[Discord](https://discord.gg/Cn8pWhQRxZ)** - Community support
+**"Unknown configuration key" warnings**
+- **Cause:** Old V1 settings in your `settings.yml`
+- **Solution:** See [Settings Changes](./Settings-Changes.md) to remove deprecated settings
+
+**Users logged out after upgrade**
+- **Cause:** JWT token format changed (normal)
+- **Solution:** Users just need to log in once
+
+**Custom templates not loading**
+- **Cause:** Template system replaced with React components
+- **Solution:** See [Breaking Changes - Template Customization](./Breaking-Changes#-template-customization-system-removed)
+
+**App name not showing**
+- **Cause:** Setting moved to in-app configuration
+- **Solution:** Log in as admin → Settings → UI
 
 ---
 
@@ -171,17 +174,40 @@ If you encounter issues:
 If you need to return to V1:
 
 ```bash
+# Restore config backup
+cp -r ./configs-backup ./configs
+
+# Pull V1 image
 docker pull stirlingtools/stirling-pdf:1.5.0
+
 # Update docker-compose.yml to use 1.5.0 tag
 docker-compose up -d
 ```
 
-**Note:** Your data will still work if you roll back.
+**Note:** Your data will work if you roll back (database is backward compatible).
 
 ---
 
-## Next Steps
+## Getting Help
 
-- **[New Features](./New-Features.md)** - Explore what's new
-- **[Settings Changes](./Settings-Changes.md)** - Update your configuration
-- **[Getting Started](../Getting%20Started.md)** - Start using V2
+If you encounter issues:
+
+1. **[Settings Changes](./Settings-Changes.md)** - Update your configuration
+2. **[Breaking Changes](./Breaking-Changes.md)** - Review important changes
+3. **[New Features](./New-Features.md)** - Learn what's new
+4. **[FAQ](../FAQ.md)** - Common questions answered
+5. **[GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues)** - Report problems
+6. **[Discord](https://discord.gg/Cn8pWhQRxZ)** - Community support
+
+---
+
+## Summary
+
+**Upgrading is easy:**
+1. Back up your `/configs` folder
+2. Pull latest Docker image (or download desktop app)
+3. Start with existing configuration
+4. Review [Settings Changes](./Settings-Changes.md) for any needed updates
+5. Check [Breaking Changes](./Breaking-Changes.md) if you have customizations
+
+**Welcome to V2!** Enjoy the faster, more modern Stirling-PDF experience.
