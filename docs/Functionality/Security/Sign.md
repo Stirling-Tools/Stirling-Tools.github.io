@@ -350,9 +350,9 @@ See [API Documentation](../../API.md) for complete endpoint reference.
 
 - **[Certificate Signing](./Certificate-Signing)** - Digital signatures with certificates
 - **[Add Image](../Advanced-Tools#add-image)** - Add logos or other images
-- **[Add Stamp](../Content-Editing/Content-Editing)** - Add official stamps
-- **[Flatten](./Security#permissions--access-control)** - Make signatures non-editable
-- **[Add Password](./Security#password-protection)** - Protect signed documents
+- **[Add Stamp](../Content-Editing#stamps--annotations)** - Add official stamps
+- **[Flatten](../Security#permissions--access-control)** - Make signatures non-editable
+- **[Add Password](../Security#password-protection)** - Protect signed documents
 
 ---
 

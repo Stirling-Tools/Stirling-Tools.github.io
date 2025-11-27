@@ -1438,7 +1438,7 @@ For large organizations, **Server or Enterprise plans** provide:
 - Performance monitoring
 - Dedicated support
 
-[Learn more](#step-10-proenterprise-edition)
+[Learn more](#step-10-paid-plans-serverenterprise)
 :::
 
 </TabItem>
