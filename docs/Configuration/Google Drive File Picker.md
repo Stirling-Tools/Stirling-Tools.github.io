@@ -36,7 +36,7 @@ premium:
 
 
  > #### ⚠️ Note
-> _You must set the Authroized Javascript origins for your OAuth client ID to include your Stirling PDF host domain or IP address._
+> _You must set the Authorized Javascript origins for your OAuth client ID to include your Stirling PDF host domain or IP address._
 
 ## Configurations Examples
 Below are examples of the full configuration for enabling the google Drive Picker:
