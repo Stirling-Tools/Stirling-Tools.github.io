@@ -63,11 +63,9 @@ The app will now open normally every time!
 
 ### Using the Desktop App
 
-1. Launch Stirling-PDF and select either **Stirling Cloud** or **Self-Hosted**.
+1. Launch Stirling-PDF
 2. Sign in with your Stirling Cloud account or enter the URL for your self-hosted server.
 3. After login, use the in-app interface to upload or drag-and-drop files into the window.
-
-> ℹ️ Dragging a PDF onto the app icon or blank login screen will not open it. You need to sign in first, then use the in-app upload area.
 
 **Making Stirling-PDF your default PDF viewer:**
 1. Right-click (or Control+click) any PDF file
