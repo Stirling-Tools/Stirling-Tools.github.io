@@ -140,7 +140,6 @@ cd ~/stirling-pdf
 Create `docker-compose.yml` with this production-ready configuration:
 
 ```yaml
-version: '3.3'
 
 services:
   stirling-pdf:
@@ -488,6 +487,7 @@ If you configure email, admins can send invitation links instead.
 ```yaml
 mail:
   enabled: true
+  from: noreply@yourcompany.com
   enableInvites: true
   smtp:
     host: smtp.gmail.com
@@ -503,12 +503,13 @@ mail:
 
 ```bash
 MAIL_ENABLED=true
+MAIL_FROM=noreply@yourcompany.com
 MAIL_ENABLEINVITES=true
-MAIL_SMTP_HOST=smtp.gmail.com
-MAIL_SMTP_PORT=587
-MAIL_SMTP_USERNAME=noreply@yourcompany.com
-MAIL_SMTP_PASSWORD=your-app-password
-MAIL_SMTP_TLS_ENABLED=true
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=noreply@yourcompany.com
+MAIL_PASSWORD=your-app-password
+MAIL_TLS_ENABLED=true
 ```
 
 </TabItem>

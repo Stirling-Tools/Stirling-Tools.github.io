@@ -14,11 +14,12 @@ Stirling PDF for Mac is available as a **native desktop application** or can run
 ### What You Get
 
 - ✅ **Native macOS application** - Optimized for both Apple Silicon and Intel Macs
-- ✅ **Open PDFs directly** - Double-click any PDF to open in Stirling-PDF
-- ✅ **Works completely offline** - No internet required after installation
+- ✅ **Sign in to start** - Choose Stirling Cloud or your self-hosted server on launch (required before using tools)
+- ✅ **Processes files locally after login** - Most tools run offline once signed in
+- ✅ **Stirling Cloud login is offline-only today** - SaaS sign-in keeps processing on your Mac; optional cloud assists for advanced tasks are planned for a future release
 - ✅ **All features included** - Every PDF tool available
 - ✅ **Better performance** - Native speed on M1/M2/M3 chips
-- ✅ **No browser needed** - Standalone application
+- ✅ **No external browser needed** - Uses the built-in window
 - ✅ **Menu bar integration** - Feels like a native Mac app
 
 ### Installation Steps
@@ -62,11 +63,9 @@ The app will now open normally every time!
 
 ### Using the Desktop App
 
-**Opening PDFs:**
-- **Double-click any PDF file** - Opens in Stirling-PDF
-- **Right-click → Open With → Stirling-PDF**
-- **Drag and drop** files into the application
-- **File → Open** from the menu bar
+1. Launch Stirling-PDF
+2. Sign in with your Stirling Cloud account or enter the URL for your self-hosted server.
+3. After login, use the in-app interface to upload or drag-and-drop files into the window.
 
 **Making Stirling-PDF your default PDF viewer:**
 1. Right-click (or Control+click) any PDF file

@@ -40,3 +40,7 @@ All endpoints provide the same functionality.
 
 No, we track no data without your explicit consent. You can see how, when, and why at our [Analytics and Telemetry](./analytics-telemetry) page.
 
+### Q9: When I upload a file, where is it processed?
+
+Uploads go to the server or desktop instance you're using, not to Stirling servers. The macOS/Windows desktop apps process files locally—even when you pick the Stirling Cloud sign-in today—so your PDFs stay on your device unless you point the app to a remote self-hosted server. Planned SaaS-assisted features (for desktop app) will be opt-in when they arrive.
+

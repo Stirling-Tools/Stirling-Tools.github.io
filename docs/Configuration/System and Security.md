@@ -282,7 +282,7 @@ If migrating from V1, note these setting name changes:
 
 ## Email Configuration
 
-Configure SMTP for sending email invitations and notifications.
+Configure SMTP for sending email invitations and notifications. Enable `mail.enableInvites` to allow invitation links.
 
 ### Email Invites
 
@@ -291,7 +291,8 @@ Enable email-based user invitations:
 ```yaml
 mail:
   enabled: true
-  enableInvites: true  # Enable email invitations
+  from: noreply@example.com
+  enableInvites: true
   smtp:
     host: smtp.example.com
     port: 587
@@ -304,16 +305,18 @@ mail:
 **Environment Variables:**
 ```bash
 MAIL_ENABLED=true
+MAIL_FROM=noreply@example.com
 MAIL_ENABLEINVITES=true
-MAIL_SMTP_HOST=smtp.gmail.com
-MAIL_SMTP_PORT=587
-MAIL_SMTP_USERNAME=your-email@gmail.com
-MAIL_SMTP_PASSWORD=your-app-password
-MAIL_SMTP_TLS_ENABLED=true
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your-email@gmail.com
+MAIL_PASSWORD=your-app-password
+MAIL_TLS_ENABLED=true
 ```
 
 **Requirements:**
 - `mail.enabled: true`
+- `mail.enableInvites: true` for invitation flows
 - `security.enableLogin: true`
 - Valid SMTP configuration
 - `system.frontendUrl` configured (for invite links)

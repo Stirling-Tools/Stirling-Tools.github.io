@@ -36,7 +36,6 @@ docker run -d \
 
 - `docker-compose.yml`
 ```yaml
-version: '3.3'
 services:
   stirling-pdf:
     image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest

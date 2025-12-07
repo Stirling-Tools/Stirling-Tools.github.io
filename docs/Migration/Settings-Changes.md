@@ -298,7 +298,8 @@ SECURITY_JWT_PERSISTENCE=true
 SECURITY_JWT_ENABLEKEYROTATION=true
 SECURITY_JWT_ENABLEKEYCLEANUP=true
 
-# Email invites
+# Email configuration
+MAIL_FROM=noreply@example.com
 MAIL_ENABLEINVITES=true
 
 # Logo

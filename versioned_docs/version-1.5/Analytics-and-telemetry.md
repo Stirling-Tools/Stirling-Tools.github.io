@@ -214,7 +214,6 @@ system:
 
 **Docker Compose example**
 ```yaml
-version: '3.8'
 services:
   stirling-pdf:
     environment:
