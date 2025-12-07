@@ -29,7 +29,6 @@ docker run -d \
 Create `docker-compose.yml`:
 
 ```yaml
-version: '3.3'
 services:
   stirling-pdf:
     image: stirlingtools/stirling-pdf:latest
@@ -163,7 +162,6 @@ docker run -d \
 Create `docker-compose.yml`:
 
 ```yaml
-version: '3.3'
 services:
   stirling-pdf:
     image: stirlingtools/stirling-pdf:latest
@@ -208,7 +206,6 @@ Want to scale frontend and backend independently? Use this:
 Create `docker-compose.yml`:
 
 ```yaml
-version: '3.3'
 services:
   # Backend - PDF processing engine
   stirling-backend:

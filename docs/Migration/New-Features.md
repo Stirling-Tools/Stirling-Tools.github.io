@@ -595,7 +595,7 @@ security:
 ```yaml
 mail:
   enabled: true
-  enableInvites: true  # NEW in V2
+  from: noreply@example.com
   smtp:
     host: smtp.example.com
     port: 587
@@ -627,11 +627,13 @@ mail:
 
 ```bash
 MAIL_ENABLED=true
+MAIL_FROM=noreply@example.com
 MAIL_ENABLEINVITES=true
-MAIL_SMTP_HOST=smtp.gmail.com
-MAIL_SMTP_PORT=587
-MAIL_SMTP_USERNAME=your-email@gmail.com
-MAIL_SMTP_PASSWORD=your-app-password
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your-email@gmail.com
+MAIL_PASSWORD=your-app-password
+MAIL_TLS_ENABLED=true
 ```
 
 ---

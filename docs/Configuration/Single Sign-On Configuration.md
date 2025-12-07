@@ -109,7 +109,7 @@ for Google and GitHub can be found [here](https://developers.google.com/identity
   [here](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#available-scopes)
 - `security.oauth2.provider`: The name of the Provider
 
-The Callback URL (Redirect URL) for entering in your IdP is:  `https://<striling-pdf.yourdomain>/login/oauth2/code/<oidc-provider>` eg `https://<striling-pdf.yourdomain>/login/oauth2/code/keycloak`.
+The Callback URL (Redirect URL) for entering in your IdP is:  `https://<striling-pdf.yourdomain>/login/oauth2/code/<oidc-provider>` eg `https://<striling-pdf.yourdomain>/login/oauth2/code/keycloak`. If you previously used a bare `/login/oauth2/code/` callback, make sure you now include the provider slug (for example, Authentik uses `/login/oauth2/code/authentik`).
 It is highly recommended to use an SSL-enabled reverse-proxy, if the application is going to be exposed to the internet.
 
 After the OAuth 2 login is enabled, a new button will show up on the login page as per the screenshot below. Clicking the
