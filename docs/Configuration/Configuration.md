@@ -77,6 +77,32 @@ LANGS=en_GB                    # Available languages
 SYSTEM_DEFAULTLOCALE=en-GB     # Default language
 ```
 
+**How language selection works:**
+
+Stirling-PDF determines the interface language using this priority order:
+
+1. **User's manual selection** (highest priority)
+   - When a user clicks the language globe icon and selects a language
+   - Choice is stored in browser's localStorage (persists across sessions)
+   - Storage key: `i18nextLng`
+
+2. **Browser's language preference**
+   - Automatically detected from browser's `Accept-Language` header via the `navigator` API
+   - Example: Firefox set to Swedish (sv-SE) will show Swedish UI
+
+3. **System default locale** (lowest priority)
+   - Set via `SYSTEM_DEFAULTLOCALE` or `system.defaultLocale`
+   - Only applied if user has no localStorage preference (first-time visitors)
+
+**Example:**
+- Config: `SYSTEM_DEFAULTLOCALE=en_GB`
+- Browser: Swedish (sv-SE)
+- Result: UI shows Swedish (browser preference overrides config)
+
+To force a specific default language regardless of browser settings, users must manually select it via the language globe icon.
+
+> 💡 **Tip**: Set `SYSTEM_DEFAULTLOCALE` to your organization's primary language. Users can always override it using the language selector in the top-right corner.
+
 ### Deployment Mode
 
 ```bash
