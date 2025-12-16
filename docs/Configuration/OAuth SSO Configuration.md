@@ -7,11 +7,11 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # OAuth 2.0 Single Sign-On Configuration
-> **Tier**: Professional
+> **Tier**: Server
 
 Stirling-PDF supports Single Sign-On (SSO) using OAuth 2.0 OpenID Connect (OIDC). This allows users to log in using accounts from external providers such as Google, GitHub, Keycloak, Authentik, and others.
 
-> **Looking for SAML 2.0 SSO?** See [SAML SSO Configuration](./SAML%20SSO%20Configuration.md) (Enterprise tier).
+> **Looking for SAML 2.0 SSO?** See [SAML SSO Configuration](./SAML%20SSO%20Configuration/SAML%20SSO%20Configuration.md) (Enterprise tier).
 
 ## Prerequisites
 
@@ -487,6 +487,6 @@ LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_OAUTH2=DEBUG
 
 ## See Also
 
-- [SAML SSO Configuration](./SAML%20SSO%20Configuration.md) - Enterprise SAML 2.0 setup
+- [SAML SSO Configuration](./SAML%20SSO%20Configuration/SAML%20SSO%20Configuration.md) - Enterprise SAML 2.0 setup
 - [System and Security](./System%20and%20Security.md) - Additional security settings
 - [External Database](./External%20Database.md) - User storage configuration
