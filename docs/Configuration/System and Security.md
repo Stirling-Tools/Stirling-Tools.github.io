@@ -284,6 +284,20 @@ If migrating from V1, note these setting name changes:
 
 Configure SMTP for sending email invitations and notifications. Enable `mail.enableInvites` to allow invitation links.
 
+> 💡 **When is email configuration required?**
+>
+> Email configuration is **OPTIONAL** and only needed for:
+> - **Email invitations**: Admins can send invite links to users via email
+> - **Password reset emails**: Users can reset forgotten passwords (if implemented)
+>
+> Email is **NOT required** for:
+> - Basic username/password login
+> - SSO authentication (OAuth 2.0 or SAML 2.0)
+> - Manual user creation by admins
+> - Normal application operation
+>
+> You can run Stirling-PDF without any email configuration if you create users manually or use SSO.
+
 ### Email Invites
 
 Enable email-based user invitations:
