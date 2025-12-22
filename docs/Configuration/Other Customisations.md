@@ -31,11 +31,48 @@ Static files in the application come from the `frontend/public/` folder in the s
 2. Match the directory structure in your `customFiles/static/` folder
 
 Common files you might want to override:
+
+**Favicons & Icons:**
 - `favicon.svg`, `favicon.ico` - Browser favicons
-- `classic-logo/logo.svg` - Classic logo
-- `modern-logo/logo.svg` - Modern logo
-- `apple-touch-icon.png` - iOS icon
-- Images, fonts, and other assets
+- `apple-touch-icon.png` - iOS home screen icon
+- `android-chrome-192x192.png` - Android icon (192x192)
+- `android-chrome-512x512.png` - Android icon (512x512)
+
+**Logo Variants (Both classic-logo/ and modern-logo/):**
+
+Both logo directories contain the same file structure - just replace `classic-logo/` or `modern-logo/` with whichever style you're using:
+
+- `{style}/StirlingPDFLogoBlackText.svg` - Logo with black text (light mode)
+- `{style}/StirlingPDFLogoWhiteText.svg` - Logo with white text (dark mode)
+- `{style}/StirlingPDFLogoGreyText.svg` - Logo with grey text
+- `{style}/StirlingPDFLogoNoTextDark.svg` - Logo without text (dark variant)
+- `{style}/StirlingPDFLogoNoTextLight.svg` - Logo without text (light variant)
+- `{style}/logo-tooltip.svg` - Small logo for tooltips
+- `{style}/favicon.ico` - Style-specific favicon
+- `{style}/logo192.png`, `{style}/logo512.png` - PNG versions at different sizes
+- `{style}/Firstpage.png` - First page preview image
+
+Where `{style}` is either `classic-logo` or `modern-logo` depending on your logo style setting:
+
+**Settings file (configs/settings.yml):**
+```yaml
+ui:
+  logoStyle: classic  # Options: 'classic' or 'modern'
+```
+
+**Environment variable (Docker):**
+```bash
+UI_LOGOSTYLE=classic
+```
+
+**In-app configuration:**
+Settings → UI → Logo Style (requires login enabled)
+
+**Other Assets:**
+- `moon.svg` - Dark mode toggle icon
+- `robots.txt` - Search engine directives
+- `manifest.json`, `manifest-classic.json` - Web app manifests
+- Images, fonts, and locales
 
 ### Example: Custom Favicon
 
@@ -55,16 +92,62 @@ volumes:
 
 Restart the container - your custom favicons will be used!
 
-### Example: Custom Logo
+### Example: Custom Logo (Simple)
 
 ```bash
 customFiles/
   └── static/
       └── classic-logo/
-          └── logo.svg
+          └── StirlingPDFLogoBlackText.svg
 ```
 
-This overrides the classic Stirling-PDF logo.
+This overrides the classic logo with black text (used in light mode).
+
+**Important:** Make sure your logo style is set to `classic` in your configuration:
+```yaml
+ui:
+  logoStyle: classic  # Must match the directory you're overriding!
+```
+
+Or via environment variable:
+```bash
+UI_LOGOSTYLE=classic
+```
+
+If you have `logoStyle: modern` set, override files in `modern-logo/` instead!
+
+### Example: Complete Branding Customization
+
+To fully rebrand Stirling-PDF with your company logo, override multiple variants:
+
+```bash
+customFiles/
+  └── static/
+      ├── favicon.svg                                    # Main favicon
+      ├── favicon.ico                                    # Legacy favicon
+      └── classic-logo/                                  # Or modern-logo/ if using modern style
+          ├── StirlingPDFLogoBlackText.svg              # Light mode with text
+          ├── StirlingPDFLogoWhiteText.svg              # Dark mode with text
+          ├── StirlingPDFLogoNoTextLight.svg            # Light mode icon only
+          ├── StirlingPDFLogoNoTextDark.svg             # Dark mode icon only
+          ├── logo-tooltip.svg                          # Small icon
+          ├── favicon.ico                               # Style-specific favicon
+          └── Firstpage.png                             # Homepage preview
+```
+
+**Important:** Set your logo style to match the directory:
+```yaml
+ui:
+  logoStyle: classic  # Use 'classic' if overriding classic-logo/, 'modern' if overriding modern-logo/
+```
+
+Or via environment variable: `UI_LOGOSTYLE=classic`
+
+**Tips:**
+- For consistent branding across light/dark modes, provide both:
+  - `StirlingPDFLogoBlackText.svg` (shows on light backgrounds)
+  - `StirlingPDFLogoWhiteText.svg` (shows on dark backgrounds)
+- You can also configure this in-app: Settings → UI → Logo Style (if you have login enabled)
 
 ### Advanced: Overriding Built Files (HTML, JS, CSS)
 
