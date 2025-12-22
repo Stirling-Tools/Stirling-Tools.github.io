@@ -20,11 +20,11 @@ These settings (in Settings.yml) control system behavior and customization capab
 - `showUpdate` - Controls whether update notifications are displayed
 - `showUpdateOnlyAdmin` - When true, restricts update notifications to admin users only (requires `showUpdate: true`)
 
-## V2.0 UI Customization Notes
+## UI Customization Options
 
-### In-App Settings Management (V2.0+)
+### In-App Settings Management (Recommended)
 
-**New in V2.0**: If you have login enabled and are logged in as an admin, you can now configure all settings directly in the application through the **Settings** menu. No need to edit `settings.yml` manually!
+If you have login enabled and are logged in as an admin, you can configure all settings directly in the application through the **Settings** menu. No need to edit `settings.yml` manually!
 
 **How to access:**
 1. Enable login: `SECURITY_ENABLELOGIN=true`
@@ -33,19 +33,18 @@ These settings (in Settings.yml) control system behavior and customization capab
 4. Configure all options through the UI
 5. Changes apply immediately
 
-This is the recommended way to manage settings in V2.0 for production deployments.
+**Available customizations:**
+- Application name and branding
+- Update notification settings
+- Language settings
+- Theme preferences
+- Logo style (classic/modern)
+- Custom logo upload
 
-### Template Customization Changes
+### Static File Overrides (Advanced)
 
-**Important**: The V1 `customFiles/` folder system for overriding templates has been replaced with a new customization approach due to the UI framework change in V2.0.
+For customization beyond the built-in settings, you can override static files like logos, favicons, and images:
 
-For advanced UI customization in V2.0:
-1. Clone or download the repository
-2. Modify the React components in the `frontend/src` directory
-3. Build the frontend: `cd frontend && npm install && npm run build`
-4. Volume mount the `frontend/dist` folder into your Docker container to replace the built-in frontend files
-
-Example docker-compose with custom frontend:
 ```yaml
 services:
   stirling-pdf:
@@ -53,16 +52,25 @@ services:
     ports:
       - '8080:8080'
     volumes:
-      - ./frontend/dist:/app/frontend/dist  # Mount your custom frontend
-    environment:
-      - MODE=BOTH
+      - ./customFiles:/customFiles:rw
 ```
 
-The following customizations work without rebuilding:
-- Application name and branding (via environment variables or in-app settings)
-- Update notification settings (via in-app settings if admin)
-- Language settings (via in-app settings)
-- Theme preferences (via in-app settings)
+Then place your custom files in `customFiles/static/` matching the path structure. Common examples:
+- `customFiles/static/favicon.svg` - Custom favicon
+- `customFiles/static/classic-logo/logo.svg` - Custom logo
+- `customFiles/static/modern-logo/logo.svg` - Custom modern logo
+
+**Learn more:** [Other Customisations - Static File Overrides](./Other%20Customisations.md#static-file-overrides)
+
+### Fork the Frontend (Developers)
+
+For complete UI customization:
+1. Clone the Stirling-PDF repository
+2. Modify the React components in `frontend/src/`
+3. Build the frontend: `cd frontend && npm install && npm run build`
+4. Use static file overrides or build your own Docker image
+
+This approach requires maintaining your fork and manually merging updates.
 
 ## Configuration Examples
 

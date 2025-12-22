@@ -22,29 +22,34 @@ Most V1 deployments will upgrade smoothly to V2, but there are some important ch
 
 ---
 
-## 🎨 Template Customization System Removed
+## 🎨 UI Customization Architecture Changed
 
 **Impact:** HIGH for users who customized UI using `customFiles/templates/`
 
 ### What Changed
 
-**V1 Approach:**
+**V1 Architecture:**
 ```bash
 customFiles/
   └── templates/
       ├── fragments/
-      │   └── navbar.html       # Custom navbar
-      └── home.html             # Custom homepage
+      │   └── navbar.html       # Custom Thymeleaf template
+      └── home.html             # Custom Thymeleaf template
 ```
 
-V1 used server-side template injection with Thymeleaf templates.
+V1 used **server-side rendering** with Thymeleaf templates. HTML was generated dynamically on the server for each request.
 
-**V2 Approach:**
-V2 uses React frontend - server-side template injection no longer possible.
+**V2 Architecture:**
+V2 uses a **React frontend** with client-side rendering. The UI is built into **static files** (HTML, CSS, JavaScript) that are served to the browser.
+
+**What this means:**
+- ❌ Thymeleaf templates (`.html` with `th:*` attributes) no longer work because there's no server-side rendering
+- ✅ Static file overrides **still work** via `customFiles/static/` - same concept, different paths
+- The file paths are different because they're now built React files instead of Thymeleaf templates
 
 ### Migration Path
 
-If you customized templates in V1, you have two options:
+Your V1 Thymeleaf templates cannot be directly reused in V2, but you have three options:
 
 #### Option 1: Use Built-In Customization (Recommended)
 
@@ -65,15 +70,14 @@ V2 provides in-app settings for most common customizations:
 
 **Learn more:** [UI Customisation](../Configuration/UI%20Customisation.md)
 
-#### Option 2: Edit Static Files in Docker
+#### Option 2: Static File Overrides (Same Concept as V1, Different Paths)
 
-For customizations beyond built-in settings, you can mount and edit static files:
+**✅ Still supported in V2!** The static file override system works the same way conceptually - place files in `customFiles/static/` to override defaults.
 
-**Steps:**
-1. Mount the `/customFiles/static/` directory in Docker
-2. Add your custom static files (images, favicons, etc.)
-3. Reference them in your HTML/settings
-4. Restart container to apply changes
+**How it works:**
+1. V2 checks `customFiles/static/` **first** for any requested file
+2. If not found, falls back to the bundled static files
+3. This lets you override logos, CSS, HTML, JavaScript, or any other static asset
 
 **Example Docker compose:**
 ```yaml
@@ -81,10 +85,20 @@ volumes:
   - ./customFiles:/customFiles:rw
 ```
 
+**Key difference from V1:**
+- V1 paths: `customFiles/templates/fragments/navbar.html` (Thymeleaf)
+- V2 paths: `customFiles/static/index.html` (React build output)
+
+The file paths are different because V2 serves the **compiled React app** instead of Thymeleaf templates. See [Other Customisations - Static File Overrides](../Configuration/Other%20Customisations.md#static-file-overrides) for:
+- How to determine the correct file paths in V2
+- Examples of common customizations
+- Understanding the build output structure
+
 **Use cases:**
-- Custom favicon
-- Custom images/logos
-- Static assets
+- Custom favicon or logo
+- Modified `index.html` for advanced branding
+- Custom CSS to override styles
+- Additional static assets
 
 #### Option 3: Fork the Frontend (Advanced)
 
@@ -103,20 +117,24 @@ For complete UI customization:
 
 ### What No Longer Works
 
-These V1 customization patterns are **no longer supported:**
+These V1 **Thymeleaf template features** no longer work because V2 uses React (client-side) instead of Thymeleaf (server-side):
 
 ```html
-<!-- V1: Inject custom navbar (NO LONGER WORKS) -->
+<!-- V1: Thymeleaf fragment injection (NO LONGER WORKS) -->
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<!-- V1: Conditional content (NO LONGER WORKS) -->
+<!-- V1: Thymeleaf conditionals (NO LONGER WORKS) -->
 <div th:if="${@propertyService.get('ui.showAdvanced')}">
   Custom content
 </div>
 
-<!-- V1: Server-side variables (NO LONGER WORKS) -->
+<!-- V1: Thymeleaf variables (NO LONGER WORKS) -->
 <span th:text="${appName}"></span>
 ```
+
+**Why they don't work:** These are Thymeleaf-specific features that require server-side HTML generation. V2 uses React which compiles to static JavaScript that runs in the browser.
+
+**Alternative:** You can still customize the **output** by overriding the built static files in `customFiles/static/`, but you'll be editing the compiled HTML/CSS/JS instead of Thymeleaf templates.
 
 ---
 

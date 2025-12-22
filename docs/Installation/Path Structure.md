@@ -32,7 +32,7 @@ All paths below are relative to the BASE_PATH. The File.separator ensures cross-
 - `pipeline/finishedFolders/` - Completed processing output location
 
 ## Custom Files Structure
-- `customFiles/static/` - Static assets
-- `customFiles/templates/` - Template files
+- `customFiles/static/` - Static asset overrides (logos, images, favicons, etc.)
+- `customFiles/templates/` - Legacy template files (deprecated, not used)
 - `customFiles/signatures/` - Digital signature files
 
