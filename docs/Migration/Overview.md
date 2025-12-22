@@ -102,7 +102,8 @@ This migration guide is organized into detailed sections:
 - ✅ Future features and updates
 
 **Consider staying on V1 if:**
-- ⚠️ You heavily customized UI using `customFiles/templates` (requires code changes to migrate)
+- ⚠️ You heavily customized UI using Thymeleaf templates in `customFiles/templates/` (requires rewriting for React in V2)
+  - **Note:** Static file overrides via `customFiles/static/` still work in V2 - only Thymeleaf templates don't work
 - ⚠️ You have specific compatibility requirements with very old browsers
 
 ---
@@ -160,8 +161,8 @@ After upgrading, verify everything works:
 - **Solution:** Users just need to log in once
 
 **Custom templates not loading**
-- **Cause:** Template system replaced with React components
-- **Solution:** See [Breaking Changes - Template Customization](./Breaking-Changes#-template-customization-system-removed)
+- **Cause:** Thymeleaf template system no longer used (V2 uses React)
+- **Solution:** Use static file overrides instead via `customFiles/static/` - See [Breaking Changes - UI Customization](./Breaking-Changes#-ui-customization-architecture-changed)
 
 **App name not showing**
 - **Cause:** Setting moved to in-app configuration
