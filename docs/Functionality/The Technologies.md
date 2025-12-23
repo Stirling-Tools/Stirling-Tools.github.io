@@ -62,7 +62,7 @@ A fast, modern interface built with powerful frontend technologies:
 - **[Vite](https://vitejs.dev/)** - Lightning-fast build tool
 
 **PDF Rendering & Interaction:**
-- **[EmbedPDF](https://github.com/EmbedPDF/EmbedPDF)** - Advanced PDF viewer with annotation support
+- **[EmbedPDF](https://www.embedpdf.com/)** - Open-source PDF viewer with annotation support
 - **[PDF.js](https://mozilla.github.io/pdf.js/)** - Mozilla's PDF rendering engine
 - **[pdf-lib](https://pdf-lib.js.org/)** - Client-side PDF manipulation
 
