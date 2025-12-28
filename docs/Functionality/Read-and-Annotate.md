@@ -12,7 +12,7 @@ description: Interactive PDF viewer with annotation tools for reading and markup
 The Read & Annotate tool is Stirling-PDF V2's interactive PDF viewer and annotation system. Read PDFs directly in your browser while adding comments, highlights, drawings, and other markup - all without leaving the application.
 
 :::tip V2.0 Feature
-Built with **[EmbedPDF](https://github.com/EmbedPDF/EmbedPDF)**, an advanced open-source PDF viewer, the Read tool provides a fluid reading and annotation experience with full support for PDF standards.
+Built with **[EmbedPDF](https://www.embedpdf.com/)**, an advanced open-source PDF viewer, the Read tool provides a fluid reading and annotation experience with full support for PDF standards.
 :::
 
 ---
