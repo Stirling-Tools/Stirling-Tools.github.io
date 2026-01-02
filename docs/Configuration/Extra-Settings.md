@@ -2,6 +2,8 @@
 sidebar_position: 12
 title: Custom Settings Configuration
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Custom Settings Configuration
 
@@ -48,16 +50,44 @@ server:
 
 Configure HTTPS for secure connections:
 
-```yaml
-server:
-  port: 8443  # Standard HTTPS port
-  ssl:
-    enabled: true
-    key-store: classpath:keystore.p12  # Path to keystore file
-    key-store-password: your-keystore-password
-    key-store-type: PKCS12  # Type of keystore
-    key-alias: tomcat  # Alias of the certificate
-```
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    server:
+      port: 8443  # Standard HTTPS port
+      ssl:
+        enabled: true
+        key-store: classpath:keystore.p12  # Path to keystore file
+        key-store-password: your-keystore-password
+        key-store-type: PKCS12  # Type of keystore
+        key-alias: tomcat  # Alias of the certificate
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    SERVER_PORT=8443
+    SERVER_SSL_ENABLED=true
+    SERVER_SSL_KEY-STORE=classpath:keystore.p12
+    SERVER_SSL_KEY-STORE-PASSWORD=your-keystore-password
+    SERVER_SSL_KEY-STORE-TYPE=PKCS12
+    SERVER_SSL_KEY-ALIAS=tomcat
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        image: stirlingtools/stirling-pdf:latest
+        environment:
+          SERVER_PORT: 8443
+          SERVER_SSL_ENABLED: true
+          SERVER_SSL_KEY-STORE: classpath:keystore.p12
+          SERVER_SSL_KEY-STORE-PASSWORD: your-keystore-password
+          SERVER_SSL_KEY-STORE-TYPE: PKCS12
+          SERVER_SSL_KEY-ALIAS: tomcat
+    ```
+  </TabItem>
+</Tabs>
 
 ### Creating a Self-Signed Certificate
 

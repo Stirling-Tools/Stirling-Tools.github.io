@@ -10,7 +10,7 @@ Stirling PDF allows customization of system and security settings. For security 
 
 ## Basic Security Settings
 
-- `enableLogin`: Enables or disables the login functionality (default: `true`)
+- `enableLogin`: Enables or disables the login functionality (default: `true` as of V2.0+)
 - `csrfDisabled`: Set to 'true' to disable CSRF protection (not recommended for production)
 - `defaultLocale`: Set the default language (e.g. 'de-DE', 'fr-FR', etc)
 - `googlevisibility`: 'true' to allow Google visibility (via robots.txt), 'false' to disallow
