@@ -134,9 +134,23 @@ Install the following software:
 
 ### Step 4: Grab latest Stirling-PDF Jar
 
-The JAR can be downloaded in two versions, [normal](https://files.stirlingpdf.com/Stirling-PDF.jar) and [security](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)
+Stirling-PDF comes in two different JAR files:
 
-Example for the "normal" version 
+**Stirling-PDF.jar** (Full Package - Recommended):
+- Bundles frontend UI + backend server in one file
+- Complete standalone web application
+- Best for most server deployments
+- Download: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar)
+
+**Stirling-PDF-server.jar** (Backend Only):
+- Backend server only (no bundled UI)
+- For API access, desktop app, or external UI
+- Best for split deployments or custom frontends
+- Download: [Stirling-PDF-server.jar](https://files.stirlingpdf.com/Stirling-PDF-server.jar)
+
+**Note:** Login/authentication is enabled by default. You can disable it by setting `SECURITY_ENABLELOGIN=false` as an environment variable. See [FAQ Q11](../FAQ.md#q11-how-do-i-disable-loginauthentication) for details.
+
+Example download and setup:
 
 ```bash
 sudo wget https://files.stirlingpdf.com/Stirling-PDF.jar

@@ -56,23 +56,33 @@ Want to host Stirling-PDF on a Windows server for multiple users? Use the server
 
 ### Server Downloads
 
-**Without Login (Open Access):**
-- Download: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar)
-- Anyone on your network can access it
-- No user accounts needed
+Stirling-PDF comes in two different JAR files:
 
-**With Login (User Management):**
-- Download: [Stirling-PDF-with-login.jar](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)
-- Requires user accounts to access
-- Better for shared/business environments
+**Stirling-PDF.jar** (Full Package - Recommended):
+- Download: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar)
+- Bundles frontend UI + backend server in one file
+- Complete standalone web application
+- Access via browser at `http://localhost:8080`
+- Best for most server deployments
+
+**Stirling-PDF-server.jar** (Backend Only):
+- Download: [Stirling-PDF-server.jar](https://files.stirlingpdf.com/Stirling-PDF-server.jar)
+- Backend server only (no bundled UI)
+- For API access, desktop app, or external UI
+- Best for split deployments or custom frontends
 
 **Required:** [Java JDK 21](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe) - Server versions need Java installed
+
+**Note:** Login/authentication is enabled by default in both versions. You can disable it by setting `SECURITY_ENABLELOGIN=false` as an environment variable. See [FAQ Q11](../FAQ.md#q11-how-do-i-disable-loginauthentication) for details.
 
 ### Server Installation Steps
 
 1. **Install Java JDK 21** from the link above
-2. **Download** your preferred server version
-3. **Run the .exe file**
+2. **Download** your preferred JAR file
+3. **Run the JAR file:**
+   ```bash
+   java -jar Stirling-PDF.jar
+   ```
 4. **Access** via browser at `http://localhost:8080`
 5. **Share the URL** with users on your network (e.g., `http://your-server-ip:8080`)
 

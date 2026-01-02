@@ -10,17 +10,18 @@ Stirling PDF allows customization of system and security settings. For security 
 
 ## Basic Security Settings
 
-- `enableLogin`: Enables or disables the login functionality
+- `enableLogin`: Enables or disables the login functionality (default: `true`)
 - `csrfDisabled`: Set to 'true' to disable CSRF protection (not recommended for production)
 - `defaultLocale`: Set the default language (e.g. 'de-DE', 'fr-FR', etc)
 - `googlevisibility`: 'true' to allow Google visibility (via robots.txt), 'false' to disallow
 
 ## Authentication Setup
 
+**Note:** Authentication is **enabled by default**. If you want to run Stirling-PDF without authentication, see the [Disabling Login](#disabling-login) section below.
+
 ### Prerequisites
 1. Ensure the `/configs` directory is mounted as a volume in Docker for persistence across updates
 2. For Docker users: Set `DISABLE_ADDITIONAL_FEATURES=false` in environment variables
-3. Enable login either via `settings.yml` or set `SECURITY_ENABLELOGIN=true`
 
 ### Initial Login Credentials
 - Default Username: `admin`
@@ -56,6 +57,57 @@ When using the API:
   X-API-KEY: your-api-key-here
   ```
 
+## Disabling Login
+
+If you want to run Stirling-PDF without authentication (open access mode), you can disable the login functionality.
+
+### Using Settings File
+
+Edit your `settings.yml` file:
+
+```yaml
+security:
+  enableLogin: false
+```
+
+### Using Environment Variables
+
+Set the environment variable when starting Stirling-PDF:
+
+**Docker Run:**
+```bash
+-e SECURITY_ENABLELOGIN=false
+```
+
+**Docker Compose:**
+```yaml
+environment:
+  SECURITY_ENABLELOGIN: false
+```
+
+**JAR File (Command Line):**
+```bash
+java -jar Stirling-PDF.jar -DSECURITY_ENABLELOGIN=false
+```
+
+**JAR File (Environment Variable):**
+```bash
+export SECURITY_ENABLELOGIN=false
+java -jar Stirling-PDF.jar
+```
+
+### When to Disable Login
+
+**Consider disabling login if:**
+- Running Stirling-PDF locally for personal use only
+- Using it in a completely trusted network environment
+- You don't need user management or access control
+
+**Keep login enabled if:**
+- Running on a server accessible from the internet
+- Multiple users need access with different permissions
+- You need audit trails or usage tracking
+- Running in a shared or business environment
 
 ---
 
@@ -377,7 +429,7 @@ customFiles/
   <TabItem value="settings" label="Settings File">
     ```yaml
     security:
-      enableLogin: false # set to 'true' to enable login
+      enableLogin: true  # Login enabled by default; set to 'false' to disable
       csrfDisabled: true
       jwt:
         persistence: true
