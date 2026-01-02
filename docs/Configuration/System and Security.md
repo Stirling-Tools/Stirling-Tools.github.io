@@ -61,40 +61,47 @@ When using the API:
 
 If you want to run Stirling-PDF without authentication (open access mode), you can disable the login functionality.
 
-### Using Settings File
-
-Edit your `settings.yml` file:
-
-```yaml
-security:
-  enableLogin: false
-```
-
-### Using Environment Variables
-
-Set the environment variable when starting Stirling-PDF:
-
-**Docker Run:**
-```bash
--e SECURITY_ENABLELOGIN=false
-```
-
-**Docker Compose:**
-```yaml
-environment:
-  SECURITY_ENABLELOGIN: false
-```
-
-**JAR File (Command Line):**
-```bash
-java -jar Stirling-PDF.jar -DSECURITY_ENABLELOGIN=false
-```
-
-**JAR File (Environment Variable):**
-```bash
-export SECURITY_ENABLELOGIN=false
-java -jar Stirling-PDF.jar
-```
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    security:
+      enableLogin: false
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    SECURITY_ENABLELOGIN=false
+    ```
+  </TabItem>
+  <TabItem value="docker-run" label="Docker Run">
+    ```bash
+    docker run -d \
+      -p 8080:8080 \
+      -e SECURITY_ENABLELOGIN=false \
+      stirlingtools/stirling-pdf:latest
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        image: stirlingtools/stirling-pdf:latest
+        environment:
+          SECURITY_ENABLELOGIN: false
+    ```
+  </TabItem>
+  <TabItem value="jar-property" label="JAR (Java Property)">
+    ```bash
+    java -jar Stirling-PDF.jar -DSECURITY_ENABLELOGIN=false
+    ```
+  </TabItem>
+  <TabItem value="jar-env" label="JAR (Environment Variable)">
+    ```bash
+    export SECURITY_ENABLELOGIN=false
+    java -jar Stirling-PDF.jar
+    ```
+  </TabItem>
+</Tabs>
 
 ### When to Disable Login
 
