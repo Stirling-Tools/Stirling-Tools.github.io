@@ -3,6 +3,8 @@ sidebar_position: 5
 title: Usage Monitoring
 tags: [enterprise, management, feature, advanced feature]
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Usage Monitoring
 > **Tier**: Enterprise
@@ -52,44 +54,64 @@ Stirling-PDF supports application metrics monitoring using Prometheus. This feat
 2. Enterprise mode enabled in your configuration
 3. Running with additional features enabled (DISABLE_ADDITIONAL_FEATURES=false)
 
-### Settings
+### Configuration
 
-Stirling-PDF can be configured to use Prometheus monitoring by setting the `JAVA_CUSTOM_OPTS` environment variable. The application uses this variable to add custom Java options at runtime.
+Configure Prometheus monitoring using your preferred method:
 
-Set the following environment variable in your deployment environment:
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    Configure in your `/configs/custom_settings.yml` file:
 
-```bash
-JAVA_CUSTOM_OPTS="-Dmanagement.endpoints.web.exposure.include=prometheus,health,info -Dmanagement.endpoint.health.show-details=always -Dmanagement.metrics.export.prometheus.enabled=true -Denterprisemanagement.metrics.enabled=true"
-```
+    ```yaml
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: prometheus,health,info
+      endpoint:
+        health:
+          show-details: always
+      metrics:
+        export:
+          prometheus:
+            enabled: true
+    enterprisemanagement:
+      metrics:
+        enabled: true
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    Set the `JAVA_CUSTOM_OPTS` environment variable:
 
-This configures:
+    ```bash
+    JAVA_CUSTOM_OPTS="-Dmanagement.endpoints.web.exposure.include=prometheus,health,info -Dmanagement.endpoint.health.show-details=always -Dmanagement.metrics.export.prometheus.enabled=true -Denterprisemanagement.metrics.enabled=true"
+    ```
+  </TabItem>
+  <TabItem value="docker-run" label="Docker Run">
+    ```bash
+    docker run -d \
+      -p 8080:8080 \
+      -e JAVA_CUSTOM_OPTS="-Dmanagement.endpoints.web.exposure.include=prometheus,health,info -Dmanagement.endpoint.health.show-details=always -Dmanagement.metrics.export.prometheus.enabled=true -Denterprisemanagement.metrics.enabled=true" \
+      stirlingtools/stirling-pdf:latest
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        image: stirlingtools/stirling-pdf:latest
+        environment:
+          JAVA_CUSTOM_OPTS: "-Dmanagement.endpoints.web.exposure.include=prometheus,health,info -Dmanagement.endpoint.health.show-details=always -Dmanagement.metrics.export.prometheus.enabled=true -Denterprisemanagement.metrics.enabled=true"
+    ```
+  </TabItem>
+</Tabs>
+
+**What this configures:**
 - Prometheus metrics endpoint exposure
 - Health and info endpoints for basic monitoring
 - Detailed health information
 - Prometheus metrics export
 - Enterprise metrics collection
-
-### Configuration in custom_settings.yml
-
-Alternatively, you can configure these settings in your `/configs/custom_settings.yml` file:
-
-```yaml
-management:
-  endpoints:
-    web:
-      exposure:
-        include: prometheus,health,info
-  endpoint:
-    health:
-      show-details: always
-  metrics:
-    export:
-      prometheus:
-        enabled: true
-enterprisemanagement:
-  metrics:
-    enabled: true
-```
 
 ### Accessing Metrics
 

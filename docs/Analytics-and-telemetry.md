@@ -3,6 +3,8 @@ sidebar_position: 9
 title: Analytics and Telemetry
 id: analytics-telemetry
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Analytics and Telemetry
 
@@ -137,16 +139,27 @@ Analytics are governed by a **global master toggle**, **component toggles**, and
 
 Controls **all** analytics and whether a consent banner appears.
 
-**Environment variable**
-```bash
-SYSTEM_ENABLEANALYTICS=false   # true | false | (unset = null)
-```
-
-**settings.yml**
-```yaml
-system:
-  enableAnalytics: false  # true | false | null (unset)
-```
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    system:
+      enableAnalytics: false  # true | false | null (unset)
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    SYSTEM_ENABLEANALYTICS=false   # true | false | (unset = null)
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        environment:
+          SYSTEM_ENABLEANALYTICS: false
+    ```
+  </TabItem>
+</Tabs>
 
 **Behavior**
 - `false`: Disables **all** analytics (no consent banner; PostHog & Scarf are off).
@@ -157,23 +170,37 @@ system:
 
 Use these to selectively enable/disable providers **in addition** to the global toggle.
 
-**PostHog**
-```bash
-SYSTEM_ENABLEPOSTHOG=false
-```
-```yaml
-system:
-  enablePosthog: false   # true | false | null
-```
+**PostHog:**
 
-**Scarf tracking pixel**
-```bash
-SYSTEM_ENABLESCARF=false
-```
-```yaml
-system:
-  enableScarf: false     # true | false | null
-```
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    system:
+      enablePosthog: false   # true | false | null
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    SYSTEM_ENABLEPOSTHOG=false
+    ```
+  </TabItem>
+</Tabs>
+
+**Scarf tracking pixel:**
+
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    system:
+      enableScarf: false     # true | false | null
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    SYSTEM_ENABLESCARF=false
+    ```
+  </TabItem>
+</Tabs>
 
 **Interaction**
 - If `enableAnalytics` is `false`, everything is off regardless of component toggles.
@@ -201,25 +228,27 @@ When analytics are allowed globally (`system.enableAnalytics: true` or resolved 
 
 If you want to disable **all** analytics and telemetry (and suppress any consent prompts) at once:
 
-**Environment variable**
-```bash
-SYSTEM_ENABLEANALYTICS=false
-```
-
-**settings.yml**
-```yaml
-system:
-  enableAnalytics: false
-```
-
-**Docker Compose example**
-```yaml
-services:
-  stirling-pdf:
-    environment:
-      - SYSTEM_ENABLEANALYTICS=false
-    # ... other configuration
-```
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    system:
+      enableAnalytics: false
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    SYSTEM_ENABLEANALYTICS=false
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        environment:
+          SYSTEM_ENABLEANALYTICS: false
+    ```
+  </TabItem>
+</Tabs>
 
 ---
 

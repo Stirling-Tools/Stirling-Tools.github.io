@@ -17,12 +17,32 @@ Stirling-PDF logs failed authentication attempts to a log file which Fail2Ban mo
 ## Prerequisites
 - Fail2Ban installed on your system
 - Access to Stirling-PDF log directory
-- Security settings configured in `/configs/settings.yml`:
-  ```yaml
-  security:
-    enableLogin: true    # Login must be enabled for Fail2Ban integration
-    loginAttemptCount: -1 # Set to -1 when using Fail2Ban recommended but not required
-  ```
+- Security settings configured:
+
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    security:
+      enableLogin: true    # Login must be enabled for Fail2Ban integration
+      loginAttemptCount: -1 # Set to -1 when using Fail2Ban recommended but not required
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    SECURITY_ENABLELOGIN=true
+    SECURITY_LOGINATTEMPTCOUNT=-1
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        environment:
+          SECURITY_ENABLELOGIN: true
+          SECURITY_LOGINATTEMPTCOUNT: -1
+    ```
+  </TabItem>
+</Tabs>
 
 ### Important Configuration Notes
 - The `enableLogin` setting must be set to `true` as Fail2Ban integration requires authentication to be active
