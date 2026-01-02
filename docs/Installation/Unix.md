@@ -138,14 +138,12 @@ Stirling-PDF comes in two different JAR files:
 
 **Stirling-PDF.jar** (Full Package - Recommended):
 - Bundles frontend UI + backend server in one file
-- Complete standalone web application
-- Best for most server deployments
+- Complete standalone application - download and run
 - Download: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar)
 
-**Stirling-PDF-server.jar** (Backend Only):
+**Stirling-PDF-server.jar** (Backend Only - **Advanced**):
 - Backend server only (no bundled UI)
-- For API access, desktop app, or external UI
-- Best for split deployments or custom frontends
+- For API access, desktop app, or when hosting the frontend separately
 - Download: [Stirling-PDF-server.jar](https://files.stirlingpdf.com/Stirling-PDF-server.jar)
 
 **Note:** Login/authentication is enabled by default. You can disable it by setting `SECURITY_ENABLELOGIN=false` as an environment variable. See [FAQ Q11](../FAQ.md#q11-how-do-i-disable-loginauthentication) for details.

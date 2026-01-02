@@ -61,15 +61,12 @@ Stirling-PDF comes in two different JAR files:
 **Stirling-PDF.jar** (Full Package - Recommended):
 - Download: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar)
 - Bundles frontend UI + backend server in one file
-- Complete standalone web application
-- Access via browser at `http://localhost:8080`
-- Best for most server deployments
+- Complete standalone application - download and run
 
-**Stirling-PDF-server.jar** (Backend Only):
+**Stirling-PDF-server.jar** (Backend Only - **Advanced**):
 - Download: [Stirling-PDF-server.jar](https://files.stirlingpdf.com/Stirling-PDF-server.jar)
 - Backend server only (no bundled UI)
-- For API access, desktop app, or external UI
-- Best for split deployments or custom frontends
+- For API access, desktop app, or when hosting the frontend separately
 
 **Required:** [Java JDK 21](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe) - Server versions need Java installed
 

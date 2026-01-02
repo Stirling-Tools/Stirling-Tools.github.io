@@ -49,19 +49,14 @@ Uploads go to the server or desktop instance you're using, not to Stirling serve
 
 ### Q10: What is the difference between Stirling-PDF.jar and Stirling-PDF-server.jar?
 
-Stirling-PDF comes in two different JAR files depending on your deployment needs:
-
 **Stirling-PDF.jar** (Full Package):
 - Bundles the frontend user interface inside the JAR along with the backend server
-- Complete standalone application
-- Access via web browser at `http://localhost:8080`
-- Best for most users and standard deployments
+- Complete standalone application - download and run
+- Use this for standard deployments
 
-**Stirling-PDF-server.jar** (Backend Only):
-- Contains only the backend server
-- No bundled frontend UI
-- Designed for API access, desktop app integration, or external UI hosted elsewhere
-- Best for split deployments, microservices, or custom frontends
+**Stirling-PDF-server.jar** (Backend Only - **Advanced**):
+- Contains only the backend server (no bundled frontend UI)
+- Use this for API access, desktop app integration, or when hosting the frontend separately
 
 Both JAR files include the same backend functionality. The main difference is whether the frontend is bundled with the backend or needs to be hosted separately.
 
