@@ -127,11 +127,16 @@ premium:
 
 For 100% offline air-gapped environments (Enterprise only), you can request a certificate file:
 
-```yaml
-premium:
-  key: file:configs/cert.crt
-  enabled: true
-```
+  1. Contact support to receive your `.crt` or `.lic` certificate file
+  2. Place the certificate in your config folder (e.g., `configs/cert.crt`)
+  3. Use the `file:` prefix to specify the certificate path:
+
+  ```yaml
+  premium:
+    key: file:configs/cert.crt
+    enabled: true
+  ```
+
 
 ## Managing Your Subscription
 
