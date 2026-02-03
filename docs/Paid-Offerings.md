@@ -129,7 +129,7 @@ For 100% offline air-gapped environments (Enterprise only), you can request a ce
 
 ```yaml
 premium:
-  key: file:config/cert.crt
+  key: file:configs/cert.crt
   enabled: true
 ```
 
