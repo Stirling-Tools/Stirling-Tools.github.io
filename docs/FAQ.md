@@ -47,22 +47,32 @@ No, we track no data without your explicit consent. You can see how, when, and w
 
 Uploads go to the server or desktop instance you're using, not to Stirling servers. The macOS/Windows desktop apps process files locally—even when you pick the Stirling Cloud sign-in today—so your PDFs stay on your device unless you point the app to a remote self-hosted server. Planned SaaS-assisted features (for desktop app) will be opt-in when they arrive.
 
-### Q10: What is the difference between Stirling-PDF.jar and Stirling-PDF-server.jar?
+### Q10: What are the different JAR files and which should I use?
 
-**Stirling-PDF.jar** (Full Package):
-- Bundles the frontend user interface inside the JAR along with the backend server
-- Complete standalone application - download and run
-- Use this for standard deployments
+Stirling-PDF comes in three different JAR files:
+
+**Stirling-PDF-with-login.jar** (Recommended - Full Features):
+- Bundles frontend UI + backend server
+- **Includes authentication and additional features** - requires user login
+- **Recommended for all users** - personal, shared, or enterprise deployments
+
+**Stirling-PDF.jar** (Plain JAR - Basic Features):
+- Bundles frontend UI + backend server
+- **Basic version** - no authentication, core features only
+- Only use if you require no login at all and don't mind missing certain features
 
 **Stirling-PDF-server.jar** (Backend Only - **Advanced**):
-- Contains only the backend server (no bundled frontend UI)
-- Use this for API access, desktop app integration, or when hosting the frontend separately
+- Backend server only (no bundled frontend UI)
+- **No authentication** - API access only
+- Use for API access, desktop app backend, or custom frontend
 
-Both JAR files include the same backend functionality. The main difference is whether the frontend is bundled with the backend or needs to be hosted separately.
+### Q11: How do I enable or disable authentication?
 
-### Q11: How do I disable login/authentication?
+**Default JAR (Stirling-PDF.jar)**: Authentication is **not available** (security module not included at build time).
 
-Authentication is enabled by default in Stirling-PDF. To disable it:
+**With-Login JAR (Stirling-PDF-with-login.jar)**: Authentication is **enabled by default**.
+
+To disable authentication in the with-login version:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">

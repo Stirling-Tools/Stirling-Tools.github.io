@@ -63,7 +63,13 @@ system:
 
 ### Authentication
 
-Enable user login:
+**Note:** Authentication and additional features are included by default in:
+- **Docker**: All images except ultra-lite (authentication is enabled by default)
+- **JAR**: [Stirling-PDF-with-login.jar](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar) **(Recommended)**
+
+The plain [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar) does not include authentication or additional features.
+
+Configure user login:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
@@ -85,6 +91,8 @@ Enable user login:
 </Tabs>
 
 Default credentials: `admin` / `stirling` (change immediately after first login)
+
+For more details, see [System and Security Configuration](./System%20and%20Security.md).
 
 ### Language & Localization
 
