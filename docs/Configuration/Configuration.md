@@ -4,6 +4,8 @@ slug: /Configuration
 title: Configuration Guide
 description: Configure Stirling-PDF using environment variables, settings files, or in-app settings
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Configuration Guide
 
@@ -61,21 +63,54 @@ system:
 
 ### Authentication
 
-Enable user login:
-```bash
-SECURITY_ENABLELOGIN=true
-SECURITY_INITIALLOGIN_USERNAME=admin
-SECURITY_INITIALLOGIN_PASSWORD=changeme123
-```
+**Note:** Authentication and additional features are included by default in:
+- **Docker**: All images except ultra-lite (authentication is enabled by default)
+- **JAR**: [Stirling-PDF-with-login.jar](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar) **(Recommended)**
+
+The plain [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar) does not include authentication or additional features.
+
+Configure user login:
+
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    security:
+      enableLogin: true
+      initialLogin:
+        username: admin
+        password: changeme123
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    SECURITY_ENABLELOGIN=true
+    SECURITY_INITIALLOGIN_USERNAME=admin
+    SECURITY_INITIALLOGIN_PASSWORD=changeme123
+    ```
+  </TabItem>
+</Tabs>
 
 Default credentials: `admin` / `stirling` (change immediately after first login)
 
+For more details, see [System and Security Configuration](./System%20and%20Security.md).
+
 ### Language & Localization
 
-```bash
-LANGS=en_GB                    # Available languages
-SYSTEM_DEFAULTLOCALE=en-GB     # Default language
-```
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    langs: en_GB
+    system:
+      defaultLocale: en-GB
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    LANGS=en_GB                    # Available languages
+    SYSTEM_DEFAULTLOCALE=en-GB     # Default language
+    ```
+  </TabItem>
+</Tabs>
 
 **How language selection works:**
 
@@ -111,11 +146,26 @@ MODE=BOTH      # Options: BOTH, FRONTEND, BACKEND
 
 ### File Upload Limits
 
-```bash
-SYSTEM_MAXFILESIZE=2000        # MB
-SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=2000MB
-SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=2000MB
-```
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    system:
+      maxFileSize: 2000  # MB
+    spring:
+      servlet:
+        multipart:
+          max-file-size: 2000MB
+          max-request-size: 2000MB
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    SYSTEM_MAXFILESIZE=2000        # MB
+    SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=2000MB
+    SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=2000MB
+    ```
+  </TabItem>
+</Tabs>
 
 ### Memory Management
 

@@ -10,17 +10,26 @@ Stirling PDF allows customization of system and security settings. For security 
 
 ## Basic Security Settings
 
-- `enableLogin`: Enables or disables the login functionality
+- `enableLogin`: Enables or disables the login functionality (only available in Stirling-PDF-with-login.jar or when `DISABLE_ADDITIONAL_FEATURES=false`)
 - `csrfDisabled`: Set to 'true' to disable CSRF protection (not recommended for production)
 - `defaultLocale`: Set the default language (e.g. 'de-DE', 'fr-FR', etc)
 - `googlevisibility`: 'true' to allow Google visibility (via robots.txt), 'false' to disallow
 
 ## Authentication Setup
 
+**Important:** Authentication and additional features are included by default in:
+- **Docker**: All images except ultra-lite (authentication is **enabled by default**)
+- **JAR files**: Use [Stirling-PDF-with-login.jar](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar) **(Recommended)**
+
+**Not included in:**
+- **Docker ultra-lite**: Minimal build without authentication (set `DISABLE_ADDITIONAL_FEATURES=false` to enable)
+- **Plain JAR**: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar) - Basic build without authentication or additional features
+
 ### Prerequisites
 1. Ensure the `/configs` directory is mounted as a volume in Docker for persistence across updates
-2. For Docker users: Set `DISABLE_ADDITIONAL_FEATURES=false` in environment variables
-3. Enable login either via `settings.yml` or set `SECURITY_ENABLELOGIN=true`
+2. Use the appropriate build:
+   - **JAR**: Download Stirling-PDF-with-login.jar
+   - **Docker**: Set `DISABLE_ADDITIONAL_FEATURES=false` in environment variables
 
 ### Initial Login Credentials
 - Default Username: `admin`
@@ -56,6 +65,71 @@ When using the API:
   X-API-KEY: your-api-key-here
   ```
 
+## Running Without Authentication
+
+If you need to run without authentication (note: this also disables additional features), you have two options:
+
+### Option 1: Disable Login in With-Login Version (Recommended)
+
+Disable authentication while keeping additional features:
+
+
+
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    security:
+      enableLogin: false
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    SECURITY_ENABLELOGIN=false
+    ```
+  </TabItem>
+  <TabItem value="docker-run" label="Docker Run">
+    ```bash
+    docker run -d \
+      -p 8080:8080 \
+      -e SECURITY_ENABLELOGIN=false \
+      -e DISABLE_ADDITIONAL_FEATURES=false \
+      stirlingtools/stirling-pdf:latest
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        image: stirlingtools/stirling-pdf:latest
+        environment:
+          SECURITY_ENABLELOGIN: false
+          DISABLE_ADDITIONAL_FEATURES: false
+    ```
+  </TabItem>
+  <TabItem value="jar-property" label="JAR (Java Property)">
+    ```bash
+    java -jar Stirling-PDF-with-login.jar -DSECURITY_ENABLELOGIN=false
+    ```
+  </TabItem>
+  <TabItem value="jar-env" label="JAR (Environment Variable)">
+    ```bash
+    export SECURITY_ENABLELOGIN=false
+    java -jar Stirling-PDF-with-login.jar
+    ```
+  </TabItem>
+</Tabs>
+
+### Option 2: Use Open Source JAR
+
+Use [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar) which has no authentication (note: also excludes additional features):
+
+```bash
+java -jar Stirling-PDF.jar
+```
+
+### Recommendation
+
+**We recommend Stirling-PDF-with-login.jar for all deployments** because it includes additional features beyond just authentication. You can always disable authentication if needed while keeping the extra functionality.
 
 ---
 
@@ -377,7 +451,7 @@ customFiles/
   <TabItem value="settings" label="Settings File">
     ```yaml
     security:
-      enableLogin: false # set to 'true' to enable login
+      enableLogin: true  # Only works with Stirling-PDF-with-login.jar or DISABLE_ADDITIONAL_FEATURES=false
       csrfDisabled: true
       jwt:
         persistence: true

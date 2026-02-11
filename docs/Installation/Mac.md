@@ -101,9 +101,31 @@ brew install openjdk@21
 export PATH="/usr/local/opt/openjdk@21/bin:$PATH"
 ```
 
+### JAR Downloads
+
+Stirling-PDF comes in three different JAR files:
+
+**Stirling-PDF-with-login.jar** (Recommended - Full Features):
+- Download: [Stirling-PDF-with-login.jar](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)
+- Bundles frontend UI + backend server in one file
+- **Includes authentication and additional features** - requires user login (default credentials: `admin` / `stirling`)
+- **Recommended for all users** - personal, shared, or enterprise deployments
+
+**Stirling-PDF.jar** (Plain JAR - Basic Features):
+- Download: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar)
+- Bundles frontend UI + backend server in one file
+- **Basic version** - no authentication, core features only
+- Only use if you require no login at all and don't mind missing certain features
+
+**Stirling-PDF-server.jar** (Backend Only - **Advanced**):
+- Download: [Stirling-PDF-server.jar](https://files.stirlingpdf.com/Stirling-PDF-server.jar)
+- Backend server only (no bundled UI)
+- **No authentication** - API access only
+- For desktop app backend, custom frontend, or API integrations
+
 ### Running the Server
 
-1. **Download the JAR file**: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar)
+1. **Download your preferred JAR file** (see above)
 
 2. **Open Terminal** and navigate to the download folder:
    ```bash

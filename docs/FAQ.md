@@ -2,6 +2,9 @@
 sidebar_position: 8
 title: FAQ
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Frequently Asked Questions
 
 ### Q1: Why are .htm files being downloaded when I use the application?
@@ -43,4 +46,67 @@ No, we track no data without your explicit consent. You can see how, when, and w
 ### Q9: When I upload a file, where is it processed?
 
 Uploads go to the server or desktop instance you're using, not to Stirling servers. The macOS/Windows desktop apps process files locally—even when you pick the Stirling Cloud sign-in today—so your PDFs stay on your device unless you point the app to a remote self-hosted server. Planned SaaS-assisted features (for desktop app) will be opt-in when they arrive.
+
+### Q10: What are the different JAR files and which should I use?
+
+Stirling-PDF comes in three different JAR files:
+
+**Stirling-PDF-with-login.jar** (Recommended - Full Features):
+- Bundles frontend UI + backend server
+- **Includes authentication and additional features** - requires user login
+- **Recommended for all users** - personal, shared, or enterprise deployments
+
+**Stirling-PDF.jar** (Plain JAR - Basic Features):
+- Bundles frontend UI + backend server
+- **Basic version** - no authentication, core features only
+- Only use if you require no login at all and don't mind missing certain features
+
+**Stirling-PDF-server.jar** (Backend Only - **Advanced**):
+- Backend server only (no bundled frontend UI)
+- **No authentication** - API access only
+- Use for API access, desktop app backend, or custom frontend
+
+### Q11: How do I enable or disable authentication?
+
+**Default JAR (Stirling-PDF.jar)**: Authentication is **not available** (security module not included at build time).
+
+**With-Login JAR (Stirling-PDF-with-login.jar)**: Authentication is **enabled by default**.
+
+To disable authentication in the with-login version:
+
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    security:
+      enableLogin: false
+    ```
+  </TabItem>
+  <TabItem value="docker-run" label="Docker Run">
+    ```bash
+    docker run -d \
+      -p 8080:8080 \
+      -e SECURITY_ENABLELOGIN=false \
+      stirlingtools/stirling-pdf:latest
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    environment:
+      SECURITY_ENABLELOGIN: false
+    ```
+  </TabItem>
+  <TabItem value="jar-property" label="JAR (Java Property)">
+    ```bash
+    java -jar Stirling-PDF.jar -DSECURITY_ENABLELOGIN=false
+    ```
+  </TabItem>
+  <TabItem value="jar-env" label="JAR (Environment Variable)">
+    ```bash
+    export SECURITY_ENABLELOGIN=false
+    java -jar Stirling-PDF.jar
+    ```
+  </TabItem>
+</Tabs>
+
+For more details, see the [System and Security Configuration](./Configuration/System%20and%20Security.md#disabling-login) documentation.
 

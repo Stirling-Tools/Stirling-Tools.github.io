@@ -56,23 +56,36 @@ Want to host Stirling-PDF on a Windows server for multiple users? Use the server
 
 ### Server Downloads
 
-**Without Login (Open Access):**
-- Download: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar)
-- Anyone on your network can access it
-- No user accounts needed
+Stirling-PDF comes in three different JAR files:
 
-**With Login (User Management):**
+**Stirling-PDF-with-login.jar** (Recommended - Full Features):
 - Download: [Stirling-PDF-with-login.jar](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)
-- Requires user accounts to access
-- Better for shared/business environments
+- Bundles frontend UI + backend server in one file
+- **Includes authentication and additional features** - requires user login (default credentials: `admin` / `stirling`)
+- **Recommended for all users** - personal, shared, or enterprise deployments
+
+**Stirling-PDF.jar** (Plain JAR - Basic Features):
+- Download: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar)
+- Bundles frontend UI + backend server in one file
+- **Basic version** - no authentication, core features only
+- Only use if you require no login at all and don't mind missing certain features
+
+**Stirling-PDF-server.jar** (Backend Only - **Advanced**):
+- Download: [Stirling-PDF-server.jar](https://files.stirlingpdf.com/Stirling-PDF-server.jar)
+- Backend server only (no bundled UI)
+- **No authentication** - API access only
+- For desktop app backend, custom frontend, or API integrations
 
 **Required:** [Java JDK 21](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe) - Server versions need Java installed
 
 ### Server Installation Steps
 
 1. **Install Java JDK 21** from the link above
-2. **Download** your preferred server version
-3. **Run the .exe file**
+2. **Download** your preferred JAR file
+3. **Run the JAR file:**
+   ```bash
+   java -jar Stirling-PDF.jar
+   ```
 4. **Access** via browser at `http://localhost:8080`
 5. **Share the URL** with users on your network (e.g., `http://your-server-ip:8080`)
 
