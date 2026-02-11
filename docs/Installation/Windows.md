@@ -64,7 +64,7 @@ The Windows desktop MSI installer supports silent/headless installation with cus
 **Example Installation Command:**
 
 ```batch
-msiexec /i "Stirling-PDF-windows-x86_64.msi" /qn STIRLING_SERVER_URL="http://192.168.1.53:2357/" STIRLING_LOCK_CONNECTION=1
+msiexec /i "Stirling-PDF-windows-x86_64.msi" /qn STIRLING_SERVER_URL="http://192.168.1.53:2357" STIRLING_LOCK_CONNECTION=1
 ```
 
 **Command Breakdown:**
@@ -74,11 +74,27 @@ msiexec /i "Stirling-PDF-windows-x86_64.msi" /qn STIRLING_SERVER_URL="http://192
 - `STIRLING_SERVER_URL` - Automatically sets the server URL on first launch
 - `STIRLING_LOCK_CONNECTION=1` - Locks the connection to the specified server (users cannot change it)
 
+**Additional Parameters:**
+
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| `INSTALLDIR` | Custom installation directory | `INSTALLDIR="C:\CustomPath\Stirling-PDF"` |
+| `ALLUSERS` | Install for all users (requires admin).<br/>`1` = all users, `0` or omit = current user only | `ALLUSERS=1` |
+
+**Technical Details:**
+
+- **Default Install Location**: `C:\Program Files\Stirling-PDF`
+- **Settings Storage**: `%APPDATA%\stirling.pdf.dev\connection.json` (per-user settings)
+- **Provisioning File**:
+  - Per-user install: `%APPDATA%\stirling.pdf.dev\stirling-provisioning.json`
+  - All-users install: `%PROGRAMDATA%\Stirling-PDF\stirling-provisioning.json`
+- **URL Format**: Must include protocol (`http://` or `https://`), trailing slash is optional
+
 **Notes:**
 - The MSI installer is available in the [releases](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest)
 - When `STIRLING_LOCK_CONNECTION=1` is set, users cannot modify the server URL in the application settings
-- Server URL should include the protocol (`http://` or `https://`) and trailing slash
 - For unattended installations without parameters, omit the custom properties
+- System-wide provisioning files (`%PROGRAMDATA%`) are not deleted after being applied, allowing reinstallation with same settings
 
 ## Server Version (For Hosting and Sharing)
 
