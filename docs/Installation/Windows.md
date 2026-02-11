@@ -50,6 +50,36 @@ Stirling PDF for Windows comes in two versions: a **Desktop Application** for pe
 - Unlimited file storage (not limited by browser)
 - System tray icon for quick access
 
+### Automated Installation (MSI Installer)
+
+The Windows desktop MSI installer supports silent/headless installation with custom parameters, ideal for IT deployments, deployment scripts (SCCM, Intune, Group Policy), or enforcing connections to self-hosted servers.
+
+**Available Parameters:**
+
+| Parameter | Description | Example Value |
+|-----------|-------------|---------------|
+| `STIRLING_SERVER_URL` | Pre-configure the server URL that the desktop app connects to | `http://192.168.1.53:2357/` |
+| `STIRLING_LOCK_CONNECTION` | Lock the connection mode to prevent users from changing server settings.<br/>Set to `1` to enforce self-hosted server only, preventing accidental connections to external servers. | `1` (locked) or `0` (unlocked) |
+
+**Example Installation Command:**
+
+```batch
+msiexec /i "Stirling-PDF-windows-x86_64.msi" /qn STIRLING_SERVER_URL="http://192.168.1.53:2357/" STIRLING_LOCK_CONNECTION=1
+```
+
+**Command Breakdown:**
+- `msiexec` - Windows Installer command-line tool (included with all Windows installations) for installing, modifying, and performing operations on MSI packages
+- `/i` - Install the MSI package
+- `/qn` - Run silently with no user interface (quiet mode, no UI)
+- `STIRLING_SERVER_URL` - Automatically sets the server URL on first launch
+- `STIRLING_LOCK_CONNECTION=1` - Locks the connection to the specified server (users cannot change it)
+
+**Notes:**
+- The MSI installer is available in the [releases](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest)
+- When `STIRLING_LOCK_CONNECTION=1` is set, users cannot modify the server URL in the application settings
+- Server URL should include the protocol (`http://` or `https://`) and trailing slash
+- For unattended installations without parameters, omit the custom properties
+
 ## Server Version (For Hosting and Sharing)
 
 Want to host Stirling-PDF on a Windows server for multiple users? Use the server version.
