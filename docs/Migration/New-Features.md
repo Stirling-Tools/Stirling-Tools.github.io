@@ -87,7 +87,7 @@ Original.pdf → [Compress] → v1 → [Add Pages] → v2 → [Watermark] → v3
 
 ---
 
-## 🖥️ Desktop Applications (Tauri)
+## 🖥️ Desktop Applications
 
 **NEW:** Native desktop apps for Windows, Mac, and Linux.
 
@@ -96,7 +96,7 @@ Original.pdf → [Compress] → v1 → [Add Pages] → v2 → [Watermark] → v3
 - **Lightning Fast:** 0.3 second startup time
 - **Native Integration:** "Open with Stirling-PDF" in file explorer
 - **System Default:** Set as default PDF viewer
-- **Offline Capable:** Full functionality without server
+- **Sign in with Stirling Cloud or self-hosted server** - Choose your connection on launch
 - **Resource Efficient:** Uses ~50MB RAM vs browser ~200MB
 
 ### Platform Support
@@ -105,7 +105,7 @@ Original.pdf → [Compress] → v1 → [Add Pages] → v2 → [Watermark] → v3
 |----------|--------|----------|
 | **Windows** | `.exe` installer | Context menu integration |
 | **macOS** | `.dmg` | Dock integration |
-| **Linux** | `.AppImage`, `.deb` | Desktop file integration |
+| **Linux** | `.deb` | Desktop file integration |
 
 ### Key Differences from Web
 
@@ -124,10 +124,13 @@ After installation:
 1. Right-click any PDF in file explorer
 2. Select "Open with Stirling-PDF"
 3. PDF opens directly in app
-4. Process immediately
+4. Sign in (if needed)
+5. Process immediately
 
 **Learn More:**
-- [Installation Guide](../Installation/Windows.md)
+- [Windows Installation](../Installation/Windows.md)
+- [Mac Installation](../Installation/Mac.md)
+- [Linux Installation](../Installation/Unix.md)
 
 ---
 

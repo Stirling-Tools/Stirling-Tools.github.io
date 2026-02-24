@@ -352,9 +352,18 @@ premium:
     SSOAutoLogin: true
 ```
 
+**Auto-login Activation Requirements:**
+
+Auto-login only triggers when **ALL** of the following conditions are met:
+
+1. `ssoAutoLogin` is enabled (as configured above)
+2. `loginMethod` is NOT `'all'` and NOT `'normal'` (i.e., SSO-only mode required)
+3. Exactly one SAML provider is configured
+
 **Behavior:**
-- Users accessing Stirling-PDF are immediately redirected to IdP
-- After 5 failed attempts (configurable via `security.loginAttemptCount`), auto-redirect is disabled
+- When all conditions are met: Users are automatically redirected to IdP
+- When conditions are not met: Standard login page is displayed
+- After 5 failed login attempts (configurable via `security.loginAttemptCount`), auto-redirect is disabled
 - Users can still manually access `/login` for form login if `loginMethod: all`
 
 ## Troubleshooting
