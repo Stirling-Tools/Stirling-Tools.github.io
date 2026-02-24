@@ -15,7 +15,8 @@ Stirling PDF for Windows comes in two versions: a **Desktop Application** for pe
 
 - ✅ **Native Windows application** - Feels like a built-in Windows program
 - ✅ **Open PDFs directly** - Double-click any PDF to open in Stirling-PDF
-- ✅ **Works completely offline** - No internet required after installation
+- ✅ **Sign in to start** - Choose Stirling Cloud or your self-hosted server on first launch (required before using tools)
+- ✅ **Processes files locally after sign-in** - All your PDF processing stays on your device
 - ✅ **All features included** - Every PDF tool available
 - ✅ **Automatic updates** - Stay current with latest features
 - ✅ **Better performance** - Optimized for Windows
@@ -26,7 +27,22 @@ Stirling PDF for Windows comes in two versions: a **Desktop Application** for pe
 1. **Download**: [Stirling-PDF Desktop Installer](https://files.stirlingpdf.com/win-installer.exe)
 2. **Run the installer** - Follow the prompts (installs to `C:\Program Files\Stirling-PDF`)
 3. **Launch from Start Menu** - Search for "Stirling-PDF"
-4. **Start working with PDFs!**
+4. **Sign in** - Choose how to connect (see [Choosing your connection](#choosing-your-connection) below)
+5. **Start working with PDFs!**
+
+### Choosing your connection
+
+On first launch, you'll be prompted to choose how to connect:
+
+**Stirling Cloud**
+- Sign in with your Stirling Cloud account
+- All PDF processing stays on your device — your files never leave your machine
+- Login is required because optional cloud assists for advanced tasks are planned for a future release
+
+**Self-hosted Server**
+- Enter the URL of your own Stirling-PDF server instance (e.g., `http://192.168.1.53:8080`)
+- Files are processed on your server, keeping data under your control
+- Useful for team deployments or running your own Stirling-PDF server
 
 ### Using the Desktop App
 

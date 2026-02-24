@@ -9,7 +9,7 @@ Stirling PDF for Mac is available as a **native desktop application** or can run
 
 ## Desktop Application (Recommended)
 
-**V2.0 brings a native Mac desktop experience** with all PDF tools available offline!
+Native Mac desktop app with all PDF tools available.
 
 ### What You Get
 

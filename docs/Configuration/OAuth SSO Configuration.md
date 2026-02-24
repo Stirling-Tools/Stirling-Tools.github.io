@@ -440,8 +440,17 @@ Automatically redirect users to OAuth login page, bypassing the Stirling-PDF log
   </TabItem>
 </Tabs>
 
+**Auto-login Activation Requirements:**
+
+Auto-login only triggers when **ALL** of the following conditions are met:
+
+1. `ssoAutoLogin` is enabled (as configured above)
+2. `loginMethod` is NOT `'all'` and NOT `'normal'` (i.e., SSO-only mode required)
+3. Exactly one OAuth provider is configured
+
 **Behavior:**
-- Users are automatically redirected to OAuth provider login
+- When all conditions are met: Users are automatically redirected to OAuth provider login
+- When conditions are not met: Standard login page is displayed
 - After 5 failed login attempts (configurable via `security.loginAttemptCount`), auto-redirect is disabled
 - Users can still access manual login by navigating directly to `/login`
 
