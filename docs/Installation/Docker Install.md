@@ -169,10 +169,10 @@ services:
     ports:
       - '8080:8080'
     volumes:
-      - ./stirling-data/tessdata:/usr/share/tessdata  # OCR language files
-      - ./stirling-data/configs:/configs               # Settings & database
-      - ./stirling-data/logs:/logs                     # Application logs
-      - ./stirling-data/pipeline:/pipeline             # Automation configs
+      - ./stirling-data/tessdata:/usr/share/tesseract-ocr # OCR language files
+      - ./stirling-data/configs:/configs                  # Settings & database
+      - ./stirling-data/logs:/logs                        # Application logs
+      - ./stirling-data/pipeline:/pipeline                # Automation configs
     environment:
       - SECURITY_ENABLELOGIN=false    # Set true to enable user authentication
       - LANGS=en_GB                   # Interface language
