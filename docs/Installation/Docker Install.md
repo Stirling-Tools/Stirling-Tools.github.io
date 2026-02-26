@@ -147,7 +147,7 @@ Want OCR, custom settings, and logging? Add more volumes:
 docker run -d \
   --name stirling-pdf \
   -p 8080:8080 \
-  -v ./stirling-data/tessdata:/usr/share/tessdata \
+  -v ./stirling-data/tessdata:/usr/share/tesseract-ocr \
   -v ./stirling-data/configs:/configs \
   -v ./stirling-data/logs:/logs \
   -v ./stirling-data/pipeline:/pipeline \
