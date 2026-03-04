@@ -907,7 +907,7 @@ Now that your system is secure and accessible, let's set up users.
 
 **Admin capabilities:**
 - ✅ Access all PDF tools
-- ✅ Manage users (create, delete, reset passwords)
+- ✅ Manage users (create, delete, reset other users' passwords)
 - ✅ Configure all settings
 - ✅ View usage statistics
 - ✅ Enable/disable features
@@ -1561,13 +1561,37 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 **Problem:** Can't log in as admin
 
 **Solutions:**
-1. Check logs: `docker logs stirling-pdf | grep ERROR`
-2. Verify `SECURITY_ENABLELOGIN=true` is set
-3. Reset admin password via command line:
+
+1. **Check basic settings first:**
+   - Verify `SECURITY_ENABLELOGIN=true` is set
+   - Check logs: `docker logs stirling-pdf | grep ERROR`
+   - Try the correct username (default is `admin`)
+
+2. **If another admin exists with valid login:**
+   - Have that admin navigate to **Settings → User Management** (or "People" menu)
+   - Find your username and click "Reset Password"
+   - Use the new password to log in
+   - You can change your password in Account Settings afterward
+
+3. **If you're the only admin and forgot your password:**
+   - You must delete the entire database file and its backups:
    ```bash
-   docker exec -it stirling-pdf sh
-   # Use built-in password reset tool
+   # Stop the container
+   docker-compose down
+
+   # Remove database files (adjust paths based on your volume mount)
+   rm /path/to/configs/stirling-pdf-DB-*.mv.db
+   rm /path/to/configs/stirling-pdf-DB-*.mv.db.trace.db
+   rm -rf /path/to/configs/backup/db/  # Remove all backup SQL files
+
+   # Restart - system will reinitialize with default credentials
+   docker-compose up -d
+
+   # Default credentials will be reset to:
+   # Username: admin
+   # Password: stirling
    ```
+   - **⚠️ Warning:** This will delete all user accounts, settings, and data. Only use as a last resort.
 
 ### Performance Issues
 
