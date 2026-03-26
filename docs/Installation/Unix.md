@@ -211,32 +211,41 @@ sudo wget https://files.stirlingpdf.com/Stirling-PDF.jar
 sudo chmod +x Stirling-PDF.jar
 ```
 
-### Step 5: Move jar to desired location
+### Step 4b: Clone the Stirling-PDF Repository
 
-You can move this file to a desired location, for example, `/opt/Stirling-PDF/`.
-You must also move the Script folder within the Stirling-PDF repo that you have downloaded to this directory.
-This folder is required for the python scripts using OpenCV.
+You need the repository to get the `scripts` folder, which contains Python scripts used by OpenCV for certain PDF operations.
+
+```bash
+git clone https://github.com/Stirling-Tools/Stirling-PDF.git
+```
+
+### Step 5: Move JAR and Scripts to Desired Location
+
+Move the downloaded JAR file and the `scripts` folder from the cloned repository to a desired location, for example, `/opt/Stirling-PDF/`.
+The `scripts` folder is required for the Python scripts using OpenCV.
 
 <Tabs groupId="user-type">
   <TabItem value="debian" label="Debian (Root)">
     ```bash
-    sudo mkdir /opt/Stirling-PDF &&\
-    sudo mv ./build/libs/Stirling-PDF-*.jar /opt/Stirling-PDF/ &&\
-    sudo mv scripts /opt/Stirling-PDF/ &&\
-    echo "Scripts installed."
+    sudo mkdir -p /opt/Stirling-PDF &&\
+    sudo mv Stirling-PDF.jar /opt/Stirling-PDF/ &&\
+    sudo cp -r Stirling-PDF/scripts /opt/Stirling-PDF/ &&\
+    echo "JAR and scripts installed."
     ```
   </TabItem>
   <TabItem value="fedora" label="Fedora (Root)">
     ```bash
-    sudo mkdir /opt/Stirling-PDF &&\
-    sudo mv ./build/libs/Stirling-PDF-*.jar /opt/Stirling-PDF/ &&\
-    sudo mv scripts /opt/Stirling-PDF/ &&\
-    echo "Scripts installed."
+    sudo mkdir -p /opt/Stirling-PDF &&\
+    sudo mv Stirling-PDF.jar /opt/Stirling-PDF/ &&\
+    sudo cp -r Stirling-PDF/scripts /opt/Stirling-PDF/ &&\
+    echo "JAR and scripts installed."
     ```
   </TabItem>
   <TabItem value="nix" label="Nix (Non-root)">
     ```bash
-    mv ./build/libs/Stirling-PDF-*.jar ./Stirling-PDF-*.jar
+    mkdir -p ~/Stirling-PDF &&\
+    mv Stirling-PDF.jar ~/Stirling-PDF/ &&\
+    cp -r Stirling-PDF/scripts ~/Stirling-PDF/
     ```
   </TabItem>
 </Tabs>
