@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 # Usage Monitoring
 > **Tier**: Enterprise
 
-Stirling-PDF provides robust usage monitoring capabilities through its API, allowing you to track application usage patterns and performance metrics.
+Stirling PDF provides robust usage monitoring capabilities through its API, allowing you to track application usage patterns and performance metrics.
 
 ## Non-Persistent Usage Monitoring API
 
@@ -44,13 +44,62 @@ Enterprise license holders can access the enhanced usage monitoring dashboard at
 
 This dashboard provides graphical representations and detailed tables of the usage data, similar to the Endpoint Statistics interface shown in the documentation.
 
+## Persistent Metrics
+
+> **Tier**: Enterprise
+
+By default, usage statistics are held in memory and lost on restart. Persistent metrics stores them in the database instead.
+
+Settings are under `premium.enterpriseFeatures.persistentMetrics`.
+
+| Setting | Default | Description |
+|---|---|---|
+| `enabled` | `false` | Enable persistent metrics storage |
+| `retentionDays` | (none) | Days to keep metrics data. Leave unset to keep indefinitely. |
+
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    premium:
+      enabled: true
+      key: your-enterprise-license-key
+      enterpriseFeatures:
+        persistentMetrics:
+          enabled: true
+          retentionDays: 180
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    PREMIUM_ENABLED=true
+    PREMIUM_KEY=your-enterprise-license-key
+    PREMIUM_ENTERPRISEFEATURES_PERSISTENTMETRICS_ENABLED=true
+    PREMIUM_ENTERPRISEFEATURES_PERSISTENTMETRICS_RETENTIONDAYS=180
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
+        environment:
+          PREMIUM_ENABLED: true
+          PREMIUM_KEY: your-enterprise-license-key
+          PREMIUM_ENTERPRISEFEATURES_PERSISTENTMETRICS_ENABLED: true
+          PREMIUM_ENTERPRISEFEATURES_PERSISTENTMETRICS_RETENTIONDAYS: 180
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
 ## Prometheus Monitoring Configuration
 
-Stirling-PDF supports application metrics monitoring using Prometheus. This feature allows you to track application performance, usage patterns, and health metrics.
+Stirling PDF supports application metrics monitoring using Prometheus. This feature allows you to track application performance, usage patterns, and health metrics.
 
 ### Prerequisites
 
-1. A valid Stirling-PDF enterprise license
+1. A valid Stirling PDF enterprise license
 2. Enterprise mode enabled in your configuration
 3. Running with additional features enabled (DISABLE_ADDITIONAL_FEATURES=false)
 
@@ -138,7 +187,7 @@ scrape_configs:
 
 ### Available Metrics
 
-With Prometheus integration enabled, Stirling-PDF exposes the following types of metrics:
+With Prometheus integration enabled, Stirling PDF exposes the following types of metrics:
 - **JVM metrics**: Memory usage, garbage collection, thread utilization
 - **System metrics**: CPU usage, file descriptors
 - **Application metrics**: Request rates, processing times

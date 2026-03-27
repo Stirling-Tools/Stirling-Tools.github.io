@@ -16,7 +16,7 @@ Folder scanning uses settings configured from our pipeline tool, it is advised y
 ### Configuring Processing with JSON Files
 
 - In each directory you want processed (e.g., `./pipeline/watchedFolders/officePrinter`), include a JSON configuration file.
-- This JSON file should specify how you want the files in the directory to be handled (e.g., what operations to perform on them). This can be made, configured, and downloaded from the Stirling-PDF Pipeline interface. For JSON creation guide please see [Pipeline setup](./Pipeline.md)
+- This JSON file should specify how you want the files in the directory to be handled (e.g., what operations to perform on them). This can be made, configured, and downloaded from the Stirling PDF Pipeline interface. For JSON creation guide please see [Pipeline setup](./Pipeline.md)
 
 ### Automatic Scanning and Processing
 

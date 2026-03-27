@@ -2,12 +2,12 @@
 sidebar_position: 0
 id: Overview
 title: Migrating from V1 to V2
-description: Complete guide for upgrading from Stirling-PDF V1 to V2
+description: Complete guide for upgrading from Stirling PDF V1 to V2
 ---
 
 # Migrating from V1 to V2
 
-Upgrading to Stirling-PDF V2 is straightforward for most users. This guide will walk you through the upgrade process.
+Upgrading to Stirling PDF V2 is straightforward for most users. This guide will walk you through the upgrade process.
 
 :::warning Backup Your Configuration
 Before upgrading, **back up your configuration folder** (usually mounted as `/configs`) to ensure you can restore your settings if needed:
@@ -211,4 +211,4 @@ If you encounter issues:
 4. Review [Settings Changes](./Settings-Changes.md) for any needed updates
 5. Check [Breaking Changes](./Breaking-Changes.md) if you have customizations
 
-**Welcome to V2!** Enjoy the faster, more modern Stirling-PDF experience.
+**Welcome to V2!** Enjoy the faster, more modern Stirling PDF experience.

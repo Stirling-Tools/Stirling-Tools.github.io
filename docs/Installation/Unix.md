@@ -182,9 +182,9 @@ Install the following software:
   </TabItem>
 </Tabs>
 
-### Step 4: Grab latest Stirling-PDF Jar
+### Step 4: Grab latest Stirling PDF Jar
 
-Stirling-PDF comes in three different JAR files:
+Stirling PDF comes in three different JAR files:
 
 **Stirling-PDF-with-login.jar** (Recommended - Full Features):
 - Download: [Stirling-PDF-with-login.jar](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)
@@ -296,7 +296,7 @@ If you plan to use the OCR (Optical Character Recognition) functionality, you mi
   </TabItem>
 </Tabs>
 
-### Step 7: Run Stirling-PDF
+### Step 7: Run Stirling PDF
 
 <Tabs groupId="unix-systems">
   <TabItem value="debian" label="Debian-based Systems">
@@ -366,7 +366,7 @@ SERVER_PORT="3000"
 
 **Note:** The file `custom_settings.yml` is created after the first application launch. To have it before that, you can create the directory and add the file yourself.
 
-### Optional: Run Stirling-PDF as a service (requires root).
+### Optional: Run Stirling PDF as a service (requires root).
 
 First create a .env file, where you can store environment variables:
 

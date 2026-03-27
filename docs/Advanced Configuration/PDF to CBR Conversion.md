@@ -1,14 +1,14 @@
-# Enabling PDF to CBR Conversion in Stirling-PDF
+# Enabling PDF to CBR Conversion in Stirling PDF
 
 ## Overview
 
-Stirling-PDF can convert PDF files into the Comic Book RAR (`.cbr`) format. This process relies on an external command-line utility, `rar`, which is not included by default. To enable this feature, you must first install the `rar` utility on your system and then make it accessible to Stirling-PDF.
+Stirling PDF can convert PDF files into the Comic Book RAR (`.cbr`) format. This process relies on an external command-line utility, `rar`, which is not included by default. To enable this feature, you must first install the `rar` utility on your system and then make it accessible to Stirling PDF.
 
 ### What is a CBR file?
 
 A CBR (Comic Book RAR) file is an archive used for distributing digital comic books. It is essentially a collection of sequential image files (e.g., JPEG, PNG) compressed into a single file using RAR compression.
 
-While CBR is a popular format, it requires the proprietary `rar` utility for creation. Its more common, open-standard alternative is CBZ (Comic Book ZIP), which is supported by Stirling-PDF out of the box.
+While CBR is a popular format, it requires the proprietary `rar` utility for creation. Its more common, open-standard alternative is CBZ (Comic Book ZIP), which is supported by Stirling PDF out of the box.
 
 -----
 
@@ -63,7 +63,7 @@ sudo yum install rar  # For CentOS 7
 1.  Download the "WinRAR and RAR command line tools" from [rarlab.com/download.htm](https://www.rarlab.com/download.htm).
 2.  Extract the downloaded archive.
 3.  Copy the `rar.exe` file to a folder that is included in your system's `PATH` environment variable. A common and reliable location is `C:\Windows\System32`.
-4.  If Stirling-PDF is already running, restart it to ensure it recognizes the updated `PATH`.
+4.  If Stirling PDF is already running, restart it to ensure it recognizes the updated `PATH`.
 
 ### macOS
 
@@ -75,13 +75,13 @@ brew install rar
 
 -----
 
-## Step 2: Configure Stirling-PDF
+## Step 2: Configure Stirling PDF
 
 After installing `rar` on your host system, follow the appropriate instructions for your environment.
 
 ### For Non-Docker Users
 
-If you installed Stirling-PDF directly on your operating system (without Docker), no further configuration is needed. As long as the `rar` command is available in your system's `PATH`, Stirling-PDF will automatically (after restart) detect and use it.
+If you installed Stirling PDF directly on your operating system (without Docker), no further configuration is needed. As long as the `rar` command is available in your system's `PATH`, Stirling PDF will automatically (after restart) detect and use it.
 
 ### For Docker Users
 
@@ -117,7 +117,7 @@ The host path must use forward slashes. For example, if you placed `rar.exe` in 
 
 ## Step 3: Verification
 
-Confirm that Stirling-PDF can access the `rar` command.
+Confirm that Stirling PDF can access the `rar` command.
 
 * **For Docker Users:** Execute a command inside the running container.
 
@@ -150,5 +150,5 @@ RAR is shareware. While it is free to use for personal, non-commercial purposes,
 For broader compatibility and to avoid proprietary software, using the **CBZ (Comic Book ZIP)** format is highly recommended.
 
 * CBZ uses the open and universal ZIP standard.
-* The **PDF to CBZ** tool is enabled in Stirling-PDF by default and requires no extra software.
+* The **PDF to CBZ** tool is enabled in Stirling PDF by default and requires no extra software.
 * CBZ is supported by virtually all modern comic book reader applications.

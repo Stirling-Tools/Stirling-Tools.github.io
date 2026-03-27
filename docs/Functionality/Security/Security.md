@@ -52,7 +52,7 @@ description: Security features for PDFs and deployment configurations
 
 ## Certificate Signature Validation
 
-Stirling-PDF provides enterprise-grade PDF signature validation with configurable trust chains.
+Stirling PDF provides enterprise-grade PDF signature validation with configurable trust chains.
 
 ### Trust Sources
 

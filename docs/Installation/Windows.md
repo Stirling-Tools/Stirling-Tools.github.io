@@ -14,7 +14,7 @@ Stirling PDF for Windows comes in two versions: a **Desktop Application** for pe
 ### What You Get
 
 - ✅ **Native Windows application** - Feels like a built-in Windows program
-- ✅ **Open PDFs directly** - Double-click any PDF to open in Stirling-PDF
+- ✅ **Open PDFs directly** - Double-click any PDF to open in Stirling PDF
 - ✅ **Sign in to start** - Choose Stirling Cloud or your self-hosted server on first launch (required before using tools)
 - ✅ **Processes files locally after sign-in** - All your PDF processing stays on your device
 - ✅ **All features included** - Every PDF tool available
@@ -24,9 +24,9 @@ Stirling PDF for Windows comes in two versions: a **Desktop Application** for pe
 
 ### Quick Installation
 
-1. **Download**: [Stirling-PDF Desktop Installer](https://files.stirlingpdf.com/win-installer.exe)
+1. **Download**: [Stirling PDF Desktop Installer](https://files.stirlingpdf.com/win-installer.exe)
 2. **Run the installer** - Follow the prompts (installs to `C:\Program Files\Stirling-PDF`)
-3. **Launch from Start Menu** - Search for "Stirling-PDF"
+3. **Launch from Start Menu** - Search for "Stirling PDF"
 4. **Sign in** - Choose how to connect (see [Choosing your connection](#choosing-your-connection) below)
 5. **Start working with PDFs!**
 
@@ -40,22 +40,22 @@ On first launch, you'll be prompted to choose how to connect:
 - Login is required because optional cloud assists for advanced tasks are planned for a future release
 
 **Self-hosted Server**
-- Enter the URL of your own Stirling-PDF server instance (e.g., `http://192.168.1.53:8080`)
+- Enter the URL of your own Stirling PDF server instance (e.g., `http://192.168.1.53:8080`)
 - Files are processed on your server, keeping data under your control
-- Useful for team deployments or running your own Stirling-PDF server
+- Useful for team deployments or running your own Stirling PDF server
 
 ### Using the Desktop App
 
 **Opening PDFs:**
-- **Double-click any PDF file** - Opens in Stirling-PDF
-- **Right-click → Open with → Stirling-PDF**
+- **Double-click any PDF file** - Opens in Stirling PDF
+- **Right-click → Open with → Stirling PDF**
 - **Drag and drop** files into the application
 - **File → Open** from the menu
 
-**Making Stirling-PDF your default PDF viewer:**
+**Making Stirling PDF your default PDF viewer:**
 1. Right-click any PDF file
 2. Select "Open with" → "Choose another app"
-3. Select "Stirling-PDF"
+3. Select "Stirling PDF"
 4. Check "Always use this app to open .pdf files"
 5. Click OK
 
@@ -114,11 +114,11 @@ msiexec /i "Stirling-PDF-windows-x86_64.msi" /qn STIRLING_SERVER_URL="http://192
 
 ## Server Version (For Hosting and Sharing)
 
-Want to host Stirling-PDF on a Windows server for multiple users? Use the server version.
+Want to host Stirling PDF on a Windows server for multiple users? Use the server version.
 
 ### Server Downloads
 
-Stirling-PDF comes in three different JAR files:
+Stirling PDF comes in three different JAR files:
 
 **Stirling-PDF-with-login.jar** (Recommended - Full Features):
 - Download: [Stirling-PDF-with-login.jar](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)

@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 # Google Drive File Picker
 > **Tier**: Server
 
-Stirling-PDF allows users to select Files for processing through tools via google drive.
+Stirling PDF allows users to select Files for processing through tools via google drive.
 
 ## Google Api Access
 To enable this features for your users, you must first set up your Google environment. This includes creating a Google Cloud project. Follow the **Setting up your environment** section of [this guide](https://developers.google.com/workspace/drive/picker/guides/overview#setup) to do so.

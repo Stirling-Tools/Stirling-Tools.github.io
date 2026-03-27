@@ -7,7 +7,7 @@ description: Sign and validate PDF certificates
 
 # Certificate Signing
 
-Stirling-PDF provides comprehensive PDF certificate signing and validation capabilities. Digitally sign PDFs with X.509 certificates and validate existing signatures against trusted certificate chains.
+Stirling PDF provides comprehensive PDF certificate signing and validation capabilities. Digitally sign PDFs with X.509 certificates and validate existing signatures against trusted certificate chains.
 
 ---
 
@@ -31,7 +31,7 @@ Stirling-PDF provides comprehensive PDF certificate signing and validation capab
 
 ### Methods
 
-#### 1. Sign with Stirling-PDF (Server Certificate)
+#### 1. Sign with Stirling PDF (Server Certificate)
 
 **Easiest option** - Use auto-generated server certificate.
 
@@ -50,7 +50,7 @@ Stirling-PDF provides comprehensive PDF certificate signing and validation capab
 **Steps:**
 1. Go to **Certificate Sign** tool
 2. Upload PDF
-3. Select "Sign with Stirling-PDF"
+3. Select "Sign with Stirling PDF"
 4. Configure signature appearance (optional):
    - Position on page
    - Size
@@ -225,7 +225,7 @@ Verify that:
 
 ### Trust Chains
 
-Stirling-PDF checks multiple trust sources:
+Stirling PDF checks multiple trust sources:
 
 #### 1. Server-Generated Certificates
 ```yaml
@@ -235,7 +235,7 @@ security:
       serverAsAnchor: true  # Trust server-generated certs
 ```
 
-**Use case:** Trust PDFs signed by your Stirling-PDF instance.
+**Use case:** Trust PDFs signed by your Stirling PDF instance.
 
 ---
 
@@ -666,7 +666,7 @@ curl -X POST http://stirling-pdf:8080/api/v1/security/validate-signature \
 
 ### Server certificate not generated
 
-**Symptom:** "Sign with Stirling-PDF" option not available.
+**Symptom:** "Sign with Stirling PDF" option not available.
 
 **Solutions:**
 1. Check configuration:
@@ -776,7 +776,7 @@ curl -X POST http://stirling-pdf:8080/api/v1/security/validate-signature \
 
 ## Legal Considerations
 
-**Disclaimer:** Stirling-PDF provides tools for PDF signing and validation. Legal validity depends on jurisdiction and use case.
+**Disclaimer:** Stirling PDF provides tools for PDF signing and validation. Legal validity depends on jurisdiction and use case.
 
 ### When Certificates Are Legally Binding
 
@@ -827,7 +827,7 @@ curl -X POST http://stirling-pdf:8080/api/v1/security/validate-signature \
 
 ## Summary
 
-**Stirling-PDF certificate signing provides:**
+**Stirling PDF certificate signing provides:**
 
 ✅ **Easy signing** - Server certificates work out-of-box
 ✅ **Custom certificates** - Use your own for legal documents

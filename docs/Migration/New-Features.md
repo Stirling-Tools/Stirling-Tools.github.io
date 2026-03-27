@@ -94,7 +94,7 @@ Original.pdf → [Compress] → v1 → [Add Pages] → v2 → [Watermark] → v3
 ### What's New
 
 - **Lightning Fast:** 0.3 second startup time
-- **Native Integration:** "Open with Stirling-PDF" in file explorer
+- **Native Integration:** "Open with Stirling PDF" in file explorer
 - **System Default:** Set as default PDF viewer
 - **Sign in with Stirling Cloud or self-hosted server** - Choose your connection on launch
 - **Resource Efficient:** Uses ~50MB RAM vs browser ~200MB
@@ -122,7 +122,7 @@ Original.pdf → [Compress] → v1 → [Add Pages] → v2 → [Watermark] → v3
 
 After installation:
 1. Right-click any PDF in file explorer
-2. Select "Open with Stirling-PDF"
+2. Select "Open with Stirling PDF"
 3. PDF opens directly in app
 4. Sign in (if needed)
 5. Process immediately
@@ -381,7 +381,7 @@ security:
 - **Customizable:** Configure organization name, validity period
 - **No Manual Setup:** Works out of the box
 - **Renewable:** Regenerate certificates as needed
-- **"Sign with Stirling-PDF" Feature:** Users can sign with server cert
+- **"Sign with Stirling PDF" Feature:** Users can sign with server cert
 
 ### Configuration
 
@@ -399,14 +399,14 @@ system:
 1. **First Startup:**
    - Server generates self-signed certificate
    - Stored in `configs/` directory
-   - Used for "Sign with Stirling-PDF" feature
+   - Used for "Sign with Stirling PDF" feature
 
 2. **Subsequent Startups:**
    - Uses existing certificate (unless `regenerateOnStartup: true`)
    - Certificate persists across restarts
 
 3. **User Signs PDF:**
-   - Selects "Sign with Stirling-PDF"
+   - Selects "Sign with Stirling PDF"
    - Server signs using generated certificate
    - Signature embedded in PDF
 

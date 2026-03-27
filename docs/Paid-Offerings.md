@@ -2,7 +2,7 @@
 sidebar_position: 5
 id: Paid-Offerings
 title: Paid Offerings
-description: Server and Enterprise paid plans for Stirling-PDF
+description: Server and Enterprise paid plans for Stirling PDF
 tags:
   - Enterprise
   - Server
@@ -10,9 +10,9 @@ tags:
   - Pricing
 
 ---
-# Stirling-PDF Paid Offerings
+# Stirling PDF Paid Offerings
 
-Stirling-PDF offers Server and Enterprise paid plans. These provide the same great software with added features, streamlined license management, and support options.
+Stirling PDF offers Server and Enterprise paid plans. These provide the same great software with added features, streamlined license management, and support options.
 
 ## Available Plans
 
@@ -51,7 +51,7 @@ Stirling-PDF offers Server and Enterprise paid plans. These provide the same gre
   - [Advanced SSO](./Configuration/Single%20Sign-On%20Configuration.md), OAuth2 and SAML with automated login handling
   - Custom automated metadata handling
   - Priority support tickets via support@stirlingpdf.com
-  - 1:1 meetings with the Stirling-PDF team (from registered email domain)
+  - 1:1 meetings with the Stirling PDF team (from registered email domain)
   - Priority feature enhancements
   - Prometheus endpoint for advanced usage monitoring
   - Usage Monitoring UI
@@ -123,7 +123,7 @@ premium:
 
 4. Replace the key with your license key
 5. Change `enabled` from `false` to `true`
-6. Restart Stirling-PDF
+6. Restart Stirling PDF
 
 For 100% offline air-gapped environments (Enterprise only), you can request a certificate file:
 
@@ -209,7 +209,7 @@ You can upgrade from Free → Server or Server → Enterprise at any time:
 
 ### Enterprise Support
 - Priority email support
-- 1:1 meetings with Stirling-PDF team
+- 1:1 meetings with Stirling PDF team
 - Dedicated account manager
 - SLA guarantees
 

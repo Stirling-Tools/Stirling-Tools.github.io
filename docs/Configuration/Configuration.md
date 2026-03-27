@@ -2,14 +2,14 @@
 sidebar_position: 0
 slug: /Configuration
 title: Configuration Guide
-description: Configure Stirling-PDF using environment variables, settings files, or in-app settings
+description: Configure Stirling PDF using environment variables, settings files, or in-app settings
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Configuration Guide
 
-Stirling-PDF can be configured in three ways, depending on your deployment and preferences.
+Stirling PDF can be configured in three ways, depending on your deployment and preferences.
 
 ## Configuration Methods
 
@@ -114,7 +114,7 @@ For more details, see [System and Security Configuration](./System%20and%20Secur
 
 **How language selection works:**
 
-Stirling-PDF determines the interface language using this priority order:
+Stirling PDF determines the interface language using this priority order:
 
 1. **User's manual selection** (highest priority)
    - When a user clicks the language globe icon and selects a language

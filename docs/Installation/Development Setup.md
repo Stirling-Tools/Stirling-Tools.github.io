@@ -4,9 +4,9 @@ id: Development Setup
 title: Development Setup Guide
 ---
 
-# Development Setup for Stirling-PDF
+# Development Setup for Stirling PDF
 
-This guide covers setting up a local development environment for Stirling-PDF, including both backend and frontend (V2.0+) development.
+This guide covers setting up a local development environment for Stirling PDF, including both backend and frontend (V2.0+) development.
 
 ## Prerequisites
 
@@ -50,7 +50,7 @@ The backend will start on `http://localhost:8080`
 
 #### Code Formatting
 
-Stirling-PDF uses Spotless for code formatting:
+Stirling PDF uses Spotless for code formatting:
 
 ```bash
 # Apply formatting (run before committing)
@@ -105,7 +105,7 @@ The frontend will start on `http://localhost:5173`
 
 ### 4. Desktop Application Development
 
-Stirling-PDF V2.0 uses Tauri for native desktop applications:
+Stirling PDF V2.0 uses Tauri for native desktop applications:
 
 ```bash
 # Navigate to frontend directory
@@ -198,7 +198,7 @@ See `ADDING_TOOLS.md` in the repository for detailed tool development guide.
 
 ### Testing Different Versions
 
-Stirling-PDF offers three Docker variants:
+Stirling PDF offers three Docker variants:
 - **Ultra-lite**: Basic PDF operations only
 - **Standard** (latest): Full feature set
 - **Fat** (latest-fat): Pre-downloaded dependencies for air-gapped environments

@@ -9,7 +9,7 @@ description: Reduce PDF file size while maintaining quality
 
 **Tool ID:** `compress-pdf`
 
-Reduce PDF file size while maintaining acceptable quality for your needs. Stirling-PDF's compression tool optimizes images, removes unnecessary data, and applies various compression techniques to significantly reduce file sizes.
+Reduce PDF file size while maintaining acceptable quality for your needs. Stirling PDF's compression tool optimizes images, removes unnecessary data, and applies various compression techniques to significantly reduce file sizes.
 
 ---
 
@@ -271,7 +271,7 @@ Compress multiple PDFs at once with consistent settings:
 
 ### Compression Methods
 
-Stirling-PDF uses multiple compression techniques:
+Stirling PDF uses multiple compression techniques:
 
 **Image Compression:**
 - JPEG compression for photos
@@ -357,7 +357,7 @@ See [API Documentation](../API.md) for complete endpoint reference.
 
 ## Summary
 
-Stirling-PDF's Compress tool provides:
+Stirling PDF's Compress tool provides:
 
 ✅ **Significant size reduction** - 10-90% smaller files
 ✅ **Quality control** - Choose your size/quality balance

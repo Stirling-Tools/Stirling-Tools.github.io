@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 # Custom Settings Configuration
 
-Stirling-PDF provides a `/configs/custom_settings.yml` file where users can configure additional settings beyond the standard configuration. This file follows standard YAML format and supports Spring Boot application properties, allowing you to customize the application without modifying core files.
+Stirling PDF provides a `/configs/custom_settings.yml` file where users can configure additional settings beyond the standard configuration. This file follows standard YAML format and supports Spring Boot application properties, allowing you to customize the application without modifying core files.
 
 ## Logging Configuration
 

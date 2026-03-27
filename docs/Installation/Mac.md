@@ -40,7 +40,7 @@ Native Mac desktop app with all PDF tools available.
 **2. Install the application:**
 
 1. Open the downloaded `.dmg` file
-2. Drag Stirling-PDF to your Applications folder
+2. Drag Stirling PDF to your Applications folder
 
 ![mac-installer.png](/img/mac-installer.png)
 
@@ -50,12 +50,12 @@ macOS will block the app on first launch because it's not from the App Store:
 
 ![mac-app-blocked.png](/img/mac-app-blocked.png)
 
-**To allow Stirling-PDF:**
+**To allow Stirling PDF:**
 1. Open **System Settings** → **Privacy & Security**
 2. Scroll down to the **Security** section
-3. Click **"Open Anyway"** next to the Stirling-PDF message
+3. Click **"Open Anyway"** next to the Stirling PDF message
 4. Enter your password if prompted
-5. Go back to Applications and launch Stirling-PDF again
+5. Go back to Applications and launch Stirling PDF again
 
 ![mac-security-allow.png](/img/mac-security-allow.png)
 
@@ -63,14 +63,14 @@ The app will now open normally every time!
 
 ### Using the Desktop App
 
-1. Launch Stirling-PDF
+1. Launch Stirling PDF
 2. Sign in with your Stirling Cloud account or enter the URL for your self-hosted server.
 3. After login, use the in-app interface to upload or drag-and-drop files into the window.
 
-**Making Stirling-PDF your default PDF viewer:**
+**Making Stirling PDF your default PDF viewer:**
 1. Right-click (or Control+click) any PDF file
 2. Select **"Get Info"**
-3. Under **"Open with"**, choose **Stirling-PDF**
+3. Under **"Open with"**, choose **Stirling PDF**
 4. Click **"Change All"** to apply to all PDFs
 5. Confirm when prompted
 
@@ -84,7 +84,7 @@ The app will now open normally every time!
 
 ## Server Version (For Hosting and Sharing)
 
-Want to host Stirling-PDF on a Mac server for multiple users? Use the JAR file version.
+Want to host Stirling PDF on a Mac server for multiple users? Use the JAR file version.
 
 ### Prerequisites
 
@@ -103,7 +103,7 @@ export PATH="/usr/local/opt/openjdk@21/bin:$PATH"
 
 ### JAR Downloads
 
-Stirling-PDF comes in three different JAR files:
+Stirling PDF comes in three different JAR files:
 
 **Stirling-PDF-with-login.jar** (Recommended - Full Features):
 - Download: [Stirling-PDF-with-login.jar](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar)
@@ -132,7 +132,7 @@ Stirling-PDF comes in three different JAR files:
    cd ~/Downloads  # Or wherever you saved the JAR
    ```
 
-3. **Run Stirling-PDF**:
+3. **Run Stirling PDF**:
    ```bash
    java -jar Stirling-PDF.jar
    ```

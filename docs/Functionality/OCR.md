@@ -9,7 +9,7 @@ description: Make scanned PDFs searchable and editable with OCR
 
 **Tool ID:** `ocr-pdf`
 
-Make scanned PDFs searchable and editable by recognizing text in images. Stirling-PDF's OCR tool uses Tesseract OCR engine to extract text from image-based PDFs and convert them into searchable, selectable documents.
+Make scanned PDFs searchable and editable by recognizing text in images. Stirling PDF's OCR tool uses Tesseract OCR engine to extract text from image-based PDFs and convert them into searchable, selectable documents.
 
 ---
 
@@ -39,7 +39,7 @@ OCR (Optical Character Recognition) is technology that recognizes text within im
 
 ## Language Support
 
-Stirling-PDF supports OCR in **100+ languages** including:
+Stirling PDF supports OCR in **100+ languages** including:
 
 ### Common Languages
 - **English** - eng
@@ -195,7 +195,7 @@ Improve OCR accuracy by preprocessing images:
 
 ### OCR Engine
 
-Stirling-PDF uses **Tesseract OCR**, an industry-standard open-source OCR engine originally developed by HP and now maintained by Google.
+Stirling PDF uses **Tesseract OCR**, an industry-standard open-source OCR engine originally developed by HP and now maintained by Google.
 
 **Key Features:**
 - Over 100 languages supported
@@ -225,7 +225,7 @@ OCR produces a **PDF with embedded text layer**:
 
 ### Installing Language Packs
 
-By default, Stirling-PDF includes common language packs. To add additional languages:
+By default, Stirling PDF includes common language packs. To add additional languages:
 
 **Docker:**
 ```dockerfile
@@ -318,7 +318,7 @@ See [API Documentation](../API.md) for complete endpoint reference.
 
 ## Summary
 
-Stirling-PDF's OCR tool provides:
+Stirling PDF's OCR tool provides:
 
 ✅ **100+ language support** - Recognize text in any language
 ✅ **Layout preservation** - Maintain original document formatting

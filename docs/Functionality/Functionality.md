@@ -8,7 +8,7 @@ description: Explore 60+ PDF tools for all your document needs
 
 # PDF Tools
 
-Stirling-PDF provides **60+ powerful PDF tools** organized by category. Find the tool you need below.
+Stirling PDF provides **60+ powerful PDF tools** organized by category. Find the tool you need below.
 
 ---
 

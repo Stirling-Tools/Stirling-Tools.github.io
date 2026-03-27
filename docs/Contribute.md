@@ -64,10 +64,6 @@ Translation files are located in `frontend/public/locales/`
 - Files are organized by feature (e.g., `common.json`, `tools.json`)
 - Use standard JSON format
 
-### Legacy Translations (Properties)
-For V1.5 and backend translations:
-- See [How To Add New Language guidelines](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/devGuide/HowToAddNewLanguage.md)
-
 ## Development Resources
 - **API Documentation**: Access at `/swagger-ui/index.html` on your local instance
 - **Developer Guide**: See `DeveloperGuide.md` in the repository

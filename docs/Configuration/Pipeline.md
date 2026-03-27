@@ -579,7 +579,7 @@ Create `config.json` in each watched folder:
 
 ## Summary
 
-Pipeline automation (Automate tool) transforms Stirling-PDF into a workflow engine:
+Pipeline automation (Automate tool) transforms Stirling PDF into a workflow engine:
 
 - 🔗 **Chain operations** - Combine multiple PDF tools sequentially
 - 💾 **Save workflows** - Reusable pipeline configurations

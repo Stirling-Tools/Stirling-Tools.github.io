@@ -9,7 +9,7 @@ description: Interactive PDF viewer with annotation tools for reading and markup
 
 **Tool ID:** `read`
 
-The Read & Annotate tool is Stirling-PDF V2's interactive PDF viewer and annotation system. Read PDFs directly in your browser while adding comments, highlights, drawings, and other markup - all without leaving the application.
+The Read & Annotate tool is Stirling PDF V2's interactive PDF viewer and annotation system. Read PDFs directly in your browser while adding comments, highlights, drawings, and other markup - all without leaving the application.
 
 :::tip V2.0 Feature
 Built with **[EmbedPDF](https://www.embedpdf.com/)**, an advanced open-source PDF viewer, the Read tool provides a fluid reading and annotation experience with full support for PDF standards.
@@ -352,7 +352,7 @@ Modify existing annotations:
 ## Compatibility
 
 ### Annotation Standards
-Stirling-PDF uses standard PDF annotation formats:
+Stirling PDF uses standard PDF annotation formats:
 - ✅ **Adobe Acrobat** - Full compatibility
 - ✅ **Foxit Reader** - All annotations supported
 - ✅ **PDF-XChange** - Complete support
@@ -407,7 +407,7 @@ Some advanced features may not work everywhere:
 ## Read Tool vs. Other Viewers
 
 ### vs. Adobe Acrobat Reader
-**Stirling-PDF Read:**
+**Stirling PDF Read:**
 - ✅ No installation needed (browser)
 - ✅ Integrated with other Stirling tools
 - ✅ Open source and free
@@ -422,7 +422,7 @@ Some advanced features may not work everywhere:
 - ❌ Paid features
 
 ### vs. Browser Default PDF Viewer
-**Stirling-PDF Read:**
+**Stirling PDF Read:**
 - ✅ Full annotation tools
 - ✅ Save annotations in PDF
 - ✅ Professional markup options
@@ -472,13 +472,13 @@ Some advanced features may not work everywhere:
 
 ## Summary
 
-The Read & Annotate tool transforms Stirling-PDF into a powerful PDF review platform:
+The Read & Annotate tool transforms Stirling PDF into a powerful PDF review platform:
 
 - 📖 **Full-featured viewer** - Professional reading experience
 - ✏️ **Complete annotation tools** - Highlights, comments, drawings, shapes
 - 💬 **Collaboration ready** - Standard format, multi-user support
 - 💾 **Save and share** - Annotated PDFs compatible everywhere
-- 🚀 **Integrated workflow** - Part of Stirling-PDF V2 ecosystem
+- 🚀 **Integrated workflow** - Part of Stirling PDF V2 ecosystem
 
 **Perfect for:** Document review, contract markup, student notes, design feedback, form filling, and collaborative editing.
 

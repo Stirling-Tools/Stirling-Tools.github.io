@@ -11,7 +11,7 @@ You can override static files (logos, images, favicons, etc.) by placing custom 
 
 ### How It Works
 
-Stirling-PDF checks for files in this order:
+Stirling PDF checks for files in this order:
 1. **First:** `customFiles/static/` (your custom files)
 2. **Fallback:** Built-in static files embedded in the application
 
@@ -118,7 +118,7 @@ If you have `logoStyle: modern` set, override files in `modern-logo/` instead!
 
 ### Example: Complete Branding Customization
 
-To fully rebrand Stirling-PDF with your company logo, override multiple variants:
+To fully rebrand Stirling PDF with your company logo, override multiple variants:
 
 ```bash
 customFiles/
@@ -155,7 +155,7 @@ Or via environment variable: `UI_LOGOSTYLE=classic`
 
 Files like `index.html`, JavaScript bundles, and CSS are **generated** by the build process from `frontend/src/`. To override these:
 
-1. Clone the Stirling-PDF repository
+1. Clone the Stirling PDF repository
 2. Make your changes to the React source code in `frontend/src/`
 3. Build the frontend: `npm run build` (from the `frontend/` directory)
 4. The built files appear in `frontend/dist/`
@@ -172,7 +172,7 @@ cp frontend/dist/index.html customFiles/static/index.html
 ---
 
 ## Defaulting Language
-Default language selection via the `SYSTEM_DEFAULTLOCALE` environment variable. Accepted values include `de-DE`, `fr-FR`, `ar-AR` and all other languages codes that are within Stirling-PDFs current list.
+Default language selection via the `SYSTEM_DEFAULTLOCALE` environment variable. Accepted values include `de-DE`, `fr-FR`, `ar-AR` and all other languages codes that are within Stirling PDFs current list.
 
 ## Google Search Visibility (robots.txt)
 Enable or disable search engine visibility with the `ALLOW_GOOGLE_VISIBILITY` variable.
