@@ -7,16 +7,16 @@ title: Fail2Ban Integration
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Fail2Ban Setup for Stirling-PDF
-This document provides instructions on how to set up Fail2Ban with Stirling-PDF to protect against unauthorized login attempts. (Note Stirling-PDF blocks IPs after a set retry count regardless of Fail2Ban, This configuration is only useful for users specifically wanting Fail2Ban configuration)
+# Fail2Ban Setup for Stirling PDF
+This document provides instructions on how to set up Fail2Ban with Stirling PDF to protect against unauthorized login attempts. (Note Stirling PDF blocks IPs after a set retry count regardless of Fail2Ban, This configuration is only useful for users specifically wanting Fail2Ban configuration)
 
-## How does Fail2Ban Work with Stirling-PDF
-Stirling-PDF logs failed authentication attempts to a log file which Fail2Ban monitors. When it detects multiple failed login attempts from the same IP address, Fail2Ban automatically blocks that IP address for a configured period of time.
+## How does Fail2Ban Work with Stirling PDF
+Stirling PDF logs failed authentication attempts to a log file which Fail2Ban monitors. When it detects multiple failed login attempts from the same IP address, Fail2Ban automatically blocks that IP address for a configured period of time.
 
 
 ## Prerequisites
 - Fail2Ban installed on your system
-- Access to Stirling-PDF log directory
+- Access to Stirling PDF log directory
 - Security settings configured:
 
 <Tabs groupId="config-methods">

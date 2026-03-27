@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 # OAuth 2.0 Single Sign-On Configuration
 > **Tier**: Server
 
-Stirling-PDF supports Single Sign-On (SSO) using OAuth 2.0 OpenID Connect (OIDC). This allows users to log in using accounts from external providers such as Google, GitHub, Keycloak, Authentik, and others.
+Stirling PDF supports Single Sign-On (SSO) using OAuth 2.0 OpenID Connect (OIDC). This allows users to log in using accounts from external providers such as Google, GitHub, Keycloak, Authentik, and others.
 
 > **Looking for SAML 2.0 SSO?** See [SAML SSO Configuration](./SAML%20SSO%20Configuration/SAML%20SSO%20Configuration.md) (Enterprise tier).
 
@@ -17,7 +17,7 @@ Stirling-PDF supports Single Sign-On (SSO) using OAuth 2.0 OpenID Connect (OIDC)
 
 Before configuring OAuth 2.0 SSO, ensure you have:
 
-- [ ] Stirling-PDF with login enabled (`security.enableLogin: true`)
+- [ ] Stirling PDF with login enabled (`security.enableLogin: true`)
 - [ ] Valid license for Professional tier or higher
 - [ ] An OAuth 2.0 provider account (Google, GitHub, Keycloak, etc.)
 - [ ] Registered OAuth application with your provider
@@ -79,7 +79,7 @@ Before enabling OAuth, create an initial admin account using one of these method
 </Tabs>
 
 **Option B: Create admin manually**
-1. Access Stirling-PDF with OAuth disabled
+1. Access Stirling PDF with OAuth disabled
 2. Create an admin user through the UI
 3. Then enable OAuth
 
@@ -317,7 +317,7 @@ https://your-domain.com/login/oauth2/code/authentik
 
 ### Step 5: Test OAuth Login and Promote User
 
-1. Restart Stirling-PDF
+1. Restart Stirling PDF
 2. Test OAuth login in an incognito/private browser window
 3. Verify you can log in with your OAuth provider
 4. Log in with your initial admin account (username/password)
@@ -402,7 +402,7 @@ oauth2:
 
 ### Backend URL Configuration
 
-If your Stirling-PDF backend is accessible at a different URL than the frontend, configure the backend URL:
+If your Stirling PDF backend is accessible at a different URL than the frontend, configure the backend URL:
 
 <Tabs groupId="config-method">
   <TabItem value="settings" label="settings.yml" default>
@@ -423,7 +423,7 @@ Verify the backend URL is correct by checking that `https://your-domain.com/api/
 ### Auto-Login Feature
 > **Tier**: Enterprise
 
-Automatically redirect users to OAuth login page, bypassing the Stirling-PDF login screen.
+Automatically redirect users to OAuth login page, bypassing the Stirling PDF login screen.
 
 <Tabs groupId="config-method">
   <TabItem value="settings" label="settings.yml" default>
@@ -474,7 +474,7 @@ Once OAuth is configured, users will see the SSO login button:
 **"Invalid issuer"**
 - Confirm issuer URL is correct
 - Test `https://your-issuer/.well-known/openid-configuration` returns valid JSON
-- Check network connectivity from Stirling-PDF container to provider
+- Check network connectivity from Stirling PDF container to provider
 
 **"User not created"**
 - Set `autoCreateUser: true`

@@ -7,10 +7,10 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # OCR Language Packs and Setup
-This document provides instructions on how to add additional language packs for the OCR tab in Stirling-PDF, both inside and outside of Docker.
+This document provides instructions on how to add additional language packs for the OCR tab in Stirling PDF, both inside and outside of Docker.
 
 ## How does the OCR Work
-Stirling-PDF uses Tesseract for its text recognition. All credit goes to them for this awesome work!
+Stirling PDF uses Tesseract for its text recognition. All credit goes to them for this awesome work!
 
 ## Language Packs
 
@@ -19,7 +19,7 @@ Tesseract OCR supports a variety of languages. You can find additional language 
 - [tessdata_fast](https://github.com/tesseract-ocr/tessdata_fast): These language packs are smaller and faster to load but may provide lower recognition accuracy.
 - [tessdata](https://github.com/tesseract-ocr/tessdata): These language packs are larger and provide better recognition accuracy, but may take longer to load.
 
-Depending on your requirements, you can choose the appropriate language pack for your use case. By default, Stirling-PDF uses `tessdata_fast` for English, but this can be replaced.
+Depending on your requirements, you can choose the appropriate language pack for your use case. By default, Stirling PDF uses `tessdata_fast` for English, but this can be replaced.
 
 ### Installing Language Packs manually
 

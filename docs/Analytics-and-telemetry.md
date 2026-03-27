@@ -19,8 +19,8 @@ Stirling‑PDF uses analytics to understand usage patterns and improve the appli
 
 Stirling‑PDF uses two analytics services:
 
-1. **[Scarf](https://scarf.sh)** — a privacy‑friendly tool designed for open‑source projects.
-2. **[PostHog](https://posthog.com)** — an open‑source product analytics platform for detailed usage insights.
+1. **[Scarf](https://scarf.sh)** - a privacy‑friendly tool designed for open‑source projects.
+2. **[PostHog](https://posthog.com)** - an open‑source product analytics platform for detailed usage insights.
 
 Both services are designed with privacy in mind and can be completely disabled.
 
@@ -164,7 +164,7 @@ Controls **all** analytics and whether a consent banner appears.
 **Behavior**
 - `false`: Disables **all** analytics (no consent banner; PostHog & Scarf are off).
 - `true`: Allows analytics (banner still required for user consent before any capture).
-- `null`/unset: **First‑run admin choice** — on the first ever connection to a self‑hosted instance, the first visitor (assumed admin) is prompted to choose, and that choice sets the global behavior for all users (either disabling analytics or enabling the consent banner for others).
+- `null`/unset: **First‑run admin choice** - on the first ever connection to a self‑hosted instance, the first visitor (assumed admin) is prompted to choose, and that choice sets the global behavior for all users (either disabling analytics or enabling the consent banner for others).
 
 ### 2) Component toggles
 

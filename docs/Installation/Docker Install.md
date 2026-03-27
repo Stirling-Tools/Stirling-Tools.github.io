@@ -6,9 +6,9 @@ title: Docker Guide
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Docker Installation for Stirling-PDF
+# Docker Installation for Stirling PDF
 
-Run Stirling-PDF in Docker for easy self-hosting, automatic updates, and flexible deployment.
+Run Stirling PDF in Docker for easy self-hosting, automatic updates, and flexible deployment.
 
 ## Quick Start
 
@@ -52,7 +52,7 @@ Then open `http://localhost:8080` in your browser!
 
 ## Choosing Your Version
 
-Stirling-PDF offers three versions depending on your needs:
+Stirling PDF offers three versions depending on your needs:
 
 | Version | Tag | What's Included | Best For |
 |---------|-----|-----------------|----------|
@@ -86,7 +86,7 @@ docker run -d stirlingtools/stirling-pdf:latest-ultra-lite
 
 ## Deployment Options (V2.0+)
 
-V2.0 lets you run Stirling-PDF in different ways depending on your needs:
+V2.0 lets you run Stirling PDF in different ways depending on your needs:
 
 ### Simple Deployment (Recommended)
 
@@ -194,7 +194,7 @@ docker-compose up -d
 - `/pipeline` - Automation configurations
 
 **What this does:**
-- Runs Stirling-PDF on port 8080
+- Runs Stirling PDF on port 8080
 - Stores data in `./stirling-data` folder
 - Automatically restarts if it crashes
 - Everything in one container (MODE=BOTH is default)
@@ -248,7 +248,7 @@ services:
 - Microservices architecture
 - Need independent scaling
 
-## Updating Stirling-PDF
+## Updating Stirling PDF
 
 ### Docker Run
 ```bash

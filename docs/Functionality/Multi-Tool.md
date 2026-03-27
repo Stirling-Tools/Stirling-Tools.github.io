@@ -9,7 +9,7 @@ description: Chain multiple PDF operations together without re-uploading files
 
 **Tool ID:** `multiTool`
 
-Multi-Tool is Stirling-PDF's page editor workspace. Upload your PDFs and manipulate pages visually - rotate, reorder, delete, and split pages with an intuitive interface.
+Multi-Tool is Stirling PDF's page editor workspace. Upload your PDFs and manipulate pages visually - rotate, reorder, delete, and split pages with an intuitive interface.
 
 :::tip V2.0 Feature
 Multi-Tool takes advantage of browser file storage, allowing you to upload files once and work with them across multiple page operations without re-uploading.
@@ -414,7 +414,7 @@ Not directly, but you can:
 No, browser storage is device-specific. Options:
 - Download files and transfer them
 - Use cloud storage between devices
-- Self-host Stirling-PDF on your network
+- Self-host Stirling PDF on your network
 
 ### Does Multi-Tool work offline?
 - **Browser:** No, requires server connection for processing
@@ -427,7 +427,7 @@ Yes! Select multiple files and most operations will process them in batch.
 
 ## Summary
 
-Multi-Tool is your **PDF command center** in Stirling-PDF V2:
+Multi-Tool is your **PDF command center** in Stirling PDF V2:
 - 📁 Upload once, use everywhere
 - 🔄 Chain unlimited operations
 - ⏮️ Undo/redo for experimentation

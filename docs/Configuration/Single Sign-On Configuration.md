@@ -5,7 +5,7 @@ tags: [enterprise, management, feature, advanced feature]
 
 # Single Sign-On (SSO) Overview
 
-Stirling-PDF supports Single Sign-On (SSO) authentication through two protocols:
+Stirling PDF supports Single Sign-On (SSO) authentication through two protocols:
 
 ## OAuth 2.0 / OpenID Connect (OIDC)
 > **Tier**: Server

@@ -294,7 +294,7 @@ Display any embedded JavaScript code within a PDF document.
 
 **Tool ID:** `devApi`
 
-Quick link to complete API documentation for integrating Stirling-PDF into your applications.
+Quick link to complete API documentation for integrating Stirling PDF into your applications.
 
 **Access:** [API Documentation](../API.md)
 
@@ -324,7 +324,7 @@ Link to Single Sign-On (SSO) configuration guide for enterprise deployments.
 
 **Tool ID:** `devAirgapped`
 
-Link to guide for deploying Stirling-PDF in offline/air-gapped environments.
+Link to guide for deploying Stirling PDF in offline/air-gapped environments.
 
 **Access:** [Configuration](../Configuration/Configuration.md)
 

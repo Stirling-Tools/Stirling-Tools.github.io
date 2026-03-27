@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 # UI Customisation
 
-Stirling PDF allows straightforward customization of the application name and appearance to make Stirling-PDF your own.
+Stirling PDF allows straightforward customization of the application name and appearance to make Stirling PDF your own.
 
 ## Application Name Settings
 These settings control the visible application name:
@@ -65,7 +65,7 @@ Then place your custom files in `customFiles/static/` matching the path structur
 ### Fork the Frontend (Developers)
 
 For complete UI customization:
-1. Clone the Stirling-PDF repository
+1. Clone the Stirling PDF repository
 2. Modify the React components in `frontend/src/`
 3. Build the frontend: `cd frontend && npm install && npm run build`
 4. Use static file overrides or build your own Docker image

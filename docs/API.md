@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 
 Stirling PDF exposes a simple API for easy integration with external scripts. You can access the API documentation in two ways:
 
-1. Local Swagger UI at `/swagger-ui/index.html` on your Stirling-PDF instance
+1. Local Swagger UI at `/swagger-ui/index.html` on your Stirling PDF instance
 2. Online [Swagger Documentation](https://app.swaggerhub.com/apis-docs/Frooodle/Stirling-PDF/)
 
 You can also access the documentation through the settings menu (gear icon in the top-right corner).
@@ -21,9 +21,9 @@ You can also access the documentation through the settings menu (gear icon in th
 ## Accessing API Documentation
 
 ### Local Swagger UI
-Your Stirling-PDF instance includes built-in API documentation:
+Your Stirling PDF instance includes built-in API documentation:
 1. Navigate to `http://your-instance:port/swagger-ui/index.html`
-2. Or append `/swagger-ui/index.html` to your Stirling-PDF URL
+2. Or append `/swagger-ui/index.html` to your Stirling PDF URL
 3. This provides an interactive documentation interface where you can:
    - View all available endpoints
    - Test API calls directly
@@ -41,7 +41,7 @@ When security is enabled, all API requests require authentication. There are two
 
 ### User-Specific API Keys
 1. Obtain your API key:
-   - Log into Stirling-PDF
+   - Log into Stirling PDF
    - Go to Account Settings (via the gear icon)
    - Find your API key in the account details
 
@@ -67,9 +67,9 @@ This allows you to set a single API key that works regardless of user authentica
 
 ## API Limitations
 
-Stirling-PDF's feature set is not entirely confined to the backend, hence not all functionalities are accessible via the API. Certain operations, such as the "view-pdf" or "visually sign", are executed exclusively on the front-end, and as such, they are only available through the Web-UI. If you encounter a situation where some API endpoints appear to be absent, it is likely attributable to these front-end exclusive features.
+Stirling PDF's feature set is not entirely confined to the backend, hence not all functionalities are accessible via the API. Certain operations, such as the "view-pdf" or "visually sign", are executed exclusively on the front-end, and as such, they are only available through the Web-UI. If you encounter a situation where some API endpoints appear to be absent, it is likely attributable to these front-end exclusive features.
 
-Stirling-PDF also has statistic and health endpoints to integrate with monitoring/dashboard applications.
+Stirling PDF also has statistic and health endpoints to integrate with monitoring/dashboard applications.
 
 ## Example CURL Commands
 

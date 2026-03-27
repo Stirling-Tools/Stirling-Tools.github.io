@@ -3,7 +3,7 @@ sidebar_position: 0
 slug: /
 ---
 
-## Benefits of Stirling-PDF
+## Benefits of Stirling PDF
 - **Extensive PDF Functionality:** Access 60+ tools, including signing, converting, merging, and more.
 - **Advanced Customization:** Deep customization, themes, and environment variables.
 - **Enterprise Features:** SSO, user management, and permission controls.
@@ -13,13 +13,13 @@ slug: /
 - **Open-Source:** Community-driven with frequent updates and GitHub support.
 - **Multi-Language Support:** Available in 38+ languages with active translations.
 
-## Welcome to Stirling-PDF
+## Welcome to Stirling PDF
 
 :::tip Upgrading from V1?
 See the **[Migration Guide](./Migration/Overview)** for what's new and how to upgrade smoothly.
 :::
 
-Stirling-PDF is a locally hosted web application that allows you to perform various operations on PDF files. With 60+ tools, flexible deployment options, and enterprise features, it's the comprehensive PDF solution for individuals and organizations.
+Stirling PDF is a locally hosted web application that allows you to perform various operations on PDF files. With 60+ tools, flexible deployment options, and enterprise features, it's the comprehensive PDF solution for individuals and organizations.
 
 ---
 
@@ -60,19 +60,19 @@ All configuration options for Docker and server deployments
 ### 🔧 For Developers & Integration
 
 **[API Documentation](./API.md)**
-Integrate Stirling-PDF into your applications and workflows
+Integrate Stirling PDF into your applications and workflows
 
 **[Configuration](./Configuration/System%20and%20Security.md)**
 SSO, split deployment, certificates, security settings, and more
 
 **[Contribute Guide](./Contribute.md)**
-Help improve Stirling-PDF - development setup and guidelines
+Help improve Stirling PDF - development setup and guidelines
 
 ---
 
 ## Installation
 
-Choose how you want to run Stirling-PDF based on your needs:
+Choose how you want to run Stirling PDF based on your needs:
 
 ### 🖥️ Desktop Applications
 

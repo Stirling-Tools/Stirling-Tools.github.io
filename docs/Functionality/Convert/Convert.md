@@ -5,7 +5,7 @@ description: Convert files to and from PDF format
 
 # Convert
 
-Stirling-PDF's Convert tool provides powerful file format conversion with support for 50+ file types. Convert documents, images, web pages, and more to PDF, or export PDFs to other formats.
+Stirling PDF's Convert tool provides powerful file format conversion with support for 50+ file types. Convert documents, images, web pages, and more to PDF, or export PDFs to other formats.
 
 ---
 
@@ -202,7 +202,7 @@ Convert multiple files at once:
 
 ### Processing Engine
 
-Stirling-PDF uses industry-standard tools for conversions:
+Stirling PDF uses industry-standard tools for conversions:
 
 - **Office Conversions** - LibreOffice (document fidelity)
 - **Image Processing** - ImageMagick, OpenCV
@@ -277,7 +277,7 @@ See [API Documentation](../../API.md) for complete endpoint reference.
 
 ## Summary
 
-Stirling-PDF's Convert tool provides:
+Stirling PDF's Convert tool provides:
 
 ✅ **50+ file format conversions**
 ✅ **Batch processing** - Convert multiple files at once

@@ -317,7 +317,7 @@ Generated comparison report includes:
 
 ### Comparison Algorithm
 
-Stirling-PDF uses advanced comparison algorithms:
+Stirling PDF uses advanced comparison algorithms:
 - **Text extraction** - Extract text from both PDFs
 - **Diff algorithm** - Compute differences
 - **Visual rendering** - Highlight changes
@@ -411,7 +411,7 @@ See [API Documentation](../API.md) for complete endpoint reference.
 
 ## Summary
 
-Stirling-PDF's Compare tool provides:
+Stirling PDF's Compare tool provides:
 
 ✅ **Side-by-side comparison** - View both documents simultaneously
 ✅ **Visual highlighting** - Color-coded difference markers

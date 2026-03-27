@@ -14,6 +14,9 @@ Stirling PDF allows customization of system and security settings. For security 
 - `csrfDisabled`: Set to 'true' to disable CSRF protection (not recommended for production)
 - `defaultLocale`: Set the default language (e.g. 'de-DE', 'fr-FR', etc)
 - `googlevisibility`: 'true' to allow Google visibility (via robots.txt), 'false' to disallow
+- `xFrameOptions`: Controls whether your instance can be embedded in an iframe. Set to `DENY` to prevent clickjacking. Use `SAMEORIGIN` only if you embed the UI in your own application.
+- `loginAttemptCount`: Number of failed login attempts before an account is locked (e.g. `5`)
+- `loginResetTimeMinutes`: Minutes before a locked account is automatically unlocked (e.g. `10`)
 
 ## Authentication Setup
 
@@ -135,7 +138,7 @@ java -jar Stirling-PDF.jar
 
 ## Split Deployment Configuration
 
-Stirling-PDF supports separating frontend and backend for better scalability and deployment flexibility.
+Stirling PDF supports separating frontend and backend for better scalability and deployment flexibility.
 
 ### Deployment Modes
 
@@ -194,7 +197,7 @@ SYSTEM_CORSALLOWEDORIGINS=https://pdf.example.com,https://pdf-staging.example.co
 
 ## Server Certificates
 
-Stirling-PDF can auto-generate certificates for the "Sign with Stirling-PDF" feature.
+Stirling PDF can auto-generate certificates for the "Sign with Stirling PDF" feature.
 
 ### Configuration
 
@@ -219,7 +222,7 @@ SYSTEM_SERVERCERTIFICATE_REGENERATEONSTARTUP=false
 
 1. **First Startup:** Server generates self-signed certificate, stored in `/configs` directory
 2. **Subsequent Startups:** Reuses existing certificate (unless `regenerateOnStartup: true`)
-3. **User Signs:** PDFs signed using this certificate via "Sign with Stirling-PDF" option
+3. **User Signs:** PDFs signed using this certificate via "Sign with Stirling PDF" option
 
 ### Custom Certificates
 
@@ -370,7 +373,7 @@ Configure SMTP for sending email invitations and notifications. Enable `mail.ena
 > - Manual user creation by admins
 > - Normal application operation
 >
-> You can run Stirling-PDF without any email configuration if you create users manually or use SSO.
+> You can run Stirling PDF without any email configuration if you create users manually or use SSO.
 
 ### Email Invites
 

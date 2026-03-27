@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 # SAML 2.0 Single Sign-On Configuration
 > **Tier**: Enterprise
 
-Stirling-PDF supports SAML 2.0 Single Sign-On for enterprise deployments. This allows integration with Identity Providers (IdP) like Okta, Azure AD, Google Workspace, OneLogin, Authentik, and others.
+Stirling PDF supports SAML 2.0 Single Sign-On for enterprise deployments. This allows integration with Identity Providers (IdP) like Okta, Azure AD, Google Workspace, OneLogin, Authentik, and others.
 
 > **Looking for OAuth 2.0 SSO?** See [OAuth SSO Configuration](../OAuth%20SSO%20Configuration.md) (Server tier).
 
@@ -45,7 +45,7 @@ SAML requires 3 certificate files for mutual trust:
 
 #### 1a. Generate Service Provider (SP) Keypair
 
-Stirling-PDF needs a keypair to sign SAML requests and verify responses.
+Stirling PDF needs a keypair to sign SAML requests and verify responses.
 
 > ℹ️ **If you don't have a keypair**, generate one using OpenSSL:
 >
@@ -85,7 +85,7 @@ Place all 3 certificates inside your mounted configs directory:
 
 > ⚠️ **Critical**: Use absolute paths in configuration: `/configs/filename.pem` (no `file:` or `classpath:` prefix for Docker)
 
-### Step 2: Configure Stirling-PDF
+### Step 2: Configure Stirling PDF
 
 Configure SAML authentication by providing:
 - **IdP URLs and certificate** - Get these from your Identity Provider (obtained from IdP admin panel)
@@ -203,7 +203,7 @@ https://your-domain.com/logout
 3. Upload or paste `certificate.crt` contents
 4. Save IdP configuration
 
-> Without uploading the SP certificate, your IdP cannot verify requests from Stirling-PDF.
+> Without uploading the SP certificate, your IdP cannot verify requests from Stirling PDF.
 
 **Configure NameID and Attributes:**
 - NameID format: `email` or `unspecified`
@@ -216,7 +216,7 @@ https://your-domain.com/logout
 3. Click "Login via Single Sign-On" button
 4. You'll be redirected to your IdP login page
 5. Enter your IdP credentials
-6. You'll be redirected back to Stirling-PDF
+6. You'll be redirected back to Stirling PDF
 7. A new user account is automatically created (if `autoCreateUser: true`)
 
 > ⚠️ **If login fails**, check application logs for SAML errors. See [Troubleshooting](#troubleshooting) section.
@@ -240,7 +240,7 @@ security:
   loginMethod: saml2  # Disables username/password login
 ```
 
-Restart Stirling-PDF.
+Restart Stirling PDF.
 
 ## Configuration Reference
 
@@ -271,7 +271,7 @@ Restart Stirling-PDF.
 
 ### SAML Attribute Mapping
 
-Stirling-PDF attempts to determine the username in the following priority order:
+Stirling PDF attempts to determine the username in the following priority order:
 
 1. **`username`** attribute
 2. **`emailaddress`** attribute (or full URI: `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`)
@@ -310,7 +310,7 @@ Check logs for:
 Extracted SAML Attributes: {username=[john.doe], emailaddress=[john.doe@example.com], ...}
 ```
 
-> 💡 **Note**: Currently, Stirling-PDF only uses attributes for username identification. Other attributes (first name, last name, groups, roles) are extracted but not used.
+> 💡 **Note**: Currently, Stirling PDF only uses attributes for username identification. Other attributes (first name, last name, groups, roles) are extracted but not used.
 
 ### Understanding Registration ID
 
@@ -339,12 +339,12 @@ Your URLs become:
 
 > ⚠️ **Critical**: If you change `registrationId` after configuring your IdP, you must update ALL URLs in your IdP configuration. The registration ID must match exactly in all places, or SAML login will fail.
 
-> 💡 **Recommendation**: Keep the default `stirling` value unless you have a specific reason to change it (e.g., running multiple Stirling-PDF instances with the same IdP).
+> 💡 **Recommendation**: Keep the default `stirling` value unless you have a specific reason to change it (e.g., running multiple Stirling PDF instances with the same IdP).
 
 ### Auto-Login Feature
 > **Tier**: Enterprise
 
-Automatically redirect users to SAML login, bypassing the Stirling-PDF login screen:
+Automatically redirect users to SAML login, bypassing the Stirling PDF login screen:
 
 ```yaml
 premium:

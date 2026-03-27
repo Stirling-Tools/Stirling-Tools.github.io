@@ -58,7 +58,7 @@ system:
     regenerateOnStartup: false
 ```
 
-**What it does:** Auto-generates signing certificates for "Sign with Stirling-PDF" feature.
+**What it does:** Auto-generates signing certificates for "Sign with Stirling PDF" feature.
 
 **Migration:** Works automatically with defaults.
 

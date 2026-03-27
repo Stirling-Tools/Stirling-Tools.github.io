@@ -2,12 +2,12 @@
 sidebar_position: 1
 id: Recommended-Tools
 title: Recommended Tools
-description: The 7 most commonly used PDF tools in Stirling-PDF V2
+description: The 7 most commonly used PDF tools in Stirling PDF V2
 ---
 
 # Recommended Tools
 
-These are the **7 most frequently used PDF operations** in Stirling-PDF, prominently featured for quick access. Perfect for everyday PDF tasks.
+These are the **7 most frequently used PDF operations** in Stirling PDF, prominently featured for quick access. Perfect for everyday PDF tasks.
 
 ---
 
@@ -86,7 +86,7 @@ Compare two PDF documents side-by-side and visually highlight the differences be
 
 **Tool ID:** `compress-pdf`
 
-Reduce PDF file size while maintaining acceptable quality for your needs. Stirling-PDF's compression tool optimizes images, removes unnecessary data, and applies various compression techniques.
+Reduce PDF file size while maintaining acceptable quality for your needs. Stirling PDF's compression tool optimizes images, removes unnecessary data, and applies various compression techniques.
 
 ### What it does
 - Significantly reduce PDF file size (10-90% reduction)
@@ -152,7 +152,7 @@ Convert between PDF and 50+ other file formats including images, Office document
 
 **Tool ID:** `ocr-pdf`
 
-Make scanned PDFs searchable and editable by recognizing text in images. Stirling-PDF's OCR tool uses Tesseract OCR engine to extract text from image-based PDFs.
+Make scanned PDFs searchable and editable by recognizing text in images. Stirling PDF's OCR tool uses Tesseract OCR engine to extract text from image-based PDFs.
 
 ### What it does
 - Recognize text from scanned documents
@@ -239,7 +239,7 @@ These 7 tools represent the most common PDF operations that users perform daily:
 
 ## Quick Access
 
-In Stirling-PDF V2, these recommended tools are:
+In Stirling PDF V2, these recommended tools are:
 - ✨ Featured prominently on the home page
 - 🔍 Easier to find in search
 - ⭐ Marked with special indicators

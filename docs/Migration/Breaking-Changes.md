@@ -105,7 +105,7 @@ The file paths are different because V2 serves the **compiled React app** instea
 For complete UI customization:
 
 **Steps:**
-1. Fork Stirling-PDF repository
+1. Fork Stirling PDF repository
 2. Modify React components in `frontend/src/`
 3. Build custom frontend
 4. Deploy in split mode with custom frontend

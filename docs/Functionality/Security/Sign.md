@@ -82,7 +82,7 @@ There are two types of PDF signatures:
 
 ## Using Pre-stored Signatures
 
-You can configure Stirling-PDF to load pre-stored signature files for quick access. This is useful for:
+You can configure Stirling PDF to load pre-stored signature files for quick access. This is useful for:
 - Consistent signature appearance
 - Quick signing of multiple documents
 - Team/organization signature standards
@@ -358,7 +358,7 @@ See [API Documentation](../../API.md) for complete endpoint reference.
 
 ## Summary
 
-Stirling-PDF's Sign tool provides:
+Stirling PDF's Sign tool provides:
 
 ✅ **Three signature methods** - Draw, type, or upload
 ✅ **Easy positioning** - Drag and drop placement

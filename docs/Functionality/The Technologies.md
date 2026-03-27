@@ -1,10 +1,10 @@
 ---
 sidebar_position: 0
-description: What makes Stirling-PDF powerful - technologies and capabilities!
+description: What makes Stirling PDF powerful - technologies and capabilities!
 ---
-# What Makes Stirling-PDF Powerful
+# What Makes Stirling PDF Powerful
 
-Stirling-PDF combines server-side processing power with modern browser capabilities to give you the best PDF experience possible.
+Stirling PDF combines server-side processing power with modern browser capabilities to give you the best PDF experience possible.
 
 ## Key Features
 
@@ -26,7 +26,7 @@ Stirling-PDF combines server-side processing power with modern browser capabilit
 
 ### Desktop Applications
 - **Windows, Mac, and Linux** native applications available
-- **Open PDFs directly** - Double-click PDF files to open them in Stirling-PDF
+- **Open PDFs directly** - Double-click PDF files to open them in Stirling PDF
 - **No browser needed** - Standalone application with all features
 - **Automatic updates** - Stay up to date with the latest features
 
@@ -45,7 +45,7 @@ Stirling-PDF combines server-side processing power with modern browser capabilit
 ## The Technology Behind It
 
 ### Processing Power (Server-Side)
-Stirling-PDF uses powerful open-source tools to handle complex PDF operations:
+Stirling PDF uses powerful open-source tools to handle complex PDF operations:
 
 - **[PDFBox](https://pdfbox.apache.org/)** - Core PDF manipulation for most operations
 - **[LibreOffice](https://www.libreoffice.org/)** - Advanced file conversions (Office documents, images, etc.)
@@ -82,7 +82,7 @@ A fast, modern interface built with powerful frontend technologies:
 Native applications built with modern desktop technology:
 
 - **[Tauri](https://tauri.app/)** - Rust-based native app framework
-  - **Automatic PDF file association** - Open PDFs directly in Stirling-PDF
+  - **Automatic PDF file association** - Open PDFs directly in Stirling PDF
   - **Bundled processing tools** - Everything you need included
   - **System integration** - Feels like a native application
   - **One-click installers** - Easy installation on all platforms

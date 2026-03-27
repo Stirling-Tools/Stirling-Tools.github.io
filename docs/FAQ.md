@@ -23,8 +23,8 @@ You can also reach out in discord but without a ticket to track it the request c
 ### Q5: I found a bug in Stirling PDF. Where can I report it?
 Please report any bugs or issues you encounter through our GitHub Issues page. Be sure to include as much detail as possible so we can diagnose and resolve the issue quickly.
 
-### Q6: My Stirling-PDF Using high RAM at idle, How can I optimize memory usage?
-Stirling-PDF's memory usage can be optimized in several ways:
+### Q6: My Stirling PDF Using high RAM at idle, How can I optimize memory usage?
+Stirling PDF's memory usage can be optimized in several ways:
 
 Disable additional features: Set DISABLE_ADDITIONAL_FEATURES=true to reduce RAM consumption. This can significantly lower memory usage, especially during idle periods.
 
@@ -39,17 +39,17 @@ If you experience connection issues, use these alternative endpoints:
 
 All endpoints provide the same functionality.
 
-### Q8: Does Stirling-PDF track my data?
+### Q8: Does Stirling PDF track my data?
 
 No, we track no data without your explicit consent. You can see how, when, and why at our [Analytics and Telemetry](./analytics-telemetry) page.
 
 ### Q9: When I upload a file, where is it processed?
 
-Uploads go to the server or desktop instance you're using, not to Stirling servers. The macOS/Windows desktop apps process files locally—even when you pick the Stirling Cloud sign-in today—so your PDFs stay on your device unless you point the app to a remote self-hosted server. Planned SaaS-assisted features (for desktop app) will be opt-in when they arrive.
+Uploads go to the server or desktop instance you're using, not to Stirling servers. The macOS/Windows desktop apps process files locally - even when you pick the Stirling Cloud sign-in today - so your PDFs stay on your device unless you point the app to a remote self-hosted server. Planned SaaS-assisted features (for desktop app) will be opt-in when they arrive.
 
 ### Q10: What are the different JAR files and which should I use?
 
-Stirling-PDF comes in three different JAR files:
+Stirling PDF comes in three different JAR files:
 
 **Stirling-PDF-with-login.jar** (Recommended - Full Features):
 - Bundles frontend UI + backend server
