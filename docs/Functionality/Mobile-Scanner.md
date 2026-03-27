@@ -28,4 +28,4 @@ Depending on your [server settings](/Configuration/Mobile-Scanner), uploaded ima
 
 ## Configuration
 
-See [Mobile Scanner Configuration](/docs/Configuration/Mobile-Scanner) for enable/disable and PDF conversion settings.
+See [Mobile Scanner Configuration](/Configuration/Mobile-Scanner) for enable/disable and PDF conversion settings.
