@@ -30,6 +30,10 @@ description: Security features for PDFs and deployment configurations
 
   **Learn more:** [Certificate Signing Guide](./Certificate-Signing.md)
 
+- **`shared-signing`** *(Pro/Enterprise, Alpha)*: Collaborative multi-participant signing workflows. A document owner uploads a PDF, invites registered users as participants, and each participant signs with their own certificate and optional wet signature. Includes progress tracking, signature summary pages, and automatic post-finalization data cleanup.
+
+  **Learn more:** [Shared Signing Guide](./Shared-Signing.md)
+
 - **`validate-signature`**: Verify digital signatures and certificates in PDF documents. Check against trusted certificate chains including system trust, Adobe AATL, EU EUTL, and Mozilla CA bundle.
 
   **Learn more:** [Certificate Signing - Validation](./Certificate-Signing#validating-signatures)
