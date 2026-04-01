@@ -136,63 +136,6 @@ java -jar Stirling-PDF.jar
 
 ---
 
-## Split Deployment Configuration
-
-Stirling PDF supports separating frontend and backend for better scalability and deployment flexibility.
-
-### Deployment Modes
-
-Configure deployment mode via the `MODE` environment variable:
-
-| Mode | Description | Use Case |
-|------|-------------|----------|
-| `BOTH` | Frontend + Backend (default) | Single container deployment |
-| `BACKEND` | Backend only | API service, split deployment |
-| `FRONTEND` | Frontend only | Static frontend serving |
-
-### Frontend URL Configuration
-
-When using split deployment or load balancers, configure the frontend URL for generating links:
-
-```yaml
-system:
-  frontendUrl: 'https://pdf.example.com'
-```
-
-**Environment Variable:**
-```bash
-SYSTEM_FRONTENDURL=https://pdf.example.com
-```
-
-**Use Cases:**
-- Email invite links point to correct frontend
-- Download links reference proper URL
-- API responses include frontend URLs
-
-### CORS Configuration
-
-When frontend and backend are on different domains, enable CORS:
-
-```yaml
-system:
-  corsAllowedOrigins:
-    - 'https://pdf.example.com'
-    - 'https://pdf-staging.example.com'
-```
-
-**Environment Variable:**
-```bash
-SYSTEM_CORSALLOWEDORIGINS=https://pdf.example.com,https://pdf-staging.example.com
-```
-
-**Security Best Practices:**
-- Only specify trusted origins
-- Never use wildcard (`*`) in production
-- Always use HTTPS in production
-- Keep list minimal
-
----
-
 ## Server Certificates
 
 Stirling PDF can auto-generate certificates for the "Sign with Stirling PDF" feature.
@@ -471,8 +414,6 @@ customFiles/
     system:
       defaultLocale: 'en-US' # Set the default language (e.g. 'de-DE', 'fr-FR', etc)
       googlevisibility: false # 'true' to allow Google visibility (via robots.txt), 'false' to disallow
-      corsAllowedOrigins: []  # Add frontend URLs for split deployment
-      frontendUrl: ''         # Set for split deployment
       serverCertificate:
         enabled: true
         organizationName: Stirling-PDF
@@ -514,28 +455,8 @@ customFiles/
     environment:
       DISABLE_ADDITIONAL_FEATURES: false
       SECURITY_ENABLELOGIN: true
-      SYSTEM_CORSALLOWEDORIGINS: https://pdf.example.com
-      SYSTEM_FRONTENDURL: https://pdf.example.com
       SECURITY_JWT_PERSISTENCE: true
       SYSTEM_SERVERCERTIFICATE_ENABLED: true
-    ```
-  </TabItem>
-  <TabItem value="split-deployment" label="Split Deployment">
-    **Backend Container:**
-    ```yaml
-    environment:
-      MODE: BACKEND
-      DISABLE_ADDITIONAL_FEATURES: false
-      SECURITY_ENABLELOGIN: true
-      SYSTEM_CORSALLOWEDORIGINS: https://pdf.example.com
-      SYSTEM_FRONTENDURL: https://pdf.example.com
-    ```
-
-    **Frontend Container:**
-    ```yaml
-    environment:
-      MODE: FRONTEND
-      VITE_API_BASE_URL: http://backend:8080
     ```
   </TabItem>
 </Tabs>
