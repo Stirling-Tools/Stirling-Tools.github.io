@@ -136,7 +136,7 @@ Stirling PDF determines the interface language using this priority order:
 
 To force a specific default language regardless of browser settings, users must manually select it via the language globe icon.
 
-> 💡 **Tip**: Set `SYSTEM_DEFAULTLOCALE` to your organization's primary language. Users can always override it using the language selector in the top-right corner.
+> **Tip**: Set `SYSTEM_DEFAULTLOCALE` to your organization's primary language. Users can always override it using the language selector in the top-right corner.
 
 ### File Upload Limits
 

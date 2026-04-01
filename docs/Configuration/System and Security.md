@@ -191,8 +191,6 @@ SYSTEM_CORSALLOWEDORIGINS=https://pdf.example.com,https://pdf-staging.example.co
 - Always use HTTPS in production
 - Keep list minimal
 
-**Learn more:** [Security - CORS Configuration](../Functionality/Security#cors-configuration)
-
 ---
 
 ## Server Certificates

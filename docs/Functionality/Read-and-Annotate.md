@@ -11,7 +11,7 @@ description: Interactive PDF viewer with annotation tools for reading and markup
 
 Interactive PDF viewer and annotation system. Read PDFs directly in your browser while adding comments, highlights, drawings, shapes, and other markup.
 
-:::tip V2.0 Feature
+:::tip
 Built with **[EmbedPDF](https://www.embedpdf.com/)**, an advanced open-source PDF viewer with full support for PDF annotation standards.
 :::
 
