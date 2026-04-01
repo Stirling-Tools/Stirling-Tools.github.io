@@ -11,7 +11,7 @@ description: Visual page editor for PDF manipulation
 
 Multi-Tool is Stirling PDF's visual page editor. Upload PDFs and manipulate pages directly - rotate, reorder, delete, split, and insert pages or files.
 
-:::tip V2.0 Feature
+:::tip
 Multi-Tool uses browser file storage so you can upload files once and work with them without re-uploading.
 :::
 

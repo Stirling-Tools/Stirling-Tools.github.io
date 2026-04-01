@@ -66,33 +66,6 @@ system:
 
 ---
 
-### Split Deployment Support
-
-**New settings added:**
-
-```yaml
-system:
-  corsAllowedOrigins: [] # NEW in V2
-  frontendUrl: '' # NEW in V2
-```
-
-**What it does:**
-- `corsAllowedOrigins`: Allow frontend from different origin
-- `frontendUrl`: Base URL for generating invite links
-
-**Migration:** Leave empty for unified deployment (default).
-
-**Example split deployment:**
-```yaml
-system:
-  corsAllowedOrigins: ['https://pdf.example.com']
-  frontendUrl: 'https://pdf.example.com'
-```
-
-**Learn more:** [Docker Installation - Split Mode](../Installation/Docker%20Install#split-deployment-advanced-users)
-
----
-
 ### Enhanced JWT Configuration
 
 **Changed settings:**
@@ -265,8 +238,6 @@ Use this checklist when upgrading your `settings.yml`:
 - [ ] **Add `ui.logoStyle: classic`** if you want to explicitly set logo
 - [ ] **Configure `security.validation`** if you need custom signature validation
 - [ ] **Set `system.serverCertificate`** options if needed
-- [ ] **Add `system.corsAllowedOrigins`** if using split deployment
-- [ ] **Set `system.frontendUrl`** if using split deployment
 - [ ] **Enable `mail.enableInvites`** if you want email invitations
 
 ---
@@ -288,10 +259,6 @@ SECURITY_VALIDATION_REVOCATION_MODE=none
 SYSTEM_SERVERCERTIFICATE_ENABLED=true
 SYSTEM_SERVERCERTIFICATE_ORGANIZATIONNAME="My Company"
 SYSTEM_SERVERCERTIFICATE_VALIDITY=365
-
-# Split deployment
-SYSTEM_CORSALLOWEDORIGINS=https://pdf.example.com
-SYSTEM_FRONTENDURL=https://pdf.example.com
 
 # JWT
 SECURITY_JWT_PERSISTENCE=true

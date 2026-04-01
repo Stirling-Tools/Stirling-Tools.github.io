@@ -108,5 +108,5 @@ To disable authentication in the with-login version:
   </TabItem>
 </Tabs>
 
-For more details, see the [System and Security Configuration](./Configuration/System%20and%20Security.md#disabling-login) documentation.
+For more details, see the [System and Security Configuration](./Configuration/System%20and%20Security.md#running-without-authentication) documentation.
 

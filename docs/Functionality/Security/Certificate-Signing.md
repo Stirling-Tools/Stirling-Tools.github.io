@@ -267,6 +267,6 @@ Ensure `SYSTEM_SERVERCERTIFICATE_ENABLED=true` is set. Check logs with `docker l
 
 ## Related
 
-- [System and Security Settings](../../Configuration/System%20and%20Security#signature-validation)
+- [System and Security Settings](../../Configuration/System%20and%20Security.md#signature-validation)
 - [Sign (Handwritten)](./Sign.md)
-- [Settings Changes (V2)](../../Migration/Settings-Changes#pdf-signature-validation)
+- [Settings Changes](../../Migration/Settings-Changes.md#pdf-signature-validation)

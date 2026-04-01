@@ -879,14 +879,6 @@ System Settings:
   CORS Allowed Origins: https://pdf.yourcompany.com
 ```
 
-**Environment variable (if using split deployment):**
-```yaml
-environment:
-  - VITE_API_BASE_URL=https://pdf.yourcompany.com
-  - SYSTEM_ROOTURIPATH=/
-  - SECURITY_CSRFDISABLED=false
-```
-
 ---
 
 ## Step 6: User Management
@@ -1390,7 +1382,6 @@ system:
 ```
 
 **Consider:**
-- Split deployment (separate frontend/backend)
 - Load balancer for multiple instances
 - Database on separate server
 
@@ -1424,12 +1415,10 @@ system:
 ```
 
 **Architecture:**
-- Split deployment (separate frontend/backend)
-- Multiple backend instances for processing
+- Multiple instances for processing
 - Load balancer with session affinity
 - Dedicated database server
 - Redis for session storage
-- CDN for frontend assets
 
 :::tip Server/Enterprise Recommended
 For large organizations, **Server or Enterprise plans** provide:

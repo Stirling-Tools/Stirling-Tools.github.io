@@ -715,7 +715,7 @@ WARN: Unknown configuration key: premium.proFeatures.googleDrive
 
 **Symptom:** Custom navbar/homepage not appearing.
 
-**Solution:** Template system removed. Use in-app settings or custom CSS instead. See [Template Customization](#-template-customization-system-removed).
+**Solution:** Template system removed. Use in-app settings or custom CSS instead.
 
 ---
 
