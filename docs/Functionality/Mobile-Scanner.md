@@ -6,7 +6,7 @@ description: Scan documents from your mobile phone and upload them directly to y
 
 # Mobile Scanner (Phone Upload)
 
-The Mobile Scanner lets you scan documents using your phone camera and upload them directly to your Stirling PDF instance. Generate a QR code on your desktop, scan it with your phone, and your photos are transferred automatically — no cables, no cloud services, no manual file handling. 
+The Mobile Scanner lets you scan documents using your phone camera and upload them directly to your Stirling PDF instance. Generate a QR code on your desktop, scan it with your phone, and your photos are transferred automatically  - no cables, no cloud services, no manual file handling. 
 
 Depending on your [server settings](/Configuration/Mobile-Scanner), uploaded images can be automatically converted to PDF with configurable page format, resolution, and scaling options.
 
