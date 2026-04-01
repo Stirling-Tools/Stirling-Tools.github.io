@@ -521,8 +521,8 @@ MAIL_TLS_ENABLED=true
 **Best for:** Large enterprises, existing SSO infrastructure
 
 **Single Sign-On (SSO) options:**
-- **OAuth2:** Enterprise only - Supports Google, GitHub, Keycloak, any OpenID Connect provider
-- **SAML2:** Enterprise only - Supports Okta, Azure AD, etc.
+- **OAuth2:** Server tier - Supports Google, GitHub, Keycloak, any OpenID Connect provider
+- **SAML2:** Enterprise tier - Supports Okta, Azure AD, etc.
 
 **Key settings:**
 ```yaml
@@ -1490,7 +1490,8 @@ Stirling-PDF offers **Server and Enterprise paid plans** with additional feature
 ### Key Paid Plan Features
 
 **Authentication & Security:**
-- **SAML2 SSO:** Enterprise-grade single sign-on (OAuth2 is free)
+- **OAuth2 SSO:** Server tier (Google, GitHub, Keycloak, OIDC)
+- **SAML2 SSO:** Enterprise tier (Okta, Azure AD, etc.)
 - Enhanced security features
 
 **Database & Infrastructure:**

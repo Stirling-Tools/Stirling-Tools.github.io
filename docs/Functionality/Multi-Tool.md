@@ -2,438 +2,57 @@
 sidebar_position: 7
 id: Multi-Tool
 title: Multi-Tool Workbench
-description: Chain multiple PDF operations together without re-uploading files
+description: Visual page editor for PDF manipulation
 ---
 
 # Multi-Tool Workbench
 
 **Tool ID:** `multiTool`
 
-Multi-Tool is Stirling PDF's page editor workspace. Upload your PDFs and manipulate pages visually - rotate, reorder, delete, and split pages with an intuitive interface.
+Multi-Tool is Stirling PDF's visual page editor. Upload PDFs and manipulate pages directly - rotate, reorder, delete, split, and insert pages or files.
 
 :::tip V2.0 Feature
-Multi-Tool takes advantage of browser file storage, allowing you to upload files once and work with them across multiple page operations without re-uploading.
+Multi-Tool uses browser file storage so you can upload files once and work with them without re-uploading.
 :::
 
 ---
 
-## What is Multi-Tool?
+## Features
 
-Multi-Tool is a page manipulation workspace where you can:
-- Upload PDFs and see thumbnail previews of every page
-- Rotate pages individually or in batches
-- Reorder pages by dragging them into position
-- Delete unwanted pages
-- Split PDFs by marking page breaks
-- Undo/redo all changes before exporting
-
----
-
-## Key Features
-
-### 📁 Persistent File Storage
-Files stay in your browser's local storage throughout your session:
-- Upload once, use many times
-- No re-uploading between operations
-- Files persist even when switching tools
-- Clear storage when done for privacy
-
-### 📄 Page Manipulation
-Powerful page-level editing:
-- Rotate pages individually or in batches
-- Drag-and-drop page reordering
-- Delete unwanted pages
-- Split PDFs at marked positions
-
-### 👁️ Visual File Management
-See what you're working with:
-- Thumbnail previews of all PDFs
-- File names and sizes displayed
-- Quick file selection
-
-### ⏮️ Undo/Redo Support
-Made a mistake? No problem:
-- Undo operations to previous versions
-- Redo changes you undid
-- Version history tracking
-- Jump to any previous state
-
-### 🎯 Focused Workspace
-Everything in one place:
-- Clean, uncluttered interface
-- Tool settings sidebar
-- File preview area
-- Results management
+- **Thumbnail grid** - See every page at a glance with zoomable previews
+- **Rotate** pages left/right, individually or in bulk
+- **Reorder** pages by dragging and dropping
+- **Delete** unwanted pages
+- **Split** PDFs by toggling split positions between pages
+- **Insert page breaks** - add blank pages at any position
+- **Insert files** - add entire PDFs into the document at any point
+- **Select pages** individually, select all, or by page number range
+- **Export selected** pages or save the full document
+- **Undo/redo** all changes
 
 ---
 
-## How to Use Multi-Tool
+## How to Use
 
-### Getting Started
-
-1. **Open Multi-Tool**
-   - Click "Multi-Tool" from the home page (in Recommended Tools)
-   - Or navigate to it from the tools menu
-
-2. **Upload Your Files**
-   - Drag and drop PDFs into the workspace
-   - Or click to browse and select files
-   - Upload one or multiple PDFs as needed
-
-3. **Select a Tool**
-   - Click the tool selector/menu
-   - Browse or search for the operation you need
-   - Tool opens in the sidebar with its settings
-
-4. **Configure and Process**
-   - Adjust tool-specific settings
-   - Select which files to process
-   - Click "Process" or "Apply"
-
-5. **Continue Working**
-   - Result is added to your workspace
-   - Original file preserved (unless you choose to replace)
-   - Select another tool to continue
-   - Build your workflow step by step
-
----
-
-## Common Workflows
-
-### Example 1: Document Preparation
-**Goal:** Prepare a scanned document for distribution
-
-1. **Upload** your scanned PDF
-2. **OCR** → Make it searchable
-3. **Crop** → Remove scanner edges
-4. **Compress** → Reduce file size
-5. **Add Watermark** → Brand the document
-6. **Download** → Save final version
-
-**Time saved:** No re-uploading between 5 operations!
-
----
-
-### Example 2: Multi-Document Merger
-**Goal:** Combine and enhance multiple PDFs
-
-1. **Upload** multiple PDF files
-2. **Merge** → Combine into one document
-3. **Add Page Numbers** → Number all pages
-4. **Add Table of Contents** → Improve navigation
-5. **Add Password** → Secure the result
-6. **Download** → Final protected document
-
-**Benefit:** All files managed in one workspace
-
----
-
-### Example 3: Experimentation
-**Goal:** Find the best compression settings
-
-1. **Upload** your PDF
-2. **Compress** with low settings → Check quality
-3. **Undo** → Return to original
-4. **Compress** with medium settings → Compare
-5. **Undo** → Try again
-6. **Compress** with high settings → Find best balance
-7. **Download** preferred version
-
-**Advantage:** Undo/redo lets you compare results easily
-
----
-
-### Example 4: Batch Processing
-**Goal:** Apply same operations to multiple files
-
-1. **Upload** 10 PDF files
-2. **Rotate** → Fix orientation on all
-3. **Crop** → Remove margins from all
-4. **Add Watermark** → Brand all documents
-5. **Download All** → Get processed batch
-
-**Efficiency:** Process entire batch without individual uploads
-
----
-
-
-## File Management
-
-### Adding Files
-- **Drag and Drop:** Easiest method - drag PDFs into workspace
-- **Browse:** Click "Add Files" or upload button
-- **From Previous Operation:** Results automatically added to workspace
-
-### Organizing Files
-- **Select:** Click to select files for specific operations
-- **Multi-Select:** Hold Ctrl/Cmd to select multiple files
-
-### Removing Files
-- **Individual:** Click X or delete button on file thumbnail
-- **Clear All:** Use "Clear Files" button to remove everything
-- **Auto-Clear:** Files clear when you close the browser (configurable)
-
-### Storage Information
-- **Used Space:** See how much browser storage you're using
-- **Remaining Space:** Check available space
-- **Per-File Size:** Each file shows its size
-- **Total Size:** See total workspace usage
-
----
-
-## Workspace Features
-
-### File Previews
-- **Thumbnails:** First page thumbnail for each PDF
-- **Quick Preview:** Click thumbnail for larger preview
-- **Page Count:** Shows number of pages per file
-- **File Info:** See file size and last modified time
-
-### Settings and Options
-- **Tool Settings:** Configure each operation's parameters
-- **Apply to Selected:** Process only selected files
-- **Apply to All:** Process entire workspace
-- **Batch Mode:** Process multiple files with same settings
-
----
-
-## Best Practices
-
-### 1. Organize Before Starting
-- Name your files descriptively before uploading
-- Group related files together
-- Plan your workflow sequence
-
-### 2. Work Progressively
-- Start with one file to test settings
-- Apply same settings to batch once confirmed
-- Build complexity gradually
-
-### 3. Use Undo Liberally
-- Try different settings and compare
-- Don't worry about mistakes
-- Experiment freely with undo safety net
-
-### 4. Manage Storage
-- Clear completed projects regularly
-- Download important results immediately
-- Monitor storage usage indicator
-- Use desktop app for unlimited storage
-
-### 5. Save Intermediate Results
-- Download important intermediate versions
-- Don't rely on browser storage long-term
-- Clear files before closing on shared computers
-
-### 6. Leverage File Persistence
-- Upload all related files at once
-- Use them across multiple operations
-- Avoid re-uploading unnecessarily
-
----
-
-## Tips and Tricks
-
-### Speed Up Your Workflow
-- **Quick Tool Switch:** Use search to find tools quickly
-- **Favorite Tools:** Frequently used tools appear first
-- **Batch Operations:** Select multiple files and process at once
-- **Undo/Redo:** Use toolbar buttons to revert or reapply changes
-
-### Avoid Common Issues
-- **Storage Full:** Clear old files before uploading large PDFs
-- **Lost Files:** Download important results before clearing storage
-- **Performance:** Close and reopen Multi-Tool if it becomes slow
-- **Browser Refresh:** Save work before refreshing (files may clear)
-
-### Advanced Techniques
-- **Version Branching:** Keep multiple versions to try different approaches
-- **Quality Comparison:** Compress at different levels and compare
-- **Template Workflows:** Develop standard sequences for repetitive tasks
-- **Batch Consistency:** Use same settings across document sets
+1. **Upload** - Drag and drop one or more PDFs into the workspace
+2. **Select pages** - Click thumbnails or use select all / page number input
+3. **Edit** - Rotate, reorder, delete, split, or insert as needed
+4. **Export** - Save changes to download the full PDF, or export selected pages only
 
 ---
 
 ## Multi-Tool vs. Individual Tools vs. Automate
 
-### Use Multi-Tool When:
-✅ Working with multiple related operations
-✅ Need flexibility to adjust on the fly
-✅ Experimenting with different settings
-✅ Want visual feedback at each step
-✅ Processing a few files with various operations
-
-### Use Individual Tools When:
-✅ Single, simple operation needed
-✅ Quick one-off task
-✅ Don't need file persistence
-✅ Processing one file, one time
-
-### Use Automate When:
-✅ Same workflow repeated frequently
-✅ Predictable, consistent operations
-✅ Automated folder processing
-✅ No manual intervention needed
-✅ Large batch processing
-
----
-
-## Browser Storage and Privacy
-
-### How It Works
-- Files stored in your browser's **local IndexedDB**
-- Data never leaves your device until you process
-- Only you can access your stored files
-- Storage is per-domain (isolated from other sites)
-
-### Storage Limits
-Typical browser limits:
-- **Chrome/Edge:** ~10GB or 60% of available disk space
-- **Firefox:** ~10GB
-- **Safari:** ~1GB (more restrictive)
-
-### Privacy Controls
-- **Clear on Exit:** Configure browser to clear data on close
-- **Manual Clear:** Use "Clear Files" button anytime
-- **Incognito Mode:** Storage cleared when window closes
-- **Desktop App:** Full offline privacy, unlimited storage
-
-### Security Notes
-- Files are **not encrypted** in browser storage
-- Don't store highly sensitive documents long-term
-- Use desktop app for sensitive work
-- Clear storage on shared/public computers
-
----
-
-## Troubleshooting
-
-### Files Disappeared
-**Possible Causes:**
-- Browser cleared storage automatically
-- You clicked "Clear Files"
-- Browser data was cleared manually
-- Switched to incognito mode
-
-**Solutions:**
-- Check Downloads folder (you may have saved them)
-- Use desktop app for persistent storage
-- Enable "persistent storage" in browser settings
-
----
-
-### Out of Storage Space
-**Symptoms:** Can't upload new files, error messages
-
-**Solutions:**
-1. Clear old/completed projects
-2. Download and delete large files
-3. Use desktop app for large projects
-4. Compress files before uploading
-
----
-
-### Multi-Tool Running Slowly
-**Symptoms:** Lag, freezing, slow response
-
-**Solutions:**
-1. Clear unused files from workspace
-2. Close other browser tabs
-3. Restart browser
-4. Use desktop app for better performance
-5. Reduce number of files in workspace
-
----
-
-### Can't Find a Tool
-**Symptoms:** Tool missing from Multi-Tool
-
-**Possible Reasons:**
-- Tool has dedicated interface (Compare, Automate, Sign)
-- Tool has been disabled by administrator
-- Search for tool name to locate it
-
----
-
-## Desktop App vs. Browser Multi-Tool
-
-### Browser Multi-Tool
-**Pros:**
-- No installation needed
-- Access from any device
-- Automatic updates
-- Web-based convenience
-
-**Cons:**
-- Storage limits (~1-10GB)
-- Files may be cleared
-- Requires internet for processing
-- Browser-dependent performance
-
-### Desktop App Multi-Tool
-**Pros:**
-- Unlimited storage
-- True persistent files
-- Completely offline capable
-- Native performance
-- Files in your file system
-
-**Cons:**
-- Requires installation
-- Device-specific
-- Manual updates
-
-**Recommendation:** Desktop app for serious work, browser for quick tasks
+| | Multi-Tool | Individual Tools | Automate |
+|---|---|---|---|
+| Multiple operations | Yes | No | Yes |
+| Visual feedback | Yes | Limited | No |
+| Repeatable workflow | No | No | Yes |
+| Folder watching | No | No | Yes |
 
 ---
 
 ## Related Documentation
 
-- **[Recommended Tools](./Recommended-Tools.md)** - Other frequently used tools
 - **[Automate (Pipeline)](./Features%20Pipeline.md)** - Automated workflows
 - **[Complete Tool Reference](./Functionality.md)** - All available tools
-- **[Desktop App Installation](../Installation/Windows.md)** - Get unlimited storage
-
----
-
-## Frequently Asked Questions
-
-### Can I save my Multi-Tool workspace?
-Not directly, but you can:
-- Download all processed files
-- Use Automate to save operation sequences
-- Desktop app keeps files in your file system
-
-### How long are files stored?
-- Until you manually clear them
-- Until browser storage is cleared
-- Until browser closes (if configured that way)
-- Desktop app: indefinitely in your file system
-
-### Can I access files from another device?
-No, browser storage is device-specific. Options:
-- Download files and transfer them
-- Use cloud storage between devices
-- Self-host Stirling PDF on your network
-
-### Does Multi-Tool work offline?
-- **Browser:** No, requires server connection for processing
-- **Desktop App:** Yes, completely offline capable
-
-### Can I process multiple files at once?
-Yes! Select multiple files and most operations will process them in batch.
-
----
-
-## Summary
-
-Multi-Tool is your **PDF command center** in Stirling PDF V2:
-- 📁 Upload once, use everywhere
-- 🔄 Chain unlimited operations
-- ⏮️ Undo/redo for experimentation
-- 👁️ Visual file management
-- 🚀 Efficient multi-step workflows
-
-**Perfect for:** Complex PDF tasks, multi-step operations, batch processing, and exploratory work.
-
-Ready to supercharge your PDF workflow? Open Multi-Tool and experience the V2 difference!

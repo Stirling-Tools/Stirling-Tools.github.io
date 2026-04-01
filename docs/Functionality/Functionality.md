@@ -3,20 +3,18 @@ sidebar_position: 0
 slug: /functionality
 id: Functionality
 title: PDF Tools
-description: Explore 60+ PDF tools for all your document needs
+description: All PDF tools organized by category
 ---
 
 # PDF Tools
 
-Stirling PDF provides **60+ powerful PDF tools** organized by category. Find the tool you need below.
+All tools organized by category.
 
 ---
 
-## 🌟 Most Popular
+## Most Popular
 
-The tools you'll use most often:
-
-- **[Multi-Tool](./Multi-Tool.md)** - Upload once, chain unlimited operations
+- **[Multi-Tool](./Multi-Tool.md)** - Upload once, chain operations
 - **[Read & Annotate](./Read-and-Annotate.md)** - PDF viewer with annotations
 - **Merge** - Combine multiple PDFs
 - **[Convert](./Convert/Convert.md)** - 50+ format conversions
@@ -25,14 +23,9 @@ The tools you'll use most often:
 - **[Compare](./Compare.md)** - See differences between PDFs
 - **Redact** - Remove sensitive content
 
-**[View Recommended Tools Guide →](./Recommended-Tools.md)**
-
 ---
 
-## 📚 Tools by Category
-
-### 🔐 [Security](./Security/Security.md)
-Password protection, signatures, permissions, watermarks
+## [Security](./Security/Security.md)
 
 - Add/Remove Password
 - Change Permissions
@@ -45,8 +38,7 @@ Password protection, signatures, permissions, watermarks
 
 ---
 
-### 📑 [Page Operations](./Page-Operations/Page-Operations.md)
-Split, merge, rotate, extract, reorganize pages
+## [Page Operations](./Page-Operations/Page-Operations.md)
 
 - Split PDF
 - Merge PDFs
@@ -60,8 +52,7 @@ Split, merge, rotate, extract, reorganize pages
 
 ---
 
-### 🔄 [Convert](./Convert/Convert.md)
-Convert to/from PDF - 50+ file formats supported
+## [Convert](./Convert/Convert.md)
 
 **To PDF:** Word, Excel, PowerPoint, Images, HTML, Markdown, Email, and more
 
@@ -69,8 +60,7 @@ Convert to/from PDF - 50+ file formats supported
 
 ---
 
-### 🎨 [Content & Editing](./Content-Editing/Content-Editing.md)
-Add, extract, and modify PDF content
+## [Content & Editing](./Content-Editing/Content-Editing.md)
 
 - Add/Extract Images
 - Add Stamp
@@ -81,27 +71,19 @@ Add, extract, and modify PDF content
 
 ---
 
-## ⚡ Advanced Features
+## [Advanced Tools](./Advanced-Tools.md)
 
-### 🎨 Super Tools
-- **[Multi-Tool](./Multi-Tool.md)** - Workbench for chaining operations
-- **[Read & Annotate](./Read-and-Annotate.md)** - PDF viewer with annotations
-- **[OCR](./OCR.md)** - Make scanned PDFs searchable
-- **[Compress](./Compress.md)** - Reduce file size
-- **[Automate (Pipeline)](../Configuration/Pipeline.md)** - Workflow automation
-
-### 🔧 [Advanced Tools](./Advanced-Tools.md)
-- Add Background/Stamp
-- Booklet Imposition
 - Overlay PDFs
+- Booklet Imposition
 - Multi-Page Layout
 - Scale Pages
+- Auto Rename
 - Show JavaScript
-- PDF Info (JSON)
+- Scanner Effect
 
 ---
 
-## 🔍 Quick Tool Finder
+## Quick Tool Finder
 
 **I want to...**
 - Reduce file size → **[Compress](./Compress.md)**
@@ -112,6 +94,4 @@ Add, extract, and modify PDF content
 - Add signature → **[Sign](./Security/Sign.md)** or **[Certificate Sign](./Security/Certificate-Signing.md)**
 - Remove content → **Redact** or **Sanitize**
 - Edit pages → **Reorganize Pages** or **[Multi-Tool](./Multi-Tool.md)**
-- Chain operations → **[Multi-Tool](./Multi-Tool.md)**
 - Automate workflow → **[Automate](../Configuration/Pipeline.md)**
-

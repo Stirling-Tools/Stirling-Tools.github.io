@@ -138,12 +138,6 @@ To force a specific default language regardless of browser settings, users must 
 
 > 💡 **Tip**: Set `SYSTEM_DEFAULTLOCALE` to your organization's primary language. Users can always override it using the language selector in the top-right corner.
 
-### Deployment Mode
-
-```bash
-MODE=BOTH      # Options: BOTH, FRONTEND, BACKEND
-```
-
 ### File Upload Limits
 
 <Tabs groupId="config-methods">
@@ -182,13 +176,11 @@ For advanced features and specific use cases, see these detailed guides:
 ### Authentication & Security
 
 **[Single Sign-On (SSO)](./Single%20Sign-On%20Configuration.md)**
-- OAuth2 (Google, GitHub, Keycloak, OIDC) - Enterprise only
-- SAML2 (Okta, Azure AD) - Enterprise only
+- OAuth2 (Google, GitHub, Keycloak, OIDC) - Server tier
+- SAML2 (Okta, Azure AD) - Enterprise tier
 - Complete configuration examples
 
 **[System and Security](./System%20and%20Security.md)**
-- Split deployment (frontend/backend separation)
-- CORS configuration
 - Server certificates
 - JWT configuration
 

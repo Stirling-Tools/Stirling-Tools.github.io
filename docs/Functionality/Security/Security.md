@@ -93,58 +93,6 @@ security:
 
 ---
 
-## CORS Configuration
-
-For split deployments where frontend and backend are on different domains, configure Cross-Origin Resource Sharing (CORS).
-
-### What is CORS?
-
-CORS allows your frontend (e.g., `https://pdf.example.com`) to communicate with a backend on a different domain (e.g., `https://api.example.com`).
-
-### Configuration
-
-```yaml
-system:
-  corsAllowedOrigins:
-    - 'https://pdf.example.com'
-    - 'https://pdf.internal.company.com'
-```
-
-**Environment Variable:**
-```bash
-SYSTEM_CORSALLOWEDORIGINS=https://pdf.example.com,https://pdf.internal.company.com
-```
-
-### Use Cases
-
-- **Split Deployment** - Separate frontend and backend containers
-- **CDN Distribution** - Serve frontend from CDN, backend from server
-- **Multiple Frontends** - One backend serving multiple frontend instances
-- **Development** - Frontend dev server communicating with backend
-
-### Security Considerations
-
-**✅ Best Practices:**
-- Only allow specific, trusted origins
-- Never use wildcard (`*`) in production
-- Use HTTPS for all origins
-- Verify origin headers server-side
-
-**⚠️ Common Mistakes:**
-```yaml
-# DON'T: Allow all origins (insecure)
-corsAllowedOrigins: ['*']
-
-# DO: Specify exact origins
-corsAllowedOrigins: ['https://pdf.example.com']
-```
-
-**Learn more:**
-- [Split Deployment Configuration](../../Configuration/System%20and%20Security#cors-configuration)
-- [Docker Split Mode](../../Installation/Docker%20Install#split-deployment-advanced-users)
-
----
-
 ## Related Configuration
 
 For advanced security configuration, see:

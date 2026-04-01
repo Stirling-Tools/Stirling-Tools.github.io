@@ -27,27 +27,26 @@ Stirling PDF is a locally hosted web application that allows you to perform vari
 
 V2 brings major improvements to performance, workflow, and deployment flexibility:
 
-- **📁 Stateful Processing** - Upload once, use across multiple tools without re-uploading
-- **⏮️ Undo & Redo** - Made a mistake? Just undo it! Full version history included
-- **🖥️ Native Desktop Apps** - Lightning-fast startup, "Open with" integration, offline capable
-- **🔀 Split Deployment** - Scale frontend and backend independently for enterprise use
-- **⚙️ In-App Settings** - Configure everything through the UI, no file editing needed
+- **Stateful Processing** - Upload once, use across multiple tools without re-uploading
+- **Undo & Redo** - Full version history for page editing
+- **Native Desktop Apps** - Fast startup, "Open with" integration, offline capable
+- **In-App Settings** - Configure everything through the UI, no file editing needed
 
 ---
 
 ## Documentation Guide
 
-### 👤 For Individual Users
+### For Individual Users
 
 **[Tool Reference](./Functionality/Functionality.md)**
-Browse all 60+ PDF tools with descriptions and use cases
+Browse all 60+ PDF tools with descriptions
 
 ---
 
-### 🏢 For Organizations & IT Teams
+### For Organizations & IT Teams
 
 **[Production Deployment Guide](./Server-Admin-Onboarding.md)**
-Complete walkthrough: installation → configuration → security → monitoring
+Complete walkthrough: installation - configuration - security - monitoring
 
 **[Paid Offerings (Server & Enterprise)](./Paid-Offerings)**
 External databases, Google Drive integration, SSO, advanced monitoring, and priority support
@@ -57,13 +56,13 @@ All configuration options for Docker and server deployments
 
 ---
 
-### 🔧 For Developers & Integration
+### For Developers & Integration
 
 **[API Documentation](./API.md)**
 Integrate Stirling PDF into your applications and workflows
 
 **[Configuration](./Configuration/System%20and%20Security.md)**
-SSO, split deployment, certificates, security settings, and more
+SSO, certificates, security settings, and more
 
 **[Contribute Guide](./Contribute.md)**
 Help improve Stirling PDF - development setup and guidelines
@@ -74,7 +73,7 @@ Help improve Stirling PDF - development setup and guidelines
 
 Choose how you want to run Stirling PDF based on your needs:
 
-### 🖥️ Desktop Applications
+### Desktop Applications
 
 Native apps with system integration:
 
@@ -85,11 +84,11 @@ Native apps with system integration:
 | **Mac (Intel)** | [DMG](https://files.stirlingpdf.com/mac-x86_64-installer.dmg) | [Mac Guide](./Installation/Mac.md) |
 | **Linux** | [DEB](https://files.stirlingpdf.com/linux-installer.deb) | [Unix Guide](./Installation/Unix.md) |
 
-**Features:** Lightning-fast startup, "Open with" integration, sign in with Stirling Cloud or self-hosted server
+**Features:** Fast startup, "Open with" integration, sign in with Stirling Cloud or self-hosted server
 
 ---
 
-### 🐳 Docker Deployment
+### Docker Deployment
 
 Recommended for server deployments and organizations:
 
@@ -103,14 +102,14 @@ docker run -d \
 
 **Available versions:**
 - `latest` - Standard version (recommended)
-- `latest-fat` - Includes extra fonts and security features
+- `latest-fat` - Extra fonts and tools for highest quality conversions and full format support
 - `latest-ultra-lite` - Minimal size for resource-constrained environments
 
 **Full guide:** [Docker Installation Guide](./Installation/Docker%20Install.md)
 
 ---
 
-### ⚙️ Manual Server Setup
+### Manual Server Setup
 
 For bare metal installations or environments without Docker:
 

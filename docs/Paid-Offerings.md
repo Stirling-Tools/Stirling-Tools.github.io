@@ -40,6 +40,7 @@ Stirling PDF offers Server and Enterprise paid plans. These provide the same gre
   - Support tickets via support@stirlingpdf.com
   - [External Database](./Configuration/External%20Database.md) support for optimized deployments and load-balancing
   - Google Drive integration
+  - [OAuth2 SSO](./Configuration/OAuth%20SSO%20Configuration.md) (Google, GitHub, Keycloak, any OIDC provider)
 - **Perfect for**: Organizations with many users who want predictable, flat-rate pricing
 
 ### Enterprise Plan
@@ -48,7 +49,7 @@ Stirling PDF offers Server and Enterprise paid plans. These provide the same gre
 - **Users**: Per-seat licensing (flexible scaling)
 - **Features**:
   - All Server Plan features, plus:
-  - [Advanced SSO](./Configuration/Single%20Sign-On%20Configuration.md), OAuth2 and SAML with automated login handling
+  - [SAML2 SSO](./Configuration/SAML%20SSO%20Configuration/SAML%20SSO%20Configuration.md) (Okta, Azure AD, etc.) with automated login handling
   - Custom automated metadata handling
   - Priority support tickets via support@stirlingpdf.com
   - 1:1 meetings with the Stirling PDF team (from registered email domain)
@@ -63,9 +64,9 @@ Stirling PDF offers Server and Enterprise paid plans. These provide the same gre
 
 ## Purchasing a License
 
-### V2.0 - In-App Purchase (Recommended)
+### In-App Purchase (Recommended)
 
-Stirling PDF V2.0 offers streamlined in-app purchasing and license activation:
+Stirling PDF offers streamlined in-app purchasing and license activation:
 
 1. **Navigate to Settings**: Log in as an admin and go to Settings → Admin Plan
 2. **Select Your Plan**: Choose between Server (unlimited users) or Enterprise (per-seat) plans
@@ -92,11 +93,11 @@ If you prefer to purchase outside the app or have questions:
 
 ## Activating Your License
 
-### V2.0 - Automatic Activation
+### Automatic Activation
 
 If you purchased in-app, your license is automatically activated. No further action needed!
 
-### V2.0 - Manual Activation
+### Manual Activation
 
 If you purchased via the website and received a license key by email:
 
@@ -105,7 +106,7 @@ If you purchased via the website and received a license key by email:
 3. **Activate**: Click "Activate License"
 4. **Confirmation**: Your plan features will be enabled immediately
 
-**No restart required** - license activation is dynamic in V2.0!
+**No restart required** - license activation is dynamic!
 
 ### Legacy - settings.yml Activation
 
@@ -142,7 +143,7 @@ For 100% offline air-gapped environments (Enterprise only), you can request a ce
 
 ### Billing Portal
 
-V2.0 includes a convenient billing management interface:
+Stirling PDF includes a convenient billing management interface:
 
 1. Navigate to Settings → Admin Plan
 2. Click "Manage Billing"
@@ -237,7 +238,7 @@ A: Invoices are automatically sent via email and accessible through the Billing 
 
 If you're upgrading from Stirling PDF V1 with an existing license:
 
-1. Your existing license key will continue to work in V2
+1. Your existing license key will continue to work
 2. You can enter it manually via Settings → Admin Plan
 3. Or, re-activate through the in-app purchase flow
 4. Contact support@stirlingpdf.com if you encounter any issues
