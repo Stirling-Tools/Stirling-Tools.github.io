@@ -14,10 +14,10 @@ Native Mac desktop app with all PDF tools available.
 ### What You Get
 
 - ✅ **Native macOS application** - Optimized for both Apple Silicon and Intel Macs
-- ✅ **Sign in to start** - Choose Stirling Cloud or your self-hosted server on launch (required before using tools)
-- ✅ **Processes files locally after login** - Most tools run offline once signed in
-- ✅ **Stirling Cloud login is offline-only today** - SaaS sign-in keeps processing on your Mac; optional cloud assists for advanced tasks are planned for a future release
-- ✅ **All features included** - Every PDF tool available
+- ✅ **No login required** - Install and start using PDF tools right away
+- ✅ **Processes files locally** - All your PDF processing stays on your Mac
+- ✅ **Optional server connection** - Connect to Stirling Cloud or your own self-hosted server for advanced tools like OCR and document conversions
+- ✅ **All local tools included** - Merge, split, rotate, sign, and more work without any server
 - ✅ **Better performance** - Native speed on M1/M2/M3 chips
 - ✅ **No external browser needed** - Uses the built-in window
 - ✅ **Menu bar integration** - Feels like a native Mac app
@@ -64,8 +64,9 @@ The app will now open normally every time!
 ### Using the Desktop App
 
 1. Launch Stirling PDF
-2. Sign in with your Stirling Cloud account or enter the URL for your self-hosted server.
-3. After login, use the in-app interface to upload or drag-and-drop files into the window.
+2. Start using local PDF tools right away - no login needed
+3. Upload or drag-and-drop files into the window
+4. Optionally connect to Stirling Cloud or a self-hosted server for advanced tools like OCR and document conversions
 
 **Making Stirling PDF your default PDF viewer:**
 1. Right-click (or Control+click) any PDF file
