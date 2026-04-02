@@ -8,7 +8,7 @@ const allLanguages = ['yaml', 'bash', 'docker', 'java', 'properties', 'json', 't
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'Stirling-PDF',
+    title: 'Stirling PDF',
     tagline: 'Your locally hosted one-stop-shop for all your PDF needs.',
     favicon: 'img/favicon.ico',
 
@@ -34,6 +34,16 @@ const config = {
       attributes: {
         autoBlock: 'on'
       }
+    },
+    {
+      src: 'https://widget.kapa.ai/kapa-widget.bundle.js',
+      'data-website-id': '32633e81-a72c-4df4-9cb9-c6cd3a0899cb',
+      'data-project-name': 'Stirling PDF',
+      'data-project-color': '#b52e2e',
+      'data-project-logo': 'https://docs.stirlingpdf.com/img/logo.svg',
+      'data-view-mode': 'sidebar',
+      'data-color-scheme-selector': "[data-theme='dark']",
+      async: true,
     },
   ],
 	plugins: [
@@ -134,9 +144,9 @@ const config = {
 	
             image: 'img/stirling-social-card.png',
             navbar: {
-                title: 'Stirling-PDF',
+                title: 'Stirling PDF',
                 logo: {
-                    alt: 'Stirling-PDF Logo',
+                    alt: 'Stirling PDF Logo',
                     src: 'img/logo.svg',
                 },
                 items: [{
@@ -155,12 +165,17 @@ const config = {
                         label: 'GitHub',
                         position: 'right',
                     },
+                    {
+                        type: 'html',
+                        position: 'right',
+                        value: '<button id="kapa-navbar-btn" class="navbar__link" style="background:none;border:none;cursor:pointer;font:inherit;color:inherit;padding:4px 8px;" onclick="window.Kapa &amp;&amp; window.Kapa.open()">&#10024; Ask AI</button>',
+                    },
                 ],
             },
             footer: {
                 style: 'dark',
                 links: [{
-                        title: 'Stirling-PDF',
+                        title: 'Stirling PDF',
                         items: [{
                             label: 'Homepage',
                             to: 'https://www.stirlingpdf.com/',
@@ -203,7 +218,7 @@ const config = {
 						],
 					},
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} Stirling-PDF, Inc. Built with Docusaurus.`,
+                copyright: `Copyright © ${new Date().getFullYear()} Stirling PDF, Inc. Built with Docusaurus.`,
             },
             prism: {
                 theme: prismThemes.github,
