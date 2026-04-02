@@ -15,9 +15,10 @@ Stirling PDF for Windows comes in two versions: a **Desktop Application** for pe
 
 - ✅ **Native Windows application** - Feels like a built-in Windows program
 - ✅ **Open PDFs directly** - Double-click any PDF to open in Stirling PDF
-- ✅ **Sign in to start** - Choose Stirling Cloud or your self-hosted server on first launch (required before using tools)
-- ✅ **Processes files locally after sign-in** - All your PDF processing stays on your device
-- ✅ **All features included** - Every PDF tool available
+- ✅ **No login required** - Install and start using PDF tools right away
+- ✅ **Processes files locally** - All your PDF processing stays on your device
+- ✅ **Optional server connection** - Connect to Stirling Cloud or your own self-hosted server for advanced tools like OCR and document conversions
+- ✅ **All local tools included** - Merge, split, rotate, sign, and more work without any server
 - ✅ **Automatic updates** - Stay current with latest features
 - ✅ **Better performance** - Optimized for Windows
 - ✅ **No browser needed** - Standalone application
@@ -27,22 +28,22 @@ Stirling PDF for Windows comes in two versions: a **Desktop Application** for pe
 1. **Download**: [Stirling PDF Desktop Installer](https://files.stirlingpdf.com/win-installer.exe)
 2. **Run the installer** - Follow the prompts (installs to `C:\Program Files\Stirling-PDF`)
 3. **Launch from Start Menu** - Search for "Stirling PDF"
-4. **Sign in** - Choose how to connect (see [Choosing your connection](#choosing-your-connection) below)
-5. **Start working with PDFs!**
+4. **Start working with PDFs!**
+5. **Optionally connect a server** - For advanced tools, see [Connecting to a server](#connecting-to-a-server) below
 
-### Choosing your connection
+### Connecting to a server
 
-On first launch, you'll be prompted to choose how to connect:
+The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can connect to a server at any time:
 
 **Stirling Cloud**
 - Sign in with your Stirling Cloud account
-- All PDF processing stays on your device — your files never leave your machine
-- Login is required because optional cloud assists for advanced tasks are planned for a future release
+- Gives access to advanced tools powered by server-side processing
+- Your files are processed securely and never stored
 
 **Self-hosted Server**
 - Enter the URL of your own Stirling PDF server instance (e.g., `http://192.168.1.53:8080`)
-- Files are processed on your server, keeping data under your control
-- Useful for team deployments or running your own Stirling PDF server
+- Full control over your data and processing
+- Useful for team deployments or when you want all features on your own infrastructure
 
 ### Using the Desktop App
 

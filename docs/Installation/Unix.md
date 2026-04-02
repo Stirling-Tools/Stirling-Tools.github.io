@@ -19,9 +19,10 @@ Native Linux desktop app with all PDF tools available.
 
 - ✅ **Native Linux application** - Integrated with your desktop environment
 - ✅ **Open PDFs directly** - Double-click any PDF to open in Stirling-PDF
-- ✅ **Sign in to start** - Choose Stirling Cloud or your self-hosted server on launch (required before using tools)
-- ✅ **Processes files locally after sign-in** - All your PDF processing stays on your device
-- ✅ **All features included** - Every PDF tool available
+- ✅ **No login required** - Install and start using PDF tools right away
+- ✅ **Processes files locally** - All your PDF processing stays on your device
+- ✅ **Optional server connection** - Connect to Stirling Cloud or your own self-hosted server for advanced tools like OCR and document conversions
+- ✅ **All local tools included** - Merge, split, rotate, sign, and more work without any server
 - ✅ **Better performance** - Native Linux integration
 - ✅ **No browser needed** - Standalone application
 
@@ -41,19 +42,19 @@ sudo dpkg -i linux-installer.deb
 - Search for "Stirling-PDF" in your application menu, or
 - Run `stirling-pdf` from the terminal
 
-### Choosing your connection
+### Connecting to a server
 
-On first launch, you'll be prompted to choose how to connect:
+The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can connect to a server at any time:
 
 **Stirling Cloud**
 - Sign in with your Stirling Cloud account
-- All PDF processing stays on your device — your files never leave your machine
-- Login is required because optional cloud assists for advanced tasks are planned for a future release
+- Gives access to advanced tools powered by server-side processing
+- Your files are processed securely and never stored
 
 **Self-hosted Server**
 - Enter the URL of your own Stirling-PDF server instance (e.g., `http://192.168.1.53:8080`)
-- Files are processed on your server, keeping data under your control
-- Useful for team deployments or running your own Stirling-PDF server
+- Full control over your data and processing
+- Useful for team deployments or when you want all features on your own infrastructure
 
 ---
 

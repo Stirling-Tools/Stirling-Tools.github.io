@@ -84,7 +84,7 @@ Native apps with system integration:
 | **Mac (Intel)** | [DMG](https://files.stirlingpdf.com/mac-x86_64-installer.dmg) | [Mac Guide](./Installation/Mac.md) |
 | **Linux** | [DEB](https://files.stirlingpdf.com/linux-installer.deb) | [Unix Guide](./Installation/Unix.md) |
 
-**Features:** Fast startup, "Open with" integration, sign in with Stirling Cloud or self-hosted server
+**Features:** Fast startup, "Open with" integration, no login required, optional server connection for advanced tools
 
 ---
 
