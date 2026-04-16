@@ -1319,21 +1319,7 @@ find backups/ -name "stirling-data-*.tar.gz" -mtime +30 -delete
 
 ## Step 9: Performance Optimization
 
-For detailed resource sizing, JVM tuning, memory model documentation, job queue behavior, and scaling guidance, see the dedicated [Performance Optimization & Sizing](./Configuration/Performance-Optimization.md) guide.
-
-**Quick reference for Docker Compose resource limits:**
-
-```yaml
-services:
-  stirling-pdf:
-    environment:
-      JAVA_TOOL_OPTIONS: "-Xms512m -Xmx4g"  # Always set explicitly for production
-    deploy:
-      resources:
-        limits:
-          memory: 8G    # At least 1.5x your -Xmx value
-          cpus: '4.0'
-```
+For resource sizing recommendations, scaling guidance, and fine tuning, see the dedicated [Performance Optimization & Sizing](./Configuration/Performance-Optimization.md) guide.
 
 ---
 

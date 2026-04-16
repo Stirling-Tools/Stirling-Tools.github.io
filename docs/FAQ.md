@@ -27,7 +27,7 @@ Please report any bugs or issues you encounter through our [GitHub Issues page](
 Stirling PDF's memory usage can be optimized in several ways:
 
 - **Use the Ultra Lite version:** Pull the `latest-ultra-lite` tag from Docker Hub or GitHub, which is specifically designed for lower-end hardware.
-- **Tune the JVM heap:** Set `JAVA_TOOL_OPTIONS="-Xms512m -Xmx2g"` to limit the maximum heap size. By default, the JVM may allocate up to 25% of container memory as heap.
+- **Tune memory allocation:** See the [Fine Tuning](./Configuration/Performance-Optimization.md#fine-tuning) section of the Performance Optimization guide for how to adjust memory limits.
 - **Reduce LibreOffice instances:** Each idle LibreOffice UNO server instance uses approximately 50 MB. The default session limit is 1. See [LibreOffice Parallel Processing](./Configuration/LibreOffice-Parallel-Processing.md) for details.
 
 For detailed sizing recommendations, see the [Performance Optimization](./Configuration/Performance-Optimization.md) guide.
