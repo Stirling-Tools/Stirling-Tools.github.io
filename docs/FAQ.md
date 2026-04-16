@@ -26,12 +26,11 @@ Please report any bugs or issues you encounter through our [GitHub Issues page](
 ### Q6: My Stirling PDF is using high RAM at idle. How can I optimize memory usage?
 Stirling PDF's memory usage can be optimized in several ways:
 
-- **Disable additional features:** Set `DISABLE_ADDITIONAL_FEATURES=true` to reduce RAM consumption. This can significantly lower memory usage, especially during idle periods.
 - **Use the Ultra Lite version:** Pull the `latest-ultra-lite` tag from Docker Hub or GitHub, which is specifically designed for lower-end hardware.
-- **Tune the JVM heap:** Set `JAVA_TOOL_OPTIONS="-Xms256m -Xmx1g"` to limit the maximum heap size. By default, the JVM may allocate up to 25% of container memory as heap.
+- **Tune the JVM heap:** Set `JAVA_TOOL_OPTIONS="-Xms512m -Xmx2g"` to limit the maximum heap size. By default, the JVM may allocate up to 25% of container memory as heap.
 - **Reduce LibreOffice instances:** Each idle LibreOffice UNO server instance uses approximately 50 MB. The default session limit is 1. See [LibreOffice Parallel Processing](./Configuration/LibreOffice-Parallel-Processing.md) for details.
 
-For detailed sizing recommendations, see [Production Deployment Guide — Performance Optimization](./Server-Admin-Onboarding.md#step-9-performance-optimization--sizing).
+For detailed sizing recommendations, see the [Performance Optimization](./Configuration/Performance-Optimization.md) guide.
 
 ### Q7: I'm experiencing connection errors when pulling from docker.stirling.com
 

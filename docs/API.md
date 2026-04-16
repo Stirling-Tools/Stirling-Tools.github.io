@@ -24,10 +24,10 @@ Every Stirling PDF instance hosts its own interactive API documentation that exa
 Navigate to your instance's Swagger UI to browse, test, and experiment with all endpoints directly in your browser:
 
 ```
-http://<your-server>/swagger-ui/index.html
+http://<your-server>/swagger-ui.html
 ```
 
-The path `/swagger-ui.html` also works as a redirect. For example: `http://localhost:8080/swagger-ui/index.html`
+For example: `http://localhost:8080/swagger-ui.html`
 
 The Swagger UI lets you fill in parameters and execute requests against your running instance, which is the fastest way to learn how each endpoint works. You can also reach it from the Settings menu (gear icon in the top-right corner).
 
@@ -308,7 +308,7 @@ The add-password endpoint uses **prevent** flags (not allow flags). To restrict 
 | `preventExtractForAccessibility` | Extracting content for accessibility (screen readers) |
 | `preventFillInForm` | Filling in form fields |
 
-Supported key lengths: `128` (AES-128) and `256` (AES-256).
+Supported key lengths: `40`, `128`, and `256`.
 
 ### Remove Password
 
@@ -407,7 +407,7 @@ The default async request timeout is **20 minutes** (1,200,000 ms). For very lar
 SYSTEM_CONNECTIONTIMEOUTMILLISECONDS=1800000  # 30 minutes
 ```
 
-Process-specific timeouts (LibreOffice, Tesseract, etc.) are configured separately — see the [Process Limits](./Configuration/Process-Limits.md) documentation.
+Process-specific timeouts (LibreOffice, Tesseract, etc.) are configured separately - see the [Process Limits](./Configuration/Process-Limits.md) documentation.
 
 ---
 
@@ -424,6 +424,6 @@ Process-specific timeouts (LibreOffice, Tesseract, etc.) are configured separate
 
 ## Related
 
-- [Process Limits](./Configuration/Process-Limits.md) — Configure timeouts and concurrency for external tools
-- [Production Deployment Guide](./Server-Admin-Onboarding.md) — Sizing and scaling recommendations
-- [Diagnostics](./Configuration/Diagnostics.md) — Troubleshooting and reporting issues
+- [Process Limits](./Configuration/Process-Limits.md) - Configure timeouts and concurrency for external tools
+- [Production Deployment Guide](./Server-Admin-Onboarding.md) - Sizing and scaling recommendations
+- [Diagnostics](./Configuration/Diagnostics.md) - Troubleshooting and reporting issues

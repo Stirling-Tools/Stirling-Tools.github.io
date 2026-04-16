@@ -233,6 +233,9 @@ For advanced features and specific use cases, see these detailed guides:
 
 ### Performance & Scaling
 
+**[Performance Optimization & Sizing](./Performance-Optimization.md)**
+- Resource sizing, JVM tuning, memory model, and scaling guidance
+
 **[Process Limits](./Process-Limits.md)**
 - Session limits and timeouts for external tools
 

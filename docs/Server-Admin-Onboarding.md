@@ -1317,196 +1317,23 @@ find backups/ -name "stirling-data-*.tar.gz" -mtime +30 -delete
 
 ---
 
-## Step 9: Performance Optimization & Sizing
+## Step 9: Performance Optimization
 
-Understanding how Stirling PDF uses resources is essential for sizing your deployment correctly. PDF processing is memory-intensive — a single large PDF can expand to many times its file size in memory during processing.
+For detailed resource sizing, JVM tuning, memory model documentation, job queue behavior, and scaling guidance, see the dedicated [Performance Optimization & Sizing](./Configuration/Performance-Optimization.md) guide.
 
-### 9.1: How Stirling PDF Uses Memory
+**Quick reference for Docker Compose resource limits:**
 
-Stirling PDF loads PDFs into memory using a tiered strategy based on file size:
-
-| File Size | Strategy | Memory Impact |
-|---|---|---|
-| Up to 10 MB | Loaded entirely into JVM heap as byte array | Fast, but consumes heap proportional to file size |
-| 10 MB to 50 MB | Mixed mode — 10 MB budget in heap, remainder file-backed | Moderate heap usage with disk spillover |
-| Over 50 MB | Fully file-backed (scratch space on disk) | Minimal heap, but requires adequate temp disk space |
-
-The application also monitors heap pressure. If free heap drops below **30% of total heap** or below **256 MB absolute**, all operations are forced into file-backed mode regardless of file size.
-
-The maximum number of simultaneous PDF operations is bounded by a semaphore based on your CPU count: `max(4, available CPU cores)`. Each concurrent operation may hold a document in memory, so peak memory usage scales with both file sizes and concurrency.
-
-:::caution Memory-Intensive Operations
-A 50 MB PDF with complex vector graphics, embedded fonts, and many pages can expand to 200–500 MB in memory during processing. Operations that render pages (such as PDF-to-image conversion) and OCR are particularly memory-intensive. Plan for several times the maximum expected file size in available heap per concurrent operation.
-:::
-
-### 9.2: Resource Recommendations
-
-<Tabs groupId="server-size">
-<TabItem value="small-team" label="Small Team (1-10 users)" default>
-
-**Recommended specifications:**
-- **CPU:** 2 cores (4+ recommended)
-- **RAM:** 4 GB total, 2 GB JVM heap
-- **Disk:** 10 GB free temp space
-- **Expected files:** Under 20 MB
-
-**Docker Compose:**
 ```yaml
 services:
   stirling-pdf:
-    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     environment:
-      JAVA_TOOL_OPTIONS: "-Xms512m -Xmx2g"
+      JAVA_TOOL_OPTIONS: "-Xms512m -Xmx4g"  # Always set explicitly for production
     deploy:
       resources:
         limits:
-          memory: 4G
-          cpus: '2.0'
-```
-
-</TabItem>
-<TabItem value="medium-team" label="Medium Team (10-50 users)">
-
-**Recommended specifications:**
-- **CPU:** 4–8 cores
-- **RAM:** 8–16 GB total, 4–8 GB JVM heap
-- **Disk:** 50 GB temp space (SSD recommended)
-- **Expected files:** Up to 100 MB
-
-**Docker Compose:**
-```yaml
-services:
-  stirling-pdf:
-    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
-    environment:
-      JAVA_TOOL_OPTIONS: "-Xms1g -Xmx4g"
-      PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT: 2
-    deploy:
-      resources:
-        limits:
-          memory: 8G
+          memory: 8G    # At least 1.5x your -Xmx value
           cpus: '4.0'
 ```
-
-**Consider:**
-- Increase LibreOffice session limit for faster document conversions — see [LibreOffice Parallel Processing](./Configuration/LibreOffice-Parallel-Processing.md)
-- External PostgreSQL database for reliability
-
-</TabItem>
-<TabItem value="large-org" label="Large Organization (50+ users)">
-
-**Recommended specifications:**
-- **CPU:** 8+ cores
-- **RAM:** 16–32 GB total, 8–16 GB JVM heap
-- **Disk:** 100+ GB temp space, SSD strongly recommended
-- **Expected files:** Up to 500 MB, OCR and conversion workloads
-
-**Docker Compose:**
-```yaml
-services:
-  stirling-pdf:
-    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
-    environment:
-      JAVA_TOOL_OPTIONS: "-Xms2g -Xmx8g"
-      PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT: 4
-      PROCESS_EXECUTOR_SESSION_LIMIT_TESSERACT_SESSION_LIMIT: 2
-    deploy:
-      resources:
-        limits:
-          memory: 16G
-          cpus: '8.0'
-```
-
-**Architecture considerations:**
-- Multiple instances behind a load balancer with session affinity
-- Remote UNO servers for LibreOffice scaling — see [LibreOffice Parallel Processing](./Configuration/LibreOffice-Parallel-Processing.md)
-- External PostgreSQL database (enterprise feature)
-- Shared `/configs` volume across instances for consistent settings
-
-:::tip Server/Enterprise Recommended
-For large organizations, **Server or Enterprise plans** provide SSO, external database support, advanced monitoring, and dedicated support.
-
-[Learn more](#step-10-paid-plans-serverenterprise)
-:::
-
-</TabItem>
-</Tabs>
-
-### 9.3: JVM Tuning
-
-The application runs on Java 21+ with virtual threads enabled. The JVM does not ship with fixed heap settings — it uses the JVM's automatic ergonomics, which typically sets max heap to 25% of available container memory. For production, always explicitly set the heap:
-
-```bash
-JAVA_TOOL_OPTIONS="-Xms512m -Xmx4g"
-```
-
-| Setting | Meaning | Recommendation |
-|---|---|---|
-| `-Xms` | Initial heap size | Set to 25–50% of `-Xmx` to reduce GC churn at startup |
-| `-Xmx` | Maximum heap size | Set based on your workload (see sizing table above) |
-
-:::caution Container Memory Limits
-If running in Docker or Kubernetes with memory limits, set the container limit to **at least 1.5x the JVM max heap** to account for JVM metaspace, LibreOffice processes (~50 MB each), Tesseract, Python processes, and OS overhead. For example, if you set `-Xmx4g`, set your container memory limit to at least 6 GB.
-:::
-
-### 9.4: Reverse Proxy Configuration
-
-If you're using a reverse proxy, ensure your upload size limits and timeouts are set appropriately.
-
-**NGINX** defaults to a 1 MB `client_max_body_size`, which will block most PDF uploads and return `.htm` error pages instead. You **must** increase this:
-
-```nginx
-server {
-    client_max_body_size 2000M;  # Match your Stirling PDF file upload limit
-    proxy_read_timeout 600s;     # Allow time for large file processing
-    proxy_send_timeout 600s;
-}
-```
-
-See also [FAQ](./FAQ.md) for more common issues related to reverse proxy configuration.
-
-### 9.5: Storage & Temp File Management
-
-Stirling PDF stores temporary processing files in a configurable temp directory (default: the system temp directory under `stirling-pdf/`). Automatic cleanup runs every **30 minutes** and removes files older than **24 hours**.
-
-For high-throughput deployments, ensure your temp directory is on fast storage (SSD) with sufficient space. Monitor disk usage — if cleanup cannot keep pace with file processing, the temp directory can grow large.
-
-**Monitor disk usage:**
-```bash
-# Check Docker disk usage
-docker system df
-
-# Check Stirling-PDF data usage
-du -sh ./stirling-data/*
-```
-
-### 9.6: Job Queue Behavior
-
-Under high load, Stirling PDF queues incoming requests with these defaults:
-
-| Parameter | Default | Notes |
-|---|---|---|
-| Base queue capacity | 10 | Maximum queued jobs before rejection |
-| Minimum queue capacity | 2 | Floor during resource pressure |
-| Queue check interval | 1 second | How often queued jobs are re-evaluated |
-| Maximum wait time | 10 minutes | After which queued jobs are rejected |
-
-When CPU or memory exceeds critical thresholds (CPU 90%, heap 90%), the queue capacity is dynamically reduced toward the minimum to shed load. If users are experiencing rejected requests during peak usage, consider scaling horizontally with multiple instances.
-
-### 9.7: Resource-Intensive Operations
-
-Some operations require significantly more resources than others:
-
-| Operation | CPU Impact | Memory Impact | Notes |
-|---|---|---|---|
-| Merge / Split | Low | Proportional to total file sizes | Lightweight file operations |
-| OCR (Tesseract) | Very High | High | CPU-bound image analysis |
-| File Conversion (LibreOffice) | High | High | Single-threaded per instance |
-| PDF-to-Image | Moderate | Very High | Page rendering expands memory significantly |
-| PDF/A Conversion | Moderate | High | Font embedding and color profiles |
-| Compression | Moderate | High | Rewriting internal PDF structures |
-
-For configuration of per-tool concurrency limits and timeouts, see [Process Limits](./Configuration/Process-Limits.md).
 
 ---
 
@@ -1604,8 +1431,8 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 
 **Solutions:**
 1. Check resource limits: `docker stats stirling-pdf`
-2. Increase JVM heap: Set `JAVA_TOOL_OPTIONS="-Xms1g -Xmx4g"` (see [Step 9](#step-9-performance-optimization--sizing))
-3. Increase LibreOffice instances if document conversions are slow — see [LibreOffice Parallel Processing](./Configuration/LibreOffice-Parallel-Processing.md)
+2. Increase JVM heap - see [Performance Optimization](./Configuration/Performance-Optimization.md)
+3. Increase LibreOffice instances if document conversions are slow - see [LibreOffice Parallel Processing](./Configuration/LibreOffice-Parallel-Processing.md)
 4. Check disk I/O: Use SSD for temp file storage
 5. Run the built-in [diagnostics tool](./Configuration/Diagnostics.md) and check application logs
 
