@@ -21,14 +21,17 @@ All feedback and suggestions are appreciated. It is best to submit these via a G
 You can also reach out in discord but without a ticket to track it the request can often get lost!
 
 ### Q5: I found a bug in Stirling PDF. Where can I report it?
-Please report any bugs or issues you encounter through our GitHub Issues page. Be sure to include as much detail as possible so we can diagnose and resolve the issue quickly.
+Please report any bugs or issues you encounter through our [GitHub Issues page](https://github.com/Stirling-Tools/Stirling-PDF/issues). Be sure to include as much detail as possible so we can diagnose and resolve the issue quickly. If you're running Docker, use the built-in [diagnostics tool](./Configuration/Diagnostics.md) to collect logs, configuration, and system information into a shareable archive.
 
-### Q6: My Stirling PDF Using high RAM at idle, How can I optimize memory usage?
+### Q6: My Stirling PDF is using high RAM at idle. How can I optimize memory usage?
 Stirling PDF's memory usage can be optimized in several ways:
 
-Disable additional features: Set DISABLE_ADDITIONAL_FEATURES=true to reduce RAM consumption. This can significantly lower memory usage, especially during idle periods.
+- **Disable additional features:** Set `DISABLE_ADDITIONAL_FEATURES=true` to reduce RAM consumption. This can significantly lower memory usage, especially during idle periods.
+- **Use the Ultra Lite version:** Pull the `latest-ultra-lite` tag from Docker Hub or GitHub, which is specifically designed for lower-end hardware.
+- **Tune the JVM heap:** Set `JAVA_TOOL_OPTIONS="-Xms256m -Xmx1g"` to limit the maximum heap size. By default, the JVM may allocate up to 25% of container memory as heap.
+- **Reduce LibreOffice instances:** Each idle LibreOffice UNO server instance uses approximately 50 MB. The default session limit is 1. See [LibreOffice Parallel Processing](./Configuration/LibreOffice-Parallel-Processing.md) for details.
 
-Use the Ultra Lite version: Pull the latest-ultra-lite tag from Docker Hub or GitHub, which is specifically designed for lower-end hardware.
+For detailed sizing recommendations, see [Production Deployment Guide — Performance Optimization](./Server-Admin-Onboarding.md#step-9-performance-optimization--sizing).
 
 ### Q7: I'm experiencing connection errors when pulling from docker.stirling.com
 

@@ -41,6 +41,8 @@ Controls how many concurrent instances of each process are allowed. Extra reques
 
 **Increase** limits on a beefy server with concurrent users. **Decrease** them on low-RAM servers - LibreOffice in particular is memory-hungry.
 
+For LibreOffice specifically, you can also scale by running multiple remote UNO server instances — see [LibreOffice Parallel Processing](./LibreOffice-Parallel-Processing.md) for details.
+
 :::info
 Be mindful of memory and CPU usage when raising session limits. Each concurrent process consumes resources, and setting limits too high can starve the host or cause out-of-memory issues possibly killing the instance. Start with the defaults and increase gradually while monitoring your server.
 :::
