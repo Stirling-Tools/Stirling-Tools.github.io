@@ -21,7 +21,25 @@ const config = {
     projectName: 'Stirling-PDF', // Usually your repo name.
 
     onBrokenLinks: 'throw',
-    onBrokenMarkdownLinks: 'warn',
+    onBrokenAnchors: 'throw',
+
+    markdown: {
+        hooks: {
+            onBrokenMarkdownLinks: 'warn',
+        },
+    },
+
+    future: {
+        v4: {
+            removeLegacyPostBuildHeadAttribute: true,
+        },
+        faster: true,
+    },
+
+    storage: {
+        type: 'localStorage',
+        namespace: true,
+    },
 
     i18n: {
         defaultLocale: 'en',
@@ -55,6 +73,28 @@ const config = {
         enableInDevelopment: true, // optional
       },
     ],
+    function scarfTrackingPixelPlugin() {
+      return {
+        name: 'scarf-tracking-pixel',
+        injectHtmlTags() {
+          return {
+            postBodyTags: [
+              {
+                tagName: 'img',
+                attributes: {
+                  referrerpolicy: 'no-referrer-when-downgrade',
+                  src: 'https://static.scarf.sh/a.png?x-pxid=5d074971-2ecb-4c54-8397-30c0f91896b3',
+                  height: '1',
+                  width: '1',
+                  style: 'display:none',
+                  alt: 'x',
+                },
+              },
+            ],
+          };
+        },
+      };
+    },
   ],
   clientModules: [
     require.resolve('./src/clientModules/anchorScroll.js'),
@@ -84,26 +124,21 @@ const config = {
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },
+                sitemap: {
+                    lastmod: 'date',
+                    priority: null,
+                    changefreq: null,
+                },
             }),
         ],
     ],
-	headTags: [
-	  {
-		tagName: 'img',
-		attributes: {
-		  referrerpolicy: 'no-referrer-when-downgrade',
-		  src: 'https://static.scarf.sh/a.png?x-pxid=5d074971-2ecb-4c54-8397-30c0f91896b3',
-		  height: '1',
-		  width: '1',
-		  style: 'display:none',
-		  alt: 'x',
-		},
-	  },
-	],
-
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+			colorMode: {
+				defaultMode: 'light',
+				respectPrefersColorScheme: true,
+			},
 			// Improve anchor scrolling behavior
 			scrollToTop: true,
 			scrollToTopOptions: {
