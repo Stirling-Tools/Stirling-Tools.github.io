@@ -231,6 +231,28 @@ For advanced features and specific use cases, see these detailed guides:
 
 ---
 
+### Performance & Scaling
+
+**[Performance Optimization & Sizing](./Performance-Optimization.md)**
+- Resource sizing, JVM tuning, memory model, and scaling guidance
+
+**[Process Limits](./Process-Limits.md)**
+- Session limits and timeouts for external tools
+
+**[LibreOffice Parallel Processing](./LibreOffice-Parallel-Processing.md)**
+- Configure multiple LibreOffice instances for faster document conversion
+- Local UNO server pool and remote UNO server endpoints
+
+---
+
+### Diagnostics & Support
+
+**[Diagnostics & Reporting Issues](./Diagnostics.md)**
+- Built-in diagnostics tool for Docker containers
+- How to report issues via GitHub, Discord, and email
+
+---
+
 ### Other Configuration
 
 **[Folder Scanning](./FolderScanning.md)**
@@ -303,3 +325,4 @@ If missing:
 - **Production Deployment:** See [Production Deployment Guide](../Server-Admin-Onboarding.md)
 - **API Usage:** See [API Documentation](../API.md)
 - **Tool Reference:** See [Functionality](../Functionality/Functionality.md)
+- **Troubleshooting:** See [Diagnostics & Reporting Issues](./Diagnostics.md)

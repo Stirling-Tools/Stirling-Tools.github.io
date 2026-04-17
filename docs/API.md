@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 
 Stirling PDF exposes a simple API for easy integration with external scripts. You can access the API documentation in two ways:
 
-1. Local Swagger UI at `/swagger-ui/index.html` on your Stirling PDF instance
+1. Local Swagger UI at `/swagger-ui.html` on your Stirling PDF instance
 2. Online [Swagger Documentation](https://app.swaggerhub.com/apis-docs/Frooodle/Stirling-PDF/)
 
 You can also access the documentation through the settings menu (gear icon in the top-right corner).
@@ -22,8 +22,8 @@ You can also access the documentation through the settings menu (gear icon in th
 
 ### Local Swagger UI
 Your Stirling PDF instance includes built-in API documentation:
-1. Navigate to `http://your-instance:port/swagger-ui/index.html`
-2. Or append `/swagger-ui/index.html` to your Stirling PDF URL
+1. Navigate to `http://your-instance:port/swagger-ui.html`
+2. Or append `/swagger-ui.html` to your Stirling PDF URL
 3. This provides an interactive documentation interface where you can:
    - View all available endpoints
    - Test API calls directly

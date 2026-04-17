@@ -1319,156 +1319,7 @@ find backups/ -name "stirling-data-*.tar.gz" -mtime +30 -delete
 
 ## Step 9: Performance Optimization
 
-Optimize Stirling-PDF for your workload and server capacity.
-
-### 9.1: Resource Allocation
-
-<Tabs groupId="server-size">
-<TabItem value="small-team" label="Small Team (5-20 users)" default>
-
-**Recommended specifications:**
-- **CPU:** 2 cores
-- **RAM:** 4GB
-- **Disk:** 20GB
-- **Concurrent operations:** 2-4
-
-**Docker resource limits:**
-```yaml
-deploy:
-  resources:
-    limits:
-      memory: 4G
-      cpus: '2.0'
-    reservations:
-      memory: 2G
-      cpus: '1.0'
-```
-
-**Settings:**
-```yaml
-system:
-  maxFileSize: 500  # 500MB max file
-  connectionTimeoutMinutes: 5
-  maxConcurrentOperations: 2
-```
-
-</TabItem>
-<TabItem value="medium-team" label="Medium Team (20-100 users)">
-
-**Recommended specifications:**
-- **CPU:** 4 cores
-- **RAM:** 8GB
-- **Disk:** 50GB
-- **Concurrent operations:** 4-8
-
-**Docker resource limits:**
-```yaml
-deploy:
-  resources:
-    limits:
-      memory: 8G
-      cpus: '4.0'
-    reservations:
-      memory: 4G
-      cpus: '2.0'
-```
-
-**Settings:**
-```yaml
-system:
-  maxFileSize: 1000  # 1GB max file
-  connectionTimeoutMinutes: 10
-  maxConcurrentOperations: 4
-```
-
-**Consider:**
-- Load balancer for multiple instances
-- Database on separate server
-
-</TabItem>
-<TabItem value="large-org" label="Large Organization (100+ users)">
-
-**Recommended specifications:**
-- **CPU:** 8+ cores
-- **RAM:** 16GB+
-- **Disk:** 100GB+ (SSD recommended)
-- **Concurrent operations:** 8+
-
-**Docker resource limits:**
-```yaml
-deploy:
-  resources:
-    limits:
-      memory: 16G
-      cpus: '8.0'
-    reservations:
-      memory: 8G
-      cpus: '4.0'
-```
-
-**Settings:**
-```yaml
-system:
-  maxFileSize: 2000  # 2GB max file
-  connectionTimeoutMinutes: 15
-  maxConcurrentOperations: 8
-```
-
-**Architecture:**
-- Multiple instances for processing
-- Load balancer with session affinity
-- Dedicated database server
-- Redis for session storage
-
-:::tip Server/Enterprise Recommended
-For large organizations, **Server or Enterprise plans** provide:
-- Advanced load balancing
-- High availability configuration
-- Database clustering
-- Performance monitoring
-- Dedicated support
-
-[Learn more](#step-10-paid-plans-serverenterprise)
-:::
-
-</TabItem>
-</Tabs>
-
-### 9.2: Storage Management
-
-**Monitor disk usage:**
-```bash
-# Check Docker disk usage
-docker system df
-
-# Check Stirling-PDF data usage
-du -sh ./stirling-data/*
-```
-
-**Cleanup strategies:**
-
-```yaml
-system:
-  # Automatic cleanup settings
-  tempFileCleanup: true
-  tempFileMaxAge: 24  # hours
-
-  # Log rotation
-  logRetentionDays: 30
-  maxLogSize: 100  # MB
-```
-
-**Manual cleanup:**
-```bash
-# Clean Docker system
-docker system prune -a --volumes
-
-# Clean old logs
-find ./stirling-data/logs -name "*.log" -mtime +30 -delete
-
-# Clean temporary files (if not auto-cleaned)
-find ./stirling-data/temp -type f -mtime +1 -delete
-```
+For resource sizing recommendations, scaling guidance, and fine tuning, see the dedicated [Performance Optimization & Sizing](./Configuration/Performance-Optimization.md) guide.
 
 ---
 
@@ -1517,6 +1368,7 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
    - [OCR Configuration](./Configuration/OCR.md) - Add more languages
    - [Pipeline Automation](./Configuration/Pipeline.md) - Automate workflows
    - [API Integration](./API.md) - Integrate with other systems
+   - [LibreOffice Parallel Processing](./Configuration/LibreOffice-Parallel-Processing.md) - Scale document conversions
 
 3. **🔒 Harden security**
    - [Fail2Ban Setup](./Configuration/Fail2Ban.md) - Prevent brute force
@@ -1565,9 +1417,10 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 
 **Solutions:**
 1. Check resource limits: `docker stats stirling-pdf`
-2. Increase memory: Update `deploy.resources.limits.memory`
-3. Reduce concurrent operations: Lower `maxConcurrentOperations`
-4. Check disk I/O: Use SSD for better performance
+2. Increase JVM heap - see [Performance Optimization](./Configuration/Performance-Optimization.md)
+3. Increase LibreOffice instances if document conversions are slow - see [LibreOffice Parallel Processing](./Configuration/LibreOffice-Parallel-Processing.md)
+4. Check disk I/O: Use SSD for temp file storage
+5. Run the built-in [diagnostics tool](./Configuration/Diagnostics.md) and check application logs
 
 ### HTTPS/Certificate Issues
 
@@ -1591,13 +1444,15 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 
 ### Need More Help?
 
+Run the built-in [diagnostics tool](./Configuration/Diagnostics.md) inside your Docker container to collect logs, configuration, and system information into a shareable archive.
+
 **For Community Support:**
-- Join Discord: https://discord.gg/Cn8pWhQRxZ
+- Join Discord: https://discord.gg/HYmhKj45pU
 - Search GitHub Issues: https://github.com/Stirling-Tools/Stirling-PDF/issues
 
 **For Priority Support:**
 - Upgrade to Server or Enterprise plan
-- Email: support@stirlingtools.com
+- Email: support@stirlingpdf.com
 - Get dedicated support team
 
 ---
