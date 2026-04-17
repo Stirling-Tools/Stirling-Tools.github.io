@@ -367,7 +367,7 @@ After first login, you can control how additional users are created through Sett
    - Verify you're the first user created
    - Confirm `SECURITY_ENABLELOGIN=true` is set
 
-:::caution Secure Your Admin Account
+:::warning Secure Your Admin Account
 - **Change the default password immediately** after first login
 - Use a strong password (12+ characters, mixed case, numbers, symbols)
 - Consider using SSO (OAuth2/SAML2) to avoid password management entirely
@@ -462,7 +462,7 @@ processExecutor:
 
 Navigate to **Settings → Security**
 
-:::caution Critical for Production
+:::warning Critical for Production
 These settings directly impact your organization's security. Review carefully!
 :::
 
