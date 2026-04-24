@@ -111,7 +111,7 @@ const config = {
                     lastVersion: 'current',
                     versions: {
                         current: {
-                            label: '2.0 (Current)',
+                            label: '2+ (Current)',
                             banner: 'none',
                             badge: false,
                         },

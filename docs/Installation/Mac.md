@@ -3,6 +3,10 @@ sidebar_position: 2
 id: Mac Installation
 title: Mac Installation Guide
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # MacOS Installation Guide for Stirling PDF
 
 Stirling PDF for Mac is available as a **native desktop application** or can run as a **server** using the JAR file.
@@ -22,44 +26,46 @@ Native Mac desktop app with all PDF tools available.
 - ✅ **No external browser needed** - Uses the built-in window
 - ✅ **Menu bar integration** - Feels like a native Mac app
 
-### Installation Steps
+### Installation
 
-**1. Download the right version for your Mac:**
+Pick whichever method you prefer. Both install the same desktop app.
 
-| Chip Type | Download Link |
-|-----------|--------------|
-| **Apple Silicon** (M1/M2/M3) | [Download for Apple Silicon](https://files.stirlingpdf.com/mac-installer.dmg) |
-| **Intel** processors | [Download for Intel](https://files.stirlingpdf.com/mac-x86_64-installer.dmg) |
+<Tabs groupId="mac-install" queryString>
+  <TabItem value="dmg" label="DMG Installer" default>
+    **1. Download the right version for your Mac:**
 
-**Not sure which chip you have?**
-- Click the Apple menu → "About This Mac"
-- Look at "Chip" or "Processor"
-- If it says "M1", "M2", or "M3" → Use Apple Silicon version
-- If it says "Intel" → Use Intel version
+    | Chip Type | Download Link |
+    |-----------|--------------|
+    | **Apple Silicon** (M1/M2/M3) | [Download for Apple Silicon](https://files.stirlingpdf.com/mac-installer.dmg) |
+    | **Intel** processors | [Download for Intel](https://files.stirlingpdf.com/mac-x86_64-installer.dmg) |
 
-**2. Install the application:**
+    Not sure which chip you have? Click the Apple menu → "About This Mac" and look at "Chip" or "Processor".
 
-1. Open the downloaded `.dmg` file
-2. Drag Stirling PDF to your Applications folder
+    **2. Install:** open the `.dmg` and drag Stirling PDF to your Applications folder.
 
-![mac-installer.png](/img/mac-installer.png)
+    ![mac-installer.png](/img/mac-installer.png)
 
-**3. First-time launch (Security):**
+    **3. First-time launch (Gatekeeper):** macOS blocks the app on first launch because it's not from the App Store.
 
-macOS will block the app on first launch because it's not from the App Store:
+    ![mac-app-blocked.png](/img/mac-app-blocked.png)
 
-![mac-app-blocked.png](/img/mac-app-blocked.png)
+    Open **System Settings → Privacy & Security**, scroll to the **Security** section, click **"Open Anyway"** next to the Stirling PDF message, then launch again.
 
-**To allow Stirling PDF:**
-1. Open **System Settings** → **Privacy & Security**
-2. Scroll down to the **Security** section
-3. Click **"Open Anyway"** next to the Stirling PDF message
-4. Enter your password if prompted
-5. Go back to Applications and launch Stirling PDF again
+    ![mac-security-allow.png](/img/mac-security-allow.png)
+  </TabItem>
+  <TabItem value="brew" label="Homebrew">
+    ```bash
+    brew tap Stirling-Tools/stirling-pdf
+    brew install --cask stirling-pdf
+    ```
 
-![mac-security-allow.png](/img/mac-security-allow.png)
+    Updates come through `brew upgrade`:
 
-The app will now open normally every time!
+    ```bash
+    brew upgrade --cask stirling-pdf
+    ```
+  </TabItem>
+</Tabs>
 
 ### Using the Desktop App
 

@@ -3,6 +3,10 @@ sidebar_position: 2
 id: Windows Installation
 title: Windows Guide
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Windows Installation Guide for Stirling PDF
 
 Stirling PDF for Windows comes in two versions: a **Desktop Application** for personal use and a **Server Version** for hosting and sharing with others.
@@ -23,13 +27,38 @@ Stirling PDF for Windows comes in two versions: a **Desktop Application** for pe
 - ✅ **Better performance** - Optimized for Windows
 - ✅ **No browser needed** - Standalone application
 
-### Quick Installation
+### Installation
 
-1. **Download**: [Stirling PDF Desktop Installer](https://files.stirlingpdf.com/win-installer.exe)
-2. **Run the installer** - Follow the prompts (installs to `C:\Program Files\Stirling-PDF`)
-3. **Launch from Start Menu** - Search for "Stirling PDF"
-4. **Start working with PDFs!**
-5. **Optionally connect a server** - For advanced tools, see [Connecting to a server](#connecting-to-a-server) below
+Pick whichever method you prefer. All three install the same desktop app.
+
+<Tabs groupId="windows-install" queryString>
+  <TabItem value="installer" label="Installer" default>
+    1. Download: [Stirling PDF Desktop Installer](https://files.stirlingpdf.com/win-installer.exe)
+    2. Run the installer and follow the prompts (installs to `C:\Program Files\Stirling-PDF`)
+    3. Launch from the Start Menu - search for "Stirling PDF"
+
+    For unattended deployments with a pre-configured server URL, see [Automated Installation](#automated-installation) below.
+  </TabItem>
+  <TabItem value="winget" label="winget">
+    ```powershell
+    winget install StirlingTools.StirlingPDF
+    ```
+
+    For unattended deployments with a pre-configured server URL, see [Automated Installation](#automated-installation) below.
+  </TabItem>
+  <TabItem value="scoop" label="Scoop">
+    ```powershell
+    scoop bucket add stirling-pdf https://github.com/Stirling-Tools/homebrew-stirling-pdf
+    scoop install stirling-pdf/stirling-pdf
+    ```
+
+    Updates come through automatically on new releases:
+
+    ```powershell
+    scoop update stirling-pdf
+    ```
+  </TabItem>
+</Tabs>
 
 ### Connecting to a server
 
@@ -67,36 +96,38 @@ The desktop app works fully offline for local PDF tools like merging, splitting,
 - Unlimited file storage (not limited by browser)
 - System tray icon for quick access
 
-### Automated Installation (MSI Installer)
+### Automated Installation
 
-The Windows desktop MSI installer supports silent/headless installation with custom parameters, ideal for IT deployments, deployment scripts (SCCM, Intune, Group Policy), or enforcing connections to self-hosted servers.
+Silent/headless installation with custom parameters, ideal for IT deployments (SCCM, Intune, Group Policy) or enforcing connections to self-hosted servers. Works via either the MSI installer directly or `winget --custom`.
 
 **Available Parameters:**
 
 | Parameter | Description | Example Value |
 |-----------|-------------|---------------|
 | `STIRLING_SERVER_URL` | Pre-configure the server URL that the desktop app connects to | `http://192.168.1.53:2357/` |
-| `STIRLING_LOCK_CONNECTION` | Lock the connection mode to prevent users from changing server settings.<br/>Set to `1` to enforce self-hosted server only, preventing accidental connections to external servers. | `1` (locked) or `0` (unlocked) |
+| `STIRLING_LOCK_CONNECTION` | Lock the connection mode so users cannot change the server. `1` = locked, `0` or omit = unlocked | `1` |
+| `INSTALLDIR` | Custom installation directory (MSI only) | `INSTALLDIR="C:\CustomPath\Stirling-PDF"` |
+| `ALLUSERS` | Install for all users (requires admin). `1` = all users, `0` or omit = current user | `ALLUSERS=1` |
 
-**Example Installation Command:**
+**Example:**
 
-```batch
-msiexec /i "Stirling-PDF-windows-x86_64.msi" /qn STIRLING_SERVER_URL="http://192.168.1.53:2357" STIRLING_LOCK_CONNECTION=1
-```
+<Tabs groupId="windows-automated" queryString>
+  <TabItem value="msi" label="MSI (msiexec)" default>
+    ```batch
+    msiexec /i "Stirling-PDF-windows-x86_64.msi" /qn STIRLING_SERVER_URL="http://192.168.1.53:2357" STIRLING_LOCK_CONNECTION=1
+    ```
 
-**Command Breakdown:**
-- `msiexec` - Windows Installer command-line tool (included with all Windows installations) for installing, modifying, and performing operations on MSI packages
-- `/i` - Install the MSI package
-- `/qn` - Run silently with no user interface (quiet mode, no UI)
-- `STIRLING_SERVER_URL` - Automatically sets the server URL on first launch
-- `STIRLING_LOCK_CONNECTION=1` - Locks the connection to the specified server (users cannot change it)
+    `/i` installs, `/qn` runs silently with no UI. The MSI is available in the [releases](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest).
+  </TabItem>
+  <TabItem value="winget" label="winget">
+    ```powershell
+    winget install StirlingTools.StirlingPDF `
+      --custom "STIRLING_SERVER_URL=http://192.168.1.53:2357 STIRLING_LOCK_CONNECTION=1"
+    ```
 
-**Additional Parameters:**
-
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| `INSTALLDIR` | Custom installation directory | `INSTALLDIR="C:\CustomPath\Stirling-PDF"` |
-| `ALLUSERS` | Install for all users (requires admin).<br/>`1` = all users, `0` or omit = current user only | `ALLUSERS=1` |
+    `--custom` forwards parameters straight to the underlying MSI, so the same properties work.
+  </TabItem>
+</Tabs>
 
 **Technical Details:**
 
@@ -106,12 +137,8 @@ msiexec /i "Stirling-PDF-windows-x86_64.msi" /qn STIRLING_SERVER_URL="http://192
   - Per-user install: `%APPDATA%\stirling.pdf.dev\stirling-provisioning.json`
   - All-users install: `%PROGRAMDATA%\Stirling-PDF\stirling-provisioning.json`
 - **URL Format**: Must include protocol (`http://` or `https://`), trailing slash is optional
-
-**Notes:**
-- The MSI installer is available in the [releases](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest)
 - When `STIRLING_LOCK_CONNECTION=1` is set, users cannot modify the server URL in the application settings
-- For unattended installations without parameters, omit the custom properties
-- System-wide provisioning files (`%PROGRAMDATA%`) are not deleted after being applied, allowing reinstallation with same settings
+- System-wide provisioning files (`%PROGRAMDATA%`) are not deleted after being applied, allowing reinstallation with the same settings
 
 ## Server Version (For Hosting and Sharing)
 
