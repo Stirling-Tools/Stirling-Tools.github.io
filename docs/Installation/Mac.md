@@ -30,7 +30,7 @@ Native Mac desktop app with all PDF tools available.
 
 Pick whichever method you prefer. Both install the same desktop app.
 
-<Tabs groupId="mac-install">
+<Tabs groupId="mac-install" queryString>
   <TabItem value="dmg" label="DMG Installer" default>
     **1. Download the right version for your Mac:**
 

@@ -31,7 +31,7 @@ Stirling PDF for Windows comes in two versions: a **Desktop Application** for pe
 
 Pick whichever method you prefer. All three install the same desktop app.
 
-<Tabs groupId="windows-install">
+<Tabs groupId="windows-install" queryString>
   <TabItem value="installer" label="Installer" default>
     1. Download: [Stirling PDF Desktop Installer](https://files.stirlingpdf.com/win-installer.exe)
     2. Run the installer and follow the prompts (installs to `C:\Program Files\Stirling-PDF`)
@@ -111,7 +111,7 @@ Silent/headless installation with custom parameters, ideal for IT deployments (S
 
 **Example:**
 
-<Tabs groupId="windows-automated">
+<Tabs groupId="windows-automated" queryString>
   <TabItem value="msi" label="MSI (msiexec)" default>
     ```batch
     msiexec /i "Stirling-PDF-windows-x86_64.msi" /qn STIRLING_SERVER_URL="http://192.168.1.53:2357" STIRLING_LOCK_CONNECTION=1

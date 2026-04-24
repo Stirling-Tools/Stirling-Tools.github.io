@@ -30,7 +30,7 @@ Native Linux desktop app with all PDF tools available.
 
 Pick whichever package format matches your distribution.
 
-<Tabs groupId="linux-install">
+<Tabs groupId="linux-install" queryString>
   <TabItem value="deb" label="DEB (Debian/Ubuntu)" default>
     ```bash
     wget https://files.stirlingpdf.com/linux-installer.deb
