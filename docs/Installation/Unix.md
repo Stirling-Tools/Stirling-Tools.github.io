@@ -28,19 +28,49 @@ Native Linux desktop app with all PDF tools available.
 
 ### Installation
 
-**1. Download:**
+Pick whichever package format matches your distribution.
 
-[Stirling-PDF Desktop Installer (DEB)](https://files.stirlingpdf.com/linux-installer.deb)
+<Tabs groupId="linux-install">
+  <TabItem value="deb" label="DEB (Debian/Ubuntu)" default>
+    ```bash
+    wget https://files.stirlingpdf.com/linux-installer.deb
+    sudo dpkg -i linux-installer.deb
+    ```
 
-**2. Install the application:**
+    Launch via your application menu or `stirling-pdf` from the terminal.
+  </TabItem>
+  <TabItem value="rpm" label="RPM (Fedora/RHEL)">
+    ```bash
+    wget https://files.stirlingpdf.com/linux-installer.rpm
+    sudo dnf install ./linux-installer.rpm
+    ```
+  </TabItem>
+  <TabItem value="appimage" label="AppImage">
+    No install required - download, mark executable, run:
 
-```bash
-sudo dpkg -i linux-installer.deb
-```
+    ```bash
+    wget https://files.stirlingpdf.com/linux-installer.AppImage
+    chmod +x linux-installer.AppImage
+    ./linux-installer.AppImage
+    ```
 
-**3. Launch Stirling-PDF:**
-- Search for "Stirling-PDF" in your application menu, or
-- Run `stirling-pdf` from the terminal
+    If you see `fuse: device not found` on Ubuntu 22.04+, install FUSE:
+
+    ```bash
+    sudo apt-get install libfuse2
+    ```
+  </TabItem>
+  <TabItem value="aur" label="AUR (Arch)">
+    Install via any AUR helper:
+
+    ```bash
+    paru -S stirling-pdf-desktop
+    # or: yay -S stirling-pdf-desktop
+    ```
+
+    Package: [stirling-pdf-desktop](https://aur.archlinux.org/packages/stirling-pdf-desktop).
+  </TabItem>
+</Tabs>
 
 ### Connecting to a server
 
