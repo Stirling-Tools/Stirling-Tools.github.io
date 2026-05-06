@@ -146,7 +146,7 @@ Some operations require significantly more resources than others. If your organi
 |---|---|---|---|
 | Merge / Split | Low | Proportional to total file sizes | Lightweight file operations |
 | OCR (Tesseract) | Very High | High | CPU-bound image analysis |
-| File Conversion (LibreOffice) | High | High | Single-threaded per instance |
+| File Conversion (LibreOffice) | High | High | Single-threaded per instance. Scales by running multiple instances. Per-conversion time varies widely with document complexity and host hardware. See [LibreOffice Parallel Processing](./LibreOffice-Parallel-Processing.md). |
 | PDF-to-Image | Moderate | Very High | Page rendering expands memory significantly |
 | PDF/A Conversion | Moderate | High | Font embedding and color profiles |
 | Compression | Moderate | High | Rewriting internal PDF structures |
