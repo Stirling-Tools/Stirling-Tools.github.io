@@ -80,8 +80,7 @@ Native apps with system integration:
 | Platform | Download | Guide |
 |----------|----------|-------|
 | **Windows** | [Installer](https://files.stirlingpdf.com/win-installer.exe) | [Windows Guide](./Installation/Windows.md) |
-| **Mac (Apple Silicon)** | [DMG](https://files.stirlingpdf.com/mac-installer.dmg) | [Mac Guide](./Installation/Mac.md) |
-| **Mac (Intel)** | [DMG](https://files.stirlingpdf.com/mac-x86_64-installer.dmg) | [Mac Guide](./Installation/Mac.md) |
+| **Mac** (Universal) | [DMG](https://files.stirlingpdf.com/mac-installer.dmg) | [Mac Guide](./Installation/Mac.md) |
 | **Linux** | [DEB](https://files.stirlingpdf.com/linux-installer.deb) | [Unix Guide](./Installation/Unix.md) |
 
 **Features:** Fast startup, "Open with" integration, no login required, optional server connection for advanced tools

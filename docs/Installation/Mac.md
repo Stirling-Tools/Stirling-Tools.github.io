@@ -32,14 +32,9 @@ Pick whichever method you prefer. Both install the same desktop app.
 
 <Tabs groupId="mac-install" queryString>
   <TabItem value="dmg" label="DMG Installer" default>
-    **1. Download the right version for your Mac:**
+    **1. Download the installer:** [Download Stirling PDF for Mac](https://files.stirlingpdf.com/mac-installer.dmg)
 
-    | Chip Type | Download Link |
-    |-----------|--------------|
-    | **Apple Silicon** (M1/M2/M3) | [Download for Apple Silicon](https://files.stirlingpdf.com/mac-installer.dmg) |
-    | **Intel** processors | [Download for Intel](https://files.stirlingpdf.com/mac-x86_64-installer.dmg) |
-
-    Not sure which chip you have? Click the Apple menu → "About This Mac" and look at "Chip" or "Processor".
+    The DMG is a universal binary that runs natively on both Apple Silicon (M1/M2/M3/etc.) and Intel Macs - no need to pick a build for your chip.
 
     **2. Install:** open the `.dmg` and drag Stirling PDF to your Applications folder.
 
