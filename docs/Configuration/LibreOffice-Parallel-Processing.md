@@ -55,7 +55,7 @@ The default `libreOfficeSessionLimit` is `1`, meaning only one conversion runs a
 
 ### Throughput expectations
 
-Per-conversion time varies from sub-second (small DOCX) to tens of seconds (complex PPTX, large spreadsheets). Pool throughput scales roughly linearly with worker count up to host CPU saturation — benchmark a representative document before sizing.
+Per-conversion time varies from sub-second (small DOCX) to tens of seconds (complex PPTX, large spreadsheets). Pool throughput scales roughly linearly with worker count up to host CPU saturation - benchmark a representative document before sizing.
 
 ---
 
@@ -157,7 +157,7 @@ Use `remote` when running UNO servers in separate Docker containers, even if the
 | `:alpha` | Pre-release testing |
 | `:1.0.0`, `:1.0.1`, … | Pinned version |
 
-The image is versioned independently from Stirling PDF — pin a version and update it on its own cadence. Compatibility breaks are called out in release notes.
+The image is versioned independently from Stirling PDF - pin a version and update it on its own cadence. Compatibility breaks are called out in release notes.
 
 ### Configuration
 
@@ -221,9 +221,9 @@ If conversions are consistently timing out, this usually indicates the system is
 
 ## Host resource requirements
 
-- **Memory** — ~70 MB idle, 140–250 MB during conversion, per worker. Add headroom for the OS and Stirling PDF itself.
-- **CPU** — one core pinned per active conversion. Start with one worker per two cores.
-- **Storage** — `/tmp/stirling-pdf` holds files mid-conversion. Allow roughly `2 × max upload × concurrent uploads`. On small `/tmp` partitions, mount a volume:
+- **Memory** - ~70 MB idle, 140–250 MB during conversion, per worker. Add headroom for the OS and Stirling PDF itself.
+- **CPU** - one core pinned per active conversion. Start with one worker per two cores.
+- **Storage** - `/tmp/stirling-pdf` holds files mid-conversion. Allow roughly `2 × max upload × concurrent uploads`. On small `/tmp` partitions, mount a volume:
 
 ```yaml
 services:
@@ -281,6 +281,6 @@ Conversions distribute evenly across workers; excess queue. Bottlenecks in order
 
 ## Related
 
-- [Process Limits](./Process-Limits.md) — Configure session limits and timeouts for all external tools
-- [Production Deployment Guide](../Server-Admin-Onboarding.md) — Sizing recommendations for different workloads
-- [Diagnostics](./Diagnostics.md) — Collect system and application diagnostics for troubleshooting
+- [Process Limits](./Process-Limits.md) - Configure session limits and timeouts for all external tools
+- [Production Deployment Guide](../Server-Admin-Onboarding.md) - Sizing recommendations for different workloads
+- [Diagnostics](./Diagnostics.md) - Collect system and application diagnostics for troubleshooting
