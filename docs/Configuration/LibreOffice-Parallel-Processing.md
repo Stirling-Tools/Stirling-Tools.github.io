@@ -172,10 +172,6 @@ The image is versioned independently from Stirling PDF - pin a version and updat
 
 The default image covers European languages with hyphenation for EN/FR/DE/ES/IT/PT/NL/PL/RU. For Chinese/Japanese/Korean, rebuild with `--build-arg INSTALL_CJK_FONTS=true` (~120 MB extra).
 
-### Multiple workers
-
-One container is one worker. To run four, declare four services using the same image and list all four endpoints in Stirling PDF's configuration.
-
 ---
 
 ## Running UNO Servers Without Docker
@@ -223,59 +219,86 @@ If conversions are consistently timing out, this usually indicates the system is
 
 - **Memory** - ~70 MB idle, 140–250 MB during conversion, per worker. Add headroom for the OS and Stirling PDF itself.
 - **CPU** - one core pinned per active conversion. Start with one worker per two cores.
-- **Storage** - `/tmp/stirling-pdf` holds files mid-conversion. Allow roughly `2 × max upload × concurrent uploads`. On small `/tmp` partitions, mount a volume:
-
-```yaml
-services:
-  stirling-pdf:
-    volumes:
-      - stirling-tmp:/tmp/stirling-pdf
-volumes:
-  stirling-tmp: {}
-```
 
 ---
 
-## Worked example: 4 remote workers
+## Running multiple unoservers on one host
 
-One Stirling PDF instance, four `stirling-unoserver` containers, pool capped at 4:
+Each `stirling-unoserver` container is one worker. To scale, run more containers on the same host and list each as an endpoint in Stirling PDF. The example below runs three workers with hourly recycling and a 1 GB per-worker memory cap:
 
-```yaml
-services:
-  stirling-pdf:
-    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
-    ports: ["8080:8080"]
-    environment:
-      PROCESS_EXECUTOR_AUTO_UNO_SERVER: "false"
-      PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT: "4"
-      PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST: "unoserver1"
-      PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_PORT: "2003"
-      PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST_LOCATION: "remote"
-      PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST: "unoserver2"
-      PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_PORT: "2003"
-      PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST_LOCATION: "remote"
-      PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_2_HOST: "unoserver3"
-      PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_2_PORT: "2003"
-      PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_2_HOST_LOCATION: "remote"
-      PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_3_HOST: "unoserver4"
-      PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_3_PORT: "2003"
-      PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_3_HOST_LOCATION: "remote"
-    depends_on: [unoserver1, unoserver2, unoserver3, unoserver4]
+<Tabs groupId="config-methods">
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
+        ports: ["8080:8080"]
+        environment:
+          PROCESS_EXECUTOR_AUTO_UNO_SERVER: "false"
+          PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT: "3"
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST: "unoserver1"
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_PORT: "2003"
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST_LOCATION: "remote"
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST: "unoserver2"
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_PORT: "2003"
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST_LOCATION: "remote"
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_2_HOST: "unoserver3"
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_2_PORT: "2003"
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_2_HOST_LOCATION: "remote"
+        depends_on: [unoserver1, unoserver2, unoserver3]
 
-  unoserver1: &uno
-    image: ghcr.io/stirling-tools/stirling-unoserver:latest
-    environment:
-      UNOSERVER_RECYCLE_INTERVAL_SECONDS: "3600"
-    deploy:
-      resources:
-        limits: { cpus: "1.0", memory: 1g }
-    restart: on-failure:5
-  unoserver2: { <<: *uno }
-  unoserver3: { <<: *uno }
-  unoserver4: { <<: *uno }
-```
+      unoserver1: &uno
+        image: ghcr.io/stirling-tools/stirling-unoserver:latest
+        environment:
+          UNOSERVER_RECYCLE_INTERVAL_SECONDS: "3600"
+        deploy:
+          resources:
+            limits: { cpus: "1.0", memory: 1g }
+        restart: on-failure:5
+      unoserver2: { <<: *uno }
+      unoserver3: { <<: *uno }
+    ```
+  </TabItem>
+  <TabItem value="docker-run" label="docker run">
+    ```bash
+    docker network create stirling-net
 
-Conversions distribute evenly across workers; excess queue. Bottlenecks in order: heavy-document conversion time → host CPU → `/tmp` space → `libreOfficeTimeoutMinutes`.
+    # Three unoserver workers on the shared network
+    for i in 1 2 3; do
+      docker run -d --name unoserver$i --network stirling-net \
+        -e UNOSERVER_RECYCLE_INTERVAL_SECONDS=3600 \
+        --memory 1g --cpus 1.0 --restart on-failure:5 \
+        ghcr.io/stirling-tools/stirling-unoserver:latest
+    done
+
+    # Stirling PDF pointed at all three
+    docker run -d --name stirling-pdf --network stirling-net -p 8080:8080 \
+      -e PROCESS_EXECUTOR_AUTO_UNO_SERVER=false \
+      -e PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT=3 \
+      -e PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST=unoserver1 \
+      -e PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_PORT=2003 \
+      -e PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST_LOCATION=remote \
+      -e PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST=unoserver2 \
+      -e PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_PORT=2003 \
+      -e PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST_LOCATION=remote \
+      -e PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_2_HOST=unoserver3 \
+      -e PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_2_PORT=2003 \
+      -e PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_2_HOST_LOCATION=remote \
+      docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
+    ```
+  </TabItem>
+</Tabs>
+
+### Adding more workers
+
+To grow the pool from three to four:
+
+1. Start a fourth `unoserver4` container using the same image.
+2. Add a fourth endpoint to Stirling PDF (`PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_3_HOST`, `_PORT`, `_HOST_LOCATION`).
+3. Bump `PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT` to `4` so the pool actually uses the new endpoint.
+4. Restart Stirling PDF to pick up the new endpoint list.
+
+Each conversion pins one CPU core, so don't run more workers than the host has cores available.
 
 ---
 
