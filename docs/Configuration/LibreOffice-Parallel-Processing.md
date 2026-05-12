@@ -59,11 +59,44 @@ Per-conversion time varies from sub-second (small DOCX) to tens of seconds (comp
 
 ---
 
+## Starting Remote unoserver Containers
+
+Before configuring Stirling PDF to connect to remote endpoints, you need one or more `stirling-unoserver` containers running. Each container is a single worker that listens internally on port `2003`. Expose it on a different host port per instance if you want to reach them from outside Docker or from another host.
+
+<Tabs groupId="config-methods">
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      unoserver1:
+        image: ghcr.io/stirling-tools/stirling-unoserver:latest
+        ports:
+          - "2003:2003"
+
+      unoserver2:
+        image: ghcr.io/stirling-tools/stirling-unoserver:latest
+        ports:
+          - "2004:2003"
+    ```
+    Add these alongside your `stirling-pdf` service. Host-port mappings are only required if Stirling PDF runs outside Docker, on a different host, or on a separate Docker network.
+  </TabItem>
+  <TabItem value="docker-run" label="docker run">
+    ```bash
+    docker run -d --name unoserver1 -p 2003:2003 \
+      ghcr.io/stirling-tools/stirling-unoserver:latest
+
+    docker run -d --name unoserver2 -p 2004:2003 \
+      ghcr.io/stirling-tools/stirling-unoserver:latest
+    ```
+  </TabItem>
+</Tabs>
+
+For tunable options (timeouts, periodic recycling, CJK fonts), see [The `stirling-unoserver` Image](#the-stirling-unoserver-image) below. For a fuller multi-worker layout with resource limits and recycling, see [Running multiple unoservers on one host](#running-multiple-unoservers-on-one-host).
+
+---
+
 ## Remote UNO Server Endpoints
 
-For larger deployments or when you want to isolate LibreOffice from the main application, you can run UNO servers as separate containers and configure Stirling PDF to connect to them remotely.
-
-Set `autoUnoServer` to `false` and define your remote endpoints:
+Once your unoserver containers are running, set `autoUnoServer` to `false` and point Stirling PDF at them:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
@@ -103,6 +136,8 @@ Set `autoUnoServer` to `false` and define your remote endpoints:
     services:
       stirling-pdf:
         image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
+        ports:
+          - "8080:8080"
         environment:
           PROCESS_EXECUTOR_AUTO_UNO_SERVER: "false"
           PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST: "unoserver1"
@@ -111,18 +146,6 @@ Set `autoUnoServer` to `false` and define your remote endpoints:
           PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST: "unoserver2"
           PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_PORT: "2003"
           PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST_LOCATION: "remote"
-        ports:
-          - "8080:8080"
-
-      unoserver1:
-        image: ghcr.io/stirling-tools/stirling-unoserver:latest
-        ports:
-          - "2003:2003"
-
-      unoserver2:
-        image: ghcr.io/stirling-tools/stirling-unoserver:latest
-        ports:
-          - "2004:2003"
     ```
   </TabItem>
 </Tabs>
