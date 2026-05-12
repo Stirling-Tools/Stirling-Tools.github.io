@@ -59,9 +59,13 @@ Per-conversion time varies from sub-second (small DOCX) to tens of seconds (comp
 
 ---
 
-## Starting Remote unoserver Containers
+## Remote unoservers
 
-Before configuring Stirling PDF to connect to remote endpoints, you need one or more `stirling-unoserver` containers running. Each container is a single worker that listens internally on port `2003`. Expose it on a different host port per instance if you want to reach them from outside Docker or from another host.
+For larger deployments, or when you want to isolate LibreOffice from the main application, run UNO servers as separate containers and configure Stirling PDF to connect to them remotely. This is a two-step setup: start the unoserver containers, then point Stirling PDF at them.
+
+### Starting unoserver Containers
+
+Each container is a single worker that listens internally on port `2003`. Expose it on a different host port per instance if you want to reach them from outside Docker or from another host.
 
 <Tabs groupId="config-methods">
   <TabItem value="docker-compose" label="Docker Compose">
@@ -92,9 +96,7 @@ Before configuring Stirling PDF to connect to remote endpoints, you need one or 
 
 For tunable options (timeouts, periodic recycling, CJK fonts), see [The `stirling-unoserver` Image](#the-stirling-unoserver-image) below. For a fuller multi-worker layout with resource limits and recycling, see [Running multiple unoservers on one host](#running-multiple-unoservers-on-one-host).
 
----
-
-## Remote UNO Server Endpoints
+### Connecting Stirling PDF to Remote Endpoints
 
 Once your unoserver containers are running, set `autoUnoServer` to `false` and point Stirling PDF at them:
 
@@ -152,7 +154,7 @@ Once your unoserver containers are running, set `autoUnoServer` to `false` and p
 
 To add more endpoints, add additional entries to the `unoServerEndpoints` list in settings.yml, or for environment variables, increment the index number (e.g. `_0_` for the first, `_1_` for the second, `_2_` for the third, and so on).
 
-### Endpoint Configuration
+#### Endpoint Configuration
 
 The `host` field accepts a Docker service name (e.g. `unoserver1`), a DNS hostname (e.g. `uno.internal.example.com`), or an IP address (e.g. `192.168.1.50`). The default is `127.0.0.1`.
 
