@@ -47,9 +47,7 @@ By default, Stirling PDF manages a local pool of UNO (Universal Network Objects)
   </TabItem>
 </Tabs>
 
-A reasonable starting point is one instance per 2 CPU cores; see [Host resource requirements](#host-resource-requirements) below for memory and storage sizing.
-
-If an instance becomes unresponsive it is automatically restarted in the background, so your conversions keep working without manual intervention.
+A reasonable starting point is one instance per 2 CPU cores. See [Host resource requirements](#host-resource-requirements) for memory and storage sizing.
 
 :::info
 The default `libreOfficeSessionLimit` is `1`, meaning only one conversion runs at a time. If you see conversions queuing up or running slowly, increasing this is the first thing to try.
@@ -57,9 +55,7 @@ The default `libreOfficeSessionLimit` is `1`, meaning only one conversion runs a
 
 ### Throughput expectations
 
-Per-worker throughput varies enormously with document content and host hardware. Tiny plain DOCX inputs on a fast SSD-backed host can finish in well under a second, while large PPTX with embedded media or complex spreadsheets on a constrained host can take tens of seconds each. There's no single number worth quoting. What is reliable is that the pool's total throughput scales roughly linearly with instance count up to the host's available CPU; doubling workers on an under-saturated host roughly doubles concurrency.
-
-Measure your own baseline: run a representative document through a single worker, time the conversion, then size the pool around your expected concurrent users and acceptable queue wait. Plan for the worst-case documents your users actually upload, not the average.
+Per-conversion time varies from sub-second (small DOCX) to tens of seconds (complex PPTX, large spreadsheets). Pool throughput scales roughly linearly with worker count up to host CPU saturation — benchmark a representative document before sizing.
 
 ---
 
@@ -153,42 +149,32 @@ Use `remote` when running UNO servers in separate Docker containers, even if the
 
 ## The `stirling-unoserver` Image
 
-`ghcr.io/stirling-tools/stirling-unoserver` is the official image for the remote pool pattern, ready to run as a standalone conversion worker.
+`ghcr.io/stirling-tools/stirling-unoserver` is the official standalone worker image.
 
-Available tags:
-
-| Tag | Use it for |
+| Tag | Use |
 |---|---|
-| `:latest` | Production deployments |
+| `:latest` | Production |
 | `:alpha` | Pre-release testing |
-| `:1.0.0`, `:1.0.1`, etc. | Pin to a specific version |
+| `:1.0.0`, `:1.0.1`, … | Pinned version |
 
-The image is versioned independently from Stirling PDF and only republished when the image itself changes, so under normal circumstances you can pin a specific image version and leave it alone while Stirling PDF itself updates. In the rare case Stirling PDF requires a newer compatible image, that will be called out in the release notes and migration docs. Full version independence is the goal but not a guarantee.
+The image is versioned independently from Stirling PDF — pin a version and update it on its own cadence. Compatibility breaks are called out in release notes.
 
-### Configuration options
+### Configuration
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `UNOSERVER_PORT` | `2003` | Port the client connects to. Change if it conflicts with another service on the host. |
-| `UNOSERVER_INTERFACE` | `0.0.0.0` | Listen address. Use `127.0.0.1` to make the container reachable only from the same host. |
-| `UNOSERVER_CONVERSION_TIMEOUT` | `1800` (seconds) | Maximum time a single conversion is allowed to run. If exceeded, the container restarts itself automatically. Set this to be at least as long as Stirling PDF's `libreOfficeTimeoutMinutes`. |
-| `UNOSERVER_RECYCLE_INTERVAL_SECONDS` | `0` (disabled) | Periodically restart the container to keep memory usage steady over long uptimes. Set to e.g. `3600` for hourly recycling. Minimum value is 60 seconds. |
+| `UNOSERVER_PORT` | `2003` | Listen port. |
+| `UNOSERVER_INTERFACE` | `0.0.0.0` | Listen address; use `127.0.0.1` to restrict to the same host. |
+| `UNOSERVER_CONVERSION_TIMEOUT` | `1800` (s) | Max time per conversion. Set ≥ `libreOfficeTimeoutMinutes`. |
+| `UNOSERVER_RECYCLE_INTERVAL_SECONDS` | `0` (off) | Periodic restart to bound LibreOffice memory growth. Minimum 60 s; e.g. `3600` for hourly. |
 
-### Periodic recycling
+### CJK fonts
 
-LibreOffice can slowly grow its memory footprint over many conversions. Setting `UNOSERVER_RECYCLE_INTERVAL_SECONDS` makes each container restart itself on a schedule, keeping memory usage steady.
+The default image covers European languages with hyphenation for EN/FR/DE/ES/IT/PT/NL/PL/RU. For Chinese/Japanese/Korean, rebuild with `--build-arg INSTALL_CJK_FONTS=true` (~120 MB extra).
 
-The restart takes a few seconds. During that window any request routed to that container is automatically retried by Stirling PDF, so user-facing requests still complete normally. If you run several containers, their startups will drift apart naturally so they don't all recycle at the same moment.
+### Multiple workers
 
-For steady production traffic, an hourly or once-a-day recycle is usually plenty. For lighter workloads or short-lived deployments you can leave it disabled.
-
-:::info Run multiple instances
-A single container is one worker. To run four workers, declare four services in your compose file (`unoserver1` through `unoserver4`) using the same image, and list all four endpoints in the Stirling PDF configuration.
-:::
-
-### Asian-language fonts
-
-The default image includes broad European-language coverage including hyphenation for English, French, German, Spanish, Italian, Portuguese, Dutch, Polish, and Russian. If you need Chinese, Japanese, or Korean conversion support you'll need a custom variant of the image with CJK fonts added. Contact us or open a GitHub issue and we can publish one.
+One container is one worker. To run four, declare four services using the same image and list all four endpoints in Stirling PDF's configuration.
 
 ---
 
@@ -235,13 +221,9 @@ If conversions are consistently timing out, this usually indicates the system is
 
 ## Host resource requirements
 
-When sizing a host for office conversion, plan for the following:
-
-**Memory.** Each LibreOffice worker uses around 70 MB of RAM when idle, climbing to 140 to 250 MB during active conversion depending on the document. Multiply by your worker count and add headroom for the operating system, the Stirling PDF application itself, and any other services on the host. If memory runs out, the OS will start killing processes and conversions will fail.
-
-**CPU.** Each conversion uses one CPU core at 100% for its duration, regardless of how many cores the host has. A reasonable starting point is one worker per two CPU cores; increase from there if you see queues building up.
-
-**Storage.** Uploaded files are written to temporary disk space at `/tmp/stirling-pdf` while they're being converted. Allow free space of roughly `2 × your maximum upload size × number of concurrent uploads`. On hosts with a small `/tmp` partition (some VPS providers default to 1 or 2 GB) mount a larger volume:
+- **Memory** — ~70 MB idle, 140–250 MB during conversion, per worker. Add headroom for the OS and Stirling PDF itself.
+- **CPU** — one core pinned per active conversion. Start with one worker per two cores.
+- **Storage** — `/tmp/stirling-pdf` holds files mid-conversion. Allow roughly `2 × max upload × concurrent uploads`. On small `/tmp` partitions, mount a volume:
 
 ```yaml
 services:
@@ -256,18 +238,16 @@ volumes:
 
 ## Worked example: 4 remote workers
 
-A reasonable starting point for a small team or trial deployment is one Stirling PDF instance plus four `stirling-unoserver` containers on the same host, with the conversion pool capped at 4. This caps memory predictably and lets all four conversions run truly in parallel:
+One Stirling PDF instance, four `stirling-unoserver` containers, pool capped at 4:
 
 ```yaml
 services:
   stirling-pdf:
     image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
-    ports:
-      - "8080:8080"
+    ports: ["8080:8080"]
     environment:
       PROCESS_EXECUTOR_AUTO_UNO_SERVER: "false"
       PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT: "4"
-      PROCESS_EXECUTOR_TIMEOUT_MINUTES_LIBRE_OFFICETIMEOUT_MINUTES: "5"
       PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST: "unoserver1"
       PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_PORT: "2003"
       PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST_LOCATION: "remote"
@@ -280,11 +260,7 @@ services:
       PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_3_HOST: "unoserver4"
       PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_3_PORT: "2003"
       PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_3_HOST_LOCATION: "remote"
-    depends_on:
-      unoserver1: { condition: service_started }
-      unoserver2: { condition: service_started }
-      unoserver3: { condition: service_started }
-      unoserver4: { condition: service_started }
+    depends_on: [unoserver1, unoserver2, unoserver3, unoserver4]
 
   unoserver1: &uno
     image: ghcr.io/stirling-tools/stirling-unoserver:latest
@@ -299,14 +275,7 @@ services:
   unoserver4: { <<: *uno }
 ```
 
-Stirling PDF distributes incoming conversions evenly across all configured workers. Extra requests above the worker count simply queue and wait for a free slot. The system stays stable under high concurrency. The practical limits you'll hit, in order, are:
-
-1. Per-conversion time on heavy documents (a complex PPTX or large spreadsheet can take tens of seconds, which lowers your effective throughput regardless of worker count)
-2. Host CPU saturation
-3. Free `/tmp` disk space if many large uploads queue at once
-4. Stirling PDF's `libreOfficeTimeoutMinutes` for any single request that waits too long
-
-If your workload is mostly heavy documents, run more workers with smaller per-worker memory limits rather than fewer larger ones. That gives you better parallelism per dollar of RAM.
+Conversions distribute evenly across workers; excess queue. Bottlenecks in order: heavy-document conversion time → host CPU → `/tmp` space → `libreOfficeTimeoutMinutes`.
 
 ---
 
