@@ -47,19 +47,58 @@ By default, Stirling PDF manages a local pool of UNO (Universal Network Objects)
   </TabItem>
 </Tabs>
 
-Each additional instance consumes approximately **50 MB of RAM when idle** and significantly more during active conversion. A reasonable starting point is one instance per 2 CPU cores, adjusted based on available RAM and expected workload.
+A reasonable starting point is one instance per 2 CPU cores. See [Host resource requirements](#host-resource-requirements) for memory and storage sizing.
 
 :::info
 The default `libreOfficeSessionLimit` is `1`, meaning only one conversion runs at a time. If you see conversions queuing up or running slowly, increasing this is the first thing to try.
 :::
 
+### Throughput expectations
+
+Per-conversion time varies from sub-second (small DOCX) to tens of seconds (complex PPTX, large spreadsheets). Pool throughput scales roughly linearly with worker count up to host CPU saturation - benchmark a representative document before sizing.
+
 ---
 
-## Remote UNO Server Endpoints
+## Remote unoservers
 
-For larger deployments or when you want to isolate LibreOffice from the main application, you can run UNO servers as separate containers and configure Stirling PDF to connect to them remotely.
+For larger deployments, or when you want to isolate LibreOffice from the main application, run UNO servers as separate containers and configure Stirling PDF to connect to them remotely. This is a two-step setup: start the unoserver containers, then point Stirling PDF at them.
 
-Set `autoUnoServer` to `false` and define your remote endpoints:
+### Starting unoserver Containers
+
+Each container is a single worker that listens internally on port `2003`. Expose it on a different host port per instance if you want to reach them from outside Docker or from another host.
+
+<Tabs groupId="config-methods">
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      unoserver1:
+        image: ghcr.io/stirling-tools/stirling-unoserver:latest
+        ports:
+          - "2003:2003"
+
+      unoserver2:
+        image: ghcr.io/stirling-tools/stirling-unoserver:latest
+        ports:
+          - "2004:2003"
+    ```
+    Add these alongside your `stirling-pdf` service. Host-port mappings are only required if Stirling PDF runs outside Docker, on a different host, or on a separate Docker network.
+  </TabItem>
+  <TabItem value="docker-run" label="docker run">
+    ```bash
+    docker run -d --name unoserver1 -p 2003:2003 \
+      ghcr.io/stirling-tools/stirling-unoserver:latest
+
+    docker run -d --name unoserver2 -p 2004:2003 \
+      ghcr.io/stirling-tools/stirling-unoserver:latest
+    ```
+  </TabItem>
+</Tabs>
+
+For tunable options (timeouts, periodic recycling, CJK fonts), see [The `stirling-unoserver` Image](#the-stirling-unoserver-image) below.
+
+### Connecting Stirling PDF to Remote Endpoints
+
+Once your unoserver containers are running, set `autoUnoServer` to `false` and point Stirling PDF at them:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
@@ -99,6 +138,8 @@ Set `autoUnoServer` to `false` and define your remote endpoints:
     services:
       stirling-pdf:
         image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
+        ports:
+          - "8080:8080"
         environment:
           PROCESS_EXECUTOR_AUTO_UNO_SERVER: "false"
           PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST: "unoserver1"
@@ -107,25 +148,17 @@ Set `autoUnoServer` to `false` and define your remote endpoints:
           PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST: "unoserver2"
           PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_PORT: "2003"
           PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST_LOCATION: "remote"
-        ports:
-          - "8080:8080"
-
-      unoserver1:
-        image: docker.stirlingpdf.com/stirlingtools/stirling-pdf-unoserver:latest
-        ports:
-          - "2003:2003"
-
-      unoserver2:
-        image: docker.stirlingpdf.com/stirlingtools/stirling-pdf-unoserver:latest
-        ports:
-          - "2004:2003"
     ```
   </TabItem>
 </Tabs>
 
 To add more endpoints, add additional entries to the `unoServerEndpoints` list in settings.yml, or for environment variables, increment the index number (e.g. `_0_` for the first, `_1_` for the second, `_2_` for the third, and so on).
 
-### Endpoint Configuration
+:::tip
+Set `libreOfficeSessionLimit` to match your endpoint count so the pool uses all of them concurrently. With 3 endpoints and a session limit of 1, you'll only ever use one at a time.
+:::
+
+#### Endpoint Configuration
 
 The `host` field accepts a Docker service name (e.g. `unoserver1`), a DNS hostname (e.g. `uno.internal.example.com`), or an IP address (e.g. `192.168.1.50`). The default is `127.0.0.1`.
 
@@ -140,6 +173,33 @@ The `hostLocation` setting controls how files are transferred between Stirling P
 :::caution
 Use `remote` when running UNO servers in separate Docker containers, even if the containers are on the same host machine. The containers don't share a filesystem, so `local` will not work.
 :::
+
+---
+
+## The `stirling-unoserver` Image
+
+`ghcr.io/stirling-tools/stirling-unoserver` is the official standalone worker image.
+
+| Tag | Use |
+|---|---|
+| `:latest` | Production |
+| `:alpha` | Pre-release testing |
+| `:1.0.0`, `:1.0.1`, … | Pinned version |
+
+The image is versioned independently from Stirling PDF - pin a version and update it on its own cadence. Compatibility breaks are called out in release notes.
+
+### Configuration
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `UNOSERVER_PORT` | `2003` | Listen port. |
+| `UNOSERVER_INTERFACE` | `0.0.0.0` | Listen address; use `127.0.0.1` to restrict to the same host. |
+| `UNOSERVER_CONVERSION_TIMEOUT` | `1800` (s) | Max time per conversion. Set ≥ `libreOfficeTimeoutMinutes`. |
+| `UNOSERVER_RECYCLE_INTERVAL_SECONDS` | `0` (off) | Periodic restart to bound LibreOffice memory growth. Minimum 60 s; e.g. `3600` for hourly. |
+
+### CJK fonts
+
+The default image covers European languages with hyphenation for EN/FR/DE/ES/IT/PT/NL/PL/RU. For Chinese/Japanese/Korean, rebuild with `--build-arg INSTALL_CJK_FONTS=true` (~120 MB extra).
 
 ---
 
@@ -184,8 +244,15 @@ If conversions are consistently timing out, this usually indicates the system is
 
 ---
 
+## Host resource requirements
+
+- **Memory** - ~70 MB idle, 140–250 MB during conversion, per worker. Add headroom for the OS and Stirling PDF itself.
+- **CPU** - one core pinned per active conversion. Start with one worker per two cores.
+
+---
+
 ## Related
 
-- [Process Limits](./Process-Limits.md) — Configure session limits and timeouts for all external tools
-- [Production Deployment Guide](../Server-Admin-Onboarding.md) — Sizing recommendations for different workloads
-- [Diagnostics](./Diagnostics.md) — Collect system and application diagnostics for troubleshooting
+- [Process Limits](./Process-Limits.md) - Configure session limits and timeouts for all external tools
+- [Production Deployment Guide](../Server-Admin-Onboarding.md) - Sizing recommendations for different workloads
+- [Diagnostics](./Diagnostics.md) - Collect system and application diagnostics for troubleshooting
