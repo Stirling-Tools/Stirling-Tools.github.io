@@ -181,16 +181,16 @@ Use `remote` when running UNO servers in separate Docker containers, even if the
 `ghcr.io/stirling-tools/stirling-unoserver` is the official standalone worker image.
 
 :::caution Alpha release
-The `stirling-unoserver` image is currently in **alpha**. Only the `:alpha` tag is published today; `:latest` and versioned tags (`:1.0.0`, `:1.0.1`, …) will follow once we cut the first stable release. The compose examples on this page reference `:latest` for forward-compatibility — for now, substitute `:alpha` until the stable release is announced. Configuration variables and behaviour are not expected to change between alpha and 1.0.
+The `stirling-unoserver` image is currently in **alpha**. Only the `:alpha` tag is published today. `:latest` and versioned tags (`:1.0.0`, `:1.0.1`, etc.) will follow once we cut the first stable release. The compose examples on this page reference `:latest` for forward-compatibility, so for now substitute `:alpha` until the stable release is announced. Configuration variables and behaviour are not expected to change between alpha and 1.0.
 :::
 
 | Tag | Status | Use |
 |---|---|---|
 | `:alpha` | **Available now** | All deployments while the image is in alpha |
 | `:latest` | Coming soon | Production once 1.0 ships |
-| `:1.0.0`, `:1.0.1`, … | Coming soon | Pinned version once 1.0 ships |
+| `:1.0.0`, `:1.0.1`, etc. | Coming soon | Pinned version once 1.0 ships |
 
-The image will be versioned independently from Stirling PDF — pin a version and update it on its own cadence. Compatibility breaks are called out in release notes.
+The latest `stirling-unoserver` image is always compatible with the latest Stirling PDF, so if you track `:latest` (or `:alpha` today) on both you don't need to coordinate upgrades. The image will be versioned independently from Stirling PDF, so you can also pin a specific version and update it on its own cadence. Any compatibility breaks will be called out in release notes.
 
 ### Configuration
 
@@ -201,13 +201,11 @@ The image will be versioned independently from Stirling PDF — pin a version an
 | `UNOSERVER_CONVERSION_TIMEOUT` | `1800` (s) | Max time per conversion. Set ≥ `libreOfficeTimeoutMinutes`. |
 | `UNOSERVER_RECYCLE_INTERVAL_SECONDS` | `0` (off) | Periodic restart to bound LibreOffice memory growth. Minimum 60 s; e.g. `3600` for hourly. |
 
-### CPU allocation and pinning
+### CPU allocation
 
-You do **not** need to pin unoserver containers to specific CPU cores. The Linux scheduler distributes processes across cores automatically, and an idle unoserver consumes effectively no CPU — so running four containers on a four-core host doesn't mean four hot processes competing for cores, it means one hot process per concurrent conversion with the rest idle. The "one worker per two cores" sizing rule already builds in the scheduling headroom LibreOffice needs for its helper threads (font cache, image decode, etc.), which is why pinning isn't part of the default setup.
+Core allocation between instances should be handled automatically by the Linux scheduler. However, if you see uneven core usage or want to cap how much CPU each worker can use, you have two options:
 
-That said, if you observe uneven core utilisation, share the host with another CPU-heavy workload, or want a hard upper bound per worker, you have two options:
-
-**Soft cap (recommended).** Limit each container to a CPU budget without choosing which cores it uses. The kernel still picks the best core at any moment, but the worker can never burst beyond the budget you set. Use this when you want predictable resource accounting without sacrificing scheduling elasticity.
+**Soft cap (recommended).** Limit each container to a CPU budget. The kernel still picks which cores to use.
 
 ```yaml
 services:
@@ -216,32 +214,25 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "2.0"      # may use up to 2 cores worth of CPU time
+          cpus: "2.0"      # up to 2 cores worth of CPU time
           memory: 1g
 ```
 
 For `docker run`: `--cpus="2.0"`.
 
-**Hard pinning.** Bind each container to specific cores. Use this only when you need NUMA locality (multi-socket hosts), strict isolation from noisy neighbours, or you've benchmarked unpinned and found a real problem. The cost is lost elasticity — pinned cores sit idle when their worker isn't busy, even if another worker could use them.
+**Hard pinning.** Bind each container to specific cores. Use this only if the soft cap isn't enough.
 
 ```yaml
 services:
   unoserver1:
     image: ghcr.io/stirling-tools/stirling-unoserver:alpha
-    cpuset: "0,1"          # bound to cores 0 and 1 only
-
+    cpuset: "0,1"
   unoserver2:
     image: ghcr.io/stirling-tools/stirling-unoserver:alpha
-    cpuset: "2,3"          # bound to cores 2 and 3 only
+    cpuset: "2,3"
 ```
 
-For `docker run`: `--cpuset-cpus="0,1"`. Inspect core numbering with `lscpu --extended` first — on hyperthreaded hosts you usually want to pair sibling threads (e.g. `0,4` on an 8-thread / 4-core box) rather than two siblings on the same physical core.
-
-For systemd-managed unoservers outside Docker, the equivalent is `CPUAffinity=0 1` in the service unit.
-
-:::tip
-Start without pinning. Add a soft `cpus:` limit only if you need resource accounting. Reach for `cpuset:` only after benchmarking shows the kernel scheduler is the bottleneck — for most single-host deployments that never happens.
-:::
+For `docker run`: `--cpuset-cpus="0,1"`. For systemd-managed unoservers, the equivalent is `CPUAffinity=0 1` in the service unit.
 
 ### CJK fonts
 
@@ -293,7 +284,7 @@ If conversions are consistently timing out, this usually indicates the system is
 ## Host resource requirements
 
 - **Memory** - ~70 MB idle, 140–250 MB during conversion, per worker. Add headroom for the OS and Stirling PDF itself.
-- **CPU** - each active conversion saturates roughly one CPU core (LibreOffice is single-threaded per document). Start with one worker per two cores; the kernel handles core distribution automatically — see [CPU allocation and pinning](#cpu-allocation-and-pinning) if you want to bound or pin workers explicitly.
+- **CPU** - each active conversion saturates roughly one CPU core (LibreOffice is single-threaded per document). Start with one worker per two cores; the kernel handles core distribution automatically. See [CPU allocation](#cpu-allocation) if you want to cap or pin workers explicitly.
 
 ---
 
