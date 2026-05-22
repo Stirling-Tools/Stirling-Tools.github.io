@@ -99,18 +99,35 @@ If you purchased in-app, your license is automatically activated. No further act
 
 ### Manual Activation
 
+Stirling PDF accepts two manual activation inputs from the admin UI: a license **key** (string), or a license **certificate file** (`.lic` / `.cert`, used for offline / air-gapped Enterprise activation).
+
+#### Option 1 - License Key
+
 If you purchased via the website and received a license key by email:
 
-1. **Admin Settings**: Log in as an admin and navigate to Settings → Admin Plan
-2. **Enter License Key**: Paste your license key in the provided field
-3. **Activate**: Click "Activate License"
-4. **Confirmation**: Your plan features will be enabled immediately
+1. **Admin Settings**: Log in as an admin and navigate to Settings → Plan
+2. **Open License Input**: Expand the "Got a license key or certificate file?" section
+3. **Select Input Type**: Make sure "License Key" is selected
+4. **Enter License Key**: Paste your license key in the provided field
+5. **Activate**: Save to apply the license
+6. **Confirmation**: Your plan features will be enabled immediately
 
-**No restart required** - license activation is dynamic!
+#### Option 2 - Certificate File (Air-Gapped / Offline)
+
+If you received a `.lic` or `.cert` certificate file (typically issued for Enterprise customers who need to activate without outbound internet access):
+
+1. **Admin Settings**: Log in as an admin and navigate to Settings → Plan
+2. **Open License Input**: Expand the "Got a license key or certificate file?" section
+3. **Select Input Type**: Switch to "Certificate File"
+4. **Choose File**: Click "Choose License File" and select your `.lic` or `.cert` file (must start with `-----BEGIN LICENSE FILE-----`)
+5. **Upload**: The file is uploaded, validated, saved to your `configs/` folder, and activated automatically. Any previous certificate is backed up to `configs/backup/`
+6. **Confirmation**: Your plan features will be enabled immediately
+
+**No restart required** - both flows activate dynamically.
 
 ### Legacy - settings.yml Activation
 
-For advanced users or air-gapped environments, you can still activate via `settings.yml`:
+For scripted deployments or fully automated provisioning, you can still activate via `settings.yml` directly:
 
 1. Navigate to the Stirling PDF config folder
 2. Open `settings.yml`
@@ -126,15 +143,14 @@ premium:
 5. Change `enabled` from `false` to `true`
 6. Restart Stirling PDF
 
-For 100% offline air-gapped environments (Enterprise only), you can request a certificate file:
+To reference a certificate file from `settings.yml` instead of uploading via the UI:
 
-  1. Contact support to receive your `.crt` or `.lic` certificate file
-  2. Place the certificate in your config folder (e.g., `configs/cert.crt`)
-  3. Use the `file:` prefix to specify the certificate path:
+  1. Place your `.lic` or `.cert` certificate in the config folder (e.g., `configs/cert.lic`)
+  2. Use the `file:` prefix to point at the certificate path:
 
   ```yaml
   premium:
-    key: file:configs/cert.crt
+    key: file:configs/cert.lic
     enabled: true
   ```
 
