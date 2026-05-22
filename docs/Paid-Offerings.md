@@ -123,7 +123,9 @@ If you received a `.lic` or `.cert` certificate file (typically issued for Enter
 5. **Upload**: The file is uploaded, validated, saved to your `configs/` folder, and activated automatically. Any previous certificate is backed up to `configs/backup/`
 6. **Confirmation**: Your plan features will be enabled immediately
 
-**No restart required** - both flows activate dynamically.
+Both flows activate dynamically and do not strictly require a restart.
+
+> **Recommended**: Restart the Stirling PDF installation after activation. While the license is applied immediately, restarting ensures all components (security profile, premium feature gates, user/seat counters, scheduled validation jobs) pick up the new license state from a clean startup. This avoids edge cases where cached state from before activation lingers in a long-running process.
 
 ### Legacy - settings.yml Activation
 
