@@ -49,7 +49,7 @@ Tools that run inside the bundled local backend, with no external dependencies:
 
 ### What does not work locally
 
-Tools that need server-side binaries (LibreOffice, Tesseract, OCRmyPDF, Ghostscript, qpdf, ImageMagick, Calibre, Weasyprint) are **not bundled with the desktop app**. Attempting to use them shows:
+Tools that need server-side binaries are **not bundled with the desktop app**. Attempting to use them shows:
 
 > *"This tool requires an account. Sign in to Stirling Cloud or connect to a self-hosted server to use it."*
 
