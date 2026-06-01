@@ -89,12 +89,6 @@ Credits **only** apply when a tool is routed to the Stirling Cloud backend. Exam
 
 This is why local-only operations stay free even on a paid Stirling Cloud account.
 
-### Differences from using the web app
-
-- Auth tokens live in the OS-native secret store (Windows Credential Manager, macOS Keychain, Linux Secret Service / GNOME Keyring / KWallet), not browser storage.
-- Sessions last around 30 days on the desktop app, vs 24 hours in a browser, so you sign in less often.
-- Self-signed certificates are accepted automatically by the desktop app (the browser would prompt).
-
 ---
 
 ## Desktop + Self-hosted server
@@ -133,9 +127,7 @@ The web self-hosted build has feature gates based on your license:
 
 - **Free** (no license key): All PDF operations, secure login, up to 5 users, community support.
 - **Server license** ($99/month or $999/year): Adds unlimited users, SSO/OAuth2 (Google, GitHub, Keycloak, any OIDC), Google Drive integration, external database (PostgreSQL), and editing text in PDFs.
-- **Enterprise license** (custom pricing): Adds SAML SSO, audit logging, usage tracking, Prometheus monitoring (marketed as Enterprise-only), custom PDF metadata, and per-seat licensing.
-
-Attempting to use a paid feature without the corresponding license returns HTTP 403 (`Forbidden`).
+- **Enterprise license** (custom pricing): Adds SAML SSO, audit logging, usage tracking, Prometheus monitoring, custom PDF metadata, and per-seat licensing.
 
 See [Paid Offerings](./Paid-Offerings.md) for the full feature matrix and current pricing.
 
