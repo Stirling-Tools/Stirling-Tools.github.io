@@ -158,45 +158,64 @@ Your data is safe in the volumes and will persist across updates.
 
 ## Platform-specific quick starts
 
-Any Docker-capable host runs the same image - the only differences are the platform's UI for setting up containers, and a few platform-native gotchas (UIDs, SELinux labels, nesting flags). Pick your platform:
+Several platforms have one-click installs or community packages that wrap the Docker setup. Use these when available - they're maintained by their respective communities and handle the platform-native bits (permissions, networking, backups) for you.
 
 <Tabs groupId="docker-platform">
 <TabItem value="truenas" label="TrueNAS SCALE" default>
 
-TrueNAS SCALE 24.10+ runs the image as a **Custom App**.
+Available in the **TrueNAS Apps catalog** (Community train).
 
-1. Create a dataset for app data (e.g. `pool/ix-apps/stirling-pdf/`) with child datasets `configs`, `logs`, `customFiles`, `pipeline`, `tessdata`.
-2. **Apps → Discover Apps → Custom App**:
-   - Image: `docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest`
-   - Port forward: container `8080` → host `30080`
-   - Env vars: `PUID=568`, `PGID=568` (TrueNAS apps user)
-   - Bind-mount each dataset to its container path (`/configs`, `/logs`, etc.)
-3. Install.
+1. **Apps → Discover Apps**, search for "Stirling PDF".
+2. Click **Install**, accept defaults (or customise port / persistence).
+3. Open from **Apps → Installed**.
 
-The container starts as root, then re-execs as `PUID:PGID`, so 568/568 lets TrueNAS' own permission model continue to work without manual `chown`.
-
-</TabItem>
-<TabItem value="synology" label="Synology DSM">
-
-Synology DSM 7+ uses **Container Manager**.
-
-1. Create the folder layout under `/volume1/docker/stirling-pdf/{configs,logs,customFiles,pipeline,tessdata}`.
-2. **Container Manager → Project → Create**, paste a compose file using the image and the bind mounts above, with `PUID: "1000" PGID: "1000"`.
-3. Build.
-
-DSM's reverse proxy (Control Panel → Login Portal → Reverse Proxy) handles TLS and sub-paths.
+See the catalog listing at [apps.truenas.com/catalog/stirling-pdf/](https://apps.truenas.com/catalog/stirling-pdf/).
 
 </TabItem>
 <TabItem value="unraid" label="Unraid">
 
-Unraid uses the standard Docker template.
+Available in **Community Applications**.
 
-1. **Docker → Add Container**:
-   - Repository: `docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest`
-   - Port: container `8080` → host `8080`
-   - Paths: `/configs`, `/logs`, `/customFiles`, `/pipeline`, `/usr/share/tessdata` → `/mnt/user/appdata/stirling-pdf/...`
-   - Env vars: `PUID=99 PGID=100` (Unraid's `nobody:users`)
-2. Apply.
+1. Install the [Community Applications](https://forums.unraid.net/topic/38582-plug-in-community-applications/) plugin if you don't already have it.
+2. **Apps** tab → search "Stirling PDF" → click the result → **Install**.
+3. Review the default paths / variables on the template, then **Apply**.
+
+The template populates volumes, ports, and the standard Unraid `PUID=99 PGID=100` env vars for you.
+
+</TabItem>
+<TabItem value="proxmox" label="Proxmox LXC">
+
+The **Community Scripts** project provides a one-line LXC installer. From the Proxmox VE shell:
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/stirling-pdf.sh)"
+```
+
+This creates an LXC, installs Java, LibreOffice, Tesseract, OCRmyPDF, and Stirling PDF as a systemd service. Once finished, browse to `http://<container-ip>:8080`.
+
+Script reference: [community-scripts/ProxmoxVE - stirling-pdf](https://community-scripts.github.io/ProxmoxVE/scripts?id=stirling-pdf).
+
+Prefer Docker-in-LXC instead? Create a Debian/Ubuntu LXC, enable nesting (`pct set <ctid> -features nesting=1,keyctl=1`), install Docker, and use the standard compose at the top of this page.
+
+</TabItem>
+<TabItem value="synology" label="Synology DSM">
+
+No native package - use **Container Manager** (DSM 7.2+) with Docker Compose.
+
+1. Install **Container Manager** from Package Center.
+2. Create the folder layout under `/volume1/docker/stirling-pdf/{configs,logs,customFiles,pipeline,tessdata}`.
+3. **Container Manager → Project → Create**, paste a compose file using the image and bind mounts from the [Full Setup](#full-setup-with-all-features) section above, with `PUID: "1000"` `PGID: "1000"`.
+4. Build.
+
+DSM's reverse proxy (Control Panel → Login Portal → Reverse Proxy) handles TLS and sub-paths.
+
+</TabItem>
+<TabItem value="casaos" label="CasaOS / Portainer">
+
+No official store entry, but the standard Docker Compose works fine in any compose-based UI:
+
+- **Portainer**: Stacks → Add stack → paste the compose from the [Full Setup](#full-setup-with-all-features) section.
+- **CasaOS**: Use the "Install a customized app" flow with the Docker image `docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest`, port `8080`, and bind mounts for `/configs`, `/logs`, `/customFiles`, `/pipeline`, `/usr/share/tessdata`.
 
 </TabItem>
 <TabItem value="podman" label="Podman (Quadlet)">
@@ -227,21 +246,11 @@ Then `systemctl --user daemon-reload && systemctl --user start stirling-pdf`.
 The `:Z` label is required on SELinux distros (Fedora/RHEL). `--userns=keep-id` sidesteps the `PUID`/`PGID` remap, which is skipped under rootless Podman.
 
 </TabItem>
-<TabItem value="proxmox" label="Proxmox LXC">
-
-Run Docker inside an LXC for the smallest footprint:
-
-1. Create an unprivileged LXC (Debian 12 or Ubuntu 24.04, 2 GB RAM, 16 GB disk).
-2. Enable nesting from the Proxmox shell:
-   ```bash
-   pct set <ctid> -features nesting=1,keyctl=1
-   ```
-3. Inside the LXC, install Docker the usual way, then run the [Quick Start](#quick-start) or [Full Setup](#full-setup-with-all-features) compose at the top of this page.
-
-Proxmox's built-in CT backups capture both the container and the Docker volumes in one snapshot.
-
-</TabItem>
 </Tabs>
+
+:::note Community-maintained
+The TrueNAS, Unraid, and Proxmox integrations above are community-maintained, not built or operated by Stirling Tools. Report issues with the integration itself to the respective project (TrueNAS Apps, Unraid Community Apps, community-scripts/ProxmoxVE). For Stirling PDF behaviour, use the [Stirling PDF issue tracker](https://github.com/Stirling-Tools/Stirling-PDF/issues).
+:::
 
 ## Common Configurations
 
