@@ -45,11 +45,11 @@ Tools that run inside the bundled local backend, with no external dependencies:
 - Add watermark, stamp, page numbers
 - Multi-tool, compare, read, annotate
 - Edit table of contents, extract bookmarks
-- Most operations that don't need LibreOffice, Tesseract, qpdf, Ghostscript, ImageMagick, or Calibre
+- Most operations that don't need a server
 
 ### What does not work locally
 
-Tools that need server-side binaries are **not bundled with the desktop app**. Attempting to use them shows:
+Some tools need server-side processing and are **not bundled with the desktop app**. Attempting to use them shows:
 
 > *"This tool requires an account. Sign in to Stirling Cloud or connect to a self-hosted server to use it."*
 
@@ -58,11 +58,11 @@ These tools include:
 - OCR (PDF → searchable PDF)
 - Conversions: PDF ↔ Word / Excel / PowerPoint / HTML / XML / EPUB / PDF/A
 - HTML / URL / Markdown / EML → PDF
-- Compression and repair (qpdf/Ghostscript)
-- Image scan extraction (OpenCV)
-- Replace/invert colors, scanner effect, vector export (Ghostscript)
+- Compression and repair
+- Image scan extraction
+- Replace/invert colors, scanner effect, vector export
 
-To use those, either **sign in to Stirling Cloud** or **connect to a self-hosted server** that has the dependencies installed.
+To use those, either **sign in to Stirling Cloud** or **connect to a self-hosted server**.
 
 ### Switching to local from another mode
 
@@ -84,8 +84,8 @@ The desktop app, signed in to your Stirling Cloud account.
 
 Credits **only** apply when a tool is routed to the Stirling Cloud backend. Examples:
 
-- Compress / Convert / OCR / Cert-sign / Timestamp → routed to Cloud (LibreOffice/Tesseract needed) → credits used
-- Merge / Split / Rotate / Sign / Watermark → handled by the bundled local backend → no credits
+- Compress / Convert / OCR / Cert-sign / Timestamp → routed to Cloud → credits used
+- Merge / Split / Rotate / Sign / Watermark → handled locally → no credits
 
 This is why local-only operations stay free even on a paid Stirling Cloud account.
 
