@@ -63,4 +63,10 @@ The hosted version at [stirling.com/app](https://stirling.com/app). All processi
 
 ## Commercial use
 
-The free tier of Stirling PDF (across all the above modes) is intended for personal, internal trial, or minimal use. Production and customer-facing commercial use requires a paid Server or Enterprise license. See [Paid Offerings](./Paid-Offerings.md) for details or [contact us](https://www.stirling.com/book-a-demo) if you're not sure where your use case falls.
+Commercial use is allowed on the free tier. A paid Server or Enterprise plan is **recommended** if you need:
+
+- More than 5 users on a self-hosted deployment
+- Official support (tickets, SLA, priority responses)
+- SSO, SAML, audit logging, or other paid-tier features
+
+See [Paid Offerings](./Paid-Offerings.md) for the full feature comparison or [contact us](https://www.stirling.com/book-a-demo) if you're not sure which plan fits.
