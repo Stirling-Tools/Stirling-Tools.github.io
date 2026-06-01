@@ -174,7 +174,7 @@ See the catalog listing at [apps.truenas.com/catalog/stirling-pdf/](https://apps
 </TabItem>
 <TabItem value="unraid" label="Unraid">
 
-Available in **Community Applications**.
+Available in **Community Applications**. Stirling PDF was the [Unraid App of the Month for February 2026](https://newsletter.unraid.net/p/unraid-february-digest-0617).
 
 1. Install the [Community Applications](https://forums.unraid.net/topic/38582-plug-in-community-applications/) plugin if you don't already have it.
 2. **Apps** tab → search "Stirling PDF" → click the result → **Install**.
