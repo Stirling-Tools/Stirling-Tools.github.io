@@ -53,7 +53,7 @@ Each step is covered below.
 
 ## 2. Configure Stirling PDF
 
-Add the `telegram:` block to your `settings.yml` (or set the equivalent environment variables) and restart.
+The `telegram:` block is already present in the shipped `settings.yml` - find it and update the values (set `enabled: true`, fill in `botToken` and `botUsername`), or set the equivalent environment variables. Restart Stirling PDF after saving via file edits; the Admin UI hot-applies.
 
 ### Minimal config
 
