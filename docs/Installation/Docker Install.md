@@ -156,6 +156,93 @@ docker-compose up -d
 
 Your data is safe in the volumes and will persist across updates.
 
+## Platform-specific quick starts
+
+Any Docker-capable host runs the same image - the only differences are the platform's UI for setting up containers, and a few platform-native gotchas (UIDs, SELinux labels, nesting flags). Pick your platform:
+
+<Tabs groupId="docker-platform">
+<TabItem value="truenas" label="TrueNAS SCALE" default>
+
+TrueNAS SCALE 24.10+ runs the image as a **Custom App**.
+
+1. Create a dataset for app data (e.g. `pool/ix-apps/stirling-pdf/`) with child datasets `configs`, `logs`, `customFiles`, `pipeline`, `tessdata`.
+2. **Apps → Discover Apps → Custom App**:
+   - Image: `docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest`
+   - Port forward: container `8080` → host `30080`
+   - Env vars: `PUID=568`, `PGID=568` (TrueNAS apps user)
+   - Bind-mount each dataset to its container path (`/configs`, `/logs`, etc.)
+3. Install.
+
+The container starts as root, then re-execs as `PUID:PGID`, so 568/568 lets TrueNAS' own permission model continue to work without manual `chown`.
+
+</TabItem>
+<TabItem value="synology" label="Synology DSM">
+
+Synology DSM 7+ uses **Container Manager**.
+
+1. Create the folder layout under `/volume1/docker/stirling-pdf/{configs,logs,customFiles,pipeline,tessdata}`.
+2. **Container Manager → Project → Create**, paste a compose file using the image and the bind mounts above, with `PUID: "1000" PGID: "1000"`.
+3. Build.
+
+DSM's reverse proxy (Control Panel → Login Portal → Reverse Proxy) handles TLS and sub-paths.
+
+</TabItem>
+<TabItem value="unraid" label="Unraid">
+
+Unraid uses the standard Docker template.
+
+1. **Docker → Add Container**:
+   - Repository: `docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest`
+   - Port: container `8080` → host `8080`
+   - Paths: `/configs`, `/logs`, `/customFiles`, `/pipeline`, `/usr/share/tessdata` → `/mnt/user/appdata/stirling-pdf/...`
+   - Env vars: `PUID=99 PGID=100` (Unraid's `nobody:users`)
+2. Apply.
+
+</TabItem>
+<TabItem value="podman" label="Podman (Quadlet)">
+
+For rootless Podman with systemd, drop a Quadlet file at `~/.config/containers/systemd/stirling-pdf.container`:
+
+```ini
+[Unit]
+Description=Stirling PDF
+
+[Container]
+Image=docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
+PublishPort=8080:8080
+Volume=%h/stirling-pdf/configs:/configs:Z
+Volume=%h/stirling-pdf/logs:/logs:Z
+Volume=%h/stirling-pdf/customFiles:/customFiles:Z
+Volume=%h/stirling-pdf/pipeline:/pipeline:Z
+Volume=%h/stirling-pdf/tessdata:/usr/share/tessdata:Z
+UserNS=keep-id:uid=1000,gid=1000
+AutoUpdate=registry
+
+[Install]
+WantedBy=default.target
+```
+
+Then `systemctl --user daemon-reload && systemctl --user start stirling-pdf`.
+
+The `:Z` label is required on SELinux distros (Fedora/RHEL). `--userns=keep-id` sidesteps the `PUID`/`PGID` remap, which is skipped under rootless Podman.
+
+</TabItem>
+<TabItem value="proxmox" label="Proxmox LXC">
+
+Run Docker inside an LXC for the smallest footprint:
+
+1. Create an unprivileged LXC (Debian 12 or Ubuntu 24.04, 2 GB RAM, 16 GB disk).
+2. Enable nesting from the Proxmox shell:
+   ```bash
+   pct set <ctid> -features nesting=1,keyctl=1
+   ```
+3. Inside the LXC, install Docker the usual way, then run the [Quick Start](#quick-start) or [Full Setup](#full-setup-with-all-features) compose at the top of this page.
+
+Proxmox's built-in CT backups capture both the container and the Docker volumes in one snapshot.
+
+</TabItem>
+</Tabs>
+
 ## Common Configurations
 
 ### Enable User Authentication
