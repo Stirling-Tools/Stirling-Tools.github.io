@@ -487,3 +487,69 @@ system:
       weasyprint: "" #Defaults to /opt/venv/bin/weasyprint
       unoconvert: "" #Defaults to /opt/venv/bin/unoconvert
 ```
+
+## Uninstalling
+
+### Desktop Application
+
+<Tabs groupId="linux-install" queryString>
+  <TabItem value="deb" label="DEB (Debian/Ubuntu)" default>
+    ```bash
+    sudo dpkg -r stirling-pdf       # remove the package
+    # or:
+    sudo dpkg --purge stirling-pdf  # remove package + system configs
+
+    # Per-user data (not removed by dpkg):
+    rm -rf ~/.config/Stirling-PDF
+
+    # Linux keyring entries (run from your desktop session):
+    secret-tool clear service stirling-pdf username auth-token
+    secret-tool clear service stirling-pdf username refresh-token
+
+    # System-wide provisioning (only present if pushed via MDM):
+    sudo rm -rf /etc/stirling-pdf
+    ```
+  </TabItem>
+  <TabItem value="rpm" label="RPM (Fedora/RHEL)">
+    ```bash
+    sudo dnf remove stirling-pdf
+    rm -rf ~/.config/Stirling-PDF
+    sudo rm -rf /etc/stirling-pdf
+    ```
+  </TabItem>
+  <TabItem value="appimage" label="AppImage">
+    AppImage has no installer - just delete the file and the per-user data:
+    ```bash
+    rm linux-installer.AppImage
+    rm -rf ~/.config/Stirling-PDF
+    ```
+  </TabItem>
+  <TabItem value="aur" label="AUR (Arch)">
+    ```bash
+    paru -R stirling-pdf-desktop
+    # or: yay -R stirling-pdf-desktop
+    rm -rf ~/.config/Stirling-PDF
+    ```
+  </TabItem>
+</Tabs>
+
+### Data to back up first
+
+`~/.config/Stirling-PDF/configs/` contains `settings.yml`, `custom_settings.yml`, and the H2 database. Copy it elsewhere before removing.
+
+### Server (JAR) Version
+
+If you followed the systemd setup above, also remove the service and the install directory:
+
+```bash
+sudo systemctl stop stirlingpdf.service
+sudo systemctl disable stirlingpdf.service
+sudo rm /etc/systemd/system/stirlingpdf.service
+sudo systemctl daemon-reload
+
+sudo rm -rf /opt/Stirling-PDF
+rm -f ~/.local/share/applications/Stirling-PDF.desktop
+```
+
+If you installed OCR languages manually, also remove `/usr/share/tessdata/` (or the per-distro Tesseract data dir) if you no longer need them for other apps.
+
