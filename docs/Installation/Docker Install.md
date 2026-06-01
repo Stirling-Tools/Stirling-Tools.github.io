@@ -200,18 +200,17 @@ Prefer Docker-in-LXC instead? Create a Debian/Ubuntu LXC, enable nesting (`pct s
 </TabItem>
 <TabItem value="synology" label="Synology DSM">
 
-No native package - use **Container Manager** (DSM 7.2+) with Docker Compose.
+See the [Marius Hosting Synology guide](https://mariushosting.com/how-to-install-stirling-pdf-on-your-synology-nas/).
 
-For a step-by-step DSM walkthrough with screenshots, the [Marius Hosting guide](https://mariushosting.com/how-to-install-stirling-pdf-on-your-synology-nas/) is widely recommended in the community.
+</TabItem>
+<TabItem value="ugreen" label="UGREEN NAS">
 
-Short version:
+See the [Marius Hosting UGREEN guide](https://mariushosting.com/how-to-install-stirling-pdf-on-your-ugreen-nas/).
 
-1. Install **Container Manager** from Package Center.
-2. Create the folder layout under `/volume1/docker/stirling-pdf/{configs,logs,customFiles,pipeline,tessdata}`.
-3. **Container Manager → Project → Create**, paste a compose file using the image and bind mounts from the [Full Setup](#full-setup-with-all-features) section above, with `PUID: "1000"` `PGID: "1000"`.
-4. Build.
+</TabItem>
+<TabItem value="asustor" label="Asustor NAS">
 
-DSM's reverse proxy (Control Panel → Login Portal → Reverse Proxy) handles TLS and sub-paths.
+See the [Marius Hosting Asustor guide](https://mariushosting.com/how-to-install-stirling-pdf-on-your-asustor-nas/).
 
 </TabItem>
 <TabItem value="casaos" label="CasaOS / Portainer">
