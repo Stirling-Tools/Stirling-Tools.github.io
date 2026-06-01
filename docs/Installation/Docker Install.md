@@ -202,6 +202,10 @@ Prefer Docker-in-LXC instead? Create a Debian/Ubuntu LXC, enable nesting (`pct s
 
 No native package - use **Container Manager** (DSM 7.2+) with Docker Compose.
 
+For a step-by-step DSM walkthrough with screenshots, the [Marius Hosting guide](https://mariushosting.com/how-to-install-stirling-pdf-on-your-synology-nas/) is widely recommended in the community.
+
+Short version:
+
 1. Install **Container Manager** from Package Center.
 2. Create the folder layout under `/volume1/docker/stirling-pdf/{configs,logs,customFiles,pipeline,tessdata}`.
 3. **Container Manager → Project → Create**, paste a compose file using the image and bind mounts from the [Full Setup](#full-setup-with-all-features) section above, with `PUID: "1000"` `PGID: "1000"`.
