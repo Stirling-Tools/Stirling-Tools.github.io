@@ -2,10 +2,9 @@
 sidebar_position: 6
 id: Modes and Licensing
 title: Modes & Licensing
-description: How Desktop, Self-hosted, and Stirling Cloud modes differ - features, credits, and licensing
+description: The different ways to run Stirling PDF and where credits / licensing apply
 tags:
   - Licensing
-  - Pricing
   - Modes
   - Cloud
   - Self-host
@@ -14,230 +13,54 @@ tags:
 
 # Modes and Licensing
 
-Stirling PDF runs in several different modes depending on how you deploy it. This page explains what each mode does, which features are available, where credits apply, and what the license terms cover.
-
-If you've ever asked "do credits apply if I download the Windows app?" or "can I use this commercially on the free plan?", this is the page for you.
+Stirling PDF runs in several modes depending on how you deploy it. This page is just an overview of what each mode is - for pricing, feature matrix, and full license terms see [Paid Offerings](./Paid-Offerings.md).
 
 ---
 
-## The five modes at a glance
+## At a glance
 
 | Mode | What it is | Where files are processed | Credits? | License gate |
 |---|---|---|---|---|
-| **Desktop - Local** | Native Windows/Mac/Linux app, no sign-in | Your device (bundled local backend) | No | Free |
+| **Desktop - Local** | Native Windows/Mac/Linux app, no sign-in | Your device | No | Free |
 | **Desktop + Stirling Cloud** | Same desktop app, signed in to Stirling Cloud | Mix: local for basic tools, cloud for advanced | Yes, on cloud-routed ops | Cloud account |
-| **Desktop + Self-hosted server** | Desktop app pointed at your own Stirling server | Your server | No | Whatever your server has (Free/Server/Enterprise) |
+| **Desktop + Self-hosted server** | Desktop app pointed at your own Stirling server | Your server | No | Whatever your server has |
 | **Web - Self-hosted** | Docker / Kubernetes / JAR, accessed via browser | Your server | No | Free / Server / Enterprise |
 | **Stirling Cloud SaaS** | `stirlingpdf.com` web app | Stirling Cloud | Yes | Cloud account / subscription |
 
 ---
 
-## Desktop - Local Mode
+## Desktop - Local
 
-The default for the Windows, Mac, and Linux desktop apps. No sign-in, no server, no credits.
+The default for the Windows, Mac, and Linux desktop apps. No sign-in, no server, no credits. Basic PDF tools (merge, split, rotate, sign, watermark, page operations, etc.) run entirely on your device.
 
-### What works locally
-
-Tools that run inside the bundled local backend, with no external dependencies:
-
-- Merge, split, rotate, rearrange, remove pages, crop, scale
-- Add password, remove password, change permissions, sign (handwritten or certificate)
-- Add watermark, stamp, page numbers
-- Multi-tool, compare, read, annotate
-- Edit table of contents, extract bookmarks
-- Most operations that don't need a server
-
-### What does not work locally
-
-Some tools need server-side processing and are **not bundled with the desktop app**. Attempting to use them shows:
-
-> *"This tool requires an account. Sign in to Stirling Cloud or connect to a self-hosted server to use it."*
-
-These tools include:
-
-- OCR (PDF → searchable PDF)
-- Conversions: PDF ↔ Word / Excel / PowerPoint / HTML / XML / EPUB / PDF/A
-- HTML / URL / Markdown / EML → PDF
-- Compression and repair
-- Image scan extraction
-- Replace/invert colors, scanner effect, vector export
-
-To use those, either **sign in to Stirling Cloud** or **connect to a self-hosted server**.
-
-### Switching to local from another mode
-
-In the desktop app: open settings and choose "Local". Every operation then runs against the bundled local backend.
+Tools that need server-side processing (OCR, document-format conversions, compression, repair) are not available in this mode - sign in to Stirling Cloud or connect to a self-hosted server to use them.
 
 ---
 
 ## Desktop + Stirling Cloud
 
-The desktop app, signed in to your Stirling Cloud account.
-
-### How it routes
-
-- **Auth and team endpoints** always go to Stirling Cloud.
-- **Tool endpoints** first try the bundled local backend. If the local backend supports the tool, it runs locally (no credits). If not, the request is routed to the Stirling Cloud backend, **which is when credits are consumed**.
-- This means simple tools (merge, split, rotate) run locally even when signed in to Cloud; advanced tools (OCR, conversions) run on Cloud.
-
-### When credits apply
-
-Credits **only** apply when a tool is routed to the Stirling Cloud backend. Examples:
-
-- Compress / Convert / OCR / Cert-sign / Timestamp → routed to Cloud → credits used
-- Merge / Split / Rotate / Sign / Watermark → handled locally → no credits
-
-This is why local-only operations stay free even on a paid Stirling Cloud account.
+The desktop app signed in to your Stirling Cloud account. Basic tools still run locally for free; advanced tools route to Stirling Cloud and consume credits.
 
 ---
 
 ## Desktop + Self-hosted server
 
-Point the desktop app at a Stirling PDF server you run (Docker, Kubernetes, or JAR).
-
-### How it routes
-
-- **All tool requests** go to the configured remote server.
-- If the remote server is unreachable, supported tools fall back to the bundled local backend (so basic ops keep working during outages).
-- **No credits** - credits do not apply in self-hosted mode regardless of who initiated the request.
-
-### Why this mode exists
-
-Best of both worlds: keep the native app experience and the OS-level credential storage, while having full feature access (OCR, conversions, etc.) backed by your own infrastructure.
-
-Common pattern: run Stirling PDF in Docker on a NAS or VM, distribute the desktop app to colleagues, and point everyone at the shared server.
-
-### Locking the server URL
-
-For IT-managed deployments, the MSI installer (Windows) can lock the connection mode so end users can't change the server. See [Automated Installation](./Installation/Windows.md#automated-installation).
+The desktop app pointed at a Stirling PDF instance you run yourself. All tools route to your server and **no credits apply**. Whichever license tier your server runs (Free, Server, Enterprise) is what the desktop client gets.
 
 ---
 
 ## Web - Self-hosted
 
-Stirling PDF running in Docker, Kubernetes, or as a bare-metal JAR, accessed via web browser.
-
-### Credits
-
-**Never applicable.** Self-hosted deployments don't have credits.
-
-### License tiers
-
-The web self-hosted build has feature gates based on your license:
-
-- **Free** (no license key): All PDF operations, secure login, up to 5 users, community support.
-- **Server license** ($99/month or $999/year): Adds unlimited users, SSO/OAuth2 (Google, GitHub, Keycloak, any OIDC), Google Drive integration, external database (PostgreSQL), and editing text in PDFs.
-- **Enterprise license** (custom pricing): Adds SAML SSO, audit logging, usage tracking, Prometheus monitoring, custom PDF metadata, and per-seat licensing.
-
-See [Paid Offerings](./Paid-Offerings.md) for the full feature matrix and current pricing.
-
-### The 5-user limit (Free plan)
-
-Free deployments are capped at **5 user accounts in the database**. This is checked when creating a new user, not on login. Attempting to create the 6th user returns:
-
-> `Maximum number of users reached. Allowed: 5, Available slots: 0`
-
-The limit applies to the total number of user accounts in the system, not concurrent sessions. To raise it, install a Server license (unlimited users) or an Enterprise license (seat-capped).
-
-### V1 → V2 grandfathering
-
-If you upgraded from Stirling PDF V1 to V2 with existing users:
-
-- Your existing user count is preserved, so an install with 50 V1 users keeps working on the Free plan after the upgrade.
-- Existing OAuth/SAML users keep SSO access without a paid license. New OAuth/SAML users on the same install still require a paid license.
-
-Fresh V2 installs don't get grandfathering - the 5-user limit applies and OAuth/SAML require a paid license.
+Stirling PDF running in Docker, Kubernetes, or as a bare-metal JAR, accessed via a browser. **No credits ever.** License tier determines which advanced features (unlimited users, SSO, SAML, audit logs, etc.) are unlocked - see [Paid Offerings](./Paid-Offerings.md).
 
 ---
 
 ## Stirling Cloud SaaS
 
-The hosted version at `stirlingpdf.com`. All processing happens in Stirling's cloud.
-
-### Credits
-
-Yes - every operation costs credits. Free accounts include a monthly allowance; paid plans include more (or unlimited) credits. Different operations cost different amounts depending on their compute requirements.
-
-### Credit costs at a glance
-
-| Tier | Credits | Example operations |
-|---|---|---|
-| **Free / Dev** | 0 | API sandbox, folder scanning preview, "developer" UI screens |
-| **Small** | 1 | Rotate, remove pages, add text, add password, remove password, crop, flatten, repair, sign, add page numbers, extract pages, rearrange, scale, edit table of contents, multi-tool, compare, add attachments, validate signature, read |
-| **Medium** | 3 | Split, merge, watermark, sanitize, add stamp, extract images, redact, change metadata, page layout, annotate, fill form, scanner effect, get PDF info, replace color, remove blanks, auto-rename, booklet imposition, PDF to single page |
-| **Large** | 5 | Compress, convert (any format), OCR, cert-sign, timestamp-pdf |
-| **Extra Large** | 10 | Automate (pipeline run) |
-
-Unmapped operations default to the **Medium** tier.
-
-Credits reset monthly. Upgrade to a paid plan for more credits (or remove the limit entirely on higher tiers).
-
-### Why credits exist in SaaS but not self-hosted
-
-In SaaS, you're using Stirling's compute. Credits meter that usage. In self-hosted, you're using your own compute - there's nothing for Stirling to meter.
-
-This is also why the same desktop app does and doesn't consume credits depending on which mode you're in: signed in to Cloud, advanced tools route to Stirling's servers → credits; signed in to your own server or running fully local, no credits.
+The hosted version at `stirlingpdf.com`. All processing happens in Stirling's cloud, and every operation costs credits. Free accounts include a monthly allowance; paid plans include more credits. See [Paid Offerings](./Paid-Offerings.md) for current pricing.
 
 ---
 
-## License terms - what's free for commercial use
+## Commercial use
 
-Stirling PDF's source is split:
-
-- **Most of the codebase is MIT-licensed.** Use it however you like, including commercially, with attribution.
-- **The proprietary modules** - the paid backend features, the SaaS frontend, and the desktop client - are covered by the **Stirling PDF User License**, which is not MIT.
-
-### What the Stirling PDF User License says
-
-The user license explicitly limits the free tier to:
-
-> *"internal trial, evaluation, or minimal use"*
-
-…and rules out:
-
-> *"client-facing or commercial contexts"*
-
-…without a paid subscription.
-
-### Practical translation
-
-| Use case | License needed |
-|---|---|
-| Personal use on your laptop | Free |
-| Internal team evaluation / proof of concept | Free |
-| Open-source community / hobby projects | Free (MIT for the core code) |
-| Production deployment inside a business | Paid (Server or Enterprise) |
-| Customer-facing service | Paid |
-| Bundling into a commercial product | Paid (contact us about OEM terms) |
-| Forking the MIT subset for your own non-commercial project | Free |
-
-If you're not sure where your use case falls, [contact us](https://www.stirling.com/book-a-demo) or email `support@stirlingpdf.com` for a definitive answer.
-
----
-
-## Quick decision tree
-
-```
-Are you running it on your own infrastructure (Docker, K8s, JAR)?
-├─ Yes → No credits ever. License is Free for trial/personal, paid for
-│         commercial/production. SSO is Server+, SAML is Enterprise+.
-└─ No → Are you using the desktop app?
-        ├─ Yes → Are you signed in to Stirling Cloud?
-        │       ├─ No (local mode) → No credits. Local-only tools only.
-        │       │   Advanced tools require sign-in or self-host.
-        │       └─ Yes → Basic tools run locally (free), advanced tools
-        │                 run on Stirling Cloud (uses credits).
-        └─ No (using stirlingpdf.com web app) → Every operation uses
-                credits according to the tier.
-```
-
----
-
-## Related documentation
-
-- **[Paid Offerings](./Paid-Offerings.md)** - Feature matrix, pricing, what each license unlocks
-- **[Installation - Docker](./Installation/Docker%20Install.md)** - Self-hosting via Docker
-- **[Installation - Kubernetes](./Installation/Kubernetes.md)** - Self-hosting via Helm
-- **[OAuth SSO Configuration](./Configuration/OAuth%20SSO%20Configuration.md)** - Setting up SSO (Server license)
-- **[SAML SSO Configuration](./Configuration/SAML%20SSO%20Configuration/SAML%20SSO%20Configuration.md)** - Setting up SAML (Enterprise license)
-- **[FAQ](./FAQ.md)** - Other common questions
+The free tier of Stirling PDF (across all the above modes) is intended for personal, internal trial, or minimal use. Production and customer-facing commercial use requires a paid Server or Enterprise license. See [Paid Offerings](./Paid-Offerings.md) for details or [contact us](https://www.stirling.com/book-a-demo) if you're not sure where your use case falls.
