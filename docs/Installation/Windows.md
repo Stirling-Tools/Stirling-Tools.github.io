@@ -322,54 +322,5 @@ unoserver --port 2003 --interface 0.0.0.0
 
 You can add this command to your startup script or systemd service file to ensure it starts automatically with Stirling PDF.
 
-## Uninstalling
-
-### Desktop Application
-
-Use **Settings → Apps → Stirling-PDF → Uninstall** (or **Control Panel → Programs and Features**). This removes the install directory, Start Menu shortcuts, the PDF thumbnail handler registry entries, and the file association.
-
-Per-user data and cached credentials remain. To remove them as well:
-
-```powershell
-# Per-user settings, logs, database
-Remove-Item -Recurse -Force "$env:APPDATA\Stirling-PDF"
-Remove-Item -Recurse -Force "$env:APPDATA\stirling.pdf.dev"
-
-# All-users provisioning (only present if installed with ALLUSERS=1 + STIRLING_SERVER_URL)
-Remove-Item -Recurse -Force "$env:PROGRAMDATA\Stirling-PDF"
-
-# Cached auth tokens in Windows Credential Manager
-cmdkey /delete:stirling-pdf
-```
-
-Package-manager equivalents:
-
-```powershell
-# winget
-winget uninstall StirlingTools.StirlingPDF
-
-# Scoop (per-user, no admin needed)
-scoop uninstall stirling-pdf
-```
-
-:::note `%PROGRAMDATA%\Stirling-PDF` is preserved on purpose
-The all-users provisioning file at `%PROGRAMDATA%\Stirling-PDF\stirling-provisioning.json` is intentionally kept after MSI uninstall so a reinstall picks up the same MDM-pushed configuration. Delete it manually if you want a completely clean slate.
-:::
-
-### Data to back up first
-
-`%APPDATA%\Stirling-PDF\configs\` contains `settings.yml`, `custom_settings.yml`, and the H2 database (your user accounts and audit log). Back that folder up before wiping per-user data.
-
-### Server (JAR) Version
-
-The JAR install creates no system-level services or registry entries. To uninstall:
-
-```powershell
-# Stop the running java process (in the console where it's running, Ctrl+C)
-# Then just delete the folder where you placed the JAR:
-Remove-Item -Recurse -Force "C:\path\to\Stirling-PDF"
-```
-
-If you set it up as a Windows service (via NSSM or Task Scheduler), remove that registration first, then delete the folder.
 
 Need help? Visit the [Stirling PDF GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues) page.

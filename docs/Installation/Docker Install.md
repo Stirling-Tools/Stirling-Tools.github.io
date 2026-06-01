@@ -270,41 +270,6 @@ ports:
 - **Setup Automation**: See [Pipeline Configuration](../Configuration/Pipeline.md)
 - **More Settings**: See [Configuration](../Configuration/Configuration.md)
 
-## Uninstalling
-
-**Back up your data first** if you want to keep it. The settings and user accounts live in `./stirling-data/configs/`.
-
-<Tabs groupId="docker-method">
-<TabItem value="docker-run" label="docker run" default>
-
-```bash
-docker stop stirling-pdf
-docker rm stirling-pdf
-docker rmi stirlingtools/stirling-pdf:latest
-
-# Optionally remove the data:
-rm -rf ./stirling-data
-```
-
-</TabItem>
-<TabItem value="docker-compose" label="docker-compose">
-
-```bash
-docker compose down
-
-# To also remove named volumes (if you used them rather than bind mounts):
-docker compose down -v
-
-# Remove the image:
-docker rmi stirlingtools/stirling-pdf:latest
-
-# Optionally remove the data:
-rm -rf ./stirling-data
-```
-
-</TabItem>
-</Tabs>
-
 ## Troubleshooting
 
 **Can't access at localhost:8080?**

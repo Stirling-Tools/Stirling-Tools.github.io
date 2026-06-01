@@ -121,7 +121,7 @@ Stirling PDF does not ship dedicated plugins or nodes for any specific automatio
 
 ### Common automation recipe: chain multiple operations in one call
 
-Rather than wiring 5 separate HTTP nodes for "OCR then compress then watermark then sign...", use the **pipeline endpoint** to chain everything in one request:
+Rather than wiring 5 separate HTTP nodes for "OCR then compress then watermark then sign...", you could use the **pipeline endpoint** to chain everything in one request:
 
 - Endpoint: `POST /api/v1/pipeline/handleData`
 - Request: multipart with one or more `fileInput` parts plus a `json` field containing the full pipeline configuration
