@@ -66,7 +66,7 @@ To use those, either **sign in to Stirling Cloud** or **connect to a self-hosted
 
 ### Switching to local from another mode
 
-In the desktop app: open settings, choose "Local". The app stores a `stirling-local-mode=true` flag and routes every operation to the bundled backend.
+In the desktop app: open settings and choose "Local". Every operation then runs against the bundled local backend.
 
 ---
 
@@ -89,11 +89,11 @@ Credits **only** apply when a tool is routed to the Stirling Cloud backend. Exam
 
 This is why local-only operations stay free even on a paid Stirling Cloud account.
 
-### JWT and storage differences
+### Differences from using the web app
 
-- Auth tokens live in the OS-native secret store (Windows Credential Manager, macOS Keychain, Linux Secret Service / GNOME Keyring / KWallet on most distributions, via the Rust `keyring` crate), not browser storage.
-- Token lifetime is 30 days by default when the request comes from a desktop client (Tauri/Electron/`stirlingpdf-desktop` User-Agent), vs 24 hours from a browser. This is triggered by User-Agent inspection, so the long token applies regardless of which server the desktop app is pointed at. Both defaults are configurable via the JWT properties.
-- Self-signed certificates are accepted automatically by the desktop HTTP client (the browser equivalent would prompt).
+- Auth tokens live in the OS-native secret store (Windows Credential Manager, macOS Keychain, Linux Secret Service / GNOME Keyring / KWallet), not browser storage.
+- Sessions last around 30 days on the desktop app, vs 24 hours in a browser, so you sign in less often.
+- Self-signed certificates are accepted automatically by the desktop app (the browser would prompt).
 
 ---
 
@@ -125,7 +125,7 @@ Stirling PDF running in Docker, Kubernetes, or as a bare-metal JAR, accessed via
 
 ### Credits
 
-**Never applicable.** The credit system is part of the SaaS code path only. Self-hosted deployments don't have credits, don't track them, and don't enforce them.
+**Never applicable.** Self-hosted deployments don't have credits.
 
 ### License tiers
 
@@ -135,7 +135,7 @@ The web self-hosted build has feature gates based on your license:
 - **Server license** ($99/month or $999/year): Adds unlimited users, SSO/OAuth2 (Google, GitHub, Keycloak, any OIDC), Google Drive integration, external database (PostgreSQL), and editing text in PDFs.
 - **Enterprise license** (custom pricing): Adds SAML SSO, audit logging, usage tracking, Prometheus monitoring (marketed as Enterprise-only), custom PDF metadata, and per-seat licensing.
 
-Attempting to use a paid feature without the corresponding license returns HTTP 403 (`Forbidden`). The `/actuator/*` endpoints (Prometheus scrape target, Spring metrics) return 404 unless you have a Server or Enterprise license - the public-plan marketing positions Prometheus monitoring as Enterprise-only, while the underlying filter currently allows Server too.
+Attempting to use a paid feature without the corresponding license returns HTTP 403 (`Forbidden`).
 
 See [Paid Offerings](./Paid-Offerings.md) for the full feature matrix and current pricing.
 
@@ -145,14 +145,14 @@ Free deployments are capped at **5 user accounts in the database**. This is chec
 
 > `Maximum number of users reached. Allowed: 5, Available slots: 0`
 
-The limit applies to the total number of users in the database, not concurrent sessions. The limit is HMAC-signed against the installation's keys and verified on every settings read - manual database edits to raise it are detected and rolled back. To raise the limit, install a Server license (unlimited users) or an Enterprise license (seat-capped). Paid licenses **replace** the limit rather than adding to grandfathering.
+The limit applies to the total number of user accounts in the system, not concurrent sessions. To raise it, install a Server license (unlimited users) or an Enterprise license (seat-capped).
 
 ### V1 → V2 grandfathering
 
 If you upgraded from Stirling PDF V1 to V2 with existing users:
 
-- Your user-count limit is set to `max(5, currentUserCount)` and **permanently locked**. Existing V1 installs with 50 users keep working without a paid license.
-- Existing OAuth/SAML users are flagged as grandfathered and keep SSO access without a paid license. New OAuth/SAML users on the same install still require a paid license.
+- Your existing user count is preserved, so an install with 50 V1 users keeps working on the Free plan after the upgrade.
+- Existing OAuth/SAML users keep SSO access without a paid license. New OAuth/SAML users on the same install still require a paid license.
 
 Fresh V2 installs don't get grandfathering - the 5-user limit applies and OAuth/SAML require a paid license.
 
