@@ -25,7 +25,7 @@ Stirling PDF runs in several modes depending on how you deploy it. This page is 
 | **Desktop + Stirling Cloud** | Same desktop app, signed in to Stirling Cloud | Mix: local for basic tools, cloud for advanced | Yes, on cloud-routed ops | Cloud account |
 | **Desktop + Self-hosted server** | Desktop app pointed at your own Stirling server | Your server | No | Whatever your server has |
 | **Web - Self-hosted** | Docker / Kubernetes / JAR, accessed via browser | Your server | No | Free / Server / Enterprise |
-| **Stirling Cloud SaaS** | `stirlingpdf.com` web app | Stirling Cloud | Yes | Cloud account / subscription |
+| **Stirling Cloud SaaS** | `stirling.com/app` web app | Stirling Cloud | Yes | Cloud account / subscription |
 
 ---
 
@@ -57,7 +57,7 @@ Stirling PDF running in Docker, Kubernetes, or as a bare-metal JAR, accessed via
 
 ## Stirling Cloud SaaS
 
-The hosted version at `stirlingpdf.com`. All processing happens in Stirling's cloud, and every operation costs credits. Free accounts include a monthly allowance; paid plans include more credits. See [Paid Offerings](./Paid-Offerings.md) for current pricing.
+The hosted version at [stirling.com/app](https://stirling.com/app). All processing happens in Stirling's cloud, and every operation costs credits. Free accounts include a monthly allowance; paid plans include more credits. See [Paid Offerings](./Paid-Offerings.md) for current pricing.
 
 ---
 
