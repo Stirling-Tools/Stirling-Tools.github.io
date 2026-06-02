@@ -552,7 +552,7 @@ The watched-folder scanner runs every 60 seconds.
 **Common reasons:**
 - Operation name used short form (e.g. `compress-pdf`) instead of full path (`/api/v1/misc/compress-pdf`)
 - Operation references an endpoint outside the allowed namespaces (only `general`, `misc`, `security`, `convert`, `filter`, `ai/tools` are permitted)
-- A required parameter was omitted (each schema in [Parameter Reference](#parameter-reference) marks the required fields)
+- A required parameter was omitted (check the schema for the underlying endpoint in the [Swagger UI / API reference](#operation--parameter-reference))
 - The pipeline tries to call `/api/v1/pipeline/handleData` recursively
 
 ---
@@ -585,7 +585,7 @@ The watched-folder scanner runs every 60 seconds.
 - Parameters not supported in operation
 
 **Solutions:**
-1. Check parameter names match the schemas in [Parameter Reference](#parameter-reference)
+1. Check parameter names against the endpoint's schema in the [Swagger UI / API reference](#operation--parameter-reference)
 2. Verify parameter value types (string, number, boolean)
 3. Test the same parameters by calling the endpoint directly first
 
