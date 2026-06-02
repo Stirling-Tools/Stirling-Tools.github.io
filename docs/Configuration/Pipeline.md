@@ -313,7 +313,7 @@ For folder scanning (not used by the REST API):
 
 ---
 
-## Operation & Parameter Reference
+## Operation and parameter reference
 
 Pipeline operations use the **full endpoint paths** of Stirling PDF's REST API, with the same field names. So once you know the underlying endpoint, you know the pipeline operation - no separate vocabulary to learn.
 
@@ -552,7 +552,7 @@ The watched-folder scanner runs every 60 seconds.
 **Common reasons:**
 - Operation name used short form (e.g. `compress-pdf`) instead of full path (`/api/v1/misc/compress-pdf`)
 - Operation references an endpoint outside the allowed namespaces (only `general`, `misc`, `security`, `convert`, `filter`, `ai/tools` are permitted)
-- A required parameter was omitted (check the schema for the underlying endpoint in the [Swagger UI / API reference](#operation--parameter-reference))
+- A required parameter was omitted (check the schema for the underlying endpoint in the [Swagger UI / API reference](#operation-and-parameter-reference))
 - The pipeline tries to call `/api/v1/pipeline/handleData` recursively
 
 ---
@@ -585,7 +585,7 @@ The watched-folder scanner runs every 60 seconds.
 - Parameters not supported in operation
 
 **Solutions:**
-1. Check parameter names against the endpoint's schema in the [Swagger UI / API reference](#operation--parameter-reference)
+1. Check parameter names against the endpoint's schema in the [Swagger UI / API reference](#operation-and-parameter-reference)
 2. Verify parameter value types (string, number, boolean)
 3. Test the same parameters by calling the endpoint directly first
 
