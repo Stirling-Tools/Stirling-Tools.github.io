@@ -9,6 +9,8 @@ description: Make scanned PDFs searchable and editable with OCR
 
 **Tool ID:** `ocr-pdf`
 
+(`ocr-pdf` is the endpoint slug; the frontend tool id is `ocr`.)
+
 Make scanned PDFs searchable and selectable by recognizing text in images. Uses the Tesseract OCR engine.
 
 ---

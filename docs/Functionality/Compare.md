@@ -9,7 +9,11 @@ description: Compare two PDF documents and highlight differences
 
 **Tool ID:** `compare`
 
-Compare two PDF documents and visually highlight word-level differences. Runs entirely in your browser  - no files are sent to the server.
+Compare two PDF documents and highlight their differences. Runs entirely in your browser  - no files are sent to the server.
+
+Comparison is text-based (word-level): the tool extracts the text from both PDFs and highlights what changed, with removed words in red and added words in green. It works best on digital PDFs where you care about wording changes. For scanned documents, run [OCR](./OCR.md) first to make the text selectable.
+
+A pixel/visual comparison mode exists in the codebase but is not currently exposed in the UI, so text comparison is the only mode available today.
 
 ---
 
@@ -34,8 +38,8 @@ Compare two PDF documents and visually highlight word-level differences. Runs en
 
 ## Limitations
 
-- Works best with digital PDFs (not scanned). For scanned documents, run [OCR](./OCR.md) first
-- Compares extracted text only  - layout-only or image-only changes are not detected
+- Works best with digital PDFs (not scanned). It compares extracted text only, so layout-only or image-only changes are not detected. For scanned documents, run [OCR](./OCR.md) first
+- Documents with no extractable text cannot be compared
 - Very large or highly dissimilar documents may be stopped early with a warning
 
 ---

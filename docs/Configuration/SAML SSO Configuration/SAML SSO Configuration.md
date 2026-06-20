@@ -349,7 +349,7 @@ Automatically redirect users to SAML login, bypassing the Stirling PDF login scr
 ```yaml
 premium:
   proFeatures:
-    SSOAutoLogin: true
+    ssoAutoLogin: true
 ```
 
 **Auto-login Activation Requirements:**

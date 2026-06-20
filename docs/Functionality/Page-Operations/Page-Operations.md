@@ -20,9 +20,7 @@ description: List of all Page related features
 
 - `multi-page-layout`: This functionality allows users to create a layout involving multiple pages of a PDF.
 
-- `scale-pages`: This feature enables users to adjust the scale of pages in a PDF document.
-
-- `auto-split-pdfs`: This allows a user to insert physical divider pages between their documents in their scanner to allow S-PDF to auto separate them
+- `scale-pages`: This feature enables users to adjust the scale of pages in a PDF document. Pick a target page size (A0-A6, Letter, Legal, or Keep Original Size) and a scale factor for the content. A **Page Orientation** option (Portrait or Landscape) lets you apply the chosen page size in either orientation - for example A4 rotated to landscape. Orientation does not apply when "Keep Original Size" is selected.
 
 - `adjust-contrast`: Lets the user adjust the contrast, brightness and saturation
 
@@ -33,6 +31,10 @@ description: List of all Page related features
 - `booklet-imposition`: Arranges PDF pages for booklet printing with proper page ordering for folding and binding. Creates printer-ready booklets with correct page sequences
 
 - `split-by-size-or-count`: Splits one or multiple PDF files into parts consisting of a maximum file size or page count definde by the user.
+
+- `split-pdf-by-chapters`: Splits a PDF into separate files at its bookmark/chapter boundaries, using the document's table of contents to determine where each section begins.
+
+- `split-for-poster-print`: Tiles each large page into a grid of standard-size printable pages, so an oversized page can be printed across several sheets and assembled into a poster.
 
 - `overlay-pdf`: Can merge multiple PDFs into one another (ontop/behind etc) in various ways
 

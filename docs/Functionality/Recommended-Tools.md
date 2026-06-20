@@ -9,6 +9,22 @@ description: The most commonly used PDF tools in Stirling PDF
 
 The most frequently used PDF operations, prominently featured on the home page for quick access.
 
+:::info Tool ID vs. endpoint slug
+The **Tool ID** below is the identifier used by the frontend tool registry (for example `compress`, `ocr`). The matching REST endpoint can use a different slug (for example `/api/v1/misc/compress-pdf`, `/api/v1/misc/ocr-pdf`). Both are noted where they differ.
+:::
+
+---
+
+## PDF Text Editor *(Alpha)* {#pdf-text-editor}
+
+**Tool ID:** `pdfTextEditor` &nbsp;&middot;&nbsp; **Endpoint:** `text-editor-pdf`
+
+Review and edit text and images in PDFs with grouped text editing and PDF regeneration. This is a flagship V2 tool that runs in your browser.
+
+:::warning Experimental
+The PDF Text Editor is **alpha / experimental**. Behaviour and output may change, and complex PDFs may not round-trip perfectly. Keep a copy of your original file.
+:::
+
 ---
 
 ## Multi-Tool
@@ -41,7 +57,7 @@ Compare two PDF documents side-by-side with visual difference highlighting.
 
 ## Compress
 
-**Tool ID:** `compress-pdf`
+**Tool ID:** `compress` &nbsp;&middot;&nbsp; **Endpoint:** `compress-pdf`
 
 Reduce PDF file size (10-90% reduction) with configurable quality levels.
 
@@ -61,7 +77,7 @@ Convert between PDF and 50+ file formats including images, Office documents, HTM
 
 ## OCR
 
-**Tool ID:** `ocr-pdf`
+**Tool ID:** `ocr` &nbsp;&middot;&nbsp; **Endpoint:** `ocr-pdf`
 
 Make scanned PDFs searchable by recognizing text in images. Supports 100+ languages via Tesseract OCR.
 

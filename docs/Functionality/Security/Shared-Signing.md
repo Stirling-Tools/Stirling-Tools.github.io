@@ -159,6 +159,7 @@ After finalization, download the completed PDF from the session detail view or t
       enabled: true
       signing:
         enabled: true              # Master switch for shared signing
+        userListScope: org         # Signer-picker scope: 'org' (default) = whole instance, any other value = caller's team only
 
     system:
       frontendUrl: https://your-instance.com
@@ -173,6 +174,7 @@ After finalization, download the completed PDF from the session detail view or t
     ```bash
     STORAGE_ENABLED=true
     STORAGE_SIGNING_ENABLED=true
+    STORAGE_SIGNING_USERLISTSCOPE=org
     SYSTEM_FRONTENDURL=https://your-instance.com
     SYSTEM_SERVERCERTIFICATE_ENABLED=true
     SYSTEM_SERVERCERTIFICATE_ORGANIZATIONNAME="My Company"
@@ -180,6 +182,17 @@ After finalization, download the completed PDF from the session detail view or t
     ```
   </TabItem>
 </Tabs>
+
+#### Signer-Picker Scope
+
+`storage.signing.userListScope` controls which users appear in the participant picker when creating a signing session:
+
+| Value | Who appears in the picker |
+|-------|---------------------------|
+| `org` (default) | Every enabled user on the instance |
+| _any other value_ | Only users in the caller's own team |
+
+The signer list is served by `GET /api/v1/user/users`. This endpoint **requires authentication** - anonymous callers are rejected, so they can never enumerate users regardless of scope.
 
 ### Certificate Validation Settings
 

@@ -175,11 +175,24 @@ cp frontend/dist/index.html customFiles/static/index.html
 Default language selection via the `SYSTEM_DEFAULTLOCALE` environment variable. Accepted values include `de-DE`, `fr-FR`, `ar-AR` and all other languages codes that are within Stirling PDFs current list.
 
 ## Google Search Visibility (robots.txt)
-Enable or disable search engine visibility with the `ALLOW_GOOGLE_VISIBILITY` variable.
+Enable or disable search engine visibility (via `robots.txt`) with the `SYSTEM_GOOGLEVISIBILITY` environment variable, or in `configs/settings.yml`:
+```yaml
+system:
+  googlevisibility: true  # 'true' to allow Google visibility, 'false' to disallow
+```
 
 ## Custom Root path
-Redirect the root path of the application using `APP_ROOT_PATH`.
-This is for changing websites like stirlingtools.com to instead host the interface at stirlingtools.com/`APP_ROOT_PATH` like stirlingtools.com/demo
+Host the interface under a sub-path with the `SYSTEM_ROOTURIPATH` environment variable. Stirling PDF binds this to the underlying Spring property `server.servlet.context-path`, so it is the value to set on every Docker image (the bundled health checks read it too).
+This is for changing websites like stirlingtools.com to instead host the interface at stirlingtools.com/demo:
+```bash
+SYSTEM_ROOTURIPATH=/demo
+```
+The setting can also be written in `configs/settings.yml` as the raw Spring property:
+```yaml
+server:
+  servlet:
+    context-path: /demo
+```
 
 ## Enable/Disable Analytics
 Analytics can be enabled/disabled with ``SYSTEM_ENABLEANALYTICS`` or

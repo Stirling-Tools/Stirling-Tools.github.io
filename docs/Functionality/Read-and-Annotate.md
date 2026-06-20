@@ -45,7 +45,7 @@ Built with **[EmbedPDF](https://www.embedpdf.com/)**, an advanced open-source PD
 ### Comment Threads
 - Reply threads on any annotation
 - Author attribution and timestamps
-- Comments sidebar listing all comments grouped by page
+- Comments sidebar listing all comments grouped by page; within each page, comments appear in visual reading order (top-to-bottom, left-to-right)
 - Click to navigate to the source annotation
 
 ---
@@ -57,6 +57,7 @@ Built with **[EmbedPDF](https://www.embedpdf.com/)**, an advanced open-source PD
 - Single page and dual-page spread modes
 - Thumbnail sidebar, bookmark sidebar, attachment sidebar
 - Full-text search (Ctrl+F) with result highlighting and navigation
+- Text selection with select-all (Ctrl+A) and a floating Copy button that appears over the selection
 - Print (Ctrl+P)
 
 ---
@@ -65,6 +66,7 @@ Built with **[EmbedPDF](https://www.embedpdf.com/)**, an advanced open-source PD
 
 | Shortcut | Action |
 |----------|--------|
+| **Ctrl+A** | Select all text |
 | **Ctrl+F** | Search |
 | **Ctrl+P** | Print |
 | **Ctrl+S** | Save changes |

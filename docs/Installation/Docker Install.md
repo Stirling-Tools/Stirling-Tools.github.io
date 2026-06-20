@@ -50,6 +50,17 @@ docker-compose up -d
 
 Then open `http://localhost:8080` in your browser!
 
+:::info Login is ON by default
+In V2 the default is `security.enableLogin: true`, and the official images do **not** bake in `ENABLELOGIN=false`. A fresh container therefore boots with login **enabled** and seeds a default admin account:
+
+```
+Username: admin
+Password: stirling
+```
+
+Change this password immediately after first login. If you want the no-login experience instead (no authentication, no admin account), you must opt out explicitly by setting `SECURITY_ENABLELOGIN=false`. See [Modes & Licensing](../Modes-and-Licensing.md) for how the deploy modes differ.
+:::
+
 ## Choosing Your Version
 
 | Version | Tag | What's Included | Best For |
@@ -111,7 +122,7 @@ services:
       - ./stirling-data/logs:/logs                     # Application logs
       - ./stirling-data/pipeline:/pipeline             # Automation configs
     environment:
-      - SECURITY_ENABLELOGIN=false    # Set true to enable user authentication
+      - SECURITY_ENABLELOGIN=false    # Opt out of login (default is true / enabled)
       - LANGS=en_GB                   # Interface language
     restart: unless-stopped
 ```
@@ -257,10 +268,11 @@ The TrueNAS, Unraid, and Proxmox integrations above are community-maintained, no
 
 ## Common Configurations
 
-### Enable User Authentication
+### User Authentication
+Login is enabled by default (default admin `admin` / `stirling`). To turn it off and run without authentication, set:
 ```yaml
 environment:
-  - SECURITY_ENABLELOGIN=true
+  - SECURITY_ENABLELOGIN=false
 ```
 
 ### Change Interface Language

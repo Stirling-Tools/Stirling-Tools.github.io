@@ -334,6 +334,37 @@ The fastest way to get a correct pipeline JSON for any combination of operations
 
 ---
 
+## Filter / conditional operations
+
+Filter operations (under `/api/v1/filter/`) let you branch a pipeline: each checks a property of the file and either **passes the file through** (the file continues to later steps) or **drops it** (the file is removed from the working set, so subsequent steps never see it). They are how you express "only process files that match X" inside a pipeline.
+
+| Operation | Checks |
+|---|---|
+| `/api/v1/filter/filter-contains-text` | Whether the PDF contains a given text string (optionally on specific pages) |
+| `/api/v1/filter/filter-contains-image` | Whether the PDF contains an image (optionally on specific pages) |
+| `/api/v1/filter/filter-page-count` | Page count `Greater` / `Equal` / `Less` than a value |
+| `/api/v1/filter/filter-page-size` | First page's size against a standard page size |
+| `/api/v1/filter/filter-file-size` | File size in bytes against a value |
+| `/api/v1/filter/filter-page-rotation` | First page's rotation against a value |
+
+The comparison operations (`filter-page-count`, `filter-page-size`, `filter-file-size`, `filter-page-rotation`) take a `comparator` of `Greater`, `Equal`, or `Less`. A file that does not pass a filter is silently dropped from the rest of the pipeline, not treated as an error.
+
+**Example - only OCR files that have no text yet:** put `filter-contains-text` (looking for some always-present marker) or pair an image check with OCR. A common pattern is to detect image-only scans with `filter-contains-image`, then route them through `/api/v1/misc/ocr-pdf`.
+
+```json
+{
+  "name": "OCR only image-only scans",
+  "pipeline": [
+    {"operation": "/api/v1/filter/filter-contains-image", "parameters": {"pageNumbers": "all"}},
+    {"operation": "/api/v1/misc/ocr-pdf", "parameters": {"languages": ["eng"], "ocrType": "skip-text"}}
+  ]
+}
+```
+
+Because `filter` is one of the allowed pipeline namespaces, these operations work both in the REST API and in folder scanning.
+
+---
+
 
 ## REST API: `POST /api/v1/pipeline/handleData`
 

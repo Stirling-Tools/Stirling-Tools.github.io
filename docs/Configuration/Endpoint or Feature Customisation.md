@@ -32,8 +32,11 @@ You can disable entire groups of related endpoints using `ENDPOINTS_GROUPSTOREMO
 | `OCRmyPDF` | OCR (Optical Character Recognition) features | `ENDPOINTS_GROUPSTOREMOVE=OCRmyPDF` |
 | `Weasyprint` | HTML to PDF conversion | `ENDPOINTS_GROUPSTOREMOVE=Weasyprint` |
 | `Calibre` | E-book format conversions | `ENDPOINTS_GROUPSTOREMOVE=Calibre` |
-| `QPDF` | Various PDF operations powered by QPDF | `ENDPOINTS_GROUPSTOREMOVE=QPDF` |
+| `qpdf` | Various PDF operations powered by QPDF | `ENDPOINTS_GROUPSTOREMOVE=qpdf` |
 | `Ghostscript` | PDF/A conversion and compression operations | `ENDPOINTS_GROUPSTOREMOVE=Ghostscript` |
+| `Automation` | Automation/pipeline endpoints (`handleData`, `automate`, `pipeline`) | `ENDPOINTS_GROUPSTOREMOVE=Automation` |
+| `DeveloperTools` | Developer tools such as Show JavaScript | `ENDPOINTS_GROUPSTOREMOVE=DeveloperTools` |
+| `DeveloperDocs` | In-app developer doc links (API docs, folder scanning, SSO, air-gapped) | `ENDPOINTS_GROUPSTOREMOVE=DeveloperDocs` |
 
 **Example - Disable multiple groups:**
 ```bash
@@ -166,6 +169,7 @@ Use these exact kebab-case IDs with `endpoints.toRemove` in settings.yml.
 - `unlock-pdf-forms` - Unlock PDF Forms
 - `cert-sign` - Certificate Sign
 - `sign` - Draw/Text/Image Signature
+- `timestamp-pdf` - Add Trusted Timestamp
 - `remove-cert-sign` - Remove Certificate Signature
 - `validate-signature` - Validate Signature
 - `verify-pdf` - Verify PDF
@@ -222,6 +226,8 @@ Use these exact kebab-case IDs with `endpoints.toRemove` in settings.yml.
 ## Notes
 
 - Tool IDs are case-sensitive (use exact names from the reference above)
+- Group IDs are also case-sensitive - note the lowercase `qpdf`
 - Disabling a tool removes it completely from the UI and API
 - Some tools may depend on others - test your configuration
 - Changes require container restart to take effect
+- The [MCP server](./MCP-Server.md) applies its own allow/deny filtering on top of these removals, so an endpoint can be exposed here yet still be hidden from MCP clients (and vice versa)

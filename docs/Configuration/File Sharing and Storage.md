@@ -15,7 +15,7 @@ File Sharing and Storage is currently in **alpha**. Functionality may change, an
 
 Stirling PDF can store files on the server and let users share them with each other. Files can be shared directly with specific users or via shareable links. Admins can set storage quotas to control disk usage.
 
-This is a **Pro/Enterprise** feature that requires authentication to be enabled.
+Basic local-disk storage and sharing need **no license** - just turn on `security.enableLogin` and `storage.enabled`. Only the **database** and **s3** storage providers require a Pro/Enterprise license. See [Modes and Licensing](../Modes-and-Licensing.md) for what each deploy mode includes; self-hosted instances never use credits.
 
 ---
 
@@ -46,7 +46,7 @@ This is a **Pro/Enterprise** feature that requires authentication to be enabled.
     ```yaml
     storage:
       enabled: true
-      provider: local          # 'local' or 'database'
+      provider: local          # 'local', 'database', or 's3'
       local:
         basePath: './storage'  # Filesystem path (local provider only)
     ```
@@ -62,13 +62,14 @@ This is a **Pro/Enterprise** feature that requires authentication to be enabled.
 
 ### Storage Providers
 
-| Provider | Config Value | Description | Best For |
-|----------|-------------|-------------|----------|
-| **Local Filesystem** | `local` | Files stored on disk under `basePath` | Most deployments, large files |
-| **Database** | `database` | Files stored as BLOBs in the database | Simple setups where you want everything in one place |
+| Provider | Config Value | License | Description | Best For |
+|----------|-------------|---------|-------------|----------|
+| **Local Filesystem** | `local` | Free | Files stored on disk under `basePath` | Most deployments, large files |
+| **Database** | `database` | Pro/Enterprise | Files stored as BLOBs in the database | Simple setups where you want everything in one place |
+| **S3-Compatible** | `s3` | Pro/Enterprise | Files stored in an S3-compatible object store | Multi-node clusters, cloud object storage |
 
 :::tip
-The **local** provider is recommended for most deployments. It handles large files well and keeps database size manageable. The **database** provider is convenient but uses more memory with large files.
+The **local** provider is recommended for most deployments and requires no license. It handles large files well and keeps database size manageable. The **database** provider is convenient but uses more memory with large files. The **s3** provider is for object-storage and multi-node deployments. The **database** and **s3** providers require a Pro/Enterprise license.
 :::
 
 ### Docker Volume Mount
@@ -79,6 +80,84 @@ When using the local provider with Docker, mount the storage directory so files 
 volumes:
   - ./stirling-storage:/storage
 ```
+
+---
+
+## S3-Compatible Object Storage
+
+:::info[Pro/Enterprise]
+The **s3** storage provider requires a valid Pro or Enterprise license.
+:::
+
+Set `storage.provider: s3` to store user uploads in any S3-compatible object store. The same `storage.s3.*` block is also used by the cluster artifact store (see below).
+
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    storage:
+      enabled: true
+      provider: s3
+      s3:
+        endpoint: ""                       # blank = AWS regional default; otherwise full URL incl. https://
+        bucket: my-bucket                  # required
+        region: us-east-1
+        accessKey: ""                      # blank = fall back to AWS DefaultCredentialsProvider (env / profile / IMDS)
+        secretKey: ""
+        pathStyleAccess: false             # true for MinIO and Supabase; false for AWS/R2/most CDNs
+        allowPrivateEndpoints: false       # SSRF guard - see below
+        requestChecksumCalculation: WHEN_SUPPORTED   # WHEN_SUPPORTED | WHEN_REQUIRED | DISABLED
+        responseChecksumValidation: WHEN_SUPPORTED   # WHEN_SUPPORTED | WHEN_REQUIRED | DISABLED
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variables">
+    ```bash
+    STORAGE_ENABLED=true
+    STORAGE_PROVIDER=s3
+    STORAGE_S3_ENDPOINT=
+    STORAGE_S3_BUCKET=my-bucket
+    STORAGE_S3_REGION=us-east-1
+    STORAGE_S3_ACCESSKEY=
+    STORAGE_S3_SECRETKEY=
+    STORAGE_S3_PATHSTYLEACCESS=false
+    STORAGE_S3_ALLOWPRIVATEENDPOINTS=false
+    STORAGE_S3_REQUESTCHECKSUMCALCULATION=WHEN_SUPPORTED
+    STORAGE_S3_RESPONSECHECKSUMVALIDATION=WHEN_SUPPORTED
+    ```
+  </TabItem>
+</Tabs>
+
+### S3 Configuration Keys
+
+| Key | Default | Description |
+|-----|---------|-------------|
+| `endpoint` | _(blank)_ | Blank uses the AWS regional default. For other vendors, the full URL including `https://`. |
+| `bucket` | _(blank)_ | Required. The bucket that holds the stored files. |
+| `region` | `us-east-1` | Region of the bucket. |
+| `accessKey` | _(blank)_ | Static access key. Blank falls back to the AWS `DefaultCredentialsProvider` (env vars, profile, or IMDS). |
+| `secretKey` | _(blank)_ | Static secret key. Used together with `accessKey`. |
+| `pathStyleAccess` | `false` | Use path-style (`endpoint/bucket/key`) instead of virtual-host addressing. `true` for MinIO and Supabase. |
+| `allowPrivateEndpoints` | `false` | SSRF guard. When `false`, an endpoint that resolves to a loopback, link-local, or private (RFC1918) address is rejected at startup. Set `true` to opt in (for example in-cluster MinIO). Leave `false` for any internet-facing vendor. |
+| `requestChecksumCalculation` | `WHEN_SUPPORTED` | `WHEN_SUPPORTED`, `WHEN_REQUIRED`, or `DISABLED`. Set `WHEN_REQUIRED` if your vendor rejects auto-added `x-amz-checksum-*` headers (older Backblaze B2, some R2 corner cases). |
+| `responseChecksumValidation` | `WHEN_SUPPORTED` | `WHEN_SUPPORTED`, `WHEN_REQUIRED`, or `DISABLED`. Set `WHEN_REQUIRED` if you see false-positive checksum-mismatch errors on GET from a vendor that never returns checksum headers. |
+
+:::warning[SSRF guard]
+`allowPrivateEndpoints` defaults to `false`. The server resolves the configured `endpoint` host and refuses to start if it points at a loopback, link-local, or private IP. This blocks an admin-supplied endpoint from being pointed at the cloud metadata service (for example `http://169.254.169.254/`) to exfiltrate instance-role credentials. Only set it to `true` for a trusted in-cluster store such as MinIO.
+:::
+
+### Per-Vendor Cheat Sheet
+
+| Vendor | `endpoint` | `region` | `pathStyleAccess` | Notes |
+|--------|-----------|----------|-------------------|-------|
+| **AWS S3** | _(blank)_ | your region | `false` | Uses the AWS regional default. |
+| **MinIO** (in-cluster) | `http://minio:9000` | `us-east-1` | `true` | Also set `allowPrivateEndpoints: true`. |
+| **Cloudflare R2** | `https://<acct>.r2.cloudflarestorage.com` | `auto` | `false` | If uploads fail with `unsupported header x-amz-checksum-*`, set `requestChecksumCalculation: WHEN_REQUIRED`. |
+| **Supabase Storage** | `https://<project>.supabase.co/storage/v1/s3` | your project region | `true` | Non-ASCII display filenames are fine - the storage key is opaque. |
+| **Backblaze B2** | `https://s3.<region>.backblazeb2.com` | your region | `false` | On B2 deployments older than July 2025, if uploads return `Unsupported header x-amz-checksum-crc32`, set `requestChecksumCalculation: WHEN_REQUIRED`. |
+| **DigitalOcean Spaces** | `https://<region>.digitaloceanspaces.com` | your region | `false` | 5 GB per-object cap (regardless of multipart). |
+
+### Sharing Credentials with the Cluster Artifact Store
+
+The `storage.s3.*` block is shared by two consumers: the **s3** storage provider (persistent user uploads) and the cluster artifact store when `cluster.artifactStore: s3` (transient multi-node job artifacts). When both use S3 they reuse the same credentials and bucket. The cluster store writes under a separate key prefix (`cluster.s3.keyPrefix`, default `transient/`) so a single bucket can host both persistent uploads and transient artifacts without collisions. Multi-node deployments must set `cluster.artifactStore: s3`.
 
 ---
 
@@ -161,6 +240,24 @@ The difference between Commenter and Viewer only matters in [Shared Signing](../
 
 ---
 
+## My Files Page (`/files`)
+
+Once `storage.enabled` is on and you are logged in, the **My Files** page at `/files` is a server-side file manager. It works on the **local** provider with **no license** required.
+
+From the file manager you can:
+
+- **Upload** files into server storage
+- **Organize into nested folders** and move files between them
+- **Preview** stored files in the browser
+- **Rename, move, and delete** files and folders
+- **Browse a folder-tree sidebar** for quick navigation
+- **Customize folder appearance** with colors and thumbnails
+- **Tell local from server files** - each item shows an origin badge indicating whether it lives in your browser session or in server storage
+
+Folders are private to each user. There is no folder-level sharing - sharing is done per file (see below).
+
+---
+
 ## Sharing Files
 
 ### Share with a Specific User
@@ -223,8 +320,8 @@ For any share link you've created, you can view who accessed it, whether they vi
 - Verify `storage.sharing.emailEnabled: true`
 - Verify `mail.enabled: true` with valid SMTP settings
 
-### Share link returns 410 Gone
-- The link has expired. The file owner needs to create a new one.
+### Share link returns 404 Not Found
+- The link has expired or does not exist. Expired and missing links both return **404 Not Found**. The file owner needs to create a new one.
 
 ### Quota exceeded (HTTP 403)
 - Increase `maxStorageMbPerUser` or `maxStorageMbTotal`, or delete unused files to free up space
@@ -252,6 +349,19 @@ For users who want to integrate programmatically, the full API endpoints are lis
 | GET | `/api/v1/storage/share-links/{token}/metadata` | Get share link info |
 | GET | `/api/v1/storage/share-links/accessed` | List your accessed links |
 | GET | `/api/v1/storage/files/{id}/shares/links/{token}/accesses` | Access history (owner only) |
+
+### Folder Endpoints
+
+Folders back the **My Files** page. All operations are scoped to the authenticated user.
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/storage/folders` | List your folders |
+| POST | `/api/v1/storage/folders` | Create a folder |
+| PATCH | `/api/v1/storage/folders/{folderId}` | Update a folder (name, appearance) |
+| DELETE | `/api/v1/storage/folders/{folderId}` | Delete a folder |
+| PATCH | `/api/v1/storage/files/{fileId}/folder` | Move a single file to a folder (or to root when `folderId` is null) |
+| PATCH | `/api/v1/storage/files/folder` | Bulk-move files to a folder (up to 1000 per request) |
 
 ---
 

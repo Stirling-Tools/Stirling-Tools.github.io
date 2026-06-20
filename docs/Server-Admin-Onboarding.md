@@ -105,7 +105,7 @@ By the end of this guide, you'll have:
 - ⚠️ More maintenance required
 
 **Requirements:**
-- Java 21+
+- Java 25+
 - Linux/Unix system
 - 2GB RAM minimum
 - LibreOffice, Tesseract (for features)
@@ -162,11 +162,11 @@ services:
       - LANGS=en_GB                          # Change to your locale
 
       # System Configuration
-      - SYSTEM_DEFAULTLOCALE=en-GB           # Default locale
+      - SYSTEM_DEFAULTLOCALE=en-US           # Default locale
       - SYSTEM_GOOGLEVISIBILITY=false        # Hide from search engines
       - SYSTEM_ROOTURIPATH=/                 # Base URL path
       - SYSTEM_CONNECTIONTIMEOUTMINUTES=5    # Connection timeout
-      - SYSTEM_MAXFILESIZE=2000              # Max file size in MB
+      - SYSTEMFILEUPLOADLIMIT=2000MB         # Max upload size (legacy: SYSTEM_MAXFILESIZE in MB)
 
       # Optional: Logging
       - SYSTEM_CUSTOMSTATICFILEPATH=/customFiles/static/  # Custom files path
@@ -238,9 +238,9 @@ docker run -d \
   -v ~/stirling-data/customFiles:/customFiles:rw \
   -e SECURITY_ENABLELOGIN=true \
   -e LANGS=en_GB \
-  -e SYSTEM_DEFAULTLOCALE=en-GB \
+  -e SYSTEM_DEFAULTLOCALE=en-US \
   -e SYSTEM_GOOGLEVISIBILITY=false \
-  -e SYSTEM_MAXFILESIZE=2000 \
+  -e SYSTEMFILEUPLOADLIMIT=2000MB \
   --restart unless-stopped \
   stirlingtools/stirling-pdf:latest
 ```
@@ -296,7 +296,7 @@ This includes complete YAML configurations, namespace setup, SSL/TLS, and horizo
 For environments without Docker or specific OS requirements.
 
 Bare metal installation requires:
-- Java 21+
+- Java 25+
 - LibreOffice (for conversions)
 - Tesseract OCR (for OCR features)
 - Systemd service setup
@@ -487,15 +487,13 @@ If you configure email, admins can send invitation links instead.
 ```yaml
 mail:
   enabled: true
-  from: noreply@yourcompany.com
   enableInvites: true
-  smtp:
-    host: smtp.gmail.com
-    port: 587
-    username: noreply@yourcompany.com
-    password: ${MAIL_PASSWORD}  # Use environment variable
-    tls:
-      enabled: true
+  host: smtp.gmail.com
+  port: 587
+  username: noreply@yourcompany.com
+  password: ${MAIL_PASSWORD}  # Use environment variable
+  from: noreply@yourcompany.com
+  startTlsEnable: true  # STARTTLS upgrade after connecting (port 587)
 ```
 
 </TabItem>
@@ -503,13 +501,13 @@ mail:
 
 ```bash
 MAIL_ENABLED=true
-MAIL_FROM=noreply@yourcompany.com
 MAIL_ENABLEINVITES=true
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
 MAIL_USERNAME=noreply@yourcompany.com
 MAIL_PASSWORD=your-app-password
-MAIL_TLS_ENABLED=true
+MAIL_FROM=noreply@yourcompany.com
+MAIL_STARTTLSENABLE=true
 ```
 
 </TabItem>
@@ -552,7 +550,6 @@ Complete configuration examples for Google, GitHub, Keycloak, Okta, Azure AD, an
 
 ```yaml
 security:
-  csrfDisabled: false  # NEVER disable CSRF protection in production
   loginAttemptCount: 5  # Lock account after 5 failed attempts
   loginResetTimeMinutes: 120  # Unlock after 2 hours
 ```
@@ -1082,11 +1079,13 @@ curl http://localhost:8080/api/v1/info/requests/all/unique
 
 **Health Check Endpoint:**
 ```bash
-curl http://localhost:8080/api/v1/health
+curl http://localhost:8080/api/v1/info/health
 
 # Response:
-{"status":"UP","components":{"diskSpace":{"status":"UP"}}}
+{"status":"UP","version":"<version>"}
 ```
+
+This mirrors `/api/v1/info/status` and returns the same `{status, version}` body.
 
 **Use for:**
 - Load balancer health checks
@@ -1164,7 +1163,7 @@ services:
    - Uptime Robot (free)
    - Pingdom
    - StatusCake
-   - Monitor the health endpoint: `http://localhost:8080/api/v1/health`
+   - Monitor the health endpoint: `http://localhost:8080/api/v1/info/health`
 
 ---
 
@@ -1178,14 +1177,14 @@ Protect your users' data and configuration with proper backups.
 
 | Data | Location | Frequency | Importance |
 |------|----------|-----------|------------|
-| **User Database (if local)** | `./stirling-data/configs/stirling-pdf.db` | Daily | Critical* |
+| **User Database (if local)** | `./stirling-data/configs/stirling-pdf-DB-<schema-version>.mv.db` | Daily | Critical* |
 | **Settings File** | `./stirling-data/configs/settings.yml` | After changes | Critical |
 | **Custom Files** | `./stirling-data/customFiles/` | After changes | High |
 | **OCR Languages** | `./stirling-data/tessdata/` | Weekly | Medium |
 | **Logs** | `./stirling-data/logs/` | Optional | Low |
 
 **\*Note on User Database:**
-- **Free edition:** Uses local H2 database (`stirling-pdf.db`) - must be backed up
+- **Free edition:** Uses a local H2 database file named `stirling-pdf-DB-<schema-version>.mv.db` (the schema version is embedded in the filename, e.g. `stirling-pdf-DB-2.3.232.mv.db`) - must be backed up. The simplest approach is to back up the whole `configs/` directory.
 - **Server/Enterprise:** Should use external PostgreSQL database (backed up separately)
 
 :::tip Server/Enterprise Recommendation
@@ -1301,7 +1300,7 @@ find backups/ -name "stirling-data-*.tar.gz" -mtime +30 -delete
 3. **Verify files restored:**
    ```bash
    ls -la ./stirling-data/configs/
-   # Should see: stirling-pdf.db, settings.yml
+   # Should see: stirling-pdf-DB-<schema-version>.mv.db, settings.yml
    ```
 
 4. **Start Stirling-PDF:**
@@ -1438,7 +1437,7 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 
 **Solutions:**
 1. Increase Nginx limit: `client_max_body_size 2000M;`
-2. Increase Stirling-PDF limit: `system.maxFileSize: 2000`
+2. Increase Stirling-PDF limit: `system.fileUploadLimit: 2000MB` (env `SYSTEMFILEUPLOADLIMIT=2000MB`; the older `SYSTEM_MAXFILESIZE` env var, in MB, is still accepted as a legacy alias)
 3. Check disk space: `df -h`
 4. Increase timeouts: `client_body_timeout 300s;`
 

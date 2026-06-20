@@ -40,6 +40,10 @@ description: Security features for PDFs and deployment configurations
 
 - **`remove-cert-sign`**: Remove digital certificate signatures from PDFs. Useful when you need to edit a signed document.
 
+- **`timestamp-pdf`**: Add an RFC 3161 trusted timestamp to prove when your PDF existed. Contacts a trusted Time Stamp Authority (TSA) and embeds a document timestamp. Only a SHA-256 hash of the document is sent to the TSA - the PDF itself never leaves the server.
+
+  **Learn more:** [Certificate Signing - Timestamping](./Certificate-Signing#timestamping-pdfs)
+
 ### Content Security
 
 - **`add-watermark`**: Add custom watermarks to PDFs. Supports text and image watermarks with configurable position, opacity, and rotation.

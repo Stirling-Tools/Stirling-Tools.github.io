@@ -11,7 +11,6 @@ Stirling PDF allows customization of system and security settings. For security 
 ## Basic Security Settings
 
 - `enableLogin`: Enables or disables the login functionality (only available in Stirling-PDF-with-login.jar or when `DISABLE_ADDITIONAL_FEATURES=false`)
-- `csrfDisabled`: Set to 'true' to disable CSRF protection (not recommended for production)
 - `defaultLocale`: Set the default language (e.g. 'de-DE', 'fr-FR', etc)
 - `googlevisibility`: 'true' to allow Google visibility (via robots.txt), 'false' to disallow
 - `xFrameOptions`: Controls whether your instance can be embedded in an iframe. Set to `DENY` to prevent clickjacking. Use `SAMEORIGIN` only if you embed the UI in your own application.
@@ -43,7 +42,7 @@ Stirling PDF allows customization of system and security settings. For security 
   - `SECURITY_INITIALLOGIN_PASSWORD`
 
 ### Database Location
-Upon successful setup, a new `stirling-pdf-DB-2.3.232.mv.db` file will be created in your configured storage location. This file contains user data and should be backed up regularly.
+Upon successful setup, a new `stirling-pdf-DB-<schema-version>.mv.db` file (the schema version is embedded in the filename, e.g. `stirling-pdf-DB-2.3.232.mv.db`) will be created in your configured storage location. This file contains user data and should be backed up regularly.
 
 ### Account Management
 1. Access Account Settings:
@@ -266,35 +265,39 @@ Configure JSON Web Token authentication for sessions.
 ```yaml
 security:
   jwt:
-    persistence: true           # Store keys across restarts
-    enableKeyRotation: true     # Rotate signing keys periodically
-    enableKeyCleanup: true      # Auto-delete old keys
-    keyRetentionDays: 7         # How long to keep old keys
+    enableKeystore: true            # Persist signing keys across restarts
+    enableKeyRotation: false        # Rotate signing keys periodically
+    enableKeyCleanup: true          # Auto-delete old keys
+    tokenExpiryMinutes: 1440        # Web token lifetime (24 hours)
+    desktopTokenExpiryMinutes: 43200 # Desktop token lifetime (30 days)
+    allowedClockSkewSeconds: 60     # Tolerated clock drift on validation
+    refreshGraceMinutes: 15         # Grace window to refresh an expired token
 ```
 
 **Environment Variables:**
 ```bash
-SECURITY_JWT_PERSISTENCE=true
-SECURITY_JWT_ENABLEKEYROTATION=true
+SECURITY_JWT_ENABLEKEYSTORE=true
+SECURITY_JWT_ENABLEKEYROTATION=false
 SECURITY_JWT_ENABLEKEYCLEANUP=true
-SECURITY_JWT_KEYRETENTIONDAYS=7
+SECURITY_JWT_TOKENEXPIRYMINUTES=1440
+SECURITY_JWT_DESKTOPTOKENEXPIRYMINUTES=43200
+SECURITY_JWT_ALLOWEDCLOCKSKEWSECONDS=60
+SECURITY_JWT_REFRESHGRACEMINUTES=15
 ```
 
 ### What These Settings Do
 
-- **`persistence`**: Store JWT signing keys in database, survive container restarts
-- **`enableKeyRotation`**: Periodically generate new signing keys for security
-- **`enableKeyCleanup`**: Automatically delete old keys after retention period
-- **`keyRetentionDays`**: Grace period where old keys still work (prevents immediate logout)
+- **`enableKeystore`**: Persist JWT signing keys in the database so they survive container restarts (default `true`)
+- **`enableKeyRotation`**: Periodically generate new signing keys for security (default `false`)
+- **`enableKeyCleanup`**: Automatically delete old keys once they are no longer needed (default `true`)
+- **`tokenExpiryMinutes`**: Access-token lifetime in minutes for web clients (default `1440`, 24 hours)
+- **`desktopTokenExpiryMinutes`**: Access-token lifetime for desktop clients, which are auto-detected via the User-Agent and use OS-level secure storage (default `43200`, 30 days)
+- **`allowedClockSkewSeconds`**: How much clock drift between client and server is tolerated when validating a token (default `60`)
+- **`refreshGraceMinutes`**: How long after expiry an access token can still be used to refresh, for a smoother UX (default `15`)
 
-### Migration from V1
+> 💡 The key retention period is **computed automatically** from the longest token lifetime plus a safety buffer (token refresh grace and clock skew). It is read-only and not a settable option.
 
-If migrating from V1, note these setting name changes:
-- `jwt.enabled` → `jwt.persistence`
-- `jwt.keyCleanup` → `jwt.enableKeyCleanup`
-- `jwt.secureCookie` → Removed (always secure in production)
-
-**Learn more:** [Migration - JWT Changes](../Migration/Settings-Changes#enhanced-jwt-configuration)
+V2 uses a stateless SPA + JWT model, so CSRF protection is disabled unconditionally and there is no CSRF setting to configure.
 
 ---
 
@@ -323,27 +326,25 @@ Enable email-based user invitations:
 ```yaml
 mail:
   enabled: true
-  from: noreply@example.com
   enableInvites: true
-  smtp:
-    host: smtp.example.com
-    port: 587
-    username: noreply@example.com
-    password: ${MAIL_PASSWORD}
-    tls:
-      enabled: true
+  host: smtp.example.com
+  port: 587
+  username: noreply@example.com
+  password: ${MAIL_PASSWORD}
+  from: noreply@example.com
+  startTlsEnable: true
 ```
 
 **Environment Variables:**
 ```bash
 MAIL_ENABLED=true
-MAIL_FROM=noreply@example.com
 MAIL_ENABLEINVITES=true
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
 MAIL_USERNAME=your-email@gmail.com
 MAIL_PASSWORD=your-app-password
-MAIL_TLS_ENABLED=true
+MAIL_FROM=noreply@example.com
+MAIL_STARTTLSENABLE=true
 ```
 
 **Requirements:**
@@ -396,12 +397,11 @@ customFiles/
     ```yaml
     security:
       enableLogin: true  # Only works with Stirling-PDF-with-login.jar or DISABLE_ADDITIONAL_FEATURES=false
-      csrfDisabled: true
       jwt:
-        persistence: true
-        enableKeyRotation: true
+        enableKeystore: true
+        enableKeyRotation: false
         enableKeyCleanup: true
-        keyRetentionDays: 7
+        tokenExpiryMinutes: 1440
       validation:
         trust:
           serverAsAnchor: true
@@ -447,7 +447,7 @@ customFiles/
     -e SECURITY_ENABLELOGIN=true \
     -e SYSTEM_CORSALLOWEDORIGINS=https://pdf.example.com \
     -e SYSTEM_FRONTENDURL=https://pdf.example.com \
-    -e SECURITY_JWT_PERSISTENCE=true \
+    -e SECURITY_JWT_ENABLEKEYSTORE=true \
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
@@ -455,7 +455,7 @@ customFiles/
     environment:
       DISABLE_ADDITIONAL_FEATURES: false
       SECURITY_ENABLELOGIN: true
-      SECURITY_JWT_PERSISTENCE: true
+      SECURITY_JWT_ENABLEKEYSTORE: true
       SYSTEM_SERVERCERTIFICATE_ENABLED: true
     ```
   </TabItem>

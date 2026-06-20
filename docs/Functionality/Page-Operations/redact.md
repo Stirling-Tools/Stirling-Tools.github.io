@@ -1,15 +1,59 @@
 ---
 sidebar_position: 1
-title: Manual Redaction
+title: Redaction
 parent: Page operations
 ---
 
 # Redaction Tool User Guide
 
 ## Overview
-The Document Redaction Tool allows you to securely redact sensitive information from documents using three different methods: text selection, area drawing, or entire page redaction.
+The Redaction tool permanently removes sensitive information from PDFs. It offers two modes:
 
-## Redaction Methods
+- **Automatic** - Type the words or regex patterns to remove and let the tool find and redact every match across the document.
+- **Manual** - Open the PDF in the viewer and draw redactions over specific text, areas, or whole pages.
+
+Unlike a simple black box drawn on top of the page, automatic redaction rewrites the page content so the underlying text is genuinely removed - not merely hidden. You can also flatten the result to an image to guarantee nothing recoverable is left behind.
+
+## Choosing a mode
+At the top of the Redact panel, the **Redaction Method** selector switches between **Automatic** and **Manual**. Selecting **Manual** opens the document in the viewer, where the drawing controls described below appear.
+
+---
+
+## Automatic redaction
+Automatic redaction searches the document for the text you specify and removes every match.
+
+**How to use:**
+1. Choose **Automatic** as the redaction method.
+2. Under **Redaction Settings**, add each **word or pattern** to redact. Add as many as you need - the tool scans for all of them in a single pass, and matches are found across multiple columns and text lines.
+3. (Optional) Open **Advanced Settings** to adjust:
+   - **Use Regex** - Treat each entry as a regular expression rather than a literal word.
+   - **Whole Word Search** - Match only complete words, not substrings.
+   - **Box Colour** and **Custom Extra Padding** - Style the redaction boxes.
+   - **Convert PDF to PDF-Image** - Flatten the redacted PDF to an image so no text remains behind the boxes (enabled by default).
+4. Click **Redact**.
+
+### Redacting PII with patterns
+With **Use Regex** enabled you can target common personally identifiable information (PII) by entering the matching pattern. For example:
+
+| Type | Example pattern |
+| --- | --- |
+| Social Security number (SSN) | `\d{3}-\d{2}-\d{4}` |
+| Credit / debit card | `\d{4}[ -]?\d{4}[ -]?\d{4}[ -]?\d{4}` |
+| IBAN | `[A-Z]{2}\d{2}[A-Z0-9]{1,30}` |
+| US routing number (ABA) | `\b\d{9}\b` |
+| Account number (labelled) | `[Aa]ccount\s*#?\s*\d{6,}` |
+| Email address | `[\w.-]+@[\w.-]+\.\w+` |
+| Phone number | `\(\d{3}\)\s*\d{3}-\d{4}` |
+
+Add one pattern per entry; refine them to suit your documents to keep false positives down.
+
+### How text is removed
+For each match, the tool rewrites the affected page content streams (including text inside nested form XObjects) so the original characters are deleted from the file rather than just covered. When a document uses fonts whose encoding cannot be edited reliably, the tool automatically falls back to box-only redaction. Keeping **Convert PDF to PDF-Image** enabled guarantees that, either way, the output contains no recoverable text under the boxes.
+
+---
+
+## Manual redaction
+Manual redaction lets you mark sensitive content visually in the viewer using three methods: text selection, area drawing, or entire page redaction.
 
 ### 1. Text Selection Redaction
 Perfect for redacting specific words, sentences, or paragraphs.

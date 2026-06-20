@@ -213,19 +213,24 @@ Stirling PDF offers three Docker variants:
 ### Frontend Configuration
 
 - `frontend/.env`: Environment variables for development
-- `frontend/vite.config.ts`: Vite build configuration
-- `frontend/public/locales/`: Translation files (JSON format)
+- `frontend/editor/vite.config.ts`: Vite build/dev-server configuration
+- `frontend/editor/public/locales/<lang>/translation.toml`: Translation files (TOML format)
+
+:::note FRONTEND_ALLOWED_HOSTS
+`FRONTEND_ALLOWED_HOSTS` is a comma-separated allowlist of `Host` header values that the Vite dev server will accept. Set it when running the dev server behind a reverse proxy or under a custom hostname (e.g. `FRONTEND_ALLOWED_HOSTS=dev.example.com,localhost`). This is a dev-server environment variable only - it is not a production `settings.yml` key. When empty or unset, Vite keeps its default host checks.
+:::
 
 ## Common Development Tasks
 
 ### Adding Translations
 
-**V2.0** uses JSON translation files:
+Translations use TOML files, one per locale:
 
-1. Navigate to `frontend/public/locales/`
-2. **Important**: Only update `en-GB` files (never `en-US`)
-3. Edit the appropriate JSON file (e.g., `common.json`, `tools.json`)
-4. Other languages are managed by the community
+1. Navigate to `frontend/editor/public/locales/<lang>/translation.toml`
+2. **Important**: Only update `en-US/translation.toml`. `en-US` is the source/primary locale and the i18n fallback (`fallbackLng: "en-US"`).
+3. Edit `translation.toml`, adding keys under the relevant feature/tool.
+4. For counts, use ICU-style plural suffixes on the key (`_one`, `_other`, and `_zero` where needed).
+5. Other languages are managed separately by the community.
 
 ### Adding a New PDF Tool
 

@@ -9,6 +9,8 @@ description: Reduce PDF file size while maintaining quality
 
 **Tool ID:** `compress-pdf`
 
+(`compress-pdf` is the endpoint slug; the frontend tool id is `compress`.)
+
 Reduce PDF file size by compressing images, optimizing structure, and removing unnecessary data.
 
 **Important:** Compression is permanent. Always keep a backup of the original if you might need maximum quality later.
@@ -70,6 +72,12 @@ curl -X POST http://stirling-pdf:8080/api/v1/misc/compress-pdf \
 ```
 
 See [API Documentation](../API.md) for complete endpoint reference.
+
+---
+
+## Decompress PDF
+
+The inverse operation, **Decompress PDF** (`/api/v1/misc/decompress-pdf`), fully decompresses all PDF streams including text content. It is useful for debugging or editing the raw PDF content directly, since the resulting file's object streams are readable rather than encoded. The file size will increase.
 
 ---
 

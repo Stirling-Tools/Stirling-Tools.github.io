@@ -62,12 +62,16 @@ Pick whichever method you prefer. All three install the same desktop app.
 
 ### Connecting to a server
 
-The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can connect to a server at any time:
+The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can pick one of three connection modes. See [Modes & Licensing](../Modes-and-Licensing.md) for how each mode is licensed (self-hosted modes never use credits).
+
+**Bundled local backend (default)**
+- The desktop app runs its own Stirling PDF backend on your machine, no setup or login
+- All processing stays on your device and works without internet
 
 **Stirling Cloud**
 - Sign in with your Stirling Cloud account
 - Gives access to advanced tools powered by server-side processing
-- Your files are processed securely and never stored
+- Files are processed transiently and are not stored after the request completes. Opt-in cloud storage is a separate Stirling Cloud feature that you would enable explicitly. See [Modes & Licensing](../Modes-and-Licensing.md)
 
 **Self-hosted Server**
 - Enter the URL of your own Stirling PDF server instance (e.g., `http://192.168.1.53:8080`)
@@ -96,6 +100,24 @@ The desktop app works fully offline for local PDF tools like merging, splitting,
 - Unlimited file storage (not limited by browser)
 - System tray icon for quick access
 
+**Multiple windows:**
+- Press **Ctrl+N** to open an empty new window
+- Use **Open in new window** from the My Files page to open files in a separate window
+- New windows share the same login, files, and bundled backend
+- Available on Windows and macOS only (not Linux)
+
+### Software Updates
+
+The desktop app keeps itself current. Open **Settings → Software Updates** to check for updates and choose how they are applied. The update behaviour is controlled by the `update_mode` setting, which has three values:
+
+| Mode | Behaviour |
+|------|-----------|
+| `prompt` | Default. Shows the update popup and lets you decide when to install |
+| `auto` | Silently downloads, installs, and restarts on startup |
+| `disabled` | Never checks for updates or shows update UI |
+
+When the mode is set by an administrator through a provisioning file (see [Automated Installation](#automated-installation)), the Software Updates control is locked and shows **"Managed by your administrator"** so users cannot change it.
+
 ### Automated Installation
 
 Silent/headless installation with custom parameters, ideal for IT deployments (SCCM, Intune, Group Policy) or enforcing connections to self-hosted servers. Works via either the MSI installer directly or `winget --custom`.
@@ -106,6 +128,7 @@ Silent/headless installation with custom parameters, ideal for IT deployments (S
 |-----------|-------------|---------------|
 | `STIRLING_SERVER_URL` | Pre-configure the server URL that the desktop app connects to | `http://192.168.1.53:2357/` |
 | `STIRLING_LOCK_CONNECTION` | Lock the connection mode so users cannot change the server. `1` = locked, `0` or omit = unlocked | `1` |
+| `STIRLING_UPDATE_MODE` | Pre-set and lock the desktop `update_mode`. When provisioned, the Settings > Software Updates control is locked to "Managed by your administrator" | `prompt`, `auto`, or `disabled` |
 | `INSTALLDIR` | Custom installation directory (MSI only) | `INSTALLDIR="C:\CustomPath\Stirling-PDF"` |
 | `ALLUSERS` | Install for all users (requires admin). `1` = all users, `0` or omit = current user | `ALLUSERS=1` |
 
@@ -132,8 +155,8 @@ Silent/headless installation with custom parameters, ideal for IT deployments (S
 **Technical Details:**
 
 - **Default Install Location**: `C:\Program Files\Stirling-PDF`
-- **Settings Storage**: `%APPDATA%\stirling.pdf.dev\connection.json` (per-user settings)
-- **Provisioning File**:
+- **Settings Storage**: `%APPDATA%\stirling.pdf.dev\connection.json` - the `stirling.pdf.dev` bundle id only governs this `connection.json` store
+- **Provisioning File** (read from `%APPDATA%\Stirling-PDF\`, not the bundle-id folder):
   - Per-user install: `%APPDATA%\Stirling-PDF\stirling-provisioning.json`
   - All-users install: `%PROGRAMDATA%\Stirling-PDF\stirling-provisioning.json`
 - **URL Format**: Must include protocol (`http://` or `https://`), trailing slash is optional
@@ -166,11 +189,11 @@ Stirling PDF comes in three different JAR files:
 - **No authentication** - API access only
 - For desktop app backend, custom frontend, or API integrations
 
-**Required:** [Java JDK 21](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe) - Server versions need Java installed
+**Required:** [Java JDK 25 (Temurin 25)](https://adoptium.net/temurin/releases/?version=25&os=windows) - Server versions need Java installed
 
 ### Server Installation Steps
 
-1. **Install Java JDK 21** from the link above
+1. **Install Java JDK 25** from the link above
 2. **Download** your preferred JAR file
 3. **Run the JAR file:**
    ```bash

@@ -136,6 +136,46 @@ security:
 
 ---
 
+## Timestamping PDFs
+
+A trusted timestamp (RFC 3161) proves a PDF existed at a particular point in time. Stirling PDF contacts a trusted Time Stamp Authority (TSA) server and embeds a document timestamp into the PDF. Only a SHA-256 hash of the document is sent to the TSA - the PDF itself never leaves the server.
+
+Use the **Timestamp PDF** tool (`timestamp-pdf` endpoint), pick a TSA, and download the timestamped file. The timestamp is added as an incremental update, so existing signatures stay intact.
+
+### Trusted Time Stamp Authorities
+
+The `tsaUrl` must be one of the built-in presets or an admin-configured URL. Built-in presets:
+
+| Provider | URL |
+|----------|-----|
+| DigiCert | `http://timestamp.digicert.com` |
+| Sectigo | `http://timestamp.sectigo.com` |
+| SSL.com | `http://ts.ssl.com` |
+| FreeTSA | `https://freetsa.org/tsr` |
+| MeSign | `http://tsa.mesign.com` |
+
+If `tsaUrl` is omitted, the server default is used (DigiCert by default). Administrators can allow additional TSA servers and set the default in `settings.yml`:
+
+```yaml
+security:
+  timestamp:
+    defaultTsaUrl: http://timestamp.digicert.com
+    customTsaUrls:
+      - https://tsa.example.com/timestamp
+```
+
+### API Usage
+
+```bash
+# tsaUrl is optional; omit to use the server default
+curl -X POST http://stirling-pdf:8080/api/v1/security/timestamp-pdf \
+  -F "fileInput=@document.pdf" \
+  -F "tsaUrl=http://timestamp.digicert.com" \
+  -o timestamped.pdf
+```
+
+---
+
 ## Configuration Examples
 
 <Tabs>
@@ -217,21 +257,24 @@ security:
 <Tabs>
   <TabItem value="sign-server" label="Sign (Server Cert)">
     ```bash
+    # certType must be one of PEM, PKCS12, PFX, JKS, SERVER (uppercase)
     curl -X POST http://stirling-pdf:8080/api/v1/security/cert-sign \
       -F "fileInput=@document.pdf" \
-      -F "certType=server" \
+      -F "certType=SERVER" \
       -F "reason=Approved" \
-      -F "location=bottom-right" \
+      -F "location=London" \
       -F "showSignature=true" \
+      -F "pageNumber=1" \
       -o signed.pdf
     ```
   </TabItem>
   <TabItem value="sign-custom" label="Sign (Custom Cert)">
     ```bash
+    # PKCS12/PFX use p12File; JKS uses jksFile; PEM uses privateKeyFile + certFile
     curl -X POST http://stirling-pdf:8080/api/v1/security/cert-sign \
       -F "fileInput=@document.pdf" \
-      -F "certType=custom" \
-      -F "certificateFile=@mycert.p12" \
+      -F "certType=PKCS12" \
+      -F "p12File=@mycert.p12" \
       -F "password=certpass" \
       -o signed.pdf
     ```

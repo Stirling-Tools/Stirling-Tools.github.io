@@ -14,6 +14,8 @@ tags:
 
 Stirling PDF offers Server and Enterprise paid plans. These provide the same great software with added features, streamlined license management, and support options.
 
+> This page covers **self-hosted** Server and Enterprise licensing (a flat-rate or per-seat license key, no credits). Stirling Cloud is a separate, credit-based offering - see [Modes and Licensing](./Modes-and-Licensing.md) for how the deployment modes compare.
+
 ## Available Plans
 
 ### Free Plan
@@ -178,8 +180,8 @@ Once activated, you can customize premium features in your `settings.yml`:
 ```yaml
 premium:
   proFeatures:
-    SSOAutoLogin: false
-    CustomMetadata:
+    ssoAutoLogin: false
+    customMetadata:
       autoUpdateMetadata: false
       author: username
       creator: Stirling-PDF

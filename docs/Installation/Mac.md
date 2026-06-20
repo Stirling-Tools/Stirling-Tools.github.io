@@ -84,23 +84,47 @@ Pick whichever method you prefer. Both install the same desktop app.
 - Menu bar integration
 - macOS gestures and features work
 
+**Multiple windows:**
+- Press **Cmd+N** to open an empty new window
+- Use **Open in new window** from the My Files page to open files in a separate window
+- New windows share the same login, files, and bundled backend
+- Available on macOS and Windows only (not Linux)
+
+### Connection modes
+
+You can pick one of three connection modes. See [Modes & Licensing](../Modes-and-Licensing.md) for how each mode is licensed (self-hosted modes never use credits).
+
+- **Bundled local backend (default):** the app runs its own Stirling PDF backend on your Mac, no setup or login, fully offline.
+- **Stirling Cloud:** sign in for advanced server-side tools. Files are processed transiently and are not stored after the request completes. Opt-in cloud storage is a separate Stirling Cloud feature you would enable explicitly.
+- **Self-hosted Server:** enter the URL of your own Stirling PDF instance (e.g., `http://192.168.1.53:8080`) for full control over your data.
+
+### MDM / provisioning (managed Macs)
+
+For managed deployments (Jamf, Intune, or other MDM tooling), drop a `stirling-provisioning.json` file into the macOS system directory so every user on the Mac picks up the same server URL, locked connection, and `update_mode`:
+
+```
+/Library/Application Support/Stirling-PDF/stirling-provisioning.json
+```
+
+A per-user file in `~/Library/Application Support/Stirling-PDF/` is also read. When the update mode is set this way, the **Settings → Software Updates** control is locked and shows "Managed by your administrator".
+
 ## Server Version (For Hosting and Sharing)
 
 Want to host Stirling PDF on a Mac server for multiple users? Use the JAR file version.
 
 ### Prerequisites
 
-Install Java 21 (required for server version):
+Install Java 25 (required for server version):
 
 ```bash
 # Install Homebrew if you don't have it
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Install Java 21
-brew install openjdk@21
+# Install Java 25
+brew install openjdk@25
 
 # Add to your PATH (add to ~/.zshrc to make permanent)
-export PATH="/usr/local/opt/openjdk@21/bin:$PATH"
+export PATH="/usr/local/opt/openjdk@25/bin:$PATH"
 ```
 
 ### JAR Downloads
@@ -180,7 +204,7 @@ Install these via [Homebrew](https://brew.sh/) to enable additional features lik
  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
  # Install dependencies as needed
- brew install openjdk@21          # Required
+ brew install openjdk@25          # Required
  brew install qpdf                # PDF compression
  brew install --cask libreoffice  # Document conversion
  brew install tesseract           # OCR functionality
@@ -200,7 +224,7 @@ system:
  ## Quick Troubleshooting
  - Java not found? Add to `~/.zshrc`:
    ```bash
-   export PATH="/usr/local/opt/openjdk@21/bin:$PATH"
+   export PATH="/usr/local/opt/openjdk@25/bin:$PATH"
    ```
  - Verify installations with: `[command] --version` (e.g., `java --version`)
  - LibreOffice issues? Ensure no LibreOffice processes are running

@@ -35,7 +35,7 @@ Configure via Docker environment variables or system environment variables.
 ```bash
 docker run -d \
   -e SECURITY_ENABLELOGIN=true \
-  -e LANGS=en_GB \
+  -e SYSTEM_DEFAULTLOCALE=en-US \
   stirlingtools/stirling-pdf:latest
 ```
 
@@ -52,7 +52,7 @@ Edit `/configs/settings.yml` directly for advanced configuration.
 security:
   enableLogin: true
 system:
-  defaultLocale: en-GB
+  defaultLocale: en-US
 ```
 
 **Best for:** Complex configurations, when you prefer file-based config
@@ -99,18 +99,23 @@ For more details, see [System and Security Configuration](./System%20and%20Secur
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
     ```yaml
-    langs: en_GB
+    ui:
+      languages: []        # Available languages (empty = all enabled), e.g. ["en_US", "de_DE"]
     system:
-      defaultLocale: en-GB
+      defaultLocale: en-US # Default language for new users
     ```
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
-    LANGS=en_GB                    # Available languages
-    SYSTEM_DEFAULTLOCALE=en-GB     # Default language
+    UI_LANGUAGES=en_US,de_DE       # Restrict available languages (omit to enable all)
+    SYSTEM_DEFAULTLOCALE=en-US     # Default language
     ```
   </TabItem>
 </Tabs>
+
+**English (US)** (`en-US`) and **English (UK)** (`en-GB`) are separate entries in the language selector. Pick the one that matches the spelling you want; setting one does not enable the other.
+
+Leaving `defaultLocale` empty (the default) auto-detects the language from the browser and falls back to `en-US` if no preference is found.
 
 **How language selection works:**
 
@@ -130,7 +135,7 @@ Stirling PDF determines the interface language using this priority order:
    - Only applied if user has no localStorage preference (first-time visitors)
 
 **Example:**
-- Config: `SYSTEM_DEFAULTLOCALE=en_GB`
+- Config: `SYSTEM_DEFAULTLOCALE=en-US`
 - Browser: Swedish (sv-SE)
 - Result: UI shows Swedish (browser preference overrides config)
 
@@ -166,6 +171,31 @@ To force a specific default language regardless of browser settings, users must 
 ```bash
 JAVA_TOOL_OPTIONS="-Xms512m -Xmx4g"  # Min 512MB, Max 4GB RAM
 ```
+
+### MCP Server
+
+Stirling PDF can expose its tools over the [Model Context Protocol](https://modelcontextprotocol.io/). The entire `mcp` block is **off by default**: when `mcp.enabled` is `false` no MCP endpoint exists and no MCP beans are wired. Set `mcp.enabled: true` and choose an auth mode to turn it on.
+
+```yaml
+mcp:
+  enabled: false                  # Master switch (off by default)
+  scopesEnabled: true             # Enforce mcp.tools.read / mcp.tools.write scopes by operation category
+  allowedOperations: []           # Allow-list of operation ids (e.g. ['compress-pdf']). Empty = all
+  blockedOperations: []           # Deny-list of operation ids; always removed even if allowed
+  maxRequestBytes: 10485760       # Max request body size (10MB); inline uploads ride in the JSON-RPC body
+  maxInlineResponseBytes: 10485760 # Results up to this size return inline as base64; larger ones return a fileId
+  engineCapabilityRefreshMinutes: 5 # How often to refresh the capabilities manifest
+  auth:
+    mode: oauth                   # 'oauth' (OAuth2 resource server) or 'apikey' (per-user X-API-KEY, no IdP needed)
+    issuerUri: ""                 # OAuth2 issuer URI (required when mode=oauth)
+    jwksUri: ""                   # JWKS URI; blank derives it from the issuer's discovery document
+    resourceId: ""               # RFC 8707 resource id of this MCP server; tokens must list it in 'aud'
+    acceptedAudiences: []         # Extra 'aud' values accepted on top of resourceId (empty = strict RFC 8707)
+    usernameClaim: sub            # JWT claim matched to a Stirling username (e.g. 'sub', 'email')
+    requireExistingAccount: true  # Reject tokens whose subject has no enabled Stirling account
+```
+
+The `apikey` mode is the low-friction self-host option: it accepts a Stirling per-user API key via the `X-API-KEY` header (or `Authorization: Bearer <key>`) and needs no external identity provider. For the full walkthrough see [MCP Server](./MCP-Server.md).
 
 ---
 
@@ -219,6 +249,18 @@ For advanced features and specific use cases, see these detailed guides:
 **[Google Drive File Picker](./Google%20Drive%20File%20Picker.md)**
 - Direct Google Drive integration
 - OAuth setup
+
+**[MCP Server](./MCP-Server.md)**
+- Expose Stirling PDF tools over the Model Context Protocol
+- OAuth2 or API-key authentication
+- Operation allow/deny lists
+
+**[S3 / Object Storage](./File%20Sharing%20and%20Storage.md)**
+- Store uploads and job artifacts in S3-compatible object storage
+- Shared storage for multi-node deployments
+
+**[Telegram Bot](./Telegram%20Bot.md)**
+- Run a Telegram bot that processes PDFs sent in chat
 
 **[OCR Configuration](./OCR.md)**
 - Tesseract language packs
@@ -311,7 +353,7 @@ SECURITY_ENABLELOGIN=true
 
 ### Database Issues
 
-Default database location: `/configs/stirling-pdf-DB.mv.db`
+Default database location: `/configs/stirling-pdf-DB-<schema-version>.mv.db` (the schema version is part of the filename, e.g. `/configs/stirling-pdf-DB-2.3.232.mv.db`).
 
 If missing:
 - Ensure `/configs` volume is mounted

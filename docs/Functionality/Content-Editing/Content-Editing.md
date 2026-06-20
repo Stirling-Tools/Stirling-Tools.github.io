@@ -16,11 +16,15 @@ Tools for adding, extracting, and modifying content within PDF documents.
 
 - `extract-images`: Extract all images from a PDF document. Saves each image as a separate file in common formats (PNG, JPG, etc).
 
+- `remove-image-pdf` (UI: "Remove Images"): Remove all images from a PDF document. Unlike `extract-images`, this strips the images out rather than saving them.
+
 - `extract-image-scans`: Extract scanned images from PDF files. Specifically designed for PDFs containing scanned documents or photos.
 
 ---
 
 ## Stamps & Annotations
+
+- `add-text` (UI: "Add Text"): Add custom text anywhere in your PDF. A viewer/workbench tool for placing text annotations interactively; it is a text-only variant of `add-stamp` and applies through the same stamp/signature backend.
 
 - `add-stamp`: Add user-defined text or image stamps to PDF pages with customizable position, size, rotation, and opacity. Can be applied to specific pages or all pages.
 
@@ -36,7 +40,7 @@ Tools for adding, extracting, and modifying content within PDF documents.
 
 ## Metadata & Information
 
-- `change-metadata`: Change the metadata of a PDF, including author name, title, subject, keywords, creation date, and more.
+- `update-metadata` (UI: "Change Metadata"): Change the metadata of a PDF, including author name, title, subject, keywords, creation date, and more.
 
 - `get-info-on-pdf`: Extract and display comprehensive information about a PDF including:
   - PDF version and file size

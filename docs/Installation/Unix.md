@@ -74,17 +74,27 @@ Pick whichever package format matches your distribution.
 
 ### Connecting to a server
 
-The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can connect to a server at any time:
+The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can connect to a server at any time. See [Modes & Licensing](../Modes-and-Licensing.md) for how each mode is licensed (self-hosted modes never use credits).
 
 **Stirling Cloud**
 - Sign in with your Stirling Cloud account
 - Gives access to advanced tools powered by server-side processing
-- Your files are processed securely and never stored
+- Files are processed transiently and are not stored after the request completes. Opt-in cloud storage is a separate Stirling Cloud feature you would enable explicitly. See [Modes & Licensing](../Modes-and-Licensing.md)
 
 **Self-hosted Server**
 - Enter the URL of your own Stirling-PDF server instance (e.g., `http://192.168.1.53:8080`)
 - Full control over your data and processing
 - Useful for team deployments or when you want all features on your own infrastructure
+
+### MDM / provisioning (managed Linux desktops)
+
+For managed deployments, drop a `stirling-provisioning.json` file into the system directory so every user picks up the same server URL, locked connection, and `update_mode`:
+
+```
+/etc/stirling-pdf/stirling-provisioning.json
+```
+
+A per-user file in `~/.config/Stirling-PDF/` is also read. When the update mode is set this way, the in-app Software Updates control is locked and shows "Managed by your administrator".
 
 ---
 
@@ -105,7 +115,7 @@ You could theoretically use a Distrobox/Toolbox, if your Distribution has old or
 
 Install the following software, if not already installed:
 
-- Java 21 or later
+- Java 25 or later
 - Gradle 7.0 or later (included within repo so not needed on server)
 - Git
 - Python 3.8 (with pip)
@@ -124,20 +134,20 @@ Install the following software, if not already installed:
     sudo apt-get update
     sudo apt-get install -y git automake autoconf libtool \
         libleptonica-dev pkg-config zlib1g-dev make g++ \
-        openjdk-21-jdk python3 python3-pip
+        openjdk-25-jdk python3 python3-pip
     ```
   </TabItem>
   <TabItem value="fedora" label="Fedora-based Systems">
     ```bash
     sudo dnf install -y git automake autoconf libtool \
         leptonica-devel pkg-config zlib-devel make gcc-c++ \
-        java-21-openjdk python3 python3-pip
+        java-25-openjdk python3 python3-pip
     ```
   </TabItem>
   <TabItem value="nix" label="Nix Package Manager">
     ```bash
     nix-channel --update
-    nix-env -iA nixpkgs.jdk21 nixpkgs.git nixpkgs.python38 \
+    nix-env -iA nixpkgs.jdk25 nixpkgs.git nixpkgs.python38 \
         nixpkgs.gnumake nixpkgs.libgcc nixpkgs.automake \
         nixpkgs.autoconf nixpkgs.libtool nixpkgs.pkg-config \
         nixpkgs.zlib nixpkgs.leptonica
@@ -430,7 +440,7 @@ Type=simple
 
 EnvironmentFile=/opt/Stirling-PDF/.env
 WorkingDirectory=/opt/Stirling-PDF
-ExecStart=/usr/bin/java -jar Stirling-PDF-0.17.2.jar
+ExecStart=/usr/bin/java -jar Stirling-PDF-*.jar
 ExecStop=/bin/kill -15 $MAINPID
 
 [Install]

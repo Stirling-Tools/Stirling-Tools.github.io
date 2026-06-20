@@ -32,16 +32,18 @@ Controls how many concurrent instances of each process are allowed. Extra reques
 | `sessionLimit.ghostscriptSessionLimit` | `8` | PDF compression, repair, manipulation |
 | `sessionLimit.pythonOpenCvSessionLimit` | `8` | Image processing |
 | `sessionLimit.imageMagickSessionLimit` | `4` | Image conversion |
-| `sessionLimit.qpdfSessionLimit` | `2` | Split, merge, encrypt PDFs |
+| `sessionLimit.qpdfSessionLimit` | `4` | Split, merge, encrypt PDFs |
 | `sessionLimit.ocrMyPdfSessionLimit` | `2` | Add OCR overlay to existing PDFs |
 | `sessionLimit.weasyPrintSessionLimit` | `16` | HTML/CSS → PDF (WeasyPrint) |
 | `sessionLimit.calibreSessionLimit` | `1` | E-book conversions |
 | `sessionLimit.ffmpegSessionLimit` | `2` | Video/audio processing |
 | `sessionLimit.installAppSessionLimit` | `1` | Internal install tasks |
 
+> The defaults above reflect the shipped `settings.yml` where the setting is present, otherwise the built-in code fallback. Most values come from `settings.yml`, but `ffmpegSessionLimit` is not listed there - its default of `2` comes from the code fallback. Likewise, `qpdfSessionLimit` ships at `4`; if you remove it (or set it to `0`) the code falls back to `2`.
+
 **Increase** limits on a beefy server with concurrent users. **Decrease** them on low-RAM servers - LibreOffice in particular is memory-hungry.
 
-For LibreOffice specifically, you can also scale by running multiple remote UNO server instances — see [LibreOffice Parallel Processing](./LibreOffice-Parallel-Processing.md) for details.
+For LibreOffice specifically, you can also scale by running multiple remote UNO server instances - see [LibreOffice Parallel Processing](./LibreOffice-Parallel-Processing.md) for details.
 
 :::info
 Be mindful of memory and CPU usage when raising session limits. Each concurrent process consumes resources, and setting limits too high can starve the host or cause out-of-memory issues possibly killing the instance. Start with the defaults and increase gradually while monitoring your server.
@@ -96,7 +98,7 @@ How long (in minutes) a process can run before it's forcibly killed and an error
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
-    PROCESSEXECUTOR_SESSIONLIMIT_LIBREOFFICESSESSIONLIMIT=1
+    PROCESSEXECUTOR_SESSIONLIMIT_LIBREOFFICESESSIONLIMIT=1
     PROCESSEXECUTOR_SESSIONLIMIT_TESSERACTSESSIONLIMIT=1
     PROCESSEXECUTOR_SESSIONLIMIT_GHOSTSCRIPTSESSIONLIMIT=2
     PROCESSEXECUTOR_TIMEOUTMINUTES_LIBREOFFICETIMEOUTMINUTES=10
@@ -109,7 +111,7 @@ How long (in minutes) a process can run before it's forcibly killed and an error
       stirling-pdf:
         image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
         environment:
-          PROCESSEXECUTOR_SESSIONLIMIT_LIBREOFFICESSESSIONLIMIT: 1
+          PROCESSEXECUTOR_SESSIONLIMIT_LIBREOFFICESESSIONLIMIT: 1
           PROCESSEXECUTOR_SESSIONLIMIT_TESSERACTSESSIONLIMIT: 1
           PROCESSEXECUTOR_TIMEOUTMINUTES_LIBREOFFICETIMEOUTMINUTES: 10
     ```
@@ -138,7 +140,7 @@ How long (in minutes) a process can run before it's forcibly killed and an error
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
-    PROCESSEXECUTOR_SESSIONLIMIT_LIBREOFFICESSESSIONLIMIT=4
+    PROCESSEXECUTOR_SESSIONLIMIT_LIBREOFFICESESSIONLIMIT=4
     PROCESSEXECUTOR_SESSIONLIMIT_TESSERACTSESSIONLIMIT=4
     PROCESSEXECUTOR_TIMEOUTMINUTES_LIBREOFFICETIMEOUTMINUTES=60
     ```

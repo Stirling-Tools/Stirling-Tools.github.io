@@ -18,7 +18,7 @@ Stirling PDF supports Single Sign-On (SSO) using OAuth 2.0 OpenID Connect (OIDC)
 Before configuring OAuth 2.0 SSO, ensure you have:
 
 - [ ] Stirling PDF with login enabled (`security.enableLogin: true`)
-- [ ] Valid license for Professional tier or higher
+- [ ] Valid license for the Server tier or higher
 - [ ] An OAuth 2.0 provider account (Google, GitHub, Keycloak, etc.)
 - [ ] Registered OAuth application with your provider
 - [ ] OAuth Client ID and Client Secret from your provider
@@ -430,7 +430,7 @@ Automatically redirect users to OAuth login page, bypassing the Stirling PDF log
     ```yaml
     premium:
       proFeatures:
-        SSOAutoLogin: true
+        ssoAutoLogin: true
     ```
   </TabItem>
   <TabItem value="env" label="Environment Variables">
@@ -439,6 +439,8 @@ Automatically redirect users to OAuth login page, bypassing the Stirling PDF log
     ```
   </TabItem>
 </Tabs>
+
+> **Note**: The property is `ssoAutoLogin` (camelCase). The old `SSOAutoLogin` (PascalCase) spelling is auto-migrated to the new key on upgrade, so existing configs keep working. The environment variable `PREMIUM_PROFEATURES_SSOAUTOLOGIN` is unchanged.
 
 **Auto-login Activation Requirements:**
 
@@ -504,6 +506,29 @@ Enable OAuth debug logging to troubleshoot authentication issues.
     ```
   </TabItem>
 </Tabs>
+
+### Claim Dump ("Attribute value for email cannot be null")
+
+If login fails with **"Attribute value for email cannot be null"** (common with ADFS and Azure AD), the provider is not returning the claim named by `useAsUsername`. Enable `security.oauth2.debugLogging` to log the full ID-token / UserInfo claim set and the resolved username, so you can see exactly which claims the provider sends and pick the right `useAsUsername` value.
+
+<Tabs groupId="config-method">
+  <TabItem value="settings" label="settings.yml" default>
+    ```yaml
+    security:
+      oauth2:
+        debugLogging: true
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variables">
+    ```bash
+    SECURITY_OAUTH2_DEBUGLOGGING=true
+    ```
+  </TabItem>
+</Tabs>
+
+The claims are logged at `INFO` level on each login (and again at `ERROR` level when the username attribute cannot be resolved).
+
+**⚠️ Disable `debugLogging` again as soon as you are done.** It writes personally identifiable information (such as `sub`, `email`, and `name`) to the application logs.
 
 ## Known Limitations
 

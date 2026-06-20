@@ -18,6 +18,14 @@ Depending on your [server settings](../Configuration/Mobile-Scanner.md), uploade
 4. Desktop retrieves files
 5. Files auto-delete after 10 minutes of inactivity or upon download
 
+## Using Mobile Scanner in the desktop app
+
+Mobile Scanner also works in the Stirling PDF desktop app with the bundled local backend. A few things differ from the web/server setup:
+
+- Your phone and the desktop must be on the **same local network (LAN)**.
+- The QR code encodes the **desktop's LAN IP address** so the phone can reach it directly.
+- The desktop serves its own self-contained upload page (enabled by `STIRLING_PDF_TAURI_MODE`) instead of the normal web `/mobile-scanner` route, since a phone can't load the app's bundled webview UI.
+
 ## Privacy & Security
 
 - Files stored temporarily in system temp directory only

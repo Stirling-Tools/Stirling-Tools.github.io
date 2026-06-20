@@ -59,11 +59,29 @@ This allows you to set a single API key that works regardless of user authentica
 
 3. Example authenticated request:
    ```bash
-   curl -X POST "http://localhost:8080/add-watermark" \
+   curl -X POST "http://localhost:8080/api/v1/security/add-watermark" \
         -H "X-API-KEY: your-api-key-here" \
         -H "Content-Type: multipart/form-data" \
         ...
    ```
+
+## Endpoint Paths
+
+:::info
+All operation endpoints are namespaced under `/api/v1/<category>/<operation>` (for example `security`, `general`, `misc`, `convert`). The category is determined by the controller, so "Add Watermark" lives at `/api/v1/security/add-watermark`. Bare V1 paths such as `/add-watermark` no longer resolve - always include the `/api/v1/<category>/` prefix. The exact path for any operation is shown in the [Swagger UI](#local-swagger-ui).
+:::
+
+### AI assistants / MCP
+
+To drive these endpoints from an AI assistant (Claude Desktop, Cursor, etc.) over the Model Context Protocol, see [MCP Server](./Configuration/MCP-Server.md).
+
+### Less obvious endpoints
+
+A few endpoints are easy to miss because they have no dedicated front-end tool, or sit alongside a visual feature with a similar name:
+
+- **Edit Text (programmatic find-and-replace)** - `POST /api/v1/general/edit-text` applies an ordered list of find/replace operations to a PDF's text and returns the edited PDF (supports whole-word matching and a page range). This is distinct from the visual **PDF Text Editor** in the Web UI: `edit-text` is a headless find-and-replace for scripts and automations, not the interactive editor.
+- **Vector / PostScript conversion** - `/api/v1/convert/pdf/vector` (PDF to EPS/PS/PCL/XPS) and `/api/v1/convert/vector/pdf` (PostScript to PDF) are Ghostscript-backed conversions. See [Convert](./Functionality/Convert/Convert.md).
+- **PDF to Video Slideshow** - `/api/v1/convert/pdf/video` renders pages into an MP4/WEBM slideshow via `ffmpeg`. It is currently disabled in the shipped build; see [Convert](./Functionality/Convert/Convert.md).
 
 ## API Limitations
 
@@ -76,7 +94,7 @@ Stirling PDF also has statistic and health endpoints to integrate with monitorin
 <Tabs groupId="operating-systems">
   <TabItem value="unix" label="Unix/Linux/MacOS">
     ```bash
-    curl -X POST "http://localhost:8080/add-watermark" \
+    curl -X POST "http://localhost:8080/api/v1/security/add-watermark" \
          -H "Content-Type: multipart/form-data" \
          -F "fileInput=@/Users/username/Downloads/sample-1_cropped.pdf" \
          -F "watermarkType=text" \
@@ -92,7 +110,7 @@ Stirling PDF also has statistic and health endpoints to integrate with monitorin
   </TabItem>
   <TabItem value="windows" label="Windows CMD">
     ```bash
-    curl -X POST "http://localhost:8080/add-watermark" ^
+    curl -X POST "http://localhost:8080/api/v1/security/add-watermark" ^
          -H "Content-Type: multipart/form-data" ^
          -F "fileInput=@C:\Users\systo\Downloads\sample-1_cropped.pdf" ^
          -F "watermarkType=text" ^

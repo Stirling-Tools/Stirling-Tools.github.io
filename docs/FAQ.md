@@ -47,7 +47,9 @@ No, we track no data without your explicit consent. You can see how, when, and w
 
 ### Q9: When I upload a file, where is it processed?
 
-Uploads go to the server or desktop instance you're using, not to Stirling servers. The macOS/Windows desktop apps process files locally - even when you pick the Stirling Cloud sign-in today - so your PDFs stay on your device unless you point the app to a remote self-hosted server. Planned SaaS-assisted features (for desktop app) will be opt-in when they arrive.
+It depends on the [mode](./Modes-and-Licensing.md) you run. On a self-hosted server, and in the desktop app's Local or Self-hosted modes, files are processed entirely on your own infrastructure (your device or your server) and never touch Stirling servers - there are no credits in any self-hosted mode. The macOS/Windows desktop apps process files locally against the bundled engine even when you sign in with Stirling Cloud, so your PDFs stay on your device unless you explicitly point the app at a remote self-hosted server.
+
+Cloud AI and automation features run only on [Stirling Cloud](./Modes-and-Licensing.md) and are not part of the self-hosted server today. Anything that runs on Stirling Cloud is opt-in and clearly indicated.
 
 ### Q10: What are the different JAR files and which should I use?
 

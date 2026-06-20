@@ -58,11 +58,11 @@ Thanks for taking a look at how to contribute to Stirling PDFs open-source codeb
 
 ## Translation Contributions
 
-### V2.0 Translations (JSON)
-Translation files are located in `frontend/public/locales/`
-- **CRITICAL**: Always update translations in `en-GB` only, never `en-US`
-- Files are organized by feature (e.g., `common.json`, `tools.json`)
-- Use standard JSON format
+### Translations (TOML)
+Translation files are located at `frontend/editor/public/locales/<lang>/translation.toml`
+- **CRITICAL**: Only edit `en-US/translation.toml`. `en-US` is the source/primary locale and the i18n fallback (`fallbackLng: "en-US"`); other languages are managed separately.
+- Each locale is a single TOML file (`translation.toml`), keyed by feature/tool.
+- For counts, use ICU-style plural suffixes on the key (`_one`, `_other`, and `_zero` where needed), for example `opCount_one`/`opCount_other`.
 
 ## Development Resources
 - **API Documentation**: Access at `/swagger-ui/index.html` on your local instance

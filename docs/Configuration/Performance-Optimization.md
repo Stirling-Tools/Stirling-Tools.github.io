@@ -112,6 +112,10 @@ services:
 - External PostgreSQL database (enterprise feature)
 - Shared `/configs` volume across instances for consistent settings
 
+:::note Native clustering (in development)
+Native multi-node clustering - a Valkey/Redis backplane for coordination plus an S3 artifact store for shared transient job artifacts - is in development behind the `cluster.enabled` setting. It ships **disabled** and is not yet ready for production use. For now, scale horizontally with the load-balancer approach above.
+:::
+
 :::tip Server/Enterprise Recommended
 For large organizations, **Server or Enterprise plans** provide SSO, external database support, advanced monitoring, and dedicated support.
 
