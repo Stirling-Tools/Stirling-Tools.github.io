@@ -39,7 +39,8 @@ If you have login enabled and are logged in as an admin, you can configure all s
 - Language settings
 - Theme preferences
 - Logo style (classic/modern)
-- Custom logo upload
+
+To replace the bundled logo with your own, see [Static File Overrides](./Other%20Customisations.md#static-file-overrides) - you drop your logo files into `customFiles/static/<style>-logo/` and they replace the built-in ones.
 
 ### Static File Overrides (Advanced)
 
@@ -62,13 +63,85 @@ Then place your custom files in `customFiles/static/` matching the path structur
 
 **Learn more:** [Other Customisations - Static File Overrides](./Other%20Customisations.md#static-file-overrides)
 
+### Injecting Custom CSS
+
+Stirling PDF does not have a "drop a CSS file here" setting - the bundled `index.html` doesn't reference an extension stylesheet, so a `customFiles/static/custom.css` on its own won't load. To inject CSS you need to provide your own copy of `index.html` that links to your stylesheet.
+
+This is the right approach for things like:
+
+- Tweaking colors or fonts beyond what theme settings cover
+- Overriding component z-index values (e.g. lifting the Google Drive Picker above modal overlays)
+- Hiding specific UI elements
+- Embedding tracking / analytics snippets in `<head>`
+
+#### Recipe
+
+**1. Drop your CSS file into `customFiles/static/`**
+
+```
+customFiles/
+  └── static/
+      └── custom.css
+```
+
+It will be served at `/custom.css` (or under your configured root path if you've set `SYSTEM_ROOTURIPATH`).
+
+**2. Get a copy of the current bundled `index.html`**
+
+The easiest way is to copy it out of a running container:
+
+```bash
+docker cp stirling-pdf:/app/BOOT-INF/classes/static/index.html ./customFiles/static/index.html
+```
+
+If that path doesn't exist on a future release (e.g. a layered JAR layout), try `/app/app.jar` instead and extract `BOOT-INF/classes/static/index.html` from it with `unzip`. The endpoint location is what matters - any equivalent copy of the served `index.html` works.
+
+**3. Add your stylesheet link**
+
+Open `customFiles/static/index.html` and insert a `<link>` immediately before `</head>`:
+
+```html
+    <link rel="stylesheet" href="/custom.css">
+  </head>
+```
+
+**4. Restart Stirling PDF**
+
+On the next boot, the log will show:
+
+```
+Using custom index.html from: /customFiles/static/index.html
+```
+
+Your stylesheet now loads on every page.
+
+:::warning Re-export `index.html` after every Stirling PDF upgrade
+The bundled `index.html` references hashed JS/CSS asset filenames (e.g. `index-fSaGHxPC.js`) that change on every release. Your override will reference stale filenames after an upgrade and break the UI. Repeat step 2 (copy the new `index.html` and re-add your `<link>`) after each upgrade, or automate it with a small script in your deployment pipeline.
+:::
+
+#### Worked example - lift the Google Drive Picker above modal overlays
+
+The file manager modal sits at `z-index: 1200`. The Google Drive picker, rendered by Google's own scripts, doesn't always respect this. Force its iframe overlay higher:
+
+```css
+/* customFiles/static/custom.css */
+.picker-dialog,
+.picker-dialog-bg {
+  z-index: 9999 !important;
+}
+```
+
+After completing the recipe above, restart and the picker now floats over the file manager.
+
 ### Fork the Frontend (Developers)
 
-For complete UI customization:
+For deeper customization than CSS can express (changing layouts, replacing components, adding new tools):
+
 1. Clone the Stirling PDF repository
-2. Modify the React components in `frontend/src/`
-3. Build the frontend: `cd frontend && npm install && npm run build`
-4. Use static file overrides or build your own Docker image
+2. Modify the React components in `frontend/editor/src/`
+3. Build from the repo root: `cd frontend && npm ci`, then `task frontend:build:proprietary` (or pass `-PbuildWithFrontend=true` to the gradle build)
+4. Output appears in `frontend/editor/dist/`
+5. Copy the built artifacts into `customFiles/static/` and restart, or build your own Docker image
 
 This approach requires maintaining your fork and manually merging updates.
 

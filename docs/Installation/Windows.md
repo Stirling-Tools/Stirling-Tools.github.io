@@ -134,7 +134,7 @@ Silent/headless installation with custom parameters, ideal for IT deployments (S
 - **Default Install Location**: `C:\Program Files\Stirling-PDF`
 - **Settings Storage**: `%APPDATA%\stirling.pdf.dev\connection.json` (per-user settings)
 - **Provisioning File**:
-  - Per-user install: `%APPDATA%\stirling.pdf.dev\stirling-provisioning.json`
+  - Per-user install: `%APPDATA%\Stirling-PDF\stirling-provisioning.json`
   - All-users install: `%PROGRAMDATA%\Stirling-PDF\stirling-provisioning.json`
 - **URL Format**: Must include protocol (`http://` or `https://`), trailing slash is optional
 - When `STIRLING_LOCK_CONNECTION=1` is set, users cannot modify the server URL in the application settings

@@ -15,10 +15,10 @@ Create powerful automated workflows that combine multiple PDF operations into se
 In V2.0, the pipeline frontend interface has been redesigned as the **"Automate"** feature with an improved user experience for creating and managing automation workflows. The backend pipeline system (JSON configuration and folder scanning) continues to work the same way.
 
 **What changed:**
-- ✅ Backend pipeline processing - **No changes**
-- ✅ JSON pipeline configurations - **Still work exactly the same**
-- ✅ Folder scanning with pipelines - **Still works the same**
-- 🆕 Frontend interface - **Now called "Automate" with better UX**
+- Backend pipeline processing - **No changes**
+- JSON pipeline configurations - **Still work exactly the same**
+- Folder scanning with pipelines - **Still works the same**
+- Frontend interface - **Now called "Automate" with better UX**
 
 If you have existing pipeline JSON files, they continue to work in V2.0's Automate feature.
 :::
@@ -41,17 +41,17 @@ Think of it as **"macros for PDFs"** - record your steps once, replay them unlim
 ## Why Use Pipelines?
 
 ### Without Pipelines:
-1. Upload PDF to Split tool → Download split files
-2. Upload each split file to Watermark tool → Download watermarked files
-3. Upload each watermarked file to Compress tool → Download final files
-4. Repeat for every batch of documents 😫
+1. Upload PDF to Split tool, download split files
+2. Upload each split file to Watermark tool, download watermarked files
+3. Upload each watermarked file to Compress tool, download final files
+4. Repeat for every batch of documents
 
 ### With Pipelines:
 1. Create "Split-Watermark-Compress" pipeline once
-2. Upload PDFs → Automatic processing → Download results
-3. Reuse same pipeline for all future batches 🎉
+2. Upload PDFs, automatic processing, download results
+3. Reuse same pipeline for all future batches
 
-**Time saved:** Minutes per file, hours per day!
+**Time saved:** Minutes per file, hours per day.
 
 ---
 
@@ -126,7 +126,10 @@ Automated processing mode:
    - Use the **Validation** button to check your pipeline. A green indicator signifies correct setup; a pop-out error indicates issues.
 
 8. **Download Pipeline Configuration**
-   - To use the configuration for [folder scanning](./FolderScanning.md) (or save it for future use and re-upload it), download a JSON file in this menu. You can also pre-load it for future use by placing it in `/pipeline/defaultWebUIConfigs/`. It will then appear in the dropdown menu for all users to use.
+   - The Automate UI offers two download buttons:
+     - **Export** - downloads `<name>.automate.json` in the **native Automate format** with frontend tool IDs. Use this for re-importing into another Stirling PDF instance via the UI.
+     - **Export for Folder Scanning** - downloads `<name>.folder-scan.json` in the **backend format** with full endpoint paths. Use this for the REST API and for folder scanning.
+   - To pre-load a pipeline for all users, place a folder-scanning-format JSON file in `/pipeline/defaultWebUIConfigs/` - it will appear in the dropdown.
 
 9. **Submit Files for Processing**
    - If your pipeline is correctly set up, close the configure menu, input the files, and hit **Submit**.
@@ -260,70 +263,147 @@ Rotate → Scale Pages → Booklet Imposition → Remove Annotations
 
 ---
 
-## Configuration
+## JSON Configuration
 
-### JSON Pipeline Format
+### Basic Structure
 
-Basic structure of a pipeline configuration:
+A pipeline JSON file has a `name` and a `pipeline` array. Each entry has an `operation` (the full API endpoint path) and a `parameters` object:
 
 ```json
 {
   "name": "My Pipeline",
   "pipeline": [
     {
-      "operation": "split-pages",
+      "operation": "/api/v1/general/split-pages",
       "parameters": {
-        "splitType": "EVERY_N_PAGES",
-        "numberOfPagesPerSplit": 2
+        "pageNumbers": "5"
       }
     },
     {
-      "operation": "compress-pdf",
+      "operation": "/api/v1/misc/compress-pdf",
       "parameters": {
-        "compressionLevel": "MEDIUM"
+        "optimizeLevel": 5,
+        "expectedOutputSize": ""
       }
     }
   ]
 }
 ```
 
-### Operation Names
-Use these exact operation names in JSON:
-- `split-pages`, `merge-pdfs`, `rotate-pdf`
-- `compress-pdf`, `add-watermark`, `add-stamp`
-- `ocr-pdf`, `add-password`, `remove-password`
-- `crop`, `scale-pages`, `add-page-numbers`
-- See [Endpoint Customisation](./Endpoint%20or%20Feature%20Customisation.md) for complete list
+:::note Operation names are full endpoint paths
+Pipeline operation names use the **full REST API path**, not short names. For example, use `/api/v1/general/split-pages` (not just `split-pages`). The Folder-Scanning export from the Automate UI produces these paths automatically.
 
-### Parameter Configuration
-Each operation has specific parameters:
+If you have older pipeline JSONs that used short names, regenerate them from the Automate UI using **Export for Folder Scanning**.
+:::
 
-**Split Pages:**
+### Optional fields
+
+For folder scanning (not used by the REST API):
+
 ```json
 {
-  "splitType": "EVERY_N_PAGES",  // or "SPLIT_BY_SIZE", "BY_SECTIONS"
-  "numberOfPagesPerSplit": 5
+  "name": "...",
+  "pipeline": [ ... ],
+  "outputDir": "{outputFolder}/{folderName}",
+  "outputFileName": "{filename}-{pipelineName}-{date}-{time}"
 }
 ```
 
-**Add Watermark:**
-```json
-{
-  "watermarkText": "CONFIDENTIAL",
-  "fontSize": 36,
-  "opacity": 0.5,
-  "rotation": 45,
-  "position": "CENTER"
-}
+`outputDir` and `outputFileName` accept the placeholders `{outputFolder}`, `{folderName}`, `{filename}`, `{pipelineName}`, `{date}`, `{time}`.
+
+---
+
+## Operation and parameter reference
+
+Pipeline operations use the **full endpoint paths** of Stirling PDF's REST API, with the same field names. So once you know the underlying endpoint, you know the pipeline operation - no separate vocabulary to learn.
+
+For the canonical list of operations and the full parameter schema for each, see:
+
+- **Local Swagger UI** at `/swagger-ui.html` on your instance - includes every endpoint, parameter types, and lets you try requests live
+- **Online API reference** - the [Stirling PDF API documentation](https://app.swaggerhub.com/apis-docs/Frooodle/Stirling-PDF/) and the [Scalar API registry](https://registry.scalar.com/@stirlingpdf/apis/stirling-pdf-processing-api/)
+
+See [API Documentation](../API.md) for authentication and general API usage.
+
+Pipelines can only call endpoints under `/api/v1/general/...`, `/api/v1/misc/...`, `/api/v1/security/...`, `/api/v1/convert/...`, `/api/v1/filter/...`, and `/api/v1/ai/tools/...`. Anything outside those namespaces is rejected by the pipeline processor with a `SecurityException` - this includes `/api/v1/info/...`, `/api/v1/auth/...`, `/api/v1/admin/...`, and `/api/v1/pipeline/handleData` itself (pipelines cannot recursively call themselves).
+
+The `/api/v1/ai/tools/...` namespace currently exposes proprietary AI features (e.g. `math-auditor-agent`, `pdf-comment-agent`) and is only available with the corresponding paid license.
+
+:::tip Build it in the UI, export it as JSON
+The fastest way to get a correct pipeline JSON for any combination of operations is to build it visually in the **Automate** tool and click **Export for Folder Scanning**. The exported file uses exactly the format the API expects, with the right operation paths and parameters already filled in for you.
+:::
+
+---
+
+
+## REST API: `POST /api/v1/pipeline/handleData`
+
+Trigger a pipeline programmatically via the REST API. Use this from scripts, automation platforms (n8n, Zapier, Make, Power Automate), or your own integrations.
+
+### Request
+
+- **Method**: `POST`
+- **URL**: `/api/v1/pipeline/handleData`
+- **Content-Type**: `multipart/form-data`
+- **Authentication**: When security is enabled, set the `X-API-KEY` header. See [API Documentation](../API.md) for details.
+
+### Multipart fields
+
+| Field | Type | Required | Purpose |
+|---|---|---|---|
+| `fileInput` | file | yes | One or more PDF files. Repeat the field for multiple files. |
+| `json` | string | yes | The pipeline configuration JSON. |
+
+You don't need to include `fileInput` inside the `parameters` object - the pipeline processor injects each uploaded file automatically. The Automate UI's "Export for Folder Scanning" includes `"fileInput": "automated"` as a marker in every step, which the backend ignores; you can leave it in or strip it out, both work.
+
+### Optional query parameters
+
+- `?async=true` - run the pipeline asynchronously and return a job ID instead of the file. Poll `GET /api/v1/general/job/{id}` for progress.
+
+### Response
+
+- **Single output file**: returned directly as `application/octet-stream` with `Content-Disposition: attachment; filename=...`.
+- **Multiple output files**: returned as `output.zip`.
+- **Async mode**: returns a JSON body with the job ID.
+
+### Working curl example
+
+```bash
+curl -X POST "http://localhost:8080/api/v1/pipeline/handleData" \
+  -H "X-API-KEY: $STIRLING_API_KEY" \
+  -F "fileInput=@/path/to/input.pdf" \
+  -F 'json={
+    "name": "Repair-then-compress",
+    "pipeline": [
+      {"operation": "/api/v1/misc/repair", "parameters": {}},
+      {"operation": "/api/v1/misc/compress-pdf", "parameters": {"optimizeLevel": 2}}
+    ]
+  }' \
+  --output result.pdf
 ```
 
-**Compress:**
-```json
-{
-  "compressionLevel": "MEDIUM",  // "LOW", "MEDIUM", "HIGH"
-  "optimizeImages": true
-}
-```
+For multiple files use repeated `-F "fileInput=@..."` flags; the response will be `output.zip`. For the full parameter list for each operation, see the API docs linked above.
+
+### Error responses
+
+| Situation | HTTP status | Body |
+|---|---|---|
+| Auth required and no key supplied | 401 | `{"error":"Unauthorized","message":"Authentication required...","status":401}` |
+| Multipart parsing failed (missing field, bad JSON) | 400 | Spring's standard error JSON |
+| Invalid operation name, disallowed endpoint, or missing required parameter | 200 with empty body | The server logs an `IllegalArgumentException` but returns an empty response. |
+| Downstream endpoint returned non-2xx | 200 with partial/empty body | The error is logged but does not surface in the HTTP response. |
+
+:::warning Validate response bodies
+Errors that occur after multipart parsing currently collapse to `HTTP 200` with an empty body. Always check that the response is a non-empty PDF (starts with `%PDF-`) or a ZIP (starts with `PK\x03\x04`) before treating the call as successful.
+:::
+
+### Tips
+
+- **Build in the UI, export the JSON.** The fastest way to get a correct JSON is to build the pipeline in the Automate UI, then click **Export for Folder Scanning**. The exported file works directly with `handleData`. The other button, **Export**, produces a different "native Automate" format (uses an `operations` key with frontend tool IDs like `"merge"`) that is only for re-importing into another Automate UI, not for the API.
+- **No image / file parameters.** Operations that take an additional file input (image watermarks, separate overlay PDFs, attaching files) cannot be expressed in pipeline JSON via the REST API. Call those endpoints directly instead.
+- **List parameters become repeated form fields.** Internally the processor expands `["eng","deu"]` into two `languages=eng` and `languages=deu` form parts, which is what the underlying endpoints expect.
+- **Filters drop files.** A filter step that doesn't match keeps the file out of later steps. Useful for "process only PDFs that contain X".
+- **Multi-input operations batch.** Operations marked multi-input (e.g. `merge-pdfs`) receive every matching file in a single call. If no files in the working set match the operation's expected extension, the step logs `No files with extension X found for operation Y...` and continues with the other files.
+- **Unknown JSON fields are ignored.** The pipeline parser silently drops fields it doesn't recognise, so you can add `description`, `icon`, or other metadata at the top level without breaking anything.
 
 ---
 
@@ -345,49 +425,39 @@ Automate processing of files placed in watched folders.
 /pipeline/
   ├── watchedFolders/
   │   ├── invoice-processing/
-  │   │   ├── input/          # Drop files here
-  │   │   ├── output/         # Results appear here
-  │   │   └── config.json     # Pipeline configuration
+  │   │   ├── my-pipeline.json   # any *.json file in the folder is the pipeline config
+  │   │   ├── invoice-001.pdf    # drop PDFs directly into the folder root
+  │   │   ├── invoice-002.pdf
+  │   │   └── processing/        # auto-created by the scanner while a file is in flight
   │   └── report-prep/
-  │       ├── input/
-  │       ├── output/
-  │       └── config.json
-  └── defaultWebUIConfigs/    # Pre-loaded pipelines for UI
+  │       └── ...
+  ├── finishedFolders/           # outputs appear here by default (per `outputDir` placeholder)
+  └── defaultWebUIConfigs/       # pre-loaded pipelines exposed in the Automate UI dropdown
       ├── invoice.json
       └── reports.json
 ```
 
 ### Configuration File
 
-Create `config.json` in each watched folder:
+Drop a `.json` file (any name) into each watched folder. The first `.json` the scanner finds is used as the pipeline:
 
 ```json
 {
   "name": "Invoice Processing",
-  "pipeline": [...],  // Your pipeline operations
-  "watchSchedule": "*/5 * * * *",  // Every 5 minutes (cron format)
-  "deleteOriginal": false,  // Keep original files
-  "archiveFolder": "./processed/"  // Move originals here
+  "pipeline": [
+    {"operation": "/api/v1/misc/ocr-pdf", "parameters": {
+       "languages": ["eng"], "ocrType": "skip-text",
+       "ocrRenderType": "hocr", "deskew": true, "clean": false,
+       "cleanFinal": false, "sidecar": false, "removeImagesAfter": false}}
+  ],
+  "outputDir": "{outputFolder}/{folderName}",
+  "outputFileName": "{filename}-processed-{date}"
 }
 ```
 
-### Cron Schedule Format
+PDFs go directly in the watched folder root (NOT in an `input/` subdirectory). The scanner auto-creates a `processing/` subfolder while a file is being worked on, and writes outputs to wherever `outputDir` resolves to (typically `/pipeline/finishedFolders/...` via the `{outputFolder}` placeholder).
 
-```
-* * * * *
-│ │ │ │ │
-│ │ │ │ └─ Day of week (0-7, 0 and 7 = Sunday)
-│ │ │ └─── Month (1-12)
-│ │ └───── Day of month (1-31)
-│ └─────── Hour (0-23)
-└───────── Minute (0-59)
-```
-
-**Examples:**
-- `*/5 * * * *` - Every 5 minutes
-- `0 * * * *` - Every hour
-- `0 9 * * *` - Daily at 9 AM
-- `0 9 * * 1` - Every Monday at 9 AM
+The watched-folder scanner runs every 60 seconds.
 
 **Learn more:** [Folder Scanning Guide](./FolderScanning.md)
 
@@ -473,22 +543,35 @@ Create `config.json` in each watched folder:
 
 ---
 
+### `handleData` Returns Empty Response
+
+**Symptoms:** REST API call returns HTTP 200 with an empty body.
+
+**Cause:** Errors after multipart parsing (invalid operation name, missing required parameter, downstream endpoint failure) currently collapse to `200 OK` with no body. Check the server logs for the actual error.
+
+**Common reasons:**
+- Operation name used short form (e.g. `compress-pdf`) instead of full path (`/api/v1/misc/compress-pdf`)
+- Operation references an endpoint outside the allowed namespaces (only `general`, `misc`, `security`, `convert`, `filter`, `ai/tools` are permitted)
+- A required parameter was omitted (check the schema for the underlying endpoint in the [Swagger UI / API reference](#operation-and-parameter-reference))
+- The pipeline tries to call `/api/v1/pipeline/handleData` recursively
+
+---
+
 ### Folder Scanning Not Working
 
 **Symptoms:** Files not processed automatically
 
 **Possible Issues:**
 - Folder permissions incorrect
-- Cron schedule not configured
 - Pipeline configuration invalid
 - Folder scanning not enabled
 
 **Solutions:**
 1. Check folder permissions (read/write access)
-2. Verify cron schedule format
-3. Test pipeline manually first
-4. Check `docker logs` for errors
-5. Ensure folder scanning feature enabled
+2. Test pipeline manually first
+3. Check `docker logs` for errors
+4. Ensure folder scanning feature enabled
+5. The scanner runs once every 60 seconds - allow that long after dropping a file
 
 ---
 
@@ -502,10 +585,9 @@ Create `config.json` in each watched folder:
 - Parameters not supported in operation
 
 **Solutions:**
-1. Check parameter names match documentation
+1. Check parameter names against the endpoint's schema in the [Swagger UI / API reference](#operation-and-parameter-reference)
 2. Verify parameter value types (string, number, boolean)
-3. Review operation's available parameters
-4. Test parameters manually first
+3. Test the same parameters by calling the endpoint directly first
 
 ---
 
@@ -525,26 +607,26 @@ Create `config.json` in each watched folder:
 ## Pipeline vs. Multi-Tool vs. Manual
 
 ### Use Pipeline/Automate When:
-✅ Same workflow repeated frequently
-✅ Predictable, consistent operations
-✅ Automated folder processing needed
-✅ No manual intervention required
-✅ Standardizing team processes
-✅ Large batch processing
-✅ Scheduled/unattended processing
+- Same workflow repeated frequently
+- Predictable, consistent operations
+- Automated folder processing needed
+- No manual intervention required
+- Standardizing team processes
+- Large batch processing
+- Scheduled/unattended processing
 
 ### Use Multi-Tool When:
-✅ Workflow varies per file
-✅ Need visual feedback at each step
-✅ Experimenting with different settings
-✅ Manual decision points in workflow
-✅ One-time complex tasks
+- Workflow varies per file
+- Need visual feedback at each step
+- Experimenting with different settings
+- Manual decision points in workflow
+- One-time complex tasks
 
 ### Use Individual Tools When:
-✅ Single, simple operation
-✅ Quick one-off task
-✅ Learning how operations work
-✅ No need for automation
+- Single, simple operation
+- Quick one-off task
+- Learning how operations work
+- No need for automation
 
 ---
 
@@ -581,12 +663,13 @@ Create `config.json` in each watched folder:
 
 Pipeline automation (Automate tool) transforms Stirling PDF into a workflow engine:
 
-- 🔗 **Chain operations** - Combine multiple PDF tools sequentially
-- 💾 **Save workflows** - Reusable pipeline configurations
-- 📁 **Folder scanning** - Automated unattended processing
-- 🎯 **Standardization** - Consistent processing across teams
-- ⚡ **Efficiency** - Minutes saved per file, hours per day
+- **Chain operations** - Combine multiple PDF tools sequentially
+- **Save workflows** - Reusable pipeline configurations
+- **Folder scanning** - Automated unattended processing
+- **REST API** - Trigger pipelines from any external system
+- **Standardization** - Consistent processing across teams
+- **Efficiency** - Minutes saved per file, hours per day
 
 **Perfect for:** Repetitive workflows, batch processing, automated document preparation, and standardized procedures.
 
-Ready to automate? Create your first pipeline and transform how you process PDFs!
+Ready to automate? Create your first pipeline and transform how you process PDFs.

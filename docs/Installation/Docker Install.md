@@ -156,6 +156,105 @@ docker-compose up -d
 
 Your data is safe in the volumes and will persist across updates.
 
+## Platform-specific quick starts
+
+Several platforms have one-click installs or community packages that wrap the Docker setup. Use these when available - they're maintained by their respective communities and handle the platform-native bits (permissions, networking, backups) for you.
+
+<Tabs groupId="docker-platform">
+<TabItem value="truenas" label="TrueNAS SCALE" default>
+
+Available in the **TrueNAS Apps catalog** (Community train).
+
+1. **Apps → Discover Apps**, search for "Stirling PDF".
+2. Click **Install**, accept defaults (or customise port / persistence).
+3. Open from **Apps → Installed**.
+
+See the catalog listing at [apps.truenas.com/catalog/stirling-pdf/](https://apps.truenas.com/catalog/stirling-pdf/).
+
+</TabItem>
+<TabItem value="unraid" label="Unraid">
+
+Available in **Community Applications**. Stirling PDF was the [Unraid App of the Month for February 2026](https://newsletter.unraid.net/p/unraid-february-digest-0617).
+
+1. Install the [Community Applications](https://forums.unraid.net/topic/38582-plug-in-community-applications/) plugin if you don't already have it.
+2. **Apps** tab → search "Stirling PDF" → click the result → **Install**.
+3. Review the default paths / variables on the template, then **Apply**.
+
+The template populates volumes, ports, and the standard Unraid `PUID=99 PGID=100` env vars for you.
+
+</TabItem>
+<TabItem value="proxmox" label="Proxmox LXC">
+
+The **Community Scripts** project provides a one-line LXC installer. From the Proxmox VE shell:
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/stirling-pdf.sh)"
+```
+
+This creates an LXC, installs Java, LibreOffice, Tesseract, OCRmyPDF, and Stirling PDF as a systemd service. Once finished, browse to `http://<container-ip>:8080`.
+
+Script reference: [community-scripts/ProxmoxVE - stirling-pdf](https://community-scripts.github.io/ProxmoxVE/scripts?id=stirling-pdf).
+
+Prefer Docker-in-LXC instead? Create a Debian/Ubuntu LXC, enable nesting (`pct set <ctid> -features nesting=1,keyctl=1`), install Docker, and use the standard compose at the top of this page.
+
+</TabItem>
+<TabItem value="synology" label="Synology DSM">
+
+See the [Marius Hosting Synology guide](https://mariushosting.com/how-to-install-stirling-pdf-on-your-synology-nas/).
+
+</TabItem>
+<TabItem value="ugreen" label="UGREEN NAS">
+
+See the [Marius Hosting UGREEN guide](https://mariushosting.com/how-to-install-stirling-pdf-on-your-ugreen-nas/).
+
+</TabItem>
+<TabItem value="asustor" label="Asustor NAS">
+
+See the [Marius Hosting Asustor guide](https://mariushosting.com/how-to-install-stirling-pdf-on-your-asustor-nas/).
+
+</TabItem>
+<TabItem value="casaos" label="CasaOS / Portainer">
+
+No official store entry, but the standard Docker Compose works fine in any compose-based UI:
+
+- **Portainer**: Stacks → Add stack → paste the compose from the [Full Setup](#full-setup-with-all-features) section.
+- **CasaOS**: Use the "Install a customized app" flow with the Docker image `docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest`, port `8080`, and bind mounts for `/configs`, `/logs`, `/customFiles`, `/pipeline`, `/usr/share/tessdata`.
+
+</TabItem>
+<TabItem value="podman" label="Podman (Quadlet)">
+
+For rootless Podman with systemd, drop a Quadlet file at `~/.config/containers/systemd/stirling-pdf.container`:
+
+```ini
+[Unit]
+Description=Stirling PDF
+
+[Container]
+Image=docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
+PublishPort=8080:8080
+Volume=%h/stirling-pdf/configs:/configs:Z
+Volume=%h/stirling-pdf/logs:/logs:Z
+Volume=%h/stirling-pdf/customFiles:/customFiles:Z
+Volume=%h/stirling-pdf/pipeline:/pipeline:Z
+Volume=%h/stirling-pdf/tessdata:/usr/share/tessdata:Z
+UserNS=keep-id:uid=1000,gid=1000
+AutoUpdate=registry
+
+[Install]
+WantedBy=default.target
+```
+
+Then `systemctl --user daemon-reload && systemctl --user start stirling-pdf`.
+
+The `:Z` label is required on SELinux distros (Fedora/RHEL). `--userns=keep-id` sidesteps the `PUID`/`PGID` remap, which is skipped under rootless Podman.
+
+</TabItem>
+</Tabs>
+
+:::note Community-maintained
+The TrueNAS, Unraid, and Proxmox integrations above are community-maintained, not built or operated by Stirling Tools. Report issues with the integration itself to the respective project (TrueNAS Apps, Unraid Community Apps, community-scripts/ProxmoxVE). For Stirling PDF behaviour, use the [Stirling PDF issue tracker](https://github.com/Stirling-Tools/Stirling-PDF/issues).
+:::
+
 ## Common Configurations
 
 ### Enable User Authentication

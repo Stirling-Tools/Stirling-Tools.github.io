@@ -107,3 +107,37 @@ Stirling PDF also has statistic and health endpoints to integrate with monitorin
     ```
   </TabItem>
 </Tabs>
+
+## Integrations (n8n, Zapier, Make, Power Automate, etc.)
+
+Stirling PDF does not ship dedicated plugins or nodes for any specific automation platform. Integration is **via the REST API** documented above, which works with any tool that can make an authenticated HTTP request.
+
+### What this looks like in practice
+
+- **n8n**: use the built-in [HTTP Request node](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/) pointed at your Stirling PDF instance. Set method `POST`, content type `multipart/form-data`, attach the binary as `fileInput`, add the `X-API-KEY` header, and connect the binary output to a `Read/Write Binary File` node or onward to your storage.
+- **Zapier / Make / Power Automate**: use the generic HTTP / Webhooks action with the same multipart pattern.
+- **Home Assistant**: a `rest_command` definition pointing at the appropriate Stirling endpoint.
+- **Bash / Python / JavaScript**: any HTTP client (`curl`, `requests`, `fetch`) - the curl examples on this page translate directly.
+
+### Common automation recipe: chain multiple operations in one call
+
+Rather than wiring 5 separate HTTP nodes for "OCR then compress then watermark then sign...", you could use the **pipeline endpoint** to chain everything in one request:
+
+- Endpoint: `POST /api/v1/pipeline/handleData`
+- Request: multipart with one or more `fileInput` parts plus a `json` field containing the full pipeline configuration
+- Response: a single processed file, or a ZIP if the pipeline produced multiple outputs
+
+Full schema, operation list, parameter reference, and curl examples: see **[Pipeline Automation](./Configuration/Pipeline.md#rest-api-post-apiv1pipelinehandledata)**.
+
+### Building the pipeline JSON
+
+The fastest path is:
+1. Build the workflow visually in the **Automate** tool inside Stirling PDF.
+2. Click **Export for Folder Scanning** in the save panel - this produces the JSON in the format the API expects.
+3. Drop that JSON into your automation tool's HTTP request as the `json` form field.
+
+Re-import the same file later via the Automate UI's import dialog to round-trip workflows between machines.
+
+### Authentication for automation tools
+
+When security is enabled, set a global API key once via `SECURITY_CUSTOMGLOBALAPIKEY=<key>` and reference it from your automation tool as the `X-API-KEY` header. This avoids needing per-user logins from headless scripts.
