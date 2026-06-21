@@ -48,7 +48,7 @@ With **Use Regex** enabled you can target common personally identifiable informa
 Add one pattern per entry; refine them to suit your documents to keep false positives down.
 
 ### How text is removed
-For each match, the tool rewrites the affected page content streams (including text inside nested form XObjects) so the original characters are deleted from the file rather than just covered. When a document uses fonts whose encoding cannot be edited reliably, the tool automatically falls back to box-only redaction. Keeping **Convert PDF to PDF-Image** enabled guarantees that, either way, the output contains no recoverable text under the boxes.
+Automatic redaction deletes the matching text from the file rather than just covering it. For maximum safety, keep **Convert PDF to PDF-Image** enabled so no recoverable text can remain under the boxes.
 
 ---
 
@@ -70,7 +70,6 @@ Perfect for redacting specific words, sentences, or paragraphs.
      
       ![image](https://github.com/user-attachments/assets/73d4b1f0-a454-452b-ab60-028b9728004b)
 
-
 ### 2. Area Drawing Redaction
 Ideal for redacting images, tables, or irregular content blocks.
 
@@ -89,7 +88,6 @@ Ideal for redacting images, tables, or irregular content blocks.
    - A green border means saved and active
    
       ![image](https://github.com/user-attachments/assets/0711ff11-da1a-41c3-9d57-82067ee0f8b8)
-
 
 ### 3. Page Redaction
 Used when you need to redact entire pages.
@@ -124,7 +122,6 @@ Used when you need to redact entire pages.
   
 ![redaction_color](https://github.com/user-attachments/assets/0bc05461-6427-4a62-8cd4-745c3104c04f)
 
-
 ### Removing Redactions
 1. Click the redacted area you want to remove
 2. Either:
@@ -144,11 +141,7 @@ To disable PDF to PDF-image option:
    
          ![image](https://github.com/user-attachments/assets/e2e07e31-8eb0-41ac-80ab-ffd8520f5795)
 
-
 - If the image icon is green, then the option is enabled, if it is red then it is disabled.
-
-
-
 
 ## Keyboard Shortcuts
 - `Ctrl + S`: Save/apply redaction

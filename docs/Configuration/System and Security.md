@@ -75,8 +75,6 @@ If you need to run without authentication (note: this also disables additional f
 
 Disable authentication while keeping additional features:
 
-
-
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
     ```yaml
@@ -160,19 +158,9 @@ SYSTEM_SERVERCERTIFICATE_REGENERATEONSTARTUP=false
 
 ### How It Works
 
-1. **First Startup:** Server generates self-signed certificate, stored in `/configs` directory
+1. **First Startup:** Server generates a self-signed certificate, stored as `/configs/server-certificate.p12`
 2. **Subsequent Startups:** Reuses existing certificate (unless `regenerateOnStartup: true`)
-3. **User Signs:** PDFs signed using this certificate via "Sign with Stirling PDF" option
-
-### Custom Certificates
-
-To use your own certificate instead:
-
-1. Place certificate in `/configs/keystore.p12`
-2. Set `serverCertificate.enabled: false`
-3. Provide password via `KEYSTORE_PASSWORD` environment variable
-
-**Learn more:** [Certificate Signing Guide](../Functionality/Security/Certificate-Signing.md)
+3. **User Signs:** PDFs signed using this certificate via "Sign with Stirling-PDF" option
 
 ---
 
@@ -258,46 +246,18 @@ security:
 
 ## JWT Authentication
 
-Configure JSON Web Token authentication for sessions.
-
-### JWT Settings
+Logins use JSON Web Tokens. The main thing to configure is how long a session lasts before a user has to sign in again.
 
 ```yaml
 security:
   jwt:
-    enableKeystore: true            # Persist signing keys across restarts
-    enableKeyRotation: false        # Rotate signing keys periodically
-    enableKeyCleanup: true          # Auto-delete old keys
-    tokenExpiryMinutes: 1440        # Web token lifetime (24 hours)
-    desktopTokenExpiryMinutes: 43200 # Desktop token lifetime (30 days)
-    allowedClockSkewSeconds: 60     # Tolerated clock drift on validation
-    refreshGraceMinutes: 15         # Grace window to refresh an expired token
+    tokenExpiryMinutes: 1440          # Web login lifetime (default 24 hours)
+    desktopTokenExpiryMinutes: 43200  # Desktop login lifetime (default 30 days)
 ```
 
-**Environment Variables:**
-```bash
-SECURITY_JWT_ENABLEKEYSTORE=true
-SECURITY_JWT_ENABLEKEYROTATION=false
-SECURITY_JWT_ENABLEKEYCLEANUP=true
-SECURITY_JWT_TOKENEXPIRYMINUTES=1440
-SECURITY_JWT_DESKTOPTOKENEXPIRYMINUTES=43200
-SECURITY_JWT_ALLOWEDCLOCKSKEWSECONDS=60
-SECURITY_JWT_REFRESHGRACEMINUTES=15
-```
+Environment variables: `SECURITY_JWT_TOKENEXPIRYMINUTES` and `SECURITY_JWT_DESKTOPTOKENEXPIRYMINUTES`.
 
-### What These Settings Do
-
-- **`enableKeystore`**: Persist JWT signing keys in the database so they survive container restarts (default `true`)
-- **`enableKeyRotation`**: Periodically generate new signing keys for security (default `false`)
-- **`enableKeyCleanup`**: Automatically delete old keys once they are no longer needed (default `true`)
-- **`tokenExpiryMinutes`**: Access-token lifetime in minutes for web clients (default `1440`, 24 hours)
-- **`desktopTokenExpiryMinutes`**: Access-token lifetime for desktop clients, which are auto-detected via the User-Agent and use OS-level secure storage (default `43200`, 30 days)
-- **`allowedClockSkewSeconds`**: How much clock drift between client and server is tolerated when validating a token (default `60`)
-- **`refreshGraceMinutes`**: How long after expiry an access token can still be used to refresh, for a smoother UX (default `15`)
-
-> 💡 The key retention period is **computed automatically** from the longest token lifetime plus a safety buffer (token refresh grace and clock skew). It is read-only and not a settable option.
-
-V2 uses a stateless SPA + JWT model, so CSRF protection is disabled unconditionally and there is no CSRF setting to configure.
+Lower these for tighter security (users sign in more often) or raise them for convenience.
 
 ---
 
@@ -378,12 +338,15 @@ UI_LOGOSTYLE=modern
 
 ### Custom Logo
 
-You can also provide a custom logo file:
+You can also override the bundled logo by dropping your own files into the matching style subdirectory:
 
 ```bash
 customFiles/
   └── static/
-      └── logo.svg  # Your custom logo
+      ├── classic-logo/
+      │   └── logo.svg  # Overrides the classic logo
+      └── modern-logo/
+          └── logo.svg  # Overrides the modern logo
 ```
 
 **Learn more:** [UI Customisation](./UI%20Customisation.md)
@@ -398,9 +361,6 @@ customFiles/
     security:
       enableLogin: true  # Only works with Stirling-PDF-with-login.jar or DISABLE_ADDITIONAL_FEATURES=false
       jwt:
-        enableKeystore: true
-        enableKeyRotation: false
-        enableKeyCleanup: true
         tokenExpiryMinutes: 1440
       validation:
         trust:

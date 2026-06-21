@@ -17,7 +17,7 @@ Stirling PDF ships a built-in [Model Context Protocol (MCP)](https://modelcontex
 The MCP server is built into the Stirling PDF self-hosted server and the desktop app in Local / Self-hosted modes. It is **off by default** and must be enabled and configured per deployment.
 
 :::info Self-hosted capability
-This page documents the MCP server you run on your own Stirling PDF instance. The per-user MCP tab in Stirling Cloud is a separate, cloud-only surface and is not covered here. For where each deployment mode applies, see [Modes & Licensing](../Modes-and-Licensing.md).
+This page documents the MCP server you run on your own Stirling PDF instance. The per-user MCP tab in Stirling Cloud is a separate, cloud-only surface and is not covered here. For where each deployment mode applies, see [Modes](../Modes-and-Licensing.md).
 :::
 
 ---
@@ -106,14 +106,14 @@ The key must belong to a provisioned, enabled account (generate one under **Acco
 
 ## Restrict which operations are exposed
 
-Two MCP-level lists control which operations clients can see and call. They use the same kebab-case operation ids as the [Endpoint or Feature Customisation](./Endpoint%20or%20Feature%20Customisation.md) page (e.g. `compress-pdf`).
+Two MCP-level lists control which operations clients can see and call. They use the same kebab-case operation ids as the [Endpoint or Feature Customisation](../Configuration/Endpoint%20or%20Feature%20Customisation.md) page (e.g. `compress-pdf`).
 
 | Key | Env | Default | Behaviour |
 |---|---|---|---|
 | `mcp.allowedOperations` | `MCP_ALLOWEDOPERATIONS` | `[]` | When **non-empty**, acts as a strict allow-list - only these operations are exposed over MCP; everything else is hidden, undescribable, and uninvocable. Empty means allow all. |
 | `mcp.blockedOperations` | `MCP_BLOCKEDOPERATIONS` | `[]` | A deny-list. Anything listed is always removed, applied **after** the allow-list, so a blocked id wins even if it is also allowed. |
 
-These lists layer **on top of** the global [`endpoints.toRemove` / `endpoints.groupsToRemove`](./Endpoint%20or%20Feature%20Customisation.md) configuration. An operation disabled globally is never exposed over MCP regardless of these lists.
+These lists layer **on top of** the global [`endpoints.toRemove` / `endpoints.groupsToRemove`](../Configuration/Endpoint%20or%20Feature%20Customisation.md) configuration. An operation disabled globally is never exposed over MCP regardless of these lists.
 
 ---
 
@@ -131,7 +131,7 @@ These lists layer **on top of** the global [`endpoints.toRemove` / `endpoints.gr
 
 - **Startup config validation**: when MCP is enabled, the server validates the resolved config at boot and logs findings. Misconfiguration (missing issuer, a `resourceId` that does not end in `/mcp`, a `username-claim` of `sub` with `require-existing-account=true`, and similar) is logged as a warning so it surfaces in the logs instead of as a later rejected-token `401`.
 - **Meaningful `401` responses**: a rejected OAuth token returns a `WWW-Authenticate` header carrying a real `error_description` (audience, issuer, or expiry mismatch), plus a `resource_metadata` pointer for discovery. A tokenless `401` is the normal discovery handshake, not an error.
-- **Audit logging**: MCP calls are attributed to the bound Stirling account. Token-shaped or over-long principals are hashed (stored as `token:<hash>`) so no secret is written to the audit log.
+- **Audit logging**: MCP calls are attributed to the bound Stirling account, and no secret is written to the audit log.
 
 ---
 
@@ -173,5 +173,5 @@ In OAuth mode, drop the `X-API-KEY` header and let `mcp-remote` complete the OAu
 ## Related Documentation
 
 - **[API documentation](../API.md)** - generate the per-user API key used in API-key mode
-- **[Endpoint or Feature Customisation](./Endpoint%20or%20Feature%20Customisation.md)** - the operation ids and global enable/disable config the MCP lists build on
-- **[Modes & Licensing](../Modes-and-Licensing.md)** - where each deployment mode and feature applies
+- **[Endpoint or Feature Customisation](../Configuration/Endpoint%20or%20Feature%20Customisation.md)** - the operation ids and global enable/disable config the MCP lists build on
+- **[Modes](../Modes-and-Licensing.md)** - where each deployment mode and feature applies

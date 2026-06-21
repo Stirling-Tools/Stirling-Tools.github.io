@@ -74,27 +74,21 @@ Pick whichever package format matches your distribution.
 
 ### Connecting to a server
 
-The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can connect to a server at any time. See [Modes & Licensing](../Modes-and-Licensing.md) for how each mode is licensed (self-hosted modes never use credits).
+The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can connect to a server at any time. See [Modes](../Modes-and-Licensing.md) for how each mode is licensed (self-hosted modes never use credits).
 
 **Stirling Cloud**
 - Sign in with your Stirling Cloud account
 - Gives access to advanced tools powered by server-side processing
-- Files are processed transiently and are not stored after the request completes. Opt-in cloud storage is a separate Stirling Cloud feature you would enable explicitly. See [Modes & Licensing](../Modes-and-Licensing.md)
+- Files are processed transiently and are not stored after the request completes. Opt-in cloud storage is a separate Stirling Cloud feature you would enable explicitly. See [Modes](../Modes-and-Licensing.md)
 
 **Self-hosted Server**
 - Enter the URL of your own Stirling-PDF server instance (e.g., `http://192.168.1.53:8080`)
 - Full control over your data and processing
 - Useful for team deployments or when you want all features on your own infrastructure
 
-### MDM / provisioning (managed Linux desktops)
+### Managed deployment (MDM)
 
-For managed deployments, drop a `stirling-provisioning.json` file into the system directory so every user picks up the same server URL, locked connection, and `update_mode`:
-
-```
-/etc/stirling-pdf/stirling-provisioning.json
-```
-
-A per-user file in `~/.config/Stirling-PDF/` is also read. When the update mode is set this way, the in-app Software Updates control is locked and shows "Managed by your administrator".
+To pre-configure and lock the app across managed Linux desktops - server URL, connection lock, and update behaviour - see [Managed Desktop Deployment](./Managed%20Deployment.md).
 
 ---
 
@@ -370,7 +364,7 @@ This will add a modified Appstarter to your Appmenu.
 
 ```bash
 location=$(pwd)/gradlew
-image=$(pwd)/docs/stirling-transparent.svg
+image=$(pwd)/docs/stirling.svg
 
 cat > ~/.local/share/applications/Stirling-PDF.desktop <<EOF
 [Desktop Entry]
@@ -390,7 +384,7 @@ Note: Currently the app will run in the background until manually closed.
 
 ### Optional: Changing the Host and Port
 
-To override the default configuration, you can add the following to `/.git/Stirling-PDF/configs/custom_settings.yml` file:
+To override the default configuration, you can add the following to the `configs/custom_settings.yml` file inside your install directory (for example, `/opt/Stirling-PDF/configs/custom_settings.yml`):
 
 ```yaml
 server:

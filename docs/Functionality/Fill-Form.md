@@ -2,7 +2,7 @@
 sidebar_position: 9
 id: Fill-Form
 title: Fill Form
-description: Fill PDF AcroForm fields interactively in a visual viewer and download the filled PDF
+description: Fill in a PDF's form fields right in the viewer and download the completed PDF
 tags:
   - forms
   - acroform
@@ -11,11 +11,9 @@ tags:
 
 # Fill Form
 
-**Tool ID:** `formFill`
+Fill Form lets you complete a PDF's interactive form fields directly in the viewer and download the filled result. Open a PDF that already contains form fields - text boxes, checkboxes, radio buttons, dropdowns - type your answers into the fields shown on the page, and save the completed document.
 
-Fill Form lets you complete a PDF's interactive form fields (AcroForm fields) directly in a visual viewer and download the filled result. Open a PDF that already contains form fields - text boxes, checkboxes, radio buttons, dropdowns - type your answers into the fields shown on the page, and export the completed document.
-
-The tool detects the existing fields in the uploaded PDF; it does not add new fields. To create or edit fields, use the Forms API endpoints instead.
+Fill Form works with fields that are already in the PDF; it does not add new fields. If a form has no fillable fields, there is nothing to type into.
 
 ---
 
@@ -31,15 +29,16 @@ The tool detects the existing fields in the uploaded PDF; it does not add new fi
 ## How It Differs from Other Form Tools
 
 - **Fill Form** keeps the fields editable - it just populates their values, so the form can still be changed later.
-- **Flatten** merges form fields into the page so they become part of the static document and can no longer be edited. Use it when you want to lock in answers before sending a final copy. See [Flatten](./Security/Security.md#permissions--access-control).
-- **Unlock PDF Forms** removes read-only restrictions from fields so locked fields can be edited again. Use it when a form refuses input because its fields are marked read-only. See [Unlock PDF Forms](./Security/Security.md#permissions--access-control).
+- **Flatten** merges form fields into the page so they become part of the static document and can no longer be edited. Use it when you want to lock in answers before sending a final copy. See [Flatten](./Security/Security.md#password-and-access).
+- **Unlock PDF Forms** removes read-only restrictions from fields so locked fields can be edited again. Use it when a form refuses input because its fields are marked read-only. See [Unlock PDF Forms](./Security/Security.md#password-and-access).
 
 ---
 
 ## Notes
 
-- Runs in your self-hosted Stirling PDF instance with no external service or credits required. See [Modes and Licensing](../Modes-and-Licensing.md).
-- The PDF must already contain AcroForm fields. PDFs with no fields, or scanned image-only forms, have nothing to fill.
+- Runs in your self-hosted Stirling PDF instance with no external service or credits required. See [Modes](../Modes-and-Licensing.md).
+- The PDF must already contain fillable form fields. PDFs with no fields, or scanned image-only forms, have nothing to fill.
+- Automating form filling? You can do the same thing in a pipeline or script. See the [API reference](../API.md) for details.
 
 ---
 

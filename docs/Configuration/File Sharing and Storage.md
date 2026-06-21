@@ -15,7 +15,11 @@ File Sharing and Storage is currently in **alpha**. Functionality may change, an
 
 Stirling PDF can store files on the server and let users share them with each other. Files can be shared directly with specific users or via shareable links. Admins can set storage quotas to control disk usage.
 
-Basic local-disk storage and sharing need **no license** - just turn on `security.enableLogin` and `storage.enabled`. Only the **database** and **s3** storage providers require a Pro/Enterprise license. See [Modes and Licensing](../Modes-and-Licensing.md) for what each deploy mode includes; self-hosted instances never use credits.
+Basic local-disk storage and sharing need **no license** - just turn on `security.enableLogin` and `storage.enabled`. Only the **database** and **s3** storage providers require a Pro/Enterprise license. See [Modes](../Modes-and-Licensing.md) for what each deploy mode includes; self-hosted instances never use credits.
+
+:::tip Already set up?
+If your admin has turned storage on and you just want to use it, skip ahead to [The My Files Page](#the-my-files-page) and [Sharing Files](#sharing-files). The setup sections in between (storage providers, S3, quotas) are for whoever runs the server.
+:::
 
 ---
 
@@ -240,21 +244,21 @@ The difference between Commenter and Viewer only matters in [Shared Signing](../
 
 ---
 
-## My Files Page (`/files`)
+## The My Files Page
 
-Once `storage.enabled` is on and you are logged in, the **My Files** page at `/files` is a server-side file manager. It works on the **local** provider with **no license** required.
+When your admin has turned storage on, you get a **My Files** page (find it at `/files` once you are logged in). It is your personal space on the server for keeping documents that stick around between sessions, instead of living only in your browser tab.
 
-From the file manager you can:
+On the My Files page you can:
 
-- **Upload** files into server storage
-- **Organize into nested folders** and move files between them
-- **Preview** stored files in the browser
+- **Upload** documents to keep them on the server
+- **Organize them into folders**, including folders inside folders, and drag files between them
+- **Preview** a stored file right in the browser without downloading it
 - **Rename, move, and delete** files and folders
-- **Browse a folder-tree sidebar** for quick navigation
-- **Customize folder appearance** with colors and thumbnails
-- **Tell local from server files** - each item shows an origin badge indicating whether it lives in your browser session or in server storage
+- **Jump around quickly** using the folder sidebar on the left
+- **Personalize folders** with colors and thumbnails so they are easy to spot
+- **See where each file lives** - every item shows a small badge telling you whether it is in your current browser session or saved on the server
 
-Folders are private to each user. There is no folder-level sharing - sharing is done per file (see below).
+Your folders are private to you. Folders themselves are not shared; you share individual files instead (see [Sharing Files](#sharing-files) below).
 
 ---
 
@@ -323,14 +327,17 @@ For any share link you've created, you can view who accessed it, whether they vi
 ### Share link returns 404 Not Found
 - The link has expired or does not exist. Expired and missing links both return **404 Not Found**. The file owner needs to create a new one.
 
-### Quota exceeded (HTTP 403)
-- Increase `maxStorageMbPerUser` or `maxStorageMbTotal`, or delete unused files to free up space
+### Quota exceeded (HTTP 413)
+- A file or upload that exceeds a configured quota is rejected with **413 Payload Too Large** (per-file, per-user, and total-storage caps all use this status)
+- Increase `maxStorageMbPerUser`, `maxStorageMbTotal`, or `maxFileMb`, or delete unused files to free up space
 
 ---
 
-## API Reference
+## Developer Reference: Storage API
 
-For users who want to integrate programmatically, the full API endpoints are listed below. See [API Documentation](../API.md) for details.
+This section is for developers and admins automating storage outside the web app. If you just want to upload, organize, and share files, everything above is done from the **My Files** page - you do not need any of this.
+
+The full storage and sharing endpoints are listed below. See [API Documentation](../API.md) for authentication and general usage.
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -352,7 +359,7 @@ For users who want to integrate programmatically, the full API endpoints are lis
 
 ### Folder Endpoints
 
-Folders back the **My Files** page. All operations are scoped to the authenticated user.
+These are the endpoints behind the folders on the **My Files** page. All operations are scoped to the authenticated user.
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|

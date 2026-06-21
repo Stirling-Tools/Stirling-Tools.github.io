@@ -7,31 +7,23 @@ description: The most commonly used PDF tools in Stirling PDF
 
 # Recommended Tools
 
-The most frequently used PDF operations, prominently featured on the home page for quick access.
-
-:::info Tool ID vs. endpoint slug
-The **Tool ID** below is the identifier used by the frontend tool registry (for example `compress`, `ocr`). The matching REST endpoint can use a different slug (for example `/api/v1/misc/compress-pdf`, `/api/v1/misc/ocr-pdf`). Both are noted where they differ.
-:::
+The PDF tools you'll reach for most often, featured on the home page for quick access.
 
 ---
 
 ## PDF Text Editor *(Alpha)* {#pdf-text-editor}
 
-**Tool ID:** `pdfTextEditor` &nbsp;&middot;&nbsp; **Endpoint:** `text-editor-pdf`
-
-Review and edit text and images in PDFs with grouped text editing and PDF regeneration. This is a flagship V2 tool that runs in your browser.
+Open a PDF and edit its text and images right in your browser, then save a new copy. Edits are grouped so you can change a whole paragraph at once, and the PDF is rebuilt when you're done.
 
 :::warning Experimental
-The PDF Text Editor is **alpha / experimental**. Behaviour and output may change, and complex PDFs may not round-trip perfectly. Keep a copy of your original file.
+The PDF Text Editor is **alpha / experimental**. Its behaviour and output may change, and complex PDFs may not come out perfectly. Always keep a copy of your original file.
 :::
 
 ---
 
 ## Multi-Tool
 
-**Tool ID:** `multiTool`
-
-Page editor workspace  - upload PDFs once and chain multiple page operations (rotate, reorder, delete, split) without re-uploading.
+Upload your PDFs once, then rotate, reorder, delete, and split pages in a single workspace without re-uploading between steps.
 
 **[Multi-Tool Guide →](./Multi-Tool.md)**
 
@@ -39,17 +31,13 @@ Page editor workspace  - upload PDFs once and chain multiple page operations (ro
 
 ## Merge PDFs
 
-**Tool ID:** `merge`
-
-Combine multiple PDF documents into a single file. Drag and drop to reorder before merging.
+Combine several PDFs into one file. Drag and drop to set the order before you merge.
 
 ---
 
 ## Compare
 
-**Tool ID:** `compare`
-
-Compare two PDF documents side-by-side with visual difference highlighting.
+Spot the differences between two versions of a document. The comparison is text-based: removed words are highlighted in red and added words in green.
 
 **[Compare Guide →](./Compare.md)**
 
@@ -57,9 +45,7 @@ Compare two PDF documents side-by-side with visual difference highlighting.
 
 ## Compress
 
-**Tool ID:** `compress` &nbsp;&middot;&nbsp; **Endpoint:** `compress-pdf`
-
-Reduce PDF file size (10-90% reduction) with configurable quality levels.
+Shrink a PDF's file size (typically 10-90% smaller) by choosing how much quality you want to keep.
 
 **[Compress Guide →](./Compress.md)**
 
@@ -67,9 +53,7 @@ Reduce PDF file size (10-90% reduction) with configurable quality levels.
 
 ## Convert
 
-**Tool ID:** `convert`
-
-Convert between PDF and 50+ file formats including images, Office documents, HTML, and more. Batch conversion supported.
+Convert between PDF and 50+ formats, including images, Office documents, HTML, and more. You can convert several files in one go.
 
 **[Convert Guide →](./Convert/Convert.md)**
 
@@ -77,9 +61,7 @@ Convert between PDF and 50+ file formats including images, Office documents, HTM
 
 ## OCR
 
-**Tool ID:** `ocr` &nbsp;&middot;&nbsp; **Endpoint:** `ocr-pdf`
-
-Make scanned PDFs searchable by recognizing text in images. Supports 100+ languages via Tesseract OCR.
+Turn scanned PDFs into searchable text by recognising the words in the page images. Supports 100+ languages.
 
 **[OCR Guide →](./OCR.md)**
 
@@ -87,16 +69,14 @@ Make scanned PDFs searchable by recognizing text in images. Supports 100+ langua
 
 ## Redact
 
-**Tool ID:** `redact`
-
-Permanently remove sensitive information from PDFs. Supports manual redaction (draw boxes) and automatic redaction (text/regex patterns).
+Permanently remove sensitive information from a PDF. Draw boxes over what you want to hide, or let the tool find and remove text and patterns automatically.
 
 **Common patterns:**
 - SSN: `\d{3}-\d{2}-\d{4}`
 - Phone: `\(\d{3}\) \d{3}-\d{4}`
 - Email: `[\w\.-]+@[\w\.-]+\.\w+`
 
-Redaction is permanent  - original content cannot be recovered.
+Redaction is permanent - the original content cannot be recovered.
 
 **[Redaction Guide →](./Page-Operations/redact.md)**
 

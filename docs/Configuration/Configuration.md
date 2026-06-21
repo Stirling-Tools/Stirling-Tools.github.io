@@ -113,8 +113,6 @@ For more details, see [System and Security Configuration](./System%20and%20Secur
   </TabItem>
 </Tabs>
 
-**English (US)** (`en-US`) and **English (UK)** (`en-GB`) are separate entries in the language selector. Pick the one that matches the spelling you want; setting one does not enable the other.
-
 Leaving `defaultLocale` empty (the default) auto-detects the language from the browser and falls back to `en-US` if no preference is found.
 
 **How language selection works:**
@@ -126,20 +124,23 @@ Stirling PDF determines the interface language using this priority order:
    - Choice is stored in browser's localStorage (persists across sessions)
    - Storage key: `i18nextLng`
 
-2. **Browser's language preference**
-   - Automatically detected from browser's `Accept-Language` header via the `navigator` API
-   - Example: Firefox set to Swedish (sv-SE) will show Swedish UI
-
-3. **System default locale** (lowest priority)
+2. **System default locale**
    - Set via `SYSTEM_DEFAULTLOCALE` or `system.defaultLocale`
-   - Only applied if user has no localStorage preference (first-time visitors)
+   - When configured, it overrides the browser's detected language for users who have not made a manual selection
+
+3. **Browser's language preference**
+   - Automatically detected from the browser via the `navigator` API
+   - Example: Firefox set to Swedish (sv-SE) shows Swedish UI when no `defaultLocale` is configured
+
+4. **Fallback** (lowest priority)
+   - `en-US` is used when none of the above resolve to an available language
 
 **Example:**
 - Config: `SYSTEM_DEFAULTLOCALE=en-US`
 - Browser: Swedish (sv-SE)
-- Result: UI shows Swedish (browser preference overrides config)
+- Result: UI shows English (US) (the configured default overrides the browser preference)
 
-To force a specific default language regardless of browser settings, users must manually select it via the language globe icon.
+If `defaultLocale` is left empty (the default), the browser-detected language is used instead. Users can always override either choice by manually selecting a language via the language globe icon.
 
 > **Tip**: Set `SYSTEM_DEFAULTLOCALE` to your organization's primary language. Users can always override it using the language selector in the top-right corner.
 
@@ -149,7 +150,7 @@ To force a specific default language regardless of browser settings, users must 
   <TabItem value="settings" label="Settings File">
     ```yaml
     system:
-      maxFileSize: 2000  # MB
+      fileUploadLimit: "500MB"  # Number (0-999) followed by KB, MB, or GB. Empty = no limit
     spring:
       servlet:
         multipart:
@@ -159,7 +160,7 @@ To force a specific default language regardless of browser settings, users must 
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
-    SYSTEM_MAXFILESIZE=2000        # MB
+    SYSTEM_MAXFILESIZE=500        # Size in MB (valid range 1-999)
     SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=2000MB
     SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=2000MB
     ```
@@ -171,31 +172,6 @@ To force a specific default language regardless of browser settings, users must 
 ```bash
 JAVA_TOOL_OPTIONS="-Xms512m -Xmx4g"  # Min 512MB, Max 4GB RAM
 ```
-
-### MCP Server
-
-Stirling PDF can expose its tools over the [Model Context Protocol](https://modelcontextprotocol.io/). The entire `mcp` block is **off by default**: when `mcp.enabled` is `false` no MCP endpoint exists and no MCP beans are wired. Set `mcp.enabled: true` and choose an auth mode to turn it on.
-
-```yaml
-mcp:
-  enabled: false                  # Master switch (off by default)
-  scopesEnabled: true             # Enforce mcp.tools.read / mcp.tools.write scopes by operation category
-  allowedOperations: []           # Allow-list of operation ids (e.g. ['compress-pdf']). Empty = all
-  blockedOperations: []           # Deny-list of operation ids; always removed even if allowed
-  maxRequestBytes: 10485760       # Max request body size (10MB); inline uploads ride in the JSON-RPC body
-  maxInlineResponseBytes: 10485760 # Results up to this size return inline as base64; larger ones return a fileId
-  engineCapabilityRefreshMinutes: 5 # How often to refresh the capabilities manifest
-  auth:
-    mode: oauth                   # 'oauth' (OAuth2 resource server) or 'apikey' (per-user X-API-KEY, no IdP needed)
-    issuerUri: ""                 # OAuth2 issuer URI (required when mode=oauth)
-    jwksUri: ""                   # JWKS URI; blank derives it from the issuer's discovery document
-    resourceId: ""               # RFC 8707 resource id of this MCP server; tokens must list it in 'aud'
-    acceptedAudiences: []         # Extra 'aud' values accepted on top of resourceId (empty = strict RFC 8707)
-    usernameClaim: sub            # JWT claim matched to a Stirling username (e.g. 'sub', 'email')
-    requireExistingAccount: true  # Reject tokens whose subject has no enabled Stirling account
-```
-
-The `apikey` mode is the low-friction self-host option: it accepts a Stirling per-user API key via the `X-API-KEY` header (or `Authorization: Bearer <key>`) and needs no external identity provider. For the full walkthrough see [MCP Server](./MCP-Server.md).
 
 ---
 
@@ -250,7 +226,7 @@ For advanced features and specific use cases, see these detailed guides:
 - Direct Google Drive integration
 - OAuth setup
 
-**[MCP Server](./MCP-Server.md)**
+**[MCP Server](../Advanced%20Configuration/MCP-Server.md)**
 - Expose Stirling PDF tools over the Model Context Protocol
 - OAuth2 or API-key authentication
 - Operation allow/deny lists

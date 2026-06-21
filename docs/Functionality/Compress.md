@@ -7,10 +7,6 @@ description: Reduce PDF file size while maintaining quality
 
 # Compress PDF
 
-**Tool ID:** `compress-pdf`
-
-(`compress-pdf` is the endpoint slug; the frontend tool id is `compress`.)
-
 Reduce PDF file size by compressing images, optimizing structure, and removing unnecessary data.
 
 **Important:** Compression is permanent. Always keep a backup of the original if you might need maximum quality later.
@@ -77,7 +73,9 @@ See [API Documentation](../API.md) for complete endpoint reference.
 
 ## Decompress PDF
 
-The inverse operation, **Decompress PDF** (`/api/v1/misc/decompress-pdf`), fully decompresses all PDF streams including text content. It is useful for debugging or editing the raw PDF content directly, since the resulting file's object streams are readable rather than encoded. The file size will increase.
+:::note Automation / API
+There is also an automation option that does the opposite: it fully decompresses a PDF's streams so the raw content is readable, which is handy for debugging or editing a PDF by hand (the file gets larger). It runs through automation rather than a tool in the web app - see the [API reference](../API.md).
+:::
 
 ---
 

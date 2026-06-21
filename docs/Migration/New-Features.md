@@ -96,10 +96,8 @@ Original.pdf → [Compress] → v1 → [Add Pages] → v2 → [Watermark] → v3
 - **Lightning Fast:** 0.3 second startup time
 - **Native Integration:** "Open with Stirling PDF" in file explorer
 - **System Default:** Set as default PDF viewer
-- **Choose your connection on launch** - Connect to [Stirling Cloud](../Modes-and-Licensing.md), your own [self-hosted server](../Modes-and-Licensing.md), or run fully offline against the bundled local processing engine
+- **Sign in with Stirling Cloud or self-hosted server** - Choose your connection on launch
 - **Resource Efficient:** Uses ~50MB RAM vs browser ~200MB
-
-> An AI assistant is available as a [Stirling Cloud](../Modes-and-Licensing.md) feature and is not part of the self-hosted server or the bundled local mode.
 
 ### Platform Support
 
@@ -107,7 +105,7 @@ Original.pdf → [Compress] → v1 → [Add Pages] → v2 → [Watermark] → v3
 |----------|--------|----------|
 | **Windows** | `.exe` installer | Context menu integration |
 | **macOS** | `.dmg` | Dock integration |
-| **Linux** | `.deb` / `.rpm` / `.AppImage` / AUR | Desktop file integration |
+| **Linux** | `.deb` | Desktop file integration |
 
 ### Key Differences from Web
 
@@ -118,7 +116,7 @@ Original.pdf → [Compress] → v1 → [Add Pages] → v2 → [Watermark] → v3
 | Default Viewer | ✅ Yes | ❌ No |
 | System Integration | ✅ Native | ⚠️ Limited |
 | Storage | Unlimited | Browser limits |
-| Updates | Automatic (in-app updater) | Automatic |
+| Updates | Manual | Automatic |
 
 ### Right-Click Integration
 
@@ -484,7 +482,7 @@ Multi-Tool Workbench
 | Token Persistence | Optional | Configurable |
 | Key Rotation | ❌ No | ✅ Yes |
 | Key Cleanup | Manual | Automatic |
-| Key Retention | N/A | Automatic (derived from token expiry) |
+| Key Retention | N/A | Configurable days |
 | Secure Cookie | Hardcoded | Removed (always secure) |
 
 ### New Settings
@@ -495,9 +493,8 @@ security:
     persistence: true           # Store keys across restarts
     enableKeyRotation: true     # Rotate signing keys periodically
     enableKeyCleanup: true      # Auto-delete old keys
+    keyRetentionDays: 7         # How long to keep old keys
 ```
-
-Key retention is not a configurable setting. The server derives how long to keep old signing keys automatically from the token expiry (plus a safety buffer), so old keys are always retained at least as long as the tokens they signed remain valid.
 
 ### Benefits
 
@@ -509,7 +506,7 @@ Key retention is not a configurable setting. The server derives how long to keep
 **Automatic Cleanup:**
 - No manual key management needed
 - Prevents key accumulation
-- Retention period derived automatically from token expiry
+- Configurable retention period
 
 **Persistence:**
 - Keys survive container restarts

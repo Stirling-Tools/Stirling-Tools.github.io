@@ -17,15 +17,15 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
 
 <Tabs>
   <TabItem value="server" label="Server Certificate" default>
-    Easiest option  - uses an auto-generated server certificate. No setup needed for users.
+    Uses an auto-generated server certificate, so users can sign without uploading their own. This is a Pro/Enterprise feature and must be enabled by an administrator; it is not available on the free self-hosted edition.
 
     1. Go to **Certificate Sign** tool
     2. Upload PDF
-    3. Select "Sign with Stirling PDF"
+    3. In the **Sign Mode** step, choose **Auto (server)** (shown only when the server certificate feature is enabled)
     4. Configure signature appearance (optional)
     5. Sign and download
 
-    **Configuration:**
+    **Configuration (Pro/Enterprise):**
 
     <Tabs groupId="config-methods">
       <TabItem value="settings" label="Settings File">
@@ -48,12 +48,12 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
     </Tabs>
   </TabItem>
   <TabItem value="custom" label="Custom Certificate">
-    Use your own X.509 certificate (PKCS#12 `.p12`/`.pfx` or PEM format).
+    Use your own X.509 certificate. Supported formats: PKCS#12 (`.p12`/`.pfx`), PEM (separate private key + certificate), and JKS. This option is available on every edition, including free self-hosted.
 
     1. Go to **Certificate Sign** tool
     2. Upload PDF
-    3. Select "Upload Certificate"
-    4. Upload certificate file and enter password
+    3. In the **Sign Mode** step, choose **Manual**, then pick your certificate format
+    4. Upload your certificate file(s) and enter the password (if any)
     5. Configure signature appearance
     6. Sign and download
 
@@ -66,24 +66,18 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
     ```
   </TabItem>
   <TabItem value="org" label="Organization Certificate">
-    Place your organization certificate in the configs directory so all users can sign without uploading their own:
+    Use a shared organization certificate so all users can sign without uploading their own. This is a Pro/Enterprise feature managed by an administrator; it is not available on the free self-hosted edition.
 
-    ```bash
-    configs/
-      └── keystore.p12
-    ```
+    An administrator uploads your own `.p12`/`.pfx` keystore (with its password) through the admin server-certificate settings, replacing the auto-generated certificate. The server certificate feature must be enabled:
 
     ```yaml
     system:
       serverCertificate:
-        enabled: false  # Disable auto-generation
+        enabled: true
+        organizationName: Acme Corp
     ```
 
-    ```bash
-    KEYSTORE_PASSWORD=your-password
-    ```
-
-    Users will see a "Sign with [Organization Name]" option.
+    Once configured, users can choose **Auto (server)** in the **Sign Mode** step to sign with the shared certificate.
   </TabItem>
 </Tabs>
 
@@ -91,7 +85,7 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
 
 ### Signature Appearance
 
-**Visible:** Appears as a box on the PDF page with configurable position, size, page, and displayed text (name, date, reason).
+**Visible:** Appears as a box on a chosen page showing the signer name, signing date, and reason, with an optional logo.
 
 **Invisible:** Embedded in PDF metadata only, not visible on the page.
 
@@ -113,7 +107,7 @@ Verify that a PDF was signed by the claimed certificate, the certificate is trus
 
 ### Revocation Checking
 
-Certificates can be revoked (invalidated) after they're issued  - for example if a private key is compromised. Revocation checking lets Stirling PDF verify that a certificate is still valid at the time of use.
+Certificates can be revoked (invalidated) after they're issued - for example if a private key is compromised. Revocation checking lets Stirling PDF verify that a certificate is still valid at the time of use.
 
 ```yaml
 security:
@@ -131,20 +125,18 @@ security:
 | `ocsp+crl` | Try real-time check first, fall back to the list if that fails |
 
 **`hardFail`** controls what happens when the revocation check itself fails (e.g. server unreachable):
-- `false` (default)  - validation passes with a warning
-- `true`  - validation fails entirely. Use this in high-security environments where you'd rather reject a signature than skip the check.
+- `false` (default) - validation passes with a warning
+- `true` - validation fails entirely. Use this in high-security environments where you'd rather reject a signature than skip the check.
 
 ---
 
 ## Timestamping PDFs
 
-A trusted timestamp (RFC 3161) proves a PDF existed at a particular point in time. Stirling PDF contacts a trusted Time Stamp Authority (TSA) server and embeds a document timestamp into the PDF. Only a SHA-256 hash of the document is sent to the TSA - the PDF itself never leaves the server.
-
-Use the **Timestamp PDF** tool (`timestamp-pdf` endpoint), pick a TSA, and download the timestamped file. The timestamp is added as an incremental update, so existing signatures stay intact.
+Use the **Timestamp PDF** tool to add a trusted RFC 3161 timestamp that proves your PDF existed at a particular point in time. Pick a Time Stamp Authority (TSA), then download the timestamped file. The timestamp is added as an incremental update, so any existing signatures stay intact. For a plain-language overview of the tool, see [Security tools - Timestamp PDF](./Security.md#signatures).
 
 ### Trusted Time Stamp Authorities
 
-The `tsaUrl` must be one of the built-in presets or an admin-configured URL. Built-in presets:
+You can pick from the built-in TSA presets below, or your administrator can add more. Built-in presets:
 
 | Provider | URL |
 |----------|-----|
@@ -154,7 +146,7 @@ The `tsaUrl` must be one of the built-in presets or an admin-configured URL. Bui
 | FreeTSA | `https://freetsa.org/tsr` |
 | MeSign | `http://tsa.mesign.com` |
 
-If `tsaUrl` is omitted, the server default is used (DigiCert by default). Administrators can allow additional TSA servers and set the default in `settings.yml`:
+If you don't choose one, the server default is used (DigiCert by default). Administrators can allow additional TSA servers and change the default in `settings.yml`:
 
 ```yaml
 security:
@@ -250,6 +242,10 @@ curl -X POST http://stirling-pdf:8080/api/v1/security/timestamp-pdf \
   </TabItem>
 </Tabs>
 
+:::note
+The `system.serverCertificate.*` keys are honoured only on Pro/Enterprise editions. On the free self-hosted edition, setting `enabled: true` has no effect and the **Auto (server)** sign mode stays hidden; use a custom certificate (Manual mode) instead. All `security.validation.*` and `security.timestamp.*` settings apply to every edition.
+:::
+
 ---
 
 ## API Usage
@@ -258,6 +254,7 @@ curl -X POST http://stirling-pdf:8080/api/v1/security/timestamp-pdf \
   <TabItem value="sign-server" label="Sign (Server Cert)">
     ```bash
     # certType must be one of PEM, PKCS12, PFX, JKS, SERVER (uppercase)
+    # certType=SERVER requires the Pro/Enterprise server certificate feature to be enabled
     curl -X POST http://stirling-pdf:8080/api/v1/security/cert-sign \
       -F "fileInput=@document.pdf" \
       -F "certType=SERVER" \
@@ -304,7 +301,7 @@ docker exec stirling-pdf update-ca-certificates
 Check that the container has HTTPS access to OCSP/CRL servers. Use `hardFail: false` or switch to `crl` mode for restricted networks.
 
 ### Server certificate not generated
-Ensure `SYSTEM_SERVERCERTIFICATE_ENABLED=true` is set. Check logs with `docker logs stirling-pdf | grep -i certificate`.
+The server certificate feature requires a Pro/Enterprise license; on the free self-hosted edition it stays disabled regardless of configuration. With a license, ensure `SYSTEM_SERVERCERTIFICATE_ENABLED=true` is set. Check logs with `docker logs stirling-pdf | grep -i certificate`.
 
 ---
 

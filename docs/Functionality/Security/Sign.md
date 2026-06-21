@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 **Tool ID:** `sign`
 
-Add handwritten signatures, text signatures, or image-based signatures to PDF documents. This tool is for visual/handwritten signatures - for certificate-based digital signatures, see [Certificate Signing](./Certificate-Signing).
+Add handwritten signatures, text signatures, or image-based signatures to PDF documents. This tool is for visual/handwritten signatures - for certificate-based digital signatures, see [Certificate Signing](./Certificate-Signing.md).
 
 ---
 
@@ -20,7 +20,7 @@ Add handwritten signatures, text signatures, or image-based signatures to PDF do
 <Tabs>
   <TabItem value="draw" label="Draw" default>
     1. Upload PDF and navigate to the signing location
-    2. Click "Draw Signature" to open the signature pad
+    2. Select the "Draw" tab to open the signature canvas
     3. Draw using mouse or touchscreen
     4. Position and resize the signature on the page
     5. Apply and download
@@ -29,13 +29,13 @@ Add handwritten signatures, text signatures, or image-based signatures to PDF do
   </TabItem>
   <TabItem value="type" label="Type">
     1. Upload PDF
-    2. Click "Text Signature"
-    3. Type your name and choose a cursive/script font
+    2. Select the "Type" tab
+    3. Type your name and choose a font (Helvetica, Times, Courier, Arial, or Georgia)
     4. Position and apply
   </TabItem>
   <TabItem value="image" label="Upload Image">
     1. Upload PDF
-    2. Click "Upload Signature"
+    2. Select the "Upload" tab
     3. Select a PNG/JPG of your signature
     4. Position, resize, and apply
 
@@ -49,35 +49,34 @@ Add handwritten signatures, text signatures, or image-based signatures to PDF do
 
 Configure Stirling PDF to load pre-stored signature files for quick, consistent signing across documents.
 
-**Configuration:** [Sign with Custom Files](../../Configuration/Sign%20with%20custom%20files)
+**Configuration:** [Sign with Custom Files](../../Configuration/Sign%20with%20custom%20files.md)
 
 ---
 
 ## Signature Options
 
-- **Transparency** - Make signature background transparent
-- **Color** - Blue, black, or custom ink color
-- **Size** - Adjust to fit signature line
-- **Rotation** - Adjust angle if needed
-- **Pages** - Sign on single page, multiple pages, or different signatures per page
+- **Transparency** - Remove the white background of an uploaded signature image to make it transparent
+- **Color** - Pick any ink color from the color picker (with quick black, blue, red, orange, green, and purple swatches) for drawn and typed signatures
+- **Size** - Adjust the pen thickness and resize the placed signature to fit the signature line
+- **Pages** - Sign on a single page, or place signatures on multiple pages
 
 ---
 
 ## Visual vs. Digital Signatures
 
-| | Visual Signature (This Tool) | Digital Signature ([Certificate](./Certificate-Signing)) |
+| | Visual Signature (This Tool) | Digital Signature ([Certificate](./Certificate-Signing.md)) |
 |---|---|---|
 | **Security** | Visual only, can be copied | Cryptographically secure |
 | **Authentication** | No verification | Proves signer identity |
 | **Tamper Detection** | None | Detects changes after signing |
 | **Setup** | None required | Requires certificate |
 
-Visual signatures do **not** provide authentication, tamper protection, or guaranteed legal standing. For legally binding signatures requiring verification, use [Certificate Signing](./Certificate-Signing).
+Visual signatures do **not** provide authentication, tamper protection, or guaranteed legal standing. For legally binding signatures requiring verification, use [Certificate Signing](./Certificate-Signing.md).
 
 ---
 
 ## Related Tools
 
-- **[Certificate Signing](./Certificate-Signing)** - Digital signatures with certificates
-- **[Add Stamp](../Content-Editing#stamps--annotations)** - Add official stamps
-- **[Add Password](../Security#password-protection)** - Protect signed documents
+- **[Certificate Signing](./Certificate-Signing.md)** - Digital signatures with certificates
+- **[Add Stamp](../Content-Editing/Content-Editing.md#stamps--annotations)** - Add official stamps
+- **[Add Password](./Security.md#password-and-access)** - Protect signed documents

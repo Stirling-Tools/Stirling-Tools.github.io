@@ -23,7 +23,7 @@ All other tools have no default shortcut but can be assigned one.
 
 ### Customising shortcuts
 
-1. Open **Settings** (gear icon, top right)
+1. Open **Settings** (gear icon at the bottom of the Quick Access bar)
 2. Go to **Keyboard Shortcuts**
 3. Find the tool you want
 4. Click **Change shortcut**, then press your key combination

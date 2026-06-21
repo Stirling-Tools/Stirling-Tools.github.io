@@ -4,100 +4,63 @@ description: Security features for PDFs and deployment configurations
 ---
 # Features - Security
 
-## PDF Security Tools
+These are the tools you'll find under **Security** in the Stirling PDF app. Open a PDF, pick a tool, set your options, and download the result.
 
-### Password Protection
+## Password and access
 
-- **`add-password`**: Secure your PDFs by adding password protection. Supports user passwords (opens PDF) and owner passwords (controls permissions).
+- **Add Password** - lock a PDF with a password. You can set a user password (needed to open the file) and an owner password (controls what people can do once it's open).
 
-- **`remove-password`**: Remove password protection from secured PDFs (requires the original password).
+- **Remove Password** - unlock a protected PDF. You'll need the current password.
 
-### Permissions & Access Control
+- **Change Permissions** - control what others can do with your PDF: printing, copying, editing, form filling, and more.
 
-- **`change-permissions`**: Control how others can view and edit your PDFs. Set restrictions on printing, copying, editing, form filling, and more.
+- **Flatten** - merge form fields and interactive elements into the page so they can no longer be edited or filled in. Use this to lock down a completed form.
 
-- **`flatten`**: Flatten PDF form fields by merging them into the document, making them non-editable. Prevents further modifications to form data and interactive elements.
+- **Unlock PDF Forms** - reverse the lock on form fields so they can be edited and filled in again.
 
-- **`unlock-pdf-forms`**: Unlock form fields in a PDF document, allowing users to edit previously locked form fields and interactive elements.
+## Signatures
 
-### Signatures
-
-- **`sign`**: Add handwritten, text, or image signatures to PDFs. Draw signatures with mouse/touchscreen, type your name, or upload signature images. For cryptographic digital signatures, use `cert-sign` instead.
+- **Sign** - add a handwritten, typed, or image signature. Draw with your mouse or touchscreen, type your name, or upload a signature image. For a cryptographic digital signature, use Certificate Sign.
 
   **Learn more:** [Sign PDF (Handwritten Signatures)](./Sign.md)
 
-- **`cert-sign`**: Digitally sign PDFs using X.509 certificates. Cryptographic signatures that prove identity and document integrity. Supports server-generated certificates, custom certificates, and organization certificates.
+- **Certificate Sign** - digitally sign a PDF with an X.509 certificate to prove who signed it and that the document hasn't been changed. Choose **Manual** to upload your own certificate (PEM, PKCS12, or JKS), or **Auto (server)** to sign with the server's certificate (the server certificate requires a Pro or Enterprise license).
 
   **Learn more:** [Certificate Signing Guide](./Certificate-Signing.md)
 
-- **`shared-signing`** *(Pro/Enterprise, Alpha)*: Collaborative multi-participant signing workflows. A document owner uploads a PDF, invites registered users as participants, and each participant signs with their own certificate and optional wet signature. Includes progress tracking, signature summary pages, and automatic post-finalization data cleanup.
+- **Shared Signing** *(Pro/Enterprise, Alpha)* - send a PDF to several people to sign. The owner invites registered users, each signs with their own certificate and an optional handwritten signature, and the owner tracks progress and finalizes the document.
 
   **Learn more:** [Shared Signing Guide](./Shared-Signing.md)
 
-- **`validate-signature`**: Verify digital signatures and certificates in PDF documents. Check against trusted certificate chains including system trust, Adobe AATL, EU EUTL, and Mozilla CA bundle.
+- **Validate PDF Signature** - check the digital signatures in a PDF: confirm who signed it, whether the certificate is trusted, and whether the document was changed after signing.
 
   **Learn more:** [Certificate Signing - Validation](./Certificate-Signing#validating-signatures)
 
-- **`remove-cert-sign`**: Remove digital certificate signatures from PDFs. Useful when you need to edit a signed document.
+- **Remove Certificate Sign** - strip digital certificate signatures from a PDF. Handy when you need to edit a document that was already signed.
 
-- **`timestamp-pdf`**: Add an RFC 3161 trusted timestamp to prove when your PDF existed. Contacts a trusted Time Stamp Authority (TSA) and embeds a document timestamp. Only a SHA-256 hash of the document is sent to the TSA - the PDF itself never leaves the server.
+- **Timestamp PDF** - add a trusted RFC 3161 timestamp that proves your PDF existed at a particular point in time. Stirling PDF contacts a trusted Time Stamp Authority (TSA) and embeds the timestamp. Only a SHA-256 hash of the document is sent to the TSA, so the PDF itself never leaves your server.
 
   **Learn more:** [Certificate Signing - Timestamping](./Certificate-Signing#timestamping-pdfs)
 
-### Content Security
+## Content security
 
-- **`add-watermark`**: Add custom watermarks to PDFs. Supports text and image watermarks with configurable position, opacity, and rotation.
+- **Add Watermark** - stamp a text or image watermark across your PDF, with control over spacing, opacity, and rotation.
 
-- **`sanitize-pdf`**: Remove potentially dangerous elements from PDFs including JavaScript, embedded files, external links, fonts, and metadata. Essential for security-conscious workflows.
+- **Sanitize** - strip potentially dangerous content such as JavaScript, embedded files, external links, fonts, and metadata. A good first step before sharing untrusted PDFs.
 
-- **`auto-redact`**: Redact (black out) sensitive information from PDFs. Supports text search and regex patterns to find and permanently remove sensitive content.
+- **Redact** - permanently remove sensitive information. Search for text (or match a pattern) to find and black it out automatically, or draw redaction boxes by hand. The underlying text is removed, not just covered.
 
-### Information & Metadata
+## Information
 
-- **`get-info-on-pdf`**: Extract comprehensive PDF information including version, fonts, dimensions, permissions, metadata, and more. Output as JSON or visual tables.
+- **Get ALL Info on PDF** - see everything about a PDF: version, fonts, page dimensions, permissions, metadata, and more. View it as tables in the app or export it as JSON.
 
 ---
 
-## Certificate Signature Validation
+## How signature validation chooses what to trust
 
-Stirling PDF provides enterprise-grade PDF signature validation with configurable trust chains.
+When you run **Validate PDF Signature**, your administrator decides which certificate authorities count as trusted and whether to check that certificates haven't been revoked. The trust sources available are the operating system trust store, the Mozilla CA bundle, the Adobe Approved Trust List (AATL), the EU Trusted List (EUTL, for eIDAS), and your own server-generated certificates. Revocation can be checked in real time (OCSP), against a downloaded list (CRL), or both.
 
-### Trust Sources
-
-Configure which certificate authorities to trust:
-
-- **System Trust Store** - Operating system's trusted CAs
-- **Mozilla CA Bundle** - Mozilla's curated CA list
-- **Adobe AATL** - Adobe Approved Trust List
-- **EU EUTL** - EU Trusted List (eIDAS compliance)
-- **Server Certificates** - Trust server-generated certificates
-
-### Revocation Checking
-
-Verify certificates haven't been revoked:
-
-- **OCSP** - Online Certificate Status Protocol (fast, real-time)
-- **CRL** - Certificate Revocation Lists (works offline)
-- **Dual Mode** - Try OCSP first, fall back to CRL
-
-### Configuration
-
-```yaml
-security:
-  validation:
-    trust:
-      serverAsAnchor: true      # Trust server-generated certificates
-      useSystemTrust: true       # Use OS trust store
-      useMozillaBundle: true     # Mozilla CA bundle
-      useAATL: false             # Adobe Approved Trust List
-      useEUTL: false             # EU Trusted List
-    allowAIA: false              # Fetch intermediate certificates
-    revocation:
-      mode: none                 # Options: none, ocsp, crl, ocsp+crl
-      hardFail: false            # Fail if revocation check fails
-```
-
-**Learn more:** [Certificate Signing - Configuration](./Certificate-Signing#configuration-examples)
+For the full list of settings and example configurations, see [Certificate Signing - Configuration](./Certificate-Signing#configuration-examples).
 
 ---
 

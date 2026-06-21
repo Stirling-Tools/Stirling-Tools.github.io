@@ -421,7 +421,7 @@ If your Stirling PDF backend is accessible at a different URL than the frontend,
 Verify the backend URL is correct by checking that `https://your-domain.com/api/v1/info/status` is accessible.
 
 ### Auto-Login Feature
-> **Tier**: Enterprise
+> **Tier**: Server
 
 Automatically redirect users to OAuth login page, bypassing the Stirling PDF login screen.
 
@@ -440,8 +440,6 @@ Automatically redirect users to OAuth login page, bypassing the Stirling PDF log
   </TabItem>
 </Tabs>
 
-> **Note**: The property is `ssoAutoLogin` (camelCase). The old `SSOAutoLogin` (PascalCase) spelling is auto-migrated to the new key on upgrade, so existing configs keep working. The environment variable `PREMIUM_PROFEATURES_SSOAUTOLOGIN` is unchanged.
-
 **Auto-login Activation Requirements:**
 
 Auto-login only triggers when **ALL** of the following conditions are met:
@@ -453,8 +451,8 @@ Auto-login only triggers when **ALL** of the following conditions are met:
 **Behavior:**
 - When all conditions are met: Users are automatically redirected to OAuth provider login
 - When conditions are not met: Standard login page is displayed
-- After 5 failed login attempts (configurable via `security.loginAttemptCount`), auto-redirect is disabled
-- Users can still access manual login by navigating directly to `/login`
+- If the SSO redirect fails, the browser stops auto-redirecting for the current session so the login page stays reachable
+- After logging out, auto-redirect is suppressed for that session so you can sign in as a different user
 
 ### User Interface
 
@@ -534,7 +532,7 @@ The claims are logged at `INFO` level on each login (and again at `ERROR` level 
 
 - OAuth users must be manually promoted to admin role after first login
 - Provider discovery requires `/.well-known/openid-configuration` endpoint support
-- Auto-login feature requires Enterprise tier
+- Auto-login feature requires the Server tier (or higher)
 
 ## See Also
 

@@ -7,8 +7,6 @@ description: Create automated multi-step PDF workflows with the Automate tool
 
 # Pipeline Automation (Automate)
 
-**Tool ID:** `automate`
-
 Create powerful automated workflows that combine multiple PDF operations into sequential processes. The Automate tool (formerly called "Pipeline") lets you build, save, and reuse complex PDF processing workflows.
 
 :::info V2.0 Update - New "Automate" Feature
@@ -91,12 +89,12 @@ Automated processing mode:
 ### Accessing the Automate Tool
 
 1. **From Home Page**
-   - Click "Automate" in Advanced Tools section
+   - Click "Automate" in the Advanced Tools section
    - Or search for "automate" or "pipeline"
 
-2. **Open Configuration Builder**
-   - Click "Configure Pipeline" button
-   - Pipeline builder interface opens
+2. **Open the Automation Builder**
+   - Click "Create New Automation"
+   - The automation builder opens
 
 ---
 
@@ -104,26 +102,26 @@ Automated processing mode:
 
 ## Steps to Configure and Use Your Pipeline
 
-1. **Access Configuration**
-   - Upon entering the screen, click on the **Configure** button.
+1. **Start a New Automation**
+   - On the Automate screen, click **Create New Automation**.
 
-2. **Enter Pipeline Name**
-   - Provide a name for your pipeline in the designated field.
+2. **Enter Automation Name**
+   - Provide a name for your automation in the designated field (you can also add an optional description and icon).
 
-3. **Select Operations**
-   - Choose the operations for your pipeline (e.g., **Split Pages**), then click **Add Operation**.
+3. **Add Tools**
+   - Choose the tools for your automation (e.g., **Split Pages**) with **Add Tool**. Tools run in the order you add them.
 
-4. **Configure Operation Settings**
-   - Input the necessary settings for each added operation. Settings are highlighted in yellow if customization is needed.
+4. **Configure Tool Settings**
+   - Configure each added tool. A tool shows a **! Not Configured** marker until its settings are saved.
 
-5. **Add More Operations**
-   - You can add and adjust the order of multiple operations. Ensure each operation's settings are customized.
+5. **Add More Tools**
+   - You can add and reorder multiple tools. Make sure each tool is configured.
 
-6. **Save Settings**
-   - Click **Save Operation Settings** after customizing settings for each operation.
+6. **Save Tool Settings**
+   - Click **Save Configuration** in each tool's settings dialog after customizing it.
 
-7. **Validate Pipeline**
-   - Use the **Validation** button to check your pipeline. A green indicator signifies correct setup; a pop-out error indicates issues.
+7. **Save the Automation**
+   - Click **Save Automation** once all tools are configured. The Save button stays disabled until the automation is complete.
 
 8. **Download Pipeline Configuration**
    - The Automate UI offers two download buttons:
@@ -131,8 +129,8 @@ Automated processing mode:
      - **Export for Folder Scanning** - downloads `<name>.folder-scan.json` in the **backend format** with full endpoint paths. Use this for the REST API and for folder scanning.
    - To pre-load a pipeline for all users, place a folder-scanning-format JSON file in `/pipeline/defaultWebUIConfigs/` - it will appear in the dropdown.
 
-9. **Submit Files for Processing**
-   - If your pipeline is correctly set up, close the configure menu, input the files, and hit **Submit**.
+9. **Run the Automation**
+   - Once saved, select the automation from the list, add your files, and run it.
 
 10. **Note on Web UI Limitations**
     - The current web UI version does not support operations that require multiple different types of inputs, such as adding a separate image to a PDF.
@@ -336,20 +334,24 @@ The fastest way to get a correct pipeline JSON for any combination of operations
 
 ## Filter / conditional operations
 
-Filter operations (under `/api/v1/filter/`) let you branch a pipeline: each checks a property of the file and either **passes the file through** (the file continues to later steps) or **drops it** (the file is removed from the working set, so subsequent steps never see it). They are how you express "only process files that match X" inside a pipeline.
+Filter operations let you **branch a pipeline**. Each one checks a property of the file and either lets the file **continue to the next steps** or **drops it** so the rest of the pipeline never sees it. This is how you say "only keep processing files that match X" inside an automation - for example, only run OCR on scans that have no text yet, or only watermark documents over a certain page count.
 
-| Operation | Checks |
+A file that does not match a filter is simply removed from the rest of the pipeline. It is not treated as an error.
+
+These operation names go in your pipeline configuration:
+
+| Operation name | Keeps the file when... |
 |---|---|
-| `/api/v1/filter/filter-contains-text` | Whether the PDF contains a given text string (optionally on specific pages) |
-| `/api/v1/filter/filter-contains-image` | Whether the PDF contains an image (optionally on specific pages) |
-| `/api/v1/filter/filter-page-count` | Page count `Greater` / `Equal` / `Less` than a value |
-| `/api/v1/filter/filter-page-size` | First page's size against a standard page size |
-| `/api/v1/filter/filter-file-size` | File size in bytes against a value |
-| `/api/v1/filter/filter-page-rotation` | First page's rotation against a value |
+| `filter-contains-text` | the PDF contains a given piece of text (you can limit the check to specific pages) |
+| `filter-contains-image` | the PDF contains an image (you can limit the check to specific pages) |
+| `filter-page-count` | the page count is greater than, equal to, or less than a value you set |
+| `filter-page-size` | the first page's size compares to a standard page size you choose |
+| `filter-file-size` | the file size compares to a value you set |
+| `filter-page-rotation` | the first page's rotation compares to a value you set |
 
-The comparison operations (`filter-page-count`, `filter-page-size`, `filter-file-size`, `filter-page-rotation`) take a `comparator` of `Greater`, `Equal`, or `Less`. A file that does not pass a filter is silently dropped from the rest of the pipeline, not treated as an error.
+The four comparison filters (`filter-page-count`, `filter-page-size`, `filter-file-size`, `filter-page-rotation`) take a `comparator` of `Greater`, `Equal`, or `Less`.
 
-**Example - only OCR files that have no text yet:** put `filter-contains-text` (looking for some always-present marker) or pair an image check with OCR. A common pattern is to detect image-only scans with `filter-contains-image`, then route them through `/api/v1/misc/ocr-pdf`.
+**Example - only OCR files that are image-only scans:** detect scans with no text layer using `filter-contains-image`, then route the matching files through the OCR operation. Files that already contain text are dropped before the OCR step, so you only spend processing time on the scans that need it.
 
 ```json
 {

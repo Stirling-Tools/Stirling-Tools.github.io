@@ -159,17 +159,12 @@ services:
       - SECURITY_ENABLELOGIN=true            # Enable user authentication
 
       # Language & Localization
-      - LANGS=en_GB                          # Change to your locale
+      - SYSTEM_DEFAULTLOCALE=en-US           # Default UI locale for new users
 
       # System Configuration
-      - SYSTEM_DEFAULTLOCALE=en-US           # Default locale
       - SYSTEM_GOOGLEVISIBILITY=false        # Hide from search engines
-      - SYSTEM_ROOTURIPATH=/                 # Base URL path
-      - SYSTEM_CONNECTIONTIMEOUTMINUTES=5    # Connection timeout
+      - SYSTEM_ROOTURIPATH=/                 # Base URL path (servlet context path)
       - SYSTEMFILEUPLOADLIMIT=2000MB         # Max upload size (legacy: SYSTEM_MAXFILESIZE in MB)
-
-      # Optional: Logging
-      - SYSTEM_CUSTOMSTATICFILEPATH=/customFiles/static/  # Custom files path
 
     restart: unless-stopped
 
@@ -237,7 +232,6 @@ docker run -d \
   -v ~/stirling-data/logs:/logs \
   -v ~/stirling-data/customFiles:/customFiles:rw \
   -e SECURITY_ENABLELOGIN=true \
-  -e LANGS=en_GB \
   -e SYSTEM_DEFAULTLOCALE=en-US \
   -e SYSTEM_GOOGLEVISIBILITY=false \
   -e SYSTEMFILEUPLOADLIMIT=2000MB \
@@ -602,9 +596,8 @@ endpoints:
 **How to disable in UI:**
 1. Log in as admin
 2. Go to Settings → Endpoints
-3. Find tool you want to disable
-4. Toggle off
-5. Save changes
+3. In "Disabled Endpoints", select the tools you want to disable (or use "Disabled Endpoint Groups" for whole groups)
+4. Save changes
 
 **See all tool IDs:** [Endpoint Customisation](./Configuration/Endpoint%20or%20Feature%20Customisation.md)
 
@@ -1079,13 +1072,13 @@ curl http://localhost:8080/api/v1/info/requests/all/unique
 
 **Health Check Endpoint:**
 ```bash
-curl http://localhost:8080/api/v1/info/health
+curl http://localhost:8080/api/v1/info/status
 
 # Response:
 {"status":"UP","version":"<version>"}
 ```
 
-This mirrors `/api/v1/info/status` and returns the same `{status, version}` body.
+Use `/api/v1/info/status` for health and uptime checks - it is always reachable without authentication.
 
 **Use for:**
 - Load balancer health checks
@@ -1163,7 +1156,7 @@ services:
    - Uptime Robot (free)
    - Pingdom
    - StatusCake
-   - Monitor the health endpoint: `http://localhost:8080/api/v1/info/health`
+   - Monitor the status endpoint: `http://localhost:8080/api/v1/info/status`
 
 ---
 
@@ -1340,12 +1333,12 @@ Stirling-PDF offers **Server and Enterprise paid plans** with additional feature
 
 **Monitoring & Analytics:**
 - **Prometheus Integration:** Advanced metrics and monitoring
-- **Usage Dashboard:** Graphical usage statistics at `/usage`
+- **Usage Monitoring UI:** Graphical usage statistics in the admin interface
 - Enhanced monitoring APIs
 
 **For pricing and enterprise inquiries:**
-- **Email:** support@stirlingtools.com
-- **Website:** https://stirlingtools.com/pricing
+- **Email:** support@stirlingpdf.com
+- **Website:** https://stirling.com/pricing
 - **Documentation:** [Paid Offerings](./Paid-Offerings)
 - **External Database Setup:** [External Database Guide](./Configuration/External%20Database.md)
 - **Monitoring Setup:** [Usage Monitoring](./Configuration/Usage%20Monitoring.md)
@@ -1384,7 +1377,7 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 
 - **Documentation:** https://docs.stirlingpdf.com
 - **GitHub:** https://github.com/Stirling-Tools/Stirling-PDF
-- **Discord:** https://discord.gg/Cn8pWhQRxZ
+- **Discord:** https://discord.gg/HYmhKj45pU
 - **Issue Tracker:** https://github.com/Stirling-Tools/Stirling-PDF/issues
 
 ### Stay Updated
@@ -1437,7 +1430,7 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 
 **Solutions:**
 1. Increase Nginx limit: `client_max_body_size 2000M;`
-2. Increase Stirling-PDF limit: `system.fileUploadLimit: 2000MB` (env `SYSTEMFILEUPLOADLIMIT=2000MB`; the older `SYSTEM_MAXFILESIZE` env var, in MB, is still accepted as a legacy alias)
+2. Increase Stirling-PDF limit: `system.fileUploadLimit: 2000MB` (env `SYSTEMFILEUPLOADLIMIT=2000MB`)
 3. Check disk space: `df -h`
 4. Increase timeouts: `client_body_timeout 300s;`
 

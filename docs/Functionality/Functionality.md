@@ -35,7 +35,7 @@ All tools organized by category.
 - Validate Signature
 - Add Watermark
 - Sanitize PDF
-- Auto-Redact
+- Redact
 
 ---
 

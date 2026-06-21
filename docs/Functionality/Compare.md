@@ -7,20 +7,16 @@ description: Compare two PDF documents and highlight differences
 
 # Compare PDFs
 
-**Tool ID:** `compare`
-
-Compare two PDF documents and highlight their differences. Runs entirely in your browser  - no files are sent to the server.
+Compare two PDF documents and highlight their differences. Runs entirely in your browser, so your files never leave your computer.
 
 Comparison is text-based (word-level): the tool extracts the text from both PDFs and highlights what changed, with removed words in red and added words in green. It works best on digital PDFs where you care about wording changes. For scanned documents, run [OCR](./OCR.md) first to make the text selectable.
-
-A pixel/visual comparison mode exists in the codebase but is not currently exposed in the UI, so text comparison is the only mode available today.
 
 ---
 
 ## How to Use
 
-1. **Upload Original PDF** - Select the original/older version
-2. **Upload Modified PDF** - Select the new/revised version
+1. **Select Original PDF** - Choose the original/older version
+2. **Select Edited PDF** - Choose the new/revised version
 3. **Compare** - Process the documents
 4. **Review Differences** - View highlighted changes
 

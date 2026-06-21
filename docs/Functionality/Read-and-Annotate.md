@@ -7,9 +7,7 @@ description: Interactive PDF viewer with annotation tools for reading and markup
 
 # Read & Annotate PDFs
 
-**Tool ID:** `read`
-
-Interactive PDF viewer and annotation system. Read PDFs directly in your browser while adding comments, highlights, drawings, shapes, and other markup.
+Read PDFs directly in your browser while adding comments, highlights, drawings, shapes, and other markup - all in one interactive viewer.
 
 :::tip
 Built with **[EmbedPDF](https://www.embedpdf.com/)**, an advanced open-source PDF viewer with full support for PDF annotation standards.
@@ -28,19 +26,19 @@ Built with **[EmbedPDF](https://www.embedpdf.com/)**, an advanced open-source PD
 - **Freehand Highlighter** - Width (1-20px) and opacity control
 
 ### Shapes
-- **Square**, **Circle**, **Line**, **Arrow**, **Polyline**, **Polygon**
+- **Square**, **Circle**, **Line**, **Polygon**
 - Independent stroke and fill color, border width (0-12px), opacity
 
 ### Comments & Text
-- **Text Comment** - Attach comments to any location
+- **Comment** - Attach comments to any location
 - **Insert Text** / **Replace Text** - Mark text insertions and replacements
-- **Text Box** - Free text with font size, alignment, and background color
+- **Text box** - Free text with font size, alignment, and background color
 - **Note** - Sticky notes with background color
 
-### Stamps & Signatures
-- **Stamp** - Add images/photos
-- **Signature Stamp** - Signature images
-- **Signature Ink** - Handwritten signatures
+### Images
+- **Add Image** - Place images or photos anywhere on the page
+
+For adding signatures (typed, drawn, or uploaded), use the dedicated [Sign PDFs](./Security/Sign.md) tool.
 
 ### Comment Threads
 - Reply threads on any annotation

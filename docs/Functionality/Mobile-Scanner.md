@@ -6,7 +6,7 @@ description: Scan documents from your mobile phone and upload them directly to y
 
 # Mobile Scanner (Phone Upload)
 
-The Mobile Scanner lets you scan documents using your phone camera and upload them directly to your Stirling PDF instance. Generate a QR code on your desktop, scan it with your phone, and your photos are transferred automatically  - no cables, no cloud services, no manual file handling. 
+The Mobile Scanner lets you scan documents with your phone camera and upload them straight to your Stirling PDF instance. Show a QR code on your desktop, scan it with your phone, and your photos transfer automatically - no cables, no cloud services, no manual file handling.
 
 Depending on your [server settings](../Configuration/Mobile-Scanner.md), uploaded images can be automatically converted to PDF with configurable page format, resolution, and scaling options.
 
@@ -20,11 +20,11 @@ Depending on your [server settings](../Configuration/Mobile-Scanner.md), uploade
 
 ## Using Mobile Scanner in the desktop app
 
-Mobile Scanner also works in the Stirling PDF desktop app with the bundled local backend. A few things differ from the web/server setup:
+Mobile Scanner also works in the Stirling PDF desktop app. A couple of things are worth knowing:
 
-- Your phone and the desktop must be on the **same local network (LAN)**.
-- The QR code encodes the **desktop's LAN IP address** so the phone can reach it directly.
-- The desktop serves its own self-contained upload page (enabled by `STIRLING_PDF_TAURI_MODE`) instead of the normal web `/mobile-scanner` route, since a phone can't load the app's bundled webview UI.
+- Your phone and the desktop must be on the **same local network (Wi-Fi)**.
+- The QR code points to your desktop's address on that network, so your phone connects straight to it. Nothing leaves your local network.
+- The desktop upload page is a simple capture-and-send page. It does **not** do the automatic page edge detection and auto-cropping that the browser-based Mobile Scanner offers, so line up and crop your photos before uploading.
 
 ## Privacy & Security
 

@@ -19,20 +19,20 @@ This means you can replace any static resource by placing a file with the matchi
 
 ### Finding File Paths to Override
 
-Static files in the application come from the `frontend/public/` folder in the source code. The mapping is direct:
+Most static files in the application come from the `frontend/editor/public/` folder in the source code. To override a file, place it under `customFiles/static/` matching the same path it is served at. The mapping is direct:
 
 **Frontend source → Your override path:**
-- `frontend/public/favicon.svg` → `customFiles/static/favicon.svg`
-- `frontend/public/modern-logo/logo.svg` → `customFiles/static/modern-logo/logo.svg`
-- `frontend/public/classic-logo/logo.svg` → `customFiles/static/classic-logo/logo.svg`
+- `frontend/editor/public/manifest.json` → `customFiles/static/manifest.json`
+- `frontend/editor/public/modern-logo/StirlingPDFLogoBlackText.svg` → `customFiles/static/modern-logo/StirlingPDFLogoBlackText.svg`
+- `frontend/editor/public/classic-logo/StirlingPDFLogoBlackText.svg` → `customFiles/static/classic-logo/StirlingPDFLogoBlackText.svg`
 
 **To see what files you can override:**
-1. Browse the [frontend/public folder on GitHub](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/frontend/public)
+1. Browse the [frontend/editor/public folder on GitHub](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/frontend/editor/public)
 2. Match the directory structure in your `customFiles/static/` folder
 
 Common files you might want to override:
 
-**Favicons & Icons:**
+**Favicons & Icons** (override by placing a matching file at the root of `customFiles/static/`):
 - `favicon.svg`, `favicon.ico` - Browser favicons
 - `apple-touch-icon.png` - iOS home screen icon
 - `android-chrome-192x192.png` - Android icon (192x192)
@@ -66,10 +66,9 @@ UI_LOGOSTYLE=classic
 ```
 
 **In-app configuration:**
-Settings → UI → Logo Style (requires login enabled)
+Settings → Configuration → System Settings → Logo Style (requires login enabled)
 
 **Other Assets:**
-- `moon.svg` - Dark mode toggle icon
 - `robots.txt` - Search engine directives
 - `manifest.json`, `manifest-classic.json` - Web app manifests
 - Images, fonts, and locales
@@ -147,24 +146,24 @@ Or via environment variable: `UI_LOGOSTYLE=classic`
 - For consistent branding across light/dark modes, provide both:
   - `StirlingPDFLogoBlackText.svg` (shows on light backgrounds)
   - `StirlingPDFLogoWhiteText.svg` (shows on dark backgrounds)
-- You can also configure this in-app: Settings → UI → Logo Style (if you have login enabled)
+- You can also configure this in-app: Settings → Configuration → System Settings → Logo Style (if you have login enabled)
 
 ### Advanced: Overriding Built Files (HTML, JS, CSS)
 
 **⚠️ For developers only!**
 
-Files like `index.html`, JavaScript bundles, and CSS are **generated** by the build process from `frontend/src/`. To override these:
+Files like `index.html`, JavaScript bundles, and CSS are **generated** by the build process from `frontend/editor/src/`. To override these:
 
 1. Clone the Stirling PDF repository
-2. Make your changes to the React source code in `frontend/src/`
-3. Build the frontend: `npm run build` (from the `frontend/` directory)
-4. The built files appear in `frontend/dist/`
+2. Make your changes to the React source code in `frontend/editor/src/`
+3. Build the frontend: `task frontend:build` (from the repository root)
+4. The built files appear in `frontend/editor/dist/`
 5. Copy the specific files you want to override to `customFiles/static/` matching the path structure
 
 **Example:** To override `index.html`:
 ```bash
 # After building the frontend
-cp frontend/dist/index.html customFiles/static/index.html
+cp frontend/editor/dist/index.html customFiles/static/index.html
 ```
 
 **Warning:** Built files may include hashed filenames (e.g., `assets/index-abc123.js`) that change with each build. Overriding these requires matching the exact filename from your build and is not recommended for most users.
@@ -182,7 +181,7 @@ system:
 ```
 
 ## Custom Root path
-Host the interface under a sub-path with the `SYSTEM_ROOTURIPATH` environment variable. Stirling PDF binds this to the underlying Spring property `server.servlet.context-path`, so it is the value to set on every Docker image (the bundled health checks read it too).
+Host the interface under a sub-path with the `SYSTEM_ROOTURIPATH` environment variable.
 This is for changing websites like stirlingtools.com to instead host the interface at stirlingtools.com/demo:
 ```bash
 SYSTEM_ROOTURIPATH=/demo
@@ -200,4 +199,4 @@ Analytics can be enabled/disabled with ``SYSTEM_ENABLEANALYTICS`` or
 system:
   enableAnalytics: 'true'
 ```
-In configs/Settings.yml
+In configs/settings.yml

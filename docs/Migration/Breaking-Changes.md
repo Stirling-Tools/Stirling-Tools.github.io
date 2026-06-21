@@ -16,9 +16,9 @@ Most V1 deployments will upgrade smoothly to V2, but there are some important ch
 | Change | Impact | Action Required |
 |--------|--------|-----------------|
 | **Template Customization** | High | Rewrite customizations |
-| **API Endpoint Paths** | Medium | Update bare V1 paths to `/api/v1/...` |
 | **UI Settings Location** | Medium | Use in-app settings |
 | **Session Management** | Low | Update setting names |
+| **Database Notifications** | Low | Use audit logs instead |
 
 ---
 
@@ -225,6 +225,7 @@ Session management enhanced with new JWT-based features and improved settings:
 | `jwt.keyCleanup` | `jwt.enableKeyCleanup` | Renamed |
 | `jwt.secureCookie` | _(removed)_ | Always secure now |
 | _(new)_ | `jwt.enableKeyRotation` | New feature |
+| _(new)_ | `jwt.keyRetentionDays` | New feature |
 
 ### Migration
 
@@ -244,10 +245,9 @@ security:
     persistence: true           # was 'enabled'
     enableKeyCleanup: true      # was 'keyCleanup'
     enableKeyRotation: true     # NEW
+    keyRetentionDays: 7         # NEW
     # secureCookie REMOVED
 ```
-
-Key retention is not configurable. The server derives how long to retain old signing keys automatically from the token expiry, so there is no `keyRetentionDays` setting to add.
 
 ### Environment Variables
 
@@ -263,6 +263,7 @@ SECURITY_JWT_SECURECOOKIE=true
 SECURITY_JWT_PERSISTENCE=true
 SECURITY_JWT_ENABLEKEYCLEANUP=true
 SECURITY_JWT_ENABLEKEYROTATION=true
+SECURITY_JWT_KEYRETENTIONDAYS=7
 ```
 
 ### After Upgrade
@@ -277,14 +278,15 @@ SECURITY_JWT_ENABLEKEYROTATION=true
 
 ---
 
-## 🔕 Database Notifications (still supported, plus audit logs)
+## 🔕 Database Notifications Removed
 
-**Impact:** NONE - Setting still works, audit logging is an additional option
+**Impact:** LOW - Replaced with better alternative
 
 ### What Changed
 
-Database backup/import email notifications are **still available** in V2 under the same key:
+Database backup/import notifications removed.
 
+**V1 Configuration (NO LONGER WORKS):**
 ```yaml
 premium:
   enterpriseFeatures:
@@ -297,23 +299,23 @@ premium:
         failed: false
 ```
 
-No migration is required. V2 also adds a comprehensive audit logging system that you can use alongside (or instead of) these notifications, providing:
+### Why Removed
+
+Replaced with comprehensive audit logging system that provides:
 - More detailed information
 - Searchable history
 - Export capabilities
 - Better retention policies
 
-### Enabling Audit Logging (optional)
+### Migration to Audit Logs
 
-**V2 audit logging:**
+**V2 Alternative:**
 
-1. **Enable audit logging** (Enterprise license required):
+1. **Enable audit logging:**
    ```yaml
-   premium:
-     enterpriseFeatures:
-       audit:
-         enabled: true
-         level: 2 # 0=OFF, 1=BASIC, 2=STANDARD, 3=VERBOSE
+   system:
+     logging:
+       level: INFO
    ```
 
 2. **Monitor logs:**
@@ -328,7 +330,7 @@ No migration is required. V2 also adds a comprehensive audit logging system that
    - Filter by operation type
    - Export as needed
 
-### What Audit Logs Provide
+### What You Get Instead
 
 **Audit logs provide:**
 - ✅ Database operations (backup, import, export)
@@ -355,29 +357,38 @@ No migration is required. V2 also adds a comprehensive audit logging system that
 
 ---
 
-## 🔧 Calibre Custom Path (still supported)
+## 🔧 Calibre Custom Path Removed
 
-**Impact:** NONE - Setting still works, only needed for non-standard locations
+**Impact:** LOW - Auto-detection improved
 
 ### What Changed
 
-The custom Calibre path setting is **still available** in V2 and defaults to `/usr/bin/ebook-convert`. You only need to set it when Calibre is installed somewhere non-standard.
+Custom Calibre path no longer needed.
 
-**V2 Configuration (still works):**
+**V1 Configuration (NO LONGER WORKS):**
 ```yaml
 system:
   customPaths:
     operations:
-      calibre: '' # Defaults to /usr/bin/ebook-convert
+      calibre: '/usr/bin/calibre'
 ```
 
-### Auto-Detection
+### Why Removed
 
-In most installs you can leave this empty - the default path is used automatically. Set an explicit path only when your `ebook-convert` binary lives elsewhere.
+V2 has improved path detection:
+- Automatically finds Calibre in standard locations
+- Checks multiple common paths
+- Better error messages if not found
 
-### Verify Calibre
+### Migration
 
-1. **Leave the setting at its default** unless your binary is in a custom location.
+1. **Remove from settings.yml:**
+   ```yaml
+   system:
+     customPaths:
+       operations:
+         # calibre: ''  # DELETE THIS LINE
+   ```
 
 2. **Verify Calibre is installed:**
    ```bash
@@ -443,31 +454,27 @@ The old `s-pdf` image is deprecated but still receives updates for now. However,
 
 ---
 
-## 🌐 API Endpoint Paths Changed
+## 🌐 API Compatibility
 
-**Impact:** MEDIUM - Every endpoint is now namespaced
-
-:::warning Update your API paths
-In V2 all endpoints live under `/api/v1/<category>/...` (for example `/api/v1/misc/...`, `/api/v1/security/...`, `/api/v1/general/...`). Any V1 integration that called a bare path must be updated to the namespaced path or it will return 404.
-:::
+**Impact:** LOW - Most endpoints unchanged
 
 ### What Stayed the Same
 
+✅ All existing API endpoints work
 ✅ Request/response formats unchanged
 ✅ Authentication methods compatible
 ✅ API keys still valid
-✅ The same operations are available (the path prefix is what changed)
 
 ### What Changed
 
 **New endpoints added:**
 - `/api/v1/security/validate-signature` - PDF signature validation
-- `/api/v1/security/remove-cert-sign` - Remove certificate signatures
-- `/api/v1/general/booklet-imposition` - Booklet printing layout
+- `/api/v1/misc/remove-cert-sign` - Remove certificate signatures
+- `/api/v1/misc/booklet-imposition` - Booklet printing layout
 - `/api/v1/misc/unlock-pdf-forms` - Unlock form fields
-- `/api/v1/misc/replace-invert-pdf` - Color replacement
+- `/api/v1/misc/replace-color` - Color replacement
 - `/api/v1/misc/add-attachments` - Add file attachments
-- `/api/v1/general/edit-table-of-contents` - Edit table of contents
+- `/api/v1/misc/edit-toc` - Edit table of contents
 
 **Enhanced endpoints:**
 - Better error messages
@@ -476,10 +483,10 @@ In V2 all endpoints live under `/api/v1/<category>/...` (for example `/api/v1/mi
 
 ### Migration
 
-Update any V1 integration that called a bare path to the namespaced `/api/v1/<category>/...` form. New endpoints listed above are additive.
+**No action needed** for existing API integrations. New endpoints are additive.
 
 **If using OpenAPI spec:**
-1. Download updated spec from `/v1/api-docs`
+1. Download updated spec from `/v3/api-docs`
 2. Regenerate client code if needed
 
 ---
@@ -594,16 +601,14 @@ server:
 ### Session Management
 
 **V2 Changes:**
-- Default session timeout is 30 minutes (`server.servlet.session.timeout`)
+- Shorter default session timeout (4 hours → 2 hours)
 - Better session invalidation
 - Stricter CORS policies
 
 **To increase timeout:**
 ```yaml
-server:
-  servlet:
-    session:
-      timeout: 4h  # supports duration units, e.g. 30m, 4h
+security:
+  sessionTimeout: 14400  # 4 hours in seconds
 ```
 
 ---
@@ -674,7 +679,7 @@ Before upgrading to V2, verify:
 - [ ] **Backup settings.yml** before modifying
 - [ ] **Note UI settings** (appName, homeDescription)
 - [ ] **Update JWT settings** (enabled → persistence)
-- [ ] **Update bare V1 API paths** to `/api/v1/<category>/...`
+- [ ] **Remove deprecated sections** (database notifications)
 
 ### 3. Infrastructure
 - [ ] **Backup database** before upgrade
@@ -683,8 +688,8 @@ Before upgrading to V2, verify:
 - [ ] **Check browser versions** for users
 
 ### 4. Features
-- [ ] **Want richer monitoring?** → Optionally enable audit logging (database notifications still work)
-- [ ] **Custom Calibre path?** → Still supported; leave default unless non-standard location
+- [ ] **Using database notifications?** → Switch to audit logs
+- [ ] **Custom Calibre path?** → Remove, auto-detection works
 
 ### 5. API Integrations
 - [ ] **Using deprecated tool IDs?** → Update to new IDs
@@ -699,7 +704,7 @@ Before upgrading to V2, verify:
 
 **Symptom:**
 ```
-WARN: Unknown configuration key: security.jwt.secureCookie
+WARN: Unknown configuration key: premium.proFeatures.googleDrive
 ```
 
 **Solution:** Remove deprecated settings from settings.yml. See [Settings Changes](./Settings-Changes.md).
@@ -794,15 +799,14 @@ Your data remains intact:
 
 ✅ Most configurations work unchanged
 ✅ All data migrates automatically
-✅ Same operations available via the API
-⚠️ API endpoints now namespaced under `/api/v1/<category>/`
+✅ API compatibility maintained
 ⚠️ Template customizations need rewrite
 ⚠️ UI settings moved to in-app config
 ⚠️ JWT settings renamed
 
 **Action required:**
-1. Update bare V1 API paths to `/api/v1/<category>/...`
-2. Update JWT setting names
+1. Update JWT setting names
+2. Remove deprecated configurations
 3. Reconfigure UI settings in-app
 4. Rewrite template customizations (if any)
 

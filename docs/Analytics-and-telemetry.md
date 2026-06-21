@@ -8,9 +8,12 @@ import TabItem from '@theme/TabItem';
 
 # Analytics and Telemetry
 
+> Please note all the following applies to version 1.5.0 onward due to be released 16th October
+
+
 Stirling‑PDF uses analytics to understand usage patterns and improve the application. This page explains what data is collected, why we collect it, and how to disable analytics if desired.
 
-> **User control**: All analytics are **opt‑in via a consent banner** (Disabled untill a user expressly allows it) a self‑hosted administrator can also disables all analytics system‑wide. If analytics are disabled system‑wide, no banner is shown.
+> **User control**: All analytics are **opt‑in via a consent banner** (disabled until a user allows it). A self‑hosted administrator can also turn all analytics off system‑wide. If analytics are disabled system‑wide, no banner is shown.
 
 ## Overview
 
@@ -51,11 +54,8 @@ PostHog collects comprehensive system and usage information **only when analytic
 #### Usage data
 - Aggregate counts (e.g., total number of user accounts created)
 - Feature/tool usage (which tools/operations are used)
-- Numerical volume of PDFs processed and operations run. The backend batches these into a `pdf_operation_metrics` event flushed roughly every 2 hours, and the editor emits `editor_pdf_uploaded` and `editor_operation` events. A `source` field (`api` vs `editor`) distinguishes editor usage from API usage.
 - Error tracking
 - Browser and device information (for the web interface)
-
-Only the **counts** are collected - **no document content, PDF data, or file metadata is ever included** in these events. All of it is gated behind `system.enableAnalytics` plus user consent.
 
 **Important privacy notes**:
 - **No document content, PDF data, or file metadata is ever collected or transmitted.**
@@ -69,13 +69,7 @@ Only the **counts** are collected - **no document content, PDF data, or file met
 
 ### Why we use PostHog
 
-PostHog analytics help us:
-- Understand which features are most valuable
-- Identify and fix bugs proactively
-- Improve user experience based on actual usage patterns
-- Prioritize feature development
-- Ensure compatibility across different environments
-- Monitor application health and performance
+PostHog shows us which features get used, helps us catch bugs, and guides what to build next.
 
 ---
 
@@ -105,12 +99,7 @@ The Scarf pixel collects the following information:
 
 ### Why we use Scarf
 
-Scarf helps us understand:
-- Which deployment types are most common
-- Version adoption rates
-- Which pages/tools are reached across different configurations
-
-This data helps prioritize development efforts and ensure compatibility across deployment scenarios.
+Scarf gives us a rough idea of how Stirling-PDF is deployed and which pages are reached, so we can prioritise work and keep it compatible across setups.
 
 ### How to disable Scarf
 

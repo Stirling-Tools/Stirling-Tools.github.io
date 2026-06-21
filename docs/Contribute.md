@@ -9,7 +9,7 @@ Thanks for taking a look at how to contribute to Stirling PDFs open-source codeb
 ## Development Setup
 
 ### Prerequisites
-- Java 21 or later
+- Java 25 (JDK 25)
 - Node.js 18+
 - Docker (for testing)
 - Gradle (included in repository)
@@ -22,25 +22,28 @@ Thanks for taking a look at how to contribute to Stirling PDFs open-source codeb
    cd Stirling-PDF
    ```
 
-2. **Backend Development**
+2. **Install dependencies**
+
+   The repository uses [Task](https://taskfile.dev/) as a unified command runner. Install the `task` CLI, then from the repository root:
+   ```bash
+   task install
+   ```
+
+3. **Backend Development**
    ```bash
    # Build and run the Spring Boot backend
-   ./gradlew bootRun
+   task backend:dev
    # Backend runs on localhost:8080
    ```
 
-3. **Frontend Development (V2.0+)**
+4. **Frontend Development (V2.0+)**
    ```bash
-   # Navigate to frontend directory
-   cd frontend
-
-   # Install dependencies
-   npm install
-
-   # Run development server
-   npm run dev
+   # Start the Vite dev server (run from the repository root)
+   task frontend:dev
    # Frontend runs on localhost:5173, proxies API calls to backend (localhost:8080)
    ```
+
+   To run the backend and frontend together, use `task dev` from the repository root.
 
 ## Contributing to Code
 

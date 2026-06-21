@@ -9,7 +9,6 @@ There are many use-cases for this such as
 - Running a reduced version of Stirling PDF that doesn't have the necessary server power to support the more advanced features.
 - Cleanup interface for features you don't use
 
-
 You have two ways to disable endpoints:
 
 1. **Environment Variables** (`ENDPOINTS_TOREMOVE` and `ENDPOINTS_GROUPSTOREMOVE`):
@@ -27,13 +26,13 @@ You can disable entire groups of related endpoints using `ENDPOINTS_GROUPSTOREMO
 | Group Name | What It Disables | Example |
 |------------|------------------|---------|
 | `LibreOffice` | All office document conversions (DOCX, XLSX, PPTX to/from PDF) | `ENDPOINTS_GROUPSTOREMOVE=LibreOffice` |
-| `Python` | Python-based image processing features | `ENDPOINTS_GROUPSTOREMOVE=Python` |
+| `Python` | Python-backed features (scan extraction and some file/HTML/URL conversions) | `ENDPOINTS_GROUPSTOREMOVE=Python` |
 | `OpenCV` | Advanced image processing operations | `ENDPOINTS_GROUPSTOREMOVE=OpenCV` |
 | `OCRmyPDF` | OCR (Optical Character Recognition) features | `ENDPOINTS_GROUPSTOREMOVE=OCRmyPDF` |
 | `Weasyprint` | HTML to PDF conversion | `ENDPOINTS_GROUPSTOREMOVE=Weasyprint` |
 | `Calibre` | E-book format conversions | `ENDPOINTS_GROUPSTOREMOVE=Calibre` |
 | `qpdf` | Various PDF operations powered by QPDF | `ENDPOINTS_GROUPSTOREMOVE=qpdf` |
-| `Ghostscript` | PDF/A conversion and compression operations | `ENDPOINTS_GROUPSTOREMOVE=Ghostscript` |
+| `Ghostscript` | Compression, repair and related operations powered by Ghostscript | `ENDPOINTS_GROUPSTOREMOVE=Ghostscript` |
 | `Automation` | Automation/pipeline endpoints (`handleData`, `automate`, `pipeline`) | `ENDPOINTS_GROUPSTOREMOVE=Automation` |
 | `DeveloperTools` | Developer tools such as Show JavaScript | `ENDPOINTS_GROUPSTOREMOVE=DeveloperTools` |
 | `DeveloperDocs` | In-app developer doc links (API docs, folder scanning, SSO, air-gapped) | `ENDPOINTS_GROUPSTOREMOVE=DeveloperDocs` |
@@ -42,7 +41,6 @@ You can disable entire groups of related endpoints using `ENDPOINTS_GROUPSTOREMO
 ```bash
 ENDPOINTS_GROUPSTOREMOVE=LibreOffice,Calibre,Weasyprint
 ```
-
 
 ## Usage Examples
 
@@ -230,4 +228,4 @@ Use these exact kebab-case IDs with `endpoints.toRemove` in settings.yml.
 - Disabling a tool removes it completely from the UI and API
 - Some tools may depend on others - test your configuration
 - Changes require container restart to take effect
-- The [MCP server](./MCP-Server.md) applies its own allow/deny filtering on top of these removals, so an endpoint can be exposed here yet still be hidden from MCP clients (and vice versa)
+- The [MCP server](../Advanced%20Configuration/MCP-Server.md) applies its own allow/deny filtering on top of these removals, so an endpoint can be enabled here yet still be hidden from MCP clients

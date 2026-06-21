@@ -68,10 +68,12 @@ Enable and configure the Mobile Scanner feature, which lets users scan documents
 | `pageFormat` | `keep` / `A4` / `letter` | Page format for converted PDFs: `keep` = original image dimensions, `A4` = A4 page size, `letter` = US Letter page size. Only applies when `convertToPdf` is true. |
 | `stretchToFit` | `true` / `false` | Stretch images to fill entire page (may distort aspect ratio). If false, images are centered with preserved aspect ratio. Only applies when `convertToPdf` is true. |
 
-## Using Mobile Scanner in the desktop app
+## Desktop app behaviour
 
-Mobile Scanner also works in the Stirling PDF desktop app with the bundled local backend, with a few differences from the web/server setup:
+The Stirling PDF desktop app supports Mobile Scanner through its bundled local backend. For the end-user walkthrough, see [Mobile Scanner](../Functionality/Mobile-Scanner.md#using-mobile-scanner-in-the-desktop-app).
 
-- Your phone and the desktop must be on the **same local network (LAN)**.
-- The QR code encodes the **desktop's LAN IP address** so the phone can reach it directly.
-- The desktop serves its own self-contained upload page (enabled by `STIRLING_PDF_TAURI_MODE`) instead of the normal web `/mobile-scanner` route, since a phone can't load the app's bundled webview UI.
+Admin notes specific to the desktop app:
+
+- The phone and the desktop must be on the **same local network (LAN)**. The QR code encodes the desktop's LAN IP address so the phone connects directly.
+- In desktop mode the app serves its own self-contained upload page (controlled by the `STIRLING_PDF_TAURI_MODE` flag) instead of the standard web `/mobile-scanner` route, because a phone cannot load the desktop app's bundled webview UI.
+- The desktop upload page only captures and sends photos or files. It does not run the automatic page edge detection and cropping that the browser-based scanner performs.

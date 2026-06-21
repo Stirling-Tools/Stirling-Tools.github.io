@@ -62,7 +62,7 @@ Pick whichever method you prefer. All three install the same desktop app.
 
 ### Connecting to a server
 
-The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can pick one of three connection modes. See [Modes & Licensing](../Modes-and-Licensing.md) for how each mode is licensed (self-hosted modes never use credits).
+The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can pick one of three connection modes. See [Modes](../Modes-and-Licensing.md) for how each mode is licensed (self-hosted modes never use credits).
 
 **Bundled local backend (default)**
 - The desktop app runs its own Stirling PDF backend on your machine, no setup or login
@@ -71,7 +71,7 @@ The desktop app works fully offline for local PDF tools like merging, splitting,
 **Stirling Cloud**
 - Sign in with your Stirling Cloud account
 - Gives access to advanced tools powered by server-side processing
-- Files are processed transiently and are not stored after the request completes. Opt-in cloud storage is a separate Stirling Cloud feature that you would enable explicitly. See [Modes & Licensing](../Modes-and-Licensing.md)
+- Files are processed transiently and are not stored after the request completes. Opt-in cloud storage is a separate Stirling Cloud feature that you would enable explicitly. See [Modes](../Modes-and-Licensing.md)
 
 **Self-hosted Server**
 - Enter the URL of your own Stirling PDF server instance (e.g., `http://192.168.1.53:8080`)
@@ -98,13 +98,10 @@ The desktop app works fully offline for local PDF tools like merging, splitting,
 - Work without internet connection
 - Faster performance
 - Unlimited file storage (not limited by browser)
-- System tray icon for quick access
 
 **Multiple windows:**
 - Press **Ctrl+N** to open an empty new window
 - Use **Open in new window** from the My Files page to open files in a separate window
-- New windows share the same login, files, and bundled backend
-- Available on Windows and macOS only (not Linux)
 
 ### Software Updates
 
@@ -116,52 +113,11 @@ The desktop app keeps itself current. Open **Settings → Software Updates** to 
 | `auto` | Silently downloads, installs, and restarts on startup |
 | `disabled` | Never checks for updates or shows update UI |
 
-When the mode is set by an administrator through a provisioning file (see [Automated Installation](#automated-installation)), the Software Updates control is locked and shows **"Managed by your administrator"** so users cannot change it.
+When the mode is set by an administrator through a provisioning file (see [Automated Installation](#automated-installation)), the Software Updates control is locked and shows **"Managed by administrator"** so users cannot change it.
 
 ### Automated Installation
 
-Silent/headless installation with custom parameters, ideal for IT deployments (SCCM, Intune, Group Policy) or enforcing connections to self-hosted servers. Works via either the MSI installer directly or `winget --custom`.
-
-**Available Parameters:**
-
-| Parameter | Description | Example Value |
-|-----------|-------------|---------------|
-| `STIRLING_SERVER_URL` | Pre-configure the server URL that the desktop app connects to | `http://192.168.1.53:2357/` |
-| `STIRLING_LOCK_CONNECTION` | Lock the connection mode so users cannot change the server. `1` = locked, `0` or omit = unlocked | `1` |
-| `STIRLING_UPDATE_MODE` | Pre-set and lock the desktop `update_mode`. When provisioned, the Settings > Software Updates control is locked to "Managed by your administrator" | `prompt`, `auto`, or `disabled` |
-| `INSTALLDIR` | Custom installation directory (MSI only) | `INSTALLDIR="C:\CustomPath\Stirling-PDF"` |
-| `ALLUSERS` | Install for all users (requires admin). `1` = all users, `0` or omit = current user | `ALLUSERS=1` |
-
-**Example:**
-
-<Tabs groupId="windows-automated" queryString>
-  <TabItem value="msi" label="MSI (msiexec)" default>
-    ```batch
-    msiexec /i "Stirling-PDF-windows-x86_64.msi" /qn STIRLING_SERVER_URL="http://192.168.1.53:2357" STIRLING_LOCK_CONNECTION=1
-    ```
-
-    `/i` installs, `/qn` runs silently with no UI. The MSI is available in the [releases](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest).
-  </TabItem>
-  <TabItem value="winget" label="winget">
-    ```powershell
-    winget install StirlingTools.StirlingPDF `
-      --custom "STIRLING_SERVER_URL=http://192.168.1.53:2357 STIRLING_LOCK_CONNECTION=1"
-    ```
-
-    `--custom` forwards parameters straight to the underlying MSI, so the same properties work.
-  </TabItem>
-</Tabs>
-
-**Technical Details:**
-
-- **Default Install Location**: `C:\Program Files\Stirling-PDF`
-- **Settings Storage**: `%APPDATA%\stirling.pdf.dev\connection.json` - the `stirling.pdf.dev` bundle id only governs this `connection.json` store
-- **Provisioning File** (read from `%APPDATA%\Stirling-PDF\`, not the bundle-id folder):
-  - Per-user install: `%APPDATA%\Stirling-PDF\stirling-provisioning.json`
-  - All-users install: `%PROGRAMDATA%\Stirling-PDF\stirling-provisioning.json`
-- **URL Format**: Must include protocol (`http://` or `https://`), trailing slash is optional
-- When `STIRLING_LOCK_CONNECTION=1` is set, users cannot modify the server URL in the application settings
-- System-wide provisioning files (`%PROGRAMDATA%`) are not deleted after being applied, allowing reinstallation with the same settings
+For silent or headless installs and pre-configuring the app for managed fleets - server URL, connection lock, and update mode via MSI or `winget` parameters, or a provisioning file - see [Managed Desktop Deployment](./Managed%20Deployment.md).
 
 ## Server Version (For Hosting and Sharing)
 
@@ -229,9 +185,9 @@ Python and its related tools enable various features in Stirling PDF:
      ```bash
      python -c "import cv2"
      ```
-   - Enables Extract Image Scans operation
+   - Enables the Detect & Split Scanned Photos operation
      
-4. Unoserver Installation:
+3. Unoserver Installation:
    - First install LibreOffice (see LibreOffice section below)
    - Open Command Prompt as administrator
    - Install unoserver:
@@ -294,10 +250,10 @@ After installing dependencies, you'll need to add their directories to your syst
 
 ## Server Installation Steps
 
-1. Download the latest Stirling PDF-server.exe or jar from the [releases page](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest)
+1. Download the latest Stirling PDF JAR from the [releases page](https://github.com/Stirling-Tools/Stirling-PDF/releases/latest)
 2. Install any desired optional dependencies following the instructions above
-3. Launch the Stirling PDF executable
-4. Access the web interface through your browser (the application will provide the URL) in the console logs normally http://localhost:8080
+3. Launch the JAR with `java -jar Stirling-PDF.jar`
+4. Access the web interface through your browser. The application prints the URL in the console logs, normally http://localhost:8080
 
 ## Notes
 - The application hosts a web server that is accessible to anyone on your network

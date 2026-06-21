@@ -84,9 +84,8 @@ security:
     persistence: true # replaces 'enabled'
     enableKeyRotation: true # NEW
     enableKeyCleanup: true # replaces 'keyCleanup'
+    keyRetentionDays: 7
 ```
-
-Key retention is not a configurable setting. The server derives how long to keep old signing keys automatically from the token expiry, so there is no `keyRetentionDays` key to set.
 
 **Migration:**
 - Replace `jwt.enabled` with `jwt.persistence`
@@ -152,33 +151,64 @@ ui:
 
 **Learn more:** [UI Customisation](../Configuration/UI%20Customisation.md)
 
-:::note Settings that are still supported
-Google Drive (`premium.proFeatures.googleDrive`), database notifications (`premium.enterpriseFeatures.databaseNotifications`), and the Calibre custom path (`system.customPaths.operations.calibre`) are **not removed** - they still exist and work in V2. There is nothing to delete for these keys.
-:::
+---
+
+### Google Drive Integration
+
+**V1 settings (REMOVED):**
+
+```yaml
+premium:
+  proFeatures:
+    googleDrive: # REMOVED in V2
+      enabled: false
+      clientId: ''
+      apiKey: ''
+      appId: ''
+```
+
+**Migration:** Remove this section from your `settings.yml`.
+
+**Why:** Feature discontinued in V2.
 
 ---
 
-## proFeatures Key Casing Change
+### Database Notifications
 
-Two `premium.proFeatures` keys were renamed to camelCase in V2:
+**V1 settings (REMOVED):**
 
 ```yaml
-# V1 (OLD)
 premium:
-  proFeatures:
-    SSOAutoLogin: false
-    CustomMetadata:
-      autoUpdateMetadata: false
-
-# V2 (NEW)
-premium:
-  proFeatures:
-    ssoAutoLogin: false
-    customMetadata:
-      autoUpdateMetadata: false
+  enterpriseFeatures:
+    databaseNotifications: # REMOVED in V2
+      backups:
+        successful: false
+        failed: false
+      imports:
+        successful: false
+        failed: false
 ```
 
-**Migration:** No action strictly required - old PascalCase keys (`SSOAutoLogin`, `CustomMetadata`) are **auto-migrated** to the new camelCase keys on startup. Update your `settings.yml` to the new casing at your convenience.
+**Migration:** Remove this section from your `settings.yml`.
+
+**Why:** Replaced with more comprehensive audit logging.
+
+---
+
+### Calibre Custom Path
+
+**V1 setting (REMOVED):**
+
+```yaml
+system:
+  customPaths:
+    operations:
+      calibre: '' # REMOVED in V2
+```
+
+**Migration:** Remove this line.
+
+**Why:** Path detection improved, no longer needs custom configuration.
 
 ---
 
@@ -194,9 +224,10 @@ Use this checklist when upgrading your `settings.yml`:
   - [ ] Add `jwt.enableKeyRotation: true`
   - [ ] Remove `jwt.secureCookie` line
 
-- [ ] **proFeatures Key Casing:**
-  - [ ] Rename `premium.proFeatures.SSOAutoLogin` to `ssoAutoLogin` (auto-migrated)
-  - [ ] Rename `premium.proFeatures.CustomMetadata` to `customMetadata` (auto-migrated)
+- [ ] **Remove Deprecated Sections:**
+  - [ ] Remove `premium.proFeatures.googleDrive` section
+  - [ ] Remove `premium.enterpriseFeatures.databaseNotifications` section
+  - [ ] Remove `system.customPaths.operations.calibre` line
 
 - [ ] **UI Settings:**
   - [ ] Remove `ui.appName` (use in-app settings)
@@ -291,7 +322,6 @@ ui:
 
 premium:
   proFeatures:
-    SSOAutoLogin: false
     googleDrive:
       enabled: false
 ```
@@ -303,6 +333,7 @@ security:
     persistence: true  # Changed
     enableKeyRotation: true  # NEW
     enableKeyCleanup: true  # Changed
+    keyRetentionDays: 7
   validation:  # NEW section
     trust:
       serverAsAnchor: true
@@ -317,12 +348,6 @@ ui:
   appNameNavbar: 'PDF Tool'
   logoStyle: classic  # NEW
   # appName and homeDescription removed - use in-app settings
-
-premium:
-  proFeatures:
-    ssoAutoLogin: false  # renamed from SSOAutoLogin (auto-migrated)
-    googleDrive:
-      enabled: false  # still supported
 ```
 
 ---
@@ -376,13 +401,13 @@ premium:
 **Key Takeaways:**
 - ✅ Most settings remain the same
 - 🔄 JWT settings have new names
-- 🔄 `proFeatures` keys renamed to camelCase (auto-migrated)
 - ➕ Many new optional features
+- ➖ Google Drive and database notifications removed
 - 🎨 UI settings moved to in-app configuration
 
 **Action Required:**
 - Update JWT setting names
-- Update `proFeatures` keys to camelCase (optional, auto-migrated)
+- Remove deprecated sections
 - Optionally configure new features
 
 Your existing configuration will work in V2 with minimal changes!

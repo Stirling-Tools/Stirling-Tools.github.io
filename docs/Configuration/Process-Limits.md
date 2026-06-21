@@ -32,14 +32,12 @@ Controls how many concurrent instances of each process are allowed. Extra reques
 | `sessionLimit.ghostscriptSessionLimit` | `8` | PDF compression, repair, manipulation |
 | `sessionLimit.pythonOpenCvSessionLimit` | `8` | Image processing |
 | `sessionLimit.imageMagickSessionLimit` | `4` | Image conversion |
-| `sessionLimit.qpdfSessionLimit` | `4` | Split, merge, encrypt PDFs |
+| `sessionLimit.qpdfSessionLimit` | `4` | PDF/A conversion, repair, compression |
 | `sessionLimit.ocrMyPdfSessionLimit` | `2` | Add OCR overlay to existing PDFs |
 | `sessionLimit.weasyPrintSessionLimit` | `16` | HTML/CSS → PDF (WeasyPrint) |
 | `sessionLimit.calibreSessionLimit` | `1` | E-book conversions |
 | `sessionLimit.ffmpegSessionLimit` | `2` | Video/audio processing |
 | `sessionLimit.installAppSessionLimit` | `1` | Internal install tasks |
-
-> The defaults above reflect the shipped `settings.yml` where the setting is present, otherwise the built-in code fallback. Most values come from `settings.yml`, but `ffmpegSessionLimit` is not listed there - its default of `2` comes from the code fallback. Likewise, `qpdfSessionLimit` ships at `4`; if you remove it (or set it to `0`) the code falls back to `2`.
 
 **Increase** limits on a beefy server with concurrent users. **Decrease** them on low-RAM servers - LibreOffice in particular is memory-hungry.
 
