@@ -51,7 +51,7 @@ docker-compose up -d
 Then open `http://localhost:8080` in your browser!
 
 :::info Login is ON by default
-The default is `security.enableLogin: true`, so a fresh container boots with login **enabled** and seeds a default admin account:
+The default is `security.enableLogin: true`, so a fresh container starts with login **enabled** and creates a default admin account:
 
 ```
 Username: admin

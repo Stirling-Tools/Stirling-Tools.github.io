@@ -68,7 +68,7 @@ This allows you to set a single API key that works regardless of user authentica
 ## Endpoint Paths
 
 :::info
-Every operation lives under `/api/v1/<category>/<operation>` - the category (`security`, `general`, `misc`, `convert`, etc.) comes from the controller, so "Add Watermark" is at `/api/v1/security/add-watermark`. The exact path for any operation is shown in the [Swagger UI](#local-swagger-ui).
+Every operation lives under `/api/v1/<category>/<operation>`, where the category is one of `security`, `general`, `misc`, `convert`, etc. For example, "Add Watermark" is at `/api/v1/security/add-watermark`. The exact path for any operation is shown in the [Swagger UI](#local-swagger-ui).
 :::
 
 ### AI assistants / MCP

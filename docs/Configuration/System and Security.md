@@ -42,7 +42,7 @@ Stirling PDF allows customization of system and security settings. For security 
   - `SECURITY_INITIALLOGIN_PASSWORD`
 
 ### Database Location
-Upon successful setup, a new `stirling-pdf-DB-<schema-version>.mv.db` file (the schema version is embedded in the filename, e.g. `stirling-pdf-DB-2.3.232.mv.db`) will be created in your configured storage location. This file contains user data and should be backed up regularly.
+Upon successful setup, a new `stirling-pdf-DB-<version>.mv.db` file (the version number is part of the filename, e.g. `stirling-pdf-DB-2.3.232.mv.db`) will be created in your configured storage location. This file contains user data and should be backed up regularly.
 
 ### Account Management
 1. Access Account Settings:

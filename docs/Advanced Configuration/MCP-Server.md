@@ -24,7 +24,7 @@ This page documents the MCP server you run on your own Stirling PDF instance. Th
 
 ## Enable the server
 
-The MCP server is wired only when `mcp.enabled` is `true`. While off, there is no `/mcp` endpoint, no metadata, and no MCP beans are created.
+The MCP server runs only when `mcp.enabled` is `true`. While off, there is no `/mcp` endpoint and no MCP metadata.
 
 Turn it on either way:
 
@@ -70,11 +70,11 @@ Pick one of two modes with `mcp.auth.mode`.
 
 ### OAuth2 resource server (`oauth`, default)
 
-In OAuth mode the `/mcp` endpoint runs as an OAuth2 resource server: it validates incoming JWTs (signature, issuer, expiry, and audience) and binds each token to a provisioned Stirling account. It publishes RFC 9728 protected-resource metadata at `/.well-known/oauth-protected-resource` so MCP clients can discover the authorization server.
+In OAuth mode the `/mcp` endpoint runs as an OAuth2 resource server: it validates incoming JWTs (signature, issuer, expiry, and audience) and binds each token to an existing Stirling account. It publishes RFC 9728 protected-resource metadata at `/.well-known/oauth-protected-resource` so MCP clients can discover the authorization server.
 
 | Key | Env | Default | Purpose |
 |---|---|---|---|
-| `mcp.auth.issuerUri` | `MCP_AUTH_ISSUERURI` | empty | OAuth2 issuer URI (e.g. `http://localhost:9000`). **Required** in OAuth mode; the decoder fails closed and rejects every token until it is set. |
+| `mcp.auth.issuerUri` | `MCP_AUTH_ISSUERURI` | empty | OAuth2 issuer URI (e.g. `http://localhost:9000`). **Required** in OAuth mode; every token is rejected until it is set. |
 | `mcp.auth.jwksUri` | `MCP_AUTH_JWKSURI` | empty | JWKS URI. Blank means it is derived from the issuer's `/.well-known/openid-configuration`. |
 | `mcp.auth.resourceId` | `MCP_AUTH_RESOURCEID` | empty | RFC 8707 resource identifier of this server. Must equal the public `/mcp` URL clients call and **end in `/mcp`** (e.g. `http://localhost:8080/mcp`). Tokens that do not list it in `aud` are rejected. |
 | `mcp.auth.acceptedAudiences` | `MCP_AUTH_ACCEPTEDAUDIENCES` | `[]` | Extra `aud` values accepted on top of `resourceId`. Empty keeps strict RFC 8707 binding. Use this for IdPs that cannot mint a resource-specific audience (e.g. Supabase always issues `aud=authenticated`). |
@@ -100,7 +100,7 @@ or
 Authorization: Bearer <your-stirling-api-key>
 ```
 
-The key must belong to a provisioned, enabled account (generate one under **Account → API Keys** - see [API documentation](../API.md)). No external IdP, OAuth, or JWKS configuration is needed.
+The key must belong to an existing, enabled account (generate one under **Account → API Keys** - see [API documentation](../API.md)). No external IdP, OAuth, or JWKS configuration is needed.
 
 ---
 

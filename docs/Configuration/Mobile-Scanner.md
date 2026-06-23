@@ -70,10 +70,10 @@ Enable and configure the Mobile Scanner feature, which lets users scan documents
 
 ## Desktop app behaviour
 
-The Stirling PDF desktop app supports Mobile Scanner through its bundled local backend. For the end-user walkthrough, see [Mobile Scanner](../Functionality/Mobile-Scanner.md#using-mobile-scanner-in-the-desktop-app).
+The Stirling PDF desktop app has built-in support for Mobile Scanner. For the end-user walkthrough, see [Mobile Scanner](../Functionality/Mobile-Scanner.md#using-mobile-scanner-in-the-desktop-app).
 
 Admin notes specific to the desktop app:
 
 - The phone and the desktop must be on the **same local network (LAN)**. The QR code encodes the desktop's LAN IP address so the phone connects directly.
-- In desktop mode the app serves its own self-contained upload page (controlled by the `STIRLING_PDF_TAURI_MODE` flag) instead of the standard web `/mobile-scanner` route, because a phone cannot load the desktop app's bundled webview UI.
+- In desktop mode the app serves its own simple upload page (controlled by the `STIRLING_PDF_TAURI_MODE` setting) instead of the standard web `/mobile-scanner` page, because a phone cannot load the desktop app's own window.
 - The desktop upload page only captures and sends photos or files. It does not run the automatic page edge detection and cropping that the browser-based scanner performs.

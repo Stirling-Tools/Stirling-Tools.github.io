@@ -129,7 +129,7 @@ Stirling PDF determines the interface language using this priority order:
    - When configured, it overrides the browser's detected language for users who have not made a manual selection
 
 3. **Browser's language preference**
-   - Automatically detected from the browser via the `navigator` API
+   - Automatically detected from the browser's language setting
    - Example: Firefox set to Swedish (sv-SE) shows Swedish UI when no `defaultLocale` is configured
 
 4. **Fallback** (lowest priority)

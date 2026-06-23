@@ -13,7 +13,7 @@ The PDF tools you'll reach for most often, featured on the home page for quick a
 
 ## PDF Text Editor *(Alpha)* {#pdf-text-editor}
 
-Open a PDF and edit its text and images right in your browser, then save a new copy. Edits are grouped so you can change a whole paragraph at once, and the PDF is rebuilt when you're done.
+Open a PDF and edit its text and images right in your browser, then save a new copy. Edits are grouped so you can change a whole paragraph at once.
 
 :::warning Experimental
 The PDF Text Editor is **alpha / experimental**. Its behaviour and output may change, and complex PDFs may not come out perfectly. Always keep a copy of your original file.

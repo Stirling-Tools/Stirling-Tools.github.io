@@ -505,7 +505,7 @@ Enable OAuth debug logging to troubleshoot authentication issues.
   </TabItem>
 </Tabs>
 
-### Claim Dump ("Attribute value for email cannot be null")
+### Logging the Provider's Claims ("Attribute value for email cannot be null")
 
 If login fails with **"Attribute value for email cannot be null"** (common with ADFS and Azure AD), the provider is not returning the claim named by `useAsUsername`. Enable `security.oauth2.debugLogging` to log the full ID-token / UserInfo claim set and the resolved username, so you can see exactly which claims the provider sends and pick the right `useAsUsername` value.
 

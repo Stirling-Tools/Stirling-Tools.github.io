@@ -92,8 +92,8 @@ Pick whichever method you prefer. Both install the same desktop app.
 
 You can pick one of three connection modes. See [Modes](../Modes-and-Licensing.md) for how each mode is licensed (self-hosted modes never use credits).
 
-- **Bundled local backend (default):** the app runs its own Stirling PDF backend on your Mac, no setup or login, fully offline.
-- **Stirling Cloud:** sign in for advanced server-side tools. Files are processed transiently and are not stored after the request completes. Opt-in cloud storage is a separate Stirling Cloud feature you would enable explicitly.
+- **Bundled local backend (default):** the app runs its own copy of Stirling PDF on your Mac, no setup or login, fully offline.
+- **Stirling Cloud:** sign in for advanced server-side tools.
 - **Self-hosted Server:** enter the URL of your own Stirling PDF instance (e.g., `http://192.168.1.53:8080`) for full control over your data.
 
 ### Managed deployment (Jamf / MDM)

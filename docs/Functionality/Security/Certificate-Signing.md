@@ -132,7 +132,7 @@ security:
 
 ## Timestamping PDFs
 
-Use the **Timestamp PDF** tool to add a trusted RFC 3161 timestamp that proves your PDF existed at a particular point in time. Pick a Time Stamp Authority (TSA), then download the timestamped file. The timestamp is added as an incremental update, so any existing signatures stay intact. For a plain-language overview of the tool, see [Security tools - Timestamp PDF](./Security.md#signatures).
+Use the **Timestamp PDF** tool to add a trusted RFC 3161 timestamp that proves your PDF existed at a particular point in time. Pick a Time Stamp Authority (TSA), then download the timestamped file. The timestamp is added without altering the rest of the file, so any existing signatures stay intact. For a plain-language overview of the tool, see [Security tools - Timestamp PDF](./Security.md#signatures).
 
 ### Trusted Time Stamp Authorities
 

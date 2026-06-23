@@ -186,7 +186,7 @@ This is for changing websites like stirlingtools.com to instead host the interfa
 ```bash
 SYSTEM_ROOTURIPATH=/demo
 ```
-The setting can also be written in `configs/settings.yml` as the raw Spring property:
+The setting can also be written in `configs/settings.yml`:
 ```yaml
 server:
   servlet:

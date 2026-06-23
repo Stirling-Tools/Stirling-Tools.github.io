@@ -74,7 +74,7 @@ See [API Documentation](../API.md) for complete endpoint reference.
 ## Decompress PDF
 
 :::note Automation / API
-There is also an automation option that does the opposite: it fully decompresses a PDF's streams so the raw content is readable, which is handy for debugging or editing a PDF by hand (the file gets larger). It runs through automation rather than a tool in the web app - see the [API reference](../API.md).
+There is also an automation option that does the opposite: it fully expands a compressed PDF so its contents are readable as plain text, which is handy for troubleshooting or editing a PDF by hand (the file gets larger). It runs through automation rather than a tool in the web app - see the [API reference](../API.md).
 :::
 
 ---

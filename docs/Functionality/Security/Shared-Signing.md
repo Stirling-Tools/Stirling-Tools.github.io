@@ -15,7 +15,7 @@ Shared Signing is currently in **alpha**. Functionality may change, and some fea
 
 Shared Signing lets a document owner send a PDF to multiple registered users for signing. Each participant reviews the document, applies their signature, and submits it back. The owner tracks progress and finalizes the document once all signatures are collected.
 
-Shared Signing builds on the storage layer. With the **local** storage provider it needs **no license** - just turn on `security.enableLogin`, `storage.enabled`, and `storage.signing.enabled`. The managed certificate options (Personal and Server certificates) require a Pro/Enterprise license; without one, participants sign by uploading their own certificate (P12/PKCS12 or JKS). The **database** and **s3** storage providers also require a Pro/Enterprise license. See [Modes](../../Modes-and-Licensing.md) for details.
+Shared Signing builds on storage. With the **local** storage provider it needs **no license** - just turn on `security.enableLogin`, `storage.enabled`, and `storage.signing.enabled`. The managed certificate options (Personal and Server certificates) require a Pro/Enterprise license; without one, participants sign by uploading their own certificate (P12/PKCS12 or JKS). The **database** and **s3** storage providers also require a Pro/Enterprise license. See [Modes](../../Modes-and-Licensing.md) for details.
 
 ---
 
@@ -159,7 +159,7 @@ After finalization, download the completed PDF from the session detail view or t
       enabled: true
       signing:
         enabled: true              # Master switch for shared signing
-        userListScope: org         # Signer-picker scope: 'org' (default) = whole instance, any other value = caller's team only
+        userListScope: org         # Who appears in the signer picker: 'org' (default) = whole instance, any other value = your own team only
 
     system:
       frontendUrl: https://your-instance.com

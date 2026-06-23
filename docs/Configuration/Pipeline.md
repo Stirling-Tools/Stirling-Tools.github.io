@@ -363,7 +363,7 @@ The four comparison filters (`filter-page-count`, `filter-page-size`, `filter-fi
 }
 ```
 
-Because `filter` is one of the allowed pipeline namespaces, these operations work both in the REST API and in folder scanning.
+These filter operations work both in the REST API and in folder scanning.
 
 ---
 

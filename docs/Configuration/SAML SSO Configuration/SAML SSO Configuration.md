@@ -154,7 +154,7 @@ Configure SAML authentication by providing:
 
 #### Public URL for SAML SLO
 
-For Single Logout (SLO) to work correctly in production, the Single Logout response location is built from your configured `system.backendUrl`. Make sure that value is set to your public-facing URL (the same setting used for the SAML callbacks above):
+For Single Logout (SLO) to work correctly in production, Stirling PDF uses your `system.backendUrl` setting to tell the Identity Provider where to send the logout response. Make sure that value is set to your public-facing URL (the same setting used for the SAML callbacks above):
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="settings.yml">

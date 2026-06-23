@@ -79,7 +79,7 @@ The desktop app works fully offline for local PDF tools like merging, splitting,
 **Stirling Cloud**
 - Sign in with your Stirling Cloud account
 - Gives access to advanced tools powered by server-side processing
-- Files are processed transiently and are not stored after the request completes. Opt-in cloud storage is a separate Stirling Cloud feature you would enable explicitly. See [Modes](../Modes-and-Licensing.md)
+- See [Modes](../Modes-and-Licensing.md) for what this mode includes
 
 **Self-hosted Server**
 - Enter the URL of your own Stirling-PDF server instance (e.g., `http://192.168.1.53:8080`)

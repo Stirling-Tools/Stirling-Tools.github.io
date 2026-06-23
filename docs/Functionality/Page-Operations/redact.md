@@ -12,7 +12,7 @@ The Redaction tool permanently removes sensitive information from PDFs. It offer
 - **Automatic** - Type the words or regex patterns to remove and let the tool find and redact every match across the document.
 - **Manual** - Open the PDF in the viewer and draw redactions over specific text, areas, or whole pages.
 
-Unlike a simple black box drawn on top of the page, automatic redaction rewrites the page content so the underlying text is genuinely removed - not merely hidden. You can also flatten the result to an image to guarantee nothing recoverable is left behind.
+Unlike a simple black box drawn on top of the page, automatic redaction deletes the matching text from the file so the underlying text is genuinely removed - not merely hidden. You can also flatten the result to an image to guarantee nothing recoverable is left behind.
 
 ## Choosing a mode
 At the top of the Redact panel, the **Redaction Method** selector switches between **Automatic** and **Manual**. Selecting **Manual** opens the document in the viewer, where the drawing controls described below appear.

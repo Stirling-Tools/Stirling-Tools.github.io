@@ -37,14 +37,14 @@ Click **Reset** next to any tool to restore its default. If a tool has no defaul
 
 ## PDF Viewer Shortcuts
 
-These shortcuts work when the PDF viewer is active (hovered), except for Print, Select all text, and zoom which work whenever the viewer is mounted.
+These shortcuts work when the PDF viewer is active (hovered), except for Print, Select all text, and zoom which work whenever the viewer is open.
 
 ### Modifier shortcuts (Ctrl / Cmd + key)
 
 | Windows / Linux | Mac | Action |
 |---|---|---|
 | `Ctrl + P` | `⌘ + P` | Print (works globally when viewer is mounted) |
-| `Ctrl + A` | `⌘ + A` | Select all text (works globally when viewer is mounted) |
+| `Ctrl + A` | `⌘ + A` | Select all text (works globally when viewer is open) |
 | `Ctrl + F` | `⌘ + F` | Open / focus search |
 | `Ctrl + S` | `⌘ + S` | Save / apply changes |
 | `Ctrl + Z` | `⌘ + Z` | Undo |

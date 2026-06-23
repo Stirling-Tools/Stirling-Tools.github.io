@@ -163,7 +163,7 @@ services:
 
       # System Configuration
       - SYSTEM_GOOGLEVISIBILITY=false        # Hide from search engines
-      - SYSTEM_ROOTURIPATH=/                 # Base URL path (servlet context path)
+      - SYSTEM_ROOTURIPATH=/                 # Base URL path
       - SYSTEMFILEUPLOADLIMIT=2000MB         # Max upload size (legacy: SYSTEM_MAXFILESIZE in MB)
 
     restart: unless-stopped

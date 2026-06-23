@@ -235,7 +235,7 @@ Stirling PDF offers three Docker variants:
 Translations use TOML files, one per locale:
 
 1. Navigate to `frontend/editor/public/locales/<lang>/translation.toml`
-2. **Important**: Only update `en-US/translation.toml`. `en-US` is the source/primary locale and the i18n fallback (`fallbackLng: "en-US"`).
+2. **Important**: Only update `en-US/translation.toml`. `en-US` is the source/primary locale and the language used when a translation is missing (`fallbackLng: "en-US"`).
 3. Edit `translation.toml`, adding keys under the relevant feature/tool.
 4. For counts, use ICU-style plural suffixes on the key (`_one`, `_other`, and `_zero` where needed).
 5. Other languages are managed separately by the community.

@@ -161,7 +161,7 @@ Set `storage.provider: s3` to store user uploads in any S3-compatible object sto
 
 ### Sharing Credentials with the Cluster Artifact Store
 
-The `storage.s3.*` block is shared by two consumers: the **s3** storage provider (persistent user uploads) and the cluster artifact store when `cluster.artifactStore: s3` (transient multi-node job artifacts). When both use S3 they reuse the same credentials and bucket. The cluster store writes under a separate key prefix (`cluster.s3.keyPrefix`, default `transient/`) so a single bucket can host both persistent uploads and transient artifacts without collisions. Multi-node deployments must set `cluster.artifactStore: s3`.
+The `storage.s3.*` block is used in two places: the **s3** storage provider (persistent user uploads) and the cluster artifact store when `cluster.artifactStore: s3` (transient multi-node job artifacts). When both use S3 they reuse the same credentials and bucket. The cluster store writes under a separate key prefix (`cluster.s3.keyPrefix`, default `transient/`) so a single bucket can host both persistent uploads and transient artifacts without collisions. Multi-node deployments must set `cluster.artifactStore: s3`.
 
 ---
 

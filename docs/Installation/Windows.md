@@ -64,14 +64,14 @@ Pick whichever method you prefer. All three install the same desktop app.
 
 The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can pick one of three connection modes. See [Modes](../Modes-and-Licensing.md) for how each mode is licensed (self-hosted modes never use credits).
 
-**Bundled local backend (default)**
-- The desktop app runs its own Stirling PDF backend on your machine, no setup or login
+**Built-in local processing (default)**
+- The desktop app runs its own Stirling PDF server on your machine, no setup or login
 - All processing stays on your device and works without internet
 
 **Stirling Cloud**
 - Sign in with your Stirling Cloud account
 - Gives access to advanced tools powered by server-side processing
-- Files are processed transiently and are not stored after the request completes. Opt-in cloud storage is a separate Stirling Cloud feature that you would enable explicitly. See [Modes](../Modes-and-Licensing.md)
+- See [Modes](../Modes-and-Licensing.md) for what this mode includes
 
 **Self-hosted Server**
 - Enter the URL of your own Stirling PDF server instance (e.g., `http://192.168.1.53:8080`)
