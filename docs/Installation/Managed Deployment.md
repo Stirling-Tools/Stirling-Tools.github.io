@@ -53,6 +53,8 @@ A file with none of these fields is ignored.
 
 :::note The login agreement flag only enables it
 `loginAgreementEnabled` / `STIRLING_LOGIN_AGREEMENT` switches the feature on; it does not carry the disclaimer text. The dialog stays hidden until text is available - from the server the desktop connects to, or for a local bundled backend from a `customFiles/disclaimer/<locale>.md` file or the `LEGAL_LOGINAGREEMENT_FALLBACKTEXT` setting. With no text configured, nothing is shown. See [Login Agreement](../Configuration/System%20and%20Security.md).
+
+Passing the disclaimer text directly as an install parameter is planned for a future update.
 :::
 
 ---
