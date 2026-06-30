@@ -46,6 +46,10 @@ For adding signatures (typed, drawn, or uploaded), use the dedicated [Sign PDFs]
 - Comments sidebar listing all comments grouped by page; within each page, comments appear in visual reading order (top-to-bottom, left-to-right)
 - Click to navigate to the source annotation
 
+### Side Panels
+- Dedicated side panels for **comments**, **annotations**, and **attachments**, each with quick controls for adding items
+- A **clear all** button removes every comment or annotation in one action
+
 ---
 
 ## Viewer Features

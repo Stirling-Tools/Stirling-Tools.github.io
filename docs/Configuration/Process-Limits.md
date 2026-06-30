@@ -36,7 +36,6 @@ Controls how many concurrent instances of each process are allowed. Extra reques
 | `sessionLimit.ocrMyPdfSessionLimit` | `2` | Add OCR overlay to existing PDFs |
 | `sessionLimit.weasyPrintSessionLimit` | `16` | HTML/CSS → PDF (WeasyPrint) |
 | `sessionLimit.calibreSessionLimit` | `1` | E-book conversions |
-| `sessionLimit.ffmpegSessionLimit` | `2` | Video/audio processing |
 | `sessionLimit.installAppSessionLimit` | `1` | Internal install tasks |
 
 **Increase** limits on a beefy server with concurrent users. **Decrease** them on low-RAM servers - LibreOffice in particular is memory-hungry.
@@ -64,7 +63,6 @@ How long (in minutes) a process can run before it's forcibly killed and an error
 | `timeoutMinutes.ocrMyPdfTimeoutMinutes` | `30` |
 | `timeoutMinutes.weasyPrintTimeoutMinutes` | `30` |
 | `timeoutMinutes.calibreTimeoutMinutes` | `30` |
-| `timeoutMinutes.ffmpegTimeoutMinutes` | `30` |
 | `timeoutMinutes.pdfToHtmlTimeoutMinutes` | `20` |
 | `timeoutMinutes.installAppTimeoutMinutes` | `60` |
 

@@ -133,6 +133,33 @@ java -jar Stirling-PDF.jar
 
 ---
 
+## Login Agreement / Disclaimer
+
+Show a disclaimer that users must accept before they can use the app. It appears as a blocking dialog after a successful login (or on launch when login is disabled), and works on every edition.
+
+```yaml
+legal:
+  loginAgreement:
+    enabled: false              # Master on/off switch
+    showInAnonymousMode: true   # When login is disabled, set false to hide the dialog
+    fallbackText: ""            # Markdown shown when no per-language file is found
+```
+
+**Environment Variables:**
+```bash
+LEGAL_LOGINAGREEMENT_ENABLED=true
+LEGAL_LOGINAGREEMENT_SHOWINANONYMOUSMODE=true
+LEGAL_LOGINAGREEMENT_FALLBACKTEXT="By signing in you agree to the terms..."
+```
+
+The disclaimer is written in **Markdown**. Provide per-language versions as files at `customFiles/disclaimer/<locale>.md` (for example `en-US.md` or `de-DE.md`); the text shown follows each user's interface language and falls back to `fallbackText` when no matching file exists. If no text resolves at all (no files and no `fallbackText`), the dialog is not shown even when `enabled` is `true`. For a single-language or headless install, set `fallbackText` (env `LEGAL_LOGINAGREEMENT_FALLBACKTEXT`) and skip the per-language files. Editing the text takes effect on the next login with no restart; turning `enabled` on or off requires a restart.
+
+Admins can also edit the text in-app from **Admin Settings → Legal**, which writes the same per-language files.
+
+In the desktop app, the dialog can be enabled per machine through MDM - see [Managed Desktop Deployment](../Installation/Managed%20Deployment.md).
+
+---
+
 ## Server Certificates
 
 Stirling PDF can auto-generate certificates for the "Sign with Stirling PDF" feature.
