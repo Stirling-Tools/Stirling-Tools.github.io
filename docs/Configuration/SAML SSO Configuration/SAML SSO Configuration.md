@@ -262,7 +262,7 @@ Restart Stirling PDF.
 
 | Property | Default | Description |
 |----------|---------|-------------|
-| `security.saml2.autoCreateUser` | `false` | Auto-create users on first SAML login |
+| `security.saml2.autoCreateUser` | `true` | Auto-create users on first SAML login |
 | `security.saml2.blockRegistration` | `false` | Block new users (only allow pre-registered) |
 | `security.saml2.registrationId` | `stirling` | Registration ID (must match ACS URL path) |
 | `security.saml2.provider` | `null` | Optional provider name for logging |

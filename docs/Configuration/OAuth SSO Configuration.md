@@ -361,7 +361,7 @@ Once you've verified OAuth works and promoted an OAuth user to admin, you can di
 | Property | Description | Default | Example |
 |----------|-------------|---------|---------|
 | `security.oauth2.issuer` | OIDC issuer URL (required for generic providers, must support `/.well-known/openid-configuration`) | - | `https://keycloak.example.com/realms/myrealm` |
-| `security.oauth2.autoCreateUser` | Auto-create users on first login | `false` | `true` |
+| `security.oauth2.autoCreateUser` | Auto-create users on first login | `true` | `false` |
 | `security.oauth2.blockRegistration` | Block new user registration, only allow pre-registered users | `false` | `true` |
 | `security.oauth2.scopes` | Space or comma-separated list of OAuth scopes | Provider-specific | `openid, profile, email` |
 | `security.oauth2.useAsUsername` | Claim to use as username (options depend on provider) | Provider-specific | `email`, `preferred_username`, `login` |

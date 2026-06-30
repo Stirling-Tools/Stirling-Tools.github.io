@@ -21,7 +21,7 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
 
     1. Go to **Certificate Sign** tool
     2. Upload PDF
-    3. In the **Sign Mode** step, choose **Auto (server)** (shown only when the server certificate feature is enabled)
+    3. In the **Certificate source** step, choose **Server** (shown only when the server certificate feature is enabled)
     4. Configure signature appearance (optional)
     5. Sign and download
 
@@ -52,7 +52,7 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
 
     1. Go to **Certificate Sign** tool
     2. Upload PDF
-    3. In the **Sign Mode** step, choose **Manual**, then pick your certificate format
+    3. In the **Certificate source** step, choose **Upload**, then pick your certificate format
     4. Upload your certificate file(s) and enter the password (if any)
     5. Configure signature appearance
     6. Sign and download
@@ -77,7 +77,29 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
         organizationName: Acme Corp
     ```
 
-    Once configured, users can choose **Auto (server)** in the **Sign Mode** step to sign with the shared certificate.
+    Once configured, users can choose **Server** in the **Certificate source** step to sign with the shared certificate.
+  </TabItem>
+  <TabItem value="device" label="This Device (Desktop)">
+    Sign with a certificate held on your own machine - a USB token or smart card (PKCS#11), or the Windows certificate store. The private key never leaves the device: Stirling PDF asks the token or operating system to perform the signing. This option appears only in the **desktop app** and works on every edition.
+
+    1. Go to **Certificate Sign** tool
+    2. Upload PDF
+    3. In the **Certificate source** step, choose **This device**
+    4. Pick the hardware type:
+       - **Windows certificate store** (Windows only) - available certificates are listed automatically; pick one. Windows prompts for the card or token PIN when you sign.
+       - **USB token** (PKCS#11, Windows/macOS/Linux) - choose the PKCS#11 driver (common drivers such as OpenSC, YubiKey, SafeNet eToken, and Thales IDPrime are detected automatically, or enter a custom driver path), enter the token PIN, then **List certificates** and pick one.
+    5. Configure signature appearance
+    6. Sign and download
+
+    For security, you can only sign with a PKCS#11 driver that Stirling PDF auto-detects or one you explicitly allow. Add extra driver libraries with the `STIRLING_PKCS11_LIBRARIES` environment variable - absolute paths to the driver files, separated by your platform's path separator:
+
+    ```bash
+    STIRLING_PKCS11_LIBRARIES=/usr/lib/opensc-pkcs11.so
+    ```
+
+    :::note macOS and Linux
+    The macOS Keychain is not a direct signing source. On macOS and Linux, reach a smart card or token through a PKCS#11 driver such as OpenSC.
+    :::
   </TabItem>
 </Tabs>
 
@@ -243,7 +265,7 @@ curl -X POST http://stirling-pdf:8080/api/v1/security/timestamp-pdf \
 </Tabs>
 
 :::note
-The `system.serverCertificate.*` keys are honoured only on Pro/Enterprise editions. On the free self-hosted edition, setting `enabled: true` has no effect and the **Auto (server)** sign mode stays hidden; use a custom certificate (Manual mode) instead. All `security.validation.*` and `security.timestamp.*` settings apply to every edition.
+The `system.serverCertificate.*` keys are honoured only on Pro/Enterprise editions. On the free self-hosted edition, setting `enabled: true` has no effect and the **Server** certificate source stays hidden; use a custom certificate (**Upload**), or **This device** in the desktop app, instead. All `security.validation.*` and `security.timestamp.*` settings apply to every edition.
 :::
 
 ---
@@ -253,7 +275,7 @@ The `system.serverCertificate.*` keys are honoured only on Pro/Enterprise editio
 <Tabs>
   <TabItem value="sign-server" label="Sign (Server Cert)">
     ```bash
-    # certType must be one of PEM, PKCS12, PFX, JKS, SERVER (uppercase)
+    # certType must be one of PEM, PKCS12, PFX, JKS, SERVER, WINDOWS_STORE, PKCS11 (uppercase)
     # certType=SERVER requires the Pro/Enterprise server certificate feature to be enabled
     curl -X POST http://stirling-pdf:8080/api/v1/security/cert-sign \
       -F "fileInput=@document.pdf" \
@@ -273,6 +295,19 @@ The `system.serverCertificate.*` keys are honoured only on Pro/Enterprise editio
       -F "certType=PKCS12" \
       -F "p12File=@mycert.p12" \
       -F "password=certpass" \
+      -o signed.pdf
+    ```
+  </TabItem>
+  <TabItem value="sign-device" label="Sign (Device)">
+    ```bash
+    # Desktop app only; the request must come from the local machine.
+    # WINDOWS_STORE selects a cert by alias; PKCS11 uses pkcs11LibraryPath (+ optional pkcs11Slot),
+    # with password as the token PIN.
+    curl -X POST http://localhost:8080/api/v1/security/cert-sign \
+      -F "fileInput=@document.pdf" \
+      -F "certType=PKCS11" \
+      -F "pkcs11LibraryPath=/usr/lib/opensc-pkcs11.so" \
+      -F "password=token-pin" \
       -o signed.pdf
     ```
   </TabItem>

@@ -19,12 +19,12 @@ This means you can replace any static resource by placing a file with the matchi
 
 ### Finding File Paths to Override
 
-Most static files in the application come from the `frontend/editor/public/` folder in the source code. To override a file, place it under `customFiles/static/` matching the same path it is served at. The mapping is direct:
+Most static files in the application come from the `frontend/editor/public/` folder in the source code (brand logos live in `frontend/shared/assets/brand/`). To override a file, place it under `customFiles/static/` matching the same path it is served at. The mapping is direct:
 
 **Frontend source → Your override path:**
 - `frontend/editor/public/manifest.json` → `customFiles/static/manifest.json`
-- `frontend/editor/public/modern-logo/StirlingPDFLogoBlackText.svg` → `customFiles/static/modern-logo/StirlingPDFLogoBlackText.svg`
-- `frontend/editor/public/classic-logo/StirlingPDFLogoBlackText.svg` → `customFiles/static/classic-logo/StirlingPDFLogoBlackText.svg`
+- `frontend/shared/assets/brand/modern-logo/StirlingPDFLogoBlackText.svg` → `customFiles/static/modern-logo/StirlingPDFLogoBlackText.svg`
+- `frontend/shared/assets/brand/classic-logo/StirlingPDFLogoBlackText.svg` → `customFiles/static/classic-logo/StirlingPDFLogoBlackText.svg`
 
 **To see what files you can override:**
 1. Browse the [frontend/editor/public folder on GitHub](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/frontend/editor/public)

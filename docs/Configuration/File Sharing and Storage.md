@@ -264,6 +264,8 @@ Your folders are private to you. Folders themselves are not shared; you share in
 
 ## Sharing Files
 
+You can share a file from the **My Files** page, or from the **Share** button in the top bar of the editor workbench while a file is open.
+
 ### Share with a Specific User
 
 From the file manager, select a file and share it with another user by their username or email address. You can choose the access role when sharing.
