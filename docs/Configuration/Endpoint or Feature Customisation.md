@@ -142,7 +142,6 @@ Use these exact kebab-case IDs with `endpoints.toRemove` in settings.yml.
 - `pdf-to-csv` - PDF to CSV
 - `pdf-to-epub` - PDF to EPUB
 - `pdf-to-vector` - PDF to Vector
-- `pdf-to-video` - PDF to Video
 - `pdf-to-json` - PDF to JSON
 - `pdf-to-rtf` - PDF to RTF
 - `pdf-to-cbz` - PDF to CBZ

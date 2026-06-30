@@ -9,8 +9,6 @@ import TabItem from '@theme/TabItem';
 
 # Sign PDF (Handwritten Signatures)
 
-**Tool ID:** `sign`
-
 Add handwritten signatures, text signatures, or image-based signatures to PDF documents. This tool is for visual/handwritten signatures - for certificate-based digital signatures, see [Certificate Signing](./Certificate-Signing.md).
 
 ---

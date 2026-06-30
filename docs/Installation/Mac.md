@@ -90,7 +90,7 @@ Pick whichever method you prefer. Both install the same desktop app.
 
 ### Connection modes
 
-You can pick one of three connection modes. See [Modes](../Modes-and-Licensing.md) for how each mode is licensed (self-hosted modes never use credits).
+You can pick one of three connection modes. See [Modes](../Modes-and-Licensing.md) for how each mode is licensed.
 
 - **Bundled local backend (default):** the app runs its own copy of Stirling PDF on your Mac, no setup or login, fully offline.
 - **Stirling Cloud:** sign in for advanced server-side tools.

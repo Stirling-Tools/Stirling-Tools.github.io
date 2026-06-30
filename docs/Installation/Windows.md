@@ -62,7 +62,7 @@ Pick whichever method you prefer. All three install the same desktop app.
 
 ### Connecting to a server
 
-The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can pick one of three connection modes. See [Modes](../Modes-and-Licensing.md) for how each mode is licensed (self-hosted modes never use credits).
+The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can pick one of three connection modes. See [Modes](../Modes-and-Licensing.md) for how each mode is licensed.
 
 **Built-in local processing (default)**
 - The desktop app runs its own Stirling PDF server on your machine, no setup or login
@@ -113,7 +113,7 @@ The desktop app keeps itself current. Open **Settings → Software Updates** to 
 | `auto` | Silently downloads, installs, and restarts on startup |
 | `disabled` | Never checks for updates or shows update UI |
 
-When the mode is set by an administrator through a provisioning file (see [Automated Installation](#automated-installation)), the Software Updates control is locked and shows **"Managed by administrator"** so users cannot change it.
+When the mode is set by an administrator through a provisioning file (see [Managed Desktop Deployment](./Managed%20Deployment.md)), the Software Updates control is locked and shows **"Managed by administrator"** so users cannot change it.
 
 ### Automated Installation
 

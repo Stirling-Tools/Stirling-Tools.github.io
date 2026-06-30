@@ -74,7 +74,7 @@ Pick whichever package format matches your distribution.
 
 ### Connecting to a server
 
-The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can connect to a server at any time. See [Modes](../Modes-and-Licensing.md) for how each mode is licensed (self-hosted modes never use credits).
+The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can connect to a server at any time. See [Modes](../Modes-and-Licensing.md) for how each mode is licensed.
 
 **Stirling Cloud**
 - Sign in with your Stirling Cloud account

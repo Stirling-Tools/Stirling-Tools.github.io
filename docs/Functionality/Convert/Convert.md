@@ -33,7 +33,7 @@ Convert between PDF and 50+ file formats including documents, images, web pages,
 | **eBook** | EPUB, MOBI, AZW3, FB2 |
 | **Comics** | CBZ, CBR |
 
-eBook and Outlook (MSG) inputs are converted to PDF on the self-hosted server (eBook conversion uses the bundled Calibre runtime; enable the Calibre group if your image excludes it). All conversions run locally with no credits or per-operation charges - see [Modes](../../Modes-and-Licensing.md).
+eBook and Outlook (MSG) inputs are converted to PDF on the self-hosted server (eBook conversion uses the bundled Calibre runtime; enable the Calibre group if your image excludes it).
 
 ### Convert FROM PDF
 
@@ -77,17 +77,12 @@ PDF to Excel extracts tabular data and writes one worksheet per detected table. 
 
 ## Automation and API conversions
 
-A few conversions have no button in the Convert tool. They run only through the [API](../../API.md) and the [Automate / pipeline](../../Configuration/Pipeline.md) workflow. Like every other conversion they run locally on your server with no credits or per-operation charges.
+A few conversions have no button in the Convert tool. They run only through the [API](../../API.md) and the [Automate / pipeline](../../Configuration/Pipeline.md) workflow.
 
 - **PDF to vector / page-description formats** - export a PDF as EPS, PS, PCL, or XPS for print and publishing workflows.
 - **PostScript to PDF** - turn PostScript files (PS, EPS, EPSF) into PDF, with an optional print-oriented (prepress) profile.
-- **PDF to Video Slideshow** - render each page to a frame and stitch them into an MP4 or WEBM slideshow.
 
 The vector and PostScript conversions need the **Ghostscript** group, which is included in the standard Docker image.
-
-:::note PDF to Video is currently unavailable
-The PDF to Video conversion is turned off and cannot be used.
-:::
 
 See the [API reference](../../API.md) for the exact parameters of these conversions.
 
