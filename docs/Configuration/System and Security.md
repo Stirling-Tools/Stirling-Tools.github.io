@@ -152,7 +152,7 @@ LEGAL_LOGINAGREEMENT_SHOWINANONYMOUSMODE=true
 LEGAL_LOGINAGREEMENT_FALLBACKTEXT="By signing in you agree to the terms..."
 ```
 
-The disclaimer is written in **Markdown**. Provide per-language versions as files at `customFiles/disclaimer/<locale>.md` (for example `en-US.md` or `de-DE.md`); the text shown follows each user's interface language and falls back to `fallbackText` when no matching file exists. For a single-language or headless install, set `fallbackText` (env `LEGAL_LOGINAGREEMENT_FALLBACKTEXT`) and skip the per-language files. Editing the text takes effect on the next login with no restart; turning `enabled` on or off requires a restart.
+The disclaimer is written in **Markdown**. Provide per-language versions as files at `customFiles/disclaimer/<locale>.md` (for example `en-US.md` or `de-DE.md`); the text shown follows each user's interface language and falls back to `fallbackText` when no matching file exists. If no text resolves at all (no files and no `fallbackText`), the dialog is not shown even when `enabled` is `true`. For a single-language or headless install, set `fallbackText` (env `LEGAL_LOGINAGREEMENT_FALLBACKTEXT`) and skip the per-language files. Editing the text takes effect on the next login with no restart; turning `enabled` on or off requires a restart.
 
 Admins can also edit the text in-app from **Admin Settings → Legal**, which writes the same per-language files.
 

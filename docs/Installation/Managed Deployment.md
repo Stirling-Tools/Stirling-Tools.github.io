@@ -46,10 +46,14 @@ You can write this file yourself (it is only a few lines), or on Windows let the
 |-------|------|--------------|
 | `serverUrl` | string | The server the app connects to on launch (your self-hosted instance, or a Stirling Cloud URL). Include the protocol (`http://` or `https://`); a trailing slash is optional. |
 | `lockConnectionMode` | boolean | `true` stops users changing the server or connection mode in Settings. Only takes effect when `serverUrl` is also set. |
-| `loginAgreementEnabled` | boolean | `true` shows the login agreement/disclaimer dialog on this install. Can be set on its own (no `serverUrl` needed), so it also applies to local, no-login desktop installs. |
+| `loginAgreementEnabled` | boolean | `true` enables the login agreement/disclaimer dialog. It only turns the feature on - the text is supplied separately (see note below), and with no text nothing is shown. Can be set on its own (no `serverUrl` needed), so it also applies to local, no-login desktop installs. |
 | `updateMode` | string | How the built-in updater behaves: `prompt` (default - ask the user), `auto` (download and install silently on startup), or `disabled` (never check or show update UI). |
 
 A file with none of these fields is ignored.
+
+:::note The login agreement flag only enables it
+`loginAgreementEnabled` / `STIRLING_LOGIN_AGREEMENT` switches the feature on; it does not carry the disclaimer text. The dialog stays hidden until text is available - from the server the desktop connects to, or for a local bundled backend from a `customFiles/disclaimer/<locale>.md` file or the `LEGAL_LOGINAGREEMENT_FALLBACKTEXT` setting. With no text configured, nothing is shown. See [Login Agreement](../Configuration/System%20and%20Security.md).
+:::
 
 ---
 
@@ -73,7 +77,7 @@ On Windows you do not have to write the JSON by hand. The MSI installer (and `wi
 |-----------|-------------|---------|
 | `STIRLING_SERVER_URL` | Server URL the app connects to | `http://192.168.1.53:8080` |
 | `STIRLING_LOCK_CONNECTION` | Lock the connection so users cannot change it (`1` = locked) | `1` |
-| `STIRLING_LOGIN_AGREEMENT` | Show the login agreement/disclaimer dialog (`1` = enabled) | `1` |
+| `STIRLING_LOGIN_AGREEMENT` | Enable the login agreement/disclaimer dialog (`1` = enabled). The text is supplied separately; the flag alone shows nothing. | `1` |
 | `STIRLING_UPDATE_MODE` | Set and lock the update mode (`prompt`, `auto`, or `disabled`) | `disabled` |
 | `INSTALLDIR` | Custom install directory (MSI only) | `C:\CustomPath\Stirling-PDF` |
 | `ALLUSERS` | Install for all users (requires admin; `1`) | `1` |
