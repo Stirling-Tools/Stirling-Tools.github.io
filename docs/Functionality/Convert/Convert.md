@@ -29,18 +29,24 @@ Convert between PDF and 50+ file formats including documents, images, web pages,
 | **Office** | DOCX, DOC, ODT, XLSX, XLS, ODS, PPTX, PPT, ODP, TXT, RTF |
 | **Images** | JPG, JPEG, PNG, GIF, BMP, TIFF, WEBP, SVG |
 | **Web** | HTML (with CSS/images via ZIP), URL, Markdown |
-| **Email** | EML |
+| **Email** | EML, MSG (Outlook) |
+| **eBook** | EPUB, MOBI, AZW3, FB2 |
 | **Comics** | CBZ, CBR |
+
+eBook and Outlook (MSG) inputs are converted to PDF on the self-hosted server (eBook conversion uses the bundled Calibre runtime; enable the Calibre group if your image excludes it).
 
 ### Convert FROM PDF
 
 | Category | Formats |
 |----------|---------|
-| **Office** | DOCX, ODT, PPTX, ODP, TXT, RTF, Markdown |
+| **Office** | DOCX, ODT, PPTX, ODP, XLSX, TXT, RTF, Markdown |
 | **Images** | PNG, JPG, GIF, TIFF, BMP, WEBP |
 | **Data** | CSV, HTML, XML |
-| **Archival** | PDF/A |
+| **Archival / Print** | PDF/A, PDF/X |
+| **eBook** | EPUB, AZW3 |
 | **Comics** | CBZ, CBR |
+
+PDF to Excel extracts tabular data and writes one worksheet per detected table. PDF to eBook (EPUB/AZW3) uses the bundled Calibre runtime. PDF/X is the print-optimized variant of PDF/A and is chosen from the same Archive / Print option (it needs Ghostscript, which is in the standard Docker image).
 
 ---
 
@@ -60,6 +66,25 @@ Convert between PDF and 50+ file formats including documents, images, web pages,
 ### PDF to CSV
 - Works best with simple, well-structured tables in digital PDFs
 - Not reliable for scanned documents
+
+### PDF to Markdown
+- Table-aware converter that runs locally on your server
+- Turns larger text into Markdown headings based on font size
+- Rebuilds detected tables as Markdown tables, joining tables that split across a page break
+- Works best with digital PDFs; run [OCR](../OCR.md) first for scanned input
+
+---
+
+## Automation and API conversions
+
+A few conversions have no button in the Convert tool. They run only through the [API](../../API.md) and the [Automate / pipeline](../../Configuration/Pipeline.md) workflow.
+
+- **PDF to vector / page-description formats** - export a PDF as EPS, PS, PCL, or XPS for print and publishing workflows.
+- **PostScript to PDF** - turn PostScript files (PS, EPS, EPSF) into PDF, with an optional print-oriented (prepress) profile.
+
+The vector and PostScript conversions need the **Ghostscript** group, which is included in the standard Docker image.
+
+See the [API reference](../../API.md) for the exact parameters of these conversions.
 
 ---
 

@@ -1,15 +1,59 @@
 ---
 sidebar_position: 1
-title: Manual Redaction
+title: Redaction
 parent: Page operations
 ---
 
 # Redaction Tool User Guide
 
 ## Overview
-The Document Redaction Tool allows you to securely redact sensitive information from documents using three different methods: text selection, area drawing, or entire page redaction.
+The Redaction tool permanently removes sensitive information from PDFs. It offers two modes:
 
-## Redaction Methods
+- **Automatic** - Type the words or regex patterns to remove and let the tool find and redact every match across the document.
+- **Manual** - Open the PDF in the viewer and draw redactions over specific text, areas, or whole pages.
+
+Unlike a simple black box drawn on top of the page, automatic redaction deletes the matching text from the file so the underlying text is genuinely removed - not merely hidden. You can also flatten the result to an image to guarantee nothing recoverable is left behind.
+
+## Choosing a mode
+At the top of the Redact panel, the **Redaction Method** selector switches between **Automatic** and **Manual**. Selecting **Manual** opens the document in the viewer, where the drawing controls described below appear.
+
+---
+
+## Automatic redaction
+Automatic redaction searches the document for the text you specify and removes every match.
+
+**How to use:**
+1. Choose **Automatic** as the redaction method.
+2. Under **Redaction Settings**, add each **word or pattern** to redact. Add as many as you need - the tool scans for all of them in a single pass, and matches are found across multiple columns and text lines.
+3. (Optional) Open **Advanced Settings** to adjust:
+   - **Use Regex** - Treat each entry as a regular expression rather than a literal word.
+   - **Whole Word Search** - Match only complete words, not substrings.
+   - **Box Colour** and **Custom Extra Padding** - Style the redaction boxes.
+   - **Convert PDF to PDF-Image** - Flatten the redacted PDF to an image so no text remains behind the boxes (enabled by default).
+4. Click **Redact**.
+
+### Redacting PII with patterns
+With **Use Regex** enabled you can target common personally identifiable information (PII) by entering the matching pattern. For example:
+
+| Type | Example pattern |
+| --- | --- |
+| Social Security number (SSN) | `\d{3}-\d{2}-\d{4}` |
+| Credit / debit card | `\d{4}[ -]?\d{4}[ -]?\d{4}[ -]?\d{4}` |
+| IBAN | `[A-Z]{2}\d{2}[A-Z0-9]{1,30}` |
+| US routing number (ABA) | `\b\d{9}\b` |
+| Account number (labelled) | `[Aa]ccount\s*#?\s*\d{6,}` |
+| Email address | `[\w.-]+@[\w.-]+\.\w+` |
+| Phone number | `\(\d{3}\)\s*\d{3}-\d{4}` |
+
+Add one pattern per entry; refine them to suit your documents to keep false positives down.
+
+### How text is removed
+Automatic redaction deletes the matching text from the file rather than just covering it. For maximum safety, keep **Convert PDF to PDF-Image** enabled so no recoverable text can remain under the boxes.
+
+---
+
+## Manual redaction
+Manual redaction lets you mark sensitive content visually in the viewer using three methods: text selection, area drawing, or entire page redaction.
 
 ### 1. Text Selection Redaction
 Perfect for redacting specific words, sentences, or paragraphs.
@@ -25,7 +69,6 @@ Perfect for redacting specific words, sentences, or paragraphs.
    - Clicking the save icon in the toolbar
      
       ![image](https://github.com/user-attachments/assets/73d4b1f0-a454-452b-ab60-028b9728004b)
-
 
 ### 2. Area Drawing Redaction
 Ideal for redacting images, tables, or irregular content blocks.
@@ -45,7 +88,6 @@ Ideal for redacting images, tables, or irregular content blocks.
    - A green border means saved and active
    
       ![image](https://github.com/user-attachments/assets/0711ff11-da1a-41c3-9d57-82067ee0f8b8)
-
 
 ### 3. Page Redaction
 Used when you need to redact entire pages.
@@ -80,7 +122,6 @@ Used when you need to redact entire pages.
   
 ![redaction_color](https://github.com/user-attachments/assets/0bc05461-6427-4a62-8cd4-745c3104c04f)
 
-
 ### Removing Redactions
 1. Click the redacted area you want to remove
 2. Either:
@@ -100,11 +141,7 @@ To disable PDF to PDF-image option:
    
          ![image](https://github.com/user-attachments/assets/e2e07e31-8eb0-41ac-80ab-ffd8520f5795)
 
-
 - If the image icon is green, then the option is enabled, if it is red then it is disabled.
-
-
-
 
 ## Keyboard Shortcuts
 - `Ctrl + S`: Save/apply redaction

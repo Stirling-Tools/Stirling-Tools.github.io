@@ -32,7 +32,7 @@ Stirling PDF's memory usage can be optimized in several ways:
 
 For detailed sizing recommendations, see the [Performance Optimization](./Configuration/Performance-Optimization.md) guide.
 
-### Q7: I'm experiencing connection errors when pulling from docker.stirling.com
+### Q7: I'm experiencing connection errors when pulling from docker.stirlingpdf.com
 
 If you experience connection issues, use these alternative endpoints:
 
@@ -99,13 +99,13 @@ To disable authentication in the with-login version:
   </TabItem>
   <TabItem value="jar-property" label="JAR (Java Property)">
     ```bash
-    java -jar Stirling-PDF.jar -DSECURITY_ENABLELOGIN=false
+    java -jar Stirling-PDF-with-login.jar -DSECURITY_ENABLELOGIN=false
     ```
   </TabItem>
   <TabItem value="jar-env" label="JAR (Environment Variable)">
     ```bash
     export SECURITY_ENABLELOGIN=false
-    java -jar Stirling-PDF.jar
+    java -jar Stirling-PDF-with-login.jar
     ```
   </TabItem>
 </Tabs>

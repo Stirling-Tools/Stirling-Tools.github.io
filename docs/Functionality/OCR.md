@@ -7,8 +7,6 @@ description: Make scanned PDFs searchable and editable with OCR
 
 # OCR (Optical Character Recognition)
 
-**Tool ID:** `ocr-pdf`
-
 Make scanned PDFs searchable and selectable by recognizing text in images. Uses the Tesseract OCR engine.
 
 ---
@@ -45,7 +43,7 @@ Make scanned PDFs searchable and selectable by recognizing text in images. Uses 
 |--------|-------------|
 | **Deskew** | Automatically straighten tilted/skewed pages |
 | **Clean Input** | Preprocess by removing noise and enhancing contrast for better recognition |
-| **Clean Output** | Post-process the final PDF to remove OCR artifacts |
+| **Clean Final Output** | Post-process the final PDF to remove OCR artifacts |
 | **Create Text File** | Generate a separate .txt file with the extracted text (output as ZIP) |
 
 Advanced options require OCRmyPDF. With Tesseract only, they are ignored.

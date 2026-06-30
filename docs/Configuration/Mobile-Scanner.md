@@ -67,3 +67,11 @@ Enable and configure the Mobile Scanner feature, which lets users scan documents
 | `imageResolution` | `full` / `reduced` | Image resolution for PDF conversion: `full` = original size, `reduced` = max 1200px on longest side. Only applies when `convertToPdf` is true. |
 | `pageFormat` | `keep` / `A4` / `letter` | Page format for converted PDFs: `keep` = original image dimensions, `A4` = A4 page size, `letter` = US Letter page size. Only applies when `convertToPdf` is true. |
 | `stretchToFit` | `true` / `false` | Stretch images to fill entire page (may distort aspect ratio). If false, images are centered with preserved aspect ratio. Only applies when `convertToPdf` is true. |
+
+## Desktop app behaviour
+
+The Stirling PDF desktop app has built-in support for Mobile Scanner. For the end-user walkthrough, see [Mobile Scanner](../Functionality/Mobile-Scanner.md#using-mobile-scanner-in-the-desktop-app).
+
+Admin note specific to the desktop app:
+
+- In desktop mode the app serves its own simple upload page (controlled by the `STIRLING_PDF_TAURI_MODE` setting) instead of the standard web `/mobile-scanner` page, because a phone cannot load the desktop app's own window.

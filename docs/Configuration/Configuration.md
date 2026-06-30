@@ -35,7 +35,7 @@ Configure via Docker environment variables or system environment variables.
 ```bash
 docker run -d \
   -e SECURITY_ENABLELOGIN=true \
-  -e LANGS=en_GB \
+  -e SYSTEM_DEFAULTLOCALE=en-US \
   stirlingtools/stirling-pdf:latest
 ```
 
@@ -52,7 +52,7 @@ Edit `/configs/settings.yml` directly for advanced configuration.
 security:
   enableLogin: true
 system:
-  defaultLocale: en-GB
+  defaultLocale: en-US
 ```
 
 **Best for:** Complex configurations, when you prefer file-based config
@@ -99,18 +99,21 @@ For more details, see [System and Security Configuration](./System%20and%20Secur
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
     ```yaml
-    langs: en_GB
+    ui:
+      languages: []        # Available languages (empty = all enabled), e.g. ["en_US", "de_DE"]
     system:
-      defaultLocale: en-GB
+      defaultLocale: en-US # Default language for new users
     ```
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
-    LANGS=en_GB                    # Available languages
-    SYSTEM_DEFAULTLOCALE=en-GB     # Default language
+    UI_LANGUAGES=en_US,de_DE       # Restrict available languages (omit to enable all)
+    SYSTEM_DEFAULTLOCALE=en-US     # Default language
     ```
   </TabItem>
 </Tabs>
+
+Leaving `defaultLocale` empty (the default) auto-detects the language from the browser and falls back to `en-US` if no preference is found.
 
 **How language selection works:**
 
@@ -121,20 +124,23 @@ Stirling PDF determines the interface language using this priority order:
    - Choice is stored in browser's localStorage (persists across sessions)
    - Storage key: `i18nextLng`
 
-2. **Browser's language preference**
-   - Automatically detected from browser's `Accept-Language` header via the `navigator` API
-   - Example: Firefox set to Swedish (sv-SE) will show Swedish UI
-
-3. **System default locale** (lowest priority)
+2. **System default locale**
    - Set via `SYSTEM_DEFAULTLOCALE` or `system.defaultLocale`
-   - Only applied if user has no localStorage preference (first-time visitors)
+   - When configured, it overrides the browser's detected language for users who have not made a manual selection
+
+3. **Browser's language preference**
+   - Automatically detected from the browser's language setting
+   - Example: Firefox set to Swedish (sv-SE) shows Swedish UI when no `defaultLocale` is configured
+
+4. **Fallback** (lowest priority)
+   - `en-US` is used when none of the above resolve to an available language
 
 **Example:**
-- Config: `SYSTEM_DEFAULTLOCALE=en_GB`
+- Config: `SYSTEM_DEFAULTLOCALE=en-US`
 - Browser: Swedish (sv-SE)
-- Result: UI shows Swedish (browser preference overrides config)
+- Result: UI shows English (US) (the configured default overrides the browser preference)
 
-To force a specific default language regardless of browser settings, users must manually select it via the language globe icon.
+If `defaultLocale` is left empty (the default), the browser-detected language is used instead. Users can always override either choice by manually selecting a language via the language globe icon.
 
 > **Tip**: Set `SYSTEM_DEFAULTLOCALE` to your organization's primary language. Users can always override it using the language selector in the top-right corner.
 
@@ -144,7 +150,7 @@ To force a specific default language regardless of browser settings, users must 
   <TabItem value="settings" label="Settings File">
     ```yaml
     system:
-      maxFileSize: 2000  # MB
+      fileUploadLimit: "500MB"  # Number (0-999) followed by KB, MB, or GB. Empty = no limit
     spring:
       servlet:
         multipart:
@@ -154,7 +160,7 @@ To force a specific default language regardless of browser settings, users must 
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
-    SYSTEM_MAXFILESIZE=2000        # MB
+    SYSTEM_MAXFILESIZE=500        # Size in MB (valid range 1-999)
     SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=2000MB
     SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=2000MB
     ```
@@ -219,6 +225,18 @@ For advanced features and specific use cases, see these detailed guides:
 **[Google Drive File Picker](./Google%20Drive%20File%20Picker.md)**
 - Direct Google Drive integration
 - OAuth setup
+
+**[MCP Server](../Advanced%20Configuration/MCP-Server.md)**
+- Expose Stirling PDF tools over the Model Context Protocol
+- OAuth2 or API-key authentication
+- Operation allow/deny lists
+
+**[S3 / Object Storage](./File%20Sharing%20and%20Storage.md)**
+- Store uploads and job artifacts in S3-compatible object storage
+- Shared storage for multi-node deployments
+
+**[Telegram Bot](./Telegram%20Bot.md)**
+- Run a Telegram bot that processes PDFs sent in chat
 
 **[OCR Configuration](./OCR.md)**
 - Tesseract language packs
@@ -311,7 +329,7 @@ SECURITY_ENABLELOGIN=true
 
 ### Database Issues
 
-Default database location: `/configs/stirling-pdf-DB.mv.db`
+Default database location: `/configs/stirling-pdf-DB-<schema-version>.mv.db` (the schema version is part of the filename, e.g. `/configs/stirling-pdf-DB-2.3.232.mv.db`).
 
 If missing:
 - Ensure `/configs` volume is mounted

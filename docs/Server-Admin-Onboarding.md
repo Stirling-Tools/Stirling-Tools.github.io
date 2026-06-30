@@ -105,7 +105,7 @@ By the end of this guide, you'll have:
 - ⚠️ More maintenance required
 
 **Requirements:**
-- Java 21+
+- Java 25+
 - Linux/Unix system
 - 2GB RAM minimum
 - LibreOffice, Tesseract (for features)
@@ -159,17 +159,12 @@ services:
       - SECURITY_ENABLELOGIN=true            # Enable user authentication
 
       # Language & Localization
-      - LANGS=en_GB                          # Change to your locale
+      - SYSTEM_DEFAULTLOCALE=en-US           # Default UI locale for new users
 
       # System Configuration
-      - SYSTEM_DEFAULTLOCALE=en-GB           # Default locale
       - SYSTEM_GOOGLEVISIBILITY=false        # Hide from search engines
       - SYSTEM_ROOTURIPATH=/                 # Base URL path
-      - SYSTEM_CONNECTIONTIMEOUTMINUTES=5    # Connection timeout
-      - SYSTEM_MAXFILESIZE=2000              # Max file size in MB
-
-      # Optional: Logging
-      - SYSTEM_CUSTOMSTATICFILEPATH=/customFiles/static/  # Custom files path
+      - SYSTEMFILEUPLOADLIMIT=2000MB         # Max upload size (legacy: SYSTEM_MAXFILESIZE in MB)
 
     restart: unless-stopped
 
@@ -237,10 +232,9 @@ docker run -d \
   -v ~/stirling-data/logs:/logs \
   -v ~/stirling-data/customFiles:/customFiles:rw \
   -e SECURITY_ENABLELOGIN=true \
-  -e LANGS=en_GB \
-  -e SYSTEM_DEFAULTLOCALE=en-GB \
+  -e SYSTEM_DEFAULTLOCALE=en-US \
   -e SYSTEM_GOOGLEVISIBILITY=false \
-  -e SYSTEM_MAXFILESIZE=2000 \
+  -e SYSTEMFILEUPLOADLIMIT=2000MB \
   --restart unless-stopped \
   stirlingtools/stirling-pdf:latest
 ```
@@ -296,7 +290,7 @@ This includes complete YAML configurations, namespace setup, SSL/TLS, and horizo
 For environments without Docker or specific OS requirements.
 
 Bare metal installation requires:
-- Java 21+
+- Java 25+
 - LibreOffice (for conversions)
 - Tesseract OCR (for OCR features)
 - Systemd service setup
@@ -487,15 +481,13 @@ If you configure email, admins can send invitation links instead.
 ```yaml
 mail:
   enabled: true
-  from: noreply@yourcompany.com
   enableInvites: true
-  smtp:
-    host: smtp.gmail.com
-    port: 587
-    username: noreply@yourcompany.com
-    password: ${MAIL_PASSWORD}  # Use environment variable
-    tls:
-      enabled: true
+  host: smtp.gmail.com
+  port: 587
+  username: noreply@yourcompany.com
+  password: ${MAIL_PASSWORD}  # Use environment variable
+  from: noreply@yourcompany.com
+  startTlsEnable: true  # STARTTLS upgrade after connecting (port 587)
 ```
 
 </TabItem>
@@ -503,13 +495,13 @@ mail:
 
 ```bash
 MAIL_ENABLED=true
-MAIL_FROM=noreply@yourcompany.com
 MAIL_ENABLEINVITES=true
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
 MAIL_USERNAME=noreply@yourcompany.com
 MAIL_PASSWORD=your-app-password
-MAIL_TLS_ENABLED=true
+MAIL_FROM=noreply@yourcompany.com
+MAIL_STARTTLSENABLE=true
 ```
 
 </TabItem>
@@ -552,7 +544,6 @@ Complete configuration examples for Google, GitHub, Keycloak, Okta, Azure AD, an
 
 ```yaml
 security:
-  csrfDisabled: false  # NEVER disable CSRF protection in production
   loginAttemptCount: 5  # Lock account after 5 failed attempts
   loginResetTimeMinutes: 120  # Unlock after 2 hours
 ```
@@ -605,9 +596,8 @@ endpoints:
 **How to disable in UI:**
 1. Log in as admin
 2. Go to Settings → Endpoints
-3. Find tool you want to disable
-4. Toggle off
-5. Save changes
+3. In "Disabled Endpoints", select the tools you want to disable (or use "Disabled Endpoint Groups" for whole groups)
+4. Save changes
 
 **See all tool IDs:** [Endpoint Customisation](./Configuration/Endpoint%20or%20Feature%20Customisation.md)
 
@@ -1082,11 +1072,13 @@ curl http://localhost:8080/api/v1/info/requests/all/unique
 
 **Health Check Endpoint:**
 ```bash
-curl http://localhost:8080/api/v1/health
+curl http://localhost:8080/api/v1/info/status
 
 # Response:
-{"status":"UP","components":{"diskSpace":{"status":"UP"}}}
+{"status":"UP","version":"<version>"}
 ```
+
+Use `/api/v1/info/status` for health and uptime checks - it is always reachable without authentication.
 
 **Use for:**
 - Load balancer health checks
@@ -1164,7 +1156,7 @@ services:
    - Uptime Robot (free)
    - Pingdom
    - StatusCake
-   - Monitor the health endpoint: `http://localhost:8080/api/v1/health`
+   - Monitor the status endpoint: `http://localhost:8080/api/v1/info/status`
 
 ---
 
@@ -1178,14 +1170,14 @@ Protect your users' data and configuration with proper backups.
 
 | Data | Location | Frequency | Importance |
 |------|----------|-----------|------------|
-| **User Database (if local)** | `./stirling-data/configs/stirling-pdf.db` | Daily | Critical* |
+| **User Database (if local)** | `./stirling-data/configs/stirling-pdf-DB-<schema-version>.mv.db` | Daily | Critical* |
 | **Settings File** | `./stirling-data/configs/settings.yml` | After changes | Critical |
 | **Custom Files** | `./stirling-data/customFiles/` | After changes | High |
 | **OCR Languages** | `./stirling-data/tessdata/` | Weekly | Medium |
 | **Logs** | `./stirling-data/logs/` | Optional | Low |
 
 **\*Note on User Database:**
-- **Free edition:** Uses local H2 database (`stirling-pdf.db`) - must be backed up
+- **Free edition:** Uses a local H2 database file named `stirling-pdf-DB-<schema-version>.mv.db` (the schema version is embedded in the filename, e.g. `stirling-pdf-DB-2.3.232.mv.db`) - must be backed up. The simplest approach is to back up the whole `configs/` directory.
 - **Server/Enterprise:** Should use external PostgreSQL database (backed up separately)
 
 :::tip Server/Enterprise Recommendation
@@ -1301,7 +1293,7 @@ find backups/ -name "stirling-data-*.tar.gz" -mtime +30 -delete
 3. **Verify files restored:**
    ```bash
    ls -la ./stirling-data/configs/
-   # Should see: stirling-pdf.db, settings.yml
+   # Should see: stirling-pdf-DB-<schema-version>.mv.db, settings.yml
    ```
 
 4. **Start Stirling-PDF:**
@@ -1341,12 +1333,12 @@ Stirling-PDF offers **Server and Enterprise paid plans** with additional feature
 
 **Monitoring & Analytics:**
 - **Prometheus Integration:** Advanced metrics and monitoring
-- **Usage Dashboard:** Graphical usage statistics at `/usage`
+- **Usage Monitoring UI:** Graphical usage statistics in the admin interface
 - Enhanced monitoring APIs
 
 **For pricing and enterprise inquiries:**
-- **Email:** support@stirlingtools.com
-- **Website:** https://stirlingtools.com/pricing
+- **Email:** support@stirlingpdf.com
+- **Website:** https://stirling.com/pricing
 - **Documentation:** [Paid Offerings](./Paid-Offerings)
 - **External Database Setup:** [External Database Guide](./Configuration/External%20Database.md)
 - **Monitoring Setup:** [Usage Monitoring](./Configuration/Usage%20Monitoring.md)
@@ -1385,7 +1377,7 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 
 - **Documentation:** https://docs.stirlingpdf.com
 - **GitHub:** https://github.com/Stirling-Tools/Stirling-PDF
-- **Discord:** https://discord.gg/Cn8pWhQRxZ
+- **Discord:** https://discord.gg/HYmhKj45pU
 - **Issue Tracker:** https://github.com/Stirling-Tools/Stirling-PDF/issues
 
 ### Stay Updated
@@ -1438,7 +1430,7 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 
 **Solutions:**
 1. Increase Nginx limit: `client_max_body_size 2000M;`
-2. Increase Stirling-PDF limit: `system.maxFileSize: 2000`
+2. Increase Stirling-PDF limit: `system.fileUploadLimit: 2000MB` (env `SYSTEMFILEUPLOADLIMIT=2000MB`)
 3. Check disk space: `df -h`
 4. Increase timeouts: `client_body_timeout 300s;`
 

@@ -14,6 +14,7 @@ All tools organized by category.
 
 ## Most Popular
 
+- **[PDF Text Editor](./Recommended-Tools.md#pdf-text-editor)** *(Alpha)* - Edit text and images in the browser
 - **[Multi-Tool](./Multi-Tool.md)** - Upload once, chain operations
 - **[Read & Annotate](./Read-and-Annotate.md)** - PDF viewer with annotations
 - **Merge** - Combine multiple PDFs
@@ -34,7 +35,7 @@ All tools organized by category.
 - Validate Signature
 - Add Watermark
 - Sanitize PDF
-- Auto-Redact
+- Redact
 
 ---
 

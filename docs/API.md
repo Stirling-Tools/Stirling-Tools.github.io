@@ -59,11 +59,21 @@ This allows you to set a single API key that works regardless of user authentica
 
 3. Example authenticated request:
    ```bash
-   curl -X POST "http://localhost:8080/add-watermark" \
+   curl -X POST "http://localhost:8080/api/v1/security/add-watermark" \
         -H "X-API-KEY: your-api-key-here" \
         -H "Content-Type: multipart/form-data" \
         ...
    ```
+
+## Endpoint Paths
+
+:::info
+Every operation lives under `/api/v1/<category>/<operation>`, where the category is one of `security`, `general`, `misc`, `convert`, etc. For example, "Add Watermark" is at `/api/v1/security/add-watermark`. The exact path for any operation is shown in the [Swagger UI](#local-swagger-ui).
+:::
+
+### AI assistants / MCP
+
+To drive these endpoints from an AI assistant (Claude Desktop, Cursor, etc.) over the Model Context Protocol, see [MCP Server](./Advanced%20Configuration/MCP-Server.md).
 
 ## API Limitations
 
@@ -76,7 +86,7 @@ Stirling PDF also has statistic and health endpoints to integrate with monitorin
 <Tabs groupId="operating-systems">
   <TabItem value="unix" label="Unix/Linux/MacOS">
     ```bash
-    curl -X POST "http://localhost:8080/add-watermark" \
+    curl -X POST "http://localhost:8080/api/v1/security/add-watermark" \
          -H "Content-Type: multipart/form-data" \
          -F "fileInput=@/Users/username/Downloads/sample-1_cropped.pdf" \
          -F "watermarkType=text" \
@@ -92,7 +102,7 @@ Stirling PDF also has statistic and health endpoints to integrate with monitorin
   </TabItem>
   <TabItem value="windows" label="Windows CMD">
     ```bash
-    curl -X POST "http://localhost:8080/add-watermark" ^
+    curl -X POST "http://localhost:8080/api/v1/security/add-watermark" ^
          -H "Content-Type: multipart/form-data" ^
          -F "fileInput=@C:\Users\systo\Downloads\sample-1_cropped.pdf" ^
          -F "watermarkType=text" ^

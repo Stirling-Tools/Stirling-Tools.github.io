@@ -152,29 +152,30 @@ Configure SAML authentication by providing:
 
 > 💡 **Tip**: Replace the example URLs (`idp.example.com`) with actual values from your Identity Provider.
 
-#### Additional Configuration: baseUrl for SAML SLO
+#### Public URL for SAML SLO
 
-For Single Logout (SLO) to work correctly in production, you must also set the `baseUrl` property:
+For Single Logout (SLO) to work correctly in production, Stirling PDF uses your `system.backendUrl` setting to tell the Identity Provider where to send the logout response. Make sure that value is set to your public-facing URL (the same setting used for the SAML callbacks above):
 
 <Tabs groupId="config-methods">
-  <TabItem value="custom-settings" label="custom_settings.yml">
-    Add to `/configs/custom_settings.yml`:
+  <TabItem value="settings" label="settings.yml">
+    Set in `/configs/settings.yml`:
 
     ```yaml
-    baseUrl: "https://your-domain.com"
+    system:
+      backendUrl: https://your-domain.com
     ```
   </TabItem>
   <TabItem value="environment" label="Environment Variables">
-    Add to your Docker Compose environment variables:
+    Set in your Docker Compose environment variables:
 
     ```yaml
     environment:
-      baseUrl: "https://your-domain.com"
+      SYSTEM_BACKENDURL: https://your-domain.com
     ```
   </TabItem>
 </Tabs>
 
-> ⚠️ **Important**: Both `system.backendUrl` and `baseUrl` should be set to your public-facing URL for SAML to work correctly in production.
+> ⚠️ **Important**: `system.backendUrl` must be set to your public-facing URL for SAML (including Single Logout) to work correctly in production.
 
 ### Step 3: Configure Your Identity Provider
 
@@ -349,7 +350,7 @@ Automatically redirect users to SAML login, bypassing the Stirling PDF login scr
 ```yaml
 premium:
   proFeatures:
-    SSOAutoLogin: true
+    ssoAutoLogin: true
 ```
 
 **Auto-login Activation Requirements:**
@@ -363,7 +364,7 @@ Auto-login only triggers when **ALL** of the following conditions are met:
 **Behavior:**
 - When all conditions are met: Users are automatically redirected to IdP
 - When conditions are not met: Standard login page is displayed
-- After 5 failed login attempts (configurable via `security.loginAttemptCount`), auto-redirect is disabled
+- If a single sign-on attempt fails, the automatic redirect is suppressed for the rest of that browser session so the login page stays visible (this is separate from the `security.loginAttemptCount` account-lockout setting, which locks the user account after repeated failures)
 - Users can still manually access `/login` for form login if `loginMethod: all`
 
 ## Troubleshooting

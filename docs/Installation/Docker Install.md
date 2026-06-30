@@ -50,6 +50,17 @@ docker-compose up -d
 
 Then open `http://localhost:8080` in your browser!
 
+:::info Login is ON by default
+The default is `security.enableLogin: true`, so a fresh container starts with login **enabled** and creates a default admin account:
+
+```
+Username: admin
+Password: stirling
+```
+
+Change this password immediately after first login. If you want the no-login experience instead (no authentication, no admin account), you must opt out explicitly by setting `SECURITY_ENABLELOGIN=false`. See [Modes](../Modes-and-Licensing.md) for how the deploy modes differ.
+:::
+
 ## Choosing Your Version
 
 | Version | Tag | What's Included | Best For |
@@ -89,7 +100,7 @@ docker run -d \
   -v ./stirling-data/logs:/logs \
   -v ./stirling-data/pipeline:/pipeline \
   -e SECURITY_ENABLELOGIN=false \
-  -e LANGS=en_GB \
+  -e SYSTEM_DEFAULTLOCALE=en-GB \
   stirlingtools/stirling-pdf:latest
 ```
 
@@ -111,8 +122,8 @@ services:
       - ./stirling-data/logs:/logs                     # Application logs
       - ./stirling-data/pipeline:/pipeline             # Automation configs
     environment:
-      - SECURITY_ENABLELOGIN=false    # Set true to enable user authentication
-      - LANGS=en_GB                   # Interface language
+      - SECURITY_ENABLELOGIN=false      # Opt out of login (default is true / enabled)
+      - SYSTEM_DEFAULTLOCALE=en-GB      # Default interface language
     restart: unless-stopped
 ```
 
@@ -257,16 +268,18 @@ The TrueNAS, Unraid, and Proxmox integrations above are community-maintained, no
 
 ## Common Configurations
 
-### Enable User Authentication
+### User Authentication
+Login is enabled by default (default admin `admin` / `stirling`). To turn it off and run without authentication, set:
 ```yaml
 environment:
-  - SECURITY_ENABLELOGIN=true
+  - SECURITY_ENABLELOGIN=false
 ```
 
 ### Change Interface Language
+Set the default UI language (locale codes use a hyphen). Empty/unset auto-detects from the browser and falls back to `en-US`.
 ```yaml
 environment:
-  - LANGS=es_ES  # Spanish, or en_GB, fr_FR, de_DE, etc.
+  - SYSTEM_DEFAULTLOCALE=es-ES  # Spanish, or en-GB, fr-FR, de-DE, etc.
 ```
 
 ### Custom Port

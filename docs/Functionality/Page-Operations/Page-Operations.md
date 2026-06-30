@@ -6,44 +6,74 @@ description: List of all Page related features
 ---
 # Features - Page Operations
 
-- `merge-pdfs`: With this feature, users can merge multiple PDF documents into a single PDF.
+Tools for combining, splitting, rearranging, and reshaping the pages of your PDFs.
 
-- `split-pdfs`: This functionality enables users to split a single PDF document into multiple separate PDFs.
+---
 
-- `reorganize-pages`: This feature gives users the ability to rearrange, add, or delete pages within a PDF document.
+## Combine & Arrange
 
-- `extract-pages`: Extracts specific pages from a PDF document into a new separate PDF file
+- **Merge**: Join several PDFs together into one document.
 
-- `rotate-pdf`: With this feature, users can rotate pages within a PDF document to their desired orientation.
+- **Reorganize Pages**: Rearrange, duplicate, or delete pages within a PDF.
 
-- `remove-pages`: This feature allows users to remove specified pages from a PDF document.
+- **Extract Pages**: Pull out the pages you choose and save them as a new PDF.
 
-- `multi-page-layout`: This functionality allows users to create a layout involving multiple pages of a PDF.
+- **Remove Pages**: Delete the pages you don't want from a PDF.
 
-- `scale-pages`: This feature enables users to adjust the scale of pages in a PDF document.
+- **Rotate**: Turn pages to the orientation you want.
 
-- `auto-split-pdfs`: This allows a user to insert physical divider pages between their documents in their scanner to allow S-PDF to auto separate them
+- **Overlay PDFs**: Lay one PDF over another (on top, behind, and other arrangements) to combine their content.
 
-- `adjust-contrast`: Lets the user adjust the contrast, brightness and saturation
+- **Add Attachments**: Embed files inside a PDF so they travel with it. Readers that support attachments can pull the files back out later.
 
-- `crop`: Allows user to crop the pages to set size
+- **Add Page Numbers**: Stamp page numbers and custom text around the edges of your pages, with control over position, format, and which pages to number.
 
-- `pdf-to-single-page`: Converts multi pages PDF files into a single long pdf page.
+- **Edit Table of Contents**: Add, edit, or rework a PDF's bookmarks so readers can navigate the document more easily.
 
-- `booklet-imposition`: Arranges PDF pages for booklet printing with proper page ordering for folding and binding. Creates printer-ready booklets with correct page sequences
+---
 
-- `split-by-size-or-count`: Splits one or multiple PDF files into parts consisting of a maximum file size or page count definde by the user.
+## Split
 
-- `overlay-pdf`: Can merge multiple PDFs into one another (ontop/behind etc) in various ways
+The **Split** tool breaks one PDF into several files. Pick a method when you open it:
 
-- `add-attachments`: Embed files as attachments within a PDF document. Attached files can be extracted later by PDF readers that support attachments
+- **Split at Page Numbers**: Cut the document at the page numbers you enter (for example `1,3-5,7`).
 
-- `split-pdf-by-sections`: Splits a page in multiple section vertically, horizontally or both. Can be used to split a page in half etc.
+- **Split by Chapters**: Create a separate file for each bookmarked section, using the document's table of contents to decide where each one starts.
 
-- `add-page-numbers`: Add customizable page numbers and text to the edges of PDF pages with options for position, formatting, and page ranges.
+- **Split by Sections**: Slice each page into a grid of horizontal and vertical pieces - handy for splitting a page in half or quarters.
 
-- `remove-blanks`: With this feature, users can remove blank pages from a PDF document automatically, detecting pages with little to no content.
+- **Split by File Size**: Break a PDF into parts that each stay under a maximum file size you set.
 
-- `auto-split-pdf`: Automatically splits documents into separate files based on QR codes detected between pages. Designed for bulk scanning workflows where separator pages with QR codes are placed between documents.
+- **Split by Page Count** / **Split by Document Count**: Split into files of a set number of pages each, or into a set number of files.
 
-- `edit-table-of-contents`: Edit, add, or modify the table of contents (bookmarks) in a PDF document for better navigation.
+- **Split by Page Divider**: Separate scanned batches automatically using QR code divider sheets placed between documents - built for bulk scanning workflows.
+
+- **Split into Printable Chunks** (poster print): Tile each oversized page into a grid of standard-size sheets (A4, Letter, and so on) so you can print a large page across several sheets and tape them into a poster.
+
+---
+
+## Resize & Reshape
+
+- **Adjust Page Size/Scale**: Change the page size and how big the content sits on it. Choose a target size (A0-A6, Letter, Legal, or Keep Original Size) and a scale factor for the content. The **Page orientation** option (Portrait or Landscape) lets you apply the chosen size either way - for example A4 turned to landscape. Orientation has no effect when you keep the original size.
+
+- **Crop**: Trim pages down to the area you want.
+
+- **Multi-Page Layout**: Place several PDF pages together onto each output page.
+
+- **PDF to Single Large Page**: Stack every page into one tall, continuous page.
+
+- **Booklet Imposition**: Reorder pages for booklet printing so that, once folded and bound, they read in the right sequence. Produces printer-ready booklets.
+
+- **Adjust Colours/Contrast**: Tune the contrast, brightness, and saturation of the pages.
+
+---
+
+## Clean Up
+
+- **Remove Blank Pages**: Automatically find and drop pages with little or no content.
+
+---
+
+## Related Tools
+
+- **[Redaction](redact.md)** - Permanently remove sensitive content from pages

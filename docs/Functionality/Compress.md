@@ -7,8 +7,6 @@ description: Reduce PDF file size while maintaining quality
 
 # Compress PDF
 
-**Tool ID:** `compress-pdf`
-
 Reduce PDF file size by compressing images, optimizing structure, and removing unnecessary data.
 
 **Important:** Compression is permanent. Always keep a backup of the original if you might need maximum quality later.
@@ -70,6 +68,14 @@ curl -X POST http://stirling-pdf:8080/api/v1/misc/compress-pdf \
 ```
 
 See [API Documentation](../API.md) for complete endpoint reference.
+
+---
+
+## Decompress PDF
+
+:::note Automation / API
+There is also an automation option that does the opposite: it fully expands a compressed PDF so its contents are readable as plain text, which is handy for troubleshooting or editing a PDF by hand (the file gets larger). It runs through automation rather than a tool in the web app - see the [API reference](../API.md).
+:::
 
 ---
 

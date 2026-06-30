@@ -14,6 +14,8 @@ tags:
 
 Stirling PDF offers Server and Enterprise paid plans. These provide the same great software with added features, streamlined license management, and support options.
 
+> This page covers **self-hosted** Server and Enterprise licensing (a flat-rate or per-seat license key, no credits). Stirling Cloud is a separate, credit-based offering - see [Modes](./Modes-and-Licensing.md) for how the deployment modes compare.
+
 ## Available Plans
 
 ### Free Plan
@@ -68,7 +70,7 @@ Stirling PDF offers Server and Enterprise paid plans. These provide the same gre
 
 Stirling PDF offers streamlined in-app purchasing and license activation:
 
-1. **Navigate to Settings**: Log in as an admin and go to Settings → Admin Plan
+1. **Navigate to Settings**: Log in as an admin and go to Settings → Plan
 2. **Select Your Plan**: Choose between Server (unlimited users) or Enterprise (per-seat) plans
 3. **Choose Billing Period**: Select monthly or yearly billing (yearly saves money)
 4. **Complete Checkout**: You'll be redirected to Stripe's secure checkout
@@ -163,8 +165,8 @@ To reference a certificate file from `settings.yml` instead of uploading via the
 
 Stirling PDF includes a convenient billing management interface:
 
-1. Navigate to Settings → Admin Plan
-2. Click "Manage Billing"
+1. Navigate to Settings → Plan
+2. On your current plan, click "Manage"
 3. You'll be redirected to Stripe's customer portal where you can:
    - Update payment methods
    - View invoices
@@ -178,8 +180,8 @@ Once activated, you can customize premium features in your `settings.yml`:
 ```yaml
 premium:
   proFeatures:
-    SSOAutoLogin: false
-    CustomMetadata:
+    ssoAutoLogin: false
+    customMetadata:
       autoUpdateMetadata: false
       author: username
       creator: Stirling-PDF
@@ -208,11 +210,10 @@ Stirling PDF uses an **installation-based licensing model**:
 
 You can upgrade from Free → Server or Server → Enterprise at any time:
 
-1. Navigate to Settings → Admin Plan
-2. Click "Upgrade Plan"
-3. Select your new plan tier
-4. Complete checkout
-5. Your existing license will be automatically upgraded
+1. Navigate to Settings → Plan
+2. On the plan tier you want, click "Upgrade"
+3. Complete checkout
+4. Your existing license will be automatically upgraded
 
 **Note**: When upgrading, your new plan starts immediately and you'll be credited for any unused time on your previous plan.
 
@@ -257,7 +258,7 @@ A: Invoices are automatically sent via email and accessible through the Billing 
 If you're upgrading from Stirling PDF V1 with an existing license:
 
 1. Your existing license key will continue to work
-2. You can enter it manually via Settings → Admin Plan
+2. You can enter it manually via Settings → Plan
 3. Or, re-activate through the in-app purchase flow
 4. Contact support@stirlingpdf.com if you encounter any issues
 

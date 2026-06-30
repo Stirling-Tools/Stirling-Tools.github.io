@@ -11,7 +11,7 @@ slug: /
 - **Scalability & Automation:** Batch processing with Docker and Kubernetes support.
 - **API Integration:** Use APIs for automation and external integrations.
 - **Open-Source:** Community-driven with frequent updates and GitHub support.
-- **Multi-Language Support:** Available in 38+ languages with active translations.
+- **Multi-Language Support:** Available in 40+ languages with active translations.
 
 ## Welcome to Stirling PDF
 
@@ -113,7 +113,7 @@ docker run -d \
 For bare metal installations or environments without Docker:
 
 1. Download `Stirling-PDF.jar`
-2. Install Java 21+
+2. Install Java 25+
 3. Install dependencies (LibreOffice, Tesseract for OCR)
 4. Run the JAR file
 

@@ -15,7 +15,7 @@ Shared Signing is currently in **alpha**. Functionality may change, and some fea
 
 Shared Signing lets a document owner send a PDF to multiple registered users for signing. Each participant reviews the document, applies their signature, and submits it back. The owner tracks progress and finalizes the document once all signatures are collected.
 
-This is a **Pro/Enterprise** feature.
+Shared Signing builds on storage. With the **local** storage provider it needs **no license** - just turn on `security.enableLogin`, `storage.enabled`, and `storage.signing.enabled`. The managed certificate options (Personal and Server certificates) require a Pro/Enterprise license; without one, participants sign by uploading their own certificate (P12/PKCS12 or JKS). The **database** and **s3** storage providers also require a Pro/Enterprise license. See [Modes](../../Modes-and-Licensing.md) for details.
 
 ---
 
@@ -159,6 +159,7 @@ After finalization, download the completed PDF from the session detail view or t
       enabled: true
       signing:
         enabled: true              # Master switch for shared signing
+        userListScope: org         # Who appears in the signer picker: 'org' (default) = whole instance, any other value = your own team only
 
     system:
       frontendUrl: https://your-instance.com
@@ -173,6 +174,7 @@ After finalization, download the completed PDF from the session detail view or t
     ```bash
     STORAGE_ENABLED=true
     STORAGE_SIGNING_ENABLED=true
+    STORAGE_SIGNING_USERLISTSCOPE=org
     SYSTEM_FRONTENDURL=https://your-instance.com
     SYSTEM_SERVERCERTIFICATE_ENABLED=true
     SYSTEM_SERVERCERTIFICATE_ORGANIZATIONNAME="My Company"
@@ -180,6 +182,17 @@ After finalization, download the completed PDF from the session detail view or t
     ```
   </TabItem>
 </Tabs>
+
+#### Who appears in the signer picker
+
+When you create a signing session, the participant picker lists the people you can invite. The `storage.signing.userListScope` setting controls who shows up:
+
+| Value | Who appears in the picker |
+|-------|---------------------------|
+| `org` (default) | Every enabled user on your instance |
+| _any other value_ | Only the people in your own team |
+
+The signer list is only ever shown to signed-in users, so no one can browse your user list without logging in, whichever scope you choose.
 
 ### Certificate Validation Settings
 
@@ -223,14 +236,14 @@ See [Certificate Signing - Configuration](./Certificate-Signing.md#configuration
 ### Wet signatures missing after finalization
 - Make sure the page numbers used are within the document's page range (pages start at 0)
 
-### "Storage is disabled" when creating a session
-- Verify `storage.enabled: true` and `security.enableLogin: true` in your configuration
+### "Group signing is disabled" when creating a session
+- Verify `security.enableLogin: true`, `storage.enabled: true`, and `storage.signing.enabled: true` in your configuration
 
 ---
 
-## API Reference
+## Automation / API
 
-For users who want to integrate with the signing workflow programmatically, the full API endpoints are listed below. See [API Documentation](../../API.md) for details.
+You don't need any of this for normal use - the whole workflow above runs from the app. This section is for developers who want to drive the signing workflow programmatically. The endpoints are listed below; see the [API reference](../../API.md) for full details.
 
 ### Owner Endpoints (Authentication Required)
 

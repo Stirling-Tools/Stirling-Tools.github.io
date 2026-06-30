@@ -9,6 +9,7 @@ Stirling PDF is built on these open-source projects.
 ## Server-Side
 
 - **[PDFBox](https://pdfbox.apache.org/)** - Core PDF manipulation
+- **JPDFium** - PDFium-based engine used for merge/split and reading text and tables from PDFs
 - **[LibreOffice](https://www.libreoffice.org/)** - Office document conversions
 - **[qpdf](https://qpdf.sourceforge.io/)** - Specialized PDF operations
 - **[Tesseract OCR](https://github.com/tesseract-ocr/tesseract)** - Text recognition from images
@@ -20,7 +21,7 @@ Stirling PDF is built on these open-source projects.
 - **[EmbedPDF](https://www.embedpdf.com/)** / **[PDF.js](https://mozilla.github.io/pdf.js/)** - PDF viewing and annotation
 - **[pdf-lib](https://pdf-lib.js.org/)** - Client-side PDF manipulation
 - **[Mantine](https://mantine.dev/)** - UI components
-- **[i18next](https://www.i18next.com/)** - 30+ language translations
+- **[i18next](https://www.i18next.com/)** - 40+ language translations
 
 ## Desktop
 

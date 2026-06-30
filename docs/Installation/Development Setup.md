@@ -12,12 +12,13 @@ This guide covers setting up a local development environment for Stirling PDF, i
 
 Before getting started, ensure you have the following installed:
 
-- **Java**: JDK 21 or later
-- **Node.js**: Version 18+ for frontend development
+- **Java**: JDK 25
+- **Node.js**: Version 22+ for frontend development
 - **npm**: Comes with Node.js
 - **Docker**: For testing and containerization
 - **Gradle**: Included in the repository (use `./gradlew`)
 - **Git**: For version control
+- **Task** (optional but recommended): [Task](https://taskfile.dev/) is the project's unified command runner. With it installed you can run `task dev`, `task check`, etc. from the repo root. Run `task --list` to see all commands.
 
 ### IDE Setup
 
@@ -83,9 +84,11 @@ npm install
 
 #### Running the Development Server
 
+The project uses [Task](https://taskfile.dev/) as its command runner. From the repository root:
+
 ```bash
-# Start Vite dev server
-npm run dev
+# Start the Vite dev server (runs `npx vite editor` under the hood)
+task frontend:dev
 ```
 
 The frontend will start on `http://localhost:5173`
@@ -105,22 +108,28 @@ The frontend will start on `http://localhost:5173`
 
 ### 4. Desktop Application Development
 
-Stirling PDF V2.0 uses Tauri for native desktop applications:
+Stirling PDF V2.0 uses Tauri for native desktop applications. Desktop builds also require **Rust** and **Cargo** installed. From the repository root:
 
 ```bash
-# Navigate to frontend directory
-cd frontend
+# Run desktop app in development mode (runs `npx tauri dev`)
+task desktop:dev
 
-# Run desktop app in development mode
-npm run tauri-dev
-
-# Build desktop application
-npm run tauri-build
+# Build desktop application (runs `npx tauri build`)
+task desktop:build
 ```
 
 ## Development Workflow
 
 ### Full Development Setup
+
+The quickest way is the unified Task runner, which starts the backend and frontend together:
+
+```bash
+# From the repository root - starts backend + frontend concurrently
+task dev
+```
+
+Or run them in separate terminals:
 
 1. **Terminal 1** - Backend:
    ```bash
@@ -129,8 +138,7 @@ npm run tauri-build
 
 2. **Terminal 2** - Frontend:
    ```bash
-   cd frontend
-   npm run dev
+   task frontend:dev
    ```
 
 3. **Access the application**:
@@ -141,11 +149,11 @@ npm run tauri-build
 ### Building the Project
 
 ```bash
-# Full build including frontend
+# Backend only (default - the frontend is not bundled unless asked for)
 ./gradlew clean build
 
-# Backend only
-./gradlew build -x npm_run_build
+# Full build with the frontend bundled into the backend JAR
+./gradlew clean build -PbuildWithFrontend=true
 ```
 
 ## Architecture Overview
@@ -193,7 +201,7 @@ See `ADDING_TOOLS.md` in the repository for detailed tool development guide.
 ./gradlew test
 
 # Full Docker test suite (tests all variants)
-./test.sh
+./testing/test.sh
 ```
 
 ### Testing Different Versions
@@ -207,25 +215,30 @@ Stirling PDF offers three Docker variants:
 
 ### Backend Configuration
 
-- `src/main/resources/application.yml`: Main application configuration
+- `app/core/src/main/resources/application.properties`: Main application configuration
 - `settings.yml`: User-configurable settings (generated on first run)
 
 ### Frontend Configuration
 
-- `frontend/.env`: Environment variables for development
-- `frontend/vite.config.ts`: Vite build configuration
-- `frontend/public/locales/`: Translation files (JSON format)
+- `frontend/editor/.env`: Environment variables for development (with `.env.desktop` and `.env.saas` overrides per build mode)
+- `frontend/editor/vite.config.ts`: Vite build/dev-server configuration
+- `frontend/editor/public/locales/<lang>/translation.toml`: Translation files (TOML format)
+
+:::note FRONTEND_ALLOWED_HOSTS
+`FRONTEND_ALLOWED_HOSTS` is a comma-separated allowlist of `Host` header values that the Vite dev server will accept. Set it when running the dev server behind a reverse proxy or under a custom hostname (e.g. `FRONTEND_ALLOWED_HOSTS=dev.example.com,localhost`). This is a dev-server environment variable only - it is not a production `settings.yml` key. When empty or unset, Vite keeps its default host checks.
+:::
 
 ## Common Development Tasks
 
 ### Adding Translations
 
-**V2.0** uses JSON translation files:
+Translations use TOML files, one per locale:
 
-1. Navigate to `frontend/public/locales/`
-2. **Important**: Only update `en-GB` files (never `en-US`)
-3. Edit the appropriate JSON file (e.g., `common.json`, `tools.json`)
-4. Other languages are managed by the community
+1. Navigate to `frontend/editor/public/locales/<lang>/translation.toml`
+2. **Important**: Only update `en-US/translation.toml`. `en-US` is the source/primary locale and the language used when a translation is missing (`fallbackLng: "en-US"`).
+3. Edit `translation.toml`, adding keys under the relevant feature/tool.
+4. For counts, use ICU-style plural suffixes on the key (`_one`, `_other`, and `_zero` where needed).
+5. Other languages are managed separately by the community.
 
 ### Adding a New PDF Tool
 
@@ -241,7 +254,7 @@ See the repository's `ADDING_TOOLS.md` for detailed instructions. Quick overview
 
 ### Backend Issues
 
-- **Port already in use**: Change port in `application.yml` or use `-Dserver.port=8081`
+- **Port already in use**: Override the port with `-Dserver.port=8081` (or set the `SERVER_PORT` environment variable)
 - **Lombok errors**: Ensure Lombok plugin is installed in your IDE
 - **Build failures**: Run `./gradlew clean` and try again
 

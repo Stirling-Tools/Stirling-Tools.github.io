@@ -84,23 +84,40 @@ Pick whichever method you prefer. Both install the same desktop app.
 - Menu bar integration
 - macOS gestures and features work
 
+**Multiple windows:**
+- Press **Cmd+N** to open an empty new window
+- Use **Open in new window** from the My Files page to open files in a separate window
+
+### Connection modes
+
+You can pick one of three connection modes. See [Modes](../Modes-and-Licensing.md) for how each mode is licensed.
+
+- **Bundled local backend (default):** the app runs its own copy of Stirling PDF on your Mac, no setup or login, fully offline.
+- **Stirling Cloud:** sign in for advanced server-side tools.
+- **Self-hosted Server:** enter the URL of your own Stirling PDF instance (e.g., `http://192.168.1.53:8080`) for full control over your data.
+
+### Managed deployment (Jamf / MDM)
+
+To pre-configure and lock the app across managed Macs - server URL, connection lock, and update behaviour - see [Managed Desktop Deployment](./Managed%20Deployment.md).
+
 ## Server Version (For Hosting and Sharing)
 
 Want to host Stirling PDF on a Mac server for multiple users? Use the JAR file version.
 
 ### Prerequisites
 
-Install Java 21 (required for server version):
+Install Java 25 (required for server version):
 
 ```bash
 # Install Homebrew if you don't have it
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Install Java 21
-brew install openjdk@21
+# Install Java 25
+brew install openjdk@25
 
 # Add to your PATH (add to ~/.zshrc to make permanent)
-export PATH="/usr/local/opt/openjdk@21/bin:$PATH"
+# Using `brew --prefix` keeps this correct on both Apple Silicon (/opt/homebrew) and Intel (/usr/local)
+export PATH="$(brew --prefix openjdk@25)/bin:$PATH"
 ```
 
 ### JAR Downloads
@@ -180,7 +197,7 @@ Install these via [Homebrew](https://brew.sh/) to enable additional features lik
  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
  # Install dependencies as needed
- brew install openjdk@21          # Required
+ brew install openjdk@25          # Required
  brew install qpdf                # PDF compression
  brew install --cask libreoffice  # Document conversion
  brew install tesseract           # OCR functionality
@@ -198,9 +215,9 @@ system:
 ```
 
  ## Quick Troubleshooting
- - Java not found? Add to `~/.zshrc`:
+ - Java not found? Add to `~/.zshrc` (works on both Apple Silicon and Intel):
    ```bash
-   export PATH="/usr/local/opt/openjdk@21/bin:$PATH"
+   export PATH="$(brew --prefix openjdk@25)/bin:$PATH"
    ```
  - Verify installations with: `[command] --version` (e.g., `java --version`)
  - LibreOffice issues? Ensure no LibreOffice processes are running
