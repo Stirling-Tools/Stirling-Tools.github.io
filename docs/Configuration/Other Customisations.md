@@ -200,8 +200,3 @@ system:
   enableAnalytics: 'true'
 ```
 In configs/settings.yml
-
-## Default Tool-Picker Mode (Per-User Only)
-The default tool-picker layout (sidebar, fullscreen, or compact) is a **per-user preference stored in the browser**. Each user selects their own mode in the app, and it is remembered locally.
-
-There is currently **no way to set this globally for all users** via an environment variable or `settings.yml`. In particular, there is no working `SYSTEM_DEFAULTTOOLSELECTORMODE` setting - it does not exist and has no effect.

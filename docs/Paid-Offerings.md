@@ -31,7 +31,7 @@ There are two separate product lines, and it's easy to conflate their plan names
 
 **"Server" vs "Processor"**: Server is the self-hosted, flat-rate plan you run on your own infrastructure. Processor is the cloud-hosted, per-document plan. They are not the same thing.
 
-> **Note on "Professional":** "Professional" is **not** a current public plan name. It is a legacy internal term that maps to the **Server** tier. If you see a "Professional tier" referenced anywhere, treat it as the Server tier.
+> **Note on "Professional":** "Professional" and "Server" refer to the same tier. If you see a "Professional tier" referenced anywhere, it means the Server tier (or higher).
 
 ## Available Plans
 

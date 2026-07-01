@@ -67,7 +67,7 @@ The self-hosted and cloud product lines use separate plan names, which are easy 
 
 They are distinct offerings - a "Server" plan is not a "Processor" plan.
 
-> **"Professional" is not a current plan name.** It is a legacy internal term that maps to the **Server** tier. If you see a "Professional tier" referenced anywhere, treat it as the Server tier.
+> **"Professional" and "Server" are the same tier.** If you see a "Professional tier" referenced anywhere, it means the Server tier (or higher).
 
 For the full self-hosted plan breakdown (Free, Server, Enterprise) and license terms, see [Paid Offerings](./Paid-Offerings.md).
 

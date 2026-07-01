@@ -13,8 +13,6 @@ Stirling PDF allows straightforward customization of the application name and ap
 This setting controls the application name:
 - `appNameNavbar` - Used as the browser tab title and as the issuer name shown in authenticator apps for two-factor (TOTP) login. Despite its name it is not shown in the navigation bar (which displays the logo), so do not leave it blank if you use TOTP. Empty falls back to "Stirling PDF".
 
-> **Note:** The former `appName` (`UI_APPNAME`) and `homeDescription` (`UI_HOMEDESCRIPTION`) properties have been removed and no longer have any effect. Only `appNameNavbar` (`UI_APPNAMENAVBAR`) remains.
-
 ## Show update notifications
 These settings (in Settings.yml) control system behavior and customization capabilities:
 - `showUpdate` - Controls whether update notifications are displayed

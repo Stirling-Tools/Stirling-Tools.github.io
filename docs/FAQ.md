@@ -124,11 +124,11 @@ Bottom line: in local-only mode a server-side tool is either run locally or bloc
 
 ### Q13: Can I remove an existing watermark from a PDF?
 
-There is no dedicated watermark-removal tool. Stirling PDF can **add** watermarks (Add Watermark) but cannot automatically strip existing ones. Depending on the watermark you can sometimes cover it with **Redact** (which draws over an area) or, for text-layer content, **Auto-Redact**. Image watermarks that are baked into the page usually cannot be cleanly removed.
+There is no dedicated watermark-removal tool. Stirling PDF can **add** watermarks (Add Watermark) but cannot automatically strip existing ones.
 
 ### Q14: Can I create fillable form fields, or add fields to a PDF that isn't already a form?
 
-The [Fill Form](./Functionality/Fill-Form.md) tool fills fields that **already exist** in the PDF. Creating or adding new form fields from scratch is not currently supported (create/modify form modes are planned).
+The [Fill Form](./Functionality/Fill-Form.md) tool fills form fields that **already exist** in the PDF.
 
 ### Q15: Can I add multi-line text or line breaks with Add Text, Stamp, or Watermark?
 
