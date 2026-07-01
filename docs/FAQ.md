@@ -126,31 +126,15 @@ Bottom line: in local-only mode a server-side tool is either run locally or bloc
 
 There is no dedicated watermark-removal tool. Stirling PDF can **add** watermarks (Add Watermark) but cannot automatically strip existing ones.
 
-### Q14: Can I create fillable form fields, or add fields to a PDF that isn't already a form?
-
-The [Fill Form](./Functionality/Fill-Form.md) tool fills form fields that **already exist** in the PDF.
-
-### Q15: Can I add multi-line text or line breaks with Add Text, Stamp, or Watermark?
+### Q14: Can I add multi-line text or line breaks with Add Text, Stamp, or Watermark?
 
 Yes. Put a literal `\n` in the text field to force a line break; each line is rendered separately.
 
-### Q16: Why does my self-hosted instance make requests to js.stripe.com?
+### Q15: Why does my self-hosted instance make requests to js.stripe.com?
 
 Stripe's script loads only for the in-app purchase / billing UI. No PDF or document data is sent to Stripe. Fully offline/air-gapped instances are unaffected in normal use - the request only matters if you open the billing/upgrade screen.
 
-### Q17: Is [feature] supported? (native mobile app, Office add-in, and others)
+### Q16: Is a specific feature supported?
 
-The following are **not** currently available:
-
-- A native Android/iOS app (use a mobile browser, or the Mobile Scanner)
-- A Microsoft Word / Office add-in
-- Converting `.p7m` signed-email files
-- A measure/scale (distance measuring) tool
-- Annotation deep-links (opening a link that jumps to a specific annotation from outside the app)
-- PDF-to-video
-- In-app translation of PDF text
-- Template-based PDF generation (for example auto-generating invoices from data)
-- A mixed admin-login-plus-anonymous-guests mode (the `enableLogin` setting is all-or-nothing)
-
-If you'd like any of these, please open a [GitHub feature request](https://github.com/Stirling-Tools/Stirling-PDF/issues) with `[Feature Request]` in the title.
+We are continuously improving Stirling PDF, and the exact feature you're looking for might not be available yet - for example, a native Android app or in-app PDF translation. You can raise a feature request for any and all features on our [GitHub issues page](https://github.com/Stirling-Tools/Stirling-PDF/issues) with `[Feature Request]` in the title.
 
