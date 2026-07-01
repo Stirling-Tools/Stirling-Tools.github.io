@@ -16,23 +16,6 @@ Stirling PDF offers Server and Enterprise paid plans. These provide the same gre
 
 > This page covers **self-hosted** Server and Enterprise licensing (a flat-rate or per-seat license key, no credits). Stirling Cloud is a separate, credit-based offering - see [Modes](./Modes-and-Licensing.md) for how the deployment modes compare.
 
-## License and Commercial Use
-
-Stirling PDF's source is licensed under the [GNU AGPLv3](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/LICENSE). You can self-host and use it commercially, but the AGPL's terms apply - notably, if you modify Stirling PDF and offer it to others over a network, you must make your modified source available under the same license.
-
-If you need commercial use without the AGPL obligations, or want the added features and support of the paid tiers, see the Server and Enterprise plans below.
-
-## Plan Names at a Glance
-
-There are two separate product lines, and it's easy to conflate their plan names:
-
-- **Self-hosted** (this page): **Free** (small teams, up to 5 users), **Server** (flat-rate, unlimited users), and **Enterprise** (adds SAML SSO, audit logging, SLA/support).
-- **Cloud** ([Stirling Cloud](./Modes-and-Licensing.md)): the hosted **Processor** plan, which is usage-based (billed per document).
-
-**"Server" vs "Processor"**: Server is the self-hosted, flat-rate plan you run on your own infrastructure. Processor is the cloud-hosted, per-document plan. They are not the same thing.
-
-> **Note on "Professional":** "Professional" and "Server" refer to the same tier. If you see a "Professional tier" referenced anywhere, it means the Server tier (or higher).
-
 ## Available Plans
 
 ### Free Plan
@@ -59,7 +42,7 @@ There are two separate product lines, and it's easy to conflate their plan names
   - Support tickets via support@stirlingpdf.com
   - [External Database](./Configuration/External%20Database.md) support for optimized deployments and load-balancing
   - Google Drive integration
-  - [OAuth2 / OIDC SSO](./Configuration/OAuth%20SSO%20Configuration.md) (Google, GitHub, Keycloak, any OIDC provider)
+  - [OAuth2 SSO](./Configuration/OAuth%20SSO%20Configuration.md) (Google, GitHub, Keycloak, any OIDC provider)
 - **Perfect for**: Organizations with many users who want predictable, flat-rate pricing
 
 ### Enterprise Plan
@@ -80,13 +63,6 @@ There are two separate product lines, and it's easy to conflate their plan names
   - Custom integrations support
   - Dedicated account manager
 - **Perfect for**: Large enterprises requiring priority support, SLA guarantees, and per-seat licensing
-
-### SSO Tier Requirements
-
-Single sign-on is gated by plan tier:
-
-- **OAuth2 / OIDC SSO** requires the **Server** tier (or higher).
-- **SAML SSO** requires the **Enterprise** tier.
 
 ## Purchasing a License
 

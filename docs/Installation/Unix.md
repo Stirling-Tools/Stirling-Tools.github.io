@@ -90,30 +90,6 @@ The desktop app works fully offline for local PDF tools like merging, splitting,
 
 To pre-configure and lock the app across managed Linux desktops - server URL, connection lock, and update behaviour - see [Managed Desktop Deployment](./Managed%20Deployment.md).
 
-### Desktop app troubleshooting
-
-**Blank or empty window on launch** - On some Linux systems the desktop app opens to a blank/empty window because of a WebKit rendering issue. Launch it from a terminal with the following variable set:
-
-```bash
-WEBKIT_DISABLE_DMABUF_RENDERER=1 stirling-pdf
-```
-
-If that alone does not help, also try disabling compositing:
-
-```bash
-WEBKIT_DISABLE_DMABUF_RENDERER=1 WEBKIT_DISABLE_COMPOSITING_MODE=1 stirling-pdf
-```
-
-To make the fix permanent, wrap the binary in a small launcher script that exports the variable and point your `.desktop` entry's `Exec` line at that wrapper:
-
-```bash
-#!/bin/sh
-export WEBKIT_DISABLE_DMABUF_RENDERER=1
-exec stirling-pdf "$@"
-```
-
-Save it (for example as `~/.local/bin/stirling-pdf-wrapper`), make it executable with `chmod +x`, and set `Exec=` in the app's `.desktop` file to point at the wrapper.
-
 ---
 
 ## Server Version (For Hosting and Sharing)

@@ -54,22 +54,7 @@ Stirling PDF running in Docker, Kubernetes, or as a bare-metal JAR, accessed via
 
 ## Stirling.com Cloud
 
-The hosted version at [stirling.com/app](https://stirling.com/app). All processing happens in Stirling's cloud, and every operation costs credits. Free accounts include a monthly allowance; the cloud **Processor** plan is usage-based, billed per document. See [Paid Offerings](./Paid-Offerings.md) for current pricing.
-
----
-
-## Plan names: Server vs Processor
-
-The self-hosted and cloud product lines use separate plan names, which are easy to conflate:
-
-- **Server** is the **self-hosted**, flat-rate plan (unlimited users) that you run on your own infrastructure.
-- **Processor** is the **cloud-hosted**, usage-based plan (billed per document) on Stirling.com Cloud.
-
-They are distinct offerings - a "Server" plan is not a "Processor" plan.
-
-> **"Professional" and "Server" are the same tier.** If you see a "Professional tier" referenced anywhere, it means the Server tier (or higher).
-
-For the full self-hosted plan breakdown (Free, Server, Enterprise) and license terms, see [Paid Offerings](./Paid-Offerings.md).
+The hosted version at [stirling.com/app](https://stirling.com/app). All processing happens in Stirling's cloud, and every operation costs credits. Free accounts include a monthly allowance; paid plans include more credits. See [Paid Offerings](./Paid-Offerings.md) for current pricing.
 
 ---
 
@@ -79,7 +64,5 @@ The free tier covers up to 5 users. Once you have more than 5, you need a paid S
 
 - Official support (tickets, SLA, priority responses)
 - SSO, SAML, audit logging, and other paid-tier features
-
-SSO is gated by tier: **OAuth2 / OIDC SSO** requires the **Server** tier (or higher), and **SAML SSO** requires the **Enterprise** tier.
 
 See [Paid Offerings](./Paid-Offerings.md) for the full feature comparison or [contact us](https://www.stirling.com/book-a-demo) if you're not sure which plan fits.
