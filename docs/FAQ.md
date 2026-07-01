@@ -112,3 +112,45 @@ To disable authentication in the with-login version:
 
 For more details, see the [System and Security Configuration](./Configuration/System%20and%20Security.md#running-without-authentication) documentation.
 
+### Q12: Where do my files go on the desktop app, and what does "uploading to server" mean?
+
+The desktop app runs a small Stirling PDF backend **inside the app on your own computer** (localhost). The Connection mode you pick (Settings -> Connection) decides where each tool runs:
+
+- **Local-only** (default; not signed in, no server connected): every tool runs on the local backend and your files never leave your device. If you use a tool the local backend can't perform (OCR, Office conversions, and similar), the file is **not** sent anywhere - the app stops and asks you to sign in to Stirling Cloud or connect to a self-hosted server.
+- **Signed in to Stirling Cloud**: server-side tools are processed on Stirling's cloud (transient, not stored).
+- **Connected to a self-hosted server**: server-side tools go only to your own server.
+
+Bottom line: in local-only mode a server-side tool is either run locally or blocked with a prompt - it is never silently uploaded anywhere.
+
+### Q13: Can I remove an existing watermark from a PDF?
+
+There is no dedicated watermark-removal tool. Stirling PDF can **add** watermarks (Add Watermark) but cannot automatically strip existing ones. Depending on the watermark you can sometimes cover it with **Redact** (which draws over an area) or, for text-layer content, **Auto-Redact**. Image watermarks that are baked into the page usually cannot be cleanly removed.
+
+### Q14: Can I create fillable form fields, or add fields to a PDF that isn't already a form?
+
+The [Fill Form](./Functionality/Fill-Form.md) tool fills fields that **already exist** in the PDF. Creating or adding new form fields from scratch is not currently supported (create/modify form modes are planned).
+
+### Q15: Can I add multi-line text or line breaks with Add Text, Stamp, or Watermark?
+
+Yes. Put a literal `\n` in the text field to force a line break; each line is rendered separately.
+
+### Q16: Why does my self-hosted instance make requests to js.stripe.com?
+
+Stripe's script loads only for the in-app purchase / billing UI. No PDF or document data is sent to Stripe. Fully offline/air-gapped instances are unaffected in normal use - the request only matters if you open the billing/upgrade screen.
+
+### Q17: Is [feature] supported? (native mobile app, Office add-in, and others)
+
+The following are **not** currently available:
+
+- A native Android/iOS app (use a mobile browser, or the Mobile Scanner)
+- A Microsoft Word / Office add-in
+- Converting `.p7m` signed-email files
+- A measure/scale (distance measuring) tool
+- Annotation deep-links (opening a link that jumps to a specific annotation from outside the app)
+- PDF-to-video
+- In-app translation of PDF text
+- Template-based PDF generation (for example auto-generating invoices from data)
+- A mixed admin-login-plus-anonymous-guests mode (the `enableLogin` setting is all-or-nothing)
+
+If you'd like any of these, please open a [GitHub feature request](https://github.com/Stirling-Tools/Stirling-PDF/issues) with `[Feature Request]` in the title.
+

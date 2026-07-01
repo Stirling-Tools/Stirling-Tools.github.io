@@ -232,6 +232,17 @@ No official store entry, but the standard Docker Compose works fine in any compo
 - **CasaOS**: Use the "Install a customized app" flow with the Docker image `docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest`, port `8080`, and bind mounts for `/configs`, `/logs`, `/customFiles`, `/pipeline`, `/usr/share/tessdata`.
 
 </TabItem>
+<TabItem value="coolify" label="Coolify">
+
+Coolify deploys via standard Docker Compose - no special changes needed.
+
+1. **+ New → Resource → Docker Compose**.
+2. Paste the same compose from the [Full Setup](#full-setup-with-all-features) section.
+3. Deploy.
+
+Coolify handles the reverse proxy and TLS for you.
+
+</TabItem>
 <TabItem value="podman" label="Podman (Quadlet)">
 
 For rootless Podman with systemd, drop a Quadlet file at `~/.config/containers/systemd/stirling-pdf.container`:

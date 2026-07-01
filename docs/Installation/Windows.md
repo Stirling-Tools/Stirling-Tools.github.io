@@ -119,6 +119,12 @@ When the mode is set by an administrator through a provisioning file (see [Manag
 
 For silent or headless installs and pre-configuring the app for managed fleets - server URL, connection lock, and update mode via MSI or `winget` parameters, or a provisioning file - see [Managed Desktop Deployment](./Managed%20Deployment.md).
 
+### Desktop app troubleshooting
+
+- **App shows in Task Manager but no window appears** - The desktop app renders its UI using the Microsoft Edge WebView2 Runtime. If the process is running but nothing is displayed, install the [Microsoft Edge WebView2 Runtime](https://developer.microsoft.com/en-us/microsoft-edge/webview2/) and launch the app again.
+- **The MSI installer prompts to install a JDK** - This is expected for the server/JAR path. The desktop app itself does not need a separate JDK, but the bundled server components use Java, so the prompt is normal.
+- **Connecting to a self-hosted server** - Use your backend server URL (for example `http://192.168.1.53:8080`). To verify the server is reachable, open `http://<server>:<port>/api/v1/info/status` in a browser - it should return JSON with a status of `UP`.
+
 ## Server Version (For Hosting and Sharing)
 
 Want to host Stirling PDF on a Windows server for multiple users? Use the server version.
@@ -169,6 +175,7 @@ Python and its related tools enable various features in Stirling PDF:
 
 1. Python Installation:
    - Download Python from [Python's official site](https://www.python.org/downloads/)
+   - **Recommended version:** install **Python 3.11.x**. Python 3.12 and newer can break the unoserver/unoconv LibreOffice conversion path, so 3.11 is the safe choice.
    - During installation, **IMPORTANT**: Check "Add Python to PATH"
    - Verify installation by opening Command Prompt and running:
      ```bash

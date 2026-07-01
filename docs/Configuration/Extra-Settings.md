@@ -44,7 +44,20 @@ server:
       max: 200  # Maximum number of request processing threads
       min: 10   # Minimum number of threads always kept running
     connection-idle-timeout: 30000  # Connection idle timeout in milliseconds
+    max-http-request-header-size: 65536  # Maximum size of request headers in bytes
 ```
+
+### HTTP 431 "Request Header Fields Too Large" during SSO/OAuth login
+
+Some SSO/OAuth providers send very large request headers (for example, large cookies or JWTs), which can trigger an **HTTP 431 Request Header Fields Too Large** error during login. Increase Jetty's maximum request header size in `/configs/custom_settings.yml` to resolve it:
+
+```yaml
+server:
+  jetty:
+    max-http-request-header-size: 65536  # Maximum size of request headers in bytes (default 8192)
+```
+
+Raise the value further (for example `131072`) if the error persists, then restart Stirling PDF.
 
 ## SSL/TLS Configuration
 

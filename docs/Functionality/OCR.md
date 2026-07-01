@@ -9,6 +9,10 @@ description: Make scanned PDFs searchable and editable with OCR
 
 Make scanned PDFs searchable and selectable by recognizing text in images. Uses the Tesseract OCR engine.
 
+:::note Requires a server backend
+OCR needs a server-side backend with Tesseract installed. The desktop app cannot OCR in local-only mode - connect it to Stirling Cloud or a self-hosted server that has OCR available.
+:::
+
 ---
 
 ## When You Need OCR
@@ -58,9 +62,11 @@ Available languages depend on which Tesseract language packs are installed. The 
 
 ## Limitations
 
+- Tesseract recognizes text only - it does not do table-structure or formula recognition
 - Handwritten text has limited accuracy
 - Stylized/decorative fonts and very small text (< 8pt) are challenging
 - For best results, use 300 DPI or higher scans with good contrast
+- To OCR non-English documents, install the matching Tesseract language pack (see [Language Packs](#language-packs))
 
 ---
 

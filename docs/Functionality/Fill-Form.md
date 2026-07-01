@@ -15,6 +15,10 @@ Fill Form lets you complete a PDF's interactive form fields directly in the view
 
 Fill Form works with fields that are already in the PDF; it does not add new fields. If a form has no fillable fields, there is nothing to type into.
 
+:::caution Fill Form only fills existing fields
+Fill Form can **only** fill in form fields that already exist in the PDF. It does **not** create or add new fillable fields, and turning a plain (non-form) PDF into a fillable form from scratch is **not currently supported**. If your PDF has no form fields, there is nothing for Fill Form to populate.
+:::
+
 ---
 
 ## How to Use
