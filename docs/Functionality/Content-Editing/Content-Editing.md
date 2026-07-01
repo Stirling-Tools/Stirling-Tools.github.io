@@ -24,7 +24,7 @@ Tools for adding, extracting, and modifying content within PDF documents.
 
 ## Stamps & Annotations
 
-- **Add Text**: Place custom text anywhere on your PDF. Pick the spot, then type a label, caption, or note directly onto the page.
+- **Add Text**: Place custom text anywhere on your PDF. Pick the spot, then type a label, caption, or note directly onto the page. Multi-line text is supported: enter a literal `\n` in the text field to add a line break.
 
 - **Add Stamp**: Stamp your pages with your own text or an image. Set the position, size, rotation, and opacity, and apply it to one page or all of them.
 

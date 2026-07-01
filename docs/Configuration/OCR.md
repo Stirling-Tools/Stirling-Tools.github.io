@@ -10,7 +10,11 @@ import TabItem from '@theme/TabItem';
 This document provides instructions on how to add additional language packs for the OCR tab in Stirling PDF, both inside and outside of Docker.
 
 ## How does the OCR Work
-Stirling PDF uses Tesseract for its text recognition. All credit goes to them for this awesome work!
+Stirling PDF uses Tesseract for its text recognition. All credit goes to them for this awesome work! Note that OCR recognizes text only - it does not perform table-structure or formula recognition.
+
+:::note Requires a server backend
+OCR runs on a server-side backend with Tesseract installed. The desktop app cannot OCR in local-only mode - connect it to Stirling Cloud or a self-hosted server that has OCR available. To OCR non-English documents, install the matching language pack as described below.
+:::
 
 ## Language Packs
 

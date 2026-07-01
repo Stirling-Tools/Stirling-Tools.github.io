@@ -10,9 +10,7 @@ import TabItem from '@theme/TabItem';
 Stirling PDF allows straightforward customization of the application name and appearance to make Stirling PDF your own.
 
 ## Application Name Settings
-These settings control the visible application name:
-- `appName` - The visible application name for your instance
-- `homeDescription` - The description displayed on the homepage that first greets the user
+This setting controls the application name:
 - `appNameNavbar` - Used as the browser tab title and as the issuer name shown in authenticator apps for two-factor (TOTP) login. Despite its name it is not shown in the navigation bar (which displays the logo), so do not leave it blank if you use TOTP. Empty falls back to "Stirling PDF".
 
 ## Show update notifications
@@ -151,8 +149,6 @@ This approach requires maintaining your fork and manually merging updates.
   <TabItem value="settings" label="Settings File">
     ```yaml
     ui:
-      appName: exampleAppName # Application's visible name
-      homeDescription: I am a description # Short description or tagline shown on homepage
       appNameNavbar: navbarName # Browser tab title and TOTP issuer label (not the navbar)
 
     system:
@@ -166,25 +162,21 @@ This approach requires maintaining your fork and manually merging updates.
     **Option 1: Using Java Properties**
     ```bash
     java -jar Stirling-PDF.jar \
-      -DAPP_HOME_NAME="New Application Name" \
+      -DUI_APPNAMENAVBAR="Stirling PDF" \
       -DSHOW_UPDATE=false \
       -DSHOW_UPDATE_ONLY_ADMIN=false
     ```
 
     **Option 2: Using Environment Variables**
     ```bash
-    export UI_APPNAME="Stirling PDF"
-    export UI_HOMEDESCRIPTION="Your locally hosted one-stop-shop for all your PDF needs."
-    export UI_APPNAVBARNAME="Stirling PDF"
+    export UI_APPNAMENAVBAR="Stirling PDF"
     export SYSTEM_SHOWUPDATE=false
     export SYSTEM_SHOWUPDATEONLYADMIN=false
     ```
   </TabItem>
   <TabItem value="docker-run" label="Docker Run">
     ```bash
-    -e UI_APPNAME=Stirling PDF \
-    -e UI_HOMEDESCRIPTION=Your locally hosted one-stop-shop for all your PDF needs. \
-    -e UI_APPNAVBARNAME=Stirling PDF \
+    -e UI_APPNAMENAVBAR=Stirling PDF \
     -e SYSTEM_SHOWUPDATE=false \
     -e SYSTEM_SHOWUPDATEONLYADMIN=false
     ```
@@ -192,9 +184,7 @@ This approach requires maintaining your fork and manually merging updates.
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
-      UI_APPNAME: Stirling PDF
-      UI_HOMEDESCRIPTION: Your locally hosted one-stop-shop for all your PDF needs.
-      UI_APPNAVBARNAME: Stirling PDF
+      UI_APPNAMENAVBAR: Stirling PDF
       SYSTEM_SHOWUPDATE: "false"
       SYSTEM_SHOWUPDATEONLYADMIN: "false"
     ```

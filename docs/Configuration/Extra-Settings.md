@@ -44,7 +44,38 @@ server:
       max: 200  # Maximum number of request processing threads
       min: 10   # Minimum number of threads always kept running
     connection-idle-timeout: 30000  # Connection idle timeout in milliseconds
+    max-http-request-header-size: 65536  # Maximum size of request headers in bytes
 ```
+
+### HTTP 431 "Request Header Fields Too Large" during SSO/OAuth login
+
+Some SSO/OAuth providers send very large request headers (for example, large cookies or JWTs), which can trigger an **HTTP 431 Request Header Fields Too Large** error during login. Stirling PDF's default limit is `32768` (32 KB); raise it to resolve the error.
+
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="custom_settings.yml">
+    ```yaml
+    server:
+      jetty:
+        max-http-request-header-size: 65536  # bytes (Stirling default: 32768)
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    environment:
+      SERVER_JETTY_MAX_HTTP_REQUEST_HEADER_SIZE: "65536"
+    ```
+  </TabItem>
+  <TabItem value="docker-run" label="Docker Run">
+    ```bash
+    docker run -d \
+      -p 8080:8080 \
+      -e SERVER_JETTY_MAX_HTTP_REQUEST_HEADER_SIZE=65536 \
+      stirlingtools/stirling-pdf:latest
+    ```
+  </TabItem>
+</Tabs>
+
+Raise the value further (for example `131072`) if the error persists, then restart Stirling PDF.
 
 ## SSL/TLS Configuration
 

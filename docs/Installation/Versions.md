@@ -36,6 +36,8 @@ Additional features become available automatically when you install:
 
 ## Feature Comparison
 
+For the desktop app, the **Ultra-Lite** column below lists the tools that run locally and fully offline on the bundled backend. The **Full-only** tools (OCR, Office conversions, and other tools that depend on external binaries) require a connected server - either Stirling Cloud or your own self-hosted server.
+
 Here are the different technologies each version uses:
 
 | Technology     | Ultra-Lite | Full |
