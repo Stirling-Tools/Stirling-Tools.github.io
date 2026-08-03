@@ -107,9 +107,45 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
 
 ### Signature Appearance
 
-**Visible:** Appears as a box on a chosen page showing the signer name, signing date, and reason, with an optional logo.
+**Visible:** Appears as a box on the page, showing details from your certificate and an optional logo.
 
 **Invisible:** Embedded in PDF metadata only, not visible on the page.
+
+#### Placing the Signature
+
+By default the box goes where it always has, on the page you choose. To put it somewhere specific — a printed signature line on a form, for instance — select **Draw the box on the document** and either drag a rectangle across the page or click one corner and then the opposite one.
+
+The page you draw on becomes the page that gets signed, so the page number updates to match. Press `Esc` to leave placement mode without placing anything.
+
+Text inside the box scales to fit whatever size you draw, so it never spills over the surrounding content.
+
+#### Choosing What the Box Shows
+
+Certificates carry more than a name. Tick the fields you want printed inside the box:
+
+| | |
+|--------|--------|
+| Signer name | Organisation |
+| Organisational unit | Country |
+| Email | Issued by |
+| Issuer organisation | Serial number |
+| Valid from | Valid until |
+| Signature algorithm | Signing date |
+| Reason | Location |
+
+Fields your certificate doesn't carry are skipped rather than drawn blank, so you can tick a field without checking your keystore first. Ticking nothing shows the signer name, signing date and reason, as before.
+
+#### Repeating It on Every Page
+
+Long documents are often initialled on every page so a reader can see the whole thing was signed. **Repeat it on every page** does that.
+
+:::caution Only one page is really signed
+A PDF signature lives in a single place, so only the page you drew on carries the actual signature. The other pages get a mark that looks the same but is not a signature and will not be reported by a validator.
+
+Each mark links to the signed page, so a reader can click it to reach the signature and check its properties.
+:::
+
+This option needs a box to have been drawn first, since there has to be a shape to repeat.
 
 ---
 
