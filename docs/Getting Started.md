@@ -8,9 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Stirling PDF
 
-**Stirling PDF is a self-hosted platform for working with PDFs.** It gives you 60+ tools - editing, converting, signing, OCR, redaction, compression and more - behind a single interface you run yourself, so documents are processed on your own infrastructure and deleted automatically when the job is done.
+**Stirling PDF is a free PDF platform with 60+ tools** - editing, converting, signing, OCR, redaction, compression and more. Run it on your own infrastructure and there are no per-document costs and nothing leaves your network: files are processed on your servers and deleted automatically once the job is done. If you would rather not run servers, the same tools are available hosted - see [Modes](./Modes-and-Licensing.md) for how each option compares.
 
-Run it as a desktop app on your laptop, as a Docker container for your whole team, or as a scaled server deployment with SSO and audit logging. Everything the interface can do is also available over the API.
+It scales with you, from a native desktop app on a laptop, to Docker for a team, to a full server deployment with SSO, audit logging and Kubernetes. And it is not just for the files you open by hand: build [pipelines](./Configuration/Automation/Pipeline.md) that apply the same operations across thousands of documents, drive every tool through the [API](./API.md), or let AI assistants run them for you over [MCP](./Configuration/Automation/MCP-Server.md).
 
 <Tabs groupId="quick-start">
 <TabItem value="docker" label="Docker" default>
@@ -66,7 +66,8 @@ Browse the full [tool reference](./Functionality/Functionality.md) for all 60+ t
 
 - **Your files stay yours** - documents are processed locally and removed automatically after each task, so nothing is retained by a third party.
 - **Built for organisations** - SSO, user management and permission controls, with audit logging for compliance.
-- **Automate the repetitive work** - batch processing, folder scanning and pipelines, plus a full [API](./API.md) for integrating into existing systems.
+- **Automate the repetitive work** - batch processing, [folder scanning](./Configuration/Storage/FolderScanning.md) and [pipelines](./Configuration/Automation/Pipeline.md), plus a full [API](./API.md) for integrating into existing systems.
+- **Works with your AI tooling** - the built-in [MCP server](./Configuration/Automation/MCP-Server.md) exposes Stirling's PDF operations to assistants and IDE agents, so they can run them on your behalf.
 - **Scales with you** - from a single desktop install to Docker and Kubernetes deployments.
 - **Deeply customisable** - themes, environment variables, and the ability to enable or disable individual tools.
 - **Speaks your language** - available in 40+ languages with active community translations.
