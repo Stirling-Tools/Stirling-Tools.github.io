@@ -8,9 +8,6 @@ import TabItem from '@theme/TabItem';
 
 # Analytics and Telemetry
 
-> Please note all the following applies to version 1.5.0 onward due to be released 16th October
-
-
 Stirling‑PDF uses analytics to understand usage patterns and improve the application. This page explains what data is collected, why we collect it, and how to disable analytics if desired.
 
 > **User control**: All analytics are **opt‑in via a consent banner** (disabled until a user allows it). A self‑hosted administrator can also turn all analytics off system‑wide. If analytics are disabled system‑wide, no banner is shown.
