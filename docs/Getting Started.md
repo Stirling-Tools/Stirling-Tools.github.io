@@ -3,6 +3,10 @@ sidebar_position: 0
 slug: /
 ---
 
+## Welcome to Stirling PDF
+
+Stirling PDF is a locally hosted web application that allows you to perform various operations on PDF files. With 60+ tools, flexible deployment options, and enterprise features, it's the comprehensive PDF solution for individuals and organizations.
+
 ## Benefits of Stirling PDF
 - **Extensive PDF Functionality:** Access 60+ tools, including signing, converting, merging, and more.
 - **Advanced Customization:** Deep customization, themes, and environment variables.
@@ -12,49 +16,6 @@ slug: /
 - **API Integration:** Use APIs for automation and external integrations.
 - **Self-Hosted:** Community-driven with frequent updates and GitHub support.
 - **Multi-Language Support:** Available in 40+ languages with active translations.
-
-## Welcome to Stirling PDF
-
-:::tip Upgrading from V1?
-See the **[Migration Guide](./Migration/Overview)** for what's new in V2 and how to upgrade smoothly.
-:::
-
-Stirling PDF is a locally hosted web application that allows you to perform various operations on PDF files. With 60+ tools, flexible deployment options, and enterprise features, it's the comprehensive PDF solution for individuals and organizations.
-
----
-
-## Documentation Guide
-
-### For Individual Users
-
-**[Tool Reference](./Functionality/Functionality.md)**
-Browse all 60+ PDF tools with descriptions
-
----
-
-### For Organizations & IT Teams
-
-**[Production Deployment Guide](./Server-Admin-Onboarding.md)**
-Complete walkthrough: installation - configuration - security - monitoring
-
-**[Paid Offerings (Server & Enterprise)](./Paid-Offerings)**
-External databases, Google Drive integration, SSO, advanced monitoring, and priority support
-
-**[Configuration Options](./Configuration/Customisation/Extra-Settings.md)**
-All configuration options for Docker and server deployments
-
----
-
-### For Developers & Integration
-
-**[API Documentation](./API.md)**
-Integrate Stirling PDF into your applications and workflows
-
-**[Configuration](./Configuration/Security/System%20and%20Security.md)**
-SSO, certificates, security settings, and more
-
-**[Contribute Guide](./Contribute.md)**
-Help improve Stirling PDF - development setup and guidelines
 
 ---
 
@@ -107,6 +68,44 @@ For bare metal installations or environments without Docker:
 4. Run the JAR file
 
 **Full guide:** [Unix Installation Guide](./Installation/Unix.md)
+
+---
+
+## Documentation Guide
+
+### For Individual Users
+
+**[Tool Reference](./Functionality/Functionality.md)**
+Browse all 60+ PDF tools with descriptions
+
+**[Migration Guide](./Migration/Overview)**
+Upgrading from V1? What's new in V2 and how to upgrade smoothly
+
+---
+
+### For Organizations & IT Teams
+
+**[Production Deployment Guide](./Server-Admin-Onboarding.md)**
+Complete walkthrough: installation - configuration - security - monitoring
+
+**[Paid Offerings (Server & Enterprise)](./Paid-Offerings)**
+External databases, Google Drive integration, SSO, advanced monitoring, and priority support
+
+**[Configuration Options](./Configuration/Customisation/Extra-Settings.md)**
+All configuration options for Docker and server deployments
+
+---
+
+### For Developers & Integration
+
+**[API Documentation](./API.md)**
+Integrate Stirling PDF into your applications and workflows
+
+**[Configuration](./Configuration/Security/System%20and%20Security.md)**
+SSO, certificates, security settings, and more
+
+**[Contribute Guide](./Contribute.md)**
+Help improve Stirling PDF - development setup and guidelines
 
 ---
 
