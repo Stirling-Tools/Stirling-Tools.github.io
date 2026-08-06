@@ -20,6 +20,23 @@ function encodeUrl(url) {
   return url.split('/').map(encodeURIComponent).join('/').replace(/%2F/g, '/');
 }
 
+// Canonical link form: directory URLs keep a trailing slash so they resolve
+// directly instead of taking a 301 redirect (measured 67ms vs 150ms).
+export function href(url) {
+  const e = encodeUrl(url);
+  return e === '/' ? '/' : e.replace(/\/?$/, '/');
+}
+
+// Placeholder swapped for the hashed bundle URL once every page is rendered.
+export const BUNDLE_TOKEN = '__CONTENT_BUNDLE_URL__';
+
+// Canonical lookup key for a page: decoded path, no trailing slash (except root).
+// The client derives the same key from location.pathname.
+export function navKey(url) {
+  const clean = url.replace(/\/+$/, '');
+  return clean === '' ? '/' : clean;
+}
+
 function head({ title, description, url, siteUrl }) {
   const fullTitle = title ? `${title} | Stirling PDF` : 'Stirling PDF Documentation';
   const desc = description ?? 'Documentation for Stirling PDF - your locally hosted one-stop-shop for all your PDF needs.';
@@ -30,15 +47,16 @@ function head({ title, description, url, siteUrl }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapeHtml(fullTitle)}</title>
 <meta name="description" content="${escapeHtml(desc)}">
-<link rel="canonical" href="${siteUrl}${encodeUrl(url)}">
+<link rel="canonical" href="${siteUrl}${href(url)}">
 <link rel="icon" href="/img/stirling-mark.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta property="og:title" content="${escapeHtml(fullTitle)}">
 <meta property="og:description" content="${escapeHtml(desc)}">
 <meta property="og:image" content="${siteUrl}/img/Stirling_PDF_App_Icon_-_Favicon_2-f8d8fab3.png">
-<meta property="og:url" content="${siteUrl}${encodeUrl(url)}">
+<meta property="og:url" content="${siteUrl}${href(url)}">
 <meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://app.termly.io">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&family=Alumni+Sans:wght@700&display=swap" rel="stylesheet">
@@ -57,7 +75,7 @@ function head({ title, description, url, siteUrl }) {
   data-color-scheme-selector="[data-theme='dark']"></script>
 <script>
   !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-  posthog.init('${POSTHOG.apiKey}',{api_host:'${POSTHOG.apiHost}'});
+  posthog.init('${POSTHOG.apiKey}',{api_host:'${POSTHOG.apiHost}',capture_pageview:false});
 </script>
 </head>`;
 }
@@ -104,10 +122,10 @@ function sidebarHtml(tree, currentUrl) {
   const renderItems = (items) => items.map(item => {
     if (item.type === 'doc') {
       const active = item.url === currentUrl ? ' active' : '';
-      return `<li><a class="side-link${active}" href="${encodeUrl(item.url)}">${escapeHtml(item.sidebarLabel)}</a></li>`;
+      return `<li><a class="side-link${active}" href="${href(item.url)}">${escapeHtml(item.sidebarLabel)}</a></li>`;
     }
     const containsActive = categoryContains(item, currentUrl);
-    const idxUrl = item.indexPage ? encodeUrl(item.indexPage.url) : null;
+    const idxUrl = item.indexPage ? href(item.indexPage.url) : null;
     const activeIdx = item.indexPage && item.indexPage.url === currentUrl ? ' active' : '';
     // Category whose only page is its own index: render as a plain link.
     if (!item.items.length && idxUrl) {
@@ -129,7 +147,7 @@ function sidebarHtml(tree, currentUrl) {
   const top = [];
   if (tree.indexPage) {
     const active = tree.indexPage.url === currentUrl ? ' active' : '';
-    top.push(`<li><a class="side-link${active}" href="${encodeUrl(tree.indexPage.url)}">${escapeHtml(tree.indexPage.sidebarLabel)}</a></li>`);
+    top.push(`<li><a class="side-link${active}" href="${href(tree.indexPage.url)}">${escapeHtml(tree.indexPage.sidebarLabel)}</a></li>`);
   }
   return `<aside class="sidebar"><div class="sidebar-search"><div id="docsearch"></div></div><nav class="sidebar-nav"><ul>${top.join('')}${renderItems(tree.items)}</ul></nav></aside>`;
 }
@@ -139,21 +157,31 @@ function categoryContains(cat, url) {
   return cat.items.some(i => i.type === 'doc' ? i.url === url : categoryContains(i, url));
 }
 
-function tocHtml(headings) {
-  if (!headings.length) return '<aside class="toc"></aside>';
+// Inner-HTML builders are shared by the full page shell and the JSON content
+// fragments the client router swaps in, so both always render identically.
+function tocInner(headings) {
+  if (!headings.length) return '';
   const items = headings.map(h =>
     `<li class="toc-l${h.level}"><a href="#${h.id}">${escapeHtml(h.text)}</a></li>`).join('\n');
-  return `<aside class="toc"><div class="toc-title">On this page</div><ul>${items}</ul></aside>`;
+  return `<div class="toc-title">On this page</div><ul>${items}</ul>`;
 }
 
-function pagerHtml(prev, next) {
+function tocHtml(headings) {
+  return `<aside class="toc">${tocInner(headings)}</aside>`;
+}
+
+function pagerInner(prev, next) {
   const cell = (p, dir) => p
-    ? `<a class="pager-link pager-${dir}" href="${encodeUrl(p.url)}">
+    ? `<a class="pager-link pager-${dir}" href="${href(p.url)}">
         <span class="pager-dir">${dir === 'prev' ? '&larr; Previous' : 'Next &rarr;'}</span>
         <span class="pager-title">${escapeHtml(p.sidebarLabel)}</span>
       </a>`
     : '<span></span>';
-  return `<nav class="pager">${cell(prev, 'prev')}${cell(next, 'next')}</nav>`;
+  return cell(prev, 'prev') + cell(next, 'next');
+}
+
+function pagerHtml(prev, next) {
+  return `<nav class="pager">${pagerInner(prev, next)}</nav>`;
 }
 
 // Mirrors the stirling.com site footer: brand + tagline + socials on the
@@ -216,7 +244,8 @@ function footerHtml() {
 }
 
 function scripts() {
-  return `<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+  return `<script>window.__DOCS_BUNDLE__ = "${BUNDLE_TOKEN}";</script>
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
 <script>
   docsearch({
     container: '#docsearch',
@@ -236,9 +265,32 @@ function scripts() {
 <img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=5d074971-2ecb-4c54-8397-30c0f91896b3" height="1" width="1" style="display:none" alt="">`;
 }
 
-export function renderPage({ page, bodyHtml, tree, prev, next, headings, siteUrl, editUrl }) {
+function articleInner({ page, bodyHtml, editUrl }) {
   // Don't duplicate the H1 if the markdown already starts with one.
   const hasH1 = /<h1[\s>]/.test(bodyHtml.slice(0, 500));
+  return `${hasH1 ? '' : `<h1 class="doc-title">${escapeHtml(page.title)}</h1>`}
+    ${bodyHtml}
+    ${editUrl ? `<div class="doc-source">
+      <a href="${editUrl}" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+        Edit this page on GitHub
+      </a>
+    </div>` : ''}`;
+}
+
+// The per-page payload the client router swaps in. Only the parts that differ
+// between pages - the shell (navbar, sidebar, footer) is never re-rendered.
+export function renderFragment({ page, bodyHtml, prev, next, headings, editUrl }) {
+  return {
+    title: page.title,
+    description: page.description ?? '',
+    article: articleInner({ page, bodyHtml, editUrl }),
+    toc: tocInner(headings),
+    pager: pagerInner(prev, next),
+  };
+}
+
+export function renderPage({ page, bodyHtml, tree, prev, next, headings, siteUrl, editUrl }) {
   return `${head({ title: page.title, description: page.description, url: page.url, siteUrl })}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
@@ -247,14 +299,7 @@ ${navbar()}
 ${sidebarHtml(tree, page.url)}
 <main class="content" id="content">
   <article class="doc">
-    ${hasH1 ? '' : `<h1 class="doc-title">${escapeHtml(page.title)}</h1>`}
-    ${bodyHtml}
-    ${editUrl ? `<div class="doc-source">
-      <a href="${editUrl}" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
-        Edit this page on GitHub
-      </a>
-    </div>` : ''}
+    ${articleInner({ page, bodyHtml, editUrl })}
   </article>
   ${pagerHtml(prev, next)}
 </main>

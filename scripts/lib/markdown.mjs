@@ -224,6 +224,9 @@ function renderTabsBlock(block, renderInner, state) {
   const panels = items.map((it, i) =>
     `<div role="tabpanel" class="tab-panel${i === defaultIdx ? ' active' : ''}" data-value="${escapeHtml(it.value)}">\n\n${renderInner(it.content)}\n\n</div>`
   ).join('\n');
-  return `<div class="tabs" data-group="${escapeHtml(groupId)}" id="${uid}">` +
+  // Only tab sets with an explicit groupId sync across the site; anonymous
+  // ones would otherwise collide on a generated id shared between pages.
+  const synced = /groupId="/.test(block.attrs);
+  return `<div class="tabs" data-group="${escapeHtml(groupId)}" data-sync="${synced}" id="${uid}">` +
     `<div class="tab-list" role="tablist">${tabs}</div>${panels}</div>`;
 }

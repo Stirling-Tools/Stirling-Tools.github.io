@@ -74,6 +74,45 @@ html { scrollbar-color: var(--scrollbar-thumb) transparent; }
 }
 .skip-link:focus { left: 0.5rem; top: 0.5rem; }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Navigation progress bar - only appears if a swap takes over ~150ms. */
+.nav-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  z-index: 60;
+  background: var(--c-primary);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+.nav-progress.active {
+  opacity: 1;
+  animation: nav-progress-grow 1.4s ease-out forwards;
+}
+@keyframes nav-progress-grow {
+  0% { transform: scaleX(0); }
+  60% { transform: scaleX(0.75); }
+  100% { transform: scaleX(0.92); }
+}
+
+/* Focused headings after a navigation shouldn't show a focus ring. */
+.doc h1:focus { outline: none; }
+
 html { -webkit-text-size-adjust: 100%; }
 
 body {

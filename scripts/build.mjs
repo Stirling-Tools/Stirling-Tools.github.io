@@ -3,10 +3,11 @@
 // keeping the historical URL scheme, Kapa AI, Algolia, PostHog, Scarf, Termly.
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { loadContent, navOrder } from './lib/content.mjs';
 import { createRenderer, preprocess, initHighlighter } from './lib/markdown.mjs';
-import { renderPage, render404 } from './lib/template.mjs';
+import { renderPage, render404, renderFragment, BUNDLE_TOKEN, navKey, href } from './lib/template.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const docsDir = path.join(root, 'docs');
@@ -29,11 +30,11 @@ async function main() {
   const byId = new Map();
   for (const p of pages) byId.set(p.docId, p);
 
-  const resolveLink = (href, page) => {
-    if (/^(https?:|mailto:|#)/.test(href)) return href;
-    const [target, hash] = href.split('#');
+  const resolveLink = (rawHref, page) => {
+    if (/^(https?:|mailto:|#)/.test(rawHref)) return rawHref;
+    const [target, hash] = rawHref.split('#');
     const clean = decodeURIComponent(target);
-    if (!clean) return href;
+    if (!clean) return rawHref;
     let resolved;
     if (clean.startsWith('/')) {
       resolved = clean.replace(/^\//, '');
@@ -46,10 +47,10 @@ async function main() {
       noSlash + '/' + path.posix.basename(noSlash) + '.md'];
     for (const c of candidates) {
       const hit = byFile.get(c) ?? byId.get(c.replace(/\.mdx?$/, ''));
-      if (hit) return encodeUrl(hit.url) + (hash ? '#' + hash : '');
+      if (hit) return href(hit.url) + (hash ? '#' + hash : '');
     }
     // images / static assets keep their path
-    return href;
+    return rawHref;
   };
 
   fs.rmSync(outDir, { recursive: true, force: true });
@@ -62,6 +63,8 @@ async function main() {
   copyDocImages(docsDir, outDir);
 
   let count = 0;
+  const fragments = {};       // nav key -> fragment payload (the content bundle)
+  const rendered = [];        // { url, html } written after the bundle hash is known
   for (const page of pages) {
     const env = { headings: [] };
     md.renderer.rules.link_open = ((defaultRule) => (tokens, idx, options, e, self) => {
@@ -86,13 +89,38 @@ async function main() {
     const editUrl = 'https://github.com/Stirling-Tools/Stirling-Tools.github.io/edit/main/' +
       relPath.split('/').map(encodeURIComponent).join('/');
 
+    const headings = env.headings.filter(h => h.level <= 3);
+
     const html = renderPage({
-      page, bodyHtml, tree, prev, next, editUrl,
-      headings: env.headings.filter(h => h.level <= 3),
+      page, bodyHtml, tree, prev, next, editUrl, headings,
       siteUrl: SITE_URL,
     });
-    writePage(page.url, html);
+    rendered.push({ url: page.url, html });
+
+    const fragment = renderFragment({ page, bodyHtml, prev, next, headings, editUrl });
+    fragments[navKey(page.url)] = fragment;
+
+    // Standalone fragment file: the fallback used for clicks that land before
+    // the full bundle has finished downloading.
+    const key = navKey(page.url);
+    writeJson('/_content/pages' + (key === '/' ? '/index' : key) + '.json', fragment);
     count++;
+  }
+
+  // One bundle with every page's content (~200KB gzipped for the whole site),
+  // fetched once in the background so later navigations need no network.
+  const bundleBody = JSON.stringify({ pages: fragments });
+  const bundleHash = crypto.createHash('sha256').update(bundleBody).digest('hex').slice(0, 12);
+  const bundleUrl = `/_content/bundle-${bundleHash}.json`;
+  fs.mkdirSync(path.join(outDir, '_content'), { recursive: true });
+  fs.writeFileSync(path.join(outDir, `_content/bundle-${bundleHash}.json`), bundleBody);
+
+  // Cheap endpoint the client re-checks after the tab has been backgrounded,
+  // so a long-open tab notices a deploy instead of serving stale content.
+  writeJson('/_content/version.json', { v: bundleHash });
+
+  for (const { url, html } of rendered) {
+    writePage(url, html.split(BUNDLE_TOKEN).join(bundleUrl));
   }
 
   // Redirect stubs for moved pages (redirects.json: old path -> new path)
@@ -100,7 +128,7 @@ async function main() {
   if (fs.existsSync(redirectsFile)) {
     const redirects = JSON.parse(fs.readFileSync(redirectsFile, 'utf8'));
     for (const [oldPath, newPath] of Object.entries(redirects)) {
-      const target = encodeUrl(newPath);
+      const target = href(newPath);
       const stub = `<!doctype html>
 <html lang="en">
 <head>
@@ -123,9 +151,10 @@ async function main() {
   }
 
   // 404 + sitemap
-  fs.writeFileSync(path.join(outDir, '404.html'), render404({ tree, siteUrl: SITE_URL }));
+  fs.writeFileSync(path.join(outDir, '404.html'),
+    render404({ tree, siteUrl: SITE_URL }).split(BUNDLE_TOKEN).join(bundleUrl));
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-    pages.map(p => `  <url><loc>${SITE_URL}${encodeUrl(p.url)}</loc></url>`).join('\n') +
+    pages.map(p => `  <url><loc>${SITE_URL}${href(p.url)}</loc></url>`).join('\n') +
     `\n</urlset>\n`;
   fs.writeFileSync(path.join(outDir, 'sitemap.xml'), sitemap);
   fs.copyFileSync(path.join(root, 'CNAME'), path.join(outDir, 'CNAME'));
@@ -133,6 +162,12 @@ async function main() {
   fs.copyFileSync(path.join(root, 'static', 'img', 'favicon.ico'), path.join(outDir, 'favicon.ico'));
 
   console.log(`Built ${count} pages -> ${outDir}`);
+}
+
+function writeJson(urlPath, data) {
+  const file = path.join(outDir, urlPath.replace(/^\//, ''));
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, JSON.stringify(data));
 }
 
 function writePage(url, html) {
