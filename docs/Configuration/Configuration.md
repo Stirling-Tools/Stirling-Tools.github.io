@@ -36,7 +36,7 @@ Configure via Docker environment variables or system environment variables.
 docker run -d \
   -e SECURITY_ENABLELOGIN=true \
   -e SYSTEM_DEFAULTLOCALE=en-US \
-  stirlingtools/stirling-pdf:latest
+  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
 
 **Best for:** Docker deployments, infrastructure-as-code, initial setup

@@ -47,7 +47,7 @@ For customization beyond the built-in settings, you can override static files li
 ```yaml
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ports:
       - '8080:8080'
     volumes:

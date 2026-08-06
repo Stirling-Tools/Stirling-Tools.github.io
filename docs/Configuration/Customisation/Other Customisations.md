@@ -217,14 +217,14 @@ To make Stirling PDF use an outgoing proxy server (e.g. for checking the license
     docker run -d \
       -p 8080:8080 \
       -e JAVA_CUSTOM_OPTS="-Dhttp.proxyHost=proxyserver -Dhttp.proxyPort=8888 -Dhttp.nonProxyHosts='localhost|127.0.0.1|127.0.1.1|127.0.0.0/8|::1|10.0.0.0/8|.svc|.cluster.local' -Dhttps.proxyHost=proxyserver -Dhttps.proxyPort=8888 -Dhttps.nonProxyHosts='localhost|127.0.0.1|127.0.1.1|127.0.0.0/8|::1|10.0.0.0/8|.svc|.cluster.local'" \
-      stirlingtools/stirling-pdf:latest
+      docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     services:
       stirling-pdf:
-        image: stirlingtools/stirling-pdf:latest
+        image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
         environment:
           JAVA_CUSTOM_OPTS: "-Dhttp.proxyHost=proxyserver -Dhttp.proxyPort=8888 -Dhttp.nonProxyHosts='localhost|127.0.0.1|127.0.1.1|127.0.0.0/8|::1|10.0.0.0/8|.svc|.cluster.local' -Dhttps.proxyHost=proxyserver -Dhttps.proxyPort=8888 -Dhttps.nonProxyHosts='localhost|127.0.0.1|127.0.1.1|127.0.0.0/8|::1|10.0.0.0/8|.svc|.cluster.local'"
     ```

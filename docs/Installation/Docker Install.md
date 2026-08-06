@@ -20,7 +20,7 @@ docker run -d \
   --name stirling-pdf \
   -p 8080:8080 \
   -v ./stirling-data:/configs \
-  stirlingtools/stirling-pdf:latest
+  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
 
 </TabItem>
@@ -31,7 +31,7 @@ Create `docker-compose.yml`:
 ```yaml
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     container_name: stirling-pdf
     ports:
       - '8080:8080'
@@ -81,7 +81,7 @@ Change this password immediately after first login. If you want the no-login exp
 
 To use a different version, just change the tag:
 ```bash
-docker run -d stirlingtools/stirling-pdf:latest-ultra-lite
+docker run -d docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest-ultra-lite
 ```
 
 ## Full Setup (With All Features)
@@ -101,7 +101,7 @@ docker run -d \
   -v ./stirling-data/pipeline:/pipeline \
   -e SECURITY_ENABLELOGIN=false \
   -e SYSTEM_DEFAULTLOCALE=en-GB \
-  stirlingtools/stirling-pdf:latest
+  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
 
 </TabItem>
@@ -112,7 +112,7 @@ Create `docker-compose.yml`:
 ```yaml
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     container_name: stirling-pdf
     ports:
       - '8080:8080'
@@ -149,7 +149,7 @@ docker-compose up -d
 ```bash
 docker stop stirling-pdf
 docker rm stirling-pdf
-docker pull stirlingtools/stirling-pdf:latest
+docker pull docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 # Then run your original docker run command
 ```
 

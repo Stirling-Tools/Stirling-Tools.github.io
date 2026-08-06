@@ -43,7 +43,7 @@ Enable and configure the Mobile Scanner feature, which lets users scan documents
       -e SYSTEM_MOBILESCANNERSETTINGS_IMAGERESOLUTION=full \
       -e SYSTEM_MOBILESCANNERSETTINGS_PAGEFORMAT=A4 \
       -e SYSTEM_MOBILESCANNERSETTINGS_STRETCHTOFIT=false \
-      stirlingtools/stirling-pdf:latest
+      docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">

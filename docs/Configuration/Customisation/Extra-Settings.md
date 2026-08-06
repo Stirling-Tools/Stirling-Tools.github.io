@@ -70,7 +70,7 @@ Some SSO/OAuth providers send very large request headers (for example, large coo
     docker run -d \
       -p 8080:8080 \
       -e SERVER_JETTY_MAX_HTTP_REQUEST_HEADER_SIZE=65536 \
-      stirlingtools/stirling-pdf:latest
+      docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ```
   </TabItem>
 </Tabs>
@@ -108,7 +108,7 @@ Configure HTTPS for secure connections:
     ```yaml
     services:
       stirling-pdf:
-        image: stirlingtools/stirling-pdf:latest
+        image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
         environment:
           SERVER_PORT: 8443
           SERVER_SSL_ENABLED: true

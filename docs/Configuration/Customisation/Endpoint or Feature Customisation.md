@@ -49,7 +49,7 @@ ENDPOINTS_GROUPSTOREMOVE=LibreOffice,Calibre,Weasyprint
 **Disable specific tools:**
 ```bash
 # Docker Run
-docker run -e ENDPOINTS_TOREMOVE=sign,add-watermark,add-stamp stirlingtools/stirling-pdf:latest
+docker run -e ENDPOINTS_TOREMOVE=sign,add-watermark,add-stamp docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 
 # Docker Compose
 environment:

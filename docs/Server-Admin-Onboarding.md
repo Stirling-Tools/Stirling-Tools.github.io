@@ -143,7 +143,7 @@ Create `docker-compose.yml` with this production-ready configuration:
 
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     container_name: stirling-pdf
     ports:
       - '8080:8080'
@@ -236,7 +236,7 @@ docker run -d \
   -e SYSTEM_GOOGLEVISIBILITY=false \
   -e SYSTEMFILEUPLOADLIMIT=2000MB \
   --restart unless-stopped \
-  stirlingtools/stirling-pdf:latest
+  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
 
 #### 2.2: Verify Installation

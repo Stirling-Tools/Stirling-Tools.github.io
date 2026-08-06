@@ -77,14 +77,14 @@ Configure Prometheus monitoring using your preferred method:
     docker run -d \
       -p 8080:8080 \
       -e JAVA_CUSTOM_OPTS="-Dmanagement.endpoints.web.exposure.include=prometheus,health,info -Dmanagement.endpoint.health.show-details=always -Dmanagement.metrics.export.prometheus.enabled=true -Denterprisemanagement.metrics.enabled=true" \
-      stirlingtools/stirling-pdf:latest
+      docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     services:
       stirling-pdf:
-        image: stirlingtools/stirling-pdf:latest
+        image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
         environment:
           JAVA_CUSTOM_OPTS: "-Dmanagement.endpoints.web.exposure.include=prometheus,health,info -Dmanagement.endpoint.health.show-details=always -Dmanagement.metrics.export.prometheus.enabled=true -Denterprisemanagement.metrics.enabled=true"
     ```

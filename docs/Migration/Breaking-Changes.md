@@ -426,8 +426,8 @@ stirlingtools/s-pdf:0.xx.x
 
 **V2 Tags:**
 ```bash
-stirlingtools/stirling-pdf:latest  # NEW NAME
-stirlingtools/stirling-pdf:2.x.x
+docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest  # NEW NAME
+docker.stirlingpdf.com/stirlingtools/stirling-pdf:2.x.x
 ```
 
 ### Migration
@@ -445,7 +445,7 @@ services:
 ```yaml
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest  # NEW
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest  # NEW
 ```
 
 ### Backwards Compatibility
@@ -769,7 +769,7 @@ cp settings.yml.v1.backup configs/settings.yml
 ### 4. Start V1
 ```bash
 # Update docker-compose.yml
-image: stirlingtools/stirling-pdf:1.5.0
+image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:1.5.0
 
 docker-compose up -d
 ```

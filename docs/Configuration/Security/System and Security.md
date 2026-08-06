@@ -93,14 +93,14 @@ Disable authentication while keeping additional features:
       -p 8080:8080 \
       -e SECURITY_ENABLELOGIN=false \
       -e DISABLE_ADDITIONAL_FEATURES=false \
-      stirlingtools/stirling-pdf:latest
+      docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     services:
       stirling-pdf:
-        image: stirlingtools/stirling-pdf:latest
+        image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
         environment:
           SECURITY_ENABLELOGIN: false
           DISABLE_ADDITIONAL_FEATURES: false

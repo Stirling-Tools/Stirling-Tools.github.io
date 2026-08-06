@@ -36,7 +36,7 @@ For detailed sizing recommendations, see the [Performance Optimization](./Config
 
 If you experience connection issues, use these alternative endpoints:
 
-- Docker Hub: `docker pull stirlingtools/stirling-pdf:latest`
+- Docker Hub: `docker pull docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest`
 - GitHub: `docker pull ghcr.io/stirling-tools/stirling-pdf:latest`
 
 All endpoints provide the same functionality.
@@ -88,7 +88,7 @@ To disable authentication in the with-login version:
     docker run -d \
       -p 8080:8080 \
       -e SECURITY_ENABLELOGIN=false \
-      stirlingtools/stirling-pdf:latest
+      docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
