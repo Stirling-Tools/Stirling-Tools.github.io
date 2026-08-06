@@ -77,7 +77,7 @@ PDF to Excel extracts tabular data and writes one worksheet per detected table. 
 
 ## Automation and API conversions
 
-A few conversions have no button in the Convert tool. They run only through the [API](../../API.md) and the [Automate / pipeline](../../Configuration/Pipeline.md) workflow.
+A few conversions have no button in the Convert tool. They run only through the [API](../../API.md) and the [Automate / pipeline](../../Configuration/Automation/Pipeline.md) workflow.
 
 - **PDF to vector / page-description formats** - export a PDF as EPS, PS, PCL, or XPS for print and publishing workflows.
 - **PostScript to PDF** - turn PostScript files (PS, EPS, EPSF) into PDF, with an optional print-oriented (prepress) profile.

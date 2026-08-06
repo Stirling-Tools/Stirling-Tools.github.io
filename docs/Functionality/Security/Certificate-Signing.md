@@ -342,6 +342,6 @@ The server certificate feature requires a Pro/Enterprise license; on the free se
 
 ## Related
 
-- [System and Security Settings](../../Configuration/System%20and%20Security.md#signature-validation)
+- [System and Security Settings](../../Configuration/Security/System%20and%20Security.md#signature-validation)
 - [Sign (Handwritten)](./Sign.md)
 - [Settings Changes](../../Migration/Settings-Changes.md#pdf-signature-validation)

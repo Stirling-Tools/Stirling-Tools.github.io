@@ -273,7 +273,7 @@ You don't need any of this for normal use - the whole workflow above runs from t
 
 ## Related
 
-- [File Sharing and Storage](../../Configuration/File%20Sharing%20and%20Storage.md) -- Configure storage, sharing, and quotas
+- [File Sharing and Storage](../../Configuration/Storage/File%20Sharing%20and%20Storage.md) -- Configure storage, sharing, and quotas
 - [Certificate Signing](./Certificate-Signing.md) -- Individual certificate signing and validation
 - [Sign (Handwritten)](./Sign.md) -- Non-cryptographic visual signatures
-- [System and Security Settings](../../Configuration/System%20and%20Security.md) -- Server certificates, JWT, sessions
+- [System and Security Settings](../../Configuration/Security/System%20and%20Security.md) -- Server certificates, JWT, sessions

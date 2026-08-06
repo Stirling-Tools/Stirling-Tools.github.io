@@ -47,7 +47,7 @@ Add handwritten signatures, text signatures, or image-based signatures to PDF do
 
 Configure Stirling PDF to load pre-stored signature files for quick, consistent signing across documents.
 
-**Configuration:** [Sign with Custom Files](../../Configuration/Sign%20with%20custom%20files.md)
+**Configuration:** [Sign with Custom Files](../../Configuration/Security/Sign%20with%20custom%20files.md)
 
 ---
 

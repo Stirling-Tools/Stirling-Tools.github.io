@@ -51,7 +51,7 @@ Complete walkthrough: installation - configuration - security - monitoring
 **[Paid Offerings (Server & Enterprise)](./Paid-Offerings)**
 External databases, Google Drive integration, SSO, advanced monitoring, and priority support
 
-**[Configuration Options](./Configuration/Extra-Settings.md)**
+**[Configuration Options](./Configuration/Customisation/Extra-Settings.md)**
 All configuration options for Docker and server deployments
 
 ---
@@ -61,7 +61,7 @@ All configuration options for Docker and server deployments
 **[API Documentation](./API.md)**
 Integrate Stirling PDF into your applications and workflows
 
-**[Configuration](./Configuration/System%20and%20Security.md)**
+**[Configuration](./Configuration/Security/System%20and%20Security.md)**
 SSO, certificates, security settings, and more
 
 **[Contribute Guide](./Contribute.md)**

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 6
 id: API
 title: API
 description: Overview of API offering in S-PDF
@@ -73,7 +73,7 @@ Every operation lives under `/api/v1/<category>/<operation>`, where the category
 
 ### AI assistants / MCP
 
-To drive these endpoints from an AI assistant (Claude Desktop, Cursor, etc.) over the Model Context Protocol, see [MCP Server](./Advanced%20Configuration/MCP-Server.md).
+To drive these endpoints from an AI assistant (Claude Desktop, Cursor, etc.) over the Model Context Protocol, see [MCP Server](./Configuration/Automation/MCP-Server.md).
 
 ## API Limitations
 
@@ -137,7 +137,7 @@ Rather than wiring 5 separate HTTP nodes for "OCR then compress then watermark t
 - Request: multipart with one or more `fileInput` parts plus a `json` field containing the full pipeline configuration
 - Response: a single processed file, or a ZIP if the pipeline produced multiple outputs
 
-Full schema, operation list, parameter reference, and curl examples: see **[Pipeline Automation](./Configuration/Pipeline.md#rest-api-post-apiv1pipelinehandledata)**.
+Full schema, operation list, parameter reference, and curl examples: see **[Pipeline Automation](./Configuration/Automation/Pipeline.md#rest-api-post-apiv1pipelinehandledata)**.
 
 ### Building the pipeline JSON
 

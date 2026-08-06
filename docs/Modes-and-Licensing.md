@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 id: Modes and Licensing
 title: Modes
 description: The different ways to run Stirling PDF and where credits apply

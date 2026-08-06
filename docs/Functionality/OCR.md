@@ -56,7 +56,7 @@ Advanced options require OCRmyPDF. With Tesseract only, they are ignored.
 
 ## Language Packs
 
-Available languages depend on which Tesseract language packs are installed. The default Docker image includes English, German, French, Portuguese, and Chinese Simplified. To add more languages, see the **[OCR Configuration Guide](../Configuration/OCR.md)**.
+Available languages depend on which Tesseract language packs are installed. The default Docker image includes English, German, French, Portuguese, and Chinese Simplified. To add more languages, see the **[OCR Configuration Guide](../Configuration/Operations/OCR.md)**.
 
 ---
 

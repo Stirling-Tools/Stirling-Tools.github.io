@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 5
 id: Production-Deployment-Guide
 title: Production Deployment Guide
 description: Complete production deployment guide for server administrators deploying Stirling-PDF
@@ -533,7 +533,7 @@ security:
 - ✅ Automatic user provisioning
 - ✅ Corporate policy compliance
 
-**See full guide:** [SSO Configuration Guide](./Configuration/Single%20Sign-On%20Configuration.md)
+**See full guide:** [SSO Configuration Guide](./Configuration/Security/Single%20Sign-On%20Configuration.md)
 
 Complete configuration examples for Google, GitHub, Keycloak, Okta, Azure AD, and generic OIDC/SAML2 providers.
 
@@ -599,7 +599,7 @@ endpoints:
 3. In "Disabled Endpoints", select the tools you want to disable (or use "Disabled Endpoint Groups" for whole groups)
 4. Save changes
 
-**See all tool IDs:** [Endpoint Customisation](./Configuration/Endpoint%20or%20Feature%20Customisation.md)
+**See all tool IDs:** [Endpoint Customisation](./Configuration/Customisation/Endpoint%20or%20Feature%20Customisation.md)
 
 </TabItem>
 </Tabs>
@@ -718,7 +718,7 @@ Stirling-PDF can handle HTTPS directly using built-in SSL configuration.
 - ⚠️ No load balancing
 - ⚠️ Port 8443 instead of standard 443
 
-**Learn more:** [Custom Settings - SSL Configuration](./Configuration/Extra-Settings#ssltls-configuration)
+**Learn more:** [Custom Settings - SSL Configuration](./Configuration/Customisation/Extra-Settings.md#ssltls-configuration)
 
 </TabItem>
 <TabItem value="reverse-proxy" label="Reverse Proxy (Production)">
@@ -1089,7 +1089,7 @@ Use `/api/v1/info/status` for health and uptime checks - it is always reachable 
 
 Stirling-PDF Enterprise plan supports Prometheus metrics for advanced monitoring.
 
-**Learn more:** [Usage Monitoring - Prometheus Setup](./Configuration/Usage%20Monitoring#prometheus-monitoring-configuration)
+**Learn more:** [Usage Monitoring - Prometheus Setup](./Configuration/Automation/Usage%20Monitoring.md#prometheus-monitoring-configuration)
 
 **Features:**
 - JVM metrics (memory, GC, threads)
@@ -1183,7 +1183,7 @@ Protect your users' data and configuration with proper backups.
 :::tip Server/Enterprise Recommendation
 Server and Enterprise plan users should configure an external PostgreSQL database instead of using the local H2 database. This provides better reliability, scalability, and backup capabilities.
 
-**Learn more:** [External Database Configuration](./Configuration/External%20Database.md)
+**Learn more:** [External Database Configuration](./Configuration/Storage/External%20Database.md)
 :::
 
 ### 8.2: Backup Strategies
@@ -1311,7 +1311,7 @@ find backups/ -name "stirling-data-*.tar.gz" -mtime +30 -delete
 
 ## Step 9: Performance Optimization
 
-For resource sizing recommendations, scaling guidance, and fine tuning, see the dedicated [Performance Optimization & Sizing](./Configuration/Performance-Optimization.md) guide.
+For resource sizing recommendations, scaling guidance, and fine tuning, see the dedicated [Performance Optimization & Sizing](./Configuration/Operations/Performance-Optimization.md) guide.
 
 ---
 
@@ -1340,8 +1340,8 @@ Stirling-PDF offers **Server and Enterprise paid plans** with additional feature
 - **Email:** support@stirlingpdf.com
 - **Website:** https://stirling.com/pricing
 - **Documentation:** [Paid Offerings](./Paid-Offerings)
-- **External Database Setup:** [External Database Guide](./Configuration/External%20Database.md)
-- **Monitoring Setup:** [Usage Monitoring](./Configuration/Usage%20Monitoring.md)
+- **External Database Setup:** [External Database Guide](./Configuration/Storage/External%20Database.md)
+- **Monitoring Setup:** [Usage Monitoring](./Configuration/Automation/Usage%20Monitoring.md)
 
 ---
 
@@ -1357,15 +1357,15 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
    - Create internal documentation for your specific workflows
 
 2. **🔧 Advanced configuration**
-   - [OCR Configuration](./Configuration/OCR.md) - Add more languages
-   - [Pipeline Automation](./Configuration/Pipeline.md) - Automate workflows
+   - [OCR Configuration](./Configuration/Operations/OCR.md) - Add more languages
+   - [Pipeline Automation](./Configuration/Automation/Pipeline.md) - Automate workflows
    - [API Integration](./API.md) - Integrate with other systems
-   - [LibreOffice Parallel Processing](./Configuration/LibreOffice-Parallel-Processing.md) - Scale document conversions
+   - [LibreOffice Parallel Processing](./Configuration/Operations/LibreOffice-Parallel-Processing.md) - Scale document conversions
 
 3. **🔒 Harden security**
-   - [Fail2Ban Setup](./Configuration/Fail2Ban.md) - Prevent brute force
-   - [External Database](./Configuration/External%20Database.md) - Use PostgreSQL
-   - Review [System and Security](./Configuration/System%20and%20Security.md) settings
+   - [Fail2Ban Setup](./Configuration/Security/Fail2Ban.md) - Prevent brute force
+   - [External Database](./Configuration/Storage/External%20Database.md) - Use PostgreSQL
+   - Review [System and Security](./Configuration/Security/System%20and%20Security.md) settings
 
 4. **📊 Monitor and optimize**
    - Set up regular backup verification
@@ -1409,10 +1409,10 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 
 **Solutions:**
 1. Check resource limits: `docker stats stirling-pdf`
-2. Increase JVM heap - see [Performance Optimization](./Configuration/Performance-Optimization.md)
-3. Increase LibreOffice instances if document conversions are slow - see [LibreOffice Parallel Processing](./Configuration/LibreOffice-Parallel-Processing.md)
+2. Increase JVM heap - see [Performance Optimization](./Configuration/Operations/Performance-Optimization.md)
+3. Increase LibreOffice instances if document conversions are slow - see [LibreOffice Parallel Processing](./Configuration/Operations/LibreOffice-Parallel-Processing.md)
 4. Check disk I/O: Use SSD for temp file storage
-5. Run the built-in [diagnostics tool](./Configuration/Diagnostics.md) and check application logs
+5. Run the built-in [diagnostics tool](./Configuration/Operations/Diagnostics.md) and check application logs
 
 ### HTTPS/Certificate Issues
 
@@ -1436,7 +1436,7 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 
 ### Need More Help?
 
-Run the built-in [diagnostics tool](./Configuration/Diagnostics.md) inside your Docker container to collect logs, configuration, and system information into a shareable archive.
+Run the built-in [diagnostics tool](./Configuration/Operations/Diagnostics.md) inside your Docker container to collect logs, configuration, and system information into a shareable archive.
 
 **For Community Support:**
 - Join Discord: https://discord.gg/HYmhKj45pU

@@ -290,9 +290,9 @@ ports:
 
 ## Next Steps
 
-- **Add OCR Languages**: See [OCR Configuration](../Configuration/OCR.md)
-- **Enable Authentication**: See [Security Settings](../Configuration/System%20and%20Security.md)
-- **Setup Automation**: See [Pipeline Configuration](../Configuration/Pipeline.md)
+- **Add OCR Languages**: See [OCR Configuration](../Configuration/Operations/OCR.md)
+- **Enable Authentication**: See [Security Settings](../Configuration/Security/System%20and%20Security.md)
+- **Setup Automation**: See [Pipeline Configuration](../Configuration/Automation/Pipeline.md)
 - **More Settings**: See [Configuration](../Configuration/Configuration.md)
 
 ## Troubleshooting

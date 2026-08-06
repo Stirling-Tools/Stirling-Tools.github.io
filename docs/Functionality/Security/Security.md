@@ -68,6 +68,6 @@ For the full list of settings and example configurations, see [Certificate Signi
 
 For advanced security configuration, see:
 
-- **[System and Security Settings](../../Configuration/System%20and%20Security.md)** - JWT, session management, server certificates
+- **[System and Security Settings](../../Configuration/Security/System%20and%20Security.md)** - JWT, session management, server certificates
 - **[Certificate Signing](./Certificate-Signing.md)** - Comprehensive signing and validation guide
-- **[Single Sign-On](../../Configuration/Single%20Sign-On%20Configuration.md)** - Enterprise authentication
+- **[Single Sign-On](../../Configuration/Security/Single%20Sign-On%20Configuration.md)** - Enterprise authentication
