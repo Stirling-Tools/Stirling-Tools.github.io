@@ -97,7 +97,7 @@ function navbar() {
         <button class="nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Product <svg class="nav-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="nav-menu">
           <a class="nav-menu-item" href="https://stirling.com/#editor">
-            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h10l6 6v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M14 4v6h6"/></svg></span>
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/><path d="M13 3v6h6"/><path d="m17.5 11.5 3 3-4.5 4.5H13v-3z"/></svg></span>
             <span class="nav-menu-text"><span class="nav-menu-title">PDF Editor</span><span class="nav-menu-desc">60+ PDF operations</span></span>
           </a>
           <a class="nav-menu-item" href="https://stirling.com/#processor">
@@ -105,7 +105,7 @@ function navbar() {
             <span class="nav-menu-text"><span class="nav-menu-title">PDF Processor</span><span class="nav-menu-desc">Automated PDF pipelines</span></span>
           </a>
           <a class="nav-menu-item" href="https://stirling.com/#infrastructure">
-            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span>
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V6"/><path d="M4.5 12v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg></span>
             <span class="nav-menu-text"><span class="nav-menu-title">PDF Server</span><span class="nav-menu-desc">Infrastructure for teams</span></span>
           </a>
           <a class="nav-menu-item" href="https://stirling.com/book-a-demo">
@@ -118,7 +118,7 @@ function navbar() {
         <button class="nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Company <svg class="nav-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="nav-menu">
           <a class="nav-menu-item" href="https://stirling.com/about">
-            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 20a6.2 6.2 0 0 1 12.4 0"/><path d="M16.5 5.3a3.2 3.2 0 0 1 0 5.9M18 14.4a6.2 6.2 0 0 1 3.2 5.6"/></svg></span>
             <span class="nav-menu-text"><span class="nav-menu-title">About</span><span class="nav-menu-desc">Who we are</span></span>
           </a>
           <a class="nav-menu-item" href="https://stirling.com/careers">
@@ -126,7 +126,7 @@ function navbar() {
             <span class="nav-menu-text"><span class="nav-menu-title">Careers</span><span class="nav-menu-desc">Come build with us</span></span>
           </a>
           <a class="nav-menu-item" href="https://stirling.com/help-center">
-            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.2 2.4c-.6.2-.7.6-.7 1.1v.4M12 17h.01"/></svg></span>
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a8 8 0 0 1-8 8H4l2.2-2.9A8 8 0 1 1 21 12z"/><path d="M9 11h6M9 14.5h4"/></svg></span>
             <span class="nav-menu-text"><span class="nav-menu-title">Help center</span><span class="nav-menu-desc">Guides and support</span></span>
           </a>
           <a class="nav-menu-item" href="https://stirling.com/legal/terms-of-service">

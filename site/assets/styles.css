@@ -193,16 +193,16 @@ body {
   gap: 1.5rem;
   margin-left: 1.5rem;
 }
-.navbar-center a {
+.navbar-center > a {
   font-size: 0.9375rem;
   font-weight: 600;
   color: #121212;
   text-decoration: none;
   transition: opacity var(--motion-fast);
 }
-[data-theme="dark"] .navbar-center a { color: #fafafa; }
-.navbar-center a:hover { opacity: 0.65; }
-.navbar-center a.active { opacity: 0.55; }
+[data-theme="dark"] .navbar-center > a { color: #fafafa; }
+.navbar-center > a:hover { opacity: 0.65; }
+.navbar-center > a.active { opacity: 0.55; }
 
 /* Dropdown menus (Product / Company) - panel metrics measured off
    stirling.com: 324px wide, 24px radius, 16px padding, hairline + soft shadow,
@@ -272,13 +272,15 @@ body {
 /* Hover lifts the row into a card with the same 1px hairline ring the panel
    itself uses, rather than a grey fill. */
 .nav-menu-item { transition: box-shadow var(--motion-fast), background var(--motion-fast); }
+/* Row text must not inherit the top-level link fade. */
+.nav-menu-item:hover { opacity: 1; }
 .nav-menu-item:hover {
-  background: #fff;
-  box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 1px 4px 0;
+  background: #f4f4f5;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
 }
 [data-theme="dark"] .nav-menu-item:hover {
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: rgba(255, 255, 255, 0.12) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 1px 4px 0;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: rgba(255, 255, 255, 0.1) 0 0 0 1px;
 }
 /* Keyboard users get a stronger, unambiguous ring - the hover hairline is too
    faint to serve as a focus indicator on its own. */
@@ -300,10 +302,16 @@ body {
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.04);
-  color: #525252;
+  background: #f4f4f5;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
+  /* Glyphs are near-black like stirling.com, not grey. */
+  color: #121212;
 }
-[data-theme="dark"] .nav-menu-icon { background: rgba(255, 255, 255, 0.07); color: #a1a1aa; }
+[data-theme="dark"] .nav-menu-icon {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: rgba(255, 255, 255, 0.08) 0 0 0 1px;
+  color: #fafafa;
+}
 
 .nav-menu-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .nav-menu-title { font-size: 0.9375rem; font-weight: 500; color: #121212; }
