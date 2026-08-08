@@ -6,11 +6,11 @@ import { escapeHtml } from './markdown.mjs';
 const KAPA = {
   websiteId: '32633e81-a72c-4df4-9cb9-c6cd3a0899cb',
   projectName: 'Stirling PDF',
-  projectColor: '#1E88E5',
+  projectColor: '#8E3131',
   // Chevron mark inlined as a data URI so the launcher icon renders
   // everywhere (locally and before/after deploys), no hosted file needed.
   projectLogo: 'data:image/svg+xml,' + encodeURIComponent(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.971 22.035"><path d="M 0 10.992 L 13.104 0 L 13.104 10.265 L 0 21.257 L 0 10.992 Z" fill="rgb(139,200,255)"/><path d="M 6.852 11.757 L 19.971 0.752 L 19.971 11.03 L 6.852 22.035 Z" fill="rgb(30,136,229)"/></svg>'
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.961 29.046"><path d="M 0 14.489 L 17.69 0 L 17.69 13.531 L 0 28.02 L 0 14.489 Z" fill="rgb(173,115,115)"/><path d="M 9.25 15.498 L 26.961 0.991 L 26.961 14.539 L 9.25 29.046 Z" fill="rgb(142,49,49)"/></svg>'
   ),
 };
 const ALGOLIA = { appId: 'NJB9CKQAIT', apiKey: 'c67f84bf0cdec4d1962ac4e0d65fb4e5', indexName: 'stirlingpdf' };
@@ -80,8 +80,8 @@ function head({ title, description, url, siteUrl }) {
 </head>`;
 }
 
-// Styled to match the stirling.com marketing site header: always-dark bar,
-// Geist type, the same nav links, GitHub star chip, and pill CTA.
+// Mirrors the stirling.com site header: light translucent bar, Alumni Sans
+// wordmark beside the red chevron mark, and the Log in / Sign up pills.
 function navbar() {
   return `<header class="navbar">
   <div class="navbar-inner">
@@ -89,15 +89,15 @@ function navbar() {
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
     <a class="brand" href="https://stirling.com/">
-      <img src="/img/stirling-mark.svg" alt="" width="20" height="22">
+      <img src="/img/stirling-mark.svg" alt="" width="27" height="29">
       <span class="brand-name">Stirling</span>
     </a>
     <nav class="navbar-center">
-      <a href="https://stirling.com/#1">Features</a>
+      <a href="https://stirling.com/">Product</a>
+      <a href="https://stirling.com/about">Company</a>
+      <a href="https://stirling.com/pricing">Pricing</a>
       <a href="https://stirling.com/download">Download</a>
       <a href="/" class="active">Docs</a>
-      <a href="https://stirling.com/pricing">Pricing</a>
-      <a href="https://stirling.com/contact">Contact</a>
     </nav>
     <nav class="navbar-links">
       <button class="ask-ai" type="button" onclick="window.Kapa&&window.Kapa.open()">
@@ -110,9 +110,10 @@ function navbar() {
       </button>
       <a href="https://github.com/Stirling-Tools/Stirling-PDF" target="_blank" rel="noopener" class="gh-star" aria-label="Star on GitHub">
         <svg width="24" height="24" viewBox="0 0 24 23.406" fill="currentColor"><path d="M 12 0 C 5.37 0 0 5.373 0 12 C 0 17.303 3.438 21.8 8.205 23.385 C 8.805 23.498 9.025 23.127 9.025 22.808 C 9.025 22.523 9.015 21.768 9.01 20.768 C 5.672 21.492 4.968 19.158 4.968 19.158 C 4.422 17.773 3.633 17.403 3.633 17.403 C 2.546 16.659 3.717 16.674 3.717 16.674 C 4.922 16.758 5.555 17.91 5.555 17.91 C 6.625 19.745 8.364 19.215 9.05 18.908 C 9.158 18.132 9.467 17.603 9.81 17.303 C 7.145 17.003 4.344 15.971 4.344 11.374 C 4.344 10.063 4.809 8.993 5.579 8.153 C 5.444 7.85 5.039 6.63 5.684 4.977 C 5.684 4.977 6.689 4.655 8.984 6.207 C 9.944 5.941 10.964 5.808 11.984 5.803 C 13.004 5.808 14.024 5.941 14.984 6.207 C 17.264 4.655 18.269 4.977 18.269 4.977 C 18.914 6.63 18.509 7.85 18.389 8.153 C 19.154 8.993 19.619 10.063 19.619 11.374 C 19.619 15.983 16.814 16.998 14.144 17.293 C 14.564 17.663 14.954 18.398 14.954 19.523 C 14.954 21.135 14.939 22.413 14.939 22.808 C 14.939 23.127 15.154 23.503 15.764 23.385 C 20.565 21.795 24 17.3 24 12 C 24 5.373 18.627 0 12 0 Z"/></svg>
-        <span class="gh-star-count" data-star-count>89k</span>
+        <span class="gh-star-count" data-star-count>89.1k</span>
       </a>
-      <a class="navbar-cta" href="https://stirling.com/app/signup">Try Stirling free</a>
+      <a class="navbar-login" href="https://stirling.com/app/login">Log in</a>
+      <a class="navbar-cta" href="https://stirling.com/app/signup">Sign up</a>
     </nav>
   </div>
 </header>`;

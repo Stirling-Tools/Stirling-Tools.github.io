@@ -126,21 +126,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Navbar — matches the stirling.com site header (always dark) ─────────── */
+/* ── Navbar — mirrors the stirling.com site header (light, translucent) ──── */
 
 .navbar {
   position: sticky;
   top: 0;
   z-index: 50;
   height: var(--navbar-h);
-  /* The marketing site is rgba(0,0,0,0.8) over a black page; over our light
-     content the same alpha reads grey, so push it near-black + glass blur. */
-  background: rgba(0, 0, 0, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  font-family: "Geist", var(--font-sans);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 1px 0 0;
+  font-family: "Inter", var(--font-sans);
 }
-[data-theme="dark"] .navbar { background: rgba(0, 0, 0, 0.8); }
+/* Dark theme keeps the same shape, inverted. */
+[data-theme="dark"] .navbar {
+  background: rgba(20, 20, 22, 0.95);
+  box-shadow: rgba(255, 255, 255, 0.08) 0 1px 0 0;
+}
 
 .navbar-inner {
   position: relative;
@@ -148,12 +151,9 @@ body {
   align-items: center;
   gap: 1rem;
   height: 100%;
-  max-width: 100rem;
+  max-width: 78.5rem;
   margin: 0 auto;
   padding: 0 20px;
-}
-@media (min-width: 90rem) {
-  .navbar-inner { padding: 0 60px; }
 }
 
 .menu-toggle {
@@ -164,53 +164,50 @@ body {
   height: 2.25rem;
   border: none;
   background: none;
-  color: #fafafa;
+  color: var(--c-text);
   cursor: pointer;
   border-radius: var(--radius-md);
 }
-.menu-toggle:hover { background: rgba(255, 255, 255, 0.1); }
+.menu-toggle:hover { background: var(--c-hover); }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 6px;
   text-decoration: none;
-  color: #fff;
+  color: #121212;
   white-space: nowrap;
 }
-.brand img { display: block; }
+[data-theme="dark"] .brand { color: #fafafa; }
+.brand img { display: block; height: 29px; width: auto; }
 .brand-name {
-  font-family: "Alumni Sans", "Geist", var(--font-sans);
-  font-size: 1.625rem;
+  font-family: "Alumni Sans", var(--font-sans);
+  font-size: 1.875rem;
   font-weight: 700;
   line-height: 1;
 }
 
-/* True viewport-centred like the marketing site, independent of how wide
-   the brand or right-hand cluster are. */
 .navbar-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
+  margin-left: 2rem;
 }
 .navbar-center a {
   font-size: 0.9375rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  color: #121212;
   text-decoration: none;
-  transition: color var(--motion-fast);
+  transition: opacity var(--motion-fast);
 }
-.navbar-center a:hover,
-.navbar-center a.active { color: #fff; }
+[data-theme="dark"] .navbar-center a { color: #fafafa; }
+.navbar-center a:hover { opacity: 0.65; }
+.navbar-center a.active { opacity: 0.55; }
 
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   margin-left: auto;
 }
 
@@ -221,14 +218,15 @@ body {
   padding: 0;
   font-family: inherit;
   font-size: 0.9375rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  color: #121212;
   background: none;
   border: none;
   cursor: pointer;
-  transition: color var(--motion-fast);
+  transition: opacity var(--motion-fast);
 }
-.ask-ai:hover { color: #fff; }
+[data-theme="dark"] .ask-ai { color: #fafafa; }
+.ask-ai:hover { opacity: 0.65; }
 
 .theme-toggle {
   display: inline-flex;
@@ -236,14 +234,16 @@ body {
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: #525252;
   background: none;
   border: none;
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: color var(--motion-fast), background var(--motion-fast);
 }
-.theme-toggle:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
+.theme-toggle:hover { color: #121212; background: rgba(0, 0, 0, 0.05); }
+[data-theme="dark"] .theme-toggle { color: #a1a1aa; }
+[data-theme="dark"] .theme-toggle:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }
 
 .icon-moon { display: none; }
 [data-theme="dark"] .icon-moon { display: block; }
@@ -252,43 +252,56 @@ body {
 .gh-star {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  color: #fff;
+  gap: 6px;
+  color: #121212;
   text-decoration: none;
 }
+[data-theme="dark"] .gh-star { color: #fafafa; }
 .gh-star-count {
+  font-family: "Geist", var(--font-sans);
   font-size: 0.9375rem;
-  font-weight: 400;
-  color: #a6a6a6;
+  font-weight: 500;
+  color: #525252;
   transition: color var(--motion-fast);
 }
-.gh-star:hover .gh-star-count { color: #fff; }
+[data-theme="dark"] .gh-star-count { color: #a1a1aa; }
+.gh-star:hover .gh-star-count { color: #121212; }
+[data-theme="dark"] .gh-star:hover .gh-star-count { color: #fff; }
 
+/* Log in: ghost pill. Sign up: solid dark pill. */
+.navbar-login,
 .navbar-cta {
-  position: relative;
   display: inline-flex;
   align-items: center;
-  height: 2.5rem;
-  padding: 0 1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #fafafa;
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.15);
+  height: 44px;
+  padding: 0 20px;
   border-radius: 64px;
-  transition: background var(--motion-fast);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
   white-space: nowrap;
+  transition: background var(--motion-fast), opacity var(--motion-fast);
 }
-/* Same subtle ring the marketing site draws via an ::after overlay. */
-.navbar-cta::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: inherit;
-  pointer-events: none;
+
+.navbar-login {
+  color: #262626;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
-.navbar-cta:hover { background: rgba(255, 255, 255, 0.25); }
+.navbar-login:hover { background: #f5f5f5; }
+[data-theme="dark"] .navbar-login {
+  color: #e5e5e5;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+[data-theme="dark"] .navbar-login:hover { background: rgba(255, 255, 255, 0.08); }
+
+.navbar-cta {
+  color: #fff;
+  background: #121212;
+}
+.navbar-cta:hover { opacity: 0.85; }
+[data-theme="dark"] .navbar-cta { color: #121212; background: #fafafa; }
 
 /* ── Layout: sidebar / content / toc ─────────────────────────────────────── */
 
@@ -969,8 +982,12 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
   .navbar-links { margin-left: auto; }
 }
 
+@media (max-width: 62rem) {
+  .gh-star, .navbar-login { display: none; }
+}
+
 @media (max-width: 48rem) {
-  .gh-star, .navbar-cta { display: none; }
+  .navbar-cta { display: none; }
 }
 
 @media (max-width: 40rem) {
