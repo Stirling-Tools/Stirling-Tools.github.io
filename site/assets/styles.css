@@ -269,12 +269,29 @@ body {
   border-radius: 14px;
   text-decoration: none;
 }
-.nav-menu-item .nav-menu-title,
-.nav-menu-item .nav-menu-desc { transition: color var(--motion-fast); }
-.nav-menu-item:hover .nav-menu-title { color: #000; }
-.nav-menu-item:hover .nav-menu-desc { color: #262626; }
-[data-theme="dark"] .nav-menu-item:hover .nav-menu-title { color: #fff; }
-[data-theme="dark"] .nav-menu-item:hover .nav-menu-desc { color: #d4d4d8; }
+/* Hover lifts the row into a card with the same 1px hairline ring the panel
+   itself uses, rather than a grey fill. */
+.nav-menu-item { transition: box-shadow var(--motion-fast), background var(--motion-fast); }
+.nav-menu-item:hover {
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 1px 4px 0;
+}
+[data-theme="dark"] .nav-menu-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: rgba(255, 255, 255, 0.12) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 1px 4px 0;
+}
+/* Keyboard users get a stronger, unambiguous ring - the hover hairline is too
+   faint to serve as a focus indicator on its own. */
+.nav-menu-item:focus-visible,
+.nav-trigger:focus-visible,
+.navbar-center a:focus-visible,
+.navbar-login:focus-visible,
+.navbar-cta:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 2px;
+  border-radius: 14px;
+}
+.nav-menu-item:focus-visible { outline-offset: -1px; }
 
 .nav-menu-icon {
   flex: none;
