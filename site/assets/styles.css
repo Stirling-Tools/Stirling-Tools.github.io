@@ -26,7 +26,7 @@
   --motion-fast: 0.15s ease;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-mono: "SF Mono", "Fira Code", Menlo, Consolas, "DejaVu Sans Mono", monospace;
-  --navbar-h: 4.5rem;
+  --navbar-h: 4.625rem;
 }
 
 [data-theme="dark"] {
@@ -151,7 +151,7 @@ body {
   align-items: center;
   gap: 1rem;
   height: 100%;
-  max-width: 78.5rem;
+  max-width: 77.5rem;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -191,7 +191,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  margin-left: 2rem;
+  margin-left: 1.5rem;
 }
 .navbar-center a {
   font-size: 0.9375rem;
@@ -212,7 +212,7 @@ body {
 .nav-trigger {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 7px;
   padding: 0;
   font-family: inherit;
   font-size: 0.9375rem;
@@ -269,8 +269,12 @@ body {
   border-radius: 14px;
   text-decoration: none;
 }
-.nav-menu-item:hover { background: rgba(0, 0, 0, 0.04); }
-[data-theme="dark"] .nav-menu-item:hover { background: rgba(255, 255, 255, 0.06); }
+.nav-menu-item .nav-menu-title,
+.nav-menu-item .nav-menu-desc { transition: color var(--motion-fast); }
+.nav-menu-item:hover .nav-menu-title { color: #000; }
+.nav-menu-item:hover .nav-menu-desc { color: #262626; }
+[data-theme="dark"] .nav-menu-item:hover .nav-menu-title { color: #fff; }
+[data-theme="dark"] .nav-menu-item:hover .nav-menu-desc { color: #d4d4d8; }
 
 .nav-menu-icon {
   flex: none;
