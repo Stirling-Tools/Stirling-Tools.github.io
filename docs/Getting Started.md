@@ -5,15 +5,16 @@ slug: /
 
 ## Welcome to Stirling PDF
 
-Stirling PDF is a locally hosted web application that allows you to perform various operations on PDF files. With 60+ tools, flexible deployment options, and enterprise features, it's the comprehensive PDF solution for individuals and organizations.
+Stirling PDF is a locally hosted web application that allows you to perform various operations on PDF files. With 55+ tools, flexible deployment options, and enterprise features, it's the comprehensive PDF solution for individuals and organizations.
 
 ## Benefits of Stirling PDF
-- **Extensive PDF Functionality:** Access 60+ tools, including signing, converting, merging, and more.
-- **Advanced Customization:** Deep customization, themes, and environment variables.
-- **Enterprise Features:** SSO, user management, and permission controls.
-- **Data Security:** Local file processing with automatic deletion post-task.
-- **Scalability & Automation:** Batch processing with Docker and Kubernetes support.
-- **API Integration:** Use APIs for automation and external integrations.
+- **Extensive PDF Functionality:** 55+ tools covering signing, converting, merging, editing, OCR, and redaction.
+- **Stateful Workspace:** Upload once and chain tools together, with full undo and redo history.
+- **Runs Anywhere:** Docker, bare metal, Kubernetes, or native desktop apps for Windows, macOS, and Linux.
+- **Data Security:** Files are processed by your own instance, never a third-party service.
+- **Configure In-App:** Change settings from the UI, or drive everything with environment variables and `settings.yml`.
+- **Automation & Integration:** REST API, pipelines, folder scanning, and an MCP server for AI assistants.
+- **Enterprise Features:** SSO (OAuth2 and SAML), user management, permission controls, and audit logging.
 - **Self-Hosted:** Community-driven with frequent updates and GitHub support.
 - **Multi-Language Support:** Available in 40+ languages with active translations.
 
@@ -76,7 +77,7 @@ For bare metal installations or environments without Docker:
 ### For Individual Users
 
 **[Tool Reference](./Functionality/Functionality.md)**
-Browse all 60+ PDF tools with descriptions
+Browse all 55+ PDF tools with descriptions
 
 **[Migration Guide](./Migration/Overview)**
 Upgrading from V1? What's new in V2 and how to upgrade smoothly
