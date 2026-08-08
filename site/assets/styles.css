@@ -204,8 +204,9 @@ body {
 .navbar-center a:hover { opacity: 0.65; }
 .navbar-center a.active { opacity: 0.55; }
 
-/* Dropdown menus (Product / Company). Open on hover, on click for touch,
-   and on keyboard focus. */
+/* Dropdown menus (Product / Company) - panel metrics measured off
+   stirling.com: 324px wide, 24px radius, 16px padding, hairline + soft shadow,
+   centred under the trigger. Rows are 58px with a title and description. */
 .nav-item { position: relative; display: flex; align-items: center; }
 
 .nav-trigger {
@@ -230,48 +231,64 @@ body {
 .nav-menu {
   position: absolute;
   top: 100%;
-  left: -0.75rem;
-  min-width: 12rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 324px;
   display: none;
   flex-direction: column;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
+  padding: 16px;
+  margin-top: 12px;
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  border-radius: 24px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 20px 0;
   z-index: 60;
 }
 /* Invisible bridge so the menu survives the gap under the trigger. */
 .nav-menu::before {
   content: "";
   position: absolute;
-  top: -0.5rem;
+  top: -12px;
   left: 0;
   right: 0;
-  height: 0.5rem;
+  height: 12px;
 }
 [data-theme="dark"] .nav-menu {
   background: #1a1a1d;
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: rgba(255, 255, 255, 0.08) 0 0 0 1px, rgba(0, 0, 0, 0.5) 0 2px 20px 0;
 }
 .nav-item:hover .nav-menu,
 .nav-item:focus-within .nav-menu,
 .nav-item.open .nav-menu { display: flex; }
 
-.nav-menu a {
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--radius-md);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: #262626;
+.nav-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 58px;
+  padding: 0 8px;
+  border-radius: 14px;
   text-decoration: none;
-  white-space: nowrap;
 }
-[data-theme="dark"] .nav-menu a { color: #e5e5e5; }
-.nav-menu a:hover { background: rgba(0, 0, 0, 0.05); }
-[data-theme="dark"] .nav-menu a:hover { background: rgba(255, 255, 255, 0.08); }
+.nav-menu-item:hover { background: rgba(0, 0, 0, 0.04); }
+[data-theme="dark"] .nav-menu-item:hover { background: rgba(255, 255, 255, 0.06); }
+
+.nav-menu-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.04);
+  color: #525252;
+}
+[data-theme="dark"] .nav-menu-icon { background: rgba(255, 255, 255, 0.07); color: #a1a1aa; }
+
+.nav-menu-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.nav-menu-title { font-size: 0.9375rem; font-weight: 500; color: #121212; }
+[data-theme="dark"] .nav-menu-title { color: #fafafa; }
+.nav-menu-desc { font-size: 0.8125rem; font-weight: 500; color: #525252; }
+[data-theme="dark"] .nav-menu-desc { color: #a1a1aa; }
 
 .navbar-links {
   display: flex;
