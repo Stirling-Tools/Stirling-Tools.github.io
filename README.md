@@ -26,7 +26,7 @@ The site will be available at `http://localhost:3000`. Re-run `npm run build` af
 
 ## Editing content
 
-All content lives in `/docs` as Docusaurus-flavoured markdown. Supported syntax:
+All content lives in `/docs` as extended markdown. Supported syntax:
 
 - Frontmatter: `title`, `id`, `slug`, `sidebar_position`, `sidebar_label`, `description`
 - Folders become sidebar categories; `_category_.json` sets the label and order; a file named like its folder is the category index page
@@ -34,7 +34,7 @@ All content lives in `/docs` as Docusaurus-flavoured markdown. Supported syntax:
 - Tabs: `<Tabs groupId="...">` / `<TabItem value="..." label="...">` (selection syncs across groups and persists)
 - Code fences with syntax highlighting (Shiki, light + dark) and copy buttons
 
-URLs are derived exactly like Docusaurus derived them, so existing links and the Algolia index keep working.
+URLs match the scheme the site has always used, so existing links and the Algolia index keep working.
 
 ## Layout / design
 

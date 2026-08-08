@@ -3,9 +3,6 @@ sidebar_position: 3
 tags: [enterprise, management, feature, advanced feature]
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # OAuth 2.0 Single Sign-On Configuration
 > **Tier**: Server
 

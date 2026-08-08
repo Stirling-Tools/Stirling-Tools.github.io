@@ -29,7 +29,7 @@ jobs:
         run: cp ./CNAME ./build/CNAME
 
       # Popular action to deploy to GitHub Pages:
-      # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
+      # Docs: https://github.com/peaceiris/actions-gh-pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

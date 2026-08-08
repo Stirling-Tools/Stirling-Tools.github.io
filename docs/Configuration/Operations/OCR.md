@@ -3,8 +3,6 @@ sidebar_position: 1
 id: OCR
 title: OCR (Optical Character Recognition)
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # OCR Language Packs and Setup
 This document provides instructions on how to add additional language packs for the OCR tab in Stirling PDF, both inside and outside of Docker.

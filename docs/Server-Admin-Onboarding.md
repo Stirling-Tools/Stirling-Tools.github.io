@@ -5,9 +5,6 @@ title: Production Deployment Guide
 description: Complete production deployment guide for server administrators deploying Stirling-PDF
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Production Deployment Guide
 
 Welcome! This guide will walk you through deploying Stirling-PDF for your organization, from initial installation to advanced configuration and scaling.

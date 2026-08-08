@@ -8,8 +8,6 @@ tags:
   - Sizing
   - Scaling
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Performance Optimization & Sizing
 

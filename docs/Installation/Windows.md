@@ -4,9 +4,6 @@ id: Windows Installation
 title: Windows Guide
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Windows Installation Guide for Stirling PDF
 
 Stirling PDF for Windows comes in two versions: a **Desktop Application** for personal use and a **Server Version** for hosting and sharing with others.

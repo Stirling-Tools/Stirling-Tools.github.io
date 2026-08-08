@@ -1,5 +1,5 @@
 // Page shell: navbar, sidebar, content, right-hand ToC.
-// Third-party integrations preserved from the Docusaurus setup:
+// Third-party integrations:
 // Termly, Kapa AI widget, Algolia DocSearch, PostHog, Scarf pixel.
 import { escapeHtml } from './markdown.mjs';
 

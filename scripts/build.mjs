@@ -1,6 +1,6 @@
 // Static site generator for docs.stirlingpdf.com.
-// Replaces Docusaurus: renders docs/*.md into ./build with our own design,
-// keeping the historical URL scheme, Kapa AI, Algolia, PostHog, Scarf, Termly.
+// Renders docs/*.md into ./build, wiring up Kapa AI, Algolia, PostHog,
+// Scarf and Termly, and emitting the content bundle the client router uses.
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -26,7 +26,7 @@ async function main() {
     byFile.set(path.relative(docsDir, p.file).split(path.sep).join('/'), p);
   }
 
-  // doc-id lookup (Docusaurus also links by id, e.g. "./analytics-telemetry")
+  // doc-id lookup: some links reference a doc by id, e.g. "./analytics-telemetry"
   const byId = new Map();
   for (const p of pages) byId.set(p.docId, p);
 

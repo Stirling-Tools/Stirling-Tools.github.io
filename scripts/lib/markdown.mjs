@@ -1,4 +1,4 @@
-// Markdown -> HTML with Docusaurus-flavoured extensions:
+// Markdown -> HTML with the docs' extended syntax:
 // :::type[Title] admonitions, <Tabs>/<TabItem> blocks, Shiki dual-theme code.
 import MarkdownIt from 'markdown-it';
 import { createHighlighter } from 'shiki';
@@ -111,7 +111,7 @@ const ADMONITION_ICONS = {
 };
 const ADMONITION_LABELS = { note: 'Note', tip: 'Tip', info: 'Info', warning: 'Warning', caution: 'Caution', danger: 'Danger' };
 
-// Pre-pass: convert Docusaurus-only syntax into raw-HTML islands that
+// Pre-pass: convert the non-standard syntax into raw-HTML islands that
 // markdown-it will pass through, recursing so inner markdown still renders.
 export function preprocess(source, renderInner) {
   let out = source.replace(/\r\n?/g, '\n');

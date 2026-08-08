@@ -4,9 +4,6 @@ id: External Database
 title: External Database
 tags: [server, database]
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 
 # Using an External Database
 > **Tier**: Server

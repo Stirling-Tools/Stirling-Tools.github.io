@@ -3,8 +3,6 @@ sidebar_position: 4
 title: Usage Monitoring
 tags: [enterprise, management, feature, advanced feature]
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Usage Monitoring
 > **Tier**: Enterprise

@@ -3,8 +3,6 @@ sidebar_position: 2
 id: Docker Install
 title: Docker Guide
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Docker Installation for Stirling PDF
 

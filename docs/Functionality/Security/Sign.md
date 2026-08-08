@@ -4,8 +4,6 @@ id: Sign
 title: Sign PDF (Handwritten Signatures)
 description: Add handwritten, text, or image signatures to PDFs
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Sign PDF (Handwritten Signatures)
 

@@ -4,9 +4,6 @@ title: Mobile Scanner Configuration
 description: Enable and configure Mobile Scanner for document scanning via phone camera
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Mobile Scanner Configuration
 
 Enable and configure the Mobile Scanner feature, which lets users scan documents with their phone camera and upload them directly to Stirling PDF via QR code.

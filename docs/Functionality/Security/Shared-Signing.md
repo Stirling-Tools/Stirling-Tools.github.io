@@ -4,8 +4,6 @@ id: Shared-Signing
 title: Shared Signing
 description: Collaborative multi-participant PDF signing workflows with digital certificates and wet signatures
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Shared Signing
 

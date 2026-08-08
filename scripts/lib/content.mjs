@@ -1,5 +1,6 @@
 // Walks docs/, parses frontmatter + _category_.json, builds the nav tree
-// and computes Docusaurus-compatible URLs so existing links keep working.
+// and computes URLs matching the site's established scheme, so existing
+// links and the search index keep working.
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
@@ -47,7 +48,7 @@ function walkDir(dir, rootDir) {
     const relDir = rel === '' ? [] : rel.split('/');
     const docId = [...relDir, id].join('/');
 
-    // Docusaurus convention: file named like its folder (or index/README) is the category index.
+    // A file named like its folder (or index/README) is the category index.
     const isIndex = rel !== '' && (baseName === dirName || /^(index|readme)$/i.test(baseName));
 
     let url;

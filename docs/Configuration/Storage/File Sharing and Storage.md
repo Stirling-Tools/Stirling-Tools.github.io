@@ -4,8 +4,6 @@ id: File-Sharing-Storage
 title: File Sharing and Storage
 description: Configure server-side file storage, sharing, and storage quotas
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # File Sharing and Storage
 

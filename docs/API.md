@@ -6,8 +6,6 @@ description: Overview of API offering in S-PDF
 tags:
   - API
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Stirling PDF API
 

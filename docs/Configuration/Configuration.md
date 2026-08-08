@@ -4,8 +4,6 @@ slug: /Configuration
 title: Configuration Guide
 description: Configure Stirling PDF using environment variables, settings files, or in-app settings
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Configuration Guide
 

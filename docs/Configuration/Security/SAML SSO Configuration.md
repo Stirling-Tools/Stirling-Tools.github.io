@@ -3,9 +3,6 @@ sidebar_position: 4
 tags: [enterprise, management, feature, advanced feature, saml]
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # SAML 2.0 Single Sign-On Configuration
 > **Tier**: Enterprise
 

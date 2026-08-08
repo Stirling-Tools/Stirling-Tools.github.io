@@ -9,8 +9,6 @@ tags:
   - Scaling
   - UNO Server
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # LibreOffice Parallel Processing
 

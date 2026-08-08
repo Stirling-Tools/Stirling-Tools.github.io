@@ -3,9 +3,6 @@ sidebar_position: 5
 tags: [server, management, feature, advanced feature]
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Google Drive File Picker
 > **Tier**: Server
 

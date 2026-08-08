@@ -3,8 +3,6 @@ sidebar_position: 8
 title: Audit Logging
 tags: [enterprise, management, feature, advanced feature]
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Audit Logging
 

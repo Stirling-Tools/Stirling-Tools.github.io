@@ -2,8 +2,6 @@
 sidebar_position: 9
 title: FAQ
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Frequently Asked Questions
 

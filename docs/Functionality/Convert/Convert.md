@@ -2,8 +2,6 @@
 sidebar_position: 2
 description: Convert files to and from PDF format
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Convert
 

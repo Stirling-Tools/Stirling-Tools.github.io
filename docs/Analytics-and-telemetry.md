@@ -3,8 +3,6 @@ sidebar_position: 11
 title: Analytics and Telemetry
 id: analytics-telemetry
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Analytics and Telemetry
 

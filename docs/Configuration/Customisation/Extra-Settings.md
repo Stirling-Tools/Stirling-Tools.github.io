@@ -2,8 +2,6 @@
 sidebar_position: 3
 title: Custom Settings Configuration
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Custom Settings Configuration
 

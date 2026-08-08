@@ -4,8 +4,6 @@ id: Certificate-Signing
 title: Certificate Signing
 description: Sign and validate PDF certificates
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Certificate Signing
 

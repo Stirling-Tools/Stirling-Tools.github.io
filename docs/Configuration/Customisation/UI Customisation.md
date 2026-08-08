@@ -2,8 +2,6 @@
 sidebar_position: 1
 tags: [UI, customisation, feature, advanced feature]
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # UI Customisation
 
