@@ -977,16 +977,19 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
   .content { padding: 1.25rem 1.25rem 0; }
 }
 
+/* Drop the star chip first so the nav links survive down to ~1024, which is
+   where stirling.com still shows them. */
 @media (max-width: 75rem) {
-  .navbar-center { display: none; }
-  .navbar-links { margin-left: auto; }
+  .gh-star { display: none; }
 }
 
-@media (max-width: 62rem) {
-  .gh-star, .navbar-login { display: none; }
+@media (max-width: 60rem) {
+  .navbar-center,
+  .navbar-login { display: none; }
 }
 
-@media (max-width: 48rem) {
+/* Keep the Sign up CTA through tablet widths; only drop it on phones. */
+@media (max-width: 30rem) {
   .navbar-cta { display: none; }
 }
 

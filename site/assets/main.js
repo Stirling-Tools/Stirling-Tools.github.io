@@ -99,7 +99,11 @@
           }
         });
       }
-      var css = sels.map(function (s) { return s + ':hover'; }).join(', ') +
+      // Kapa tints the launcher's border with the project colour; on the black
+      // button that reads as a stray coloured outline, so neutralise it.
+      var css = sels.join(', ') +
+        ' { border-color: rgba(255, 255, 255, 0.16) !important; }\n' +
+        sels.map(function (s) { return s + ':hover'; }).join(', ') +
         ' { background-color: #1f1f23 !important; }';
       var style = root.querySelector('#stirling-kapa-hover');
       if (!style) {
