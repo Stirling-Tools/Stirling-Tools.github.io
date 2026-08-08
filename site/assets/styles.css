@@ -204,6 +204,75 @@ body {
 .navbar-center a:hover { opacity: 0.65; }
 .navbar-center a.active { opacity: 0.55; }
 
+/* Dropdown menus (Product / Company). Open on hover, on click for touch,
+   and on keyboard focus. */
+.nav-item { position: relative; display: flex; align-items: center; }
+
+.nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #121212;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--motion-fast);
+}
+[data-theme="dark"] .nav-trigger { color: #fafafa; }
+.nav-trigger:hover { opacity: 0.65; }
+.nav-caret { transition: transform var(--motion-fast); }
+.nav-item.open .nav-caret { transform: rotate(180deg); }
+
+.nav-menu {
+  position: absolute;
+  top: 100%;
+  left: -0.75rem;
+  min-width: 12rem;
+  display: none;
+  flex-direction: column;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  z-index: 60;
+}
+/* Invisible bridge so the menu survives the gap under the trigger. */
+.nav-menu::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 0;
+  right: 0;
+  height: 0.5rem;
+}
+[data-theme="dark"] .nav-menu {
+  background: #1a1a1d;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+.nav-item:hover .nav-menu,
+.nav-item:focus-within .nav-menu,
+.nav-item.open .nav-menu { display: flex; }
+
+.nav-menu a {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #262626;
+  text-decoration: none;
+  white-space: nowrap;
+}
+[data-theme="dark"] .nav-menu a { color: #e5e5e5; }
+.nav-menu a:hover { background: rgba(0, 0, 0, 0.05); }
+[data-theme="dark"] .nav-menu a:hover { background: rgba(255, 255, 255, 0.08); }
+
 .navbar-links {
   display: flex;
   align-items: center;

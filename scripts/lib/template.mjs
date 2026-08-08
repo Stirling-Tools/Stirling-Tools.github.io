@@ -93,8 +93,24 @@ function navbar() {
       <span class="brand-name">Stirling</span>
     </a>
     <nav class="navbar-center">
-      <a href="https://stirling.com/">Product</a>
-      <a href="https://stirling.com/about">Company</a>
+      <div class="nav-item">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Product <svg class="nav-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-menu">
+          <a href="https://stirling.com/#header">Features</a>
+          <a href="https://stirling.com/pricing">Pricing</a>
+          <a href="https://stirling.com/download">Download</a>
+          <a href="https://stirling.com/book-a-demo">Book a demo</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Company <svg class="nav-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-menu">
+          <a href="https://stirling.com/about">About</a>
+          <a href="https://stirling.com/careers">Careers</a>
+          <a href="https://stirling.com/help-center">Help center</a>
+          <a href="https://stirling.com/legal/terms-of-service">Legal</a>
+        </div>
+      </div>
       <a href="https://stirling.com/pricing">Pricing</a>
       <a href="https://stirling.com/download">Download</a>
       <a href="/" class="active">Docs</a>

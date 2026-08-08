@@ -154,6 +154,27 @@
       return;
     }
 
+    // Navbar dropdowns: hover/focus is handled in CSS; this adds click
+    // toggling so they work on touch, and closes them on outside clicks.
+    var trigger = t.closest('.nav-trigger');
+    if (trigger) {
+      var item = trigger.closest('.nav-item');
+      var wasOpen = item.classList.contains('open');
+      doc.querySelectorAll('.nav-item.open').forEach(function (n) {
+        n.classList.remove('open');
+        var b = n.querySelector('.nav-trigger');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+      item.classList.toggle('open', !wasOpen);
+      trigger.setAttribute('aria-expanded', String(!wasOpen));
+      return;
+    }
+    doc.querySelectorAll('.nav-item.open').forEach(function (n) {
+      n.classList.remove('open');
+      var b = n.querySelector('.nav-trigger');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+
     // Tabs (synced by groupId, remembered across pages)
     var tabBtn = t.closest('.tab-btn');
     if (tabBtn) {
@@ -186,6 +207,15 @@
       }).catch(function () {});
       return;
     }
+  });
+
+  doc.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    doc.querySelectorAll('.nav-item.open').forEach(function (n) {
+      n.classList.remove('open');
+      var b = n.querySelector('.nav-trigger');
+      if (b) { b.setAttribute('aria-expanded', 'false'); b.blur(); }
+    });
   });
 
   // ── ToC scroll-spy (one listener; heading list rebuilt per page) ──────────
