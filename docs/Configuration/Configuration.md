@@ -4,8 +4,6 @@ slug: /Configuration
 title: Configuration Guide
 description: Configure Stirling PDF using environment variables, settings files, or in-app settings
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Configuration Guide
 
@@ -36,7 +34,7 @@ Configure via Docker environment variables or system environment variables.
 docker run -d \
   -e SECURITY_ENABLELOGIN=true \
   -e SYSTEM_DEFAULTLOCALE=en-US \
-  stirlingtools/stirling-pdf:latest
+  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
 
 **Best for:** Docker deployments, infrastructure-as-code, initial setup
@@ -92,7 +90,7 @@ Configure user login:
 
 Default credentials: `admin` / `stirling` (change immediately after first login)
 
-For more details, see [System and Security Configuration](./System%20and%20Security.md).
+For more details, see [System and Security Configuration](./Security/System%20and%20Security.md).
 
 ### Language & Localization
 
@@ -181,16 +179,16 @@ For advanced features and specific use cases, see these detailed guides:
 
 ### Authentication & Security
 
-**[Single Sign-On (SSO)](./Single%20Sign-On%20Configuration.md)**
+**[Single Sign-On (SSO)](./Security/Single%20Sign-On%20Configuration.md)**
 - OAuth2 (Google, GitHub, Keycloak, OIDC) - Server tier
 - SAML2 (Okta, Azure AD) - Enterprise tier
 - Complete configuration examples
 
-**[System and Security](./System%20and%20Security.md)**
+**[System and Security](./Security/System%20and%20Security.md)**
 - Server certificates
 - JWT configuration
 
-**[Fail2Ban Integration](./Fail2Ban.md)**
+**[Fail2Ban Integration](./Security/Fail2Ban.md)**
 - Protect against brute-force attacks
 - Auto-ban after failed login attempts
 
@@ -198,16 +196,16 @@ For advanced features and specific use cases, see these detailed guides:
 
 ### Features & Customization
 
-**[UI Customization](./UI%20Customisation.md)**
+**[UI Customization](./Customisation/UI%20Customisation.md)**
 - Branding and logos
 - Theme customization
 - Custom styling
 
-**[Endpoint/Feature Control](./Endpoint%20or%20Feature%20Customisation.md)**
+**[Endpoint/Feature Control](./Customisation/Endpoint%20or%20Feature%20Customisation.md)**
 - Enable/disable specific tools
 - Control feature availability by user/role
 
-**[Pipeline (Automation)](./Pipeline.md)**
+**[Pipeline (Automation)](./Automation/Pipeline.md)**
 - Automated workflows
 - Folder scanning
 - Batch processing
@@ -217,32 +215,32 @@ For advanced features and specific use cases, see these detailed guides:
 
 ### Integration & Storage
 
-**[External Database](./External%20Database.md)**
+**[External Database](./Storage/External%20Database.md)**
 - PostgreSQL configuration (Pro/Enterprise)
 - Database migration
 - Backup strategies
 
-**[Google Drive File Picker](./Google%20Drive%20File%20Picker.md)**
+**[Google Drive File Picker](./Storage/Google%20Drive%20File%20Picker.md)**
 - Direct Google Drive integration
 - OAuth setup
 
-**[MCP Server](../Advanced%20Configuration/MCP-Server.md)**
+**[MCP Server](./Automation/MCP-Server.md)**
 - Expose Stirling PDF tools over the Model Context Protocol
 - OAuth2 or API-key authentication
 - Operation allow/deny lists
 
-**[S3 / Object Storage](./File%20Sharing%20and%20Storage.md)**
+**[S3 / Object Storage](./Storage/File%20Sharing%20and%20Storage.md)**
 - Store uploads and job artifacts in S3-compatible object storage
 - Shared storage for multi-node deployments
 
-**[Telegram Bot](./Telegram%20Bot.md)**
+**[Telegram Bot](./Automation/Telegram%20Bot.md)**
 - Run a Telegram bot that processes PDFs sent in chat
 
-**[OCR Configuration](./OCR.md)**
+**[OCR Configuration](./Operations/OCR.md)**
 - Tesseract language packs
 - OCR optimization
 
-**[Usage Monitoring](./Usage%20Monitoring.md)**
+**[Usage Monitoring](./Automation/Usage%20Monitoring.md)**
 - Prometheus metrics (Pro/Enterprise)
 - Application monitoring
 - Performance tracking
@@ -251,13 +249,13 @@ For advanced features and specific use cases, see these detailed guides:
 
 ### Performance & Scaling
 
-**[Performance Optimization & Sizing](./Performance-Optimization.md)**
+**[Performance Optimization & Sizing](./Operations/Performance-Optimization.md)**
 - Resource sizing, JVM tuning, memory model, and scaling guidance
 
-**[Process Limits](./Process-Limits.md)**
+**[Process Limits](./Operations/Process-Limits.md)**
 - Session limits and timeouts for external tools
 
-**[LibreOffice Parallel Processing](./LibreOffice-Parallel-Processing.md)**
+**[LibreOffice Parallel Processing](./Operations/LibreOffice-Parallel-Processing.md)**
 - Configure multiple LibreOffice instances for faster document conversion
 - Local UNO server pool and remote UNO server endpoints
 
@@ -265,7 +263,7 @@ For advanced features and specific use cases, see these detailed guides:
 
 ### Diagnostics & Support
 
-**[Diagnostics & Reporting Issues](./Diagnostics.md)**
+**[Diagnostics & Reporting Issues](./Operations/Diagnostics.md)**
 - Built-in diagnostics tool for Docker containers
 - How to report issues via GitHub, Discord, and email
 
@@ -273,13 +271,13 @@ For advanced features and specific use cases, see these detailed guides:
 
 ### Other Configuration
 
-**[Folder Scanning](./FolderScanning.md)**
+**[Folder Scanning](./Storage/FolderScanning.md)**
 - Watch folders for automatic processing
 
-**[Custom Signature Files](./Sign%20with%20custom%20files.md)**
+**[Custom Signature Files](./Security/Sign%20with%20custom%20files.md)**
 - Pre-loaded signatures for quick signing
 
-**[Extra Settings](./Extra-Settings.md)**
+**[Extra Settings](./Customisation/Extra-Settings.md)**
 - Logging configuration
 - Server settings (port, SSL/TLS)
 - Advanced Spring Boot settings
@@ -343,4 +341,4 @@ If missing:
 - **Production Deployment:** See [Production Deployment Guide](../Server-Admin-Onboarding.md)
 - **API Usage:** See [API Documentation](../API.md)
 - **Tool Reference:** See [Functionality](../Functionality/Functionality.md)
-- **Troubleshooting:** See [Diagnostics & Reporting Issues](./Diagnostics.md)
+- **Troubleshooting:** See [Diagnostics & Reporting Issues](./Operations/Diagnostics.md)

@@ -68,7 +68,7 @@ V2 provides in-app settings for most common customizations:
 3. Go to Settings → UI
 4. Configure branding there
 
-**Learn more:** [UI Customisation](../Configuration/UI%20Customisation.md)
+**Learn more:** [UI Customisation](../Configuration/Customisation/UI%20Customisation.md)
 
 #### Option 2: Static File Overrides (Same Concept as V1, Different Paths)
 
@@ -89,7 +89,7 @@ volumes:
 - V1 paths: `customFiles/templates/fragments/navbar.html` (Thymeleaf)
 - V2 paths: `customFiles/static/index.html` (React build output)
 
-The file paths are different because V2 serves the **compiled React app** instead of Thymeleaf templates. See [Other Customisations - Static File Overrides](../Configuration/Other%20Customisations.md#static-file-overrides) for:
+The file paths are different because V2 serves the **compiled React app** instead of Thymeleaf templates. See [Other Customisations - Static File Overrides](../Configuration/Customisation/Other%20Customisations.md#static-file-overrides) for:
 - How to determine the correct file paths in V2
 - Examples of common customizations
 - Understanding the build output structure
@@ -426,8 +426,8 @@ stirlingtools/s-pdf:0.xx.x
 
 **V2 Tags:**
 ```bash
-stirlingtools/stirling-pdf:latest  # NEW NAME
-stirlingtools/stirling-pdf:2.x.x
+docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest  # NEW NAME
+docker.stirlingpdf.com/stirlingtools/stirling-pdf:2.x.x
 ```
 
 ### Migration
@@ -445,7 +445,7 @@ services:
 ```yaml
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest  # NEW
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest  # NEW
 ```
 
 ### Backwards Compatibility
@@ -642,7 +642,7 @@ endpoints:
   toRemove: ['reorganize-pages']
 ```
 
-**Complete tool ID list:** [Endpoint Customisation](../Configuration/Endpoint%20or%20Feature%20Customisation.md)
+**Complete tool ID list:** [Endpoint Customisation](../Configuration/Customisation/Endpoint%20or%20Feature%20Customisation.md)
 
 ---
 
@@ -769,7 +769,7 @@ cp settings.yml.v1.backup configs/settings.yml
 ### 4. Start V1
 ```bash
 # Update docker-compose.yml
-image: stirlingtools/stirling-pdf:1.5.0
+image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:1.5.0
 
 docker-compose up -d
 ```

@@ -4,9 +4,6 @@ id: Mac Installation
 title: Mac Installation Guide
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # MacOS Installation Guide for Stirling PDF
 
 Stirling PDF for Mac is available as a **native desktop application** or can run as a **server** using the JAR file.

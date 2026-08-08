@@ -41,7 +41,7 @@ security:
 
 **Migration:** No action needed, defaults are safe for most users.
 
-**Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing) | [Security Configuration](../Configuration/System%20and%20Security#signature-validation)
+**Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing) | [Security Configuration](../Configuration/Security/System%20and%20Security.md#signature-validation)
 
 ---
 
@@ -62,7 +62,7 @@ system:
 
 **Migration:** Works automatically with defaults.
 
-**Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing) | [Certificate Configuration](../Configuration/System%20and%20Security#server-certificates)
+**Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing) | [Certificate Configuration](../Configuration/Security/System%20and%20Security.md#server-certificates)
 
 ---
 
@@ -149,7 +149,7 @@ ui:
 
 **Why:** In-app settings are more user-friendly and apply immediately.
 
-**Learn more:** [UI Customisation](../Configuration/UI%20Customisation.md)
+**Learn more:** [UI Customisation](../Configuration/Customisation/UI%20Customisation.md)
 
 ---
 
@@ -391,8 +391,8 @@ ui:
 
 - **[New Features](./New-Features.md)** - What's new in V2
 - **[Breaking Changes](./Breaking-Changes.md)** - Important changes
-- **[Configuration Options](../Configuration/Extra-Settings.md)** - All configuration variables
-- **[System and Security](../Configuration/System%20and%20Security.md)** - Advanced config
+- **[Configuration Options](../Configuration/Customisation/Extra-Settings.md)** - All configuration variables
+- **[System and Security](../Configuration/Security/System%20and%20Security.md)** - Advanced config
 
 ---
 

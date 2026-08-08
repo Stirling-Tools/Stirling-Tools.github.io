@@ -95,4 +95,4 @@ All tools organized by category.
 - Add signature → **[Sign](./Security/Sign.md)** or **[Certificate Sign](./Security/Certificate-Signing.md)**
 - Remove content → **Redact** or **Sanitize**
 - Edit pages → **Reorganize Pages** or **[Multi-Tool](./Multi-Tool.md)**
-- Automate workflow → **[Automate](../Configuration/Pipeline.md)**
+- Automate workflow → **[Automate](../Configuration/Automation/Pipeline.md)**

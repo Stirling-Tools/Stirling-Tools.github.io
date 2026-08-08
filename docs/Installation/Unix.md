@@ -4,9 +4,6 @@ id: Unix Installation
 title: Unix Installation Guide
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Unix Installation
 
 Stirling PDF on Linux is available as a **native desktop application** or as a **server** using the JAR file.

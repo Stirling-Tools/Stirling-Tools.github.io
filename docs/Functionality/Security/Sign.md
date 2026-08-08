@@ -4,8 +4,6 @@ id: Sign
 title: Sign PDF (Handwritten Signatures)
 description: Add handwritten, text, or image signatures to PDFs
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Sign PDF (Handwritten Signatures)
 
@@ -47,7 +45,7 @@ Add handwritten signatures, text signatures, or image-based signatures to PDF do
 
 Configure Stirling PDF to load pre-stored signature files for quick, consistent signing across documents.
 
-**Configuration:** [Sign with Custom Files](../../Configuration/Sign%20with%20custom%20files.md)
+**Configuration:** [Sign with Custom Files](../../Configuration/Security/Sign%20with%20custom%20files.md)
 
 ---
 

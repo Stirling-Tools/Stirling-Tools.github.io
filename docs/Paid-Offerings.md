@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 8
 id: Paid-Offerings
 title: Paid Offerings
 description: Server and Enterprise paid plans for Stirling PDF
@@ -40,9 +40,9 @@ Stirling PDF offers Server and Enterprise paid plans. These provide the same gre
   - Community support
   - Regular updates
   - Support tickets via support@stirlingpdf.com
-  - [External Database](./Configuration/External%20Database.md) support for optimized deployments and load-balancing
+  - [External Database](./Configuration/Storage/External%20Database.md) support for optimized deployments and load-balancing
   - Google Drive integration
-  - [OAuth2 SSO](./Configuration/OAuth%20SSO%20Configuration.md) (Google, GitHub, Keycloak, any OIDC provider)
+  - [OAuth2 SSO](./Configuration/Security/OAuth%20SSO%20Configuration.md) (Google, GitHub, Keycloak, any OIDC provider)
 - **Perfect for**: Organizations with many users who want predictable, flat-rate pricing
 
 ### Enterprise Plan
@@ -51,7 +51,7 @@ Stirling PDF offers Server and Enterprise paid plans. These provide the same gre
 - **Users**: Per-seat licensing (flexible scaling)
 - **Features**:
   - All Server Plan features, plus:
-  - [SAML2 SSO](./Configuration/SAML%20SSO%20Configuration/SAML%20SSO%20Configuration.md) (Okta, Azure AD, etc.) with automated login handling
+  - [SAML2 SSO](./Configuration/Security/SAML%20SSO%20Configuration.md) (Okta, Azure AD, etc.) with automated login handling
   - Custom automated metadata handling
   - Priority support tickets via support@stirlingpdf.com
   - 1:1 meetings with the Stirling PDF team (from registered email domain)

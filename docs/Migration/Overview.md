@@ -31,7 +31,7 @@ Update your image tag to `latest` (or specific V2 version):
 ```yaml
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest  # Change from 1.x to latest
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest  # Change from 1.x to latest
     # Keep all your existing environment variables and volumes
 ```
 
@@ -179,7 +179,7 @@ If you need to return to V1:
 cp -r ./configs-backup ./configs
 
 # Pull V1 image
-docker pull stirlingtools/stirling-pdf:1.5.0
+docker pull docker.stirlingpdf.com/stirlingtools/stirling-pdf:1.5.0
 
 # Update docker-compose.yml to use 1.5.0 tag
 docker-compose up -d

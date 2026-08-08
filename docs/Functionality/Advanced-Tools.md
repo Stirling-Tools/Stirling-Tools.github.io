@@ -19,7 +19,7 @@ Advanced tools for automation workflows and complex PDF operations.
 
 Chain multiple operations into automated workflows. Save and reuse pipeline configurations, process files automatically with predefined steps, and set up folder watching for automatic processing.
 
-**[Read the complete Pipeline Automation Guide →](../Configuration/Pipeline.md)**
+**[Read the complete Pipeline Automation Guide →](../Configuration/Automation/Pipeline.md)**
 
 ---
 
@@ -110,6 +110,6 @@ Display any embedded JavaScript code within a PDF document. Useful for security 
 ### Quick Links
 
 - **[API Documentation](../API.md)**
-- **[Folder Scanning Setup](../Configuration/FolderScanning.md)**
-- **[SSO Configuration](../Configuration/Single%20Sign-On%20Configuration.md)**
+- **[Folder Scanning Setup](../Configuration/Storage/FolderScanning.md)**
+- **[SSO Configuration](../Configuration/Security/Single%20Sign-On%20Configuration.md)**
 - **[General Configuration](../Configuration/Configuration.md)**

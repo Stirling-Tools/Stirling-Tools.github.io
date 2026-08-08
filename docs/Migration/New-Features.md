@@ -363,7 +363,7 @@ system:
 
 **Learn More:**
 - [Certificate Signing Guide](../Functionality/Security/Certificate-Signing)
-- [Configuration](../Configuration/System%20and%20Security#server-certificates)
+- [Configuration](../Configuration/Security/System%20and%20Security.md#server-certificates)
 
 ---
 

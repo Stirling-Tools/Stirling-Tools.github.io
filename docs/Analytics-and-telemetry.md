@@ -1,15 +1,10 @@
 ---
-sidebar_position: 9
+sidebar_position: 11
 title: Analytics and Telemetry
 id: analytics-telemetry
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Analytics and Telemetry
-
-> Please note all the following applies to version 1.5.0 onward due to be released 16th October
-
 
 Stirling‑PDF uses analytics to understand usage patterns and improve the application. This page explains what data is collected, why we collect it, and how to disable analytics if desired.
 
