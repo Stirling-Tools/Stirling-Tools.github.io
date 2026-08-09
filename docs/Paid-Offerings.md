@@ -14,7 +14,7 @@ tags:
 
 Stirling PDF offers Server and Enterprise paid plans. These provide the same great software with added features, streamlined license management, and support options.
 
-> This page covers **self-hosted** Server and Enterprise licensing (a flat-rate or per-seat license key, no credits). Stirling Cloud is a separate, credit-based offering - see [Modes](./Modes-and-Licensing.md) for how the deployment modes compare.
+> This page covers **self-hosted** Server and Enterprise licensing (a license key, no credits). Stirling Cloud and the credit-based Processor plan are separate offerings - see [Modes](./Modes-and-Licensing.md) for how the deployment modes compare, and [stirling.com/pricing](https://www.stirling.com/pricing) for the full plan lineup.
 
 ## Available Plans
 
@@ -31,26 +31,31 @@ Stirling PDF offers Server and Enterprise paid plans. These provide the same gre
 ### Server Plan
 - **Cost**: $99/month or $999/year (save $189 with annual billing)
 - **Available billing**: Monthly or Yearly
-- **Users**: Unlimited users (flat rate regardless of user count)
-- **Value**: The more users you have, the better the value (e.g., 100 users = $1/user/month)
+- **Users**: 100 users included. Add capacity in blocks of 100 users as your team grows
+- **Value**: One bill for the whole team instead of per-seat licenses (100 users works out under $1 per user per month)
 - **Features**:
   - Self-hosted deployment
   - All PDF operations
-  - Unlimited users - no per-seat charges
+  - 100 users included, with capacity added in blocks of 100
+  - One bill instead of per-seat licenses
   - Community support
   - Regular updates
   - Support tickets via support@stirlingpdf.com
   - [External Database](./Configuration/Storage/External%20Database.md) support for optimized deployments and load-balancing
   - Google Drive integration
   - [OAuth2 SSO](./Configuration/Security/OAuth%20SSO%20Configuration.md) (Google, GitHub, Keycloak, any OIDC provider)
-- **Perfect for**: Organizations with many users who want predictable, flat-rate pricing
+- **Perfect for**: Teams and organizations that want predictable, block-based pricing without tracking individual seats
 
 ### Enterprise Plan
-- **Cost**: Base server price + per-seat licensing (check [stirling.com/pricing](https://stirling.com/pricing))
-- **Available billing**: Monthly or Yearly (save with annual billing)
-- **Users**: Per-seat licensing (flexible scaling)
+- **Cost**: Custom pricing - [contact sales](https://www.stirling.com/contact-us) for a quote
+- **Available billing**: Agreed as part of your contract
+- **Users**: Sized to your organization, with volume discounts as you scale
 - **Features**:
   - All Server Plan features, plus:
+  - Air-gapped / offline deployment, activated with a [certificate file](#option-2-certificate-file-air-gapped-offline) instead of an online key check
+  - Uptime SLAs
+  - Custom procurement, security review, and contract terms
+  - Volume discounts
   - [SAML2 SSO](./Configuration/Security/SAML%20SSO%20Configuration.md) (Okta, Azure AD, etc.) with automated login handling
   - Custom automated metadata handling
   - Priority support tickets via support@stirlingpdf.com
@@ -59,19 +64,19 @@ Stirling PDF offers Server and Enterprise paid plans. These provide the same gre
   - Prometheus endpoint for advanced usage monitoring
   - Usage Monitoring UI
   - Audit logs
-  - SLA guarantee
   - Custom integrations support
   - Dedicated account manager
-- **Perfect for**: Large enterprises requiring priority support, SLA guarantees, and per-seat licensing
+- **Perfect for**: Regulated environments and large organizations that need air-gapped deployment, uptime SLAs, and an agreement to match
+- **Evaluating?** [Book a demo](https://www.stirling.com/book-a-demo) to see the Enterprise features in action, then [contact sales](https://www.stirling.com/contact-us) when you want a quote
 
 ## Purchasing a License
 
 ### In-App Purchase (Recommended)
 
-Stirling PDF offers streamlined in-app purchasing and license activation:
+Stirling PDF offers streamlined in-app purchasing and license activation. This covers the Server plan; Enterprise is quoted and issued by sales rather than bought in-app.
 
 1. **Navigate to Settings**: Log in as an admin and go to Settings → Plan
-2. **Select Your Plan**: Choose between Server (unlimited users) or Enterprise (per-seat) plans
+2. **Select Your Plan**: Choose the Server plan (100 users included, capacity added in blocks of 100)
 3. **Choose Billing Period**: Select monthly or yearly billing (yearly saves money)
 4. **Complete Checkout**: You'll be redirected to Stripe's secure checkout
 5. **Automatic Activation**: After payment, your license key is automatically retrieved and activated
@@ -88,7 +93,7 @@ Stirling PDF offers streamlined in-app purchasing and license activation:
 
 If you prefer to purchase outside the app or have questions:
 
-1. Visit [stirling.com/contact](https://stirling.com/contact) or email support@stirlingpdf.com
+1. Visit [stirling.com/contact-us](https://www.stirling.com/contact-us) or email support@stirlingpdf.com
 2. Our team will assist you with your purchase
 3. You'll receive your license key via email
 4. Follow manual activation steps below
@@ -198,22 +203,22 @@ premium:
 Stirling PDF uses an **installation-based licensing model**:
 
 - Each license is tied to a specific installation (identified by machine fingerprint)
-- **Server Plan**: Flat-rate pricing with unlimited users for one installation
-  - $99/month = unlimited users (great value for larger teams)
-  - Example: 100 users = only $1 per user per month
-  - Example: 500 users = only $0.20 per user per month
-- **Enterprise Plan**: Base installation license + per-seat user licensing
-- **Named User Model**: For Enterprise, seats represent unique users who can log in
-  - Example: A company with 10 employees who use Stirling PDF needs 10 seats
+- **Server Plan**: $99/month covers one installation with 100 users included
+  - Capacity is added in blocks of 100 users, so you get one bill instead of per-seat licenses
+  - Example: 100 users = under $1 per user per month
+- **Enterprise Plan**: Capacity and terms are set in your contract, with volume discounts as you scale
+  - [Contact sales](https://www.stirling.com/contact-us) for a quote covering your user count, deployment model, and SLA
 
 ## Upgrading Your Plan
 
-You can upgrade from Free → Server or Server → Enterprise at any time:
+You can upgrade from Free → Server at any time:
 
 1. Navigate to Settings → Plan
 2. On the plan tier you want, click "Upgrade"
 3. Complete checkout
 4. Your existing license will be automatically upgraded
+
+Moving Server → Enterprise, or adding more user capacity to Server, goes through sales - use the "Contact Us" button on the Enterprise tier in Settings → Plan, or [contact sales](https://www.stirling.com/contact-us).
 
 **Note**: When upgrading, your new plan starts immediately and you'll be credited for any unused time on your previous plan.
 
@@ -231,21 +236,27 @@ You can upgrade from Free → Server or Server → Enterprise at any time:
 - Priority email support
 - 1:1 meetings with Stirling PDF team
 - Dedicated account manager
-- SLA guarantees
+- Uptime SLAs agreed in your contract
 
 ## Frequently Asked Questions
 
 **Q: Can I try before I buy?**
-A: Yes! The Free plan includes all features for up to 5 users. Test thoroughly before upgrading.
+A: Yes! The Free plan includes all features for up to 5 users. Test thoroughly before upgrading. If you'd rather be walked through the paid features first, [book a demo](https://www.stirling.com/book-a-demo).
 
 **Q: What happens if I cancel?**
 A: Your license remains active until the end of your billing period, then reverts to Free plan limits.
+
+**Q: What happens when we pass 100 users?**
+A: The Server plan includes 100 users. When you need more, capacity is added in blocks of 100 - you stay on one bill rather than buying individual seats. Email support@stirlingpdf.com or [contact sales](https://www.stirling.com/contact-us) to add a block.
+
+**Q: How is Enterprise priced?**
+A: Custom, based on your user count, deployment model, and the terms you need. It is not sold in-app - [contact sales](https://www.stirling.com/contact-us) for a quote. Volume discounts apply as you scale. If you want to see it working first, [book a demo](https://www.stirling.com/book-a-demo).
 
 **Q: Can I move my license to a different server?**
 A: Contact support@stirlingpdf.com for license transfers. Enterprise customers have more flexibility.
 
 **Q: Do I need an internet connection?**
-A: License activation requires internet for initial verification. Enterprise customers can request offline certificate files.
+A: License activation requires internet for initial verification. Enterprise customers running air-gapped can request offline certificate files instead.
 
 **Q: What's the difference between monthly and yearly billing?**
 A: Yearly billing offers significant savings. For Server plan: $999/year vs $1,188/year monthly (save $189 = almost 2 months free).
