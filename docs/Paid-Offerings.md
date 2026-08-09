@@ -67,7 +67,7 @@ Stirling PDF offers Server and Enterprise paid plans. These provide the same gre
   - Custom integrations support
   - Dedicated account manager
 - **Perfect for**: Regulated environments and large organizations that need air-gapped deployment, uptime SLAs, and an agreement to match
-- **Evaluating?** [Book a demo](https://www.stirling.com/book-a-demo) to see the Enterprise features in action, then [contact sales](https://www.stirling.com/contact-us) when you want a quote
+- **Evaluating?** [Book a demo](https://www.stirling.com/book-a-demo) to see the Enterprise features in action
 
 ## Purchasing a License
 
@@ -218,7 +218,9 @@ You can upgrade from Free → Server at any time:
 3. Complete checkout
 4. Your existing license will be automatically upgraded
 
-Moving Server → Enterprise, or adding more user capacity to Server, goes through sales - use the "Contact Us" button on the Enterprise tier in Settings → Plan, or [contact sales](https://www.stirling.com/contact-us).
+Moving Server → Enterprise goes through sales - use the "Contact Us" button on the Enterprise tier in Settings → Plan, or [contact sales](https://www.stirling.com/contact-us).
+
+Adding more user capacity to an existing Server plan is coming soon as an in-app feature. Until it lands, email support@stirlingpdf.com and we'll add the block for you.
 
 **Note**: When upgrading, your new plan starts immediately and you'll be credited for any unused time on your previous plan.
 
@@ -247,7 +249,7 @@ A: Yes! The Free plan includes all features for up to 5 users. Test thoroughly b
 A: Your license remains active until the end of your billing period, then reverts to Free plan limits.
 
 **Q: What happens when we pass 100 users?**
-A: The Server plan includes 100 users. When you need more, capacity is added in blocks of 100 - you stay on one bill rather than buying individual seats. Email support@stirlingpdf.com or [contact sales](https://www.stirling.com/contact-us) to add a block.
+A: The Server plan includes 100 users. When you need more, capacity is added in blocks of 100 - you stay on one bill rather than buying individual seats. Adding a block from inside the app is coming soon; in the meantime, email support@stirlingpdf.com.
 
 **Q: How is Enterprise priced?**
 A: Custom, based on your user count, deployment model, and the terms you need. It is not sold in-app - [contact sales](https://www.stirling.com/contact-us) for a quote. Volume discounts apply as you scale. If you want to see it working first, [book a demo](https://www.stirling.com/book-a-demo).
