@@ -48,7 +48,7 @@ The desktop app pointed at a Stirling PDF instance you run yourself. All tools r
 
 ## Web - Self-hosted
 
-Stirling PDF running in Docker, Kubernetes, or as a bare-metal JAR, accessed via a browser. **No credits ever.** License tier determines which advanced features (unlimited users, SSO, SAML, audit logs, etc.) are unlocked - see [Paid Offerings](./Paid-Offerings.md).
+Stirling PDF running in Docker, Kubernetes, or as a bare-metal JAR, accessed via a browser. **No credits ever.** License tier determines your user capacity and which advanced features (SSO, SAML, audit logs, etc.) are unlocked - see [Paid Offerings](./Paid-Offerings.md).
 
 ---
 
@@ -60,9 +60,9 @@ The hosted version at [stirling.com/app](https://stirling.com/app). All processi
 
 ## More than 5 users
 
-The free tier covers up to 5 users. Once you have more than 5, you need a paid Server or Enterprise plan. A paid plan also adds:
+The free tier covers up to 5 users. Once you have more than 5, you need a paid Server or Enterprise plan. Server includes 100 users and adds capacity in blocks of 100; Enterprise is sized to your organization under a custom agreement. A paid plan also adds:
 
-- Official support (tickets, SLA, priority responses)
+- Official support (tickets, SLAs, priority responses)
 - SSO, SAML, audit logging, and other paid-tier features
 
-See [Paid Offerings](./Paid-Offerings.md) for the full feature comparison or [contact us](https://www.stirling.com/book-a-demo) if you're not sure which plan fits.
+See [Paid Offerings](./Paid-Offerings.md) for the full feature comparison, [book a demo](https://www.stirling.com/book-a-demo) to see the paid features first-hand, or [contact us](https://www.stirling.com/contact-us) if you're not sure which plan fits.
