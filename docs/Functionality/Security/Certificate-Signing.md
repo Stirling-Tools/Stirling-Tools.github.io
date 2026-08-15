@@ -135,6 +135,23 @@ Certificates carry more than a name. Tick the fields you want printed inside the
 
 Fields your certificate doesn't carry are skipped rather than drawn blank, so you can tick a field without checking your keystore first. Ticking nothing shows the signer name, signing date and reason, as before.
 
+#### Using Your Own Logo
+
+The box can carry your organisation's logo instead of the built-in Stirling PDF mark. Upload a **PNG or JPEG** and choose where it sits:
+
+| Position | Result |
+|--------|--------|
+| Left of the text | Logo in a column down the left, details beside it |
+| Right of the text | The same, mirrored |
+| Above the text | Logo in a band across the top, details underneath |
+| Below the text | Logo in a band across the bottom |
+| Behind the text (watermark) | Logo fills the box, faded, with the details drawn on top |
+
+Leave the upload empty and the built-in mark is used, as before.
+
+The image always keeps its proportions, so a logo is never stretched to fill its strip. The details keep a usable share of the box whatever shape the logo is, so a wide banner cannot squeeze out the signer's name. **Behind the text** is the one position where the two overlap: the logo is drawn faded underneath so the details stay readable.
+
+When **Repeat it on every page** is also on, the marks on the other pages carry the same logo, so they match the real signature.
 #### Repeating It on Every Page
 
 Long documents are often initialled on every page so a reader can see the whole thing was signed. **Repeat it on every page** does that.
