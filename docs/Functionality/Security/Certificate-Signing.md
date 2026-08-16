@@ -80,7 +80,7 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
     Once configured, users can choose **Server** in the **Certificate source** step to sign with the shared certificate.
   </TabItem>
   <TabItem value="device" label="This Device (Desktop)">
-    Sign with a certificate held on your own machine - a USB token or smart card (PKCS#11), or the Windows certificate store. The private key never leaves the device: Stirling PDF asks the token or operating system to perform the signing. This option appears only in the **desktop app** and works on every edition.
+    Sign with a certificate held on your own machine - a USB token or smart card (PKCS#11), or the Windows certificate store. The private key never leaves the device: Stirling PDF asks the token or operating system to perform the signing. This option appears only in the **desktop app** and works on every edition. It is also independent of what the desktop is connected to: whether you are working offline, signed in to Stirling Cloud, or pointed at your own self-hosted server, the certificate is read and used on your own machine. Only the signed PDF continues through the rest of your workflow.
 
     1. Go to **Certificate Sign** tool
     2. Upload PDF
