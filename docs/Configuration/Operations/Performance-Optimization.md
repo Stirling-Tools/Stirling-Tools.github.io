@@ -110,8 +110,8 @@ services:
 - External PostgreSQL database (enterprise feature)
 - Shared `/configs` volume across instances for consistent settings
 
-:::tip Server/Enterprise Recommended
-For large organizations, **Server or Enterprise plans** provide SSO, external database support, advanced monitoring, and dedicated support.
+:::tip Team/Enterprise Recommended
+For large organizations, **Team or Enterprise plans** provide SSO, external database support, advanced monitoring, and dedicated support.
 
 [Learn more](../../Server-Admin-Onboarding.md#step-10-paid-plans-serverenterprise)
 :::

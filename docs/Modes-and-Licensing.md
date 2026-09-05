@@ -42,7 +42,7 @@ The desktop app signed in to your Stirling.com Cloud account. Basic tools still 
 
 ### With a self-hosted server
 
-The desktop app pointed at a Stirling PDF instance you run yourself. All tools route to your server and **no credits apply**. Whichever license tier your server runs (Free, Server, Enterprise) is what the desktop client gets.
+The desktop app pointed at a Stirling PDF instance you run yourself. All tools route to your server and **no credits apply**. Whichever license tier your server runs (Free, Team, Enterprise) is what the desktop client gets.
 
 ---
 
@@ -60,7 +60,7 @@ The hosted version at [stirling.com/app](https://stirling.com/app). All processi
 
 ## More than 5 users
 
-The free tier covers up to 5 users. Once you have more than 5, you need a paid Server or Enterprise plan. Server includes 100 users and adds capacity in blocks of 100; Enterprise is sized to your organization under a custom agreement. A paid plan also adds:
+The free tier covers up to 5 users. Once you have more than 5, you need a paid Team or Enterprise plan. Team includes 100 users and adds capacity in blocks of 100; Enterprise is sized to your organization under a custom agreement. A paid plan also adds:
 
 - Official support (tickets, SLAs, priority responses)
 - SSO, SAML, audit logging, and other paid-tier features

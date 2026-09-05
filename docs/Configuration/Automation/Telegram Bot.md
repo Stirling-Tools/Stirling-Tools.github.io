@@ -12,7 +12,7 @@ Stirling PDF can run a Telegram bot that accepts PDF files from chats and return
 Free on all license tiers.
 
 :::warning Community feature - not recommended for Enterprise use
-The Telegram bot integration is a **community-built feature** in **beta**. It is not built, tested, or supported by Stirling Tools and is not covered by the Server / Enterprise support SLA. **We do not recommend it for Enterprise or production-critical deployments.** Raise issues on GitHub or in the community Discord. Behaviour and config keys may change in future releases.
+The Telegram bot integration is a **community-built feature** in **beta**. It is not built, tested, or supported by Stirling Tools and is not covered by the Team / Enterprise support SLA. **We do not recommend it for Enterprise or production-critical deployments.** Raise issues on GitHub or in the community Discord. Behaviour and config keys may change in future releases.
 :::
 
 ---

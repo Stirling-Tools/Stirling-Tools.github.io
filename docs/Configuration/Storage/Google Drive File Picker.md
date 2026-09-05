@@ -4,7 +4,7 @@ tags: [server, management, feature, advanced feature]
 ---
 
 # Google Drive File Picker
-> **Tier**: Server
+> **Tier**: Team
 
 Stirling PDF allows users to select Files for processing through tools via google drive.
 

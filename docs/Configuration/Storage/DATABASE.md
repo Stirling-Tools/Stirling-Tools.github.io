@@ -6,7 +6,7 @@ tags: [server, database, management]
 ---
 
 # Database Backups
-> **Tier**: Server
+> **Tier**: Team
 
 ## Functionality Overview
 
