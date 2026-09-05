@@ -89,7 +89,7 @@ Upgrading from V1? What's new in V2 and how to upgrade smoothly
 **[Production Deployment Guide](./Server-Admin-Onboarding.md)**
 Complete walkthrough: installation - configuration - security - monitoring
 
-**[Paid Offerings (Server & Enterprise)](./Paid-Offerings)**
+**[Paid Offerings (Team & Enterprise)](./Paid-Offerings)**
 External databases, Google Drive integration, SSO, advanced monitoring, and priority support
 
 **[Configuration Options](./Configuration/Customisation/Extra-Settings.md)**

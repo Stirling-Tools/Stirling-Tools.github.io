@@ -8,7 +8,7 @@ tags: [enterprise, management, feature, advanced feature]
 Stirling PDF supports Single Sign-On (SSO) authentication through two protocols:
 
 ## OAuth 2.0 / OpenID Connect (OIDC)
-> **Tier**: Server
+> **Tier**: Team
 
 OAuth 2.0 SSO allows login via popular identity providers like:
 - Google

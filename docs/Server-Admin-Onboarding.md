@@ -24,7 +24,7 @@ By the end of this guide, you'll have:
 3. ✅ **Settings customized** for your organization
 4. ✅ **Security hardened** with HTTPS and proper access controls
 5. ✅ **Monitoring setup** to track usage and performance
-6. ✅ **Understanding of paid plan** upgrade paths (Server/Enterprise)
+6. ✅ **Understanding of paid plan** upgrade paths (Team/Enterprise)
 
 **Time estimate:** 30-60 minutes for basic setup, 2-3 hours for full enterprise configuration
 
@@ -510,7 +510,7 @@ MAIL_STARTTLSENABLE=true
 **Best for:** Large enterprises, existing SSO infrastructure
 
 **Single Sign-On (SSO) options:**
-- **OAuth2:** Server tier - Supports Google, GitHub, Keycloak, any OpenID Connect provider
+- **OAuth2:** Team tier - Supports Google, GitHub, Keycloak, any OpenID Connect provider
 - **SAML2:** Enterprise tier - Supports Okta, Azure AD, etc.
 
 **Key settings:**
@@ -1175,10 +1175,10 @@ Protect your users' data and configuration with proper backups.
 
 **\*Note on User Database:**
 - **Free edition:** Uses a local H2 database file named `stirling-pdf-DB-<schema-version>.mv.db` (the schema version is embedded in the filename, e.g. `stirling-pdf-DB-2.3.232.mv.db`) - must be backed up. The simplest approach is to back up the whole `configs/` directory.
-- **Server/Enterprise:** Should use external PostgreSQL database (backed up separately)
+- **Team/Enterprise:** Should use external PostgreSQL database (backed up separately)
 
-:::tip Server/Enterprise Recommendation
-Server and Enterprise plan users should configure an external PostgreSQL database instead of using the local H2 database. This provides better reliability, scalability, and backup capabilities.
+:::tip Team/Enterprise Recommendation
+Team and Enterprise plan users should configure an external PostgreSQL database instead of using the local H2 database. This provides better reliability, scalability, and backup capabilities.
 
 **Learn more:** [External Database Configuration](./Configuration/Storage/External%20Database.md)
 :::
@@ -1312,19 +1312,19 @@ For resource sizing recommendations, scaling guidance, and fine tuning, see the 
 
 ---
 
-## Step 10: Paid Plans (Server/Enterprise)
+## Step 10: Paid Plans (Team/Enterprise)
 
-Stirling-PDF offers **Server and Enterprise paid plans** with additional features for organizations.
+Stirling-PDF offers **Team and Enterprise paid plans** with additional features for organizations.
 
 ### Key Paid Plan Features
 
 **Authentication & Security:**
-- **OAuth2 SSO:** Server tier (Google, GitHub, Keycloak, OIDC)
+- **OAuth2 SSO:** Team tier (Google, GitHub, Keycloak, OIDC)
 - **SAML2 SSO:** Enterprise tier (Okta, Azure AD, etc.)
 - Enhanced security features
 
 **Database & Infrastructure:**
-- **External PostgreSQL Database:** Available for Server/Enterprise deployments
+- **External PostgreSQL Database:** Available for Team/Enterprise deployments
 - Better reliability and scalability than local H2 database
 - Professional backup and replication strategies
 
@@ -1440,7 +1440,7 @@ Run the built-in [diagnostics tool](./Configuration/Operations/Diagnostics.md) i
 - Search GitHub Issues: https://github.com/Stirling-Tools/Stirling-PDF/issues
 
 **For Priority Support:**
-- Upgrade to Server or Enterprise plan
+- Upgrade to Team or Enterprise plan
 - Email: support@stirlingpdf.com
 - Get dedicated support team
 
@@ -1448,6 +1448,6 @@ Run the built-in [diagnostics tool](./Configuration/Operations/Diagnostics.md) i
 
 **You're all set!** 🎉
 
-Your Stirling-PDF deployment is ready for production use. If you have any questions or need assistance, don't hesitate to reach out to our community or consider upgrading to a paid plan (Server or Enterprise) for dedicated support.
+Your Stirling-PDF deployment is ready for production use. If you have any questions or need assistance, don't hesitate to reach out to our community or consider upgrading to a paid plan (Team or Enterprise) for dedicated support.
 
 Happy PDF processing! 📄✨

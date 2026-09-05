@@ -6,7 +6,7 @@ tags: [server, database]
 ---
 
 # Using an External Database
-> **Tier**: Server
+> **Tier**: Team
 
 It is possible to use your own external database with Stirling PDF rather than the default H2 database if you wish.
 PostgreSQL is currently the only supported variant, others will be added on request.
