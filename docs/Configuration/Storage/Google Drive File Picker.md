@@ -15,10 +15,10 @@ To enable this features for your users, you must first set up your Google enviro
 
 ```yaml
 premium:
-  ...
+  # Other premium settings, such as the licence key, go here
   enabled: true # Enable license key checks for pro/enterprise features
   proFeatures:
-    ...
+    # Other proFeatures settings may be included here
     googleDrive:
       enabled: true
       clientId: <YOUR_CLIENT_ID>
@@ -54,29 +54,29 @@ Below are examples of the full configuration for enabling the google Drive Picke
   <TabItem value="local" label="Local Environment">
     ```bash
     export PREMIUM_ENABLED=true
-    export PREMIUM_PRO_FEATURES_GOOGLE_DRIVE_ENABLED=true
-    export PREMIUM_PRO_FEATURES_GOOGLE_DRIVE_CLIENT_ID="<YOUR_CLIENT_ID>"
-    export PREMIUM_PRO_FEATURES_GOOGLE_DRIVE_API_KEY="<YOUR_API_KEY>"
-    export PREMIUM_PRO_FEATURES_GOOGLE_DRIVE_APP_ID="<YOUR_APP_ID>"
+    export PREMIUM_PROFEATURES_GOOGLEDRIVE_ENABLED=true
+    export PREMIUM_PROFEATURES_GOOGLEDRIVE_CLIENTID="<YOUR_CLIENT_ID>"
+    export PREMIUM_PROFEATURES_GOOGLEDRIVE_APIKEY="<YOUR_API_KEY>"
+    export PREMIUM_PROFEATURES_GOOGLEDRIVE_APPID="<YOUR_APP_ID>"
     ```
   </TabItem>
   <TabItem value="docker-run" label="Docker Run">
     ```bash
     -e PREMIUM_ENABLED=true \
-    -e PREMIUM_PRO_FEATURES_GOOGLE_DRIVE_ENABLED=true \
-    -e PREMIUM_PRO_FEATURES_GOOGLE_DRIVE_CLIENT_ID="<YOUR_CLIENT_ID>" \
-    -e PREMIUM_PRO_FEATURES_GOOGLE_DRIVE_API_KEY="<YOUR_API_KEY>" \
-    -e PREMIUM_PRO_FEATURES_GOOGLE_DRIVE_APP_ID="<YOUR_APP_ID>" \
+    -e PREMIUM_PROFEATURES_GOOGLEDRIVE_ENABLED=true \
+    -e PREMIUM_PROFEATURES_GOOGLEDRIVE_CLIENTID="<YOUR_CLIENT_ID>" \
+    -e PREMIUM_PROFEATURES_GOOGLEDRIVE_APIKEY="<YOUR_API_KEY>" \
+    -e PREMIUM_PROFEATURES_GOOGLEDRIVE_APPID="<YOUR_APP_ID>" \
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
-      PREMIUM_ENABLED: true
-      PREMIUM_PRO_FEATURES_GOOGLE_DRIVE_ENABLED: true
-      PREMIUM_PRO_FEATURES_GOOGLE_DRIVE_CLIENT_ID: <YOUR_CLIENT_ID>
-      PREMIUM_PRO_FEATURES_GOOGLE_DRIVE_API_KEY: <YOUR_API_KEY>
-      PREMIUM_PRO_FEATURES_GOOGLE_DRIVE_APP_ID: <YOUR_APP_ID>
+      PREMIUM_ENABLED: "true"
+      PREMIUM_PROFEATURES_GOOGLEDRIVE_ENABLED: "true"
+      PREMIUM_PROFEATURES_GOOGLEDRIVE_CLIENTID: <YOUR_CLIENT_ID>
+      PREMIUM_PROFEATURES_GOOGLEDRIVE_APIKEY: <YOUR_API_KEY>
+      PREMIUM_PROFEATURES_GOOGLEDRIVE_APPID: <YOUR_APP_ID>
     ```
   </TabItem>
 </Tabs>

@@ -46,11 +46,11 @@ Enable and configure the Mobile Scanner feature, which lets users scan documents
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
-      SYSTEM_ENABLEMOBILESCANNER: true
-      SYSTEM_MOBILESCANNERSETTINGS_CONVERTTOPDF: true
+      SYSTEM_ENABLEMOBILESCANNER: "true"
+      SYSTEM_MOBILESCANNERSETTINGS_CONVERTTOPDF: "true"
       SYSTEM_MOBILESCANNERSETTINGS_IMAGERESOLUTION: full
       SYSTEM_MOBILESCANNERSETTINGS_PAGEFORMAT: A4
-      SYSTEM_MOBILESCANNERSETTINGS_STRETCHTOFIT: false
+      SYSTEM_MOBILESCANNERSETTINGS_STRETCHTOFIT: "false"
     ```
   </TabItem>
 </Tabs>

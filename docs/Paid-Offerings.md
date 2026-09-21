@@ -243,7 +243,7 @@ Adding more user capacity to an existing Team plan is coming soon as an in-app f
 ## Frequently Asked Questions
 
 **Q: Can I try before I buy?**
-A: Yes! The Free plan includes all features for up to 5 users. Test thoroughly before upgrading. If you'd rather be walked through the paid features first, [book a demo](https://www.stirling.com/book-a-demo).
+A: The Free plan supports up to 5 users and includes the free PDF tools. Premium features require the corresponding paid plan. If you'd rather be walked through the paid features first, [book a demo](https://www.stirling.com/book-a-demo).
 
 **Q: What happens if I cancel?**
 A: Your license remains active until the end of your billing period, then reverts to Free plan limits.
@@ -280,4 +280,3 @@ If you're upgrading from Stirling PDF V1 with an existing license:
 For pricing details, visit [stirling.com/pricing](https://stirling.com/pricing)
 
 For technical support, email support@stirlingpdf.com
-

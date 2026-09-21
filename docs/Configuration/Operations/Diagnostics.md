@@ -121,10 +121,10 @@ PDFs, images, and compressed archives are always excluded from collection.
 
 ### Retrieving the Bundle
 
-After the tool finishes, copy the archive out of the container:
+After the tool finishes, copy the exact archive path printed in its `Created tar.gz` message. For example (replace the timestamp with the generated filename):
 
 ```bash
-docker cp <container_name>:/configs/stirling-diagnostics-*.tar.gz ./
+docker cp <container_name>:/configs/stirling-diagnostics-20260917-120000.tar.gz ./
 ```
 
 ---
@@ -170,4 +170,3 @@ For enterprise customers and licensing inquiries:
 
 For security vulnerabilities:
 **security@stirlingpdf.com** or use the [GitHub Security Advisory](https://github.com/Stirling-Tools/Stirling-PDF/security) process.
-

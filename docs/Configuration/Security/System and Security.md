@@ -4,11 +4,11 @@ sidebar_position: 1
 
 # Login, System and Security
 
-Stirling PDF allows customization of system and security settings. For security features to be enabled, you must use the security jar. For Docker users, this means setting `DISABLE_ADDITIONAL_FEATURES` to `false` via an environment variable.
+Stirling PDF allows customization of system and security settings. Login, SSO, teams and audit logging need a build that includes them - see [Authentication Setup](#authentication-setup) below for which builds those are.
 
 ## Basic Security Settings
 
-- `enableLogin`: Enables or disables the login functionality (only available in Stirling-PDF-with-login.jar or when `DISABLE_ADDITIONAL_FEATURES=false`)
+- `enableLogin`: Enables or disables login in a build that includes the security module
 - `defaultLocale`: Set the default language (e.g. 'de-DE', 'fr-FR', etc)
 - `googlevisibility`: 'true' to allow Google visibility (via robots.txt), 'false' to disallow
 - `xFrameOptions`: Controls whether your instance can be embedded in an iframe. Set to `DENY` to prevent clickjacking. Use `SAMEORIGIN` only if you embed the UI in your own application.
@@ -22,14 +22,14 @@ Stirling PDF allows customization of system and security settings. For security 
 - **JAR files**: Use [Stirling-PDF-with-login.jar](https://files.stirlingpdf.com/Stirling-PDF-with-login.jar) **(Recommended)**
 
 **Not included in:**
-- **Docker ultra-lite**: Minimal build without authentication (set `DISABLE_ADDITIONAL_FEATURES=false` to enable)
+- **Docker ultra-lite**: Minimal build without authentication; use a standard or fat image if you need login
 - **Plain JAR**: [Stirling-PDF.jar](https://files.stirlingpdf.com/Stirling-PDF.jar) - Basic build without authentication or additional features
 
 ### Prerequisites
 1. Ensure the `/configs` directory is mounted as a volume in Docker for persistence across updates
 2. Use the appropriate build:
    - **JAR**: Download Stirling-PDF-with-login.jar
-   - **Docker**: Set `DISABLE_ADDITIONAL_FEATURES=false` in environment variables
+   - **Docker**: Use a standard or fat image containing the security module
 
 ### Initial Login Credentials
 - Default Username: `admin`
@@ -67,7 +67,7 @@ When using the API:
 
 ## Running Without Authentication
 
-If you need to run without authentication (note: this also disables additional features), you have two options:
+To run without authentication, either disable login in a with-login build or use a plain build. Disabling login alone does not remove the other features compiled into the application.
 
 ### Option 1: Disable Login in With-Login Version (Recommended)
 
@@ -90,7 +90,6 @@ Disable authentication while keeping additional features:
     docker run -d \
       -p 8080:8080 \
       -e SECURITY_ENABLELOGIN=false \
-      -e DISABLE_ADDITIONAL_FEATURES=false \
       docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ```
   </TabItem>
@@ -100,13 +99,12 @@ Disable authentication while keeping additional features:
       stirling-pdf:
         image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
         environment:
-          SECURITY_ENABLELOGIN: false
-          DISABLE_ADDITIONAL_FEATURES: false
+          SECURITY_ENABLELOGIN: "false"
     ```
   </TabItem>
   <TabItem value="jar-property" label="JAR (Java Property)">
     ```bash
-    java -jar Stirling-PDF-with-login.jar -DSECURITY_ENABLELOGIN=false
+    java -Dsecurity.enableLogin=false -jar Stirling-PDF-with-login.jar
     ```
   </TabItem>
   <TabItem value="jar-env" label="JAR (Environment Variable)">
@@ -365,14 +363,12 @@ UI_LOGOSTYLE=modern
 
 You can also override the bundled logo by dropping your own files into the matching style subdirectory:
 
-```bash
-customFiles/
-  └── static/
-      ├── classic-logo/
-      │   └── logo.svg  # Overrides the classic logo
-      └── modern-logo/
-          └── logo.svg  # Overrides the modern logo
+```text
+customFiles/static/modern-logo/StirlingPDFLogoNoTextDark.svg
+customFiles/static/modern-logo/StirlingPDFLogoNoTextLight.svg
 ```
+
+Use the matching `classic-logo/` paths for the classic style and preserve the exact asset filenames.
 
 **Learn more:** [UI Customisation](../Customisation/UI%20Customisation.md)
 
@@ -384,7 +380,7 @@ customFiles/
   <TabItem value="settings" label="Settings File">
     ```yaml
     security:
-      enableLogin: true  # Only works with Stirling-PDF-with-login.jar or DISABLE_ADDITIONAL_FEATURES=false
+      enableLogin: true  # Needs a build with login: the with-login JAR, or any image except ultra-lite
       jwt:
         tokenExpiryMinutes: 1440
       validation:
@@ -417,18 +413,17 @@ customFiles/
 
     **Option 1: Using Java Properties**
     ```bash
-    java -jar Stirling-PDF.jar -DDISABLE_ADDITIONAL_FEATURES=false -DSECURITY_ENABLELOGIN=true
+    java -Dsecurity.enableLogin=true -jar Stirling-PDF-with-login.jar
     ```
 
     **Option 2: Using Environment Variables**
     ```bash
-    export DISABLE_ADDITIONAL_FEATURES=false
+    # Requires a build containing the security module
     export SECURITY_ENABLELOGIN=true
     ```
   </TabItem>
   <TabItem value="docker-run" label="Docker Run">
     ```bash
-    -e DISABLE_ADDITIONAL_FEATURES=false \
     -e SECURITY_ENABLELOGIN=true \
     -e SYSTEM_CORSALLOWEDORIGINS=https://pdf.example.com \
     -e SYSTEM_FRONTENDURL=https://pdf.example.com \
@@ -438,10 +433,9 @@ customFiles/
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
-      DISABLE_ADDITIONAL_FEATURES: false
-      SECURITY_ENABLELOGIN: true
-      SECURITY_JWT_ENABLEKEYSTORE: true
-      SYSTEM_SERVERCERTIFICATE_ENABLED: true
+      SECURITY_ENABLELOGIN: "true"
+      SECURITY_JWT_ENABLEKEYSTORE: "true"
+      SYSTEM_SERVERCERTIFICATE_ENABLED: "true"
     ```
   </TabItem>
 </Tabs>

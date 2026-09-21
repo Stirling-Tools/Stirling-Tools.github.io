@@ -207,14 +207,14 @@ To make Stirling PDF use an outgoing proxy server (e.g. for checking the license
 <Tabs groupId="config-methods">
   <TabItem value="env" label="Environment Variable">
     ```bash
-    JAVA_CUSTOM_OPTS="-Dhttp.proxyHost=proxyserver -Dhttp.proxyPort=8888 -Dhttp.nonProxyHosts='localhost|127.0.0.1|127.0.1.1|127.0.0.0/8|::1|10.0.0.0/8|.svc|.cluster.local' -Dhttps.proxyHost=proxyserver -Dhttps.proxyPort=8888 -Dhttps.nonProxyHosts='localhost|127.0.0.1|127.0.1.1|127.0.0.0/8|::1|10.0.0.0/8|.svc|.cluster.local'"
+    JAVA_CUSTOM_OPTS="-Dhttp.proxyHost=proxyserver -Dhttp.proxyPort=8888 -Dhttp.nonProxyHosts='localhost|127.*|[::1]|10.*|*.svc|*.cluster.local' -Dhttps.proxyHost=proxyserver -Dhttps.proxyPort=8888"
     ```
   </TabItem>
   <TabItem value="docker-run" label="Docker Run">
     ```bash
     docker run -d \
       -p 8080:8080 \
-      -e JAVA_CUSTOM_OPTS="-Dhttp.proxyHost=proxyserver -Dhttp.proxyPort=8888 -Dhttp.nonProxyHosts='localhost|127.0.0.1|127.0.1.1|127.0.0.0/8|::1|10.0.0.0/8|.svc|.cluster.local' -Dhttps.proxyHost=proxyserver -Dhttps.proxyPort=8888 -Dhttps.nonProxyHosts='localhost|127.0.0.1|127.0.1.1|127.0.0.0/8|::1|10.0.0.0/8|.svc|.cluster.local'" \
+      -e JAVA_CUSTOM_OPTS="-Dhttp.proxyHost=proxyserver -Dhttp.proxyPort=8888 -Dhttp.nonProxyHosts='localhost|127.*|[::1]|10.*|*.svc|*.cluster.local' -Dhttps.proxyHost=proxyserver -Dhttps.proxyPort=8888" \
       docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ```
   </TabItem>
@@ -224,7 +224,7 @@ To make Stirling PDF use an outgoing proxy server (e.g. for checking the license
       stirling-pdf:
         image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
         environment:
-          JAVA_CUSTOM_OPTS: "-Dhttp.proxyHost=proxyserver -Dhttp.proxyPort=8888 -Dhttp.nonProxyHosts='localhost|127.0.0.1|127.0.1.1|127.0.0.0/8|::1|10.0.0.0/8|.svc|.cluster.local' -Dhttps.proxyHost=proxyserver -Dhttps.proxyPort=8888 -Dhttps.nonProxyHosts='localhost|127.0.0.1|127.0.1.1|127.0.0.0/8|::1|10.0.0.0/8|.svc|.cluster.local'"
+          JAVA_CUSTOM_OPTS: "-Dhttp.proxyHost=proxyserver -Dhttp.proxyPort=8888 -Dhttp.nonProxyHosts='localhost|127.*|[::1]|10.*|*.svc|*.cluster.local' -Dhttps.proxyHost=proxyserver -Dhttps.proxyPort=8888"
     ```
   </TabItem>
 </Tabs>

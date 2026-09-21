@@ -10,16 +10,15 @@ Stirling PDF for Mac is available as a **native desktop application** or can run
 
 ## Desktop Application (Recommended)
 
-Native Mac desktop app with all PDF tools available.
+A desktop application for macOS with local tools and optional access to a connected server.
 
 ### What You Get
 
 - ✅ **Native macOS application** - Optimized for both Apple Silicon and Intel Macs
 - ✅ **No login required** - Install and start using PDF tools right away
-- ✅ **Processes files locally** - All your PDF processing stays on your Mac
+- ✅ **Local processing where supported** - Tools served by the local backend run on your device. Tools routed to Stirling Cloud or a connected server send their inputs to that server.
 - ✅ **Optional server connection** - Connect to Stirling Cloud or your own self-hosted server for advanced tools like OCR and document conversions
 - ✅ **All local tools included** - Merge, split, rotate, sign, and more work without any server
-- ✅ **Better performance** - Native speed on M1/M2/M3 chips
 - ✅ **No external browser needed** - Uses the built-in window
 - ✅ **Menu bar integration** - Feels like a native Mac app
 
@@ -37,7 +36,7 @@ Pick whichever method you prefer. Both install the same desktop app.
 
     ![mac-installer.png](/img/mac-installer.png)
 
-    **3. First-time launch (Gatekeeper):** macOS blocks the app on first launch because it's not from the App Store.
+    **3. First-time launch (Gatekeeper):** If macOS cannot verify the app's developer or notarisation, it may block launch. Apps distributed outside the App Store are not automatically blocked solely for that reason.
 
     ![mac-app-blocked.png](/img/mac-app-blocked.png)
 
@@ -74,10 +73,9 @@ Pick whichever method you prefer. Both install the same desktop app.
 5. Confirm when prompted
 
 **Benefits of desktop app:**
-- Files stay on your Mac (not in browser storage)
-- Work without internet connection
-- Native performance (especially on Apple Silicon)
-- Unlimited file storage
+- Workspace files are stored locally in the app's IndexedDB storage
+- Supported local operations work without an internet connection
+- Storage availability depends on the embedded webview's quota and free disk space
 - Menu bar integration
 - macOS gestures and features work
 
@@ -204,12 +202,14 @@ Install these via [Homebrew](https://brew.sh/) to enable additional features lik
  pip3 install unoserver           # File to PDF conversion
  ```
 
-For Tesseract OCR, add to `config/settings.yml` (generated once you first run the jar):
+For Tesseract OCR, find the Homebrew data directory with `brew --prefix` and set `system.tessdataDir` in `configs/settings.yml` to that prefix plus `/share/tessdata`. For example, an Apple Silicon installation commonly uses:
 
 ```yaml
 system:
-  tessdataDir: /usr/local/share/tessdata
+  tessdataDir: /opt/homebrew/share/tessdata
 ```
+
+Use the actual prefix on your machine; Intel Homebrew installations commonly use `/usr/local`.
 
  ## Quick Troubleshooting
  - Java not found? Add to `~/.zshrc` (works on both Apple Silicon and Intel):
@@ -228,5 +228,4 @@ To ensure that unoserver is running alongside Stirling PDF, you need to start it
 unoserver --port 2003 --interface 0.0.0.0
 ```
 
-You can add this command to your startup script or systemd service file to ensure it starts automatically with Stirling PDF.
-
+Start this command alongside Stirling PDF using your macOS startup script or a launchd job.

@@ -36,7 +36,7 @@ For detailed information on setting up and using pipelines, see:
 
 ## Current Limitations
 
-- Cannot have multiple instances of the same operation in a single pipeline
+- Operations can be repeated within a workflow, with different parameters for each step.
 - Web UI does not support operations requiring multiple different types of inputs
 - Files and operations run in serial mode
 - Additional file inputs during processing are not supported via UI

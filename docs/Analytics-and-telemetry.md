@@ -73,7 +73,7 @@ PostHog shows us which features get used, helps us catch bugs, and guides what t
 
 ### What is Scarf?
 
-[Scarf](https://scarf.sh) provides a simple tracking pixel (`pixel.stirling.com`) that collects basic, non‑personally identifiable information about Stirling‑PDF usage.
+[Scarf](https://scarf.sh) provides a simple tracking pixel (`static.scarf.sh`) that collects basic, non‑personally identifiable information about Stirling‑PDF usage.
 
 ### Data collected by Scarf
 
@@ -140,7 +140,7 @@ Controls **all** analytics and whether a consent banner appears.
     services:
       stirling-pdf:
         environment:
-          SYSTEM_ENABLEANALYTICS: false
+          SYSTEM_ENABLEANALYTICS: "false"
     ```
   </TabItem>
 </Tabs>
@@ -229,7 +229,7 @@ If you want to disable **all** analytics and telemetry (and suppress any consent
     services:
       stirling-pdf:
         environment:
-          SYSTEM_ENABLEANALYTICS: false
+          SYSTEM_ENABLEANALYTICS: "false"
     ```
   </TabItem>
 </Tabs>

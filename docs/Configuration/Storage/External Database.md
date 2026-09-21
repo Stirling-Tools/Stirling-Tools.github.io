@@ -15,25 +15,22 @@ PostgreSQL is currently the only supported variant, others will be added on requ
 You can configure the new `Datasource` property in your `settings.yml` to connect to your external database:
 
 :::warning Note
-To use the external database feature, you will need to have a valid enterprise license and set the environment variable `DISABLE_ADDITIONAL_FEATURES` to `false`.
+External databases require a Team or Enterprise licence. Use the with-login JAR or a standard/fat Docker image.
 :::
 
 <Tabs groupId="external-db-config">
   <TabItem value="settings" label="Settings File">
 
 ```yaml
+system:
   datasource:
-    enableCustomDatabase: false
+    enableCustomDatabase: true
     customDatabaseUrl: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: postgres
-    type: postgresql
-    hostName: localhost
-    port: 5432
-    name: postgres
+    password: replace-with-your-database-password
 ```
 
-- `enableCustomDatabase`: Set this property to `true` to enable use of the custom database **Note: An enterprise license to use this feature**
+- `enableCustomDatabase`: Set to `true` to use the custom database. A Team or Enterprise licence is required.
 - `customDatabaseUrl`: Enter the database connection url for the database here. **Note: If you set the `customDatabaseUrl` you do not need to set the type, hostName, port and name, they will all be automatically derived from the url.**
 - `username`: The username for the database
 - `password`: The password for the database
@@ -62,8 +59,8 @@ services:
       POSTGRES_PASSWORD: "stirling"
 ```
 
-- `container_name`: This is the name of your database container. This should match the name of the container under `services` as this is what Docker will use to refer to your database
-- `ports`: Specify the port number for your database. The number on the left is the port number the container will access the database internally. The number on the right is the port number the Stirling PDF app will use to connect to the database externally. Ensure this matches the port number in the connection url for your database otherwise the app will not be able to access it.
+- `container_name`: Optional explicit container name; it does not have to match the service key. Services on the same Compose network can reach this database using the service name `db`.
+- `ports`: Uses `HOST:CONTAINER` order. Other Compose services connect to `db:5432`, the container port; a client outside the network connects to the published host port.
 - `POSTGRES_DB`: An environment variable for the database container. Specify the name of the custom database here
 - `POSTGRES_USER`: An environment variable for the database container. Specify the username for the database
 - `POSTGRES_PASSWORD`: An environment variable for the database container. Specify the password for the database
@@ -76,7 +73,7 @@ services:
     depends_on:
       - db
     environment:
-      DISABLE_ADDITIONAL_FEATURES: "false" "true"
+      DISABLE_ADDITIONAL_FEATURES: "false"
       SYSTEM_DATASOURCE_ENABLECUSTOMDATABASE: "true"
       SYSTEM_DATASOURCE_CUSTOMDATABASEURL: "jdbc:postgresql://db:5432/stirling_pdf"
       SYSTEM_DATASOURCE_USERNAME: "admin"
@@ -84,8 +81,8 @@ services:
     # further configuration
 ```
 
-- `depends_on`: This specifies any services that your app will need in order to run. Ensure the name matches the container name for your database
-- `DISABLE_ADDITIONAL_FEATURES`: Set this to `false` to enable security features
+- `depends_on`: References the Compose service key (`db`), not an arbitrary container name.
+- Use a standard or fat Docker image for external database support.
 - `SYSTEM_DATASOURCE_ENABLECUSTOMDATABASE`: An environment variable to connect to the database container. Set this to `true` to enable use of the external database
 - `SYSTEM_DATASOURCE_CUSTOMDATABASEURL`: An environment variable to connect to the database container. Set the connection url for the database here. **Note: If you set this url you do not need to set the type, hostName, port and name (namely `SYSTEM_DATASOURCE_TYPE`, `SYSTEM_DATASOURCE_HOSTNAME`, `SYSTEM_DATASOURCE_PORT`, `SYSTEM_DATASOURCE_NAME`), they will all be automatically derived from the url.**
 - `SYSTEM_DATASOURCE_USERNAME`: An environment variable to connect to the database container. Set the username for the database. Ensure this matches the corresponding property in your database container
@@ -99,7 +96,7 @@ services:
     depends_on:
       - db
     environment:
-      DISABLE_ADDITIONAL_FEATURES: "false" "true"
+      DISABLE_ADDITIONAL_FEATURES: "false"
       SYSTEM_DATASOURCE_ENABLECUSTOMDATABASE: "true"
       SYSTEM_DATASOURCE_CUSTOMDATABASEURL: "jdbc:postgresql://db:5432/stirling_pdf"
       SYSTEM_DATASOURCE_USERNAME: "admin"

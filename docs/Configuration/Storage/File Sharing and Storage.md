@@ -155,7 +155,7 @@ Set `storage.provider: s3` to store user uploads in any S3-compatible object sto
 | **Cloudflare R2** | `https://<acct>.r2.cloudflarestorage.com` | `auto` | `false` | If uploads fail with `unsupported header x-amz-checksum-*`, set `requestChecksumCalculation: WHEN_REQUIRED`. |
 | **Supabase Storage** | `https://<project>.supabase.co/storage/v1/s3` | your project region | `true` | Non-ASCII display filenames are fine - the storage key is opaque. |
 | **Backblaze B2** | `https://s3.<region>.backblazeb2.com` | your region | `false` | On B2 deployments older than July 2025, if uploads return `Unsupported header x-amz-checksum-crc32`, set `requestChecksumCalculation: WHEN_REQUIRED`. |
-| **DigitalOcean Spaces** | `https://<region>.digitaloceanspaces.com` | your region | `false` | 5 GB per-object cap (regardless of multipart). |
+| **DigitalOcean Spaces** | `https://<region>.digitaloceanspaces.com` | your region | `false` | 5 GB per-object cap. See [Spaces limits](https://docs.digitalocean.com/products/spaces/details/limits/). |
 
 ### Sharing Credentials with the Cluster Artifact Store
 
@@ -232,7 +232,7 @@ When sharing a file, you choose what level of access to grant:
 
 | Role | Can View/Download | Can Replace File | In Signing Workflows |
 |------|-------------------|-----------------|---------------------|
-| **Editor** | Yes | Yes | Can sign |
+| **Editor** | Yes | No; replacement is owner-only | Can sign |
 | **Commenter** | Yes | No | Can sign |
 | **Viewer** | Yes | No | Read-only |
 

@@ -13,13 +13,13 @@ Stirling PDF can be configured in three ways, depending on your deployment and p
 
 ### 1. In-App Settings (Recommended)
 
-If you have login enabled, admins can configure everything through the Settings menu in the application.
+With login enabled, administrators can configure the settings exposed in the application's Settings menu. Other server settings use the configuration file or environment variables.
 
 **To use:**
 1. Set `SECURITY_ENABLELOGIN=true`
 2. Log in as admin
 3. Go to Settings → configure through UI
-4. Changes apply immediately, no restart needed
+4. Save changes and follow any restart prompt to apply pending server settings
 
 **Best for:** Production deployments with admin users
 
@@ -148,22 +148,17 @@ If `defaultLocale` is left empty (the default), the browser-detected language is
   <TabItem value="settings" label="Settings File">
     ```yaml
     system:
-      fileUploadLimit: "500MB"  # Number (0-999) followed by KB, MB, or GB. Empty = no limit
-    spring:
-      servlet:
-        multipart:
-          max-file-size: 2000MB
-          max-request-size: 2000MB
+      fileUploadLimit: "500MB"  # 0-999 followed by KB, MB or GB. Empty = no limit
     ```
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
-    SYSTEM_MAXFILESIZE=500        # Size in MB (valid range 1-999)
-    SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=2000MB
-    SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=2000MB
+    SYSTEM_FILEUPLOADLIMIT=500MB
     ```
   </TabItem>
 </Tabs>
+
+The limit applies to each file and to the whole request. If it is unset, the limit is 2000 MB.
 
 ### Memory Management
 

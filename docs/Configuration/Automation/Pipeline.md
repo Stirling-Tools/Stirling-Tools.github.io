@@ -7,19 +7,7 @@ description: Create automated multi-step PDF workflows with the Automate tool
 
 # Pipeline Automation (Automate)
 
-Create powerful automated workflows that combine multiple PDF operations into sequential processes. The Automate tool (formerly called "Pipeline") lets you build, save, and reuse complex PDF processing workflows.
-
-:::info V2.0 Update - New "Automate" Feature
-In V2.0, the pipeline frontend interface has been redesigned as the **"Automate"** feature with an improved user experience for creating and managing automation workflows. The backend pipeline system (JSON configuration and folder scanning) continues to work the same way.
-
-**What changed:**
-- Backend pipeline processing - **No changes**
-- JSON pipeline configurations - **Still work exactly the same**
-- Folder scanning with pipelines - **Still works the same**
-- Frontend interface - **Now called "Automate" with better UX**
-
-If you have existing pipeline JSON files, they continue to work in V2.0's Automate feature.
-:::
+The **Automate** tool builds, saves and reuses sequences of PDF operations. The backend pipeline API and folder scanner use the pipeline JSON format described below.
 
 ---
 
@@ -32,24 +20,7 @@ Pipeline automation allows you to:
 - **Standardize procedures** - Ensure consistent processing across teams
 - **Batch process** - Apply same workflow to multiple files
 
-Think of it as **"macros for PDFs"** - record your steps once, replay them unlimited times.
-
----
-
-## Why Use Pipelines?
-
-### Without Pipelines:
-1. Upload PDF to Split tool, download split files
-2. Upload each split file to Watermark tool, download watermarked files
-3. Upload each watermarked file to Compress tool, download final files
-4. Repeat for every batch of documents
-
-### With Pipelines:
-1. Create "Split-Watermark-Compress" pipeline once
-2. Upload PDFs, automatic processing, download results
-3. Reuse same pipeline for all future batches
-
-**Time saved:** Minutes per file, hours per day.
+For example, a saved Split → Watermark → Compress workflow runs those operations in sequence without manually transferring the output between tools.
 
 ---
 
@@ -137,7 +108,7 @@ Automated processing mode:
 
 ### Current Limitations
 
-- Cannot have more than one of the same operation.
+- The same operation can appear more than once, with separate parameters for each step.
 - Cannot input additional files via UI.
 - All files and operations run in serial mode.
 
@@ -307,7 +278,7 @@ For folder scanning (not used by the REST API):
 }
 ```
 
-`outputDir` and `outputFileName` accept the placeholders `{outputFolder}`, `{folderName}`, `{filename}`, `{pipelineName}`, `{date}`, `{time}`.
+`outputDir` supports `{outputFolder}` and `{folderName}`. `outputFileName` supports `{filename}`, `{pipelineName}`, `{date}` and `{time}`; the output extension is appended by the processor.
 
 ---
 
@@ -334,7 +305,7 @@ The fastest way to get a correct pipeline JSON for any combination of operations
 
 ## Filter / conditional operations
 
-Filter operations let you **branch a pipeline**. Each one checks a property of the file and either lets the file **continue to the next steps** or **drops it** so the rest of the pipeline never sees it. This is how you say "only keep processing files that match X" inside an automation - for example, only run OCR on scans that have no text yet, or only watermark documents over a certain page count.
+Filter operations keep or drop files based on a condition. Matching files continue to later steps; non-matching files are removed from that pipeline run. For example, a page-count filter can select longer documents for watermarking.
 
 A file that does not match a filter is simply removed from the rest of the pipeline. It is not treated as an error.
 
@@ -351,11 +322,11 @@ These operation names go in your pipeline configuration:
 
 The four comparison filters (`filter-page-count`, `filter-page-size`, `filter-file-size`, `filter-page-rotation`) take a `comparator` of `Greater`, `Equal`, or `Less`.
 
-**Example - only OCR files that are image-only scans:** detect scans with no text layer using `filter-contains-image`, then route the matching files through the OCR operation. Files that already contain text are dropped before the OCR step, so you only spend processing time on the scans that need it.
+**Example - OCR PDFs containing images:** `filter-contains-image` keeps PDFs with an image, including PDFs that also contain text. The OCR step uses `skip-text` to skip pages that already have text; the filter itself does not detect an absent text layer.
 
 ```json
 {
-  "name": "OCR only image-only scans",
+  "name": "OCR PDFs containing images",
   "pipeline": [
     {"operation": "/api/v1/filter/filter-contains-image", "parameters": {"pageNumbers": "all"}},
     {"operation": "/api/v1/misc/ocr-pdf", "parameters": {"languages": ["eng"], "ocrType": "skip-text"}}
@@ -425,9 +396,6 @@ For multiple files use repeated `-F "fileInput=@..."` flags; the response will b
 | Invalid operation name, disallowed endpoint, or missing required parameter | 200 with empty body | The server logs an `IllegalArgumentException` but returns an empty response. |
 | Downstream endpoint returned non-2xx | 200 with partial/empty body | The error is logged but does not surface in the HTTP response. |
 
-:::warning Validate response bodies
-Errors that occur after multipart parsing currently collapse to `HTTP 200` with an empty body. Always check that the response is a non-empty PDF (starts with `%PDF-`) or a ZIP (starts with `PK\x03\x04`) before treating the call as successful.
-:::
 
 ### Tips
 
@@ -496,63 +464,13 @@ The watched-folder scanner runs every 60 seconds.
 
 ---
 
-## Best Practices
+## Testing and Maintaining Workflows
 
-### Pipeline Design
-
-1. **Test Incrementally**
-   - Build pipeline one operation at a time
-   - Test each step before adding the next
-   - Verify output at each stage
-
-2. **Order Operations Logically**
-   - Do OCR before text-based operations
-   - Remove pages before processing remaining pages
-   - Compress last to optimize final output
-
-3. **Use Descriptive Names**
-   - Name pipelines clearly: "Invoice-OCR-Watermark-Archive"
-   - Add descriptions in comments
-   - Version your pipeline files
-
-4. **Handle Errors Gracefully**
-   - Test with various file types
-   - Consider edge cases (empty PDFs, locked files)
-   - Monitor logs for errors
-
-### Performance Optimization
-
-1. **Minimize Operations**
-   - Combine similar operations when possible
-   - Remove unnecessary steps
-   - Don't duplicate efforts
-
-2. **Optimize Compression**
-   - Compress once at the end, not multiple times
-   - Choose appropriate compression level
-   - Balance quality vs. file size
-
-3. **Batch Intelligently**
-   - Group similar files together
-   - Process during off-peak hours
-   - Monitor system resources
-
-### Maintenance
-
-1. **Version Control**
-   - Keep pipeline JSONs in git repository
-   - Track changes over time
-   - Document modifications
-
-2. **Regular Review**
-   - Audit pipelines quarterly
-   - Remove unused pipelines
-   - Update for new requirements
-
-3. **Monitor Performance**
-   - Check processing times
-   - Review error logs
-   - Optimize slow operations
+- Add one operation at a time and inspect its output before extending the pipeline.
+- Run OCR before operations that require searchable text; remove unwanted pages before processing the remaining pages.
+- Test locked, empty and representative large files, and check the server logs when output is missing or incomplete.
+- Keep exported JSON in version control and retest it after changes to the workflow or server.
+- Measure processing time and resource use with your own files before increasing batch size or concurrency.
 
 ---
 
@@ -689,20 +607,3 @@ The watched-folder scanner runs every 60 seconds.
 - **[Endpoint Customisation](../Customisation/Endpoint%20or%20Feature%20Customisation.md)** - Operation names and IDs
 - **[API Documentation](../../API.md)** - Programmatic pipeline execution
 - **[Advanced Tools](../../Functionality/Advanced-Tools.md)** - Other automation features
-
----
-
-## Summary
-
-Pipeline automation (Automate tool) transforms Stirling PDF into a workflow engine:
-
-- **Chain operations** - Combine multiple PDF tools sequentially
-- **Save workflows** - Reusable pipeline configurations
-- **Folder scanning** - Automated unattended processing
-- **REST API** - Trigger pipelines from any external system
-- **Standardization** - Consistent processing across teams
-- **Efficiency** - Minutes saved per file, hours per day
-
-**Perfect for:** Repetitive workflows, batch processing, automated document preparation, and standardized procedures.
-
-Ready to automate? Create your first pipeline and transform how you process PDFs.

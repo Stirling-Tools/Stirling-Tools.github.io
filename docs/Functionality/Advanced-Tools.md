@@ -27,11 +27,7 @@ Chain multiple operations into automated workflows. Save and reuse pipeline conf
 
 **Tool ID:** `autoRename`
 
-Automatically rename PDF files based on their content. Analyzes each PDF and suggests filenames using this priority:
-1. PDF metadata title (if present)
-2. Largest font text on first page
-3. First heading or prominent text
-4. First line of readable text
+Automatically rename PDF files using prominent text near the start of the document. The tool selects text with the largest font size.
 
 Works best with documents that have clear titles. Scanned documents may need [OCR](./OCR.md) first.
 
@@ -69,7 +65,7 @@ Automatically detect and split individual scanned photos from multi-image PDF sc
 
 **Tool ID:** `overlayPdfs`
 
-Layer one PDF on top of another. Control position, opacity, and whether the overlay appears in the foreground or background. Apply to specific pages or all pages.
+Layer overlay PDFs over a base PDF. Choose the overlay mode, repetition counts where applicable, and whether the overlay is placed in the foreground or background.
 
 ---
 
@@ -77,7 +73,7 @@ Layer one PDF on top of another. Control position, opacity, and whether the over
 
 **Tool ID:** `replaceColor`
 
-Replace specific colors in a PDF or invert all colors. Options include full color inversion, targeted color replacement, and adjustable matching threshold.
+Invert PDF colours, replace text and background colours using the available colour settings, or convert to CMYK.
 
 ---
 

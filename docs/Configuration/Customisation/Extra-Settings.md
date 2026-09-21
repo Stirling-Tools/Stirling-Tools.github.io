@@ -42,32 +42,31 @@ server:
       max: 200  # Maximum number of request processing threads
       min: 10   # Minimum number of threads always kept running
     connection-idle-timeout: 30000  # Connection idle timeout in milliseconds
-    max-http-request-header-size: 65536  # Maximum size of request headers in bytes
+  max-http-request-header-size: 65536  # Maximum request header size in bytes
 ```
 
 ### HTTP 431 "Request Header Fields Too Large" during SSO/OAuth login
 
-Some SSO/OAuth providers send very large request headers (for example, large cookies or JWTs), which can trigger an **HTTP 431 Request Header Fields Too Large** error during login. Stirling PDF's default limit is `32768` (32 KB); raise it to resolve the error.
+If requests fail with **HTTP 431 Request Header Fields Too Large**, raise the HTTP request-header limit with `server.max-http-request-header-size`.
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="custom_settings.yml">
     ```yaml
     server:
-      jetty:
-        max-http-request-header-size: 65536  # bytes (Stirling default: 32768)
+      max-http-request-header-size: 65536  # bytes
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
-      SERVER_JETTY_MAX_HTTP_REQUEST_HEADER_SIZE: "65536"
+      SERVER_MAXHTTPREQUESTHEADERSIZE: "65536"
     ```
   </TabItem>
   <TabItem value="docker-run" label="Docker Run">
     ```bash
     docker run -d \
       -p 8080:8080 \
-      -e SERVER_JETTY_MAX_HTTP_REQUEST_HEADER_SIZE=65536 \
+      -e SERVER_MAXHTTPREQUESTHEADERSIZE=65536 \
       docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ```
   </TabItem>
@@ -86,7 +85,7 @@ Configure HTTPS for secure connections:
       port: 8443  # Standard HTTPS port
       ssl:
         enabled: true
-        key-store: classpath:keystore.p12  # Path to keystore file
+        key-store: file:./configs/keystore.p12  # Path to keystore file
         key-store-password: your-keystore-password
         key-store-type: PKCS12  # Type of keystore
         key-alias: tomcat  # Alias of the certificate
@@ -96,10 +95,10 @@ Configure HTTPS for secure connections:
     ```bash
     SERVER_PORT=8443
     SERVER_SSL_ENABLED=true
-    SERVER_SSL_KEY-STORE=classpath:keystore.p12
-    SERVER_SSL_KEY-STORE-PASSWORD=your-keystore-password
-    SERVER_SSL_KEY-STORE-TYPE=PKCS12
-    SERVER_SSL_KEY-ALIAS=tomcat
+    SERVER_SSL_KEYSTORE=file:./configs/keystore.p12
+    SERVER_SSL_KEYSTOREPASSWORD=your-keystore-password
+    SERVER_SSL_KEYSTORETYPE=PKCS12
+    SERVER_SSL_KEYALIAS=tomcat
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
@@ -109,11 +108,13 @@ Configure HTTPS for secure connections:
         image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
         environment:
           SERVER_PORT: 8443
-          SERVER_SSL_ENABLED: true
-          SERVER_SSL_KEY-STORE: classpath:keystore.p12
-          SERVER_SSL_KEY-STORE-PASSWORD: your-keystore-password
-          SERVER_SSL_KEY-STORE-TYPE: PKCS12
-          SERVER_SSL_KEY-ALIAS: tomcat
+          SERVER_SSL_ENABLED: "true"
+          SERVER_SSL_KEYSTORE: file:./configs/keystore.p12
+          SERVER_SSL_KEYSTOREPASSWORD: your-keystore-password
+          SERVER_SSL_KEYSTORETYPE: PKCS12
+          SERVER_SSL_KEYALIAS: tomcat
+        volumes:
+          - ./stirling-data/configs:/configs
     ```
   </TabItem>
 </Tabs>
@@ -123,7 +124,8 @@ Configure HTTPS for secure connections:
 To generate a self-signed certificate for development or testing:
 
 ```shell
-keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore keystore.p12 -validity 365
+mkdir -p configs
+keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore configs/keystore.p12 -validity 365
 ```
 
 :::warning Note
@@ -159,7 +161,7 @@ server:
   port: 8443
   ssl:
     enabled: true
-    key-store: classpath:keystore.p12
+    key-store: file:./configs/keystore.p12
     key-store-password: your-keystore-password
     key-store-type: PKCS12
     key-alias: tomcat

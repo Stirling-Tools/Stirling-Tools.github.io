@@ -15,7 +15,7 @@ Stirling PDF supports SAML 2.0 Single Sign-On for enterprise deployments. This a
 Before starting, ensure you have:
 
 - [ ] **Enterprise license active** - SAML requires Enterprise tier
-- [ ] **Configs directory mounted** - Docker volume mounted (e.g., `./configs:/configs:ro`)
+- [ ] **Configs directory mounted** - Docker volume mounted (e.g., `./configs:/configs`)
 - [ ] **Public backend URL configured** - Set `system.backendUrl` to your public backend API URL (often same as frontend, verify `https://your-domain.com/api/v1/info/status` is accessible)
 - [ ] **Reverse proxy configured** - Nginx/Traefik/Caddy with X-Forwarded-* headers forwarding
 - [ ] **Login enabled** - `security.enableLogin: true` in settings
@@ -131,11 +131,11 @@ Configure SAML authentication by providing:
     ```yaml
     environment:
       SYSTEM_BACKENDURL: https://stirling.example.com
-      SECURITY_ENABLELOGIN: true
+      SECURITY_ENABLELOGIN: "true"
       SECURITY_LOGINMETHOD: all
-      SECURITY_SAML2_ENABLED: true
-      SECURITY_SAML2_AUTOCREATEUSER: true
-      SECURITY_SAML2_BLOCKREGISTRATION: false
+      SECURITY_SAML2_ENABLED: "true"
+      SECURITY_SAML2_AUTOCREATEUSER: "true"
+      SECURITY_SAML2_BLOCKREGISTRATION: "false"
       SECURITY_SAML2_REGISTRATIONID: stirling
       SECURITY_SAML2_IDPSINGLELOGINURL: https://idp.example.com/saml/login
       SECURITY_SAML2_IDPSINGLELOGOUTURL: https://idp.example.com/saml/logout

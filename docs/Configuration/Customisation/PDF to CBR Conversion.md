@@ -17,7 +17,7 @@ While CBR is a popular format, it requires the proprietary `rar` utility for cre
 
 ## Step 1: Install the `rar` Command-Line Utility
 
-This is a mandatory prerequisite for both Docker and non-Docker setups. The `rar` executable must be installed on the host machine.
+The `rar` executable must be available in the environment that runs Stirling PDF. A native installation needs a binary for the host OS; a Linux container needs a Linux binary matching its architecture and runtime libraries.
 
 ### Linux
 
@@ -80,7 +80,7 @@ brew install rar
 
 ## Step 2: Configure Stirling PDF
 
-After installing `rar` on your host system, follow the appropriate instructions for your environment.
+After obtaining the appropriate `rar` binary, follow the instructions for your runtime environment.
 
 ### For Non-Docker Users
 
@@ -88,9 +88,7 @@ If you installed Stirling PDF directly on your operating system (without Docker)
 
 ### For Docker Users
 
-For the binary to be accessible inside the container, you have to mount the binary as a volume.
-
-Update your `docker-compose.yml` to include the volume mount. The path on the host side must match where you installed `rar`.
+Provide a Linux `rar` binary compatible with the container architecture and its required libraries. The mount below is suitable only when the host path contains such a binary; installing it in a custom image is another option.
 
 ```yaml
 services:
@@ -108,13 +106,7 @@ services:
       - /usr/local/bin/rar:/usr/local/bin/rar:ro
 ```
 
-**Note for Windows Docker Users:**
-The host path must use forward slashes. For example, if you placed `rar.exe` in `C:\Program Files\RAR`, your volume mount would look like this:
-
-```yaml
-# Example for Windows host path
-- "C:/Program Files/RAR/rar.exe:/usr/local/bin/rar:ro"
-```
+**Windows Docker hosts:** A Windows `rar.exe` cannot run inside the Linux Stirling PDF container. Supply a compatible Linux binary in the container; do not mount the Windows executable as `/usr/local/bin/rar`.
 
 -----
 
@@ -146,7 +138,7 @@ In both cases, a successful setup will display the RAR version and usage informa
 
 ### License Note
 
-RAR is shareware. While it is free to use for personal, non-commercial purposes, business or commercial use may require purchasing a license. Please review the official RAR license terms on the RARLAB website for complete details.
+RAR is shareware with a 40-day evaluation period. Continued use requires a licence under the [official RAR licence terms](https://www.win-rar.com/winrarlicense.html?L=0), including personal use.
 
 ### Alternative: Use the CBZ Format
 

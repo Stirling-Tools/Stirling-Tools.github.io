@@ -96,7 +96,7 @@ services:
     image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     environment:
       PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT: 4
-      PROCESS_EXECUTOR_SESSION_LIMIT_TESSERACT_SESSION_LIMIT: 2
+      PROCESSEXECUTOR_SESSIONLIMIT_TESSERACTSESSIONLIMIT: 2
     deploy:
       resources:
         limits:
@@ -113,7 +113,7 @@ services:
 :::tip Team/Enterprise Recommended
 For large organizations, **Team or Enterprise plans** provide SSO, external database support, advanced monitoring, and dedicated support.
 
-[Learn more](../../Server-Admin-Onboarding.md#step-10-paid-plans-serverenterprise)
+[Learn more](../../Server-Admin-Onboarding.md#step-10-paid-plans-teamenterprise)
 :::
 
 </TabItem>

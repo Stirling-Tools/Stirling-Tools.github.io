@@ -10,18 +10,17 @@ Stirling PDF for Windows comes in two versions: a **Desktop Application** for pe
 
 ## Desktop Application (Recommended for Personal Use)
 
-**V2.0 brings a native Windows desktop experience** with all PDF tools available offline!
+The Windows desktop application includes local PDF tools and can connect to a server for operations unavailable locally.
 
 ### What You Get
 
 - ✅ **Native Windows application** - Feels like a built-in Windows program
 - ✅ **Open PDFs directly** - Double-click any PDF to open in Stirling PDF
 - ✅ **No login required** - Install and start using PDF tools right away
-- ✅ **Processes files locally** - All your PDF processing stays on your device
+- ✅ **Local processing where supported** - Tools served by the local backend run on your device. Tools routed to Stirling Cloud or a connected server send their inputs to that server.
 - ✅ **Optional server connection** - Connect to Stirling Cloud or your own self-hosted server for advanced tools like OCR and document conversions
 - ✅ **All local tools included** - Merge, split, rotate, sign, and more work without any server
 - ✅ **Automatic updates** - Stay current with latest features
-- ✅ **Better performance** - Optimized for Windows
 - ✅ **No browser needed** - Standalone application
 
 ### Installation
@@ -91,10 +90,9 @@ The desktop app works fully offline for local PDF tools like merging, splitting,
 5. Click OK
 
 **Benefits of desktop app:**
-- Files stay on your computer (not in browser storage)
-- Work without internet connection
-- Faster performance
-- Unlimited file storage (not limited by browser)
+- Workspace files are stored locally in the app's IndexedDB storage
+- Supported local operations work without an internet connection
+- Storage availability depends on the embedded webview's quota and free disk space
 
 **Multiple windows:**
 - Press **Ctrl+N** to open an empty new window
@@ -302,7 +300,7 @@ To ensure that unoserver is running alongside Stirling PDF, you need to start it
 unoserver --port 2003 --interface 0.0.0.0
 ```
 
-You can add this command to your startup script or systemd service file to ensure it starts automatically with Stirling PDF.
+Start this command alongside Stirling PDF using your Windows startup script or a configured Windows service/task.
 
 
 Need help? Visit the [Stirling PDF GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues) page.

@@ -108,7 +108,7 @@ Set `security.oauth2.enabled` to `true` and configure your chosen provider.
         SECURITY_OAUTH2_ENABLED=true
         SECURITY_OAUTH2_CLIENT_GOOGLE_CLIENTID=<YOUR_CLIENT_ID>
         SECURITY_OAUTH2_CLIENT_GOOGLE_CLIENTSECRET=<YOUR_CLIENT_SECRET>
-        SECURITY_OAUTH2_CLIENT_GOOGLE_SCOPES=email, profile
+        SECURITY_OAUTH2_CLIENT_GOOGLE_SCOPES="email, profile"
         SECURITY_OAUTH2_CLIENT_GOOGLE_USEASUSERNAME=email
         SECURITY_OAUTH2_PROVIDER=google
         SECURITY_OAUTH2_AUTOCREATEUSER=true
@@ -120,7 +120,7 @@ Set `security.oauth2.enabled` to `true` and configure your chosen provider.
     **Provider Setup:**
     1. Go to [Google Cloud Console](https://console.cloud.google.com/)
     2. Create a new project or select existing
-    3. Enable Google+ API
+    3. Configure the OAuth consent screen for your application
     4. Create OAuth 2.0 credentials (Web application)
     5. Add authorized redirect URI: `https://your-domain.com/login/oauth2/code/google`
     6. Copy Client ID and Client Secret
@@ -186,7 +186,7 @@ Set `security.oauth2.enabled` to `true` and configure your chosen provider.
         SECURITY_OAUTH2_ISSUER=https://your-keycloak.com/realms/your-realm
         SECURITY_OAUTH2_CLIENTID=<YOUR_CLIENT_ID>
         SECURITY_OAUTH2_CLIENTSECRET=<YOUR_CLIENT_SECRET>
-        SECURITY_OAUTH2_SCOPES=openid, profile, email
+        SECURITY_OAUTH2_SCOPES="openid, profile, email"
         SECURITY_OAUTH2_USEASUSERNAME=preferred_username
         SECURITY_OAUTH2_PROVIDER=keycloak
         SECURITY_OAUTH2_AUTOCREATEUSER=true
@@ -226,7 +226,7 @@ Set `security.oauth2.enabled` to `true` and configure your chosen provider.
         SECURITY_OAUTH2_ISSUER=https://your-authentik.com/application/o/stirling-pdf/
         SECURITY_OAUTH2_CLIENTID=<YOUR_CLIENT_ID>
         SECURITY_OAUTH2_CLIENTSECRET=<YOUR_CLIENT_SECRET>
-        SECURITY_OAUTH2_SCOPES=openid, profile, email
+        SECURITY_OAUTH2_SCOPES="openid, profile, email"
         SECURITY_OAUTH2_USEASUSERNAME=preferred_username
         SECURITY_OAUTH2_PROVIDER=authentik
         SECURITY_OAUTH2_AUTOCREATEUSER=true
@@ -264,7 +264,7 @@ Set `security.oauth2.enabled` to `true` and configure your chosen provider.
         SECURITY_OAUTH2_ISSUER=<YOUR_ISSUER_URI>
         SECURITY_OAUTH2_CLIENTID=<YOUR_CLIENT_ID>
         SECURITY_OAUTH2_CLIENTSECRET=<YOUR_CLIENT_SECRET>
-        SECURITY_OAUTH2_SCOPES=openid, profile, email
+        SECURITY_OAUTH2_SCOPES="openid, profile, email"
         SECURITY_OAUTH2_USEASUSERNAME=email
         SECURITY_OAUTH2_PROVIDER=<PROVIDER_NAME>
         SECURITY_OAUTH2_AUTOCREATEUSER=true
@@ -360,7 +360,7 @@ Once you've verified OAuth works and promoted an OAuth user to admin, you can di
 | `security.oauth2.issuer` | OIDC issuer URL (required for generic providers, must support `/.well-known/openid-configuration`) | - | `https://keycloak.example.com/realms/myrealm` |
 | `security.oauth2.autoCreateUser` | Auto-create users on first login | `true` | `false` |
 | `security.oauth2.blockRegistration` | Block new user registration, only allow pre-registered users | `false` | `true` |
-| `security.oauth2.scopes` | Space or comma-separated list of OAuth scopes | Provider-specific | `openid, profile, email` |
+| `security.oauth2.scopes` | Comma-separated list of OAuth scopes | Provider-specific | `openid, profile, email` |
 | `security.oauth2.useAsUsername` | Claim to use as username (options depend on provider) | Provider-specific | `email`, `preferred_username`, `login` |
 
 ### Provider-Specific Configuration
@@ -453,10 +453,7 @@ Auto-login only triggers when **ALL** of the following conditions are met:
 
 ### User Interface
 
-Once OAuth is configured, users will see the SSO login button:
-
-| ![login-page.png](/img/login-page.png) | ![sso-login-option.png](/img/sso-login-option.png) |
-|----------------------------------------|---------------------------------------------------|
+Once OAuth is configured, the login page displays the enabled provider buttons. Select a provider to start its sign-in flow.
 
 ## Troubleshooting
 

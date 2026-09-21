@@ -21,10 +21,10 @@ For a normal single-machine install, use the [Windows](./Windows.md), [Mac](./Ma
 
 When the desktop app starts, it looks for a small JSON file called **`stirling-provisioning.json`**. Whatever that file contains is applied to the app: the server it connects to, whether the user can change that, and how updates behave.
 
-Where you put the file decides whether the user can override it:
+Provisioning locks depend on the setting:
 
-- **System directory (needs admin rights to write)** - the settings are applied **and locked**. The affected controls are greyed out with a "Managed by administrator" label and users cannot change them. This is what you want for a managed fleet.
-- **Per-user directory** - the settings are applied but **not locked**, so the user can still change them. Useful for setting a default without forcing it.
+- **Connection mode:** `lockConnectionMode: true` locks the connection when `serverUrl` is supplied, including when the file is in a per-user directory.
+- **Update mode:** The update policy is locked when supplied by a system-directory provisioning file. A per-user update policy does not lock that control.
 
 You can write this file yourself (it is only a few lines), or on Windows let the installer write it for you from install parameters (see the Windows section below).
 
@@ -44,7 +44,7 @@ You can write this file yourself (it is only a few lines), or on Windows let the
 
 | Field | Type | What it does |
 |-------|------|--------------|
-| `serverUrl` | string | The server the app connects to on launch (your self-hosted instance, or a Stirling Cloud URL). Include the protocol (`http://` or `https://`); a trailing slash is optional. |
+| `serverUrl` | string | URL of a self-hosted server, including `http://` or `https://`. Provisioning this field selects self-hosted mode; it does not select Stirling Cloud mode. |
 | `lockConnectionMode` | boolean | `true` stops users changing the server or connection mode in Settings. Only takes effect when `serverUrl` is also set. |
 | `loginAgreementEnabled` | boolean | `true` enables the login agreement/disclaimer dialog. It only turns the feature on - the text is supplied separately (see note below), and with no text nothing is shown. Can be set on its own (no `serverUrl` needed), so it also applies to local, no-login desktop installs. |
 | `updateMode` | string | How the built-in updater behaves: `prompt` (default - ask the user), `auto` (download and install silently on startup), or `disabled` (never check or show update UI). |
@@ -61,9 +61,9 @@ Passing the disclaimer text directly as an install parameter is planned for a fu
 
 ## File locations
 
-Put the file in the **system** directory to apply and lock settings for everyone on the machine. The app also reads a **per-user** copy, which is applied but not locked.
+The app checks the system and per-user locations below. System placement controls locking of the update policy; the connection lock is controlled separately by `lockConnectionMode`.
 
-| OS | System directory (applies and locks) | Per-user directory (applies only) |
+| OS | System directory | Per-user directory |
 |----|--------------------------------------|-----------------------------------|
 | **Windows** | `%PROGRAMDATA%\Stirling-PDF\stirling-provisioning.json` | `%APPDATA%\Stirling-PDF\stirling-provisioning.json` |
 | **macOS** | `/Library/Application Support/Stirling-PDF/stirling-provisioning.json` | `~/Library/Application Support/Stirling-PDF/stirling-provisioning.json` |
@@ -127,10 +127,10 @@ Write the same file to the system directory:
 /etc/stirling-pdf/stirling-provisioning.json
 ```
 
-A per-user copy in `~/.config/Stirling-PDF/` is also read, but it is not locked.
+A per-user copy in `~/.config/Stirling-PDF/` is also read. Its `lockConnectionMode` setting can lock the connection, but its update policy is not locked.
 
 ---
 
 ## Changing or removing managed settings
 
-Locked settings can only be changed through the provisioning file. To update them, push a new `stirling-provisioning.json` (or remove it) with the same tool you used to deploy it, then have users restart the app. Removing the system file unlocks the controls again.
+Provisioning values and lock state are persisted by the app. Removing the provisioning file does not clear previously stored locks. To change a provisioned connection, deploy an updated file with `serverUrl` and the intended `lockConnectionMode` value, then restart the app. Do not rely on deleting the file to unlock managed controls.
