@@ -12,16 +12,16 @@ Run more than one Stirling PDF node behind a load balancer. Single-node deployme
 
 ## Prerequisites
 
-- A Server or Enterprise license and an identical `stirling.security.credentialEncryptionKey` on every node. A node with `cluster.enabled: true` refuses to start without either; generate the key once with `openssl rand -base64 32`.
-- Shared by every node: one [external database](../Storage/External%20Database.md), one Valkey (or Redis) endpoint, an S3-compatible object store for both transient job results and persistent uploads, and a load balancer with session affinity in front. Local disk for either store fails to start, and nothing checks that the database is really shared.
-- A bucket lifecycle expiry rule on `cluster.s3.keyPrefix` (default `transient/`), set above `stirling.jobResultExpiryMinutes` (default `30`). Transient job results are never deleted for you.
+- A Team or Enterprise license and an identical `stirling.security.credentialEncryptionKey` on every node. Generate the key once with `openssl rand -base64 32`.
+- Shared by every node: one [external database](../Storage/External%20Database.md), one Valkey (or Redis) endpoint, an S3-compatible store for job results, shared persistent storage, and a load balancer with session affinity. Use S3 or database storage for persistent uploads.
+- A bucket lifecycle expiry rule on `cluster.s3.keyPrefix` (default `transient/`), set above `stirling.jobResultExpiryMinutes` (default `30`). The lifecycle rule removes expired job results.
 
 ## Settings
 
 | Key | Env | Default | Purpose |
 |---|---|---|---|
 | `cluster.enabled` | `CLUSTER_ENABLED` | `false` | Master switch. |
-| `cluster.backplane` | `CLUSTER_BACKPLANE` | `inprocess` | `valkey` for multi-node. Any other value stops the node starting. |
+| `cluster.backplane` | `CLUSTER_BACKPLANE` | `inprocess` | Set to `valkey` for multi-node deployments. |
 | `cluster.artifactStore` | `CLUSTER_ARTIFACTSTORE` | `local` | Must be `s3` for multi-node. Reuses the `storage.s3.*` credentials and bucket. |
 | `cluster.valkey.url` | `CLUSTER_VALKEY_URL` | empty | `redis://[user:password@]host[:port]`, or `rediss://` for TLS. Port defaults to `6379`; percent-encode `@ : / # ?` in the password. |
 | `cluster.valkey.tls.skipCertVerification` | `CLUSTER_VALKEY_TLS_SKIPCERTVERIFICATION` | `false` | Skips Valkey TLS chain and hostname checks. Development only. |
@@ -55,14 +55,14 @@ Run more than one Stirling PDF node behind a load balancer. Single-node deployme
 ## Health checks
 
 - `GET /api/v1/info/status` - unauthenticated, returns `{"status": "UP"}`. Use it for container healthchecks and load balancer probes.
-- `stirling_cluster_sticky_miss_total` counts cross-node 410s; a rising count means session affinity is not being honoured. Scraping it needs a Server or Enterprise license, as `/actuator/` paths otherwise return 404.
+- `stirling_cluster_sticky_miss_total` counts cross-node 410s; a rising count means session affinity is not being honoured. Metrics require a Team or Enterprise license.
 
 ## Limits
 
-- Job results stay on the node that produced them. Cross-node requests are refused with HTTP 410 and nothing retries them for you.
-- Valkey must be a single endpoint - Sentinel and Redis Cluster are not supported - and an unreachable Valkey surfaces as HTTP 503 on job and file requests, not as a failed health check.
-- Rate limits are per node. Node roles are advertised only, not enforced.
-- Restarting a node marks every in-progress Processor document interrupted across the whole cluster. Plan restarts around Processor activity.
+- Use session affinity to send result requests to the node that ran the job. Requests to another node return HTTP 410.
+- Use a single Valkey endpoint; Sentinel and Redis Cluster are unsupported. Monitor Valkey separately: connection failures return HTTP 503 on job and file requests while the application health check can remain healthy.
+- Rate limits apply per node.
+- Pause Processor work before restarting any node. A node restart interrupts in-progress Processor documents across the cluster.
 
 ## Related Documentation
 

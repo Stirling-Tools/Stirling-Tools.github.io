@@ -8,9 +8,7 @@ description: Resolve missing pages, inactive sources, pipeline setup issues, and
 
 ## Processor is missing
 
-Confirm that your deployed frontend includes Processor, then check the user's access. A build without Processor cannot be fixed by changing a runtime environment variable. See [Setup and access](./Setup-and-Access.md).
-
-If an old link sends you elsewhere, Policies has moved into Pipelines and administration has moved into Settings. The documentation browser is now `/docs`.
+Ask your administrator to check the installation and your account permissions. See [Setup and access](./Setup-and-Access.md).
 
 ## A folder source will not save
 
@@ -22,11 +20,11 @@ For network or S3 sources, check the selected connection, protocol, credentials,
 
 1. Confirm the pipeline and source are enabled.
 2. Check that the trigger matches the source: folder watch for Folder, webhook for Webhook, or a schedule for a polled source.
-3. For Editor input, upload or export a file according to **Runs on**. It does not run as a background server watcher.
+3. For Editor input, upload or export a file according to **Runs on**.
 4. Check the source's processing history. **Keep it** and **Delete the file** do not continually rerun an unchanged version.
 5. Inspect **Review** and server logs for the actual failure.
 
-Schedules are checked periodically, and folder watches have a catch-up sweep. Forcing repeated sweeps before investigating can create duplicate work in Snapshot mode.
+Schedules are checked periodically, and folder watches have a catch-up sweep. Snapshot mode processes unchanged files on each run.
 
 ## Save or Create is disabled
 
@@ -48,9 +46,7 @@ For S3 Object Lock, check both the bucket configuration and connection retention
 
 ## Documents is empty
 
-Confirm recording is enabled at a level that includes processing, then run a supported operation and allow time for persistence and caching. The feed shows up to 40 recent file-operation rows, not everything in storage. On Cloud, confirm the user belongs to the expected team.
-
-Enterprise is not required for the Documents feed. Full audit administration is separate.
+Enable [processing-event recording](./Setup-and-Access.md#check-the-processing-record), run an operation, then reload the page. On Cloud, confirm the user belongs to the expected team.
 
 ## An issue remains after fixing it
 

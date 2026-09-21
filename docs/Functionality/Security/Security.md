@@ -60,7 +60,7 @@ These are the tools you'll find under **Security** in the Stirling PDF app. Open
 
 When you run **Validate PDF Signature**, your administrator decides which certificate authorities count as trusted and whether to check that certificates haven't been revoked. The trust sources available are the Java runtime's default trust store, the Mozilla CA bundle, the Adobe Approved Trust List (AATL), the EU Trusted List (EUTL, for eIDAS), and your own server-generated certificates. Revocation can be checked in real time (OCSP), against a downloaded list (CRL), or both.
 
-For the full list of settings and example configurations, see [Certificate Signing - Configuration](./Certificate-Signing#configuration-examples).
+For the full list of settings and example configurations, see [Certificate Signing - Configuration](./Certificate-Signing.md#configuration-example).
 
 ---
 

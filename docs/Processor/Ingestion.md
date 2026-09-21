@@ -8,7 +8,7 @@ description: Set up OCR and searchable document chunks with a knowledge base, co
 
 The Ingestion template prepares documents for knowledge search. Open **Processor → Pipelines**, find **Ingestion** under **Templates**, and select **Set up**.
 
-The default processing chain runs OCR, then prepares searchable chunks. It keeps the text layer available for extraction rather than flattening pages into images.
+The default processing chain runs OCR, then prepares searchable chunks.
 
 ## Configure processing
 
@@ -31,11 +31,11 @@ The default processing chain runs OCR, then prepares searchable chunks. It keeps
 | **Connected RAG database** | Sends chunks to the selected database, which generates embeddings; returns an indexing receipt. | Reachable AI engine and an enabled RAG database destination with its connection and collection configured. |
 | **Export chunks without a database** | Saves the processed PDF and JSONL chunks to the selected destination. | Reachable AI engine; no database or embedding provider required. |
 
-For a server input, select an enabled output destination. For ordinary Editor processing, results can return to the editor workspace. **Keep originals and send to a destination** instead processes a copy in the background and leaves the editor files unchanged. A database delivery or chunk export requires its corresponding destination.
+Select an enabled destination for server inputs and exports. For Editor input, choose **Return results to editor** or **Keep originals and send to a destination**.
 
-A RAG database source is an output destination, not a document input. Create or select it through the destination controls, then choose its saved connection and collection. See [Sources](./Sources.md) and [Integrations](./Integrations.md).
+For a RAG database, choose its saved connection and collection through the destination controls. See [Integrations](./Integrations.md).
 
-When customizing database delivery, keep RAG preparation as the final step and export only JSONL chunks, with the original PDF and Markdown excluded. The guided form sets these options when you choose a connected database. Chunk and Markdown exports cannot be returned directly to the editor; choose a file or database destination.
+If you customize database delivery, keep RAG preparation last and export only JSONL chunks. The guided form sets this automatically.
 
 ## Adjust chunk settings
 
@@ -51,9 +51,9 @@ Start with the defaults, then check retrieval against your documents before chan
 
 ## Check readiness and originals
 
-The form checks the input, schedule, destination, chunk settings, and AI capabilities before saving. **Open AI settings** takes you to the relevant configuration; **Check again** refreshes readiness after a change. Chunk preparation still needs the AI engine when indexing is disabled. To run without that engine, turn off **Prepare for knowledge search** and use OCR alone.
+Follow any setup messages before saving. Use **Open AI settings** to configure the engine and **Check again** to refresh its status. To run OCR without the engine, turn off **Prepare for knowledge search**.
 
-For folder, S3, and network inputs, review the source's processing mode. **Delete the file** removes originals after successful delivery; tracked mode retains originals and processes changed versions. Choose a separate output location when originals must remain unchanged.
+Choose what happens to originals under [Sources → After processing](./Sources.md#decide-what-happens-to-originals).
 
 Folder-processing setup uses the selected folder as its input. When delivering from a processing folder to a RAG database, originals are retained. See [Processing folders](./Processing-Folders.md).
 

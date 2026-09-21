@@ -8,43 +8,40 @@ tags: [AI, Documents, Retrieval, Embeddings, pgvector, Self-host]
 
 # Documents and Retrieval
 
-Stirling PDF keeps a searchable copy of each document the AI is asked about. Requires the AI engine running and login enabled; with login disabled documents are not stored and questions about them cannot be answered.
+The AI engine stores searchable document content so the assistant can answer questions about your PDFs. Enable login and configure an [embedding provider](./Model-Providers.md) before using document questions.
 
 ## Choosing a store
 
-| Store | Backend value | Pick it when | Requires |
-|---|---|---|---|
-| Built-in file storage (default) | `sqlite` | One engine instance | Nothing |
-| PostgreSQL | `pgvector` | Two or more engine instances must share one store, or you want managed, backed-up infrastructure | pgvector extension on the server, the database already created, a role allowed to run `CREATE EXTENSION IF NOT EXISTS vector`, and a DSN host reachable from the engine container |
+| Store | Setting | Use for |
+|---|---|---|
+| Built-in storage | `sqlite` (default) | One engine instance |
+| PostgreSQL with pgvector | `pgvector` | Multiple engine instances sharing a document store |
 
-- Choose before first start. Changing the store needs a restart and does not carry existing documents across; they are added back on demand.
-- Mount a volume at `/app/engine/data` in both modes - saved AI settings live there - and allow 30 seconds for the engine to stop (`stop_grace_period: 30s`).
+For PostgreSQL, create a database with the pgvector extension and give the engine account permission to use it. The database host must be reachable from the engine.
 
 ## Settings
 
+Set these environment variables on the engine:
+
 | Variable | Default | Purpose |
 |---|---|---|
-| `STIRLING_DOCUMENTS_BACKEND` | `sqlite` | `sqlite` or `pgvector`; any other value stops the engine starting. The built-in store file is set by `STIRLING_DOCUMENTS_SQLITE_PATH`, default `data/rag.db`, resolving to `/app/engine/data/rag.db`. |
-| `STIRLING_DOCUMENTS_PGVECTOR_DSN` | empty | `postgresql://user:password@host:5432/dbname`. Required when the backend is `pgvector`. |
-| `STIRLING_RAG_EMBEDDING_MODEL` | `voyageai:voyage-4` | `provider:model` used to make text searchable. The provider's own key applies on the engine, for example `VOYAGE_API_KEY`. **No re-index path**: after changing it, delete the stored documents and let them be added again, or answers may be irrelevant or fail. |
+| `STIRLING_DOCUMENTS_BACKEND` | `sqlite` | Select `sqlite` or `pgvector`. |
+| `STIRLING_DOCUMENTS_SQLITE_PATH` | `data/rag.db` | Built-in database path; `/app/engine/data/rag.db` in the container. |
+| `STIRLING_DOCUMENTS_PGVECTOR_DSN` | empty | PostgreSQL connection string, required for `pgvector`. |
+| `STIRLING_RAG_EMBEDDING_MODEL` | `voyageai:voyage-4` | Embedding model in `provider:model` format when configured through the engine environment. |
 
-<Tabs groupId="config-methods">
-  <TabItem value="env" label="Environment Variable">
-    ```bash
-    STIRLING_DOCUMENTS_BACKEND=pgvector
-    STIRLING_DOCUMENTS_PGVECTOR_DSN=postgresql://user:password@host:5432/stirling_docs
-    ```
-  </TabItem>
-  <TabItem value="docker-compose" label="Docker Compose">
-    ```yaml
-    environment:
-      STIRLING_DOCUMENTS_BACKEND: "pgvector"
-      STIRLING_DOCUMENTS_PGVECTOR_DSN: "postgresql://user:password@host:5432/stirling_docs"
-    ```
-  </TabItem>
-</Tabs>
+For example:
 
-## Related Documentation
+```yaml
+environment:
+  STIRLING_DOCUMENTS_BACKEND: pgvector
+  STIRLING_DOCUMENTS_PGVECTOR_DSN: postgresql://user:password@postgres:5432/stirling_docs
+```
 
-- **[Self-Hosting the AI Engine](./Self-Hosting-the-AI-Engine.md)** - running the engine container, networking and volumes
-- **[Model Providers](./Model-Providers.md)** - choosing the embedding provider and its API key
+Mount a persistent volume at `/app/engine/data` in either mode; this also holds saved AI settings. Set `stop_grace_period: 30s` so the engine can shut down cleanly.
+
+## Changing storage or embeddings
+
+Restart the engine after changing its storage settings. Switching stores does not migrate existing documents. Re-add documents after changing the embedding model so their stored embeddings match the new model.
+
+Use [Ingestion](../Processor/Ingestion.md) to prepare documents automatically for a knowledge base, connected RAG database, or chunk export.

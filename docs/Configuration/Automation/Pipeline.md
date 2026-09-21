@@ -293,13 +293,13 @@ For the canonical list of operations and the full parameter schema for each, see
 
 See [API Documentation](../../API.md) for authentication and general API usage.
 
-Pipelines can only call endpoints under `/api/v1/general/...`, `/api/v1/misc/...`, `/api/v1/security/...`, `/api/v1/convert/...`, `/api/v1/filter/...`, `/api/v1/integration/...`, `/api/v1/docparse/...`, and `/api/v1/ai/tools/...`. Anything outside those namespaces is rejected with a `SecurityException` before dispatch - this includes `/api/v1/info/...`, `/api/v1/auth/...`, `/api/v1/admin/...`, and `/api/v1/pipeline/handleData` itself (pipelines cannot recursively call themselves). The same allowlist applies to Processor pipeline steps.
+Pipelines support operations under `/api/v1/general/`, `/api/v1/misc/`, `/api/v1/security/`, `/api/v1/convert/`, `/api/v1/filter/`, `/api/v1/integration/`, `/api/v1/docparse/`, and `/api/v1/ai/tools/`. This also applies to Processor pipelines.
 
-The `/api/v1/integration/...` namespace holds the third-party call-out steps - `external-api-call`, `purview-apply-label` and `purview-read-label`. Each of these takes the id of a stored connection rather than a host and credentials, so the connection has to exist before a pipeline can reference it. See [Integrations](../../Processor/Integrations.md) for setting those up.
+For `external-api-call`, `purview-apply-label`, and `purview-read-label`, create an [integration](../../Processor/Integrations.md) first and use its connection ID in the step.
 
 The `/api/v1/docparse/rag-ingest` operation prepares document chunks for knowledge search or export. For source, trigger, and database destination setup, use the Processor's guided [Ingestion](../../Processor/Ingestion.md) template.
 
-The `/api/v1/ai/tools/...` namespace holds the AI-backed tool endpoints, such as `math-auditor-agent` and `pdf-comment-agent`. A step that calls one works only when the AI engine is switched on and that capability's own switch is on: set `aiEngine.enabled` to `true` (it is `false` by default) and leave the matching `aiEngine.features.*` switch at its default of `true`. With either off the step gets `HTTP 503` with the body message `AI feature '<name>' is disabled`. See [AI Overview](../../AI/AI-Overview.md) for turning the engine on and [AI Tools](../../AI/AI-Tools.md) for the per-capability switches.
+AI steps such as `math-auditor-agent` and `pdf-comment-agent` require an enabled [AI engine](../../AI/AI-Overview.md) and the corresponding [AI tool](../../AI/AI-Tools.md).
 
 :::tip Build it in the UI, export it as JSON
 The fastest way to get a correct pipeline JSON for any combination of operations is to build it visually in the **Automate** tool and click **Export for Folder Scanning**. The exported file uses exactly the format the API expects, with the right operation paths and parameters already filled in for you.
@@ -506,7 +506,7 @@ The watched-folder scanner runs every 60 seconds.
 
 **Common reasons:**
 - Operation name used short form (e.g. `compress-pdf`) instead of full path (`/api/v1/misc/compress-pdf`)
-- Operation references an endpoint outside the allowed namespaces (only `general`, `misc`, `security`, `convert`, `filter`, `integration`, `ai/tools` are permitted)
+- Operation references an endpoint outside the allowed namespaces (only `general`, `misc`, `security`, `convert`, `filter`, `integration`, `docparse`, `ai/tools` are permitted)
 - A required parameter was omitted (check the schema for the underlying endpoint in the [Swagger UI / API reference](#operation-and-parameter-reference))
 - The pipeline tries to call `/api/v1/pipeline/handleData` recursively
 

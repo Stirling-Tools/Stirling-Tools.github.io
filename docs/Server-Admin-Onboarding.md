@@ -1002,32 +1002,17 @@ Stirling-PDF offers **Team and Enterprise paid plans** with additional features 
 
 ## Step 11: Optional - Document Automation & AI
 
-Two capabilities sit outside the core deployment. Both are worth reviewing once your server is running, secured and populated with users.
-
 ### 11.1: Stirling Processor
 
-The **Stirling Processor** runs saved sources, policies and pipelines against documents without anyone opening the editor. It is not a separate service: it is a route set inside the same single-page app as the editor, mounted at `/processor` on the same host, port and login.
+Open **Processor** from the app switcher to create document workflows. Administrators and team leaders have access by default. Configure user access and allowed server folders before creating a workflow.
 
-The deployed frontend must include Processor. The build controls are `-PbuildWithPortal=true` and Docker build argument `BUILD_PORTAL`. Check the image or JAR you deploy: a runtime environment variable cannot add missing routes to an already-built frontend. See [Setup and access](./Processor/Setup-and-Access.md).
-
-Two things to decide before your team uses it:
-
-- **Who can reach it.** Access is controlled by `security.portal.defaultAccess` (env `SECURITY_PORTAL_DEFAULTACCESS`), which defaults to `ADMINS_AND_TEAM_LEADS`. Admins always have access; anyone else needs to be a team leader or hold an explicit grant. Set it to `ORG_ALL` to open it to all users, or `EXPLICIT_ONLY` to require a grant for everyone except admins. Note that "team leader" is a team-membership role, not one of the Admin/User account roles from Step 6.
-- **Folder access.** Folder sources and folder outputs are a security boundary. `policies.allowedFolderRoots` ships empty, which disables folder access other than directories Stirling already owns. List absolute directories to permit access within them.
-
-**Learn more:** [Stirling Processor](./Processor/Processor.md), [Sources](./Processor/Sources.md), [Policies](./Processor/Policies.md), [Pipelines](./Processor/Pipelines.md)
+Follow [Setup and access](./Processor/Setup-and-Access.md), then [Create your first pipeline](./Processor/Getting-Started.md).
 
 ### 11.2: AI Features
 
-AI is **off by default** (`aiEngine.enabled: false`). It needs a second service: the Stirling AI engine, a container run alongside the Stirling-PDF server.
+AI is disabled by default. Run the AI engine on an internal network, configure your model providers, and enable AI in Stirling PDF. Set the same shared secret on both services and keep the engine's port private.
 
-The minimum configuration on the Stirling-PDF side is `AIENGINE_ENABLED=true` plus `AIENGINE_URL` pointing at the engine (default `http://localhost:5001`), and `STIRLING_ENGINE_SHARED_SECRET` set to the same value on both processes whenever the engine is not on loopback. Restart the Stirling-PDF server to apply.
-
-:::warning Never publish the engine's port
-The engine serves FastAPI's `/docs`, `/redoc` and `/openapi.json` exempt from the shared-secret check. Keep it on an internal network with no published ports, and never put it behind the public reverse proxy from Step 5.
-:::
-
-**Learn more:** [AI Overview](./AI/AI-Overview.md), [Self-Hosting the AI Engine](./AI/Self-Hosting-the-AI-Engine.md)
+Follow [Self-Hosting the AI Engine](./AI/Self-Hosting-the-AI-Engine.md) for a complete setup, or [AI Overview](./AI/AI-Overview.md) for available features.
 
 ---
 

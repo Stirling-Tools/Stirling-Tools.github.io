@@ -8,32 +8,26 @@ tags: [Modes, Cloud, Self-host, Desktop]
 
 # Modes
 
-Stirling PDF can run on your device, on a server you operate, or in Stirling Cloud. The selected backend determines which tools are available and which processing entitlement applies.
+Stirling PDF can run on your device, on your own server, or in Stirling Cloud.
 
-| Mode | Where processing runs | Configuration and entitlement |
+| Mode | Where documents are processed | Features and usage |
 |---|---|---|
-| **Desktop — Local** | Your device | Uses the tools included in the desktop build. No cloud connection is needed for available local operations. |
-| **Desktop + Stirling Cloud** | Available local operations and the connected cloud backend | Cloud processing uses the signed-in account's entitlement. |
-| **Desktop + self-hosted server** | The configured Stirling PDF server for server operations | Uses that server's features, permissions, and processing allowance. |
-| **Web — Self-hosted** | Your server | Server license and usage configuration apply, including the local allowance on current unlinked builds. |
-| **Stirling Cloud** | Stirling's hosted service | Uses the signed-in account and team entitlement. |
+| **Desktop — Local** | Your device | Tools included in the desktop app; no cloud connection required. |
+| **Desktop + Stirling Cloud** | Locally or in Stirling Cloud, depending on the tool | Cloud processing uses your account's allowance. |
+| **Desktop + self-hosted server** | Your connected server for server operations | Uses the server's features, permissions, and allowance. |
+| **Web — Self-hosted** | Your server | Uses the server's license and processing allowance. |
+| **Stirling Cloud** | Stirling's hosted service | Uses your account and team allowance. |
 
 ## Self-hosted deployments
 
-Run Stirling PDF in Docker, Kubernetes, or as a JAR and access it through a browser or connected desktop client. A Team or Enterprise license controls licensed server features and user capacity. Processing usage is a separate consideration: automation, AI document tools, and direct PDF tool API calls follow the applicable license and processing entitlement.
+Run Stirling PDF in Docker, Kubernetes, or as a JAR, then connect through a browser or the desktop app. Team and Enterprise licenses add features and user capacity; see [Paid Offerings](./Paid-Offerings.md).
 
-Current self-hosted builds enable combined usage accounting by default. Unlinked instances have a local monthly allowance; optional account linking connects the deployment to a Stirling account. Cloud metering has its own switch and does not disable the local allowance when off. See [Stirling Account Link](./Stirling-Account-Link.md) for defaults and license exemptions.
-
-Manual, interactive non-AI PDF tools do not consume processing units. Calling a non-tool information or download endpoint with an API key is also excluded from the tool-request meter.
+Automation, AI document tools, and API processing use the applicable processing allowance. Manual, interactive non-AI tools do not consume processing units. [Stirling Account Link](./Stirling-Account-Link.md) explains the local allowance and account linking.
 
 ## Automation and AI
 
-The [Processor](./Processor/Processor.md) provides sources, pipelines, policy templates, and integrations in builds that include it. Start with [Setup and access](./Processor/Setup-and-Access.md) before enabling unattended processing.
+Use [Processor](./Processor/Processor.md) to connect sources and run document workflows. Start with [Setup and access](./Processor/Setup-and-Access.md).
 
-The [AI engine](./AI/AI-Overview.md) runs alongside a self-hosted server. It calls the configured model providers; it does not bundle a model. The defaults use hosted providers. Configure both language models and embeddings locally if document content must stay within your infrastructure, and review external integrations separately.
+Self-hosted AI requires a separate [AI engine](./AI/AI-Overview.md) and configured model providers. Choose hosted providers or [local models](./AI/Model-Providers.md#local-models).
 
-For deployments spread across nodes, see [Clustering](./Configuration/Operations/Clustering.md).
-
-## Plans and usage
-
-Open **Settings → Usage & Billing** for the active entitlement, allowance, and usage. See [Paid Offerings](./Paid-Offerings.md) for Team and Enterprise server licensing and [Stirling pricing](https://www.stirling.com/pricing) for the available offerings.
+Open **Settings → Usage & Billing** to view your plan and usage.

@@ -20,7 +20,7 @@ A folder [source](../../Processor/Sources.md) in a [pipeline](../../Processor/Pi
 :::
 
 :::danger Input files are consumed
-On a successful run the input files are deleted from the job folder. Only the output written to the finished folder survives, so never point a watched folder at the only copy of your documents.
+Successful runs delete input files from the job folder. Keep a separate copy of originals you need to retain.
 :::
 
 ## Setting Up Watched Folders
@@ -47,8 +47,8 @@ On a successful run the input files are deleted from the job folder. Only the ou
 
 ## Error Handling
 
-- If the pipeline reports errors, the files are moved into an `error` subdirectory of the job folder. Nothing is retried automatically - fix the cause, then move the files back up a level yourself.
-- If processing fails unexpectedly, files are left in the job folder's `processing` subdirectory. They are not retried - move them back up to the job folder root yourself to reprocess.
+- If the pipeline reports errors, the files are moved into an `error` subdirectory of the job folder. Fix the cause, then move the files back to the job folder to retry.
+- If processing fails unexpectedly, files are left in the job folder's `processing` subdirectory. Move them back to the job folder to retry.
 
 ## Configuration Reference
 
@@ -69,6 +69,6 @@ A watched folder that equals the finished folder, or sits inside it, logs a `CRI
 
 ## Related Documentation
 
-- **[Pipeline Automation (Automate)](../Automation/Pipeline.md)** - building the workflow and exporting the JSON this page consumes
+- **[Pipeline Automation (Automate)](../Automation/Pipeline.md)** - build a workflow and export its configuration
 - **[Sources](../../Processor/Sources.md)** - the Processor's saved folder source
 - **[Pipelines](../../Processor/Pipelines.md)** - configure a Folder watch trigger for a saved source

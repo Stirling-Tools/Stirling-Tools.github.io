@@ -8,42 +8,32 @@ tags: [AI, Self-host, Tools, Configuration]
 
 # AI Tools
 
-Every capability needs `aiEngine.enabled: true` and a reachable AI engine. All feature switches default to `true` and changes require a restart.
+AI tools require a running [AI engine](./Self-Hosting-the-AI-Engine.md) and `aiEngine.enabled: true`.
 
 ## Capabilities
 
-| Capability | What it does and where | Switch under `aiEngine.features` | Environment variable |
-|---|---|---|---|
-| Chat assistant | Answers questions about attached PDFs and plans and runs edits and conversions. Floating button, bottom-right of the workbench | `chat` and `documentQuestions` | `AIENGINE_FEATURES_CHAT`, `AIENGINE_FEATURES_DOCUMENTQUESTIONS` |
-| Maths and figure auditing | Checks arithmetic, table totals and cross-page figures, then reports discrepancies. Ask the assistant. Tolerance defaults to `0.01` | `mathAuditor` | `AIENGINE_FEATURES_MATHAUDITOR` |
-| Review comments | Returns your PDF with sticky-note comments applied. Ask the assistant; the instruction is capped at 4000 characters | `pdfComment` | `AIENGINE_FEATURES_PDFCOMMENT` |
-| Document creation | Produces a new PDF from a description, with no input file. Ask the assistant | `createPdf` | `AIENGINE_FEATURES_CREATEPDF` |
-| Document classification | Labels uploaded files with up to 5 labels, written to metadata key `StirlingPDFClassification`. Runs automatically on upload; labels appear on the file card | `classify` | `AIENGINE_FEATURES_CLASSIFY` |
+| Capability | Where to use it | Setting under `aiEngine.features` |
+|---|---|---|
+| Chat and document questions | Open the assistant in the workbench to ask about attached PDFs or request edits. | `chat`, `documentQuestions` |
+| Maths auditing | Ask the assistant to check calculations and figures. | `mathAuditor` |
+| Review comments | Ask the assistant to add comments to a PDF. | `pdfComment` |
+| Document creation | Ask the assistant to create a PDF from a description. | `createPdf` |
+| Classification | Label uploaded documents or use the Processor's Classification template. | `classify` |
 
-- Document creation needs WeasyPrint on the Stirling PDF server; set `system.customPaths.operations.weasyprint` if it is not at `/opt/venv/bin/weasyprint`.
-- Conversation stops only when both `chat` and `documentQuestions` are `false`.
-- Feature availability is checked by the interface and server. A disabled server capability can reject requests even if an older client still displays its control.
-- Use `classify: false` to disable AI classification. Pipelines that require a server Classify step need that capability available. Manage the Classification template in [Processor → Pipelines](../Processor/Policies.md); use property-based [routing](../Processor/Routing.md) when AI is unnecessary.
+Document creation requires WeasyPrint on the PDF server. If installed outside `/opt/venv/bin/weasyprint`, set `system.customPaths.operations.weasyprint` to its location.
 
-## Turning a capability off
+## Disable a capability
 
-<Tabs groupId="config-methods">
-  <TabItem value="settings" label="Settings File">
-    ```yaml
-    aiEngine:
-      features:
-        createPdf: false
-    ```
-  </TabItem>
-  <TabItem value="env" label="Environment Variable">
-    ```bash
-    AIENGINE_FEATURES_CREATEPDF=false
-    ```
-  </TabItem>
-</Tabs>
+All feature switches default to `true`. Set a switch to `false` and restart Stirling PDF to disable it. For example:
 
-## Related Documentation
+```yaml
+aiEngine:
+  features:
+    createPdf: false
+```
 
-- **[AI Overview](./AI-Overview.md)** - what the AI engine is and how to turn it on
-- **[Self-Hosting the AI Engine](./Self-Hosting-the-AI-Engine.md)** - running the engine alongside Stirling PDF
-- **[AI Settings Reference](./AI-Settings-Reference.md)** - every `aiEngine` key and its default
+The environment equivalent is `AIENGINE_FEATURES_CREATEPDF=false`. To disable conversation entirely, set both `chat` and `documentQuestions` to `false`.
+
+Server-side classification pipelines require `classify` to remain enabled. Use [property-based routing](../Processor/Routing.md) for workflows without AI classification.
+
+See [AI Settings Reference](./AI-Settings-Reference.md) for the complete settings list and [MCP Server](../Configuration/Automation/MCP-Server.md#ai-capabilities) to control AI tools exposed over MCP.

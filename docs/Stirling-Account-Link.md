@@ -2,42 +2,42 @@
 sidebar_position: 8.5
 id: Stirling Account Link
 title: Stirling Account Link
-description: Connect a self-hosted deployment to a Stirling account and understand local and cloud usage accounting.
+description: Link your deployment to a Stirling account and manage processing allowances.
 tags: [Account Link, Billing, Self-host, Processor]
 ---
 
 # Stirling Account Link
 
-Account linking connects a self-hosted deployment to a Stirling account's processing entitlement. Open **Settings → Account link** (`/settings/account-link`) as an administrator and follow the connection flow using an account that leads the target team.
+Connect a self-hosted deployment to a Stirling account to use its processing allowance. Open **Settings → Account link** as an administrator and sign in with an account that leads the target team.
 
-Linking is optional. Current builds also maintain a local monthly allowance while unlinked; leaving the server unlinked does not make automation unlimited.
+Without linking, your server has a monthly allowance of 1,000 document units. Check **Settings → Usage & Billing** for your allowance, usage, and spend cap.
 
-## Which operations count
+## What counts toward usage
 
-| Work | Current accounting behavior |
+| Work | Usage category |
 |---|---|
-| Pipeline, workflow, and policy processing | Automation usage; grouped document runs avoid counting the same input as a separate document for every ordinary step. |
-| AI document tools | AI usage. Assistant reasoning and health requests are not themselves charged document-tool operations; dispatched processing can count as automation. |
-| API-key calls to PDF tool endpoints | API usage. Non-tool information, configuration, and download requests are excluded. |
-| Manual, interactive non-AI PDF tools | Excluded from processing usage. |
+| Pipelines, workflows, and policies | Automation |
+| AI document tools | AI |
+| Direct PDF tool calls using an API key | API |
+| Manual, interactive non-AI PDF tools | No processing units |
 
-Usage is measured in document units, taking the input's page count and size into account. Do not interpret one HTTP request as one unit. Successful operations with non-empty document inputs are recorded; failures are not accrued by the request meter.
+Document units depend on the input's page count and size. Information, configuration, and download requests do not consume units.
 
-A self-hosted Team license covers direct PDF tool API calls, while Processor automation and AI use their applicable processing entitlement. Enterprise processing stays in the local usage ledger and is not converted into cloud pay-as-you-go spend. See [Paid Offerings](./Paid-Offerings.md) for licensing and use **Usage & Billing** for your deployment's current entitlement.
+A self-hosted Team license covers direct PDF tool API calls. Processor automation and AI use their applicable processing allowance. Enterprise usage is recorded locally without cloud pay-as-you-go charges. See [Paid Offerings](./Paid-Offerings.md) for licensing.
 
-## Configuration defaults
+## Configuration
 
-These settings belong to the `stirling.billing.account-link` block:
+Add these settings under `stirling.billing.account-link` in `settings.yml`:
 
-| Setting | Default | Meaning |
+| Setting | Default | Purpose |
 |---|---|---|
-| `enabled` | `true` | Enables combined usage accounting, including the local free allowance. |
-| `freeTierUnits` | `1000` | Monthly document units while unlinked. A value of `0` requires another applicable entitlement for metered work. |
-| `metering.enabled` | `false` | Enables the cloud usage ledger and synchronization. This does **not** turn off local free-tier accounting. |
-| `metering.syncIntervalHours` | `24` | Cloud usage synchronization interval. |
-| `metering.graceDays` | `3` | Offline grace period for cloud-backed entitlement. |
+| `enabled` | `true` | Enable usage accounting and allowance limits. |
+| `freeTierUnits` | `1000` | Monthly document units while unlinked. |
+| `metering.enabled` | `false` | Synchronize cloud usage. Local usage is still recorded when this is off. |
+| `metering.syncIntervalHours` | `24` | Cloud synchronization interval. |
+| `metering.graceDays` | `3` | Offline grace period for cloud-backed allowance. |
 
-For a linked deployment using cloud metering:
+To enable cloud metering for a linked deployment:
 
 ```yaml
 stirling:
@@ -48,22 +48,12 @@ stirling:
         enabled: true
 ```
 
-The environment equivalents are `STIRLING_BILLING_ACCOUNTLINK_ENABLED` and `STIRLING_BILLING_ACCOUNTLINK_METERING_ENABLED`. Restart after changing server configuration. Setting the master `enabled` switch to `false` disables this combined gate and accounting, including its local allowance; it does not supply missing licensed features.
+The environment equivalents are `STIRLING_BILLING_ACCOUNTLINK_ENABLED` and `STIRLING_BILLING_ACCOUNTLINK_METERING_ENABLED`. Restart after changing server configuration.
 
 ## When processing stops
 
-Metered requests can return HTTP **402** with a reason such as `FREE_TIER_EXHAUSTED`, `OVER_LIMIT`, `REVOKED`, or `GRACE_EXPIRED`. Check the reason, connection state, remaining allowance, and any spend cap under Settings. Restore the cloud connection if the offline grace period has expired.
+HTTP **402** indicates an exhausted allowance, a spend limit, a revoked connection, or an expired offline grace period. Check **Usage & Billing** and your account connection. Restore connectivity if the grace period has expired.
 
-An unlinked instance can process within its local allowance. It is not blocked solely because it has not been linked. Manual non-AI tool use remains outside this processing gate.
+## Usage data
 
-## What is synchronized
-
-Usage synchronization sends the billing period, a sequence number, and cumulative totals by category (`api`, `ai`, `automation`). This usage payload does not include document bytes, filenames, hashes, or individual operation records. The connection flow separately uses account authentication and deployment registration data.
-
-This describes the account-link usage channel. AI providers and external integration steps have their own data flows; see [AI Security](./AI/AI-Security.md) and [Integrations](./Processor/Integrations.md).
-
-## Related documentation
-
-- [Processor](./Processor/Processor.md)
-- [Modes](./Modes-and-Licensing.md)
-- [API documentation](./API.md)
+Cloud synchronization sends billing-period totals by category. It excludes document content, filenames, and individual operation records. For document data sent to other services, see [AI Security](./AI/AI-Security.md) and [Integrations](./Processor/Integrations.md).

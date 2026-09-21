@@ -207,15 +207,15 @@ For advanced features and specific use cases, see these detailed guides:
 - Multi-step operations
 
 **[Stirling Processor](../Processor/Processor.md)**
-- Saved sources, policies and pipelines that process documents without anyone opening the editor
+- Connect sources and automate document processing
 - Setup: [Sources](../Processor/Sources.md), [Policies](../Processor/Policies.md), [Pipelines](../Processor/Pipelines.md), [Integrations](../Processor/Integrations.md)
 - Records and access: [Documents](../Processor/Documents.md), [API Keys and Audit](../Processor/API-Keys-and-Audit.md)
-- The `policies` settings block, including folder-root allow-listing and network guards, is documented in [Policies](../Processor/Policies.md)
+- Folder permissions and network access: [Setup and access](../Processor/Setup-and-Access.md)
 
 **[AI Overview](../AI/AI-Overview.md)**
-- What the AI engine is, how the server talks to it, and how to turn it on
+- Available AI features and setup
 - Running it: [Self-Hosting the AI Engine](../AI/Self-Hosting-the-AI-Engine.md), [Model Providers](../AI/Model-Providers.md), [Documents and Retrieval](../AI/Documents-and-RAG.md)
-- Every `aiEngine` key and its restart behaviour: [AI Settings Reference](../AI/AI-Settings-Reference.md)
+- Configuration options: [AI Settings Reference](../AI/AI-Settings-Reference.md)
 - Securing and scoping it: [AI Security](../AI/AI-Security.md), [AI Tools](../AI/AI-Tools.md)
 
 ---
@@ -290,7 +290,7 @@ For advanced features and specific use cases, see these detailed guides:
 
 **[Stirling Account Link](../Stirling-Account-Link.md)**
 - Link a self-hosted deployment to a Stirling account for metered work
-- The `stirling.billing.account-link.*` keys, which are not present in the shipped `settings.yml` and have to be added by hand
+- Processing allowances, usage, and billing configuration
 
 **[Extra Settings](./Customisation/Extra-Settings.md)**
 - Logging configuration

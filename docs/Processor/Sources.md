@@ -26,27 +26,25 @@ Select **Connect source**, choose a type, enter its name and settings, then sele
 | **Webhook** | Documents delivered by signed HTTP POST | No |
 | **RAG database** | No; output-only | Prepared document chunks from an Ingestion workflow |
 
-Connectors marked **Coming soon** are not available for source ingestion. A vendor integration that can send files out does not necessarily provide an input connector for that vendor.
-
 ## Decide what happens to originals
 
 Folder, S3, and network inputs expose **After processing** under **Advanced**.
 
 | Mode | What happens |
 |---|---|
-| **Delete the file** (`consume`, default) | Tracks each version and removes the original after successful processing and delivery by its consumers. Failed files remain for investigation. |
+| **Delete the file** (`consume`, default) | Removes the original after all linked workflows successfully process and deliver it. Failed files are retained. |
 | **Keep it, and only process it again if it changes** (`track`) | Leaves the original in place and processes a version once. Changed files can be picked up again. |
 | **Keep it, and process it again every scan** (`snapshot`) | Keeps originals and reads them again on every run. Use when repeated processing is intentional. |
 
-Choose tracked mode for an archive you want to preserve. Use **Delete the file** for a drop folder only when removing successfully delivered originals is intended. Snapshot mode can repeat output and usage on every schedule.
+Choose tracked mode to preserve originals. Snapshot mode repeats processing and usage on every run.
 
-In tracked modes, a failed unchanged file is not automatically retried forever. Fix the cause and use the workflow's history/reset controls or supply a changed/new version. See [Troubleshooting](./Troubleshooting.md).
+To retry a failed tracked file, fix the cause and reset its processing history or submit a changed version. See [Troubleshooting](./Troubleshooting.md).
 
 ## Folder
 
 Enter an absolute path visible to the server. Configure [allowed folder roots](./Setup-and-Access.md#allow-server-folders) first. **Folder depth** selects the top level or subfolders. **Change detection** controls how changed versions are recognized.
 
-Hidden entries, symlinked directories, and files still being written are skipped. A missing input directory fails rather than counting as an empty inbox. Put outputs outside the input tree.
+Hidden entries, symlinked directories, and files still being written are skipped. Put outputs outside the input tree.
 
 ## S3
 
@@ -76,7 +74,7 @@ An accepted delivery returns **202**. That acknowledges receipt, not completion 
 
 ## RAG database destinations
 
-Select a saved database connection and configure its collection, plus any namespace or text-field options required by that provider. Use this source as the destination for **Connected RAG database** in [Ingestion](./Ingestion.md). It accepts prepared chunks rather than acting as a watched folder or providing document input.
+Select a saved database connection and configure its collection, plus any namespace or text-field options required by that provider. Use this source as the destination for **Connected RAG database** in [Ingestion](./Ingestion.md).
 
 ## Status and removal
 

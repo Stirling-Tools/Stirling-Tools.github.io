@@ -8,53 +8,23 @@ tags: [AI, Self-host, Getting Started]
 
 # AI Overview
 
-AI features come from the Stirling AI engine, a separate service you run alongside the self-hosted Stirling PDF server. AI is off by default.
+The Stirling AI engine adds document questions, editing assistance, and classification to Stirling PDF. Self-hosted installations run it as a separate service alongside the PDF server. AI is disabled by default.
 
-## What AI adds
+## Capabilities
 
-- **Chat assistant** - answers questions about attached PDFs, and plans and runs edits and conversions. A plan can only use the operations your deployment has enabled.
-- **Maths and figure auditing** - checks arithmetic, table totals and cross-page figures, then reports discrepancies.
-- **Review comments** - returns your PDF with sticky-note comments applied.
-- **Document creation** - produces a new PDF from a description, with no input file.
-- **Document classification** - labels uploaded files automatically, up to 5 labels each. The Classification policy in the Processor uses this.
+- **Chat:** ask questions about attached PDFs and request edits or conversions.
+- **Maths auditing:** check arithmetic, table totals, and figures across pages.
+- **Review comments:** add comments to a PDF from written instructions.
+- **Document creation:** generate a PDF from a description.
+- **Classification:** label documents for tagging and [routing](../Processor/Routing.md).
 
-Each capability has its own switch. See [AI Tools](./AI-Tools.md).
+Administrators can enable individual capabilities under [AI Tools](./AI-Tools.md).
 
-## Turning AI on
+## Set up AI
 
-- Run the `stirling-engine` container on port **5001**, reachable from the Stirling PDF server. Use the same version tag as the server image.
-- Configure both a language model and an embedding model. The hosted defaults need an **LLM key** (Anthropic) and an **embedding key** (VoyageAI). Local providers can run without hosted API keys; see [Model Providers](./Model-Providers.md). Document search needs a working embedding provider.
-- Set `STIRLING_ENGINE_SHARED_SECRET` to the same long random value on the engine and the Stirling PDF server, then restart the server after changing `aiEngine.enabled` (`AIENGINE_ENABLED`) or `aiEngine.url` (`AIENGINE_URL`). Login mode (`security.enableLogin`, on by default) and an admin account are required for the AI admin pages.
+1. [Run the AI engine](./Self-Hosting-the-AI-Engine.md) and connect it to Stirling PDF.
+2. Choose a language model and an embedding provider in [Model Providers](./Model-Providers.md). Embeddings make documents searchable.
+3. Set the same shared secret on both services and enable `aiEngine.enabled`.
+4. Restart Stirling PDF, then open **Admin Settings → AI** to check the connection.
 
-<Tabs groupId="config-methods">
-  <TabItem value="settings" label="Settings File">
-    ```yaml
-    aiEngine:
-      enabled: true
-      url: http://stirling-pdf-engine:5001
-    ```
-  </TabItem>
-  <TabItem value="env" label="Environment Variable">
-    ```bash
-    AIENGINE_ENABLED=true
-    AIENGINE_URL=http://stirling-pdf-engine:5001
-    ```
-  </TabItem>
-  <TabItem value="docker-compose" label="Docker Compose">
-    ```yaml
-    services:
-      stirling-pdf:
-        environment:
-          AIENGINE_ENABLED: "true"
-          AIENGINE_URL: "http://stirling-pdf-engine:5001"
-    ```
-  </TabItem>
-</Tabs>
-
-## Related Documentation
-
-- **[Self-Hosting the AI Engine](./Self-Hosting-the-AI-Engine.md)** - running the engine next to Stirling PDF
-- **[Model Providers](./Model-Providers.md)** - LLM and embedding provider options
-- **[AI Settings Reference](./AI-Settings-Reference.md)** - every AI setting and its default
-- **[AI Engine Security](./AI-Security.md)** - shared secret and network exposure
-- **[AI Tools](./AI-Tools.md)** - the user-facing capabilities and their switches
+The default providers are Anthropic for language models and VoyageAI for embeddings. You can also use local providers. See [AI Security](./AI-Security.md) for where document content is sent and [AI Settings Reference](./AI-Settings-Reference.md) for configuration options.

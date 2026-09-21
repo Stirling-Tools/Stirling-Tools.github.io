@@ -26,8 +26,8 @@ Stirling PDF provides tools for signing, converting, merging, editing, OCR and r
 - **Processing location:** Self-hosted tools process files on your instance. Desktop tools use the local backend where supported; tools routed to Stirling Cloud or a connected server send their inputs there.
 - **Configure In-App:** Change settings from the UI, or drive everything with environment variables and `settings.yml`.
 - **Automation & Integration:** REST API and an MCP server for AI assistants.
-- **Stirling Processor:** Saved sources, policies, and pipelines that process documents without anyone opening the editor.
-- **AI Engine:** An optional companion service that adds AI capabilities to the app once you run it and enable it.
+- **Stirling Processor:** Connect sources and automate document processing.
+- **AI Engine:** Ask questions about documents, create PDFs, and classify files.
 - **Enterprise Features:** SSO (OAuth2 and SAML), user management, permission controls, and audit logging.
 - **Self-Hosted:** Community-driven with frequent updates and GitHub support.
 - **Multi-Language Support:** Available in 40+ languages with active translations.
@@ -107,7 +107,7 @@ Complete walkthrough: installation - configuration - security - monitoring
 Sources, policies, and pipelines that run document work on a schedule, on a folder drop, or on demand
 
 **[AI Overview](./AI/AI-Overview.md)**
-The AI engine that runs alongside the server, what it adds, and how to turn it on
+AI features, model providers, and self-hosted setup
 
 **[Paid Offerings (Team & Enterprise)](./Paid-Offerings.md)**
 External databases, Google Drive integration, SSO, advanced monitoring, and priority support

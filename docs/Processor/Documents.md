@@ -1,48 +1,28 @@
 ---
 sidebar_position: 8
 title: Documents
-description: Inspect recent processing activity, export a CSV, and understand the limits of the document feed.
+description: View recent processing activity, inspect operations, and export a CSV.
 id: Documents
 ---
 
 # Documents
 
-Open **Processor → Documents** (`/processor/documents`) for the recent processing record. It includes editor, API, and automation work, with a row for each file in a recorded operation.
+Open **Processor → Documents** to view recent editor, API, and automation activity. Each row shows a file, the operation performed, the user, its status, and the time.
 
 ![Documents table with filters and CSV export](/img/processor/documents.png)
 
-## Read the list
+## Find and inspect activity
 
-| Column | Meaning |
-|---|---|
-| **Document** | Recorded filename. |
-| **Labels** | Classification or sensitivity labels when supplied; the current audit-derived feed does not infer them. |
-| **Product** | Editor, API, or Automation. Use the User column for accountable identity. |
-| **Pipeline / Action** | Recorded operation; editor activity may be labelled Editor. |
-| **User** | Account that ran the operation. Unattended work can use a backend service identity. |
-| **Status** | Outcome supplied by the processing record. |
-| **Time** | Relative age of the event. |
+Search by filename or ID and use the status filters to narrow the list. Click a row to open its **Overview** and **Audit** details.
 
-The current server feed returns up to **40** file-operation rows from recent audit events. This is an activity window, not a complete file inventory. A file processed by multiple operations can appear more than once.
+The page displays up to **40** recent file-operation records. A file processed several times can appear more than once. Reload the page to refresh the list.
 
-Search matches the filename and row ID. Filter pills act on the loaded rows; an empty result does not mean the file has never been processed. The current server feed supplies **Processed** and **Error** outcomes. The UI also has Flagged and In review filters, but they should not be interpreted as an approval workflow for these audit-derived rows.
-
-## Inspect or export
-
-Click a row or its actions button to open the detail drawer. **Overview** shows the recorded metadata; **Audit** shows the operation event. The current feed does not provide file bytes, a download, or extracted field values. The **Extractions** tab does not turn this record into a document extraction service.
-
-**Export CSV** downloads `documents.csv` containing every loaded row, including rows hidden by the current search or filter. It is not a full-history export.
-
-There is no paging through older records on this screen and no dedicated periodic polling. Reload or revisit the page to refresh it, allowing for the server's short cache and event persistence delay.
+**Export CSV** downloads all loaded rows, including any hidden by the current filters. For failed runs and error details, open [Review](./Review.md).
 
 ## Access and recording
 
-Documents is available to all users with Processor access, without an Enterprise license. Self-hosted Processor users see the server-wide feed; Cloud users are scoped to their team. Keep that visibility in mind when granting Processor access.
+All users with Processor access can view Documents. Self-hosted users see server-wide activity; Stirling Cloud users see their team's activity.
 
-Recording must be enabled at an audit level that includes processing. See [Setup and access](./Setup-and-Access.md#check-the-processing-record). Non-Enterprise audit retention is capped at **30 days**; Enterprise uses its configured retention. The 40-row display limit still applies.
+Enable processing-event recording as described in [Setup and access](./Setup-and-Access.md#check-the-processing-record). Enterprise is not required for this page. Non-Enterprise event retention is limited to **30 days**; Enterprise uses its configured retention.
 
-Full audit queries and administration remain separate Enterprise features under [Administration](./API-Keys-and-Audit.md).
-
-## Investigate a failed run
-
-Use [Review](./Review.md) for actionable failure records, error details, and the actions offered by the server. Documents is the recent activity feed; changing a Review issue's status does not rewrite the processing history.
+For full audit searches and exports, see [Audit Logging](../Configuration/Security/Audit%20Logging.md).

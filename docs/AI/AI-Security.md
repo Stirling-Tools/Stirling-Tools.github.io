@@ -5,58 +5,32 @@ title: AI Security
 description: Security settings for the self-hosted AI engine and what data leaves your network
 tags: [AI, Security, Self-host, Hardening]
 ---
+
 # AI Security
 
-The AI engine listens on all interfaces on port `5001` and has no login of its own, so keep the port off untrusted networks.
+Keep the AI engine on a private network. Do not publish port **5001** or expose it through your public reverse proxy.
 
-## Settings
+## Authenticate the connection
 
-| Key | Env | Default | Purpose |
-|---|---|---|---|
-| `STIRLING_ENGINE_SHARED_SECRET` | `STIRLING_ENGINE_SHARED_SECRET` | empty | Secret sent as `X-Engine-Auth`; set the same value on the engine and on Stirling PDF. Required, not optional, whenever the engine is not on the same host as Stirling PDF: without it, configuration pushes from another host or through a proxy are refused with `403` and admin AI settings never reach the engine. |
-| `STIRLING_ENGINE_REQUIRE_AUTH` | `STIRLING_ENGINE_REQUIRE_AUTH` | `false` | Fail closed: when `true` and no secret is set, non-public requests are refused with `503` instead of being allowed through. |
-| `STIRLING_REQUIRE_USER_ID` | `STIRLING_REQUIRE_USER_ID` | `false` | Reject any request with no `X-User-Id` header with `401`. Set `true` only where login is enabled; with login off no `X-User-Id` is sent and every AI request fails with `401`. |
-| `STIRLING_ALLOW_CONFIG_PUSH` | `STIRLING_ALLOW_CONFIG_PUSH` | `true` | Accept configuration pushed from Stirling PDF. `false` refuses pushes with `403`. |
-| `aiEngine.pushConfigToEngine` | `AIENGINE_PUSHCONFIGTOENGINE` | `true` | Push AI settings from Stirling PDF to the engine. The push carries provider API keys in cleartext, so the link to `aiEngine.url` (`AIENGINE_URL`, default `http://localhost:5001`) must be a private network or TLS. |
-| `aiEngine.enabled` | `AIENGINE_ENABLED` | `false` | Master switch. When `false`, AI requests fail with `503`. |
+Set `STIRLING_ENGINE_SHARED_SECRET` to the same long, random value on Stirling PDF and the engine. On the engine, also set `STIRLING_ENGINE_REQUIRE_AUTH=true`.
 
-All `STIRLING_*` keys above are environment variables only, with no settings file form, and are read at engine start. Restart the engine after changing them, and restart Stirling PDF too after changing the shared secret.
+Use a private network or TLS between the services: the connection carries AI configuration, including provider credentials. Restart both services after changing the shared secret, then re-save the AI settings.
 
-## What leaves your network
+## Engine settings
 
-- Hosted model providers receive document-derived content used by the selected capability. Review the provider and operation rather than assuming self-hosting the Stirling server keeps all content local. External pipeline integrations can also receive document files.
-- LLM: your message, the extracted page text of the files in scope, the conversation history, the file id and display name. Capped per request by `aiEngine.limits.maxPages` (`AIENGINE_LIMITS_MAXPAGES`, default `200`) and `aiEngine.limits.maxCharacters` (`AIENGINE_LIMITS_MAXCHARACTERS`, default `200000`).
-- Embedding model: the same page text in chunks for every stored document, plus every search query. Destinations `aiEngine.models.baseUrl` and `aiEngine.rag.embeddingBaseUrl` are unvalidated outbound addresses, so restrict who can edit AI settings.
+Set these environment variables on the engine; the shared secret also belongs on Stirling PDF.
 
-## Recommended configuration
+| Variable | Default | Purpose |
+|---|---|---|
+| `STIRLING_ENGINE_SHARED_SECRET` | empty | Shared authentication secret. |
+| `STIRLING_ENGINE_REQUIRE_AUTH` | `false` | Refuse unauthenticated requests if the shared secret is missing. |
+| `STIRLING_REQUIRE_USER_ID` | `false` | Require an identified user. Use only with login enabled; see [MCP Server](../Configuration/Automation/MCP-Server.md#ai-capabilities) for MCP compatibility. |
+| `STIRLING_ALLOW_CONFIG_PUSH` | `true` | Accept AI settings saved in Stirling PDF. |
 
-The `STIRLING_*` values are set on the engine and have no `settings.yml` form. `STIRLING_ENGINE_SHARED_SECRET` goes on both containers.
+Restart the engine after changing these variables. Stirling PDF's `aiEngine.pushConfigToEngine` setting must remain enabled to send settings from the admin page.
 
-<Tabs groupId="config-methods">
-  <TabItem value="env" label="Environment Variable">
-    ```bash
-    STIRLING_ENGINE_SHARED_SECRET=<long random string, identical on both sides>
-    STIRLING_ENGINE_REQUIRE_AUTH=true
-    STIRLING_REQUIRE_USER_ID=true  # only where login is enabled
-    ```
-  </TabItem>
-  <TabItem value="docker-compose" label="Docker Compose">
-    ```yaml
-    services:
-      stirling-pdf:
-        environment:
-          STIRLING_ENGINE_SHARED_SECRET: "<long random string>"
-      stirling-pdf-engine:
-        environment:
-          STIRLING_ENGINE_SHARED_SECRET: "<same value>"
-          STIRLING_ENGINE_REQUIRE_AUTH: "true"
-          STIRLING_REQUIRE_USER_ID: "true"
-    ```
-  </TabItem>
-</Tabs>
+## Document content and providers
 
-## Related Documentation
+Language model providers receive prompts, relevant document content, conversation history, and file names. Embedding providers receive document text and search queries.
 
-- **[Self-Hosting the AI Engine](./Self-Hosting-the-AI-Engine.md)** - running the engine, networking and health checks
-- **[Model Providers](./Model-Providers.md)** - LLM and embedding providers, including fully self-hosted models
-- **[AI Settings Reference](./AI-Settings-Reference.md)** - every AI setting and when a restart is needed
+To keep this content within your infrastructure, configure both language models and embeddings with [local providers](./Model-Providers.md#local-models). Restrict access to AI settings and use only trusted provider URLs. [External integrations](../Processor/Integrations.md) have their own document delivery settings.

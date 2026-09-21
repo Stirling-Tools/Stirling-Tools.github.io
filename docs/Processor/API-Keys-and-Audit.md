@@ -7,40 +7,29 @@ id: API Keys and Audit
 
 # Administration
 
-Server administration lives on the shared **Settings** page. It is no longer a collection of Processor sidebar tabs.
+Open **Settings** for users, API keys, audit logs, and billing.
 
-| Task | Current location |
+| Task | Location |
 |---|---|
 | Manage users and teams | `/settings/users` |
-| Create or revoke an API key | `/settings/api-keys` |
+| Create or revoke API keys | `/settings/api-keys` |
 | Review plan and usage | `/settings/billing` |
-| Connect a self-hosted instance to a Stirling account | `/settings/account-link` |
-| Read documentation | `/docs` |
-
-Older `/processor/users`, `/processor/infrastructure`, `/processor/usage`, and `/processor/docs` links redirect to the shared pages. Open the appropriate Settings section directly when looking for audit administration rather than relying on an old Infrastructure tab link.
+| Link a self-hosted instance to a Stirling account | `/settings/account-link` |
 
 ## API keys
 
-Open **Settings → API Keys**, create a named key, and copy its secret when shown. The secret cannot be recovered later. Keys are personal and use their owner's permissions; keep separate named keys for integrations you may need to revoke independently.
+Create a named key under **Settings → API Keys** and copy its secret when shown. Keys use their owner's permissions, and the secret cannot be recovered later.
 
-Send a key as `X-API-KEY: <key>` when calling the REST API. MCP authentication has additional modes described in [MCP Server](../Configuration/Automation/MCP-Server.md).
-
-The key list includes creation and last-use information and usage counters where available. Revocation takes effect immediately. Replace the key in dependent services before revoking it if they need uninterrupted access.
-
-Creating an API key does not automatically grant a pipeline access to another team's sources or files. Usage may be metered according to the deployment's plan and account-link configuration.
+Use a separate key for each integration so you can revoke it independently. Send the key as `X-API-KEY: <key>` in REST requests. See [API documentation](../API.md) or [MCP Server](../Configuration/Automation/MCP-Server.md) for connection details.
 
 ## Audit logs
 
-Full audit administration is an Enterprise feature and requires the appropriate administrator access. Configure recording, retention, and exports in the audit section of Settings. See [Audit Logging](../Configuration/Security/Audit%20Logging.md).
+Enterprise administrators can configure audit recording, retention, and exports in Settings. See [Audit Logging](../Configuration/Security/Audit%20Logging.md).
 
-The [Documents](./Documents.md) processing feed is available without Enterprise and shows a limited window of file operations. It does not provide all the filtering, retention, or export capabilities of full audit administration.
+The [Documents](./Documents.md) page provides a recent processing history without requiring Enterprise.
 
 ## Account and billing
 
-Use **Usage & Billing** to inspect the entitlement and usage applying to your deployment. Self-hosted Team/Enterprise licensing and Processor usage are related settings but are not interchangeable.
+Use **Usage & Billing** to check your plan and remaining processing allowance. Self-hosted instances have a local allowance while unlinked; linking connects the server to a Stirling account's entitlement. See [Stirling Account Link](../Stirling-Account-Link.md).
 
-Current builds can meter an unlinked instance against its local free allowance. Do not assume that self-hosting or leaving an instance unlinked makes every automation operation unmetered. See [Stirling Account Link](../Stirling-Account-Link.md) for the code's defaults and connection behavior.
-
-## Access and team scope
-
-Use [Setup and access](./Setup-and-Access.md) for Processor access defaults and management roles. Grant access deliberately: self-hosted Processor users can see the server-wide Documents feed, while pipeline ownership and Review visibility use their own scopes.
+For Processor permissions and team access, see [Setup and access](./Setup-and-Access.md).
