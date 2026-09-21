@@ -1,60 +1,79 @@
 ---
-sidebar_position: 3
-id: Pipelines
+sidebar_position: 4
 title: Pipelines
-description: Build the sequence of operations the Processor runs on every document it picks up, with stored supporting files, call-outs to other systems, and a chosen delivery location
-tags: [Processor, Pipelines, Automation, Steps, Integrations]
+description: Create reusable document workflows with triggers, tool steps, destinations, and test runs.
+id: Pipelines
 ---
 
 # Pipelines
 
-A pipeline is the ordered list of operations run on every document the Processor picks up. The source says where a document comes from, the destination says where the result goes.
+Open **Processor → Pipelines** (`/processor/pipelines`). This list includes custom pipelines and pipelines enforced as policies. Older `/processor/policies` links redirect here.
 
-## Build a pipeline
+![Pipelines list and template gallery](/img/processor/pipelines.png)
 
-1. Go to `/processor/pipelines` and choose **New pipeline**.
-2. Pick one input source and a trigger: **Manual only**, **Schedule** (any source), **Folder watch** (folder sources) or **Webhook** (webhook sources).
-3. Use **Add tool** to place each step, then fill in its settings. A step marked **Needs setting up** blocks the save.
-4. Choose exactly one destination, folder or S3.
-5. **Test with a file** runs the canvas as it stands against one uploaded PDF, output kept inline. **Create pipeline** saves it live; **Create paused** saves it switched off.
+## Create a workflow
 
-## What a step is
+Choose **New custom pipeline**, or choose a [template](./Policies.md) for a guided setup. The full builder lets you select an input, add and configure operations in order, and choose the output.
 
-- **Operation** - an endpoint path under `/api/v1/` in `general`, `misc`, `security`, `convert`, `filter`, `integration` or `ai/tools`. Nothing else is allowed, and parameters use the endpoint's own names.
-- **Supporting files** - stored files bound to the operation's own file fields. Empty by default.
-- Files flow between steps, values do not. Each step must accept what the one before it produces, and a step that produces a report must be last.
-- An operation taking multiple inputs is called once with every file; every other operation once per file. A filter step that returns nothing drops that file from the run.
+![Pipeline builder with input, operation chain, and settings](/img/processor/pipeline-builder.png)
+
+1. Enter a name that describes the result.
+2. Select one input source. You can create a missing source from the builder.
+3. Choose when it runs, using the controls appropriate to that source.
+4. Add tools and configure each step. Steps can repeat, but each occurrence needs its own settings.
+5. For a storage input, choose one default destination. Editor input returns its results to the workspace.
+6. Test the steps, then use **Create pipeline** or **Create paused**.
+
+Required fields and incompatible steps are called out before saving. A disabled save action means there is still a setup issue to resolve.
+
+## Inputs and triggers
+
+| Input | How it runs |
+|---|---|
+| **Editor** | **Every upload** or **Every export**. The editor participates in the run and receives the output. |
+| **Folder** | Manual, a schedule, or folder watch. |
+| **S3 / SFTP / FTP / SMB** | Manual or a schedule. |
+| **Webhook** | Signed HTTP delivery using a webhook trigger; see [Sources](./Sources.md#webhooks). |
+
+Schedules use an interval in minutes, hours, or days. Due schedules are checked periodically, so the interval is not a promise of execution to the exact second. Folder watch also reconciles missed filesystem events.
+
+An Editor workflow needs the editor to upload/export the file. Use a server folder, scheduled remote source, or webhook for unattended work that must continue with no browser open.
+
+## Choose and order steps
+
+Tools must accept the file type produced by the previous step. Check conversion output before adding a PDF-only tool. Place a terminal report-producing tool last when it does not provide a file for the next operation.
+
+The builder includes supported PDF tools and [integration operations](./Integrations.md). A saved connection supplies credentials, while the step specifies the action to perform. Classification-based routing needs a **Classify** step and available AI classification; property-based routing does not. See [Routing](./Routing.md).
 
 ## Supporting files
 
-- `/api/v1/misc/add-stamp` binds a file to `stampImage`. `/api/v1/security/cert-sign` binds `p12File`, `jksFile`, or `certFile` plus `privateKeyFile`, chosen by the step's `certType`.
-- 50 MB per file, empty files refused, visible only to your own team. Uploaded when you save the pipeline.
-- A stored file wins over a file supplied with the run under the same field, and a file any pipeline still references cannot be deleted.
+Some steps need another file, such as a stamp image or signing certificate. Set that file in the step configuration. It is uploaded as a stored asset when you save, so future runs can reuse it.
 
-## Send the document to another system
+Stored assets are scoped to the team. Empty files and files above 50 MB are refused. A file still referenced by a pipeline cannot be deleted. Do not distribute a signing pipeline to people who should not use its certificate.
 
-| Setting | Default | Purpose |
-|---|---|---|
-| `connectionId` | required | Stored connection holding the base URL and the credentials. |
-| `path` | none | Path appended to that base URL. It, `fields` and `headers` accept `document.*`, `run.*`, `sensitivityLabel.*` and `classification.*` placeholders; an unknown reference is an error. |
-| `bodyMode` | `multipart` | `multipart`, `json` or `binary`. |
-| `responseMode` | `report` | `report` keeps the document; `replace` makes the response the document. |
-| `requireTrue` | none | Dotted path in the JSON response that must be `true`, or the step fails. |
+## Test and inspect output
 
-## Where the output goes
+**Test with a file** runs the unsaved steps against one uploaded file. Test outputs are returned for download instead of being written to the saved destination. Integration steps still make their configured external calls.
 
-- Folder and S3 destinations never overwrite; a collision re-picks `name (n).ext`. With no destination the output is returned inline, as every test run does.
-- S3 Object Lock: set `objectLockMode` (`GOVERNANCE` or `COMPLIANCE`) and `retentionDays` (1 to 36525) together on the S3 connection, or neither. The bucket must already have Object Lock enabled or the write is rejected.
-- `policies.allowPrivateS3Endpoints` (`POLICIES_ALLOWPRIVATES3ENDPOINTS`, default `false`) is needed for an S3 endpoint on a private address, and `policies.allowPrivateApiEndpoints` (`POLICIES_ALLOWPRIVATEAPIENDPOINTS`, default `false`) for an external API one.
+Check the result before enabling a live trigger. Testing one document does not prove that every format or layout in your source will work; include representative files in your checks.
 
-## Compared with the Automate tool
+## Save, pause, and edit
 
-- Automate runs in the editor for the person present and is stored in that one browser. A pipeline runs on the server for the whole team and is started by a trigger.
-- A pipeline takes supporting files and repeats an operation as often as you place it. Automate does neither, and does not check step order.
+Open a row to edit its configuration. Template-compatible workflows can open in the simple setup form; **Customise** opens the full builder. Use **Save changes** for configuration changes.
 
-## Related Documentation
+Pausing stops future automatic runs; it is not a rollback of files already processed. In the full builder, the pause/enable control updates the saved pipeline immediately, independently of pending step edits. Check the saved status before leaving.
 
-- **[Sources](./Sources.md)** - the input and destination records a pipeline binds to
-- **[Policies](./Policies.md)** - triggers, team scope, and the `policies` settings block in full
-- **[Integrations](./Integrations.md)** - the stored API and S3 connections a pipeline calls through
-- **[Pipeline Automation (Automate)](../Configuration/Automation/Pipeline.md)** - the in-editor tool and its operation reference
+## Destinations and routing
+
+Folder and S3 are writable destination types. They avoid overwriting an existing output by choosing a non-conflicting filename. For Editor input, no storage destination is required: results return to the workspace.
+
+With routing enabled, the default destination becomes the fallback. The first matching routing rule chooses a destination for that document. Configure it under [Routing](./Routing.md).
+
+## Pipeline, policy, or Automate?
+
+| Choice | Use it for |
+|---|---|
+| **Processor pipeline** | A saved workflow with an input, steps, and processing configuration shared through the server. |
+| **Enforce as policy** | Require an editor pipeline to participate in the configured upload/export flow. Enforcement is available to managers and does not change the underlying PDF operations. |
+| **Automate tool** | A browser-saved sequence that a person runs against open editor files. See [Automate](../Configuration/Automation/Pipeline.md). |
+| **Processing folder** | Attach processing to a selected file-library folder. See [Processing folders](./Processing-Folders.md). |

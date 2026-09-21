@@ -23,7 +23,7 @@ Each capability has its own switch. See [AI Tools](./AI-Tools.md).
 ## Turning AI on
 
 - Run the `stirling-engine` container on port **5001**, reachable from the Stirling PDF server. Use the same version tag as the server image.
-- Give the engine two API keys: your **LLM key** (Anthropic by default), and your **embedding key**, which indexes documents so they can be searched (VoyageAI by default). Without the embedding key, document uploads and document questions fail.
+- Configure both a language model and an embedding model. The hosted defaults need an **LLM key** (Anthropic) and an **embedding key** (VoyageAI). Local providers can run without hosted API keys; see [Model Providers](./Model-Providers.md). Document search needs a working embedding provider.
 - Set `STIRLING_ENGINE_SHARED_SECRET` to the same long random value on the engine and the Stirling PDF server, then restart the server after changing `aiEngine.enabled` (`AIENGINE_ENABLED`) or `aiEngine.url` (`AIENGINE_URL`). Login mode (`security.enableLogin`, on by default) and an admin account are required for the AI admin pages.
 
 <Tabs groupId="config-methods">

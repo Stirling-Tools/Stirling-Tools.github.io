@@ -20,9 +20,11 @@ Every AI setting lives in the top-level `aiEngine` block of `settings.yml`, or u
 | `aiEngine.pushConfigToEngine` | `AIENGINE_PUSHCONFIGTOENGINE` | `true` | Send model, document and limit settings to the engine. Not editable in the admin UI. |
 | `aiEngine.features.chat`, `aiEngine.features.documentQuestions` | `AIENGINE_FEATURES_CHAT`, `AIENGINE_FEATURES_DOCUMENTQUESTIONS` | `true` | Assistant chat and questions about a PDF. Conversation is refused only when both are off. |
 | `aiEngine.features.createPdf`, `aiEngine.features.classify` | `AIENGINE_FEATURES_CREATEPDF`, `AIENGINE_FEATURES_CLASSIFY` | `true` | Generating a PDF from a written description; automatic document classification and labelling. |
-| `aiEngine.features.mathAuditor`, `aiEngine.features.pdfComment` | `AIENGINE_FEATURES_MATHAUDITOR`, `AIENGINE_FEATURES_PDFCOMMENT` | `true` | Formula contradiction auditing and AI-authored PDF comments. Neither has a tool in the app. |
+| `aiEngine.features.mathAuditor`, `aiEngine.features.pdfComment` | `AIENGINE_FEATURES_MATHAUDITOR`, `AIENGINE_FEATURES_PDFCOMMENT` | `true` | Formula contradiction auditing and AI-authored PDF comments. Available to supported assistant workflows. |
 
-## Models, documents and limits (apply on save, once AI is enabled and restarted into)
+## Models, documents and limits
+
+Model, retrieval, and limit settings are pushed on save when AI and configuration push are enabled. The engine rebuilds its runtime while retaining the document store. Other engine workers adopt the saved configuration through the cache watcher.
 
 | Key | Env | Default | Purpose |
 |---|---|---|---|

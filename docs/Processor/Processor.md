@@ -1,40 +1,51 @@
 ---
 sidebar_position: 0
-id: Stirling Processor
 title: Stirling Processor
-description: Collect documents automatically, run PDF tools over them, and deliver the results without anyone opening the editor
-tags: [Processor, Automation, Policies, Pipelines, Self-host]
+description: Set up document sources, build reusable pipelines, and monitor automated processing.
+id: Stirling Processor
 ---
 
 # Stirling Processor
 
-Runs PDF tools over documents automatically: a source supplies files, ordered steps process them, a destination receives the results. It sits at `/processor`, on the same host, port and login as the editor.
+Stirling Processor is the automation area of Stirling PDF. Connect a source, choose the PDF operations to run, and decide where the results should go. Server workflows can run on a schedule, when a folder changes, or when another system sends a document. Editor workflows run when someone uploads or exports a file.
 
-:::warning Needs a build that includes the Processor. The standard published Docker image does not - see [Server Admin Onboarding](../Server-Admin-Onboarding.md).
-:::
+Open **Processor** from the app switcher, or go to `/processor` on your Stirling PDF instance. The Processor shares the editor's server and sign-in. If it is missing, start with [Setup and access](./Setup-and-Access.md).
 
-## What an automation needs
+## Start here
 
-| Part | Facts |
+- **[Create your first pipeline](./Getting-Started.md):** connect two folders, process a test PDF, then enable unattended processing.
+- **[Sources](./Sources.md):** folders, S3, network shares, webhooks, and the built-in Editor source.
+- **[Pipelines](./Pipelines.md):** build, test, pause, and update a sequence of operations.
+- **[Policy templates](./Policies.md):** configure Security, Classification, Compliance, and Routing from guided templates.
+- **[Routing](./Routing.md):** send documents to different destinations using document properties or classification.
+
+![Pipelines list and available templates](/img/processor/pipelines.png)
+
+## Find your way around
+
+| Page | What you do there |
 |---|---|
-| **Source** | A server folder, S3, SFTP, FTP, SMB, a webhook, or the document open in the editor. S3, SFTP, FTP and SMB need a stored connection under [Integrations](./Integrations.md) first. Folder paths must sit under `policies.allowedFolderRoots`, which ships empty |
-| **Trigger** | Folder watch (folder sources only), schedule (any source, every N minutes, hours or days), webhook (webhook sources only), or none. Any automation can also be run by hand |
-| **Steps** | Stirling PDF tools in order, each with its settings. Supporting files such as a stamp image are uploaded once as stored assets |
-| **Destination** | Exactly one, required before saving. Only folder and S3 sources can be written to; SFTP, FTP, SMB and webhook are input only |
+| **Home** | Start setup and see the overview available to your deployment and account. |
+| **Sources** | Connect inputs, inspect their status, and see which pipelines use them. |
+| **Pipelines** | Manage both custom pipelines and pipelines enforced as policies. |
+| **Documents** | Inspect the recent processing record and export it as CSV. |
+| **Review** | Investigate recorded failures and take the actions offered for each issue. |
+| **Integrations** | Save connections to external storage and services. |
 
-Example: supplier invoices land in a watched folder, a single **Compress** step runs, and the results are delivered to the S3 bucket the finance system reads.
+Users, API keys, audit administration, account connection, and billing are on the shared **Settings** page. The documentation browser is at `/docs`. See [Administration](./API-Keys-and-Audit.md) for their locations.
 
-## Tour
+## How the pieces fit
 
-| View | What it is |
-|---|---|
-| **[Sources](./Sources.md)** | The saved storage locations documents are read from and written to |
-| **[Policies](./Policies.md)** | Category presets that build an automation you apply from the editor. Security and Classification are the categories available |
-| **[Pipelines](./Pipelines.md)** | Input source, trigger, ordered steps, destination and stored assets |
-| **[Documents](./Documents.md)** | The processing record. Needs an Enterprise [licence](../Modes-and-Licensing.md) and, self-hosted, the admin role |
-| **Users** | Grants Processor access per user or per team. `security.portal.defaultAccess` / `SECURITY_PORTAL_DEFAULTACCESS` decides who else gets in: `ORG_ALL`, `ADMINS_AND_TEAM_LEADS` (default), `EXPLICIT_ONLY` |
+**Source → trigger → pipeline steps → destination**
 
-## Related Documentation
+A source is a reusable location, such as an invoice inbox. A connection stores credentials for that location. A pipeline says what to do with each document. A policy is a pipeline enforced for editor use; it appears in the same Pipelines list.
 
-- **[API Keys and Audit](./API-Keys-and-Audit.md)** - the two working Infrastructure tabs
-- **[Pipeline Automation (Automate)](../Configuration/Automation/Pipeline.md)** - the in-editor automation tool, separate from the Processor
+For example, watch an invoice folder, compress incoming PDFs, and send the results to an archive folder. Later, add [routing](./Routing.md) to separate different document types.
+
+For **Editor** input, results return to the workspace instead of a storage destination. [Processing folders](./Processing-Folders.md) provide another entry point from the file library for applying processing to a chosen folder.
+
+## Before enabling automation
+
+Test with documents you can replace, check the output, and choose what happens to the originals. A source's default **Delete the file** mode removes an original after successful delivery. Choose **Keep it** when originals should remain.
+
+Processing availability and usage allowances depend on the deployment and account. Review **Settings → Usage & Billing** and [Stirling Account Link](../Stirling-Account-Link.md) before enabling ongoing work.

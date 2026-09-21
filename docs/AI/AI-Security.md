@@ -24,7 +24,7 @@ All `STIRLING_*` keys above are environment variables only, with no settings fil
 
 ## What leaves your network
 
-- The PDF file itself never leaves the deployment. Only the extracted text of each page is sent.
+- Hosted model providers receive document-derived content used by the selected capability. Review the provider and operation rather than assuming self-hosting the Stirling server keeps all content local. External pipeline integrations can also receive document files.
 - LLM: your message, the extracted page text of the files in scope, the conversation history, the file id and display name. Capped per request by `aiEngine.limits.maxPages` (`AIENGINE_LIMITS_MAXPAGES`, default `200`) and `aiEngine.limits.maxCharacters` (`AIENGINE_LIMITS_MAXCHARACTERS`, default `200000`).
 - Embedding model: the same page text in chunks for every stored document, plus every search query. Destinations `aiEngine.models.baseUrl` and `aiEngine.rag.embeddingBaseUrl` are unvalidated outbound addresses, so restrict who can edit AI settings.
 

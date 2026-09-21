@@ -1008,9 +1008,7 @@ Two capabilities sit outside the core deployment. Both are worth reviewing once 
 
 The **Stirling Processor** runs saved sources, policies and pipelines against documents without anyone opening the editor. It is not a separate service: it is a route set inside the same single-page app as the editor, mounted at `/processor` on the same host, port and login.
 
-:::warning Not in the stock image
-The Processor UI is compiled in only when the frontend is built with the portal included - Gradle `-PbuildWithPortal=true`, exposed as the Docker build argument `BUILD_PORTAL`. That argument defaults to `false`, and the `docker.stirlingpdf.com/stirlingtools/stirling-pdf` image used in Step 2 is built without it, so `/processor` is not present in that image. You need an image or JAR built with the portal included to reach the Processor.
-:::
+The deployed frontend must include Processor. The build controls are `-PbuildWithPortal=true` and Docker build argument `BUILD_PORTAL`. Check the image or JAR you deploy: a runtime environment variable cannot add missing routes to an already-built frontend. See [Setup and access](./Processor/Setup-and-Access.md).
 
 Two things to decide before your team uses it:
 
@@ -1021,7 +1019,7 @@ Two things to decide before your team uses it:
 
 ### 11.2: AI Features
 
-AI is **off by default** (`aiEngine.enabled: false`). It needs a second service: the Stirling AI engine, a container you build yourself from the repository and run alongside the Stirling-PDF server.
+AI is **off by default** (`aiEngine.enabled: false`). It needs a second service: the Stirling AI engine, a container run alongside the Stirling-PDF server.
 
 The minimum configuration on the Stirling-PDF side is `AIENGINE_ENABLED=true` plus `AIENGINE_URL` pointing at the engine (default `http://localhost:5001`), and `STIRLING_ENGINE_SHARED_SECRET` set to the same value on both processes whenever the engine is not on loopback. Restart the Stirling-PDF server to apply.
 

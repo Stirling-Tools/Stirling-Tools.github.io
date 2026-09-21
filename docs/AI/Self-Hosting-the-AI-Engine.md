@@ -12,7 +12,7 @@ AI features require an AI engine container running alongside the self-hosted Sti
 ## Prerequisites
 
 - A running Stirling PDF container ([Docker Install](../Installation/Docker%20Install.md)) and Docker with `docker compose`.
-- Two API keys: your **LLM key**, and your **embedding key**, which indexes documents so they can be searched (`voyageai:voyage-4` by default). Without the embedding key, document uploads and document questions fail. See [Model Providers](./Model-Providers.md).
+- A language model and embedding provider. The hosted defaults require an **LLM key** and an **embedding key** (`voyageai:voyage-4` by default). Local providers can run without hosted keys. See [Model Providers](./Model-Providers.md).
 - A long random string for `STIRLING_ENGINE_SHARED_SECRET`, set identically on both containers. Without it, AI settings saved in the admin UI never reach the engine.
 
 Run the engine on the same version tag as the server image, and upgrade both together.
@@ -35,7 +35,7 @@ The engine listens on 5001 inside the container and that is not configurable. Ke
           AIENGINE_URL: 'http://stirling-pdf-engine:5001'
           STIRLING_ENGINE_SHARED_SECRET: 'replace-with-a-long-random-string'
       stirling-pdf-engine:
-        image: docker.stirlingpdf.com/stirlingtools/stirling-engine:latest
+        image: ghcr.io/stirling-tools/stirling-engine:latest
         environment:
           STIRLING_ENGINE_SHARED_SECRET: 'replace-with-a-long-random-string'
           STIRLING_ENGINE_REQUIRE_AUTH: 'true'

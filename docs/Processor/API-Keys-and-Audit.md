@@ -1,35 +1,46 @@
 ---
-sidebar_position: 6
+sidebar_position: 11
+title: Administration
+description: Find shared settings for users, API keys, audit logs, account connection, and billing.
 id: API Keys and Audit
-title: API Keys and Audit
-description: Create and revoke personal API keys and review recent activity from the Processor's Infrastructure area
-tags: [Processor, API Keys, Audit, Security, Self-host]
 ---
 
-# API Keys and Audit
+# Administration
 
-The Processor's **Infrastructure** area (`/processor/infrastructure`) has two working tabs, **API Keys** and **Audit Logs**. Add `?tab=api-keys` or `?tab=audit` to open one directly.
+Server administration lives on the shared **Settings** page. It is no longer a collection of Processor sidebar tabs.
+
+| Task | Current location |
+|---|---|
+| Manage users and teams | `/settings/users` |
+| Create or revoke an API key | `/settings/api-keys` |
+| Review plan and usage | `/settings/billing` |
+| Connect a self-hosted instance to a Stirling account | `/settings/account-link` |
+| Read documentation | `/docs` |
+
+Older `/processor/users`, `/processor/infrastructure`, `/processor/usage`, and `/processor/docs` links redirect to the shared pages. Open the appropriate Settings section directly when looking for audit administration rather than relying on an old Infrastructure tab link.
 
 ## API keys
 
-- Create from **Infrastructure → API Keys → Create key**; the name is required and must be 100 characters or fewer. Copy the secret before closing the dialog.
-- The secret is `sk_` plus 40 hexadecimal characters, shown **once** and never recoverable. The list keeps only a prefix such as `sk_a1b2c3d4`.
-- Limit **50 active keys** per user; revoke one before creating another. Keys need logins enabled and are personal - one owner, that owner's permissions, and you see only your own.
-- Send as the header `X-API-KEY: <key>`; MCP also accepts `Authorization: Bearer <key>`, in API-key mode only. Rate limits are per user and shared by every key you own.
-- Per key the list shows created, last used, usage today, and usage over a trailing 30-day window, all UTC. Keys generated in the editor (listed as **Default key**) record no usage.
-- **Revoke** is immediate and irreversible; the row stays with status `revoked`. Revoking **Default key** also clears the per-user key on your account.
+Open **Settings → API Keys**, create a named key, and copy its secret when shown. The secret cannot be recovered later. Keys are personal and use their owner's permissions; keep separate named keys for integrations you may need to revoke independently.
+
+Send a key as `X-API-KEY: <key>` when calling the REST API. MCP authentication has additional modes described in [MCP Server](../Configuration/Automation/MCP-Server.md).
+
+The key list includes creation and last-use information and usage counters where available. Revocation takes effect immediately. Replace the key in dependent services before revoking it if they need uninterrupted access.
+
+Creating an API key does not automatically grant a pipeline access to another team's sources or files. Usage may be metered according to the deployment's plan and account-link configuration.
 
 ## Audit logs
 
-- Admin-only, and needs an Enterprise license - without one nothing is recorded and the tab shows an access-denied message.
-- Shows up to **40** recent events: timestamp, event, actor, resource, status, latency, all UTC. There is no auto-refresh, so reload the page and allow up to 30 seconds for a new event.
-- Categories are `auth`, `config`, `security`, `processing`, and `policy`. The pills filter only the events on screen; there is no search, date range, or paging.
-- **Export** writes CSV or JSON of the whole log, not just the 40 shown. Columns are Date, Username, IP address, Tool, Document name, Outcome; IP address is off by default and the column choice applies to CSV only.
-- Date ranges, username filters, charts, paging, and clear-down: **Settings → Licensing & Analytics → Audit** in the editor.
+Full audit administration is an Enterprise feature and requires the appropriate administrator access. Configure recording, retention, and exports in the audit section of Settings. See [Audit Logging](../Configuration/Security/Audit%20Logging.md).
 
-## Related Documentation
+The [Documents](./Documents.md) processing feed is available without Enterprise and shows a limited window of file operations. It does not provide all the filtering, retention, or export capabilities of full audit administration.
 
-- **[API documentation](../API.md)** - authenticating and calling the REST API with a key
-- **[Audit Logging](../Configuration/Security/Audit%20Logging.md)** - audit settings, verbosity levels, and retention
-- **[MCP Server](../Configuration/Automation/MCP-Server.md)** - enabling MCP and choosing its authentication mode
-- **[Stirling Processor](./Processor.md)** - who can reach the Processor and how to widen access
+## Account and billing
+
+Use **Usage & Billing** to inspect the entitlement and usage applying to your deployment. Self-hosted Team/Enterprise licensing and Processor usage are related settings but are not interchangeable.
+
+Current builds can meter an unlinked instance against its local free allowance. Do not assume that self-hosting or leaving an instance unlinked makes every automation operation unmetered. See [Stirling Account Link](../Stirling-Account-Link.md) for the code's defaults and connection behavior.
+
+## Access and team scope
+
+Use [Setup and access](./Setup-and-Access.md) for Processor access defaults and management roles. Grant access deliberately: self-hosted Processor users can see the server-wide Documents feed, while pipeline ownership and Review visibility use their own scopes.

@@ -20,11 +20,10 @@ Every capability needs `aiEngine.enabled: true` and a reachable AI engine. All f
 | Document creation | Produces a new PDF from a description, with no input file. Ask the assistant | `createPdf` | `AIENGINE_FEATURES_CREATEPDF` |
 | Document classification | Labels uploaded files with up to 5 labels, written to metadata key `StirlingPDFClassification`. Runs automatically on upload; labels appear on the file card | `classify` | `AIENGINE_FEATURES_CLASSIFY` |
 
-- **Clear chat**, in the chat panel header menu, is the only way to cancel a run in progress. There is no Stop button.
 - Document creation needs WeasyPrint on the Stirling PDF server; set `system.customPaths.operations.weasyprint` if it is not at `/opt/venv/bin/weasyprint`.
 - Conversation stops only when both `chat` and `documentQuestions` are `false`.
-- A switched-off capability still appears in the interface and returns HTTP 503 when used. Only `aiEngine.enabled: false` removes the AI interface, and none of these switches apply to MCP clients.
-- Do not set `classify: false` while the engine is enabled - it breaks classification entirely. Use `aiEngine.enabled: false` for the non-AI classification path, or disable the **Classification Policy** at [Processor -> Policies](../Processor/Policies.md) to stop classification altogether.
+- Feature availability is checked by the interface and server. A disabled server capability can reject requests even if an older client still displays its control.
+- Use `classify: false` to disable AI classification. Pipelines that require a server Classify step need that capability available. Manage the Classification template in [Processor → Pipelines](../Processor/Policies.md); use property-based [routing](../Processor/Routing.md) when AI is unnecessary.
 
 ## Turning a capability off
 

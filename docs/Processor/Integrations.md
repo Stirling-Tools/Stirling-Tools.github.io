@@ -1,80 +1,70 @@
 ---
-sidebar_position: 5
-id: Integrations
+sidebar_position: 10
 title: Integrations
-description: Connect Stirling PDF to S3 buckets, file servers, external APIs and Microsoft Purview, and reuse those connections across your sources, policies and pipelines
-tags:
-  - Processor
-  - Integrations
-  - Connections
-  - S3
-  - SFTP
-  - Purview
+description: Save external storage and service connections for sources and pipeline steps.
+id: Integrations
 ---
 
 # Integrations
 
-A saved connection: a name, an address and the credentials to reach an external service. Manage them at `/processor/integrations`; sources, policies and steps reference one by `connectionId`.
+Open **Processor → Integrations** (`/processor/integrations`) to manage saved connections. A connection stores the address and credentials for an external system. A source or pipeline step selects that connection and defines what to do with it.
 
-## Connection types
+![Storage integrations with connected and available services](/img/processor/integrations.png)
 
-| Type | Required config | Used by |
+## Connect and reuse a service
+
+1. Find the service in the catalogue and open its setup form.
+2. Name the connection so its purpose is clear.
+3. Enter the required fields, then save.
+4. Select the saved connection when creating an S3/network source or adding the matching integration step.
+
+The catalogue separates connected services, available connection types, and connectors that are not yet available. The **Works with** information helps distinguish a source connection from an outgoing operation. A saved credential record alone does not start a workflow.
+
+## Storage connections
+
+| Connection | Configure | Used by |
 |---|---|---|
-| **S3** | `bucket`, `accessKeyId`, `secretAccessKey`; optional `region` (default `us-east-1`) and `endpoint` | Policy sources, policy and pipeline output destinations |
-| **Network file server** | `protocol` (`sftp`, `ftp`, `smb`), `host`, `username`, plus `password` or `privateKey`, plus `share` for SMB | Policy sources and output destinations |
-| **External API** | `baseUrl`, `authType` (`NONE`, `BEARER`, `BASIC`, `HEADER`, `TOKEN_LOGIN`) | The `external-api-call` step and the vendor presets |
-| **Purview** | `tenantId` | The apply-label and read-label steps |
+| **Amazon S3** | Bucket, region, access key ID, secret key; optional compatible endpoint | S3 inputs and destinations |
+| **SFTP** | Host, port, username, password or private key; optional passphrase and host-key fingerprint | SFTP input |
+| **FTP / FTPS** | Host, port, username, password, TLS mode, and connection options | FTP input |
+| **SMB / network drive** | Host, share, account credentials, and any required domain | Network-drive input |
 
-:::warning ConsignO Cloud is not usable
-The **Available** band also carries a ConsignO Cloud tile. There is no working step behind it, and the External API step refuses a ConsignO connection.
-:::
+Give credentials only the permissions required by the workflow. **Delete the file** source mode needs delete permission as well as read access. Output destinations need write access.
 
-## Secret handling
+S3 Object Lock requires a bucket configured to support it. If using the connection's advanced/API options, set `objectLockMode` (`GOVERNANCE` or `COMPLIANCE`) and `retentionDays` together. This is separate from the availability of a Retention template.
 
-- Configuration is encrypted before storage, and every sensitive value reads back as `********`. On edit, a masked or blank secret keeps the stored value; a secret nested in a list must be re-typed or the mask overwrites it.
-- Set `stirling.security.credentialEncryptionKey`, or a `credential-encryption.key` file is generated on first boot. Lose it and every stored secret is unrecoverable; `cluster.enabled: true` refuses the generated file, so give every node the same key.
+## External API and vendor operations
 
-<Tabs groupId="config-methods">
-  <TabItem value="settings" label="Settings File">
-    ```yaml
-    stirling:
-      security:
-        credentialEncryptionKey: <BASE64_AES_256_KEY>
-    ```
-  </TabItem>
-  <TabItem value="env" label="Environment Variable">
-    ```bash
-    STIRLING_CREDENTIAL_ENCRYPTION_KEY=<BASE64_AES_256_KEY>
-    ```
-  </TabItem>
-</Tabs>
+For a supported vendor, prefer its operation preset: it supplies the expected method, body shape, and required operation fields. A custom API connection instead defines the base URL and authentication; the pipeline step supplies the path and request.
 
-## S3
-```json
-{"integrationType": "S3", "name": "Finance archive", "scope": "TEAM", "config": {"bucket": "acme-finance-archive", "region": "eu-west-1", "accessKeyId": "AKIA2EXAMPLE", "secretAccessKey": "wJalrXUtnFEMI", "objectLockMode": "COMPLIANCE", "retentionDays": 2555}}
-```
-Object Lock has no form field: `objectLockMode` (`GOVERNANCE` or `COMPLIANCE`) and `retentionDays` (1 to 36525) must be set together, on the connection. A private endpoint needs `policies.allowPrivateS3Endpoints: true`.
+Supported custom authentication includes none, bearer token, Basic, a named header, and token-login configuration. Creating or editing custom API connections requires administrator permission and `policies.allowCustomApiIntegrations` (default `true`). Turning that setting off does not disable existing connections.
 
-## Network file server
-```json
-{"integrationType": "NETWORK", "name": "Scanner drop box", "scope": "TEAM", "config": {"protocol": "sftp", "host": "sftp.records.acme.example.com", "port": 22, "username": "stirling-processor", "privateKey": "-----BEGIN OPENSSH PRIVATE KEY-----\n...", "hostKeyFingerprint": "SHA256:1s7Q0mE0rW"}}
-```
-Default ports: 22 SFTP, 21 FTP, 445 SMB, 990 for FTP with `security: IMPLICIT`. A private host needs `policies.allowPrivateNetworkSources: true` or the exact hostname in `policies.allowedPrivateNetworkHosts`.
+An external API step can keep the original document and record a response, or replace the document with the response. A configured boolean response condition can fail the step when the remote service rejects the file. Verify the response contract before putting another PDF tool after it.
 
-## External API
-```json
-{"integrationType": "API", "name": "Document classifier", "scope": "TEAM", "config": {"baseUrl": "https://classify.acme.example.com/v2", "authType": "BEARER", "token": "eyJhbGciOiJIUzI1NiJ9.example", "timeoutSeconds": 120}}
-```
-`timeoutSeconds` defaults to `60`, between 1 and 600. Creating or editing one, preset included, needs an admin and `policies.allowCustomApiIntegrations: true` (default `true`); a private base URL needs `policies.allowPrivateApiEndpoints: true`.
+Test calls can send documents to the configured service. Use a test endpoint while checking the integration.
 
-## Purview
-```json
-{"integrationType": "PURVIEW", "name": "Acme M365 tenant", "scope": "TEAM", "config": {"tenantId": "8f4c1f0a-3d2b-4a77-9c1e-5b0e2a6d9f31"}}
-```
-The tenant GUID is the whole configuration. Leave the optional Client ID and Client secret fields empty; nothing reads them.
+## Microsoft Purview
 
-## Related Documentation
-- **[Processor](./Processor.md)** - the sources, policies and pipelines these connections plug into
-- **[Sources](./Sources.md)** - the S3 and file server sources that use a connection
-- **[Policies](./Policies.md)** - triggers, outputs and the steps that use a connection
-- **[API Keys and Audit](./API-Keys-and-Audit.md)** - keys for `/api/v1/integrations` and the audit trail
+A Purview connection requires a tenant ID. Applying and reading supported PDF label metadata do not require a Graph call. To populate the label picker from the tenant's label taxonomy, configure both the optional **Client ID** and **Client secret**; supplying only one is rejected.
+
+Label metadata is not document encryption or a complete Microsoft Information Protection enforcement system. Choose the integration operation that matches the behavior you need.
+
+## Unfinished connectors
+
+Do not treat every visible catalogue tile as a working document operation. In particular, the current code contains a ConsignO connection type but does not implement its referenced submit/fetch controllers. Confirm a supported executable step before depending on it. Source connectors marked **Coming soon** cannot be used to ingest documents.
+
+## Protect connection credentials
+
+Secrets are encrypted at rest and masked when connections are read back. Retain masked values when editing a connection to keep its stored credentials.
+
+Back up the credential-encryption key with the deployment. You can provide it explicitly with `STIRLING_CREDENTIAL_ENCRYPTION_KEY`; otherwise a single-node deployment can generate `credential-encryption.key`. Losing the key makes stored secrets unreadable. Cluster nodes require the same configured key.
+
+Private endpoint access is controlled separately:
+
+| Setting | Applies to |
+|---|---|
+| `policies.allowPrivateS3Endpoints` | Private S3-compatible endpoints |
+| `policies.allowedPrivateNetworkHosts` / `policies.allowPrivateNetworkSources` | Internal SFTP, FTP, and SMB hosts |
+| `policies.allowPrivateApiEndpoints` | Private API and related integration endpoints |
+
+These broad allow switches default to `false`. See [Sources](./Sources.md) for setup and [Clustering](../Configuration/Operations/Clustering.md) for shared deployment requirements.

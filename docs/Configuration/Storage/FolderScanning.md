@@ -16,7 +16,7 @@ Folder scanning processes files automatically: drop them into a job folder that 
 The JSON is produced by the **Automate** tool, so read the [Pipeline Guide](../Automation/Pipeline.md) first.
 
 :::info Also available in the Processor
-A folder [source](../../Processor/Sources.md) on a folder-watch [policy](../../Processor/Policies.md) does the same job with saved records.
+A folder [source](../../Processor/Sources.md) in a [pipeline](../../Processor/Pipelines.md) with a Folder watch trigger provides a saved workflow. See [Create your first pipeline](../../Processor/Getting-Started.md) for setup and source cleanup behavior.
 :::
 
 :::danger Input files are consumed
@@ -71,4 +71,4 @@ A watched folder that equals the finished folder, or sits inside it, logs a `CRI
 
 - **[Pipeline Automation (Automate)](../Automation/Pipeline.md)** - building the workflow and exporting the JSON this page consumes
 - **[Sources](../../Processor/Sources.md)** - the Processor's saved folder source
-- **[Policies](../../Processor/Policies.md)** - the folder-watch trigger that sweeps a Processor folder source
+- **[Pipelines](../../Processor/Pipelines.md)** - configure a Folder watch trigger for a saved source

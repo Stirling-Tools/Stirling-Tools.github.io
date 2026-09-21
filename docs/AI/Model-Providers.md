@@ -19,7 +19,7 @@ title: Model Providers
 
 | Provider | Base URL | API key | Notes |
 |---|---|---|---|
-| `voyageai` | Not used | `VOYAGE_API_KEY` on the engine container | Default, `voyage-4`. The admin UI key field is ignored. |
+| `voyageai` | Optional override | Admin UI / `aiEngine.rag.embeddingApiKey`, or `VOYAGE_API_KEY` on the engine | Default, `voyage-4`. An explicit configured key takes precedence. |
 | `openai` | Not used | `OPENAI_API_KEY` on the engine container | The admin UI key field is ignored. |
 | `ollama` | Required | Not used | For example `nomic-embed-text`. |
 | `custom` | Required | Optional | Any other OpenAI-compatible endpoint; uses the admin UI key. |
@@ -27,7 +27,7 @@ title: Model Providers
 ## Recommended configuration
 
 - Keep the shipped defaults: LLM `anthropic` on `claude-haiku-4-5`, embeddings `voyageai` on `voyage-4`. Change them at **Admin Settings → AI**, or under `aiEngine.models` and `aiEngine.rag`.
-- Add both API keys on the engine container; neither has a `settings.yml` form. Changing the embedding provider or model means re-ingesting every [stored document](./Documents-and-RAG.md), and there is no re-index command.
+- Configure the LLM and VoyageAI embedding keys in Admin Settings, under `aiEngine.models.apiKey` and `aiEngine.rag.embeddingApiKey`, or use the engine environment variables below. OpenAI embeddings currently use `OPENAI_API_KEY` on the engine. Changing the embedding provider or model means re-ingesting every [stored document](./Documents-and-RAG.md), and there is no re-index command.
 
 <Tabs groupId="config-methods">
   <TabItem value="env" label="Environment Variable">
@@ -47,7 +47,7 @@ title: Model Providers
 
 ## Local models
 
-- Good at embeddings, document search and direct questions about a document; weaker at multi-step requests, PDF editing and creation, classification, contradiction detection, maths auditing, PDF comments and review.
+- Evaluate the chosen local model on your document search, classification, and editing workflows. Structured tool use and output quality vary by model and serving configuration.
 - Set local models at **Admin Settings → AI**, or under `aiEngine.models` with `aiEngine.pushConfigToEngine` left at `true`. Setting them only in the engine container's own environment skips the handling that makes local models work.
 - Serve the model with structured output (JSON schema) enabled. A model that does not advertise it is refused.
 
