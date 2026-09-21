@@ -121,14 +121,14 @@ Once your unoserver containers are running, set `autoUnoServer` to `false` and p
   <TabItem value="env" label="Environment Variable">
     ```bash
     PROCESS_EXECUTOR_AUTO_UNO_SERVER=false
-    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST=unoserver1
-    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_PORT=2003
-    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST_LOCATION=remote
-    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_PROTOCOL=http
-    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST=unoserver2
-    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_PORT=2003
-    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST_LOCATION=remote
-    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_PROTOCOL=http
+    PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_HOST=unoserver1
+    PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_PORT=2003
+    PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_HOSTLOCATION=remote
+    PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_PROTOCOL=http
+    PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_HOST=unoserver2
+    PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_PORT=2003
+    PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_HOSTLOCATION=remote
+    PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_PROTOCOL=http
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
@@ -140,12 +140,12 @@ Once your unoserver containers are running, set `autoUnoServer` to `false` and p
           - "8080:8080"
         environment:
           PROCESS_EXECUTOR_AUTO_UNO_SERVER: "false"
-          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST: "unoserver1"
-          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_PORT: "2003"
-          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST_LOCATION: "remote"
-          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST: "unoserver2"
-          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_PORT: "2003"
-          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST_LOCATION: "remote"
+          PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_HOST: "unoserver1"
+          PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_PORT: "2003"
+          PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_HOSTLOCATION: "remote"
+          PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_HOST: "unoserver2"
+          PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_PORT: "2003"
+          PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_HOSTLOCATION: "remote"
     ```
   </TabItem>
 </Tabs>
@@ -196,7 +196,7 @@ The latest `stirling-unoserver` image is always compatible with the latest Stirl
 |---|---|---|
 | `UNOSERVER_PORT` | `2003` | Listen port. |
 | `UNOSERVER_INTERFACE` | `0.0.0.0` | Listen address; use `127.0.0.1` to restrict to the same host. |
-| `UNOSERVER_CONVERSION_TIMEOUT` | `1800` (s) | Max time per conversion. Set ≥ `libreOfficeTimeoutMinutes`. |
+| `UNOSERVER_CONVERSION_TIMEOUT` | `1800` (s) | Maximum conversion duration in seconds. Compare it with `60 x libreOfficeTimeoutMinutes` when aligning the two timeouts. |
 | `UNOSERVER_RECYCLE_INTERVAL_SECONDS` | `0` (off) | Periodic restart to bound LibreOffice memory growth. Minimum 60 s; e.g. `3600` for hourly. |
 
 ### CPU allocation
@@ -246,10 +246,10 @@ If you are running Stirling PDF without Docker (bare metal or systemd), you can 
 # Install unoserver (included in Docker images)
 pip install unoserver
 
-# Start instances on different ports
-unoserver --port 2003 &
-unoserver --port 2004 &
-unoserver --port 2005 &
+# Each worker needs a distinct RPC port and LibreOffice UNO port
+unoserver --port 2003 --uno-port 2103 &
+unoserver --port 2004 --uno-port 2104 &
+unoserver --port 2005 --uno-port 2105 &
 ```
 
 Then configure Stirling PDF to connect to these instances at `127.0.0.1` on the respective ports with `hostLocation: "local"`.

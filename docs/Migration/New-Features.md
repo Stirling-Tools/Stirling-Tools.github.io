@@ -7,20 +7,20 @@ description: All new features and capabilities added in V2
 
 # New Features in V2
 
-V2 brings powerful new features that fundamentally improve how you work with PDFs. This page documents everything new in V2.
+This page describes the V2 workspace, desktop application and administration features.
 
 ---
 
 ## 📁 Browser File Storage
 
-**The Game Changer:** Upload PDFs once, use them across multiple tools without re-uploading.
+Upload PDFs once and reuse them across tools in the workspace.
 
 ### What's New
 
 - **Persistent Storage:** Files stored locally in your browser using IndexedDB
 - **Cross-Tool Usage:** Access uploaded files from any tool
 - **Smart Management:** Automatic cleanup, manual delete options
-- **Large File Support:** Up to 10GB storage (browser-dependent)
+- **Storage capacity:** Subject to the browser's storage quota and available disk space
 
 ### How It Works
 
@@ -37,11 +37,7 @@ Upload PDF → Stored in Browser → Use in Any Tool → Delete When Done
 
 ### Storage Limits
 
-| Browser | Storage Limit | Notes |
-|---------|--------------|-------|
-| Chrome/Edge | ~10GB | 60% of available disk space |
-| Firefox | ~10GB | User-configurable |
-| Safari | ~1GB | More restrictive |
+Storage quotas vary by browser, device, available disk space and browsing mode.
 
 ---
 
@@ -93,11 +89,10 @@ Original.pdf → [Compress] → v1 → [Add Pages] → v2 → [Watermark] → v3
 
 ### What's New
 
-- **Lightning Fast:** 0.3 second startup time
 - **Native Integration:** "Open with Stirling PDF" in file explorer
 - **System Default:** Set as default PDF viewer
 - **Sign in with Stirling Cloud or self-hosted server** - Choose your connection on launch
-- **Resource Efficient:** Uses ~50MB RAM vs browser ~200MB
+- Startup time and memory use depend on the machine, backend readiness and files being processed.
 
 ### Platform Support
 
@@ -111,12 +106,12 @@ Original.pdf → [Compress] → v1 → [Add Pages] → v2 → [Watermark] → v3
 
 | Feature | Desktop | Web Browser |
 |---------|---------|-------------|
-| Startup Speed | 0.3s | 2-3s |
+| Startup Speed | Depends on the machine and backend startup | Depends on browser, network and server |
 | File Association | ✅ Yes | ❌ No |
 | Default Viewer | ✅ Yes | ❌ No |
 | System Integration | ✅ Native | ⚠️ Limited |
-| Storage | Unlimited | Browser limits |
-| Updates | Manual | Automatic |
+| Storage | Local IndexedDB, subject to webview quota and disk space | IndexedDB, subject to browser quota and disk space |
+| Updates | Prompt, automatic or disabled policy | Server updates depend on deployment management |
 
 ### Right-Click Integration
 
@@ -143,7 +138,7 @@ After installation:
 ### What's New
 
 - **Custom Hotkeys:** Assign keyboard shortcuts to any tool
-- **Quick Access:** Default shortcuts for 7 most popular tools (Cmd/Ctrl+Alt+1-7)
+- **Quick Access:** Positional shortcuts for up to nine Quick Access tools (Cmd/Ctrl+Alt+1-9)
 - **Flexible Mapping:** Use any combination of Ctrl, Alt, Shift, Cmd keys
 - **Visual Feedback:** See all shortcuts in settings
 - **Conflict Detection:** Prevents duplicate shortcut assignments
@@ -151,17 +146,7 @@ After installation:
 
 ### Default Shortcuts
 
-The 7 Recommended Tools come with pre-configured shortcuts:
-
-| Tool | Windows/Linux | Mac |
-|------|---------------|-----|
-| Multi-Tool | Ctrl+Alt+1 | Cmd+Option+1 |
-| Read & Annotate | Ctrl+Alt+2 | Cmd+Option+2 |
-| Merge | Ctrl+Alt+3 | Cmd+Option+3 |
-| Compare | Ctrl+Alt+4 | Cmd+Option+4 |
-| Compress | Ctrl+Alt+5 | Cmd+Option+5 |
-| OCR | Ctrl+Alt+6 | Cmd+Option+6 |
-| Redact | Ctrl+Alt+7 | Cmd+Option+7 |
+Default shortcuts follow the current Quick Access tool order: Ctrl+Alt+1 through Ctrl+Alt+9 on Windows/Linux, or Cmd+Option+1 through Cmd+Option+9 on macOS. The mapping depends on the tools available in your build; view it in Settings. See [Keyboard Shortcuts](../Configuration/Customisation/Keyboard-Shortcuts.md).
 
 ### Customizing Shortcuts
 
@@ -216,10 +201,11 @@ The 7 Recommended Tools come with pre-configured shortcuts:
 - Password policies
 
 **UI Customization:**
-- App name and description
+- Browser tab title and TOTP issuer label (`ui.appNameNavbar`)
 - Logo style (classic/modern)
-- Navbar branding
-- Homepage content
+- Static asset overrides for custom branding
+
+There is no in-app editor for `ui.homeDescription`.
 
 **Features:**
 - Enable/disable tools
@@ -274,7 +260,7 @@ security:
   validation:
     trust:
       serverAsAnchor: true          # Trust server-generated certs
-      useSystemTrust: true           # Use OS trust store
+      useSystemTrust: true           # Use Java runtime trust store
       useMozillaBundle: true         # Mozilla CA certificates
       useAATL: false                 # Adobe trust list
       useEUTL: false                 # EU trust list
@@ -311,9 +297,8 @@ security:
 
 ### What's New
 
-- **Auto-Generated Certs:** Server creates signing certificates on startup
-- **Customizable:** Configure organization name, validity period
-- **No Manual Setup:** Works out of the box
+- **Certificate generation:** Runs at startup when enabled and a Team or Enterprise licence is active
+- **Configuration:** Organisation name, validity period and regeneration behaviour
 - **Renewable:** Regenerate certificates as needed
 - **"Sign with Stirling PDF" Feature:** Users can sign with server cert
 
@@ -346,20 +331,9 @@ system:
 
 ### Custom Certificates
 
-You can also provide your own certificates:
+To use your organisation's certificate for server signing, upload a PKCS12 (`.p12` or `.pfx`) file containing the private key through the administrator endpoint `POST /api/v1/admin/server-certificate/upload`, with multipart fields `file` and `password`.
 
-```bash
-configs/
-  ├── keystore.p12           # Your certificate
-  └── settings.yml
-```
-
-Then disable auto-generation:
-```yaml
-system:
-  serverCertificate:
-    enabled: false  # Use custom cert instead
-```
+Keep `system.serverCertificate.enabled: true` and `system.serverCertificate.regenerateOnStartup: false` to use the uploaded certificate and retain it across restarts.
 
 **Learn More:**
 - [Certificate Signing Guide](../Functionality/Security/Certificate-Signing)
@@ -475,43 +449,20 @@ Multi-Tool Workbench
 
 **Improved:** Better session and token management with rotation and cleanup.
 
-### What's New in V2
-
-| Feature | V1 | V2 |
-|---------|----|----|
-| Token Persistence | Optional | Configurable |
-| Key Rotation | ❌ No | ✅ Yes |
-| Key Cleanup | Manual | Automatic |
-| Key Retention | N/A | Configurable days |
-| Secure Cookie | Hardcoded | Removed (always secure) |
-
-### New Settings
+### JWT Settings
 
 ```yaml
 security:
   jwt:
-    persistence: true           # Store keys across restarts
-    enableKeyRotation: true     # Rotate signing keys periodically
-    enableKeyCleanup: true      # Auto-delete old keys
-    keyRetentionDays: 7         # How long to keep old keys
+    enableKeystore: true
+    enableKeyCleanup: true
+    tokenExpiryMinutes: 1440
+    desktopTokenExpiryMinutes: 43200
 ```
 
-### Benefits
+`enableKeystore` controls persistent key storage. `enableKeyCleanup` enables cleanup of old keys. Key retention is calculated automatically from token lifetimes and refresh settings.
 
-**Key Rotation:**
-- Improved security through regular key changes
-- Seamless for users (old tokens still work during grace period)
-- Configurable rotation schedule
-
-**Automatic Cleanup:**
-- No manual key management needed
-- Prevents key accumulation
-- Configurable retention period
-
-**Persistence:**
-- Keys survive container restarts
-- No user re-login after restart
-- Optional for stateless deployments
+Persist the configuration directory when persistent keys are enabled. Token validity also depends on expiration, key availability and the configured refresh policy.
 
 ---
 
@@ -533,11 +484,11 @@ security:
 mail:
   enabled: true
   from: noreply@example.com
-  smtp:
-    host: smtp.example.com
-    port: 587
-    username: noreply@example.com
-    password: ${MAIL_PASSWORD}
+  host: smtp.example.com
+  port: 587
+  username: noreply@example.com
+  password: ${MAIL_PASSWORD}
+  startTlsEnable: true
 ```
 
 ### Requirements
@@ -556,7 +507,7 @@ mail:
 
 **User perspective:**
 1. Receive email with invite link
-2. Click link (valid for 48 hours)
+2. Click the link before expiry (72 hours by default, configurable with `mail.inviteLinkExpiryHours`)
 3. Create account with password
 4. Automatically logged in
 
@@ -570,7 +521,7 @@ MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
 MAIL_USERNAME=your-email@gmail.com
 MAIL_PASSWORD=your-app-password
-MAIL_TLS_ENABLED=true
+MAIL_STARTTLSENABLE=true
 ```
 
 ---
@@ -597,37 +548,13 @@ ui:
 
 You can still provide custom logo files:
 
-```bash
-customFiles/
-  └── static/
-      └── logo.svg  # Your custom logo
+```text
+customFiles/static/modern-logo/StirlingPDFLogoNoTextDark.svg
+customFiles/static/modern-logo/StirlingPDFLogoNoTextLight.svg
 ```
 
-Then reference in settings:
-```yaml
-ui:
-  appNameNavbar: 'My Company PDF'
-  logoStyle: classic  # Or use custom logo
-```
+Select `ui.logoStyle: modern` for these paths, or use the corresponding `classic-logo/` paths for the classic style. Preserve the exact requested asset filenames; a root `logo.svg` is not automatically substituted.
 
----
-
-## Summary
-
-**V2's Major Features:**
-
-- 📁 **Browser File Storage** - Upload once, use across multiple tools
-- ⏮️ **Undo/Redo & Version History** - Never lose work
-- 🖥️ **Desktop Applications** - Native Windows, Mac, Linux apps
-- 🎨 **Multi-Tool Workbench** - Chain unlimited operations
-- 📖 **Read & Annotate** - Full PDF viewer with annotation support
-- ⚙️ **In-App Settings** - Configure everything through UI
-- 🔐 **Enhanced Security** - PDF signature validation, server certificates
-- ✉️ **Email Invitations** - Streamlined user onboarding
-- ⌨️ **Custom Keyboard Shortcuts** - Quick tool access
-- 🔄 **Enhanced Session Management** - Better token management with rotation
-
----
 
 ## Learn More
 

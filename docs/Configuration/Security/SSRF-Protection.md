@@ -26,8 +26,8 @@ All settings are under `system.html.urlSecurity` in `settings.yml`.
 |---|---|---|
 | `enabled` | `true` | Master on/off switch |
 | `level` | `MEDIUM` | `OFF`, `MEDIUM`, or `MAX` - see below |
-| `allowedDomains` | `[]` | Domains to always allow |
-| `blockedDomains` | `[]` | Domains to always block |
+| `allowedDomains` | `[]` | Restricts permitted domains when non-empty in MEDIUM; the exclusive domain list in MAX |
+| `blockedDomains` | `[]` | Exact domains denied in MEDIUM; not consulted in OFF or MAX |
 | `internalTlds` | `.local`, `.internal`, `.corp`, `.home` | TLD suffixes treated as internal |
 | `blockPrivateNetworks` | `true` | Block RFC1918 private IP ranges |
 | `blockLocalhost` | `true` | Block 127.x / ::1 |
@@ -44,7 +44,7 @@ All settings are under `system.html.urlSecurity` in `settings.yml`.
 
 ### Domain allow and block lists
 
-The `allowedDomains` and `blockedDomains` settings work alongside whichever protection level you choose.
+The lists have different effects at each protection level:
 
-- **`allowedDomains`** - When set at MEDIUM level, only these domains (and their subdomains) are permitted in addition to the default public-internet access. At MAX level, this is the exclusive list of permitted domains (no subdomain matching).
-- **`blockedDomains`** - Domains to always deny, regardless of level. Uses exact matching - blocking `example.com` will not block `sub.example.com`.
+- **`allowedDomains`**: In MEDIUM, a non-empty list restricts access to those domains and their subdomains, subject to the other MEDIUM checks. It does not preserve unrestricted public-internet access. In MAX, hosts must match an entry exactly.
+- **`blockedDomains`**: Consulted in MEDIUM only, using exact host matching. Blocking `example.com` does not block `sub.example.com`. OFF bypasses these checks; MAX uses the allowlist.

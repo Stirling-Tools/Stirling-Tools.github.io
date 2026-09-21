@@ -157,7 +157,7 @@ Then set the transport to streamable-HTTP and the URL to your `/mcp` endpoint, a
       "args": [
         "-y",
         "mcp-remote",
-        "http://your-host:8080/mcp",
+        "https://your-host/mcp",
         "--header",
         "X-API-KEY:your-stirling-api-key"
       ]

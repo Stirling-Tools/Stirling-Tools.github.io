@@ -10,7 +10,7 @@ Thanks for taking a look at how to contribute to Stirling PDFs open-source codeb
 
 ### Prerequisites
 - Java 25 (JDK 25)
-- Node.js 18+
+- Node.js compatible with the locked tooling: Node 20.19+, 22.13+ or 24+ (Node 18 is unsupported)
 - Docker (for testing)
 - Gradle (included in repository)
 
@@ -65,7 +65,7 @@ Thanks for taking a look at how to contribute to Stirling PDFs open-source codeb
 Translation files are located at `frontend/editor/public/locales/<lang>/translation.toml`
 - **CRITICAL**: Only edit `en-US/translation.toml`. `en-US` is the source/primary locale and the i18n fallback (`fallbackLng: "en-US"`); other languages are managed separately.
 - Each locale is a single TOML file (`translation.toml`), keyed by feature/tool.
-- For counts, use ICU-style plural suffixes on the key (`_one`, `_other`, and `_zero` where needed), for example `opCount_one`/`opCount_other`.
+- For counts, use i18next plural suffixes on the key (`_one`, `_other`, and `_zero` where needed), for example `opCount_one`/`opCount_other`.
 
 ## Development Resources
 - **API Documentation**: Access at `/swagger-ui/index.html` on your local instance

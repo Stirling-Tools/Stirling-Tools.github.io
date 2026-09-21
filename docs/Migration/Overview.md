@@ -120,17 +120,9 @@ This migration guide is organized into detailed sections:
 
 ---
 
-## Your Data is Safe
+## Preserve Data Before Upgrading
 
-V2 is **fully compatible** with V1 data:
-- ✅ User accounts and permissions
-- ✅ API keys
-- ✅ Settings and configurations
-- ✅ Database (internal or external)
-- ✅ Custom OCR language files
-- ✅ Custom fonts and certificates
-
-**No manual migration needed** - database schema updates automatically on first startup.
+Back up the database, configuration, OCR language files, fonts and certificates before the first V2 startup. Test the upgrade with a copy of that data and check user access, API integrations and customised settings before replacing the production deployment.
 
 ---
 
@@ -162,30 +154,26 @@ After upgrading, verify everything works:
 
 **Custom templates not loading**
 - **Cause:** Thymeleaf template system no longer used (V2 uses React)
-- **Solution:** Use static file overrides instead via `customFiles/static/` - See [Breaking Changes - UI Customization](./Breaking-Changes#-ui-customization-architecture-changed)
+- **Solution:** Use static file overrides instead via `customFiles/static/` - See [Breaking Changes - UI Customization](./Breaking-Changes#ui-customization-architecture-changed)
 
 **App name not showing**
-- **Cause:** Setting moved to in-app configuration
-- **Solution:** Log in as admin → Settings → UI
+- **Cause:** `ui.appName` is not supported.
+- **Solution:** Use `ui.appNameNavbar` for the browser tab title; see [UI Customisation](../Configuration/Customisation/UI%20Customisation.md).
 
 ---
 
 ## Rolling Back (If Needed)
 
-If you need to return to V1:
+Use the exact V1 image and pre-upgrade database/configuration backup recorded before migration. Stop V2 before restoring files; do not assume that a V2-migrated database can be opened by V1.
+
+For a stopped instance with an existing `configs` directory, preserve the current directory before restoring the backup:
 
 ```bash
-# Restore config backup
-cp -r ./configs-backup ./configs
-
-# Pull V1 image
-docker pull docker.stirlingpdf.com/stirlingtools/stirling-pdf:1.5.0
-
-# Update docker-compose.yml to use 1.5.0 tag
-docker-compose up -d
+mv ./configs "./configs-before-rollback-$(date +%Y%m%d-%H%M%S)"
+cp -a ./configs-backup ./configs
 ```
 
-**Note:** Your data will work if you roll back (database is backward compatible).
+This copies the backup as the configuration directory rather than nesting it inside an existing `configs` directory. Restore an external database separately using its tested restore procedure, then start the matching V1 deployment.
 
 ---
 

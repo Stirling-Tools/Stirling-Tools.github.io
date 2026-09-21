@@ -74,7 +74,7 @@ If you are using Docker, you need to expose the Tesseract tessdata directory as 
     apt search tesseract-ocr-
     
     # View installed languages:
-    dpkg-query -W tesseract-ocr- | sed 's/tesseract-ocr-//g'
+    dpkg-query -W 'tesseract-ocr-*' | sed 's/tesseract-ocr-//g'
     ```
   </TabItem>
   <TabItem value="fedora" label="Fedora">

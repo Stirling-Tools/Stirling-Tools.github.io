@@ -5,7 +5,7 @@ title: Fail2Ban Integration
 ---
 
 # Fail2Ban Setup for Stirling PDF
-This document provides instructions on how to set up Fail2Ban with Stirling PDF to protect against unauthorized login attempts. (Note Stirling PDF blocks IPs after a set retry count regardless of Fail2Ban, This configuration is only useful for users specifically wanting Fail2Ban configuration)
+This guide configures Fail2Ban to block IP addresses after matching failed-login log entries. Stirling PDF's built-in retry limit locks user accounts; it is separate from Fail2Ban's IP-based blocking.
 
 ## How does Fail2Ban Work with Stirling PDF
 Stirling PDF logs failed authentication attempts to a log file which Fail2Ban monitors. When it detects multiple failed login attempts from the same IP address, Fail2Ban automatically blocks that IP address for a configured period of time.
@@ -35,7 +35,7 @@ Stirling PDF logs failed authentication attempts to a log file which Fail2Ban mo
     services:
       stirling-pdf:
         environment:
-          SECURITY_ENABLELOGIN: true
+          SECURITY_ENABLELOGIN: "true"
           SECURITY_LOGINATTEMPTCOUNT: -1
     ```
   </TabItem>

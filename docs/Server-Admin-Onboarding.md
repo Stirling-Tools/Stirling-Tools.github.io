@@ -205,7 +205,7 @@ If you see the Stirling-PDF interface, your installation is successful. Continue
 **Troubleshooting:**
 - **Can't connect?** Check firewall rules: `sudo ufw allow 8080`
 - **Container won't start?** Check logs: `docker-compose logs`
-- **Permission errors?** Fix permissions: `sudo chmod -R 755 ./stirling-data`
+- **Permission errors?** Check the user and group permissions, and ensure write access is enabled for the mounted directories.
 
 </TabItem>
 <TabItem value="docker-run" label="Docker Run">
@@ -260,7 +260,7 @@ If you see the Stirling-PDF interface, your installation is successful. Continue
 **Troubleshooting:**
 - **Can't connect?** Check firewall rules: `sudo ufw allow 8080`
 - **Container won't start?** Check logs: `docker logs stirling-pdf`
-- **Permission errors?** Fix permissions: `sudo chmod -R 755 ~/stirling-data`
+- **Permission errors?** Check the user and group permissions, and ensure write access is enabled for the mounted directories.
 
 </TabItem>
 <TabItem value="kubernetes" label="Kubernetes">
@@ -546,7 +546,7 @@ security:
 ```
 
 **Notes:**
-- Session timeout is not configurable via settings
+- JWT lifetimes are configurable with `security.jwt.tokenExpiryMinutes` and `security.jwt.desktopTokenExpiryMinutes`, both in minutes
 - Password policies (length, complexity) are not currently configurable
 - Use SSO/OAuth2 for enterprise password policies
 
@@ -567,7 +567,7 @@ endpoints:
   groupsToRemove: []  # Disable entire groups, e.g. ['LibreOffice']
 ```
 
-**Most organizations don't need to disable anything** - all tools are useful and safe
+Disable tools that your deployment does not need, according to your organisation's policy.
 
 </TabItem>
 <TabItem value="disable-tools" label="Disabling Specific Tools">
@@ -627,244 +627,22 @@ docker restart stirling-pdf
 **Never run in production without HTTPS.** User credentials and PDF files will be transmitted in plain text over the network.
 :::
 
-### 5.1: Choose Your HTTPS Method
+Use HTTPS for access to Stirling PDF. You can terminate HTTPS at your existing reverse proxy or load balancer, or configure it directly in Stirling PDF.
 
-<Tabs groupId="https-method">
-<TabItem value="builtin-ssl" label="Built-in SSL (Simple)" default>
+### Reverse proxy integration
 
-**Best for:** Simple deployments, no reverse proxy needed
+- Route requests to Stirling PDF's HTTP port (`8080` by default), using an address reachable from your proxy.
+- Preserve the public hostname and pass the original HTTPS scheme in `X-Forwarded-Proto`. If the upstream `Host` differs from the public hostname, also pass `X-Forwarded-Host`. These values are used when constructing login redirects.
+- Match the proxy's upload limit to the uploads you allow in Stirling PDF, and allow enough time for document processing.
+- For a subdirectory such as `/pdf`, set `SYSTEM_ROOTURIPATH=/pdf` and forward requests with that prefix intact.
 
-Stirling-PDF can handle HTTPS directly using built-in SSL configuration.
+Use your proxy or hosting provider's documentation for certificate issuance, renewal and DNS setup.
 
-#### Configure SSL in Stirling-PDF
+### HTTPS directly in Stirling PDF
 
-1. **Generate or obtain SSL certificate:**
+Place your certificate keystore in the mounted `configs/` directory and configure `server.ssl` in `configs/custom_settings.yml`. Set `server.port` to the HTTPS port and publish that port in your container configuration.
 
-   **Option A: Self-signed (for testing/internal use):**
-   ```bash
-   # Generate self-signed certificate
-   keytool -genkeypair \
-     -alias stirling \
-     -keyalg RSA \
-     -keysize 2048 \
-     -storetype PKCS12 \
-     -keystore keystore.p12 \
-     -validity 365
-
-   # Move to configs directory
-   mv keystore.p12 ./stirling-data/configs/
-   ```
-
-   **Option B: Let's Encrypt (for production):**
-   ```bash
-   # Get certificate with certbot
-   sudo certbot certonly --standalone -d pdf.yourcompany.com
-
-   # Convert to PKCS12 format
-   sudo openssl pkcs12 -export \
-     -in /etc/letsencrypt/live/pdf.yourcompany.com/fullchain.pem \
-     -inkey /etc/letsencrypt/live/pdf.yourcompany.com/privkey.pem \
-     -out keystore.p12 \
-     -name stirling
-
-   # Move to configs
-   sudo mv keystore.p12 ./stirling-data/configs/
-   sudo chown $USER:$USER ./stirling-data/configs/keystore.p12
-   ```
-
-2. **Create custom_settings.yml:**
-
-   Create `./stirling-data/configs/custom_settings.yml`:
-   ```yaml
-   server:
-     port: 8443  # HTTPS port
-     ssl:
-       enabled: true
-       key-store: file:/configs/keystore.p12
-       key-store-password: your-keystore-password
-       key-store-type: PKCS12
-       key-alias: stirling
-   ```
-
-3. **Update docker-compose.yml to expose port 8443:**
-   ```yaml
-   services:
-     stirling-pdf:
-       ports:
-         - '8443:8443'  # Change from 8080:8080
-   ```
-
-4. **Restart Stirling-PDF:**
-   ```bash
-   docker-compose down
-   docker-compose up -d
-   ```
-
-5. **Access via HTTPS:**
-   ```
-   https://pdf.yourcompany.com:8443
-   ```
-
-**Benefits:**
-- ✅ Simple setup, no reverse proxy needed
-- ✅ Direct SSL termination in application
-- ✅ Good for small deployments
-
-**Limitations:**
-- ⚠️ Manual certificate renewal
-- ⚠️ No load balancing
-- ⚠️ Port 8443 instead of standard 443
-
-**Learn more:** [Custom Settings - SSL Configuration](./Configuration/Customisation/Extra-Settings.md#ssltls-configuration)
-
-</TabItem>
-<TabItem value="reverse-proxy" label="Reverse Proxy (Production)">
-
-**Best for:** Production deployments, standard ports (443), load balancing
-
-Use a reverse proxy like **Nginx, Apache, or Traefik** to handle HTTPS.
-
-#### Option A: Nginx with Let's Encrypt
-
-**Install Nginx and Certbot:**
-```bash
-sudo apt update
-sudo apt install nginx certbot python3-certbot-nginx
-```
-
-**Configure Nginx:**
-
-Create `/etc/nginx/sites-available/stirling-pdf`:
-```nginx
-server {
-    listen 80;
-    server_name pdf.yourcompany.com;
-
-    # Redirect HTTP to HTTPS
-    return 301 https://$server_name$request_uri;
-}
-
-server {
-    listen 443 ssl http2;
-    server_name pdf.yourcompany.com;
-
-    # SSL certificates (will be added by certbot)
-    ssl_certificate /etc/letsencrypt/live/pdf.yourcompany.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/pdf.yourcompany.com/privkey.pem;
-
-    # Strong SSL settings
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers HIGH:!aNULL:!MD5;
-    ssl_prefer_server_ciphers on;
-
-    # Security headers
-    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-    add_header X-Frame-Options "SAMEORIGIN" always;
-    add_header X-Content-Type-Options "nosniff" always;
-    add_header X-XSS-Protection "1; mode=block" always;
-
-    # Large file uploads
-    client_max_body_size 2000M;
-    client_body_timeout 300s;
-
-    # Proxy to Stirling-PDF
-    location / {
-        proxy_pass http://localhost:8080;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-
-        # WebSocket support (if needed)
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-
-        # Timeouts for large files
-        proxy_connect_timeout 300s;
-        proxy_send_timeout 300s;
-        proxy_read_timeout 300s;
-    }
-}
-```
-
-**Enable site and get certificate:**
-```bash
-# Enable site
-sudo ln -s /etc/nginx/sites-available/stirling-pdf /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
-
-# Get Let's Encrypt certificate
-sudo certbot --nginx -d pdf.yourcompany.com
-
-# Auto-renewal (certbot sets this up automatically)
-sudo certbot renew --dry-run
-```
-
-**Update DNS:**
-```
-A record: pdf.yourcompany.com → your-server-ip
-```
-
-**Access your site:**
-```
-https://pdf.yourcompany.com
-```
-
-</TabItem>
-<TabItem value="traefik" label="Traefik (Docker-Native)">
-
-**Best for:** Docker environments, automatic certificate management
-
-Traefik is a Docker-native reverse proxy that automatically:
-- Obtains SSL certificates from Let's Encrypt
-- Renews certificates automatically
-- Routes traffic based on Docker labels
-
-**Key benefits:**
-- ✅ Zero-config certificate management
-- ✅ Docker label-based routing
-- ✅ Automatic service discovery
-
-Add Traefik container to your `docker-compose.yml` and configure Stirling-PDF with Docker labels for routing.
-
-**See Traefik documentation:** https://doc.traefik.io/traefik/user-guides/docker-compose/basic-example/
-
-</TabItem>
-<TabItem value="cloudflare" label="Cloudflare Tunnel">
-
-**Best for:** No public IP, behind firewall, home servers
-
-Cloudflare Tunnel provides:
-- ✅ No port forwarding needed
-- ✅ DDoS protection included
-- ✅ Automatic HTTPS
-- ✅ Free for most use cases
-
-**Quick setup:**
-1. Install `cloudflared`
-2. Authenticate with Cloudflare
-3. Create tunnel pointing to `http://localhost:8080`
-4. Add DNS record
-5. Run as system service
-
-**See Cloudflare documentation:** https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/tunnel-guide/
-
-</TabItem>
-</Tabs>
-
-### 5.2: Update Stirling-PDF Configuration
-
-After setting up HTTPS, update Stirling-PDF to use the correct URL:
-
-**In Settings → General:**
-```yaml
-System Settings:
-  Root URI Path: / (or /pdf if using subdirectory)
-  Frontend URL: https://pdf.yourcompany.com
-  CORS Allowed Origins: https://pdf.yourcompany.com
-```
+See [SSL/TLS Configuration](./Configuration/Customisation/Extra-Settings.md#ssltls-configuration) for the Stirling PDF settings and examples.
 
 ---
 
@@ -882,7 +660,7 @@ Now that your system is secure and accessible, let's set up users.
 | Role | Permissions | Use Case |
 |------|-------------|----------|
 | **Admin** | Full access to all features, settings, user management | System administrators, IT staff |
-| **User** | Access to enabled PDF tools, no settings access | Regular employees, end users |
+| **User** | Access PDF tools and personal preferences | Regular employees, end users |
 
 **Admin capabilities:**
 - ✅ Access all PDF tools
@@ -896,7 +674,7 @@ Now that your system is secure and accessible, let's set up users.
 - ✅ Access enabled PDF tools only
 - ✅ Upload and process files
 - ✅ Download results
-- ❌ No settings access
+- ✅ Personal settings; no access to administrator-only settings
 - ❌ No user management
 - ❌ No system configuration
 
@@ -1063,7 +841,7 @@ curl http://localhost:8080/api/v1/info/status
 # Request counts
 curl http://localhost:8080/api/v1/info/requests/all
 
-# Unique users
+# Unique sessions
 curl http://localhost:8080/api/v1/info/requests/all/unique
 ```
 
@@ -1088,17 +866,13 @@ Stirling-PDF Enterprise plan supports Prometheus metrics for advanced monitoring
 
 **Learn more:** [Usage Monitoring - Prometheus Setup](./Configuration/Automation/Usage%20Monitoring.md#prometheus-monitoring-configuration)
 
-**Features:**
-- JVM metrics (memory, GC, threads)
-- System metrics (CPU, disk)
-- Application metrics (request rates, processing times)
-- PDF processing metrics
+Prometheus exposes HTTP request counts, grouped by endpoint, request method and session. See [Usage Monitoring](./Configuration/Automation/Usage%20Monitoring.md) for licensing requirements and configuration.
 
-#### Log Aggregation
+#### Log Storage and Forwarding
 
-Forward logs to centralized logging:
+Choose local rotation or a forwarding driver according to your logging setup:
 
-**Option 1: Docker log driver**
+**Option 1: Local JSON log rotation** (this does not forward logs):
 ```yaml
 services:
   stirling-pdf:
@@ -1183,127 +957,6 @@ Team and Enterprise plan users should configure an external PostgreSQL database 
 **Learn more:** [External Database Configuration](./Configuration/Storage/External%20Database.md)
 :::
 
-### 8.2: Backup Strategies
-
-<Tabs groupId="backup-strategy">
-<TabItem value="simple-backup" label="Simple Backup Script" default>
-
-**Create automated backup script:**
-
-Create `backup-stirling.sh`:
-```bash
-#!/bin/bash
-
-# Configuration
-BACKUP_DIR="/backups/stirling-pdf"
-STIRLING_DATA="/path/to/stirling-data"
-RETENTION_DAYS=30
-
-# Create backup directory
-mkdir -p "$BACKUP_DIR"
-
-# Generate timestamp
-TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-BACKUP_FILE="$BACKUP_DIR/stirling-backup-$TIMESTAMP.tar.gz"
-
-# Stop container (optional, for consistency)
-# docker-compose -f /path/to/docker-compose.yml stop stirling-pdf
-
-# Create backup
-tar -czf "$BACKUP_FILE" \
-  -C "$STIRLING_DATA" \
-  configs/ \
-  customFiles/ \
-  tessdata/
-
-# Start container (if stopped)
-# docker-compose -f /path/to/docker-compose.yml start stirling-pdf
-
-# Delete old backups
-find "$BACKUP_DIR" -name "stirling-backup-*.tar.gz" -mtime +$RETENTION_DAYS -delete
-
-# Log result
-echo "[$TIMESTAMP] Backup completed: $BACKUP_FILE"
-```
-
-**Make executable and schedule:**
-```bash
-chmod +x backup-stirling.sh
-
-# Add to crontab (daily at 2 AM)
-crontab -e
-# Add: 0 2 * * * /path/to/backup-stirling.sh >> /var/log/stirling-backup.log 2>&1
-```
-
-</TabItem>
-<TabItem value="docker-volume-backup" label="Docker Volume Backup">
-
-**Backup Docker volumes:**
-
-```bash
-# Stop container
-docker-compose stop stirling-pdf
-
-# Backup volumes
-docker run --rm \
-  -v $(pwd)/stirling-data:/data \
-  -v $(pwd)/backups:/backup \
-  alpine tar -czf /backup/stirling-data-$(date +%Y%m%d).tar.gz /data
-
-# Start container
-docker-compose start stirling-pdf
-```
-
-**Automated with Cron:**
-Create `docker-volume-backup.sh`:
-```bash
-#!/bin/bash
-cd /path/to/stirling-pdf
-docker-compose stop stirling-pdf
-docker run --rm \
-  -v "$(pwd)/stirling-data:/data" \
-  -v "$(pwd)/backups:/backup" \
-  alpine tar -czf /backup/stirling-data-$(date +%Y%m%d).tar.gz /data
-docker-compose start stirling-pdf
-
-# Cleanup old backups (keep 30 days)
-find backups/ -name "stirling-data-*.tar.gz" -mtime +30 -delete
-```
-
-</TabItem>
-</Tabs>
-
-### 8.3: Restore from Backup
-
-**Restore procedure:**
-
-1. **Stop Stirling-PDF:**
-   ```bash
-   docker-compose stop stirling-pdf
-   ```
-
-2. **Extract backup:**
-   ```bash
-   tar -xzf stirling-backup-YYYYMMDD-HHMMSS.tar.gz -C ./stirling-data/
-   ```
-
-3. **Verify files restored:**
-   ```bash
-   ls -la ./stirling-data/configs/
-   # Should see: stirling-pdf-DB-<schema-version>.mv.db, settings.yml
-   ```
-
-4. **Start Stirling-PDF:**
-   ```bash
-   docker-compose start stirling-pdf
-   ```
-
-5. **Verify functionality:**
-   - Access web interface
-   - Log in as admin
-   - Check users exist
-   - Verify settings
-
 ---
 
 ## Step 9: Performance Optimization
@@ -1342,33 +995,30 @@ Stirling-PDF offers **Team and Enterprise paid plans** with additional features 
 
 ---
 
-## Next Steps & Resources
+## Recommended Steps
 
-Congratulations! You've successfully deployed and configured Stirling-PDF for your organization.
+1. **Learn Stirling PDF**
+   - Read the [Getting Started Guide](./Getting%20Started.md)
+   - Explore the [Tool Reference](./Functionality/Functionality.md)
 
-### Recommended Next Steps
-
-1. **📚 Train your users**
-   - Share the [Getting Started Guide](./Getting%20Started.md)
-   - Point them to [Tool Reference](./Functionality/Functionality.md)
-   - Create internal documentation for your specific workflows
-
-2. **🔧 Advanced configuration**
+2. **Advanced configuration**
    - [OCR Configuration](./Configuration/Operations/OCR.md) - Add more languages
    - [Pipeline Automation](./Configuration/Automation/Pipeline.md) - Automate workflows
    - [API Integration](./API.md) - Integrate with other systems
    - [LibreOffice Parallel Processing](./Configuration/Operations/LibreOffice-Parallel-Processing.md) - Scale document conversions
 
-3. **🔒 Harden security**
+3. **Harden security**
    - [Fail2Ban Setup](./Configuration/Security/Fail2Ban.md) - Prevent brute force
    - [External Database](./Configuration/Storage/External%20Database.md) - Use PostgreSQL
    - Review [System and Security](./Configuration/Security/System%20and%20Security.md) settings
 
-4. **📊 Monitor and optimize**
+4. **Monitor and optimize**
    - Set up regular backup verification
    - Review logs weekly
    - Monitor disk space and performance
    - Plan for growth
+
+## Resources
 
 ### Support & Community
 
@@ -1394,11 +1044,7 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 **Solutions:**
 1. Check logs: `docker logs stirling-pdf | grep ERROR`
 2. Verify `SECURITY_ENABLELOGIN=true` is set
-3. Reset admin password via command line:
-   ```bash
-   docker exec -it stirling-pdf sh
-   # Use built-in password reset tool
-   ```
+3. If another administrator can sign in, use User Management to reset the affected account's password.
 
 ### Performance Issues
 
@@ -1416,20 +1062,18 @@ Congratulations! You've successfully deployed and configured Stirling-PDF for yo
 **Problem:** Certificate errors, HTTPS not working
 
 **Solutions:**
-1. Check Nginx/Traefik logs
-2. Verify DNS points to correct IP
-3. Ensure ports 80 and 443 are open
-4. Test Let's Encrypt manually: `sudo certbot certificates`
+1. For direct HTTPS, check the Stirling PDF logs and verify the keystore path, password and certificate alias.
+2. Behind a proxy, verify the upstream address and forwarded hostname and scheme. See [HTTPS & Domain Setup](#step-5-https-domain-setup).
 
 ### File Upload Issues
 
 **Problem:** Can't upload large files
 
 **Solutions:**
-1. Increase Nginx limit: `client_max_body_size 2000M;`
+1. Check that the proxy's upload limit allows the file size configured in Stirling PDF.
 2. Increase Stirling-PDF limit: `system.fileUploadLimit: 2000MB` (env `SYSTEMFILEUPLOADLIMIT=2000MB`)
 3. Check disk space: `df -h`
-4. Increase timeouts: `client_body_timeout 300s;`
+4. Check whether the proxy closes the request before processing finishes.
 
 ### Need More Help?
 
@@ -1443,11 +1087,3 @@ Run the built-in [diagnostics tool](./Configuration/Operations/Diagnostics.md) i
 - Upgrade to Team or Enterprise plan
 - Email: support@stirlingpdf.com
 - Get dedicated support team
-
----
-
-**You're all set!** 🎉
-
-Your Stirling-PDF deployment is ready for production use. If you have any questions or need assistance, don't hesitate to reach out to our community or consider upgrading to a paid plan (Team or Enterprise) for dedicated support.
-
-Happy PDF processing! 📄✨

@@ -120,7 +120,7 @@ Verify that a PDF was signed by the claimed certificate, the certificate is trus
 | Source | Config Key | What It Trusts |
 |--------|-----------|----------------|
 | Server certificates | `serverAsAnchor` | PDFs signed by your Stirling PDF instance |
-| System trust store | `useSystemTrust` | OS-trusted CAs |
+| System trust store | `useSystemTrust` | CAs trusted by the Java runtime's default trust manager |
 | Mozilla CA bundle | `useMozillaBundle` | Mozilla's curated CA list |
 | Adobe AATL | `useAATL` | Adobe Approved Trust List |
 | EU EUTL | `useEUTL` | EU Trusted List (eIDAS) |
@@ -324,11 +324,7 @@ See [API Documentation](../../API.md) for complete endpoint reference.
 ## Troubleshooting
 
 ### "Certificate not trusted"
-Enable the appropriate trust source in config, or add your CA certificate to the system trust store:
-```bash
-docker cp ca-cert.crt stirling-pdf:/usr/local/share/ca-certificates/
-docker exec stirling-pdf update-ca-certificates
-```
+Enable the appropriate trust source, or add your CA to the trust store used by the Java runtime. Updating OS CA files alone is not sufficient unless the container/runtime also synchronises them into Java's trust store. Trust sources are loaded during service initialisation; restart the application after changing them.
 
 ### Revocation check fails
 Check that the container has HTTPS access to OCSP/CRL servers. Use `hardFail: false` or switch to `crl` mode for restricted networks.

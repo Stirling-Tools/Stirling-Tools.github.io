@@ -70,7 +70,7 @@ volumes:
    - Monitor storage usage to prevent excessive accumulation of files
 
 3. Supported File Types:
-   - For signatures: common image formats (PNG, JPG, SVG)
+   - For shared signatures: PNG and JPEG (`.png`, `.jpg`, `.jpeg`)
    - Ensure files are of appropriate size and format for their intended use
 
 ## Example Structure

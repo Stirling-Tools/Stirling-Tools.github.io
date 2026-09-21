@@ -20,14 +20,14 @@ These settings (in Settings.yml) control system behavior and customization capab
 
 ### In-App Settings Management (Recommended)
 
-If you have login enabled and are logged in as an admin, you can configure all settings directly in the application through the **Settings** menu. No need to edit `settings.yml` manually!
+With login enabled, administrators can change the options exposed in **Settings**. Server settings that require a restart are saved as pending changes.
 
 **How to access:**
 1. Enable login: `SECURITY_ENABLELOGIN=true`
 2. Log in as an admin user
 3. Navigate to **Settings** in the application
-4. Configure all options through the UI
-5. Changes apply immediately
+4. Configure the available options
+5. Save changes and follow any restart prompt
 
 **Available customizations:**
 - Application name and branding
@@ -52,10 +52,11 @@ services:
       - ./customFiles:/customFiles:rw
 ```
 
-Then place your custom files in `customFiles/static/` matching the path structure. Common examples:
-- `customFiles/static/favicon.svg` - Custom favicon
-- `customFiles/static/classic-logo/logo.svg` - Custom logo
-- `customFiles/static/modern-logo/logo.svg` - Custom modern logo
+Place overrides under `customFiles/static/` with the exact filenames requested by the selected logo style. For example:
+- `customFiles/static/modern-logo/StirlingPDFLogoNoTextDark.svg`
+- `customFiles/static/modern-logo/StirlingPDFLogoNoTextLight.svg`
+
+Use the corresponding `classic-logo/` paths when the classic style is selected. Match the actual asset URL for wordmarks and favicons too.
 
 **Learn more:** [Other Customisations - Static File Overrides](./Other%20Customisations.md#static-file-overrides)
 
@@ -82,15 +83,15 @@ customFiles/
 
 It will be served at `/custom.css` (or under your configured root path if you've set `SYSTEM_ROOTURIPATH`).
 
-**2. Get a copy of the current bundled `index.html`**
+**2. Get a copy of the current served `index.html`**
 
-The easiest way is to copy it out of a running container:
+Retrieve the page from your running instance, using your configured URL and authentication if required:
 
 ```bash
-docker cp stirling-pdf:/app/BOOT-INF/classes/static/index.html ./customFiles/static/index.html
+curl --fail --location http://localhost:8080/ --output ./customFiles/static/index.html
 ```
 
-If that path doesn't exist on a future release (e.g. a layered JAR layout), try `/app/app.jar` instead and extract `BOOT-INF/classes/static/index.html` from it with `unzip`. The endpoint location is what matters - any equivalent copy of the served `index.html` works.
+Check that the downloaded file is the application entry page before editing it.
 
 **3. Add your stylesheet link**
 
@@ -159,10 +160,10 @@ This approach requires maintaining your fork and manually merging updates.
 
     **Option 1: Using Java Properties**
     ```bash
-    java -jar Stirling-PDF.jar \
-      -DUI_APPNAMENAVBAR="Stirling PDF" \
-      -DSHOW_UPDATE=false \
-      -DSHOW_UPDATE_ONLY_ADMIN=false
+    java -Dui.appNameNavbar="Stirling PDF" \
+      -Dsystem.showUpdate=false \
+      -Dsystem.showUpdateOnlyAdmin=false \
+      -jar Stirling-PDF.jar
     ```
 
     **Option 2: Using Environment Variables**
@@ -174,7 +175,7 @@ This approach requires maintaining your fork and manually merging updates.
   </TabItem>
   <TabItem value="docker-run" label="Docker Run">
     ```bash
-    -e UI_APPNAMENAVBAR=Stirling PDF \
+    -e UI_APPNAMENAVBAR="Stirling PDF" \
     -e SYSTEM_SHOWUPDATE=false \
     -e SYSTEM_SHOWUPDATEONLYADMIN=false
     ```

@@ -34,7 +34,7 @@ For detailed sizing recommendations, see the [Performance Optimization](./Config
 
 If you experience connection issues, use these alternative endpoints:
 
-- Docker Hub: `docker pull docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest`
+- Docker Hub: `docker pull stirlingtools/stirling-pdf:latest`
 - GitHub: `docker pull ghcr.io/stirling-tools/stirling-pdf:latest`
 
 All endpoints provide the same functionality.
@@ -45,7 +45,7 @@ No, we track no data without your explicit consent. You can see how, when, and w
 
 ### Q9: When I upload a file, where is it processed?
 
-Uploads go to the server or desktop instance you're using, not to Stirling servers. The macOS/Windows desktop apps process files locally - even when you pick the Stirling Cloud sign-in today - so your PDFs stay on your device unless you point the app to a remote self-hosted server. Planned SaaS-assisted features (for desktop app) will be opt-in when they arrive.
+Processing depends on the connection mode and tool. Self-hosted operations run on your server. Desktop operations run on the local backend where supported; when connected to Stirling Cloud or a remote self-hosted server, operations can send files to that server. See Q12 below for the desktop routing rules.
 
 ### Q10: What are the different JAR files and which should I use?
 
@@ -92,12 +92,12 @@ To disable authentication in the with-login version:
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
-      SECURITY_ENABLELOGIN: false
+      SECURITY_ENABLELOGIN: "false"
     ```
   </TabItem>
   <TabItem value="jar-property" label="JAR (Java Property)">
     ```bash
-    java -jar Stirling-PDF-with-login.jar -DSECURITY_ENABLELOGIN=false
+    java -Dsecurity.enableLogin=false -jar Stirling-PDF-with-login.jar
     ```
   </TabItem>
   <TabItem value="jar-env" label="JAR (Environment Variable)">
@@ -115,7 +115,7 @@ For more details, see the [System and Security Configuration](./Configuration/Se
 The desktop app runs a small Stirling PDF backend **inside the app on your own computer** (localhost). The Connection mode you pick (Settings -> Connection) decides where each tool runs:
 
 - **Local-only** (default; not signed in, no server connected): every tool runs on the local backend and your files never leave your device. If you use a tool the local backend can't perform (OCR, Office conversions, and similar), the file is **not** sent anywhere - the app stops and asks you to sign in to Stirling Cloud or connect to a self-hosted server.
-- **Signed in to Stirling Cloud**: server-side tools are processed on Stirling's cloud (transient, not stored).
+- **Signed in to Stirling Cloud**: supported local operations still run locally; operations unavailable locally can be routed to Stirling Cloud.
 - **Connected to a self-hosted server**: server-side tools go only to your own server.
 
 Bottom line: in local-only mode a server-side tool is either run locally or blocked with a prompt - it is never silently uploaded anywhere.
@@ -135,4 +135,3 @@ Stripe's script loads only for the in-app purchase / billing UI. No PDF or docum
 ### Q16: Is a specific feature supported?
 
 We are continuously improving Stirling PDF, and the exact feature you're looking for might not be available yet - for example, a native Android app or in-app PDF translation. You can raise a feature request for any and all features on our [GitHub issues page](https://github.com/Stirling-Tools/Stirling-PDF/issues) with `[Feature Request]` in the title.
-

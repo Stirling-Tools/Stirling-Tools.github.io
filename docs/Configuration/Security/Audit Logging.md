@@ -69,12 +69,12 @@ Settings are under `premium.enterpriseFeatures.audit`.
       stirling-pdf:
         image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
         environment:
-          PREMIUM_ENABLED: true
+          PREMIUM_ENABLED: "true"
           PREMIUM_KEY: your-enterprise-license-key
-          PREMIUM_ENTERPRISEFEATURES_AUDIT_ENABLED: true
+          PREMIUM_ENTERPRISEFEATURES_AUDIT_ENABLED: "true"
           PREMIUM_ENTERPRISEFEATURES_AUDIT_LEVEL: 2
           PREMIUM_ENTERPRISEFEATURES_AUDIT_RETENTIONDAYS: 365
-          PREMIUM_ENTERPRISEFEATURES_AUDIT_CAPTUREFILEHASH: true
+          PREMIUM_ENTERPRISEFEATURES_AUDIT_CAPTUREFILEHASH: "true"
     ```
   </TabItem>
 </Tabs>

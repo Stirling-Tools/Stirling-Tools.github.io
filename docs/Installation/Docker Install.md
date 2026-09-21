@@ -6,7 +6,7 @@ title: Docker Guide
 
 # Docker Installation for Stirling PDF
 
-Run Stirling PDF in Docker for easy self-hosting, automatic updates, and flexible deployment.
+Docker packages Stirling PDF and its dependencies in a container. Update it by pulling the desired image and recreating the container.
 
 ## Quick Start
 
@@ -67,13 +67,13 @@ Change this password immediately after first login. If you want the no-login exp
 | **Fat** | `latest-fat` | Everything + extra fonts & tools | Highest quality conversions, full format support |
 | **Ultra-Lite** | `latest-ultra-lite` | Core features only | Limited resources, minimal size |
 
-**Most users should use `latest`** - it has everything you need.
+Start with `latest` for the standard toolset; choose another image when its included dependencies suit your workload.
 
 ### When to use each version:
 
 **Standard (`latest`)** - You want all PDF features, have normal server specs, or you're not sure which to pick.
 
-**Fat (`latest-fat`)** - You need the highest quality conversions with full font support, every conversion format, and all optional tools. Disk space isn't a concern.
+**Fat (`latest-fat`)** - Includes additional fonts and optional conversion dependencies. It uses more disk space; conversion results still depend on the input files and installed fonts.
 
 **Ultra-Lite (`latest-ultra-lite`)** - Running on very limited hardware (Raspberry Pi, low-end VPS), want fastest startup, or only need basic PDF operations.
 
@@ -302,7 +302,7 @@ ports:
 
 **Permission errors with volumes?**
 - Make sure the directories exist
-- Check folder permissions: `chmod -R 755 ./stirling-data`
+- Check the container's runtime UID/GID and ensure it has write access to the mounted directories. Mode `755` grants write access only to the owner; changing the mode alone does not correct ownership.
 
 **Container keeps restarting?**
 - Check logs: `docker logs stirling-pdf`

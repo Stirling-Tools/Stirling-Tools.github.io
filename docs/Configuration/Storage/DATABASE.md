@@ -10,15 +10,14 @@ tags: [server, database, management]
 
 ## Functionality Overview
 
-The newly introduced feature enhances the application with robust database backup and import capabilities. This feature is designed to ensure data integrity and provide a straightforward way to manage database backups. Here's how it works:
+The database tools provide scheduled SQL backups and manual import/export for the embedded H2 database.
 
 1. Automatic Backup Creation
-   - The system automatically creates a database backup every day at midnight. This ensures that there is always a recent backup available, minimizing the risk of data loss.
-2. Manual Backup Export
-   - Admin actions that modify the user database trigger a manual export of the database. This keeps the backup up-to-date with the latest changes and provides an extra layer of data security.
+   - The default schedule runs daily at midnight and can be changed through `system.databaseBackup.cron`. Check that the scheduled job completed and produced a usable backup.
+2. Backup Export
+   - User-database changes can trigger an export. Keep backups outside the running instance as well.
 3. Importing Database Backups
-   - Admin users can import a database backup either via the web interface or API endpoints. This allows for easy restoration of the database to a previous state in case of data corruption or other issues.
-   - The import process ensures that the database structure and data are correctly restored, maintaining the integrity of the application.
+   - Admin users can import a SQL backup through the web interface or API. Import can fail; check the result and validate the restored data.
 4. Managing Backup Files
    - Admins can view a list of all existing backup files, along with their creation dates and sizes. This helps in managing storage and identifying the most recent or relevant backups.
    - Backup files can be downloaded for offline storage or transferred to other environments, providing flexibility in database management.
@@ -39,4 +38,4 @@ The newly introduced feature enhances the application with robust database backu
 2. Download backup files.
 3. Delete backup files.
 
-This new functionality streamlines database management, ensuring that backups are always available and easy to manage, thus improving the reliability and resilience of the application.
+Backups are useful only if they can be restored. Check backup results and periodically test restoration in a separate instance.

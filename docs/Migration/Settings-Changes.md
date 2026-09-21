@@ -58,9 +58,7 @@ system:
     regenerateOnStartup: false
 ```
 
-**What it does:** Auto-generates signing certificates for "Sign with Stirling PDF" feature.
-
-**Migration:** Works automatically with defaults.
+**What it does:** Generates the certificate used by server signing when the feature is enabled and a Team or Enterprise licence is active. The default enabled flag alone does not grant access.
 
 **Learn more:** [Certificate Signing](../Functionality/Security/Certificate-Signing) | [Certificate Configuration](../Configuration/Security/System%20and%20Security.md#server-certificates)
 
@@ -68,30 +66,18 @@ system:
 
 ### Enhanced JWT Configuration
 
-**Changed settings:**
+Configure JWT authentication with these settings:
 
 ```yaml
-# V1 (OLD)
 security:
   jwt:
-    enabled: false
-    keyCleanup: false
-    secureCookie: true # REMOVED
-
-# V2 (NEW)
-security:
-  jwt:
-    persistence: true # replaces 'enabled'
-    enableKeyRotation: true # NEW
-    enableKeyCleanup: true # replaces 'keyCleanup'
-    keyRetentionDays: 7
+    enableKeystore: true
+    enableKeyCleanup: true
+    tokenExpiryMinutes: 1440
+    desktopTokenExpiryMinutes: 43200
 ```
 
-**Migration:**
-- Replace `jwt.enabled` with `jwt.persistence`
-- Replace `jwt.keyCleanup` with `jwt.enableKeyCleanup`
-- Add `jwt.enableKeyRotation: true`
-- Remove `jwt.secureCookie` (no longer used)
+`enableKeystore` controls persistent key storage. `enableKeyCleanup` enables cleanup of old keys. Key retention is calculated automatically from token lifetimes and refresh settings.
 
 ---
 
@@ -129,25 +115,11 @@ ui:
 
 ---
 
-## Removed Settings in V2
+## UI Settings and Retained Configuration
 
-### UI Settings Moved to In-App Configuration
+### UI Configuration
 
-**V1 settings (REMOVED):**
-
-```yaml
-ui:
-  appName: '' # REMOVED
-  homeDescription: '' # REMOVED
-```
-
-**Migration:**
-1. Enable login: `SECURITY_ENABLELOGIN=true`
-2. Log in as admin
-3. Go to Settings in UI
-4. Configure app name and description there
-
-**Why:** In-app settings are more user-friendly and apply immediately.
+The old `ui.appName` and `ui.homeDescription` fields are not supported. They have not moved to a replacement name-and-description editor. Use `ui.appNameNavbar` for the browser tab title and TOTP issuer label, and `ui.logoStyle` for the logo variant. Save changes and apply any restart requested by the admin UI.
 
 **Learn more:** [UI Customisation](../Configuration/Customisation/UI%20Customisation.md)
 
@@ -155,60 +127,31 @@ ui:
 
 ### Google Drive Integration
 
-**V1 settings (REMOVED):**
+For Google Drive integration, retain `premium.proFeatures.googleDrive` when using it:
 
 ```yaml
 premium:
   proFeatures:
-    googleDrive: # REMOVED in V2
+    googleDrive:
       enabled: false
-      clientId: ''
-      apiKey: ''
-      appId: ''
+      clientId: ""
+      apiKey: ""
+      appId: ""
 ```
 
-**Migration:** Remove this section from your `settings.yml`.
-
-**Why:** Feature discontinued in V2.
+See [Google Drive File Picker](../Configuration/Storage/Google%20Drive%20File%20Picker.md) for setup and licensing.
 
 ---
 
 ### Database Notifications
 
-**V1 settings (REMOVED):**
-
-```yaml
-premium:
-  enterpriseFeatures:
-    databaseNotifications: # REMOVED in V2
-      backups:
-        successful: false
-        failed: false
-      imports:
-        successful: false
-        failed: false
-```
-
-**Migration:** Remove this section from your `settings.yml`.
-
-**Why:** Replaced with more comprehensive audit logging.
+Keep `premium.enterpriseFeatures.databaseNotifications` if you use backup/import notifications. Its `backups` and `imports` sections still accept `successful` and `failed` flags. Audit logging does not replace this configuration.
 
 ---
 
 ### Calibre Custom Path
 
-**V1 setting (REMOVED):**
-
-```yaml
-system:
-  customPaths:
-    operations:
-      calibre: '' # REMOVED in V2
-```
-
-**Migration:** Remove this line.
-
-**Why:** Path detection improved, no longer needs custom configuration.
+Keep `system.customPaths.operations.calibre` if you need a custom path to `ebook-convert`. The override is still read by the runtime configuration.
 
 ---
 
@@ -218,20 +161,9 @@ Use this checklist when upgrading your `settings.yml`:
 
 ### Required Changes
 
-- [ ] **JWT Settings:**
-  - [ ] Replace `jwt.enabled` with `jwt.persistence`
-  - [ ] Replace `jwt.keyCleanup` with `jwt.enableKeyCleanup`
-  - [ ] Add `jwt.enableKeyRotation: true`
-  - [ ] Remove `jwt.secureCookie` line
-
-- [ ] **Remove Deprecated Sections:**
-  - [ ] Remove `premium.proFeatures.googleDrive` section
-  - [ ] Remove `premium.enterpriseFeatures.databaseNotifications` section
-  - [ ] Remove `system.customPaths.operations.calibre` line
-
-- [ ] **UI Settings:**
-  - [ ] Remove `ui.appName` (use in-app settings)
-  - [ ] Remove `ui.homeDescription` (use in-app settings)
+- [ ] **JWT:** Use `security.jwt.enableKeystore` and `security.jwt.enableKeyCleanup`; review token lifetimes in minutes. Do not add `persistence`, `enableKeyRotation` or a writable `keyRetentionDays` setting.
+- [ ] **Retained settings:** Preserve Google Drive, database notifications and custom Calibre paths where used.
+- [ ] **UI:** Replace old naming assumptions with the current `ui.appNameNavbar` behaviour. There is no replacement homepage-description editor.
 
 ### Optional Additions
 
@@ -261,8 +193,7 @@ SYSTEM_SERVERCERTIFICATE_ORGANIZATIONNAME="My Company"
 SYSTEM_SERVERCERTIFICATE_VALIDITY=365
 
 # JWT
-SECURITY_JWT_PERSISTENCE=true
-SECURITY_JWT_ENABLEKEYROTATION=true
+SECURITY_JWT_ENABLEKEYSTORE=true
 SECURITY_JWT_ENABLEKEYCLEANUP=true
 
 # Email configuration
@@ -271,17 +202,6 @@ MAIL_ENABLEINVITES=true
 
 # Logo
 UI_LOGOSTYLE=modern
-```
-
-### Deprecated Environment Variables
-
-```bash
-# These no longer work in V2
-SECURITY_JWT_ENABLED  # Use SECURITY_JWT_PERSISTENCE
-SECURITY_JWT_KEYCLEANUP  # Use SECURITY_JWT_ENABLEKEYCLEANUP
-SECURITY_JWT_SECURECOOKIE  # Removed
-UI_APPNAME  # Use in-app settings
-UI_HOMEDESCRIPTION  # Use in-app settings
 ```
 
 ---
@@ -330,10 +250,10 @@ premium:
 ```yaml
 security:
   jwt:
-    persistence: true  # Changed
-    enableKeyRotation: true  # NEW
-    enableKeyCleanup: true  # Changed
-    keyRetentionDays: 7
+    enableKeystore: true
+    enableKeyCleanup: true
+    tokenExpiryMinutes: 1440
+    desktopTokenExpiryMinutes: 43200
   validation:  # NEW section
     trust:
       serverAsAnchor: true
@@ -347,7 +267,7 @@ system:
 ui:
   appNameNavbar: 'PDF Tool'
   logoStyle: classic  # NEW
-  # appName and homeDescription removed - use in-app settings
+  # appName and homeDescription are not supported
 ```
 
 ---
@@ -378,12 +298,9 @@ ui:
 
 **Symptom:** App name doesn't appear after setting `ui.appName`.
 
-**Cause:** Setting moved to in-app configuration.
+**Cause:** `ui.appName` is not a supported setting.
 
-**Solution:**
-1. Log in as admin
-2. Go to Settings → UI
-3. Configure there
+**Solution:** Set `ui.appNameNavbar` for the browser tab title. Use the current logo controls or static-file overrides for branding; there is no in-app homepage-description editor.
 
 ---
 
@@ -393,21 +310,3 @@ ui:
 - **[Breaking Changes](./Breaking-Changes.md)** - Important changes
 - **[Configuration Options](../Configuration/Customisation/Extra-Settings.md)** - All configuration variables
 - **[System and Security](../Configuration/Security/System%20and%20Security.md)** - Advanced config
-
----
-
-## Summary
-
-**Key Takeaways:**
-- ✅ Most settings remain the same
-- 🔄 JWT settings have new names
-- ➕ Many new optional features
-- ➖ Google Drive and database notifications removed
-- 🎨 UI settings moved to in-app configuration
-
-**Action Required:**
-- Update JWT setting names
-- Remove deprecated sections
-- Optionally configure new features
-
-Your existing configuration will work in V2 with minimal changes!

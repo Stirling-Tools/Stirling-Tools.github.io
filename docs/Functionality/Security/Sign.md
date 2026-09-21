@@ -74,5 +74,5 @@ Visual signatures do **not** provide authentication, tamper protection, or guara
 ## Related Tools
 
 - **[Certificate Signing](./Certificate-Signing.md)** - Digital signatures with certificates
-- **[Add Stamp](../Content-Editing/Content-Editing.md#stamps--annotations)** - Add official stamps
+- **[Add Stamp](../Content-Editing/Content-Editing.md#stamps-annotations)** - Add official stamps
 - **[Add Password](./Security.md#password-and-access)** - Protect signed documents

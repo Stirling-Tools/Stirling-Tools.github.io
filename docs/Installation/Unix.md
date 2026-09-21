@@ -10,17 +10,16 @@ Stirling PDF on Linux is available as a **native desktop application** or as a *
 
 ## Desktop Application (Recommended for Personal Use)
 
-Native Linux desktop app with all PDF tools available.
+A desktop application for Linux with local PDF tools and optional access to a connected server.
 
 ### What You Get
 
 - ✅ **Native Linux application** - Integrated with your desktop environment
 - ✅ **Open PDFs directly** - Double-click any PDF to open in Stirling-PDF
 - ✅ **No login required** - Install and start using PDF tools right away
-- ✅ **Processes files locally** - All your PDF processing stays on your device
+- ✅ **Local processing where supported** - Tools served by the local backend run on your device. Tools routed to Stirling Cloud or a connected server send their inputs to that server.
 - ✅ **Optional server connection** - Connect to Stirling Cloud or your own self-hosted server for advanced tools like OCR and document conversions
 - ✅ **All local tools included** - Merge, split, rotate, sign, and more work without any server
-- ✅ **Better performance** - Native Linux integration
 - ✅ **No browser needed** - Standalone application
 
 ### Installation
@@ -107,7 +106,7 @@ You could theoretically use a Distrobox/Toolbox, if your Distribution has old or
 Install the following software, if not already installed:
 
 - Java 25 or later
-- Gradle 7.0 or later (included within repo so not needed on server)
+- Use the included Gradle wrapper (`./gradlew`).
 - Git
 - Python 3.8 (with pip)
 - Make
@@ -297,7 +296,7 @@ If you plan to use the OCR (Optical Character Recognition) functionality, you mi
     apt search tesseract-ocr-
     
     # View installed languages:
-    dpkg-query -W tesseract-ocr- | sed 's/tesseract-ocr-//g'
+    dpkg-query -W 'tesseract-ocr-*' | sed 's/tesseract-ocr-//g'
     ```
   </TabItem>
   <TabItem value="fedora" label="Fedora-based Systems">
@@ -333,17 +332,17 @@ If you plan to use the OCR (Optical Character Recognition) functionality, you mi
 <Tabs groupId="unix-systems">
   <TabItem value="debian" label="Debian-based Systems">
     ```bash
-    java -jar /opt/Stirling-PDF/Stirling-PDF-*.jar
+    java -jar /opt/Stirling-PDF/Stirling-PDF.jar
     ```
   </TabItem>
   <TabItem value="fedora" label="Fedora-based Systems">
     ```bash
-    java -jar /opt/Stirling-PDF/Stirling-PDF-*.jar
+    java -jar /opt/Stirling-PDF/Stirling-PDF.jar
     ```
   </TabItem>
   <TabItem value="nix" label="Nix Package Manager">
     ```bash
-    java -jar /opt/Stirling-PDF/Stirling-PDF-*.jar
+    java -jar ~/Stirling-PDF/Stirling-PDF.jar
     ```
   Since libreoffice, soffice, and conversion tools have their dbus_tmp_dir set as `dbus_tmp_dir="/run/user/$(id -u)/libreoffice-dbus"`, you get the following error:
   `[Thread-7] INFO  s.s.SPDF.utils.ProcessExecutor - mkdir: cannot create directory '/run/user/1501': Permission denied`
@@ -357,27 +356,26 @@ If you plan to use the OCR (Optical Character Recognition) functionality, you mi
 
 ### Step 8: Adding a Desktop Icon
 
-This will add a modified Appstarter to your Appmenu.
+This desktop entry launches the JAR in a terminal. Open `http://localhost:8080` in your browser after the server has started. Adjust the JAR path if you installed it elsewhere.
 
 ```bash
-location=$(pwd)/gradlew
-image=$(pwd)/docs/stirling.svg
-
-cat > ~/.local/share/applications/Stirling-PDF.desktop <<EOF
+mkdir -p ~/.local/share/applications
+cat > ~/.local/share/applications/Stirling-PDF.desktop <<'EOF'
 [Desktop Entry]
-Name=Stirling PDF;
-GenericName=Launch StirlingPDF and open its WebGUI;
-Category=Office;
-Exec=xdg-open http://localhost:8080 && nohup $location java -jar /opt/Stirling-PDF/Stirling-PDF-*.jar &;
-Icon=$image;
+Name=Stirling PDF
+GenericName=PDF tools
+Categories=Office;
+Exec=java -jar /opt/Stirling-PDF/Stirling-PDF.jar
+Path=/opt/Stirling-PDF
+Icon=application-pdf
 Keywords=pdf;
-Type=Application;
-NoDisplay=false;
-Terminal=true;
+Type=Application
+NoDisplay=false
+Terminal=true
 EOF
 ```
 
-Note: Currently the app will run in the background until manually closed.
+Stop the server with Ctrl+C in its terminal.
 
 ### Optional: Changing the Host and Port
 
@@ -385,14 +383,14 @@ To override the default configuration, you can add the following to the `configs
 
 ```yaml
 server:
-  host: 0.0.0.0
+  address: 0.0.0.0
   port: 3000
 ```
 
 For systemd add in the .env file (see run as service for setting environment variables):
 
 ```bash
-SERVER_HOST="0.0.0.0"
+SERVER_ADDRESS="0.0.0.0"
 SERVER_PORT="3000"
 ```
 
@@ -431,7 +429,7 @@ Type=simple
 
 EnvironmentFile=/opt/Stirling-PDF/.env
 WorkingDirectory=/opt/Stirling-PDF
-ExecStart=/usr/bin/java -jar Stirling-PDF-*.jar
+ExecStart=/usr/bin/java -jar /opt/Stirling-PDF/Stirling-PDF.jar
 ExecStop=/bin/kill -15 $MAINPID
 
 [Install]
@@ -488,5 +486,3 @@ system:
       weasyprint: "" #Defaults to /opt/venv/bin/weasyprint
       unoconvert: "" #Defaults to /opt/venv/bin/unoconvert
 ```
-
-

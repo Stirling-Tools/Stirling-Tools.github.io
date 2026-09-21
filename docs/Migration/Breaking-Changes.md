@@ -16,9 +16,7 @@ Most V1 deployments will upgrade smoothly to V2, but there are some important ch
 | Change | Impact | Action Required |
 |--------|--------|-----------------|
 | **Template Customization** | High | Rewrite customizations |
-| **UI Settings Location** | Medium | Use in-app settings |
-| **Session Management** | Low | Update setting names |
-| **Database Notifications** | Low | Use audit logs instead |
+| **UI Settings Location** | Medium | `ui.appName` / `ui.homeDescription` not supported |
 
 ---
 
@@ -55,18 +53,12 @@ Your V1 Thymeleaf templates cannot be directly reused in V2, but you have three 
 
 V2 provides in-app settings for most common customizations:
 
-**Available Customizations:**
-- App name and description
-- Navbar branding
-- Logo style (classic/modern)
-- Custom logo upload
-- Homepage description
+**Available controls:**
+- `ui.appNameNavbar` sets the browser tab title and TOTP issuer label
+- `ui.logoStyle` selects the classic or modern logo
+- Custom logo assets use [static file overrides](../Configuration/Customisation/Other%20Customisations.md#static-file-overrides)
 
-**How to use:**
-1. Enable login: `SECURITY_ENABLELOGIN=true`
-2. Log in as admin
-3. Go to Settings → UI
-4. Configure branding there
+Administrators can change the available controls in Settings. There is no replacement in-app editor for the removed `ui.appName` or `ui.homeDescription` fields.
 
 **Learn more:** [UI Customisation](../Configuration/Customisation/UI%20Customisation.md)
 
@@ -138,76 +130,17 @@ These V1 **Thymeleaf template features** no longer work because V2 uses React (c
 
 ---
 
-## ⚙️ UI Settings Moved to In-App Configuration
+## ⚙️ UI Configuration
 
-**Impact:** MEDIUM - Settings moved, but easy to reconfigure
+`ui.appName` and `ui.homeDescription` are not settings in this release, and there is no in-app editor replacing both fields. Use `ui.appNameNavbar` for the browser tab title and TOTP issuer label:
 
-### What Changed
-
-**V1 Configuration:**
 ```yaml
 ui:
-  appName: 'My PDF Tool'
-  homeDescription: 'Welcome to our PDF service!'
+  appNameNavbar: "My PDF Tool"
+  logoStyle: classic
 ```
 
-**V2 Configuration:**
-```yaml
-ui:
-  appNameNavbar: 'My PDF Tool'  # Still in YAML
-  # appName and homeDescription REMOVED
-  # Configure these in-app instead
-```
-
-### Why the Change
-
-**Benefits:**
-- ✅ No container restart needed
-- ✅ Visual interface with preview
-- ✅ Validation prevents errors
-- ✅ Changes apply immediately
-- ✅ Role-based access control
-
-### Migration Steps
-
-1. **Note your current settings:**
-   ```yaml
-   # From V1 settings.yml
-   ui:
-     appName: 'CompanyName PDF'
-     homeDescription: 'Internal document processing'
-   ```
-
-2. **Remove from settings.yml:**
-   ```yaml
-   ui:
-     appNameNavbar: 'CompanyName PDF'
-     # appName - REMOVE THIS LINE
-     # homeDescription - REMOVE THIS LINE
-   ```
-
-3. **Configure in UI:**
-   - Enable login: `SECURITY_ENABLELOGIN=true`
-   - Start V2
-   - Log in as admin
-   - Go to Settings → UI
-   - Enter app name and description
-   - Save
-
-### Environment Variables
-
-These environment variables **no longer work**:
-
-```bash
-# V1 (NO LONGER WORKS)
-UI_APPNAME="My PDF Tool"
-UI_HOMEDESCRIPTION="Welcome!"
-
-# V2 (USE IN-APP SETTINGS INSTEAD)
-# Set through UI after logging in
-```
-
-`UI_APPNAMENAVBAR` still works for navbar branding.
+The environment equivalent is `UI_APPNAMENAVBAR="My PDF Tool"`. Despite the property name and the admin UI's label, it does not rename the main navbar. Save admin changes and follow the UI's restart prompt for pending server settings. For logos and static assets, see [UI Customisation](../Configuration/Customisation/UI%20Customisation.md).
 
 ---
 
@@ -217,53 +150,24 @@ UI_HOMEDESCRIPTION="Welcome!"
 
 ### What Changed
 
-Session management enhanced with new JWT-based features and improved settings:
+Configure JWT authentication with these settings:
 
-| V1 Setting | V2 Setting | Change |
-|------------|------------|--------|
-| `jwt.enabled` | `jwt.persistence` | Renamed |
-| `jwt.keyCleanup` | `jwt.enableKeyCleanup` | Renamed |
-| `jwt.secureCookie` | _(removed)_ | Always secure now |
-| _(new)_ | `jwt.enableKeyRotation` | New feature |
-| _(new)_ | `jwt.keyRetentionDays` | New feature |
-
-### Migration
-
-**V1 Configuration:**
 ```yaml
 security:
   jwt:
-    enabled: false
-    keyCleanup: false
-    secureCookie: true
+    enableKeystore: true
+    enableKeyCleanup: true
+    tokenExpiryMinutes: 1440
+    desktopTokenExpiryMinutes: 43200
 ```
 
-**V2 Configuration:**
-```yaml
-security:
-  jwt:
-    persistence: true           # was 'enabled'
-    enableKeyCleanup: true      # was 'keyCleanup'
-    enableKeyRotation: true     # NEW
-    keyRetentionDays: 7         # NEW
-    # secureCookie REMOVED
-```
+`enableKeystore` controls persistent key storage. `enableKeyCleanup` enables cleanup of old keys. Key retention is calculated automatically from token lifetimes and refresh settings.
 
-### Environment Variables
+Environment equivalents for the key-store controls:
 
-**V1 (NO LONGER WORKS):**
 ```bash
-SECURITY_JWT_ENABLED=false
-SECURITY_JWT_KEYCLEANUP=false
-SECURITY_JWT_SECURECOOKIE=true
-```
-
-**V2 (USE THESE):**
-```bash
-SECURITY_JWT_PERSISTENCE=true
+SECURITY_JWT_ENABLEKEYSTORE=true
 SECURITY_JWT_ENABLEKEYCLEANUP=true
-SECURITY_JWT_ENABLEKEYROTATION=true
-SECURITY_JWT_KEYRETENTIONDAYS=7
 ```
 
 ### After Upgrade
@@ -278,15 +182,10 @@ SECURITY_JWT_KEYRETENTIONDAYS=7
 
 ---
 
-## 🔕 Database Notifications Removed
+## 🔕 Database Notifications Remain Supported
 
-**Impact:** LOW - Replaced with better alternative
+Keep `premium.enterpriseFeatures.databaseNotifications` if you use database backup/import notifications:
 
-### What Changed
-
-Database backup/import notifications removed.
-
-**V1 Configuration (NO LONGER WORKS):**
 ```yaml
 premium:
   enterpriseFeatures:
@@ -299,116 +198,22 @@ premium:
         failed: false
 ```
 
-### Why Removed
-
-Replaced with comprehensive audit logging system that provides:
-- More detailed information
-- Searchable history
-- Export capabilities
-- Better retention policies
-
-### Migration to Audit Logs
-
-**V2 Alternative:**
-
-1. **Enable audit logging:**
-   ```yaml
-   system:
-     logging:
-       level: INFO
-   ```
-
-2. **Monitor logs:**
-   ```bash
-   docker logs stirling-pdf | grep "Database backup"
-   docker logs stirling-pdf | grep "Database import"
-   ```
-
-3. **Or use audit log UI:**
-   - Log in as admin
-   - Go to Settings → Audit Logs
-   - Filter by operation type
-   - Export as needed
-
-### What You Get Instead
-
-**Audit logs provide:**
-- ✅ Database operations (backup, import, export)
-- ✅ User actions (login, logout, operations)
-- ✅ Admin actions (settings changes, user management)
-- ✅ Failed operations with error details
-- ✅ Search and filter capabilities
-- ✅ Export to CSV/JSON
-
-**Example audit log entry:**
-```json
-{
-  "timestamp": "2025-01-15T10:30:00Z",
-  "user": "admin",
-  "action": "database.backup",
-  "status": "success",
-  "details": {
-    "size": "1.2 GB",
-    "duration": "45s",
-    "location": "/backups/db-2025-01-15.sql"
-  }
-}
-```
+Audit logging is a separate feature, not a replacement for these settings. See [Audit Logging](../Configuration/Security/Audit%20Logging.md) for its configuration.
 
 ---
 
-## 🔧 Calibre Custom Path Removed
+## 🔧 Calibre Custom Path Remains Supported
 
-**Impact:** LOW - Auto-detection improved
+Set `system.customPaths.operations.calibre` if Calibre's `ebook-convert` executable is outside the normal runtime path:
 
-### What Changed
-
-Custom Calibre path no longer needed.
-
-**V1 Configuration (NO LONGER WORKS):**
 ```yaml
 system:
   customPaths:
     operations:
-      calibre: '/usr/bin/calibre'
+      calibre: /path/to/ebook-convert
 ```
 
-### Why Removed
-
-V2 has improved path detection:
-- Automatically finds Calibre in standard locations
-- Checks multiple common paths
-- Better error messages if not found
-
-### Migration
-
-1. **Remove from settings.yml:**
-   ```yaml
-   system:
-     customPaths:
-       operations:
-         # calibre: ''  # DELETE THIS LINE
-   ```
-
-2. **Verify Calibre is installed:**
-   ```bash
-   docker exec stirling-pdf which ebook-convert
-   ```
-
-3. **If not found, install in container:**
-   ```dockerfile
-   # In your Dockerfile
-   RUN apt-get update && apt-get install -y calibre
-   ```
-
-### Standard Detection Paths
-
-V2 automatically checks:
-- `/usr/bin/ebook-convert`
-- `/usr/local/bin/ebook-convert`
-- `ebook-convert` (in PATH)
-
-If Calibre is in any standard location, it will be found automatically.
+Check the executable path in the environment where Stirling PDF runs. For Docker, that means the container path, not a host-only path.
 
 ---
 
@@ -469,12 +274,12 @@ The old `s-pdf` image is deprecated but still receives updates for now. However,
 
 **New endpoints added:**
 - `/api/v1/security/validate-signature` - PDF signature validation
-- `/api/v1/misc/remove-cert-sign` - Remove certificate signatures
-- `/api/v1/misc/booklet-imposition` - Booklet printing layout
+- `/api/v1/security/remove-cert-sign` - Remove certificate signatures
+- `/api/v1/general/booklet-imposition` - Booklet printing layout
 - `/api/v1/misc/unlock-pdf-forms` - Unlock form fields
-- `/api/v1/misc/replace-color` - Color replacement
+- `/api/v1/misc/replace-invert-pdf` - Color replacement
 - `/api/v1/misc/add-attachments` - Add file attachments
-- `/api/v1/misc/edit-toc` - Edit table of contents
+- `/api/v1/general/edit-table-of-contents` - Edit table of contents
 
 **Enhanced endpoints:**
 - Better error messages
@@ -515,13 +320,7 @@ Database schema updated to support:
 
 ### Rollback Considerations
 
-Database is **forward-compatible only**:
-- ✅ V1 → V2 upgrade: Automatic
-- ⚠️ V2 → V1 rollback: Database needs manual downgrade
-
-**If you need to rollback:**
-1. Restore database backup from before V2 upgrade
-2. Or use V1-compatible database dump
+Do not assume a database already migrated by V2 can be used by V1. For rollback, stop V2 and restore a verified pre-upgrade database backup together with its matching configuration and V1 version. Test restoration before depending on rollback.
 
 **Recommendation:** Take database backup before upgrading.
 
@@ -531,35 +330,9 @@ Database is **forward-compatible only**:
 
 **Impact:** LOW - Modern browsers required
 
-### Minimum Browser Versions
+### Browser Requirements
 
-**V2 Requirements:**
-
-| Browser | Minimum Version | Notes |
-|---------|----------------|-------|
-| **Chrome** | 90+ | Recommended |
-| **Firefox** | 88+ | Recommended |
-| **Safari** | 14+ | Some limitations |
-| **Edge** | 90+ | Chromium-based |
-
-**V1 vs V2:**
-- V1 supported older browsers (IE11, old Safari)
-- V2 requires modern browsers for IndexedDB, modern JavaScript
-
-### Why the Change
-
-V2 features require modern browser APIs:
-- IndexedDB for file storage
-- ES2020+ JavaScript
-- Modern CSS features
-- Web Workers for performance
-
-### If Users Have Old Browsers
-
-**Options:**
-1. **Update browser** (recommended)
-2. **Use desktop app** (supports older systems)
-3. **Stay on V1** (still receives security updates)
+Use a current browser with IndexedDB, Web Workers and modern JavaScript/CSS support. Test the tools you use with your organisation's supported browsers.
 
 ---
 
@@ -569,24 +342,7 @@ V2 features require modern browser APIs:
 
 ### HTTPS Enforcement
 
-**V2 Change:** Secure cookies always enabled for production.
-
-**V1:**
-```yaml
-security:
-  jwt:
-    secureCookie: true  # Configurable
-```
-
-**V2:**
-```yaml
-# secureCookie removed - always secure in production
-```
-
-**Impact:**
-- ✅ More secure by default
-- ⚠️ Requires HTTPS in production
-- Development mode (localhost) still works over HTTP
+The remember-me cookie requires HTTPS. Configure HTTPS for production access.
 
 **Migration:**
 If running in production, ensure HTTPS is configured:
@@ -600,16 +356,15 @@ server:
 
 ### Session Management
 
-**V2 Changes:**
-- Shorter default session timeout (4 hours → 2 hours)
-- Better session invalidation
-- Stricter CORS policies
+JWT lifetimes are configurable in minutes. The defaults are 1440 minutes for web clients and 43200 minutes for desktop clients. To set the web token lifetime to four hours:
 
-**To increase timeout:**
 ```yaml
 security:
-  sessionTimeout: 14400  # 4 hours in seconds
+  jwt:
+    tokenExpiryMinutes: 240
 ```
+
+This controls JWT token lifetime, not the unrelated servlet session timeout.
 
 ---
 
@@ -623,7 +378,7 @@ Tool IDs updated for consistency:
 
 | Old ID (V1) | New ID (V2) | Tool Name |
 |-------------|-------------|-----------|
-| `pdf-organizer` | `reorganize-pages` | Reorganize Pages |
+| `pdf-organizer` | `rearrange-pages` | Reorganize Pages |
 | `sign-forms` | `sign` | Sign PDF |
 
 ### Migration
@@ -639,7 +394,7 @@ endpoints:
 **V2:**
 ```yaml
 endpoints:
-  toRemove: ['reorganize-pages']
+  toRemove: ['rearrange-pages']
 ```
 
 **Complete tool ID list:** [Endpoint Customisation](../Configuration/Customisation/Endpoint%20or%20Feature%20Customisation.md)
@@ -677,9 +432,9 @@ Before upgrading to V2, verify:
 
 ### 2. Configuration
 - [ ] **Backup settings.yml** before modifying
-- [ ] **Note UI settings** (appName, homeDescription)
-- [ ] **Update JWT settings** (enabled → persistence)
-- [ ] **Remove deprecated sections** (database notifications)
+- [ ] **Review UI settings** against `ui.appNameNavbar` and the current controls
+- [ ] **Check JWT settings** against `security.jwt.enableKeystore`, `enableKeyCleanup` and the token-lifetime fields
+- [ ] **Retain database notification settings** if used
 
 ### 3. Infrastructure
 - [ ] **Backup database** before upgrade
@@ -688,8 +443,8 @@ Before upgrading to V2, verify:
 - [ ] **Check browser versions** for users
 
 ### 4. Features
-- [ ] **Using database notifications?** → Switch to audit logs
-- [ ] **Custom Calibre path?** → Remove, auto-detection works
+- [ ] **Using database notifications?** → Retain their settings; configure audit logging separately if needed
+- [ ] **Custom Calibre path?** → Keep it and check that the executable exists in the runtime environment
 
 ### 5. API Integrations
 - [ ] **Using deprecated tool IDs?** → Update to new IDs
@@ -700,14 +455,9 @@ Before upgrading to V2, verify:
 
 ## 🆘 Troubleshooting
 
-### "Unknown configuration key" warnings
+### Configuration appears to be ignored
 
-**Symptom:**
-```
-WARN: Unknown configuration key: premium.proFeatures.googleDrive
-```
-
-**Solution:** Remove deprecated settings from settings.yml. See [Settings Changes](./Settings-Changes.md).
+Check property names and nesting against the settings template for the installed version. `premium.proFeatures.googleDrive`, `premium.enterpriseFeatures.databaseNotifications` and `system.customPaths.operations.calibre` remain supported; retain them where used. See [Settings Changes](./Settings-Changes.md).
 
 ---
 
@@ -715,7 +465,7 @@ WARN: Unknown configuration key: premium.proFeatures.googleDrive
 
 **Symptom:** Custom navbar/homepage not appearing.
 
-**Solution:** Template system removed. Use in-app settings or custom CSS instead.
+**Solution:** Template system removed. Use static file overrides and the available UI settings instead.
 
 ---
 
@@ -731,7 +481,7 @@ WARN: Unknown configuration key: premium.proFeatures.googleDrive
 
 **Symptom:** API call fails with tool not found.
 
-**Solution:** Update tool IDs. Example: `pdf-organizer` → `reorganize-pages`. See [Feature Flag Changes](#-feature-flag-changes).
+**Solution:** Update tool IDs. Example: `pdf-organizer` → `rearrange-pages`. See [Feature Flag Changes](#feature-flag-changes).
 
 ---
 
@@ -739,7 +489,7 @@ WARN: Unknown configuration key: premium.proFeatures.googleDrive
 
 **Symptom:** `ui.appName` in settings.yml not displaying.
 
-**Solution:** Setting moved to in-app configuration. Log in as admin, go to Settings → UI. See [UI Settings](#%EF%B8%8F-ui-settings-moved-to-in-app-configuration).
+**Solution:** Use `ui.appNameNavbar` for the browser tab title. There is no `homeDescription` editor in this release. See [UI Configuration](#ui-configuration).
 
 ---
 
@@ -752,13 +502,9 @@ If you need to return to V1:
 docker stop stirling-pdf
 ```
 
-### 2. Restore Database
-```bash
-# Option A: Restore from backup
-docker exec -i postgres psql -U stirling < backup-before-v2.sql
+### 2. Restore the pre-upgrade database
 
-# Option B: Use existing (database is backward compatible for rollback)
-```
+Restore the backup made before V2 first opened the database. For PostgreSQL, use your tested database restore procedure and the correct database/container/user names. For embedded H2, restore the matching pre-upgrade config/database files while Stirling PDF is stopped. Do not reuse the V2 database as a supposedly backward-compatible alternative.
 
 ### 3. Restore Settings
 ```bash
@@ -790,24 +536,3 @@ Your data remains intact:
 - **[New Features](./New-Features.md)** - What's new in V2
 - **[Settings Changes](./Settings-Changes.md)** - Configuration updates
 - **[FAQ](../FAQ.md)** - Common questions
-
----
-
-## Summary
-
-**Breaking changes are minimal:**
-
-✅ Most configurations work unchanged
-✅ All data migrates automatically
-✅ API compatibility maintained
-⚠️ Template customizations need rewrite
-⚠️ UI settings moved to in-app config
-⚠️ JWT settings renamed
-
-**Action required:**
-1. Update JWT setting names
-2. Remove deprecated configurations
-3. Reconfigure UI settings in-app
-4. Rewrite template customizations (if any)
-
-**Most users can upgrade with minimal changes!**

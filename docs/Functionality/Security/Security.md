@@ -52,13 +52,13 @@ These are the tools you'll find under **Security** in the Stirling PDF app. Open
 
 ## Information
 
-- **Get ALL Info on PDF** - see everything about a PDF: version, fonts, page dimensions, permissions, metadata, and more. View it as tables in the app or export it as JSON.
+- **Get ALL Info on PDF** - inspect PDF information such as version, fonts, page dimensions, permissions, metadata, and more. View it as tables in the app or export it as JSON.
 
 ---
 
 ## How signature validation chooses what to trust
 
-When you run **Validate PDF Signature**, your administrator decides which certificate authorities count as trusted and whether to check that certificates haven't been revoked. The trust sources available are the operating system trust store, the Mozilla CA bundle, the Adobe Approved Trust List (AATL), the EU Trusted List (EUTL, for eIDAS), and your own server-generated certificates. Revocation can be checked in real time (OCSP), against a downloaded list (CRL), or both.
+When you run **Validate PDF Signature**, your administrator decides which certificate authorities count as trusted and whether to check that certificates haven't been revoked. The trust sources available are the Java runtime's default trust store, the Mozilla CA bundle, the Adobe Approved Trust List (AATL), the EU Trusted List (EUTL, for eIDAS), and your own server-generated certificates. Revocation can be checked in real time (OCSP), against a downloaded list (CRL), or both.
 
 For the full list of settings and example configurations, see [Certificate Signing - Configuration](./Certificate-Signing#configuration-examples).
 
