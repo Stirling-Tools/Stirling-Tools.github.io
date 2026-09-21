@@ -13,7 +13,7 @@ Open **Processor → Pipelines** (`/processor/pipelines`). This list includes cu
 
 ## Create a workflow
 
-Choose **New custom pipeline**, or choose a [template](./Policies.md) for a guided setup. The full builder lets you select an input, add and configure operations in order, and choose the output.
+Choose **New custom pipeline**, or select **Set up** on a [template](./Policies.md) for a guided setup. [Ingestion](./Ingestion.md) combines OCR and knowledge-search preparation with input and output selection. The full builder lets you select an input, add and configure operations in order, and choose the output.
 
 ![Pipeline builder with input, operation chain, and settings](/img/processor/pipeline-builder.png)
 
@@ -65,7 +65,7 @@ Pausing stops future automatic runs; it is not a rollback of files already proce
 
 ## Destinations and routing
 
-Folder and S3 are writable destination types. They avoid overwriting an existing output by choosing a non-conflicting filename. For Editor input, no storage destination is required: results return to the workspace.
+Folder and S3 receive processed files and avoid overwriting an existing output by choosing a non-conflicting filename. A RAG database destination receives prepared chunks from an [Ingestion](./Ingestion.md) workflow. For ordinary Editor processing, results can return to the workspace; database delivery and chunk exports need their corresponding destination.
 
 With routing enabled, the default destination becomes the fallback. The first matching routing rule chooses a destination for that document. Configure it under [Routing](./Routing.md).
 

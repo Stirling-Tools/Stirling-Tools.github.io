@@ -7,7 +7,7 @@ id: Sources
 
 # Sources
 
-A source is a saved location that a pipeline reads from. Folder and S3 sources can also receive output. Manage them at **Processor → Sources** (`/processor/sources`).
+A source is a saved location used by a pipeline. Folder and S3 sources can supply input and receive output; RAG database sources are output-only destinations for prepared chunks. Manage them at **Processor → Sources** (`/processor/sources`).
 
 ![Sources list with status, document counts, and pipeline references](/img/processor/sources.png)
 
@@ -24,6 +24,7 @@ Select **Connect source**, choose a type, enter its name and settings, then sele
 | **FTP** | A directory on FTP or FTPS | No |
 | **Network drive** | An SMB share | No |
 | **Webhook** | Documents delivered by signed HTTP POST | No |
+| **RAG database** | No; output-only | Prepared document chunks from an Ingestion workflow |
 
 Connectors marked **Coming soon** are not available for source ingestion. A vendor integration that can send files out does not necessarily provide an input connector for that vendor.
 
@@ -72,6 +73,10 @@ Send a raw file body to `POST /api/v1/webhooks/<webhookId>` with:
 | `Content-Length` | Size of the raw body in bytes; required |
 
 An accepted delivery returns **202**. That acknowledges receipt, not completion of the pipeline. A missing length returns **411**, an oversized declared body **413**, and an invalid signature **401**. Check [Documents](./Documents.md) and [Review](./Review.md) for what happened next.
+
+## RAG database destinations
+
+Select a saved database connection and configure its collection, plus any namespace or text-field options required by that provider. Use this source as the destination for **Connected RAG database** in [Ingestion](./Ingestion.md). It accepts prepared chunks rather than acting as a watched folder or providing document input.
 
 ## Status and removal
 

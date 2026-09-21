@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
 title: Policy templates
-description: Use guided templates for Security, Classification, Compliance, and Routing.
+description: Use guided templates for Ingestion, Security, Classification, Compliance, and Routing.
 ---
 
 # Policy templates
@@ -12,10 +12,17 @@ Policies now live in **Processor → Pipelines**. Choose a template from **Templ
 
 1. Open **Pipelines** and choose a template that is available on your deployment.
 2. Enable the operations you need and configure their fields.
-3. Choose whether to **Enforce as policy**, if you have management permission.
-4. Select **Create pipeline**. Use **Customise** when you need the full input, trigger, step, and output builder.
+3. Choose the input, when it runs, and the output destination in the guided form.
+4. For an editor input, choose whether to **Enforce as policy**, if you have management permission.
+5. Resolve setup messages, then select **Create pipeline**. Use **Customise** when you need the full input, trigger, step, and output builder.
 
 Once set up, the workflow appears in the list and its unused template card is no longer the entry point. Opening an existing row edits that workflow.
+
+## Ingestion
+
+Select **Set up** on the Ingestion template to prepare documents for knowledge search. The guided form combines OCR and searchable chunk preparation with input, trigger, output, and destination settings.
+
+Choose the Stirling knowledge base, a connected RAG database, or a chunk export without a database. See [Ingestion](./Ingestion.md) for the setup walkthrough and requirements for each output.
 
 ## Security
 
@@ -42,10 +49,6 @@ PDF/A conversion changes the document and invalidates existing digital signature
 ## Routing
 
 Routing chooses a destination using the document's properties or classification. Rules run in order, with a fallback destination for unmatched documents. Use [Routing](./Routing.md) for configuration and an example without AI.
-
-## Unavailable templates
-
-The catalogue also contains Ingestion and Retention entries. A disabled or upgrade-labelled card does not mean that all operations described by that card are implemented or enabled in your build. Use the available steps and controls; do not design a production workflow around a disabled template.
 
 ## What enforcement means
 

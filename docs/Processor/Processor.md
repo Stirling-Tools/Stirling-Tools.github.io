@@ -16,7 +16,8 @@ Open **Processor** from the app switcher, or go to `/processor` on your Stirling
 - **[Create your first pipeline](./Getting-Started.md):** connect two folders, process a test PDF, then enable unattended processing.
 - **[Sources](./Sources.md):** folders, S3, network shares, webhooks, and the built-in Editor source.
 - **[Pipelines](./Pipelines.md):** build, test, pause, and update a sequence of operations.
-- **[Policy templates](./Policies.md):** configure Security, Classification, Compliance, and Routing from guided templates.
+- **[Policy templates](./Policies.md):** configure Ingestion, Security, Classification, Compliance, and Routing from guided templates.
+- **[Ingestion](./Ingestion.md):** prepare searchable document chunks for a knowledge base or export.
 - **[Routing](./Routing.md):** send documents to different destinations using document properties or classification.
 
 ![Pipelines list and available templates](/img/processor/pipelines.png)

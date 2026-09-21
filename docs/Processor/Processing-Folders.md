@@ -17,6 +17,8 @@ A processing folder applies a saved processing setup to files placed in a chosen
 
 Opening setup from an existing folder skips the folder-selection stage. Merely selecting or creating a folder does not enable processing; the final action saves the setup.
 
+Choose **Ingestion** to run OCR and prepare the folder's documents for knowledge search. The setup offers the Stirling knowledge base, a connected RAG database, or chunk export. It checks the required AI capabilities and destination before saving. Database delivery retains the folder's originals; see [Ingestion](./Ingestion.md) for output choices and chunk settings.
+
 ## Change existing processing
 
 Open the folder's processing settings and review the saved operations before using **Save changes**. The form warns when a folder already has processing, because saving replaces its processing settings.

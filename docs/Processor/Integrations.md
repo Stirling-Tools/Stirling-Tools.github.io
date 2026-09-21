@@ -20,6 +20,8 @@ Open **Processor → Integrations** (`/processor/integrations`) to manage saved 
 
 The catalogue separates connected services, available connection types, and connectors that are not yet available. The **Works with** information helps distinguish a source connection from an outgoing operation. A saved credential record alone does not start a workflow.
 
+For a connected RAG database, configure the database connection, then create a RAG database destination with its collection and provider-specific options. Select that destination in [Ingestion](./Ingestion.md). The database generates embeddings for the delivered chunks; this is separate from the embedding provider used by Stirling's built-in knowledge base.
+
 ## Storage connections
 
 | Connection | Configure | Used by |
@@ -31,7 +33,7 @@ The catalogue separates connected services, available connection types, and conn
 
 Give credentials only the permissions required by the workflow. **Delete the file** source mode needs delete permission as well as read access. Output destinations need write access.
 
-S3 Object Lock requires a bucket configured to support it. If using the connection's advanced/API options, set `objectLockMode` (`GOVERNANCE` or `COMPLIANCE`) and `retentionDays` together. This is separate from the availability of a Retention template.
+S3 Object Lock requires a bucket configured to support it. If using the connection's advanced/API options, set `objectLockMode` (`GOVERNANCE` or `COMPLIANCE`) and `retentionDays` together.
 
 ## External API and vendor operations
 

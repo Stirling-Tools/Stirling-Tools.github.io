@@ -5,6 +5,12 @@ The September 2026 refresh was checked against Stirling-PDF `origin/main` at
 Processor purchase dialogs. The docs branch was rebased onto docs main
 `4a1605993466522b89f899d00bff2e499a848d18`.
 
+The Ingestion follow-up targets [application PR #7991](https://github.com/Stirling-Tools/Stirling-PDF/pull/7991)
+at `9d4e360151091e9d5600e1fee0ab1cc363abe4ce`. Its release-facing documentation
+and screenshots include guided ingestion as available. Retention is excluded
+from the screenshot catalogue at the documentation owner's request. This is an
+intentional release-preview scope, not a claim that the PR was already merged.
+
 ## Screenshots
 
 The PNGs under `static/img/processor` are browser captures of the current
@@ -14,7 +20,7 @@ Captions describe the screen directly. No image generation or DOM restyling was
 used.
 
 Run the application frontend's dependency and generated-icon setup, then launch
-Storybook. The two stories in this directory can be copied beside the app's
+Storybook. The stories in this directory can be copied beside the app's
 `frontend/editor/src/portal/views/*.stories.tsx` for capture. They are capture
 harnesses, not changes to the application:
 
@@ -23,13 +29,18 @@ harnesses, not changes to the application:
 - `DocumentationDocuments.stories.tsx` supplies document activity shaped like
   `PortalDocumentsService` output, instead of the richer legacy gallery fixture.
   It shows processed/error outcomes without invented extraction or approval data.
+- `DocumentationPipelines.stories.tsx` uses the Ingestion PR's real setup
+  components, removes Retention from the capture catalogue, and supplies ready
+  AI capability responses. Use it for the gallery and template modal captures.
 
 | Image | Story and state |
 |---|---|
 | `sources.png` | `portal-views-sources--default` |
 | `folder-source.png` | Sources → Connect source → Folder; Invoice inbox, `/data/processor/inbox`, Advanced expanded, retain and process only changes |
-| `pipelines.png` | `portal-views-pipelines--default`; full page |
-| `compliance-template.png` | Pipelines → Compliance → Set up |
+| `pipelines.png` | `documentation-pipelines--gallery`; full page |
+| `compliance-template.png` | Documentation gallery → Compliance → Set up |
+| `ingestion-setup.png` | Documentation gallery → Ingestion → Set up; configured Editor input and built-in knowledge base |
+| `ingestion-output.png` | Same Ingestion form, scrolled to Output with the output-type menu expanded |
 | `pipeline-builder.png` | `documentation-pipelinebuilder--builder` |
 | `documents.png` | `documentation-documents--activity` |
 | `review.png` | `portal-views-review--default` |
@@ -59,12 +70,13 @@ stirling/software/proprietary` unless noted otherwise.
 
 The UI contains some forward-looking labels. Verify an executable backend path
 before documenting them as functionality: notably document content access,
-extractions/approvals, Ingestion/Retention templates, and ConsignO operations.
+extractions/approvals and ConsignO operations. The Ingestion guidance follows
+the PR listed above; Retention remains outside the documented template catalogue.
 
 ## Validation
 
 Run `npm run build` and `git diff --check`. Inspect the built `/Processor/`
-category, its 12 child pages, image assets, local links, and heading fragments.
+category, its 13 child pages, image assets, local links, and heading fragments.
 Also review the related onboarding, usage, folder-scanning, and AI pages when
 their implementation changes. This refresh is a source/UI audit; it does not
 claim an end-to-end deployment test of every integration or paid entitlement.

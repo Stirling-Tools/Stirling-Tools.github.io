@@ -63,6 +63,8 @@ Create credentials under [Integrations](./Integrations.md) before selecting an S
 
 Most PDF tools and property-based routing do not require AI. A server **Classify** step requires AI classification to be available. See [AI Overview](../AI/AI-Overview.md) before using classification-based workflows.
 
+[Ingestion](./Ingestion.md) uses the AI engine to prepare chunks. The Stirling knowledge base also needs an embedding provider; exporting chunks does not. A connected RAG database supplies its own embeddings. The guided form checks these requirements and links to AI settings when configuration is missing.
+
 ## Check the processing record
 
 The Documents page is available without an Enterprise license, but its feed needs processing events to be recorded. On self-hosted deployments, enable audit recording at a level that includes processing:
