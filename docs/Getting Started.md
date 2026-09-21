@@ -1,19 +1,33 @@
 ---
 sidebar_position: 0
 slug: /
+id: Getting Started
+title: Welcome to Stirling PDF
+sidebar_label: Getting Started
+description: What Stirling PDF is, how to install it, and where to go next in the documentation
+tags:
+  - Getting Started
+  - Installation
+  - Overview
+  - Self-host
 ---
 
-## Welcome to Stirling PDF
+# Welcome to Stirling PDF
 
 Stirling PDF provides tools for signing, converting, merging, editing, OCR and redaction, with self-hosted and desktop deployment options.
 
+---
+
 ## Benefits of Stirling PDF
+
 - **Extensive PDF Functionality:** 55+ tools covering signing, converting, merging, editing, OCR, and redaction.
 - **Stateful Workspace:** Upload once and chain tools together, with full undo and redo history.
 - **Runs Anywhere:** Docker, bare metal, Kubernetes, or native desktop apps for Windows, macOS, and Linux.
 - **Processing location:** Self-hosted tools process files on your instance. Desktop tools use the local backend where supported; tools routed to Stirling Cloud or a connected server send their inputs there.
 - **Configure In-App:** Change settings from the UI, or drive everything with environment variables and `settings.yml`.
-- **Automation & Integration:** REST API, pipelines, folder scanning, and an MCP server for AI assistants.
+- **Automation & Integration:** REST API and an MCP server for AI assistants.
+- **Stirling Processor:** Saved sources, policies, and pipelines that process documents without anyone opening the editor.
+- **AI Engine:** An optional companion service that adds AI capabilities to the app once you run it and enable it.
 - **Enterprise Features:** SSO (OAuth2 and SAML), user management, permission controls, and audit logging.
 - **Self-Hosted:** Community-driven with frequent updates and GitHub support.
 - **Multi-Language Support:** Available in 40+ languages with active translations.
@@ -79,8 +93,8 @@ For bare metal installations or environments without Docker:
 **[Tool Reference](./Functionality/Functionality.md)**
 Browse all 55+ PDF tools with descriptions
 
-**[Migration Guide](./Migration/Overview)**
-Upgrading from V1? What's new in V2 and how to upgrade smoothly
+**[Migration Guide](./Migration/Overview.md)**
+The upgrade path from Stirling PDF V1 to V2, and what to check before you upgrade
 
 ---
 
@@ -89,7 +103,13 @@ Upgrading from V1? What's new in V2 and how to upgrade smoothly
 **[Production Deployment Guide](./Server-Admin-Onboarding.md)**
 Complete walkthrough: installation - configuration - security - monitoring
 
-**[Paid Offerings (Team & Enterprise)](./Paid-Offerings)**
+**[Stirling Processor](./Processor/Processor.md)**
+Sources, policies, and pipelines that run document work on a schedule, on a folder drop, or on demand
+
+**[AI Overview](./AI/AI-Overview.md)**
+The AI engine that runs alongside the server, what it adds, and how to turn it on
+
+**[Paid Offerings (Team & Enterprise)](./Paid-Offerings.md)**
 External databases, Google Drive integration, SSO, advanced monitoring, and priority support
 
 **[Configuration Options](./Configuration/Customisation/Extra-Settings.md)**
@@ -110,8 +130,10 @@ Help improve Stirling PDF - development setup and guidelines
 
 ---
 
-## Quick Links
+## Related Documentation
 
-- **Questions?** Check our **[FAQ](./FAQ.md)**
-- **Issues?** Report on **[GitHub](https://github.com/Stirling-Tools/Stirling-PDF/issues)**
-- **Community?** Join our **[Discord](https://discord.gg/Cn8pWhQRxZ)**
+- **[FAQ](./FAQ.md)** - answers to the questions that come up most often
+- **[Tool Reference](./Functionality/Functionality.md)** - every PDF tool, with descriptions
+- **[Production Deployment Guide](./Server-Admin-Onboarding.md)** - installation, configuration, security, and monitoring end to end
+- **[GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues)** - report a bug or request a feature
+- **[Discord](https://discord.gg/Cn8pWhQRxZ)** - community support and discussion

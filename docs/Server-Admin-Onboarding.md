@@ -161,7 +161,7 @@ services:
       # System Configuration
       - SYSTEM_GOOGLEVISIBILITY=false        # Hide from search engines
       - SYSTEM_ROOTURIPATH=/                 # Base URL path
-      - SYSTEMFILEUPLOADLIMIT=2000MB         # Max upload size (legacy: SYSTEM_MAXFILESIZE in MB)
+      - SYSTEMFILEUPLOADLIMIT=2GB            # Max upload size. Numeric part must be 0-999
 
     restart: unless-stopped
 
@@ -231,7 +231,7 @@ docker run -d \
   -e SECURITY_ENABLELOGIN=true \
   -e SYSTEM_DEFAULTLOCALE=en-US \
   -e SYSTEM_GOOGLEVISIBILITY=false \
-  -e SYSTEMFILEUPLOADLIMIT=2000MB \
+  -e SYSTEMFILEUPLOADLIMIT=2GB \
   --restart unless-stopped \
   docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
@@ -401,10 +401,12 @@ system:
 #### File Upload Limits
 ```yaml
 system:
-  fileUploadLimit: 2000MB  # or "2GB" - adjust based on your needs
+  fileUploadLimit: 2GB  # numeric part must be 0-999, followed by KB, MB or GB
 ```
 
 **Why:** Prevents users from uploading files that crash the system
+
+The numeric part is limited to 0-999, so `2000MB` is rejected and leaves the limit unset. Use `2GB` instead. An empty value means no limit.
 
 </TabItem>
 <TabItem value="should-configure" label="Should Configure">
@@ -424,11 +426,14 @@ legal:
 **Why:** Legal compliance, especially in GDPR/regulated industries
 
 #### Update Notifications (Optional)
+`showUpdate` and `showUpdateOnlyAdmin` both default to `true`, so update notifications are on and admins only see them. To suppress update notifications entirely:
+
 ```yaml
 system:
-  showUpdate: false  # Set true to show update notifications
-  showUpdateOnlyAdmin: false  # Only admins see updates (requires showUpdate: true)
+  showUpdate: false  # No update notifications for anyone
 ```
+
+To show update notifications to every user rather than admins only, keep `showUpdate: true` and set `showUpdateOnlyAdmin: false`.
 
 **Why:** Control update notifications in production environments
 
@@ -559,7 +564,7 @@ Control which PDF tools are available to users.
 <Tabs groupId="feature-control">
 <TabItem value="recommended" label="Recommended Features" default>
 
-**All tools are enabled by default.** You can disable specific tools if needed:
+**All PDF tools controlled by `endpoints` are enabled by default.** AI features are governed separately by `aiEngine` and ship off - see Step 11. You can disable specific tools if needed:
 
 ```yaml
 endpoints:
@@ -860,9 +865,9 @@ Use `/api/v1/info/status` for health and uptime checks - it is always reachable 
 - Uptime monitoring (Uptime Robot, Pingdom)
 - Custom monitoring scripts
 
-#### Prometheus Integration (Enterprise)
+#### Prometheus Integration (Server / Enterprise)
 
-Stirling-PDF Enterprise plan supports Prometheus metrics for advanced monitoring.
+Stirling-PDF Server and Enterprise plans support Prometheus metrics for advanced monitoring.
 
 **Learn more:** [Usage Monitoring - Prometheus Setup](./Configuration/Automation/Usage%20Monitoring.md#prometheus-monitoring-configuration)
 
@@ -989,9 +994,42 @@ Stirling-PDF offers **Team and Enterprise paid plans** with additional features 
 **For pricing and enterprise inquiries:**
 - **Email:** support@stirlingpdf.com
 - **Website:** https://stirling.com/pricing
-- **Documentation:** [Paid Offerings](./Paid-Offerings)
+- **Documentation:** [Paid Offerings](./Paid-Offerings.md)
 - **External Database Setup:** [External Database Guide](./Configuration/Storage/External%20Database.md)
 - **Monitoring Setup:** [Usage Monitoring](./Configuration/Automation/Usage%20Monitoring.md)
+
+---
+
+## Step 11: Optional - Document Automation & AI
+
+Two capabilities sit outside the core deployment. Both are worth reviewing once your server is running, secured and populated with users.
+
+### 11.1: Stirling Processor
+
+The **Stirling Processor** runs saved sources, policies and pipelines against documents without anyone opening the editor. It is not a separate service: it is a route set inside the same single-page app as the editor, mounted at `/processor` on the same host, port and login.
+
+:::warning Not in the stock image
+The Processor UI is compiled in only when the frontend is built with the portal included - Gradle `-PbuildWithPortal=true`, exposed as the Docker build argument `BUILD_PORTAL`. That argument defaults to `false`, and the `docker.stirlingpdf.com/stirlingtools/stirling-pdf` image used in Step 2 is built without it, so `/processor` is not present in that image. You need an image or JAR built with the portal included to reach the Processor.
+:::
+
+Two things to decide before your team uses it:
+
+- **Who can reach it.** Access is controlled by `security.portal.defaultAccess` (env `SECURITY_PORTAL_DEFAULTACCESS`), which defaults to `ADMINS_AND_TEAM_LEADS`. Admins always have access; anyone else needs to be a team leader or hold an explicit grant. Set it to `ORG_ALL` to open it to all users, or `EXPLICIT_ONLY` to require a grant for everyone except admins. Note that "team leader" is a team-membership role, not one of the Admin/User account roles from Step 6.
+- **Folder access.** Folder sources and folder outputs are a security boundary. `policies.allowedFolderRoots` ships empty, which disables folder access other than directories Stirling already owns. List absolute directories to permit access within them.
+
+**Learn more:** [Stirling Processor](./Processor/Processor.md), [Sources](./Processor/Sources.md), [Policies](./Processor/Policies.md), [Pipelines](./Processor/Pipelines.md)
+
+### 11.2: AI Features
+
+AI is **off by default** (`aiEngine.enabled: false`). It needs a second service: the Stirling AI engine, a container you build yourself from the repository and run alongside the Stirling-PDF server.
+
+The minimum configuration on the Stirling-PDF side is `AIENGINE_ENABLED=true` plus `AIENGINE_URL` pointing at the engine (default `http://localhost:5001`), and `STIRLING_ENGINE_SHARED_SECRET` set to the same value on both processes whenever the engine is not on loopback. Restart the Stirling-PDF server to apply.
+
+:::warning Never publish the engine's port
+The engine serves FastAPI's `/docs`, `/redoc` and `/openapi.json` exempt from the shared-secret check. Keep it on an internal network with no published ports, and never put it behind the public reverse proxy from Step 5.
+:::
+
+**Learn more:** [AI Overview](./AI/AI-Overview.md), [Self-Hosting the AI Engine](./AI/Self-Hosting-the-AI-Engine.md)
 
 ---
 

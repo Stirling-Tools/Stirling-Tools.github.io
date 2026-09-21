@@ -206,12 +206,24 @@ For advanced features and specific use cases, see these detailed guides:
 - Batch processing
 - Multi-step operations
 
+**[Stirling Processor](../Processor/Processor.md)**
+- Saved sources, policies and pipelines that process documents without anyone opening the editor
+- Setup: [Sources](../Processor/Sources.md), [Policies](../Processor/Policies.md), [Pipelines](../Processor/Pipelines.md), [Integrations](../Processor/Integrations.md)
+- Records and access: [Documents](../Processor/Documents.md), [API Keys and Audit](../Processor/API-Keys-and-Audit.md)
+- The `policies` settings block, including folder-root allow-listing and network guards, is documented in [Policies](../Processor/Policies.md)
+
+**[AI Overview](../AI/AI-Overview.md)**
+- What the AI engine is, how the server talks to it, and how to turn it on
+- Running it: [Self-Hosting the AI Engine](../AI/Self-Hosting-the-AI-Engine.md), [Model Providers](../AI/Model-Providers.md), [Documents and Retrieval](../AI/Documents-and-RAG.md)
+- Every `aiEngine` key and its restart behaviour: [AI Settings Reference](../AI/AI-Settings-Reference.md)
+- Securing and scoping it: [AI Security](../AI/AI-Security.md), [AI Tools](../AI/AI-Tools.md)
+
 ---
 
 ### Integration & Storage
 
 **[External Database](./Storage/External%20Database.md)**
-- PostgreSQL configuration (Pro/Enterprise)
+- PostgreSQL configuration (Server or Enterprise)
 - Database migration
 - Backup strategies
 
@@ -236,7 +248,7 @@ For advanced features and specific use cases, see these detailed guides:
 - OCR optimization
 
 **[Usage Monitoring](./Automation/Usage%20Monitoring.md)**
-- Prometheus metrics (Pro/Enterprise)
+- Prometheus metrics (Enterprise)
 - Application monitoring
 - Performance tracking
 
@@ -246,6 +258,10 @@ For advanced features and specific use cases, see these detailed guides:
 
 **[Performance Optimization & Sizing](./Operations/Performance-Optimization.md)**
 - Resource sizing, JVM tuning, memory model, and scaling guidance
+
+**[Clustering](./Operations/Clustering.md)**
+- The `cluster` settings block and the Valkey backplane
+- Several nodes behind a load balancer with a shared database and object store
 
 **[Process Limits](./Operations/Process-Limits.md)**
 - Session limits and timeouts for external tools
@@ -272,10 +288,15 @@ For advanced features and specific use cases, see these detailed guides:
 **[Custom Signature Files](./Security/Sign%20with%20custom%20files.md)**
 - Pre-loaded signatures for quick signing
 
+**[Stirling Account Link](../Stirling-Account-Link.md)**
+- Link a self-hosted deployment to a Stirling account for metered work
+- The `stirling.billing.account-link.*` keys, which are not present in the shipped `settings.yml` and have to be added by hand
+
 **[Extra Settings](./Customisation/Extra-Settings.md)**
 - Logging configuration
 - Server settings (port, SSL/TLS)
 - Advanced Spring Boot settings
+- `custom_settings.yml`, which overrides `settings.yml`
 
 ---
 
@@ -283,9 +304,10 @@ For advanced features and specific use cases, see these detailed guides:
 
 When the same setting is defined in multiple places, this is the order of precedence (highest to lowest):
 
-1. **Environment Variables**
-2. **settings.yml / In-App Settings**
-3. **Default values**
+1. **Environment Variables**, with the exception of `SYSTEMFILEUPLOADLIMIT` and `SYSTEM_MAXFILESIZE`, which apply only when `system.fileUploadLimit` has resolved empty
+2. **custom_settings.yml** (see [Extra Settings](./Customisation/Extra-Settings.md))
+3. **settings.yml / In-App Settings**
+4. **Default values**
 
 ---
 
@@ -308,6 +330,7 @@ SECURITY_ENABLELOGIN=true
 - Uppercase everything
 - Replace `.` with `_`
 - Nested properties become `PARENT_CHILD`
+- Drop camelCase boundaries and hyphens, so `pdfEditor.fallback-font` becomes `PDFEDITOR_FALLBACKFONT`
 
 ---
 
@@ -315,7 +338,7 @@ SECURITY_ENABLELOGIN=true
 
 ### Settings Not Applied
 
-1. Check configuration priority (env vars override settings.yml)
+1. Check configuration priority (env vars override `custom_settings.yml`, which overrides `settings.yml`), remembering that `SYSTEMFILEUPLOADLIMIT` and `SYSTEM_MAXFILESIZE` are the exception and lose to either file
 2. Restart container after changing environment variables
 3. Check logs: `docker logs stirling-pdf | grep ERROR`
 4. Verify file permissions on `/configs` volume
