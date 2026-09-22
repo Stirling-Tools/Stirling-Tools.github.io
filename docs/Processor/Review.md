@@ -24,5 +24,3 @@ Repeated issues can be grouped with an occurrence count. The date shows the late
 ## Visibility and refresh
 
 Members see their own issues; team leaders see their team's issues. The page loads up to **50** recent records and refreshes every **30 seconds** while visible. Search and filters apply to those records.
-
-See [Troubleshooting](./Troubleshooting.md) for folder, connection, and processing errors.

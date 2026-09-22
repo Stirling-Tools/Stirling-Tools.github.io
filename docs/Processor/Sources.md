@@ -38,7 +38,7 @@ Folder, S3, and network inputs expose **After processing** under **Advanced**.
 
 Choose tracked mode to preserve originals. Snapshot mode repeats processing and usage on every run.
 
-To retry a failed tracked file, fix the cause and reset its processing history or submit a changed version. See [Troubleshooting](./Troubleshooting.md).
+To retry a failed tracked file, fix the cause and reset its processing history or submit a changed version.
 
 ## Folder
 
