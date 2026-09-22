@@ -22,7 +22,7 @@ Stirling PDF can run on your device, on your own server, or in Stirling Cloud.
 
 Run Stirling PDF in Docker, Kubernetes, or as a JAR, then connect through a browser or the desktop app. Team and Enterprise licenses add features and user capacity; see [Paid Offerings](./Paid-Offerings.md).
 
-Automation, AI document tools, and API processing use the applicable processing allowance. Manual, interactive non-AI tools do not consume processing units. [Stirling Account Link](./Stirling-Account-Link.md) explains the local allowance and account linking.
+Automation, AI document tools, and API processing use the applicable processing allowance. Manual, interactive non-AI tools do not consume processing units. [Account linking](./Stirling-Account-Link.md) explains the local allowance and how to connect your server.
 
 ## Automation and AI
 

@@ -14,7 +14,7 @@ tags:
 
 Stirling PDF offers Team and Enterprise paid plans. These provide the same great software with added features, streamlined license management, and support options.
 
-> This page covers **self-hosted** Team and Enterprise licensing. See [Stirling Account Link](./Stirling-Account-Link.md) for processing allowances and [pricing](https://www.stirling.com/pricing) for all plans.
+> This page covers **self-hosted** Team and Enterprise licensing. See [Account linking](./Stirling-Account-Link.md) for processing allowances and [pricing](https://www.stirling.com/pricing) for all plans.
 
 ## Available Plans
 

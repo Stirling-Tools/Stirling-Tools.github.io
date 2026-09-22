@@ -30,6 +30,10 @@ See [Server Admin Onboarding](../Server-Admin-Onboarding.md) for the underlying 
 
 Pipelines and sources belong to their owning team.
 
+## Account linking
+
+To use your team's cloud processing allowance on a self-hosted server, follow [Account linking](../Stirling-Account-Link.md). The guide explains how to connect, what is synchronized, and how to manage the connection. Enterprise does not require linking.
+
 ## Allow server folders
 
 A **Folder** source uses a path on the server, or inside the container.

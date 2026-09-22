@@ -1,18 +1,44 @@
 ---
 sidebar_position: 8.5
 id: Stirling Account Link
-title: Stirling Account Link
-description: Link your deployment to a Stirling account and manage processing allowances.
+title: Account linking
+description: Connect a self-hosted server to Stirling Cloud, share your team's allowance, and understand what is synchronized.
 tags: [Account Link, Billing, Self-host, Processor]
 ---
 
-# Stirling Account Link
+# Account linking
 
-Connect a self-hosted deployment to a Stirling account to use its processing allowance. Open **Settings → Account link** as an administrator and sign in with an account that leads the target team.
+Account linking connects your self-hosted Stirling PDF server to a team in Stirling Cloud. It keeps the team's user allowance, processing credits, and usage up to date across connected servers.
 
-Without linking, your server has a monthly allowance of 1,000 document units. Check **Settings → Usage & Billing** for your allowance, usage, and spend cap.
+[![Account linking exchanges user counts, usage totals, and instance details for plan, Team allowance, and processing credits every 24 hours. PDFs, filenames, and local user lists are not included.](/img/account-linking-explained.png)](/img/account-linking-explained.png)
 
-## What counts toward usage
+## Who needs to link
+
+Link your server to use a cloud-backed Team allowance or paid processing. Enterprise does not require account linking.
+
+An unlinked server has a default monthly allowance of **1,000 document units**. Manual, interactive non-AI PDF tools do not use this allowance.
+
+## Connect your server
+
+1. Enable login and sign in to your self-hosted server as its **organization owner**, with administrator access.
+2. Open **Settings → Account connection** and select **Connect your Stirling account**.
+3. Follow the sign-in flow to Stirling Cloud. Use an account that leads the team you want to connect.
+4. Approve the connection and return to your server.
+5. Check the connection status and open **Usage & Billing** to review the team's allowance and processing credits.
+
+The server synchronizes when linking completes, then every **24 hours** by default. Plan checks can also happen between daily syncs.
+
+## What is synchronized
+
+| Your server sends | Stirling Cloud returns |
+|---|---|
+| User count | Team user allowance |
+| Metered usage totals | Available processing credits and usage limits |
+| Instance ID and synchronization details | Current plan and connection status |
+
+**No PDFs, filenames, or local user lists are sent in this sync.** Documents remain on your server. AI providers and external integrations receive content only through their own configured workflows; see [AI Security](./AI/AI-Security.md) and [Integrations](./Processor/Integrations.md).
+
+## Processing usage
 
 | Work | Usage category |
 |---|---|
@@ -23,37 +49,19 @@ Without linking, your server has a monthly allowance of 1,000 document units. Ch
 
 Document units depend on the input's page count and size. Information, configuration, and download requests do not consume units.
 
-A self-hosted Team license covers direct PDF tool API calls. Processor automation and AI use their applicable processing allowance. Enterprise usage is recorded locally without cloud pay-as-you-go charges. See [Paid Offerings](./Paid-Offerings.md) for licensing.
+A self-hosted Team license covers direct PDF tool API calls. Processor automation and AI use their applicable processing allowance. See [Paid Offerings](./Paid-Offerings.md) for licensing.
 
-## Configuration
+## Manage the connection
 
-Add these settings under `stirling.billing.account-link` in `settings.yml`:
+Return to **Account connection** to view this server and other connected instances. Use **Manage on stirling.com** to manage them in Stirling Cloud.
 
-| Setting | Default | Purpose |
-|---|---|---|
-| `enabled` | `true` | Enable usage accounting and allowance limits. |
-| `freeTierUnits` | `1000` | Monthly document units while unlinked. |
-| `metering.enabled` | `false` | Synchronize cloud usage. Local usage is still recorded when this is off. |
-| `metering.syncIntervalHours` | `24` | Cloud synchronization interval. |
-| `metering.graceDays` | `3` | Offline grace period for cloud-backed allowance. |
+If your Stirling Cloud sign-in expires, sign in again to view billing and manage connections. The server stays linked when your browser session expires.
 
-To enable cloud metering for a linked deployment:
+Select **Disconnect this instance** to stop using the team's cloud allowance. Local files remain on the server. Follow the connection steps again to reconnect.
 
-```yaml
-stirling:
-  billing:
-    account-link:
-      enabled: true
-      metering:
-        enabled: true
-```
+## Connection and allowance problems
 
-The environment equivalents are `STIRLING_BILLING_ACCOUNTLINK_ENABLED` and `STIRLING_BILLING_ACCOUNTLINK_METERING_ENABLED`. Restart after changing server configuration.
-
-## When processing stops
-
-HTTP **402** indicates an exhausted allowance, a spend limit, a revoked connection, or an expired offline grace period. Check **Usage & Billing** and your account connection. Restore connectivity if the grace period has expired.
-
-## Usage data
-
-Cloud synchronization sends billing-period totals by category. It excludes document content, filenames, and individual operation records. For document data sent to other services, see [AI Security](./AI/AI-Security.md) and [Integrations](./Processor/Integrations.md).
+- **Cannot connect:** check that you are the server's organization owner and a leader of the selected Cloud team, and that the server can reach Stirling Cloud.
+- **Allowance exhausted:** check the remaining credits and spend cap under **Usage & Billing**.
+- **Server offline:** cloud-backed features have a default **three-day** grace period. Restore the connection before it expires to avoid interruptions.
+- **Connection revoked:** reconnect the server with the appropriate Cloud team.

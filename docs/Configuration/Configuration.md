@@ -288,9 +288,9 @@ For advanced features and specific use cases, see these detailed guides:
 **[Custom Signature Files](./Security/Sign%20with%20custom%20files.md)**
 - Pre-loaded signatures for quick signing
 
-**[Stirling Account Link](../Stirling-Account-Link.md)**
+**[Account linking](../Stirling-Account-Link.md)**
 - Link a self-hosted deployment to a Stirling account for metered work
-- Processing allowances, usage, and billing configuration
+- Processing allowances and synchronization
 
 **[Extra Settings](./Customisation/Extra-Settings.md)**
 - Logging configuration
