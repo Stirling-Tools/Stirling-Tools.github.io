@@ -8,6 +8,8 @@ tags: [enterprise, management, feature, advanced feature]
 
 > **Tier**: Enterprise
 
+The full audit log requires Enterprise. Processor's [Documents](../../Processor/Documents.md) page records processing activity by default for all Processor users. Disabling recording here also stops new Documents entries.
+
 Logs every operation, who ran it, what tool, which files, when. All data is stored in the database.
 We recommend external database setup when using this feature due to the potential volume.
 Please note the data stored is customisable based on you and your organisations needs and legal requirements.

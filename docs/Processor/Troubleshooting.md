@@ -8,7 +8,7 @@ description: Resolve missing pages, inactive sources, pipeline setup issues, and
 
 ## Processor is missing
 
-Ask your administrator to check the installation and your account permissions. See [Setup and access](./Setup-and-Access.md).
+Use a web browser; Processor is not currently accessible from the desktop app. Enable login and sign in as an administrator or team leader, or with an account granted access. See [Setup and access](./Setup-and-Access.md).
 
 ## A folder source will not save
 
@@ -46,7 +46,7 @@ For S3 Object Lock, check both the bucket configuration and connection retention
 
 ## Documents is empty
 
-Enable [processing-event recording](./Setup-and-Access.md#check-the-processing-record), run an operation, then reload the page. On Cloud, confirm the user belongs to the expected team.
+Run an operation, then reload the page. Recording is enabled by default. If an administrator has disabled it or reduced the recording level, restore the default recording settings in [Audit Logging](../Configuration/Security/Audit%20Logging.md). On Cloud, confirm the user belongs to the expected team.
 
 ## An issue remains after fixing it
 

@@ -8,7 +8,11 @@ description: Configure Processor access, folder permissions, and required servic
 
 ## Open Processor
 
-Use the app switcher to select **Processor**, or open `/processor` on the same host as the editor. Include your installation's URL prefix if Stirling PDF is served beneath a subpath.
+Open Stirling PDF in a web browser and select **Processor** from the app switcher. Processor is not currently accessible from the desktop app.
+
+Enable login on self-hosted installations and sign in before using Processor. Administrators and team leaders have access by default.
+
+You can also open `/processor` on the same host as the editor. Include your installation's URL prefix if Stirling PDF is served beneath a subpath.
 
 If Processor is missing, ask your administrator to check that your installation includes it and your account has access.
 
@@ -18,23 +22,13 @@ See [Server Admin Onboarding](../Server-Admin-Onboarding.md) for the underlying 
 
 | Action | Permission |
 |---|---|
-| Open Processor | Administrator, team leader, or a user granted access under the policy below. |
+| Open Processor | Administrators and team leaders by default; other users need an access grant. |
 | Create, edit, pause, delete, or sweep sources and pipelines | Administrator on self-hosted deployments; team leader on Stirling Cloud. |
 | Run a permitted pipeline over supplied files | Subject to that pipeline's team and run permissions. |
 | View Documents | Any user with Processor access. Self-hosted users see the server's processing feed; Cloud users see their team's feed. |
 | Review failures | Members see their own failures; team leaders can review their team's failures. |
 
-With login disabled, the local operator is trusted for source and pipeline management. Enable login for shared deployments.
-
-The server access default is `security.portal.defaultAccess` (environment variable `SECURITY_PORTAL_DEFAULTACCESS`):
-
-| Value | Effect |
-|---|---|
-| `ADMINS_AND_TEAM_LEADS` | Default. Administrators and eligible team leaders have access, alongside explicit grants. |
-| `ORG_ALL` | Opens access across a self-hosted deployment. |
-| `EXPLICIT_ONLY` | Requires an explicit grant for non-administrators. |
-
-Manage people and access under **Settings → Users** (`/settings/users`). Pipelines and sources belong to their owning team.
+Pipelines and sources belong to their owning team.
 
 ## Allow server folders
 
@@ -62,17 +56,3 @@ Create credentials under [Integrations](./Integrations.md) before selecting an S
 Most PDF tools and property-based routing do not require AI. A server **Classify** step requires AI classification to be available. See [AI Overview](../AI/AI-Overview.md) before using classification-based workflows.
 
 [Ingestion](./Ingestion.md) uses the AI engine to prepare chunks. The Stirling knowledge base also needs an embedding provider; exporting chunks does not. A connected RAG database supplies its own embeddings. The guided form checks these requirements and links to AI settings when configuration is missing.
-
-## Check the processing record
-
-The Documents page is available without an Enterprise license, but its feed needs processing events to be recorded. On self-hosted deployments, enable audit recording at a level that includes processing:
-
-```yaml
-premium:
-  enterpriseFeatures:
-    audit:
-      enabled: true
-      level: 2
-```
-
-See [Documents](./Documents.md) for viewing activity and [Audit Logging](../Configuration/Security/Audit%20Logging.md) for Enterprise audit administration.

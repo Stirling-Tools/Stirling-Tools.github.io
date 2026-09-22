@@ -9,7 +9,7 @@ id: Stirling Processor
 
 Stirling Processor automates document workflows. Connect an input, choose the PDF operations to run, and select a destination. Run workflows on a schedule, when a folder changes, on webhook delivery, or when someone uploads or exports a file in the editor.
 
-Open **Processor** from the app switcher. For permissions and server configuration, see [Setup and access](./Setup-and-Access.md).
+Open **Processor** from the app switcher in your web browser. It is not currently accessible from the desktop app. Enable login on self-hosted installations; administrators and team leaders have access by default. See [Setup and access](./Setup-and-Access.md).
 
 ## Start here
 
@@ -30,7 +30,7 @@ Follow [Create your first pipeline](./Getting-Started.md) to connect two folders
 | [Review](./Review.md) | Investigate and resolve failed runs. |
 | [Integrations](./Integrations.md) | Save connections to external services. |
 
-[Processing folders](./Processing-Folders.md) let you attach a workflow directly to a folder in the file library. Users, API keys, audit logs, and billing are under [Settings](./API-Keys-and-Audit.md).
+[Processing folders](./Processing-Folders.md) let you attach a workflow directly to a folder in the file library.
 
 ## How a workflow runs
 

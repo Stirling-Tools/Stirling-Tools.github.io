@@ -1004,7 +1004,7 @@ Stirling-PDF offers **Team and Enterprise paid plans** with additional features 
 
 ### 11.1: Stirling Processor
 
-Open **Processor** from the app switcher to create document workflows. Administrators and team leaders have access by default. Configure user access and allowed server folders before creating a workflow.
+Enable login, sign in through a web browser, and open **Processor** from the app switcher. Processor is not currently accessible from the desktop app. Administrators and team leaders have access by default. Configure allowed server folders before creating a workflow.
 
 Follow [Setup and access](./Processor/Setup-and-Access.md), then [Create your first pipeline](./Processor/Getting-Started.md).
 

@@ -23,6 +23,6 @@ The page displays up to **40** recent file-operation records. A file processed s
 
 All users with Processor access can view Documents. Self-hosted users see server-wide activity; Stirling Cloud users see their team's activity.
 
-Enable processing-event recording as described in [Setup and access](./Setup-and-Access.md#check-the-processing-record). Enterprise is not required for this page. Non-Enterprise event retention is limited to **30 days**; Enterprise uses its configured retention.
+Processing activity is recorded by default, including on installations without an Enterprise license. No additional audit setup is needed with the default configuration. Non-Enterprise records are retained for **30 days**; Enterprise uses its configured retention.
 
 For full audit searches and exports, see [Audit Logging](../Configuration/Security/Audit%20Logging.md).
