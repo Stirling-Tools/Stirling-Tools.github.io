@@ -30,4 +30,4 @@ Use [Processor](./Processor/Processor.md) in a web browser to connect sources an
 
 Self-hosted servers can run AI on [their own AI engine](./AI/Self-Hosting-the-AI-Engine.md), with hosted providers or [local models](./AI/Model-Providers.md#local-models), or use [Stirling Cloud AI](./AI/Stirling-Cloud-AI.md) through a linked Stirling account. See [AI Overview](./AI/AI-Overview.md).
 
-Open **Settings → Usage & Billing** to view your plan and usage.
+The organization owner can view the plan and usage under **Settings → Workspace → Usage & Billing**.

@@ -446,6 +446,6 @@ Use the matching `classic-logo/` paths for the classic style and preserve the ex
 
 - **[Security Features](../../Functionality/Security/Security.md)** - PDF security tools, CORS, signature validation
 - **[Certificate Signing](../../Functionality/Security/Certificate-Signing.md)** - Comprehensive signing and validation guide
-- **[Single Sign-On](./Single%20Sign-On%20Configuration.md)** - Enterprise authentication
+- **[Single Sign-On](./Single%20Sign-On%20Configuration.md)** - OAuth2 on every plan, SAML2 with Enterprise
 - **[UI Customisation](../Customisation/UI%20Customisation.md)** - Branding and appearance
 - **[Migration Guide](../../Migration/Settings-Changes.md)** - Upgrading from V1

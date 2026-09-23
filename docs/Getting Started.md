@@ -28,7 +28,7 @@ Stirling PDF provides tools for signing, converting, merging, editing, OCR and r
 - **Automation & Integration:** REST API and an MCP server for AI assistants.
 - **Stirling Processor:** Connect sources and automate document processing.
 - **AI Engine:** Ask questions about documents, create PDFs, and classify files.
-- **Enterprise Features:** SSO (OAuth2 and SAML), user management, permission controls, and audit logging.
+- **Enterprise Features:** SAML SSO, user management, permission controls, and audit logging. OAuth2 SSO is free on every plan.
 - **Self-Hosted:** Community-driven with frequent updates and GitHub support.
 - **Multi-Language Support:** Available in 40+ languages with active translations.
 

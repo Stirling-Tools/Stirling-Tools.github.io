@@ -70,4 +70,4 @@ For advanced security configuration, see:
 
 - **[System and Security Settings](../../Configuration/Security/System%20and%20Security.md)** - JWT, session management, server certificates
 - **[Certificate Signing](./Certificate-Signing.md)** - Comprehensive signing and validation guide
-- **[Single Sign-On](../../Configuration/Security/Single%20Sign-On%20Configuration.md)** - Enterprise authentication
+- **[Single Sign-On](../../Configuration/Security/Single%20Sign-On%20Configuration.md)** - OAuth2 on every plan, SAML2 with Enterprise

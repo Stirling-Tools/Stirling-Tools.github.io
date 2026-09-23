@@ -35,7 +35,7 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
     | `system.serverCertificate.validity` | `SYSTEM_SERVERCERTIFICATE_VALIDITY` | `365` | Lifetime of a generated certificate, in days |
     | `system.serverCertificate.regenerateOnStartup` | `SYSTEM_SERVERCERTIFICATE_REGENERATEONSTARTUP` | `false` | Generate a fresh self-signed certificate on every application start, replacing whatever keystore is already in place |
 
-    The same four fields are editable under **Admin Settings → Features**, in the Server Certificate card. Changes saved there apply on the next application restart.
+    The same four fields are editable in the **Certificate Signing** section of **Settings → Server → System**. Changes saved there apply on the next application restart.
 
     :::warning `regenerateOnStartup` destroys an uploaded keystore
     With `regenerateOnStartup: true` an organisation certificate you uploaded is silently replaced by a fresh self-signed one on every start. Leave it `false` (the default) on any instance holding an uploaded keystore.

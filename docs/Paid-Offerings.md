@@ -24,6 +24,7 @@ Stirling PDF offers Team and Enterprise paid plans. These provide the same great
 - **Features**:
   - Self-hosted deployment
   - All PDF operations
+  - [OAuth2 SSO](./Configuration/Security/OAuth%20SSO%20Configuration.md) (Google, GitHub, Keycloak, any OIDC provider)
   - Community support
   - Regular updates
 - **Perfect for**: Personal use, small teams, or evaluation
@@ -75,7 +76,7 @@ Stirling PDF offers Team and Enterprise paid plans. These provide the same great
 
 Stirling PDF offers streamlined in-app purchasing and license activation. This covers the Team plan; Enterprise is quoted and issued by sales rather than bought in-app.
 
-1. **Navigate to Settings**: Log in as an admin and go to Settings → Plan
+1. **Navigate to Settings**: Sign in as the organization owner and go to **Settings → Workspace → Usage & Billing**
 2. **Select Your Plan**: Choose the Team plan (100 users included, capacity added in blocks of 100)
 3. **Choose Billing Period**: Select monthly or yearly billing (yearly saves money)
 4. **Complete Checkout**: You'll be redirected to Stripe's secure checkout
@@ -112,8 +113,8 @@ Stirling PDF accepts two manual activation inputs from the admin UI: a license *
 
 If you purchased via the website and received a license key by email:
 
-1. **Admin Settings**: Log in as an admin and navigate to Settings → Plan
-2. **Open License Input**: Expand the "Got a license key or certificate file?" section
+1. **Open Usage & Billing**: Sign in as the organization owner and go to **Settings → Workspace → Usage & Billing**
+2. **Open License Input**: Next to **License key**, select **Add**, or **Update** if a license is already installed
 3. **Select Input Type**: Make sure "License Key" is selected
 4. **Enter License Key**: Paste your license key in the provided field
 5. **Activate**: Save to apply the license
@@ -123,8 +124,8 @@ If you purchased via the website and received a license key by email:
 
 If you received a `.lic` or `.cert` certificate file (typically issued for Enterprise customers who need to activate without outbound internet access):
 
-1. **Admin Settings**: Log in as an admin and navigate to Settings → Plan
-2. **Open License Input**: Expand the "Got a license key or certificate file?" section
+1. **Open Usage & Billing**: Sign in as the organization owner and go to **Settings → Workspace → Usage & Billing**
+2. **Open License Input**: Next to **License key**, select **Add**, or **Update** if a license is already installed
 3. **Select Input Type**: Switch to "Certificate File"
 4. **Choose File**: Click "Choose License File" and select your `.lic` or `.cert` file (must start with `-----BEGIN LICENSE FILE-----`)
 5. **Upload**: The file is uploaded, validated, saved to your `configs/` folder, and activated automatically. Any previous certificate is backed up to `configs/backup/`
@@ -170,8 +171,8 @@ To reference a certificate file from `settings.yml` instead of uploading via the
 
 Stirling PDF includes a convenient billing management interface:
 
-1. Navigate to Settings → Plan
-2. On your current plan, click "Manage"
+1. Sign in as the organization owner and go to **Settings → Workspace → Usage & Billing**
+2. Select **Manage Billing**
 3. You'll be redirected to Stripe's customer portal where you can:
    - Update payment methods
    - View invoices
@@ -185,7 +186,6 @@ Once activated, you can customize premium features in your `settings.yml`:
 ```yaml
 premium:
   proFeatures:
-    ssoAutoLogin: false
     customMetadata:
       autoUpdateMetadata: false
       author: username
@@ -213,12 +213,12 @@ Stirling PDF uses an **installation-based licensing model**:
 
 You can upgrade from Free → Team at any time:
 
-1. Navigate to Settings → Plan
+1. Sign in as the organization owner and go to **Settings → Workspace → Usage & Billing**
 2. On the plan tier you want, click "Upgrade"
 3. Complete checkout
 4. Your existing license will be automatically upgraded
 
-Moving Team → Enterprise goes through sales - use the "Contact Us" button on the Enterprise tier in Settings → Plan, or [contact sales](https://www.stirling.com/contact-us).
+Moving Team → Enterprise goes through sales - [contact sales](https://www.stirling.com/contact-us).
 
 Adding more user capacity to an existing Team plan is coming soon as an in-app feature. Until it lands, email support@stirlingpdf.com and we'll add the block for you.
 
@@ -271,7 +271,7 @@ A: Invoices are automatically sent via email and accessible through the Billing 
 If you're upgrading from Stirling PDF V1 with an existing license:
 
 1. Your existing license key will continue to work
-2. You can enter it manually via Settings → Plan
+2. You can enter it manually in **Settings → Workspace → Usage & Billing**
 3. Or, re-activate through the in-app purchase flow
 4. Contact support@stirlingpdf.com if you encounter any issues
 

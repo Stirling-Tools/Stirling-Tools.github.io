@@ -54,12 +54,12 @@ Set these environment variables on the engine; the shared secret also belongs on
 | `STIRLING_REQUIRE_USER_ID` | `false` | Require an identified user. Use only with login enabled; see [MCP Server](../Configuration/Automation/MCP-Server.md#ai-capabilities) for MCP compatibility. |
 | `STIRLING_ALLOW_CONFIG_PUSH` | `true` | Accept AI settings saved in Stirling PDF. |
 
-Restart the engine after changing these variables. Stirling PDF's `aiEngine.pushConfigToEngine` setting must remain enabled to send settings from the admin page.
+Restart the engine after changing these variables. Stirling PDF's `aiEngine.pushConfigToEngine` setting must remain enabled to send settings saved in **Settings → Server → AI Engine**.
 
 ## Document content and providers
 
 Language model providers receive prompts, relevant document content, conversation history, and file names. Embedding providers receive document text and search queries.
 
-With [Stirling Cloud AI](./Stirling-Cloud-AI.md), Stirling Cloud processes this content instead of a provider you choose. It keeps indexed document text only when **Let Stirling Cloud keep indexed documents** is on.
+With [Stirling Cloud AI](./Stirling-Cloud-AI.md), Stirling Cloud processes this content instead of a provider you choose. It keeps indexed document text only when **Let Stirling Cloud keep indexed documents** is on, and deletes it after 24 hours by default.
 
 To keep this content within your infrastructure, run your own engine and configure both language models and embeddings with [local providers](./Model-Providers.md#local-models). Restrict access to AI settings and use only trusted provider URLs. [External integrations](../Processor/Integrations.md) have their own document delivery settings.

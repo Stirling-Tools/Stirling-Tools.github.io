@@ -4,7 +4,7 @@ tags: [enterprise, management, feature, advanced feature]
 ---
 
 # OAuth 2.0 Single Sign-On Configuration
-> **Tier**: Team
+> **Tier**: Free, on every plan
 
 Stirling PDF supports Single Sign-On (SSO) using OAuth 2.0 OpenID Connect (OIDC). This allows users to log in using accounts from external providers such as Google, GitHub, Keycloak, Authentik, and others.
 
@@ -15,7 +15,6 @@ Stirling PDF supports Single Sign-On (SSO) using OAuth 2.0 OpenID Connect (OIDC)
 Before configuring OAuth 2.0 SSO, ensure you have:
 
 - [ ] Stirling PDF with login enabled (`security.enableLogin: true`)
-- [ ] Valid license for the Team tier or higher
 - [ ] An OAuth 2.0 provider account (Google, GitHub, Keycloak, etc.)
 - [ ] Registered OAuth application with your provider
 - [ ] OAuth Client ID and Client Secret from your provider
@@ -418,21 +417,20 @@ If your Stirling PDF backend is accessible at a different URL than the frontend,
 Verify the backend URL is correct by checking that `https://your-domain.com/api/v1/info/status` is accessible.
 
 ### Auto-Login Feature
-> **Tier**: Team
+> **Tier**: Free, on every plan
 
 Automatically redirect users to OAuth login page, bypassing the Stirling PDF login screen.
 
 <Tabs groupId="config-method">
   <TabItem value="settings" label="settings.yml" default>
     ```yaml
-    premium:
-      proFeatures:
-        ssoAutoLogin: true
+    security:
+      ssoAutoLogin: true
     ```
   </TabItem>
   <TabItem value="env" label="Environment Variables">
     ```bash
-    PREMIUM_PROFEATURES_SSOAUTOLOGIN=true
+    SECURITY_SSOAUTOLOGIN=true
     ```
   </TabItem>
 </Tabs>
@@ -526,7 +524,6 @@ The claims are logged at `INFO` level on each login (and again at `ERROR` level 
 
 - OAuth users must be manually promoted to admin role after first login
 - Provider discovery requires `/.well-known/openid-configuration` endpoint support
-- Auto-login feature requires the Team tier (or higher)
 
 ## See Also
 

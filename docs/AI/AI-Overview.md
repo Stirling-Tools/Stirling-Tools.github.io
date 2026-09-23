@@ -22,7 +22,7 @@ Administrators can turn individual capabilities on or off under [AI Tools](./AI-
 
 ## Choose where AI runs
 
-Open **Settings → AI → AI Engine** as an administrator and choose one of three options under **Connection**:
+Open **Settings → Server → AI Engine** as an administrator and choose one of three options under **Connection**:
 
 ![AI connection settings with Off, Run your own engine, and Use Stirling Cloud AI](/img/ai/connection-modes.png)
 

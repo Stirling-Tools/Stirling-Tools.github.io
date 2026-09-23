@@ -21,7 +21,7 @@ An unlinked server has a default monthly allowance of **1,000 document units**. 
 ## Connect your server
 
 1. Enable login and sign in to your self-hosted server as its **organization owner**, with administrator access.
-2. Open **Settings → Account connection** and select **Connect your Stirling account**.
+2. Open **Settings → Workspace → Account connection** and select **Connect your Stirling account**.
 3. Follow the sign-in flow to Stirling Cloud. Use an account that leads the team you want to connect.
 4. Approve the connection and return to your server.
 5. Check the connection status and open **Usage & Billing** to review the team's allowance and processing credits.
@@ -63,5 +63,4 @@ Select **Disconnect this instance** to stop using the team's cloud allowance. Lo
 
 - **Cannot connect:** check that you are the server's organization owner and a leader of the selected Cloud team, and that the server can reach Stirling Cloud.
 - **Allowance exhausted:** check the remaining credits and spend cap under **Usage & Billing**.
-- **Server offline:** cloud-backed features have a default **three-day** grace period. Restore the connection before it expires to avoid interruptions.
 - **Connection revoked:** reconnect the server with the appropriate Cloud team.

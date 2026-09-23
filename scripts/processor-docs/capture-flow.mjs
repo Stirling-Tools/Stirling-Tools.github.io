@@ -1,4 +1,4 @@
-// Captures pipeline-flow, first-pipeline and test-with-a-file from DocumentationFlow stories.
+// Captures first-pipeline and test-with-a-file from DocumentationFlow stories.
 // Run from the app's frontend/editor with Storybook on :6006; pass the docs img/processor dir.
 import { chromium } from "@playwright/test";
 import sharp from "sharp";
@@ -18,23 +18,15 @@ async function open(page, id, marker) {
 }
 
 const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width: 1440, height: 1240 } });
+const page = await browser.newPage({ viewport: { width: 1280, height: 760 } });
 
-// 1. Overview flow: select the delivery node so the inspector shows the routes.
-await open(page, "documentation-flow--supplier-intake", "Supplier document intake");
-await page.getByText("3 routes, then a fallback").click();
-await page.getByText("Everything else goes to").waitFor();
-await page.waitForTimeout(800);
-await page.screenshot({ path: `${OUT}/pipeline-flow.png`, clip: { x: 0, y: 0, width: 1440, height: 1050 } });
-
-// 2. First pipeline, with the Compress step selected.
-await page.setViewportSize({ width: 1280, height: 760 });
+// 1. First pipeline, with the Compress step selected.
 await open(page, "documentation-flow--first-pipeline", "Compress incoming invoices");
 await page.getByText("Compress", { exact: true }).first().click();
 await page.waitForTimeout(1000);
 await page.screenshot({ path: `${OUT}/first-pipeline.png`, clip: { x: 0, y: 0, width: 1280, height: 490 } });
 
-// 3. "Test with a file", cropped and circled.
+// 2. "Test with a file", cropped and circled.
 await page.mouse.click(1, 1);
 const button = page.getByRole("button", { name: "Test with a file" });
 const box = await button.boundingBox();

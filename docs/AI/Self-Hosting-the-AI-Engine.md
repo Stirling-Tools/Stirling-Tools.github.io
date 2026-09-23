@@ -45,7 +45,7 @@ If Stirling PDF does not run in the same Compose file, set `aiEngine.enabled` an
 
 1. Run `docker compose up -d`.
 2. Check the engine with `docker compose exec stirling-pdf-engine curl -fsS http://localhost:5001/health`.
-3. Sign in as an administrator and open **Settings → AI → AI Engine**. **Run your own engine** should be selected, and **Status** shows whether the engine is reachable.
+3. Sign in as an administrator and open **Settings → Server → AI Engine**. **Run your own engine** should be selected, and **Status** shows whether the engine is reachable.
 4. Attach a PDF to the assistant and ask a question about it to verify document search.
 
 Restart Stirling PDF after changing the engine URL or enabling AI. After rotating the shared secret, restart both services and re-save the AI settings.

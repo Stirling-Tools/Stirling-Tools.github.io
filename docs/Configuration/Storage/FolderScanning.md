@@ -26,7 +26,7 @@ Successful runs delete input files from the job folder. Keep a separate copy of 
 ## Setting Up Watched Folders
 
 - Default watched root: `./pipeline/watchedFolders/`; in the Docker images, `/pipeline/watchedFolders`.
-- The same paths are in **Admin Settings -> General -> Custom Paths -> Pipeline** as "Watched Folders Directories", one path per line or comma-separated. A saved value is marked pending until the server restarts.
+- The same paths are in the **Custom Paths** section of **Settings → Server → System**, under **Pipeline Directories** as **Watched Folders Directories**, one path per line or comma-separated. A saved value is marked pending until the server restarts.
 - Only subdirectories are treated as job folders; files dropped directly into the watched-folders root are never processed.
 
 ## Configuring Processing with JSON Files

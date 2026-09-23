@@ -19,7 +19,7 @@ Stirling Cloud AI runs the AI features of your self-hosted Stirling PDF on Stirl
 
 ## Turn it on
 
-1. Open **Settings → AI → AI Engine**.
+1. Open **Settings → Server → AI Engine**.
 2. Under **Connection**, select **Use Stirling Cloud AI**. It stays unavailable until the server is linked.
 3. Choose whether to **Let Stirling Cloud keep indexed documents**; see [Document questions](#document-questions).
 4. Save, then restart Stirling PDF.
@@ -58,9 +58,11 @@ You can also set it in configuration:
 
 ## Document questions
 
-Every AI tool sends Stirling Cloud the page text it needs to answer. **Let Stirling Cloud keep indexed documents** decides whether Stirling Cloud may also keep that text, indexed, so later questions can search across a document.
+Your PDF files stay on your server. Stirling Cloud receives only the text each AI tool needs to answer.
 
-When it is off, document questions are unavailable. Text is still sent to answer other requests; it is just not stored.
+**Let Stirling Cloud keep indexed documents** lets Stirling Cloud keep that text, indexed, so later questions can search across a document. Indexed text is deleted automatically after 24 hours by default, and sooner when the user signs out.
+
+When it is off, Stirling Cloud does not keep any document text, and document questions are unavailable.
 
 ## What changes in this mode
 

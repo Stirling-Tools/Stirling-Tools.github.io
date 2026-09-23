@@ -36,7 +36,7 @@ A **Folder** source uses a path on the server, or inside the container.
 
 1. Mount or create separate input and output directories.
 2. Give the Stirling PDF process permission to read the input and write the output. **Delete the file** mode also needs permission to remove originals.
-3. Add their parent directory under **Settings → Configuration → Folder Access**, or set `policies.allowedFolderRoots` with one of the methods below.
+3. Add their parent directory in the **Folder Access** section of **Settings → Server → System**, or set `policies.allowedFolderRoots` with one of the methods below.
 4. Restart Stirling PDF after changing the allowed folders.
 
 <Tabs groupId="config-methods">
@@ -68,4 +68,4 @@ Separate several directories with commas in an environment variable, for example
 
 For a container, mount your host's directory at `/data/processor` and enter paths such as `/data/processor/inbox` and `/data/processor/processed` in the UI.
 
-The list is empty by default; managed storage and watched folders are already accessible. Every signed-in user can set up [processing folders](./Processing-Folders.md) under these directories, which lets them list and replace the files there, so allow only directories all your users may use. Folder access is unavailable on Stirling Cloud.
+The list is empty by default; Stirling PDF's own storage and watched folders are always allowed. Every signed-in user can set up [processing folders](./Processing-Folders.md) under these directories, so allow only directories all your users may use. Processing folders keep the original of every file they replace. Folder access is unavailable on Stirling Cloud.

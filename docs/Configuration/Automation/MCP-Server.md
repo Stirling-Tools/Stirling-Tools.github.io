@@ -26,7 +26,7 @@ Applies to the self-hosted Stirling PDF server. The Stirling Cloud MCP tab is se
 |---|---|---|---|
 | `mcp.enabled` | `MCP_ENABLED` | `false` | Enable the MCP server. |
 
-Enable MCP under **Settings → Configuration → MCP Server**, or with one of the methods below. Configure [authentication](#authentication), then restart the server. Without login enabled, use the settings file or environment variables.
+Enable MCP in the **MCP Server** section of **Settings → Server → Integrations**, or with one of the methods below. Configure [authentication](#authentication), then restart the server. Without login enabled, use the settings file or environment variables.
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
@@ -145,7 +145,7 @@ Set up the [AI engine](../../AI/Self-Hosting-the-AI-Engine.md) to use `stirling_
 
 Supply `operation` and a `parameters` object matching the capability's schema, including its document reference.
 
-Use `mcp.allowedOperations` and `mcp.blockedOperations` to control AI access over MCP. The AI feature switches in Admin Settings apply to the app's tools.
+Use `mcp.allowedOperations` and `mcp.blockedOperations` to control AI access over MCP. The **Capabilities** switches in **Settings → Server → AI Engine** apply to the app's tools.
 
 For MCP compatibility, leave `STIRLING_REQUIRE_USER_ID` set to `false` on the engine.
 
@@ -188,7 +188,7 @@ X-API-KEY: <your-stirling-api-key>
 Authorization: Bearer <your-stirling-api-key>
 ```
 
-Generate a key under **Settings → API Keys** while signed in. The key must belong to an enabled account; missing or invalid keys return HTTP `401`. See [API documentation](../../API.md).
+Generate a key under **Settings → Preferences → API Keys** while signed in. The key must belong to an enabled account; missing or invalid keys return HTTP `401`. See [API documentation](../../API.md).
 
 ---
 

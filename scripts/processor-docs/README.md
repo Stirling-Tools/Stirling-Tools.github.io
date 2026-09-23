@@ -17,7 +17,8 @@ The PNGs under `static/img/processor` are browser captures of the current
 application components rendered through the app's Storybook. They use its
 isolated fixture API, without connecting production accounts or exposing secrets.
 Captions describe the screen directly. No image generation or DOM restyling was
-used; the only annotation is the circle drawn on `test-with-a-file.png`.
+used; the only edits are the circle drawn on `test-with-a-file.png` and the
+loop crossfade on `processor-home.gif`.
 
 Run the application frontend's dependency and generated-icon setup, then launch
 Storybook. The stories in this directory can be copied beside the app's
@@ -32,12 +33,15 @@ harnesses, not changes to the application:
 - `DocumentationPipelines.stories.tsx` uses the Ingestion PR's real setup
   components, removes Retention from the capture catalogue, and supplies ready
   AI capability responses. Use it for the gallery and template modal captures.
-- `DocumentationFlow.stories.tsx` supplies example sources and pipelines to the
-  real PipelineBuilder through story-level MSW handlers: a supplier intake
-  pipeline with document-type routing, and the "Compress incoming invoices"
-  pipeline from Create your first pipeline. `capture-flow.mjs` captures its three
-  images; copy it to the app's `frontend/editor` and run it with the docs
+- `DocumentationFlow.stories.tsx` supplies example sources and the "Compress
+  incoming invoices" pipeline from Create your first pipeline to the real
+  PipelineBuilder through story-level MSW handlers. `capture-flow.mjs` captures
+  its two images; copy it to the app's `frontend/editor` and run it with the docs
   `static/img/processor` path while Storybook serves on port 6006.
+- `DocumentationHome.stories.tsx` renders the real Processor home flow with five
+  example sources and their 24-hour counts, passed through the component's
+  `dataOverride` prop. `capture-home.mjs` records `processor-home.gif` on a fake
+  clock and needs `ffmpeg` on PATH; run it the same way.
 - `DocumentationAiSettings.stories.tsx` renders the real AI settings section with
   Stirling Cloud AI selected on a linked server. `capture-ai-settings.mjs` clips
   its Connection card to `static/img/ai/connection-modes.png`; run it the same way
@@ -45,7 +49,7 @@ harnesses, not changes to the application:
 
 | Image | Story and state |
 |---|---|
-| `pipeline-flow.png` | `documentation-flow--supplier-intake`; delivery node selected so the routes show; clipped to 1440x1050 |
+| `processor-home.gif` | `documentation-home--flow`; the flow card with 16px padding, 120 frames at 20 fps played at half speed after 8 seconds of warm-up, the last 12 crossfaded into the first so it loops without a jump |
 | `first-pipeline.png` | `documentation-flow--first-pipeline`; Compress step selected; clipped to 1280x490 |
 | `test-with-a-file.png` | Same story, cropped to the canvas toolbar with a circle around **Test with a file** |
 | `sources.png` | `portal-views-sources--default` |

@@ -8,6 +8,8 @@ description: Ready-made pipelines with a simple setup form, for people new to bu
 
 Policies are ready-made pipelines with a simple setup form. Instead of building a flowchart step by step, you switch on the actions you want, choose where documents come from and where results go, and save. They are designed for people who are new to pipeline builders.
 
+The available policies are [Ingestion](./Ingestion.md), [Security](./Security.md), [Classification](./Classification.md), [Compliance](./Compliance.md), and [Routing](./Routing.md).
+
 Every policy you set up is saved as an ordinary [pipeline](../Pipelines.md). It appears under **All pipelines** and runs the same way. Opening it again brings back the setup form, as long as it still fits the policy.
 
 ## Set up a policy
@@ -27,25 +29,3 @@ Every policy you set up is saved as an ordinary [pipeline](../Pipelines.md). It 
 ## Enforce as policy
 
 When the documents come from the editor, you can turn on **Enforce as policy**. A file that fails an enforced policy is blocked, instead of being let through with a warning. See [Enforce as policy](../Pipelines.md#enforce-as-policy) for exactly what happens on upload and export.
-
-## Available policies
-
-### Ingestion
-
-Make scanned documents searchable and prepare them for a knowledge base, your own RAG database, or an export. See [Ingestion](./Ingestion.md).
-
-### Security
-
-Redact personal data, remove JavaScript, and watermark documents before they are shared. See [Security](./Security.md).
-
-### Classification
-
-Identify each document's type with AI and tag it for filing and search. See [Classification](./Classification.md).
-
-### Compliance
-
-Strip hidden data, convert to PDF/A for archiving, and check the result meets the standard. See [Compliance](./Compliance.md).
-
-### Routing
-
-Classify documents and deliver each type to its own destination, with a fallback for everything else. See [Routing](./Routing.md).

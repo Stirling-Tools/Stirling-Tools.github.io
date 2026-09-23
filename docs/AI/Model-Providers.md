@@ -6,7 +6,7 @@ title: Model Providers
 
 # Model Providers
 
-Configure providers under **Settings → AI → Models & Providers**, or with the settings below. They apply when you [run your own engine](./Self-Hosting-the-AI-Engine.md). With [Stirling Cloud AI](./Stirling-Cloud-AI.md), Stirling Cloud manages models and provider keys.
+Configure providers in the **Models & Providers** section of **Settings → Server → AI Engine**, or with the settings below. They apply when you [run your own engine](./Self-Hosting-the-AI-Engine.md). With [Stirling Cloud AI](./Stirling-Cloud-AI.md), Stirling Cloud manages models and provider keys.
 
 Language models handle questions and editing instructions. Embedding models make document text searchable. You can use a different provider for each.
 

@@ -180,7 +180,7 @@ These values only apply when the database is first created. Change the password 
 
 ### 3.2: Verify Admin Access
 
-Open **Settings** from your account at the bottom of the quick access bar on the left. Administrators see server sections such as **Workspace**, **Configuration**, and **Security & sign-in**. Other users see only their own preferences.
+Open **Settings** from your account at the bottom of the quick access bar on the left. Administrators also see the **Workspace**, **Server**, and **Monitoring** groups. Other users see only their own preferences.
 
 If the server sections are missing:
 - Check the logs with `docker logs stirling-pdf`.
@@ -266,7 +266,7 @@ processExecutor:
 
 ### 4.2: Security Settings
 
-Open **Settings → Security & sign-in**.
+Open **Settings → Server → Sign-in & security**.
 
 #### User Registration Control
 
@@ -306,7 +306,7 @@ MAIL_STARTTLSENABLE=true
 
 #### Single Sign-On
 
-Stirling PDF supports OAuth2 / OpenID Connect providers such as Google, GitHub, and Keycloak, and SAML 2.0 providers such as Okta and Azure AD. SAML 2.0 requires an Enterprise license.
+Stirling PDF supports OAuth2 / OpenID Connect providers such as Google, GitHub, and Keycloak, and SAML 2.0 providers such as Okta and Azure AD. OAuth2 is free on every plan; SAML 2.0 requires an Enterprise license.
 
 ```yaml
 security:
@@ -333,7 +333,7 @@ security:
 
 ### 4.3: Feature Control
 
-Open **Settings → Configuration → Endpoints** to choose which PDF tools users can see. All PDF tools are enabled by default. AI features are controlled separately by `aiEngine` and are off by default; see [Step 11](#step-11-optional-document-automation-ai).
+Open **Settings → Server → System** and go to **Endpoint Management** to choose which PDF tools users can see. All PDF tools are enabled by default. AI features are controlled separately by `aiEngine` and are off by default; see [Step 11](#step-11-optional-document-automation-ai).
 
 ```yaml
 endpoints:
@@ -345,7 +345,7 @@ endpoints:
     - 'LibreOffice'  # Disables all LibreOffice-based conversions
 ```
 
-In the admin page, pick the tools under **Disabled Endpoints**, or whole groups under **Disabled Endpoint Groups**, then save. See [Endpoint Customisation](./Configuration/Customisation/Endpoint%20or%20Feature%20Customisation.md) for every tool ID.
+In **Endpoint Management**, pick the tools under **Disabled Endpoints**, or whole groups under **Disabled Endpoint Groups**, then save. See [Endpoint Customisation](./Configuration/Customisation/Endpoint%20or%20Feature%20Customisation.md) for every tool ID.
 
 ### 4.4: Save and Apply Settings
 
@@ -397,7 +397,7 @@ See [SSL/TLS Configuration](./Configuration/Customisation/Extra-Settings.md#sslt
 
 ### 6.2: Adding Users
 
-Open **Settings → Workspace → People** and select **Invite people**. You can add several people at once.
+Open **Settings → Workspace → Users** and select **Invite people**. You can add several people at once.
 
 - **Invite by email** sends each person a link to join and set their own password. This needs [mail configured](#user-registration-control).
 - **Create account directly** sets a username and password for them. Share the password securely and turn on **Require a password change on first login**.
@@ -406,7 +406,7 @@ Choose each person's role and team before sending.
 
 ### 6.3: Managing Users
 
-From **Settings → Workspace → People** you can reset a password, change a role, disable an account, or remove a member. Disabled users cannot sign in. Removing a member cannot be undone.
+From **Settings → Workspace → Users** you can reset a password, change a role, disable an account, or remove a member. Disabled users cannot sign in. Removing a member cannot be undone.
 
 ---
 
@@ -507,7 +507,7 @@ Team and Enterprise plans add features for organizations, including:
 
 - **SAML 2.0 single sign-on** (Enterprise), with providers such as Okta and Azure AD.
 - **External PostgreSQL database** for reliability and scale.
-- **Prometheus metrics** and the **Usage Monitoring** page in the admin settings.
+- **Prometheus metrics** and **Usage Analytics** under **Settings → Monitoring**.
 
 See [Paid Offerings](./Paid-Offerings.md) for the full comparison, [pricing](https://stirling.com/pricing), or email support@stirlingpdf.com.
 
@@ -523,7 +523,7 @@ Follow [Setup and access](./Processor/Setup-and-Access.md), then [Create your fi
 
 ### 11.2: AI Features
 
-AI is off by default. Choose where it runs under **Settings → AI → AI Engine**:
+AI is off by default. Choose where it runs under **Settings → Server → AI Engine**:
 
 - **Run your own engine:** host the AI engine on an internal network with your own model providers. Follow [Self-Hosting the AI Engine](./AI/Self-Hosting-the-AI-Engine.md).
 - **Use Stirling Cloud AI:** no engine or provider keys; the work runs on Stirling Cloud and is billed to the linked account. Follow [Stirling Cloud AI](./AI/Stirling-Cloud-AI.md).
@@ -558,7 +558,7 @@ See [AI Overview](./AI/AI-Overview.md) for the available features.
 **Solutions:**
 1. Check logs: `docker logs stirling-pdf | grep ERROR`
 2. Verify `SECURITY_ENABLELOGIN=true` is set
-3. If another administrator can sign in, use **Settings → Workspace → People** to reset the affected account's password.
+3. If another administrator can sign in, use **Settings → Workspace → Users** to reset the affected account's password.
 
 ### Performance Issues
 

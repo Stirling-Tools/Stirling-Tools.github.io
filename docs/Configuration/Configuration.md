@@ -175,7 +175,7 @@ For advanced features and specific use cases, see these detailed guides:
 ### Authentication & Security
 
 **[Single Sign-On (SSO)](./Security/Single%20Sign-On%20Configuration.md)**
-- OAuth2 (Google, GitHub, Keycloak, OIDC) - Team tier
+- OAuth2 (Google, GitHub, Keycloak, OIDC) - free on every plan
 - SAML2 (Okta, Azure AD) - Enterprise tier
 - Complete configuration examples
 

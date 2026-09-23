@@ -8,7 +8,7 @@ tags: [AI, Settings, Configuration, Admin, Self-host]
 
 # AI Settings Reference
 
-Configure AI under **Settings → AI** or the `aiEngine` block in `settings.yml`. Environment variables use the `AIENGINE_` prefix. For example, to turn on AI with your own engine:
+Configure AI under **Settings → Server → AI Engine** or the `aiEngine` block in `settings.yml`. Environment variables use the `AIENGINE_` prefix. For example, to turn on AI with your own engine:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
@@ -47,7 +47,7 @@ To use Stirling Cloud AI instead, see [Stirling Cloud AI](./Stirling-Cloud-AI.md
 | `aiEngine.enabled` | `AIENGINE_ENABLED` | `false` | Enable AI features. |
 | `aiEngine.mode` | `AIENGINE_MODE` | `SELF_HOSTED` | Where AI runs: `SELF_HOSTED` for your own engine, `CLOUD` for [Stirling Cloud AI](./Stirling-Cloud-AI.md). |
 | `aiEngine.url` | `AIENGINE_URL` | `http://localhost:5001` | Base URL of your own AI engine. |
-| `aiEngine.cloudDocumentIndexing` | `AIENGINE_CLOUDDOCUMENTINDEXING` | `false` | Stirling Cloud AI only. Let Stirling Cloud keep indexed document text, so document questions work. |
+| `aiEngine.cloudDocumentIndexing` | `AIENGINE_CLOUDDOCUMENTINDEXING` | `false` | Stirling Cloud AI only. Let Stirling Cloud keep indexed document text for 24 hours by default, so document questions work. |
 | `aiEngine.timeoutSeconds`, `aiEngine.longRunningTimeoutSeconds`, `aiEngine.streamTimeoutSeconds` | `AIENGINE_TIMEOUTSECONDS`, `AIENGINE_LONGRUNNINGTIMEOUTSECONDS`, `AIENGINE_STREAMTIMEOUTSECONDS` | `120`, `600`, `1800` | Timeouts for standard requests, heavy operations such as adding a large document, and long assistant runs. Use positive values. |
 | `aiEngine.pushConfigToEngine` | `AIENGINE_PUSHCONFIGTOENGINE` | `true` | Send model, document and limit settings to the engine. Not editable in the admin UI. |
 | `aiEngine.features.chat`, `aiEngine.features.documentQuestions` | `AIENGINE_FEATURES_CHAT`, `AIENGINE_FEATURES_DOCUMENTQUESTIONS` | `true` | Assistant chat and questions about a PDF. Set both to `false` to disable conversation. |
@@ -91,7 +91,7 @@ For example, to allow larger documents:
 | `aiEngine.models.provider` | `AIENGINE_MODELS_PROVIDER` | `anthropic` | LLM provider: `anthropic`, `openai`, `ollama`, `custom` (OpenAI-compatible). |
 | `aiEngine.models.smartModel`, `aiEngine.models.fastModel` | `AIENGINE_MODELS_SMARTMODEL`, `AIENGINE_MODELS_FASTMODEL` | `claude-haiku-4-5` | Smart and Fast model names, without a provider prefix. |
 | `aiEngine.models.smartMaxTokens`, `aiEngine.models.fastMaxTokens` | `AIENGINE_MODELS_SMARTMAXTOKENS`, `AIENGINE_MODELS_FASTMAXTOKENS` | `8192`, `2048` | Maximum output tokens per tier. At least `1`. |
-| `aiEngine.models.apiKey`, `aiEngine.models.baseUrl` | `AIENGINE_MODELS_APIKEY`, `AIENGINE_MODELS_BASEURL` | empty | Language model API key and endpoint for `ollama` or `custom`. A blank key uses the engine environment; leaving the key blank in the admin form preserves its saved value. |
+| `aiEngine.models.apiKey`, `aiEngine.models.baseUrl` | `AIENGINE_MODELS_APIKEY`, `AIENGINE_MODELS_BASEURL` | empty | Language model API key and endpoint for `ollama` or `custom`. A blank key uses the engine environment; leaving the key blank in the settings page preserves its saved value. |
 | `aiEngine.rag.embeddingProvider`, `aiEngine.rag.embeddingModel` | `AIENGINE_RAG_EMBEDDINGPROVIDER`, `AIENGINE_RAG_EMBEDDINGMODEL` | `voyageai`, `voyage-4` | Embedding provider (`voyageai`, `openai`, `ollama`, `custom`) and model name, no prefix. Re-add documents after changing the model. |
 | `aiEngine.rag.embeddingApiKey`, `aiEngine.rag.embeddingBaseUrl` | `AIENGINE_RAG_EMBEDDINGAPIKEY`, `AIENGINE_RAG_EMBEDDINGBASEURL` | empty | Embedding credentials and endpoint. See [Model Providers](./Model-Providers.md) for provider-specific setup. |
 | `aiEngine.rag.topK`, `aiEngine.rag.maxSearches` | `AIENGINE_RAG_TOPK`, `AIENGINE_RAG_MAXSEARCHES` | `20`, `5` | Document chunks returned per search (at least `1`) and searches the assistant may run before answering (at least `0`; `0` disables document search). |

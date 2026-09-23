@@ -9,21 +9,11 @@ id: Stirling Processor
 
 Stirling Processor automates document workflows. Connect an input, choose the PDF operations to run, and select a destination. Run workflows on a schedule, when a folder changes, on webhook delivery, or when someone uploads or exports a file in the editor.
 
-![Supplier document intake pipeline: an SFTP input, six processing steps, and routes to accounts payable, procurement, and treasury](/img/processor/pipeline-flow.png)
+Use it to process files in bulk, such as running OCR on 10,000 scans, compressing a whole folder, or converting a document library, and to keep processing new files as they arrive. It can also [enforce policies](./Pipelines.md#enforce-as-policy) across your organization, so every document coming in or going out meets your standards or runs through a set process.
 
-This pipeline checks a supplier SFTP drop every 15 minutes. Each document is repaired, made searchable with OCR, classified, stripped of active content, stamped **RECEIVED**, and compressed. Invoices and credit notes go to accounts payable, purchase orders to the procurement archive, and remittance advice and statements to treasury. Anything else lands in a review folder.
+![Processor home: documents from five sources flowing through five policies, with 8,788 delivered and 272 failed in 24 hours](/img/processor/processor-home.gif)
 
 Open **Processor** from the quick access bar on the left of Stirling PDF in your web browser. It is not currently accessible from the desktop app, although we will be adding it for desktop apps connected to supported environments. Administrators and team leaders have access by default. Default users or environments without login will not be able to access Processor. See [Setup and access](./Setup-and-Access.md).
-
-## What you can automate
-
-- **Accounts payable:** collect supplier documents from SFTP, make them searchable, and route each document type to the right team.
-- **Scanned paperwork:** pick up scans from a server folder or network drive, run OCR, and save compressed, searchable PDFs.
-- **Archiving:** convert contracts to PDF/A and store them in S3 with Object Lock retention.
-- **Safe sharing:** redact and sanitize documents before they leave your organization.
-- **Partner uploads:** accept documents from another system through a signed webhook and process them as they arrive.
-- **Knowledge search:** prepare documents for a knowledge base or your own RAG database with [Ingestion](./Policies/Ingestion.md).
-- **Editor policies:** run a pipeline, such as watermarking or PDF/A conversion, whenever someone uploads or exports a file in the editor.
 
 ## Start here
 

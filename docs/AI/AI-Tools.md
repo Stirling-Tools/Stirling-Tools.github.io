@@ -48,7 +48,7 @@ Document creation requires WeasyPrint on the Stirling PDF server. If it is insta
 
 ## Disable a capability
 
-All feature switches default to `true`. Turn one off under **Capabilities** in **Settings → AI → AI Engine**, or set it to `false` and restart Stirling PDF. For example, to turn off document creation:
+All feature switches default to `true`. Turn one off under **Capabilities** in **Settings → Server → AI Engine**, or set it to `false` and restart Stirling PDF. For example, to turn off document creation:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
