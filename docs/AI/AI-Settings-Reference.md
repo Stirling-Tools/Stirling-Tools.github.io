@@ -8,14 +8,46 @@ tags: [AI, Settings, Configuration, Admin, Self-host]
 
 # AI Settings Reference
 
-Configure AI under **Admin Settings → AI** or the `aiEngine` block in `settings.yml`. Environment variables use the `AIENGINE_` prefix.
+Configure AI under **Settings → AI** or the `aiEngine` block in `settings.yml`. Environment variables use the `AIENGINE_` prefix. For example, to turn on AI with your own engine:
+
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    aiEngine:
+      enabled: true
+      mode: SELF_HOSTED
+      url: http://stirling-pdf-engine:5001
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variables">
+    ```bash
+    AIENGINE_ENABLED=true
+    AIENGINE_MODE=SELF_HOSTED
+    AIENGINE_URL=http://stirling-pdf-engine:5001
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        environment:
+          AIENGINE_ENABLED: "true"
+          AIENGINE_MODE: SELF_HOSTED
+          AIENGINE_URL: http://stirling-pdf-engine:5001
+    ```
+  </TabItem>
+</Tabs>
+
+To use Stirling Cloud AI instead, see [Stirling Cloud AI](./Stirling-Cloud-AI.md).
 
 ## Engine connection and capabilities (restart required)
 
 | Key | Env | Default | Purpose |
 |---|---|---|---|
 | `aiEngine.enabled` | `AIENGINE_ENABLED` | `false` | Enable AI features. |
-| `aiEngine.url` | `AIENGINE_URL` | `http://localhost:5001` | Base URL of the AI engine. |
+| `aiEngine.mode` | `AIENGINE_MODE` | `SELF_HOSTED` | Where AI runs: `SELF_HOSTED` for your own engine, `CLOUD` for [Stirling Cloud AI](./Stirling-Cloud-AI.md). |
+| `aiEngine.url` | `AIENGINE_URL` | `http://localhost:5001` | Base URL of your own AI engine. |
+| `aiEngine.cloudDocumentIndexing` | `AIENGINE_CLOUDDOCUMENTINDEXING` | `false` | Stirling Cloud AI only. Let Stirling Cloud keep indexed document text, so document questions work. |
 | `aiEngine.timeoutSeconds`, `aiEngine.longRunningTimeoutSeconds`, `aiEngine.streamTimeoutSeconds` | `AIENGINE_TIMEOUTSECONDS`, `AIENGINE_LONGRUNNINGTIMEOUTSECONDS`, `AIENGINE_STREAMTIMEOUTSECONDS` | `120`, `600`, `1800` | Timeouts for standard requests, heavy operations such as adding a large document, and long assistant runs. Use positive values. |
 | `aiEngine.pushConfigToEngine` | `AIENGINE_PUSHCONFIGTOENGINE` | `true` | Send model, document and limit settings to the engine. Not editable in the admin UI. |
 | `aiEngine.features.chat`, `aiEngine.features.documentQuestions` | `AIENGINE_FEATURES_CHAT`, `AIENGINE_FEATURES_DOCUMENTQUESTIONS` | `true` | Assistant chat and questions about a PDF. Set both to `false` to disable conversation. |
@@ -24,7 +56,35 @@ Configure AI under **Admin Settings → AI** or the `aiEngine` block in `setting
 
 ## Models, documents and limits
 
-Changes apply on save when AI and configuration push are enabled.
+Changes apply on save when AI and configuration push are enabled. With Stirling Cloud AI, the models and documents settings are managed by Stirling Cloud; the limits still apply.
+
+For example, to allow larger documents:
+
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    aiEngine:
+      limits:
+        maxPages: 500
+        maxCharacters: 500000
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variables">
+    ```bash
+    AIENGINE_LIMITS_MAXPAGES=500
+    AIENGINE_LIMITS_MAXCHARACTERS=500000
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        environment:
+          AIENGINE_LIMITS_MAXPAGES: "500"
+          AIENGINE_LIMITS_MAXCHARACTERS: "500000"
+    ```
+  </TabItem>
+</Tabs>
 
 | Key | Env | Default | Purpose |
 |---|---|---|---|
@@ -39,11 +99,38 @@ Changes apply on save when AI and configuration push are enabled.
 
 ## Engine environment variables
 
+Set these on the AI engine when you run your own. The shared secret also belongs on Stirling PDF.
+
 | Variable | Default | Purpose |
 |---|---|---|
 | `STIRLING_ENGINE_SHARED_SECRET` | empty | Set the same shared secret on the engine and Stirling PDF. |
 | `STIRLING_ENGINE_REQUIRE_AUTH` | `false` | When `true` and no shared secret is set, the engine refuses every non-public request. |
 | `STIRLING_ALLOW_CONFIG_PUSH` | `true` | Accept settings saved in Stirling PDF. |
 | `STIRLING_CONFIG_CACHE_POLL_INTERVAL_SECONDS` | `15` | How long a saved change can take to reach the whole engine. |
+
+<Tabs groupId="config-methods">
+  <TabItem value="env" label="Environment Variables">
+    ```bash
+    # Stirling PDF
+    STIRLING_ENGINE_SHARED_SECRET=replace-with-a-long-random-string
+
+    # AI engine
+    STIRLING_ENGINE_SHARED_SECRET=replace-with-a-long-random-string
+    STIRLING_ENGINE_REQUIRE_AUTH=true
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        environment:
+          STIRLING_ENGINE_SHARED_SECRET: replace-with-a-long-random-string
+      stirling-pdf-engine:
+        environment:
+          STIRLING_ENGINE_SHARED_SECRET: replace-with-a-long-random-string
+          STIRLING_ENGINE_REQUIRE_AUTH: "true"
+    ```
+  </TabItem>
+</Tabs>
 
 See [Self-Hosting the AI Engine](./Self-Hosting-the-AI-Engine.md) for a complete configuration, [AI Tools](./AI-Tools.md) for capability controls, and [AI Security](./AI-Security.md) for authentication settings.

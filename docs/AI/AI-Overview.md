@@ -2,13 +2,13 @@
 sidebar_position: 0
 id: AI Overview
 title: AI Overview
-description: What the Stirling AI engine adds to Stirling PDF, and how an administrator turns it on
+description: What AI adds to Stirling PDF, and the three ways an administrator can run it
 tags: [AI, Self-host, Getting Started]
 ---
 
 # AI Overview
 
-The Stirling AI engine adds document questions, editing assistance, and classification to Stirling PDF. Self-hosted installations run it as a separate service alongside the PDF server. AI is disabled by default.
+AI adds document questions, editing assistance, and classification to Stirling PDF. AI is off by default.
 
 ## Capabilities
 
@@ -16,15 +16,22 @@ The Stirling AI engine adds document questions, editing assistance, and classifi
 - **Maths auditing:** check arithmetic, table totals, and figures across pages.
 - **Review comments:** add comments to a PDF from written instructions.
 - **Document creation:** generate a PDF from a description.
-- **Classification:** label documents for tagging and [routing](../Processor/Routing.md).
+- **Classification:** label documents for tagging and [routing](../Processor/Policies/Routing.md).
 
-Administrators can enable individual capabilities under [AI Tools](./AI-Tools.md).
+Administrators can turn individual capabilities on or off under [AI Tools](./AI-Tools.md).
 
-## Set up AI
+## Choose where AI runs
 
-1. [Run the AI engine](./Self-Hosting-the-AI-Engine.md) and connect it to Stirling PDF.
-2. Choose a language model and an embedding provider in [Model Providers](./Model-Providers.md). Embeddings make documents searchable.
-3. Set the same shared secret on both services and enable `aiEngine.enabled`.
-4. Restart Stirling PDF, then open **Admin Settings → AI** to check the connection.
+Open **Settings → AI → AI Engine** as an administrator and choose one of three options under **Connection**:
 
-The default providers are Anthropic for language models and VoyageAI for embeddings. You can also use local providers. See [AI Security](./AI-Security.md) for where document content is sent and [AI Settings Reference](./AI-Settings-Reference.md) for configuration options.
+![AI connection settings with Off, Run your own engine, and Use Stirling Cloud AI](/img/ai/connection-modes.png)
+
+| Option | What it means | Set it up |
+|---|---|---|
+| **Off** | No AI tools anywhere in the app, and nothing leaves this server. | Default |
+| **Run your own engine** | A container you host, pointed at a model provider you choose. Your key, your bill, your data path. | [Self-Hosting the AI Engine](./Self-Hosting-the-AI-Engine.md) |
+| **Use Stirling Cloud AI** | No container, provider key, or model choice. The work runs on Stirling Cloud and is billed to the account this server is linked to. | [Stirling Cloud AI](./Stirling-Cloud-AI.md) |
+
+Changes to the connection apply after a restart.
+
+With your own engine, the default providers are Anthropic for language models and VoyageAI for embeddings, and you can use local providers instead; see [Model Providers](./Model-Providers.md). See [AI Security](./AI-Security.md) for where document content is sent and the [AI Settings Reference](./AI-Settings-Reference.md) for every setting.

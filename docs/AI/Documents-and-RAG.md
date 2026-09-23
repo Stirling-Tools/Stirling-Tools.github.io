@@ -8,7 +8,7 @@ tags: [AI, Documents, Retrieval, Embeddings, pgvector, Self-host]
 
 # Documents and Retrieval
 
-The AI engine stores searchable document content so the assistant can answer questions about your PDFs. Enable login and configure an [embedding provider](./Model-Providers.md) before using document questions.
+Document questions need a searchable copy of each document. When you [run your own engine](./Self-Hosting-the-AI-Engine.md), the engine stores it; enable login and configure an [embedding provider](./Model-Providers.md) before using document questions. With [Stirling Cloud AI](./Stirling-Cloud-AI.md#document-questions), Stirling Cloud stores it instead, when **Let Stirling Cloud keep indexed documents** is on, and the settings on this page do not apply.
 
 ## Choosing a store
 
@@ -30,13 +30,25 @@ Set these environment variables on the engine:
 | `STIRLING_DOCUMENTS_PGVECTOR_DSN` | empty | PostgreSQL connection string, required for `pgvector`. |
 | `STIRLING_RAG_EMBEDDING_MODEL` | `voyageai:voyage-4` | Embedding model in `provider:model` format when configured through the engine environment. |
 
-For example:
+For example, to use PostgreSQL with pgvector:
 
-```yaml
-environment:
-  STIRLING_DOCUMENTS_BACKEND: pgvector
-  STIRLING_DOCUMENTS_PGVECTOR_DSN: postgresql://user:password@postgres:5432/stirling_docs
-```
+<Tabs groupId="config-methods">
+  <TabItem value="env" label="Environment Variables">
+    ```bash
+    STIRLING_DOCUMENTS_BACKEND=pgvector
+    STIRLING_DOCUMENTS_PGVECTOR_DSN=postgresql://user:password@postgres:5432/stirling_docs
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf-engine:
+        environment:
+          STIRLING_DOCUMENTS_BACKEND: pgvector
+          STIRLING_DOCUMENTS_PGVECTOR_DSN: postgresql://user:password@postgres:5432/stirling_docs
+    ```
+  </TabItem>
+</Tabs>
 
 Mount a persistent volume at `/app/engine/data` in either mode; this also holds saved AI settings. Set `stop_grace_period: 30s` so the engine can shut down cleanly.
 
@@ -44,4 +56,4 @@ Mount a persistent volume at `/app/engine/data` in either mode; this also holds 
 
 Restart the engine after changing its storage settings. Switching stores does not migrate existing documents. Re-add documents after changing the embedding model so their stored embeddings match the new model.
 
-Use [Ingestion](../Processor/Ingestion.md) to prepare documents automatically for a knowledge base, connected RAG database, or chunk export.
+Use [Ingestion](../Processor/Policies/Ingestion.md) to prepare documents automatically for a knowledge base, connected RAG database, or chunk export.

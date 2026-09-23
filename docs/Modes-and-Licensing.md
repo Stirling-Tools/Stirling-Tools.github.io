@@ -26,8 +26,8 @@ Automation, AI document tools, and API processing use the applicable processing 
 
 ## Automation and AI
 
-Use [Processor](./Processor/Processor.md) in a web browser to connect sources and run document workflows. It is not currently accessible from the desktop app. Start with [Setup and access](./Processor/Setup-and-Access.md).
+Use [Processor](./Processor/Processor.md) in a web browser to connect sources and run document workflows. It is not currently accessible from the desktop app, although we will be adding it for desktop apps connected to supported environments. Start with [Setup and access](./Processor/Setup-and-Access.md).
 
-Self-hosted AI requires a separate [AI engine](./AI/AI-Overview.md) and configured model providers. Choose hosted providers or [local models](./AI/Model-Providers.md#local-models).
+Self-hosted servers can run AI on [their own AI engine](./AI/Self-Hosting-the-AI-Engine.md), with hosted providers or [local models](./AI/Model-Providers.md#local-models), or use [Stirling Cloud AI](./AI/Stirling-Cloud-AI.md) through a linked Stirling account. See [AI Overview](./AI/AI-Overview.md).
 
 Open **Settings → Usage & Billing** to view your plan and usage.

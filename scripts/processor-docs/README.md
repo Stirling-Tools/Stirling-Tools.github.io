@@ -17,7 +17,7 @@ The PNGs under `static/img/processor` are browser captures of the current
 application components rendered through the app's Storybook. They use its
 isolated fixture API, without connecting production accounts or exposing secrets.
 Captions describe the screen directly. No image generation or DOM restyling was
-used.
+used; the only annotation is the circle drawn on `test-with-a-file.png`.
 
 Run the application frontend's dependency and generated-icon setup, then launch
 Storybook. The stories in this directory can be copied beside the app's
@@ -32,9 +32,22 @@ harnesses, not changes to the application:
 - `DocumentationPipelines.stories.tsx` uses the Ingestion PR's real setup
   components, removes Retention from the capture catalogue, and supplies ready
   AI capability responses. Use it for the gallery and template modal captures.
+- `DocumentationFlow.stories.tsx` supplies example sources and pipelines to the
+  real PipelineBuilder through story-level MSW handlers: a supplier intake
+  pipeline with document-type routing, and the "Compress incoming invoices"
+  pipeline from Create your first pipeline. `capture-flow.mjs` captures its three
+  images; copy it to the app's `frontend/editor` and run it with the docs
+  `static/img/processor` path while Storybook serves on port 6006.
+- `DocumentationAiSettings.stories.tsx` renders the real AI settings section with
+  Stirling Cloud AI selected on a linked server. `capture-ai-settings.mjs` clips
+  its Connection card to `static/img/ai/connection-modes.png`; run it the same way
+  with the docs `static/img/ai` path.
 
 | Image | Story and state |
 |---|---|
+| `pipeline-flow.png` | `documentation-flow--supplier-intake`; delivery node selected so the routes show; clipped to 1440x1050 |
+| `first-pipeline.png` | `documentation-flow--first-pipeline`; Compress step selected; clipped to 1280x490 |
+| `test-with-a-file.png` | Same story, cropped to the canvas toolbar with a circle around **Test with a file** |
 | `sources.png` | `portal-views-sources--default` |
 | `folder-source.png` | Sources → Connect source → Folder; Invoice inbox, `/data/processor/inbox`, Advanced expanded, retain and process only changes |
 | `pipelines.png` | `documentation-pipelines--gallery`; full page |
@@ -76,7 +89,7 @@ the PR listed above; Retention remains outside the documented template catalogue
 ## Validation
 
 Run `npm run build` and `git diff --check`. Inspect the built `/Processor/`
-category, its 13 child pages, image assets, local links, and heading fragments.
+category, its child pages including the `Policies/` subfolder, image assets, local links, and heading fragments.
 Also review the related onboarding, usage, folder-scanning, and AI pages when
 their implementation changes. This refresh is a source/UI audit; it does not
 claim an end-to-end deployment test of every integration or paid entitlement.

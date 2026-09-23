@@ -9,7 +9,7 @@ tags: [AI, Self-host, Docker, Compose, Engine]
 
 Run the AI engine alongside your Stirling PDF server. You need Docker Compose, a language model provider, an embedding provider, and a shared secret for the connection.
 
-This setup uses the default hosted providers. For local models, see [Model Providers](./Model-Providers.md).
+This setup uses the default hosted providers. For local models, see [Model Providers](./Model-Providers.md). To use AI without hosting an engine, see [Stirling Cloud AI](./Stirling-Cloud-AI.md).
 
 ## Step 1: Configure the containers
 
@@ -39,11 +39,13 @@ Replace the provider keys and set the same long, random shared secret on both se
 
 The engine volume stores document data and saved AI settings. Use a local directory or Docker volume.
 
+If Stirling PDF does not run in the same Compose file, set `aiEngine.enabled` and `aiEngine.url` the way you configure the rest of the server; see the [AI Settings Reference](./AI-Settings-Reference.md). The shared secret is always an environment variable.
+
 ## Step 2: Start and verify
 
 1. Run `docker compose up -d`.
 2. Check the engine with `docker compose exec stirling-pdf-engine curl -fsS http://localhost:5001/health`.
-3. Sign in as an administrator and open **Admin Settings → AI** to check the connection and provider settings.
+3. Sign in as an administrator and open **Settings → AI → AI Engine**. **Run your own engine** should be selected, and **Status** shows whether the engine is reachable.
 4. Attach a PDF to the assistant and ask a question about it to verify document search.
 
 Restart Stirling PDF after changing the engine URL or enabling AI. After rotating the shared secret, restart both services and re-save the AI settings.
