@@ -147,10 +147,17 @@
       if (cat) cat.classList.toggle('open');
       return;
     }
-    var catLabel = t.closest('button.side-cat-label');
+    // An open category collapses on click, even when its label links to its own page;
+    // preventDefault also stops the router navigating. A closed link label opens and navigates.
+    var catLabel = t.closest('.side-cat-label');
     if (catLabel) {
       var cat2 = catLabel.closest('.side-category');
-      if (cat2) cat2.classList.toggle('open');
+      if (cat2 && cat2.classList.contains('open')) {
+        e.preventDefault();
+        cat2.classList.remove('open');
+      } else if (cat2) {
+        cat2.classList.add('open');
+      }
       return;
     }
 
