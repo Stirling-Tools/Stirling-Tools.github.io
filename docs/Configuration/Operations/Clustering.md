@@ -12,7 +12,7 @@ Run more than one Stirling PDF node behind a load balancer. Single-node deployme
 
 ## Prerequisites
 
-- A Team or Enterprise license and an identical `stirling.security.credentialEncryptionKey` on every node. Generate the key once with `openssl rand -base64 32`.
+- A Team or Enterprise license and the same credential encryption key on every node, set as `STIRLING_CREDENTIAL_ENCRYPTION_KEY`. Generate the key once with `openssl rand -base64 32`.
 - Shared by every node: one [external database](../Storage/External%20Database.md), one Valkey (or Redis) endpoint, an S3-compatible store for job results, shared persistent storage, and a load balancer with session affinity. Use S3 or database storage for persistent uploads.
 - A bucket lifecycle expiry rule on `cluster.s3.keyPrefix` (default `transient/`), set above `stirling.jobResultExpiryMinutes` (default `30`). The lifecycle rule removes expired job results.
 
@@ -26,8 +26,9 @@ Run more than one Stirling PDF node behind a load balancer. Single-node deployme
 | `cluster.valkey.url` | `CLUSTER_VALKEY_URL` | empty | `redis://[user:password@]host[:port]`, or `rediss://` for TLS. Port defaults to `6379`; percent-encode `@ : / # ?` in the password. |
 | `cluster.valkey.tls.skipCertVerification` | `CLUSTER_VALKEY_TLS_SKIPCERTVERIFICATION` | `false` | Skips Valkey TLS chain and hostname checks. Development only. |
 | `cluster.node.internalAddress` | `CLUSTER_NODE_INTERNALADDRESS` | empty | `host:port` this node advertises. Falls back to `POD_IP`, then the hostname address, otherwise the node stops. |
-| `stirling.security.credentialEncryptionKey`, `stirling.security.fileEncryptionKey` | `STIRLING_CREDENTIAL_ENCRYPTION_KEY`, `STIRLING_FILE_ENCRYPTION_KEY` | empty | Base64 AES-256 keys, identical on every node. The credential key is mandatory; the file key is mandatory when storage encryption at rest is in use. |
 | `storage.provider`, `storage.s3.allowPrivateEndpoints` | `STORAGE_PROVIDER`, `STORAGE_S3_ALLOWPRIVATEENDPOINTS` | `local`, `false` | Provider must be `s3` or `database`. Set `allowPrivateEndpoints` to `true` for MinIO or another in-network endpoint. |
+
+Set `STIRLING_CREDENTIAL_ENCRYPTION_KEY` to the same base64 AES-256 key on every node. When storage encryption at rest is in use, also set `STIRLING_FILE_ENCRYPTION_KEY` the same way.
 
 ## Recommended configuration
 

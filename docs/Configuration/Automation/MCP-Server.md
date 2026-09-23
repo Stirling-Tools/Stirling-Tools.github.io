@@ -26,22 +26,53 @@ Applies to the self-hosted Stirling PDF server. The Stirling Cloud MCP tab is se
 |---|---|---|---|
 | `mcp.enabled` | `MCP_ENABLED` | `false` | Enable the MCP server. |
 
-Enable MCP under **Settings → Configuration → MCP Server**, or set `mcp.enabled: true` in `settings.yml`. Configure [authentication](#authentication), then restart the server. Without login enabled, use the settings file.
+Enable MCP under **Settings → Configuration → MCP Server**, or with one of the methods below. Configure [authentication](#authentication), then restart the server. Without login enabled, use the settings file or environment variables.
 
-The [limit settings](#limits) are available through the file or environment variables.
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    mcp:
+      enabled: true
+      scopesEnabled: true
+      auth:
+        mode: oauth
+        issuerUri: 'https://idp.example.com'
+        resourceId: 'https://pdf.example.com/mcp'
+        acceptedAudiences: ['authenticated']
+        usernameClaim: email
+        requireExistingAccount: true
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variables">
+    ```bash
+    MCP_ENABLED=true
+    MCP_SCOPESENABLED=true
+    MCP_AUTH_MODE=oauth
+    MCP_AUTH_ISSUERURI=https://idp.example.com
+    MCP_AUTH_RESOURCEID=https://pdf.example.com/mcp
+    MCP_AUTH_ACCEPTEDAUDIENCES=authenticated
+    MCP_AUTH_USERNAMECLAIM=email
+    MCP_AUTH_REQUIREEXISTINGACCOUNT=true
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        environment:
+          MCP_ENABLED: "true"
+          MCP_SCOPESENABLED: "true"
+          MCP_AUTH_MODE: oauth
+          MCP_AUTH_ISSUERURI: https://idp.example.com
+          MCP_AUTH_RESOURCEID: https://pdf.example.com/mcp
+          MCP_AUTH_ACCEPTEDAUDIENCES: authenticated
+          MCP_AUTH_USERNAMECLAIM: email
+          MCP_AUTH_REQUIREEXISTINGACCOUNT: "true"
+    ```
+  </TabItem>
+</Tabs>
 
-```yaml
-mcp:
-  enabled: true
-  scopesEnabled: true
-  auth:
-    mode: oauth
-    issuerUri: 'https://idp.example.com'
-    resourceId: 'https://pdf.example.com/mcp'
-    acceptedAudiences: ['authenticated']
-    usernameClaim: email
-    requireExistingAccount: true
-```
+The [limit settings](#limits) are available through the settings file or environment variables.
 
 ---
 
@@ -64,7 +95,7 @@ mcp:
 | `stirling_misc` | Miscellaneous utilities (compress, flatten, repair, and similar). |
 | `stirling_security` | Security operations (encrypt, decrypt, permissions, and similar). |
 | `stirling_upload` | Store a file server-side and get back a `fileId` for large inputs. |
-| `stirling_download` | Fetch a result returned by reference, inline as base64, whole or in byte ranges. |
+| `stirling_download` | Fetch a stored result by `fileId`, returned inline as base64. |
 | `stirling_ai` | Capabilities published by the Stirling AI engine. |
 
 Operation ids are the same kebab-case ids used elsewhere in Stirling PDF (for example `compress-pdf`); `/api/v1/filter/*` and `/api/v1/pipeline` are not exposed over MCP.
@@ -86,11 +117,11 @@ Arguments for `stirling_pages`, `stirling_convert`, `stirling_misc`, `stirling_s
 Use `stirling_describe_operation` to find the required parameters and scope before calling an operation.
 
 - A JSON response from the operation is returned as text.
-- File results return a `fileId`, plus inline base64 (`stirling://file/{fileId}`) at or below `mcp.maxInlineResponseBytes`.
-- Retrieve file results with `stirling_download`. Large files arrive in byte ranges: follow the next `offset` in each `PARTIAL:` response and concatenate the ranges in order.
+- File results up to `mcp.maxInlineResponseBytes` return inline as base64 (`stirling://file/{fileId}`) with their `fileId`.
+- Larger results return only a `fileId`. Pass it to another operation, or raise `mcp.maxInlineResponseBytes` to fetch it with `stirling_download`.
 
 ```json
-{"name": "stirling_download", "arguments": {"fileId": "abc123", "offset": 10485760}}
+{"name": "stirling_download", "arguments": {"fileId": "abc123"}}
 ```
 
 ---
@@ -181,11 +212,8 @@ PDF operations disabled through [Endpoint Customisation](../Customisation/Endpoi
 | Key | Env | Default | Purpose |
 |---|---|---|---|
 | `mcp.maxRequestBytes` | `MCP_MAXREQUESTBYTES` | `10485760` (10 MB) | Maximum MCP request body size, which caps inline file uploads. A value of `0` or less falls back to 256 KB. |
-| `mcp.maxInlineResponseBytes` | `MCP_MAXINLINERESPONSEBYTES` | `262144` (256 KB) | Maximum inline result size; larger files return a `fileId` for download. |
-| `mcp.maxDownloadBytes` | `MCP_MAXDOWNLOADBYTES` | `10485760` (10 MB) | Maximum download range per call. A value of `0` or less uses `mcp.maxInlineResponseBytes`. |
+| `mcp.maxInlineResponseBytes` | `MCP_MAXINLINERESPONSEBYTES` | `10485760` (10 MB) | Largest result returned inline, by an operation or by `stirling_download`. Larger results return only a `fileId`. |
 | `mcp.engineCapabilityRefreshMinutes` | `MCP_ENGINECAPABILITYREFRESHMINUTES` | `5` | AI capability refresh interval, with a minimum of one minute. |
-
-`stirling_download` requires `fileId` and accepts optional byte `offset` and `length` values for ranged downloads.
 
 ---
 
