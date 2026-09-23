@@ -1,12 +1,22 @@
 ---
-sidebar_position: 6
+sidebar_position: 5
 title: Routing
 description: Send each processed document to the first matching destination, with a fallback for unmatched files.
 ---
 
 # Routing
 
-Routing chooses where each processed document is delivered. Configure it in the Routing template or the pipeline builder's output settings.
+Routing sends each processed document to the destination that matches it, with a fallback for anything else. Set it up with the Routing policy, or in any pipeline's output settings.
+
+## Set up the Routing policy
+
+1. Open **Processor → Pipelines** and select **Set up** on **Routing**.
+2. Under **Watch**, choose the folder, bucket, or webhook the policy watches, or connect a new [source](../Sources.md).
+3. Add a route for each group of document types and choose its destination.
+4. Under **Everything else goes to**, choose the fallback destination.
+5. Select **Create pipeline**.
+
+The Routing policy classifies each document first, so it needs AI classification; see [Classification](./Classification.md). To route without AI, select **Customise** and match on file properties instead.
 
 ## Matching options
 
@@ -20,9 +30,9 @@ Routing chooses where each processed document is delivered. Configure it in the 
 
 Enter exact property values separated by commas. Wildcards and regular expressions are not supported. Only classification-based rules require AI.
 
-## Add rules
+## Add rules in the pipeline builder
 
-1. Create writable [sources](./Sources.md) for your destinations.
+1. Create writable [sources](../Sources.md) for your destinations.
 2. Enable routing in the pipeline's output settings.
 3. For each rule, select **Match by**, enter values, and choose a destination.
 4. Order the rules: the first match wins.

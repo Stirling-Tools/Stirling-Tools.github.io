@@ -1,12 +1,12 @@
 ---
 sidebar_position: 9
 title: Review
-description: Investigate failed processing, inspect diagnostics, and track resolved issues.
+description: Find out why processing failed, fix the cause, and retry.
 ---
 
 # Review
 
-Open **Processor → Review** to investigate failed pipeline runs and editor operations.
+Review is where you fix processing problems. Open **Processor → Review** to see why a pipeline run or editor operation failed, correct the cause, and try again.
 
 ![Review queue with issue details and available actions](/img/processor/review.png)
 
@@ -21,6 +21,8 @@ Repeated issues can be grouped with an occurrence count. The date shows the late
 
 **Dismiss** closes an issue without rerunning it. Switch to **Closed** to see resolved issues and their outcomes.
 
-## Visibility and refresh
+## Whose issues you see
 
-Members see their own issues; team leaders see their team's issues. The page loads up to **50** recent records and refreshes every **30 seconds** while visible. Search and filters apply to those records.
+You see issues from your own runs, so you can fix what went wrong. Administrators on self-hosted deployments, and team leaders on Stirling Cloud, look after the team's pipelines, so they also see issues from the team's runs. That includes scheduled and folder-watch runs, which have no user to tell.
+
+The page loads up to **50** recent records and refreshes every **30 seconds** while visible. Search and filters apply to those records.

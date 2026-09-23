@@ -1,5 +1,7 @@
 {
   "/Processor/Troubleshooting": "/Processor/",
+  "/Processor/Ingestion": "/Processor/Policies/Ingestion",
+  "/Processor/Routing": "/Processor/Policies/Routing",
   "/Processor/API Keys and Audit": "/Processor/Setup-and-Access",
   "/Configuration/System and Security": "/Configuration/Security/System and Security",
   "/Configuration/Single Sign-On Configuration": "/Configuration/Security/Single Sign-On Configuration",

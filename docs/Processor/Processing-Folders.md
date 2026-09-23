@@ -17,7 +17,7 @@ Attach a processing workflow to a folder from the file library.
 
 If you open setup from an existing folder, folder selection is skipped.
 
-Choose **Ingestion** for OCR and knowledge search. It can index into Stirling, deliver to a RAG database, or export chunks. Database delivery retains the folder's originals. See [Ingestion](./Ingestion.md).
+Choose **Ingestion** for OCR and knowledge search. It can index into Stirling, deliver to a RAG database, or export chunks. Database delivery retains the folder's originals. See [Ingestion](./Policies/Ingestion.md).
 
 ## Edit processing
 

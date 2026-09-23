@@ -295,9 +295,9 @@ See [API Documentation](../../API.md) for authentication and general API usage.
 
 Pipelines support operations under `/api/v1/general/`, `/api/v1/misc/`, `/api/v1/security/`, `/api/v1/convert/`, `/api/v1/filter/`, `/api/v1/integration/`, `/api/v1/docparse/`, and `/api/v1/ai/tools/`. This also applies to Processor pipelines.
 
-For `external-api-call`, `purview-apply-label`, and `purview-read-label`, create an [integration](../../Processor/Integrations.md) first and use its connection ID in the step.
+For `external-api-call`, create an [integration](../../Processor/Integrations.md) first and use its connection ID in the step.
 
-The `/api/v1/docparse/rag-ingest` operation prepares document chunks for knowledge search or export. For source, trigger, and database destination setup, use the Processor's guided [Ingestion](../../Processor/Ingestion.md) template.
+The `/api/v1/docparse/rag-ingest` operation prepares document chunks for knowledge search or export. For source, trigger, and database destination setup, use the Processor's [Ingestion](../../Processor/Policies/Ingestion.md) policy.
 
 AI steps such as `math-auditor-agent` and `pdf-comment-agent` require an enabled [AI engine](../../AI/AI-Overview.md) and the corresponding [AI tool](../../AI/AI-Tools.md).
 

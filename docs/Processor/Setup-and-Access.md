@@ -8,25 +8,21 @@ description: Configure Processor access, folder permissions, and required servic
 
 ## Open Processor
 
-Open Stirling PDF in a web browser and select **Processor** from the app switcher. Processor is not currently accessible from the desktop app.
+Open Stirling PDF in a web browser and select **Processor** in the quick access bar on the left. It is not currently accessible from the desktop app, although we will be adding it for desktop apps connected to supported environments.
 
-Enable login on self-hosted installations and sign in before using Processor. Administrators and team leaders have access by default.
+Administrators and team leaders have access by default. Default users or environments without login will not be able to access Processor.
 
-You can also open `/processor` on the same host as the editor. Include your installation's URL prefix if Stirling PDF is served beneath a subpath.
-
-If Processor is missing, ask your administrator to check that your installation includes it and your account has access.
-
-See [Server Admin Onboarding](../Server-Admin-Onboarding.md) for the underlying server setup.
+See the [Production Deployment Guide](../Server-Admin-Onboarding.md) for the underlying server setup.
 
 ## Who can open and manage it
 
-| Action | Permission |
+| Action | Who can do it |
 |---|---|
-| Open Processor | Administrators and team leaders by default; other users need an access grant. |
-| Create, edit, pause, delete, or sweep sources and pipelines | Administrator on self-hosted deployments; team leader on Stirling Cloud. |
-| Run a permitted pipeline over supplied files | Subject to that pipeline's team and run permissions. |
-| View Documents | Any user with Processor access. Self-hosted users see the server's processing feed; Cloud users see their team's feed. |
-| Review failures | Members see their own failures; team leaders can review their team's failures. |
+| Open Processor | Administrators and team leaders by default. Other users need to be given access. |
+| Create, edit, pause, or delete [sources](./Sources.md) and [pipelines](./Pipelines.md), or start a pipeline with **Run now** | Administrators on self-hosted deployments. Team leaders on Stirling Cloud. |
+| Run a [pipeline](./Pipelines.md) on your own files in the editor | Every member of the pipeline's team. |
+| Check processing in [Documents](./Documents.md) | Anyone who can open Processor, to confirm pipelines ran and troubleshoot problems. It shows processing records, never the documents themselves. |
+| [View pipeline failures](./Review.md) | Everyone sees failures from their own runs, so they can fix them. Administrators on self-hosted deployments, and team leaders on Stirling Cloud, also handle failures from the team's pipelines, including scheduled and folder-watch runs. |
 
 Pipelines and sources belong to their owning team.
 
@@ -39,24 +35,37 @@ To use your team's cloud processing allowance on a self-hosted server, follow [A
 A **Folder** source uses a path on the server, or inside the container.
 
 1. Mount or create separate input and output directories.
-2. Give the Stirling PDF process permission to read the input and write the output. Consume mode also needs permission to remove originals.
-3. Add their parent directory under **Settings → Folder Access**, or configure `policies.allowedFolderRoots` in `settings.yml`.
-4. Restart the application after changing allowed roots.
+2. Give the Stirling PDF process permission to read the input and write the output. **Delete the file** mode also needs permission to remove originals.
+3. Add their parent directory under **Settings → Configuration → Folder Access**, or set `policies.allowedFolderRoots` with one of the methods below.
+4. Restart Stirling PDF after changing the allowed folders.
 
-```yaml
-policies:
-  allowedFolderRoots:
-    - /data/processor
-```
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    policies:
+      allowedFolderRoots:
+        - /data/processor
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variables">
+    ```bash
+    POLICIES_ALLOWEDFOLDERROOTS=/data/processor
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    ```yaml
+    services:
+      stirling-pdf:
+        environment:
+          POLICIES_ALLOWEDFOLDERROOTS: /data/processor
+        volumes:
+          - ./processor:/data/processor
+    ```
+  </TabItem>
+</Tabs>
+
+Separate several directories with commas in an environment variable, for example `/data/processor,/mnt/scans`. An environment variable replaces the list in the settings file.
 
 For a container, mount your host's directory at `/data/processor` and enter paths such as `/data/processor/inbox` and `/data/processor/processed` in the UI.
 
-The list is empty by default; managed storage and watched folders are already accessible. Allow only the additional directories your users need. Folder access is unavailable on Stirling Cloud.
-
-## External services and AI
-
-Create credentials under [Integrations](./Integrations.md) before selecting an S3 or network source. Private network addresses require the corresponding administrator setting described on [Sources](./Sources.md).
-
-Most PDF tools and property-based routing do not require AI. A server **Classify** step requires AI classification to be available. See [AI Overview](../AI/AI-Overview.md) before using classification-based workflows.
-
-[Ingestion](./Ingestion.md) uses the AI engine to prepare chunks. The Stirling knowledge base also needs an embedding provider; exporting chunks does not. A connected RAG database supplies its own embeddings. The guided form checks these requirements and links to AI settings when configuration is missing.
+The list is empty by default; managed storage and watched folders are already accessible. Every signed-in user can set up [processing folders](./Processing-Folders.md) under these directories, which lets them list and replace the files there, so allow only directories all your users may use. Folder access is unavailable on Stirling Cloud.

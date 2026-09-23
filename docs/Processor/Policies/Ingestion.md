@@ -1,12 +1,12 @@
 ---
-sidebar_position: 5.5
+sidebar_position: 1
 title: Ingestion
 description: Set up OCR and searchable document chunks with a knowledge base, connected RAG database, or corpus export.
 ---
 
 # Ingestion
 
-The Ingestion template prepares documents for knowledge search. Open **Processor → Pipelines**, find **Ingestion** under **Templates**, and select **Set up**.
+The Ingestion policy prepares documents for knowledge search. Open **Processor → Pipelines**, find **Ingestion** under **Templates**, and select **Set up**.
 
 The default processing chain runs OCR, then prepares searchable chunks.
 
@@ -33,7 +33,7 @@ The default processing chain runs OCR, then prepares searchable chunks.
 
 Select an enabled destination for server inputs and exports. For Editor input, choose **Return results to editor** or **Keep originals and send to a destination**.
 
-For a RAG database, choose its saved connection and collection through the destination controls. See [Integrations](./Integrations.md).
+For a RAG database, choose its saved connection and collection through the destination controls. See [Integrations](../Integrations.md).
 
 If you customize database delivery, keep RAG preparation last and export only JSONL chunks. The guided form sets this automatically.
 
@@ -53,8 +53,8 @@ Start with the defaults, then check retrieval against your documents before chan
 
 Follow any setup messages before saving. Use **Open AI settings** to configure the engine and **Check again** to refresh its status. To run OCR without the engine, turn off **Prepare for knowledge search**.
 
-Choose what happens to originals under [Sources → After processing](./Sources.md#decide-what-happens-to-originals).
+Choose what happens to originals under [Sources → After processing](../Sources.md#decide-what-happens-to-originals).
 
-Folder-processing setup uses the selected folder as its input. When delivering from a processing folder to a RAG database, originals are retained. See [Processing folders](./Processing-Folders.md).
+Folder-processing setup uses the selected folder as its input. When delivering from a processing folder to a RAG database, originals are retained. See [Processing folders](../Processing-Folders.md).
 
-Test a document, inspect the resulting PDF or export, and verify a search in the selected knowledge base before enabling ongoing ingestion. Use [Review](./Review.md) to investigate failures.
+Test a document, inspect the resulting PDF or export, and verify a search in the selected knowledge base before enabling ongoing ingestion. Use [Review](../Review.md) to investigate failures.

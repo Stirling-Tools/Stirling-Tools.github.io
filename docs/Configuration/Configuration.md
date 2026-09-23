@@ -208,7 +208,7 @@ For advanced features and specific use cases, see these detailed guides:
 
 **[Stirling Processor](../Processor/Processor.md)**
 - Connect sources and automate document processing
-- Setup: [Sources](../Processor/Sources.md), [Policies](../Processor/Policies.md), [Pipelines](../Processor/Pipelines.md), [Integrations](../Processor/Integrations.md)
+- Setup: [Sources](../Processor/Sources.md), [Policies](../Processor/Policies/Policies.md), [Pipelines](../Processor/Pipelines.md), [Integrations](../Processor/Integrations.md)
 - Processing activity: [Documents](../Processor/Documents.md)
 - Folder permissions and network access: [Setup and access](../Processor/Setup-and-Access.md)
 
