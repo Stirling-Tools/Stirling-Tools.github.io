@@ -206,7 +206,7 @@ security:
       hardFail: false            # Fail if revocation check is inconclusive
 ```
 
-See [Certificate Signing - Configuration](./Certificate-Signing.md#configuration-examples) for detailed trust chain configuration.
+See [Certificate Signing - Configuration](./Certificate-Signing.md#configuration-example) for detailed trust chain configuration.
 
 ---
 

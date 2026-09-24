@@ -291,6 +291,7 @@ ports:
 - **Add OCR Languages**: See [OCR Configuration](../Configuration/Operations/OCR.md)
 - **Enable Authentication**: See [Security Settings](../Configuration/Security/System%20and%20Security.md)
 - **Setup Automation**: See [Pipeline Configuration](../Configuration/Automation/Pipeline.md)
+- **Add AI**: See [AI Overview](../AI/AI-Overview.md)
 - **More Settings**: See [Configuration](../Configuration/Configuration.md)
 
 ## Troubleshooting

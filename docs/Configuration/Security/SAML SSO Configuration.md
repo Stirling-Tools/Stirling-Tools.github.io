@@ -8,7 +8,7 @@ tags: [enterprise, management, feature, advanced feature, saml]
 
 Stirling PDF supports SAML 2.0 Single Sign-On for enterprise deployments. This allows integration with Identity Providers (IdP) like Okta, Azure AD, Google Workspace, OneLogin, Authentik, and others.
 
-> **Looking for OAuth 2.0 SSO?** See [OAuth SSO Configuration](./OAuth%20SSO%20Configuration.md) (Team tier).
+> **Looking for OAuth 2.0 SSO?** See [OAuth SSO Configuration](./OAuth%20SSO%20Configuration.md) (free on every plan).
 
 ## Prerequisites
 
@@ -345,9 +345,8 @@ Your URLs become:
 Automatically redirect users to SAML login, bypassing the Stirling PDF login screen:
 
 ```yaml
-premium:
-  proFeatures:
-    ssoAutoLogin: true
+security:
+  ssoAutoLogin: true
 ```
 
 **Auto-login Activation Requirements:**

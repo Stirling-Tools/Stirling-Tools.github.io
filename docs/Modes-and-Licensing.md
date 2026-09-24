@@ -2,67 +2,32 @@
 sidebar_position: 7
 id: Modes and Licensing
 title: Modes
-description: The different ways to run Stirling PDF and where credits apply
-tags:
-  - Modes
-  - Cloud
-  - Self-host
-  - Desktop
+description: Choose where Stirling PDF runs and understand how server licensing and processing usage apply.
+tags: [Modes, Cloud, Self-host, Desktop]
 ---
 
 # Modes
 
-Stirling PDF runs in several modes depending on how you deploy it. This page is just an overview of what each mode is - for pricing, feature matrix, and full license terms see [Paid Offerings](./Paid-Offerings.md).
+Stirling PDF can run on your device, on your own server, or in Stirling Cloud.
 
----
+| Mode | Where documents are processed | Features and usage |
+|---|---|---|
+| **Desktop — Local** | Your device | Tools included in the desktop app; no cloud connection required. |
+| **Desktop + Stirling Cloud** | Locally or in Stirling Cloud, depending on the tool | Cloud processing uses your account's allowance. |
+| **Desktop + self-hosted server** | Your connected server for server operations | Uses the server's features, permissions, and allowance. |
+| **Web — Self-hosted** | Your server | Uses the server's license and processing allowance. |
+| **Stirling Cloud** | Stirling's hosted service | Uses your account and team allowance. |
 
-## At a glance
+## Self-hosted deployments
 
-| Mode | What it is | Where files are processed | Credits? |
-|---|---|---|---|
-| **Desktop - Local** | Native Windows/Mac/Linux app, no sign-in | Your device | No |
-| **Desktop + Stirling.com Cloud** | Same desktop app, signed in to Stirling.com Cloud | Mix: local for basic tools, cloud for advanced | Yes, on cloud-routed ops |
-| **Desktop + Self-hosted server** | Desktop app pointed at your own Stirling server | Your server | No |
-| **Web - Self-hosted** | Docker / Kubernetes / JAR, accessed via browser | Your server | No |
-| **Stirling.com Cloud** | `stirling.com/app` web app | Stirling.com Cloud | Yes |
+Run Stirling PDF in Docker, Kubernetes, or as a JAR, then connect through a browser or the desktop app. Team and Enterprise licenses add features and user capacity; see [Paid Offerings](./Paid-Offerings.md).
 
----
+Automation, AI document tools, and API processing use the applicable processing allowance. Manual, interactive non-AI tools do not consume processing units. [Account linking](./Stirling-Account-Link.md) explains the local allowance and how to connect your server.
 
-## Desktop
+## Automation and AI
 
-### Local
+Use [Processor](./Processor/Processor.md) in a web browser to connect sources and run document workflows. It is not currently accessible from the desktop app, although we will be adding it for desktop apps connected to supported environments. Start with [Setup and access](./Processor/Setup-and-Access.md).
 
-The default for the Windows, Mac, and Linux desktop apps. No sign-in, no server, no credits. Basic PDF tools (merge, split, rotate, sign, watermark, page operations, etc.) run entirely on your device.
+Self-hosted servers can run AI on [their own AI engine](./AI/Self-Hosting-the-AI-Engine.md), with hosted providers or [local models](./AI/Model-Providers.md#local-models), or use [Stirling Cloud AI](./AI/Stirling-Cloud-AI.md) through a linked Stirling account. See [AI Overview](./AI/AI-Overview.md).
 
-Tools that need server-side processing (OCR, document-format conversions, compression, repair) are not available in this mode - sign in to Stirling.com Cloud or connect to a self-hosted server to use them.
-
-### With Stirling.com Cloud
-
-The desktop app signed in to your Stirling.com Cloud account. Basic tools still run locally for free; advanced tools route to Stirling.com Cloud and consume credits.
-
-### With a self-hosted server
-
-The desktop app pointed at a Stirling PDF instance you run yourself. All tools route to your server and **no credits apply**. Whichever license tier your server runs (Free, Team, Enterprise) is what the desktop client gets.
-
----
-
-## Web - Self-hosted
-
-Stirling PDF running in Docker, Kubernetes, or as a bare-metal JAR, accessed via a browser. **No credits ever.** License tier determines your user capacity and which advanced features (SSO, SAML, audit logs, etc.) are unlocked - see [Paid Offerings](./Paid-Offerings.md).
-
----
-
-## Stirling.com Cloud
-
-The hosted version at [stirling.com/app](https://stirling.com/app). All processing happens in Stirling's cloud, and every operation costs credits. Free accounts include a monthly allowance; paid plans include more credits. See [Paid Offerings](./Paid-Offerings.md) for current pricing.
-
----
-
-## More than 5 users
-
-The free tier covers up to 5 users. Once you have more than 5, you need a paid Team or Enterprise plan. Team includes 100 users and adds capacity in blocks of 100; Enterprise is sized to your organization under a custom agreement. A paid plan also adds:
-
-- Official support (tickets, SLAs, priority responses)
-- SSO, SAML, audit logging, and other paid-tier features
-
-See [Paid Offerings](./Paid-Offerings.md) for the full feature comparison, [book a demo](https://www.stirling.com/book-a-demo) to see the paid features first-hand, or [contact us](https://www.stirling.com/contact-us) if you're not sure which plan fits.
+The organization owner can view the plan and usage under **Settings → Workspace → Usage & Billing**.
