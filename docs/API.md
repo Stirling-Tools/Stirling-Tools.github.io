@@ -39,9 +39,8 @@ When security is enabled, all API requests require authentication. There are two
 
 ### User-Specific API Keys
 1. Obtain your API key:
-   - Log into Stirling PDF
-   - Go to Account Settings (via the gear icon)
-   - Find your API key in the account details
+   - Sign in to Stirling PDF
+   - Open **Settings → Preferences → API Keys**
 
 ### Global API Key
 You can set a custom global API key using the environment variable:
@@ -62,6 +61,10 @@ This allows you to set a single API key that works regardless of user authentica
         -H "Content-Type: multipart/form-data" \
         ...
    ```
+
+## Usage allowance
+
+Tool calls made with an API key count toward your server's monthly processing allowance: 1,000 document units a month on a server that is not linked to a Stirling account. Using the tools yourself in Stirling PDF does not count. After that, tool calls are refused until the next month unless you link the server; see [Account linking](./Stirling-Account-Link.md). A Team license covers API tool calls, and Enterprise has no limit.
 
 ## Endpoint Paths
 

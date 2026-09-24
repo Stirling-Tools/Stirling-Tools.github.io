@@ -8,7 +8,7 @@ description: Set up OCR and searchable document chunks with a knowledge base, co
 
 The Ingestion policy prepares documents for knowledge search. Open **Processor → Pipelines**, find **Ingestion** under **Templates**, and select **Set up**.
 
-The default processing chain runs OCR, then prepares searchable chunks.
+The default processing chain runs OCR, then prepares searchable chunks. Preparing chunks needs [your own AI engine](../../AI/Self-Hosting-the-AI-Engine.md); it is not available with Stirling Cloud AI.
 
 ## Configure processing
 

@@ -16,7 +16,7 @@ Account linking connects your self-hosted Stirling PDF server to a team in Stirl
 
 Link your server to use a cloud-backed Team allowance or paid processing. Enterprise does not require account linking.
 
-An unlinked server has a default monthly allowance of **1,000 document units**. Manual, interactive non-AI PDF tools do not use this allowance.
+An unlinked server has a default monthly allowance of **1,000 document units**. Each file uses one unit per 25 pages or 5 MB, whichever is more. Manual, interactive non-AI PDF tools do not use this allowance.
 
 ## Connect your server
 

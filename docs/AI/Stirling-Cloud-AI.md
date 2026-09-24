@@ -67,6 +67,7 @@ When it is off, Stirling Cloud does not keep any document text, and document que
 ## What changes in this mode
 
 - **Models & Providers** and **Documents & RAG** settings are managed by Stirling Cloud, so they do not apply.
+- Processor's [Ingestion](../Processor/Policies/Ingestion.md) needs your own engine to prepare searchable chunks.
 - **Capabilities** and **Limits & Performance** still apply; see [AI Tools](./AI-Tools.md) and the [AI Settings Reference](./AI-Settings-Reference.md).
 - Whatever the AI reads is processed by Stirling Cloud rather than on your own hardware. To keep documents in-house, [run your own engine](./Self-Hosting-the-AI-Engine.md) with [local models](./Model-Providers.md#local-models) instead.
 

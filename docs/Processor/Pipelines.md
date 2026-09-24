@@ -40,7 +40,7 @@ Schedules use intervals in minutes, hours, or days. Folder watchers also check p
 
 Each tool must accept the previous step's output format. A tool can appear more than once, with separate settings for each step.
 
-To call another service, select **Add a tool** and look under **Send to another system**; see [Integrations](./Integrations.md#use-an-integration-in-a-pipeline). Use [Ingestion](./Policies/Ingestion.md) for knowledge search, and [Routing](./Policies/Routing.md) to choose destinations by document properties or classification.
+To call another service, select **Add a tool** and look under **Send to another system**; see [Integrations](./Integrations.md#use-an-integration-in-a-pipeline). Use [Ingestion](./Policies/Ingestion.md) for knowledge search, [Classification](./Policies/Classification.md) to label documents with [AI](../AI/AI-Overview.md), and [Routing](./Policies/Routing.md) to choose destinations by document properties or classification.
 
 Upload supporting files, such as stamp images or signing certificates, in the step settings. They are saved for future runs and shared within the team. Files must be non-empty and no larger than **50 MB**. Referenced files cannot be deleted until removed from the pipeline.
 

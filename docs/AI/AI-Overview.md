@@ -29,7 +29,7 @@ Open **Settings → Server → AI Engine** as an administrator and choose one of
 | Option | What it means | Set it up |
 |---|---|---|
 | **Off** | No AI tools anywhere in the app, and nothing leaves this server. | Default |
-| **Run your own engine** | A container you host, pointed at a model provider you choose. Your key, your bill, your data path. | [Self-Hosting the AI Engine](./Self-Hosting-the-AI-Engine.md) |
+| **Run your own engine** | A container you host, pointed at a model provider you choose, such as Claude, GPT or a local model. Your key, your bill, your data path. | [Self-Hosting the AI Engine](./Self-Hosting-the-AI-Engine.md) |
 | **Use Stirling Cloud AI** | No container, provider key, or model choice. The work runs on Stirling Cloud and is billed to the account this server is linked to. | [Stirling Cloud AI](./Stirling-Cloud-AI.md) |
 
 Changes to the connection apply after a restart.

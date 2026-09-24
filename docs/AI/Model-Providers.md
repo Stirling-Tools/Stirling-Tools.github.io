@@ -14,8 +14,8 @@ Language models handle questions and editing instructions. Embedding models make
 
 | Provider | Base URL | API key |
 |---|---|---|
-| `anthropic` | Default service | Set in AI settings or `ANTHROPIC_API_KEY` on the engine. |
-| `openai` | Default service | Set in AI settings or `OPENAI_API_KEY` on the engine. |
+| `anthropic` (Claude) | Default service | Set in AI settings or `ANTHROPIC_API_KEY` on the engine. |
+| `openai` (GPT) | Default service | Set in AI settings or `OPENAI_API_KEY` on the engine. |
 | `ollama` | Required, for example `http://ollama:11434/v1` | Not required. |
 | `custom` | Your OpenAI-compatible endpoint | Set if required by the endpoint. |
 

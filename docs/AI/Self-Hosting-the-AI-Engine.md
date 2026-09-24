@@ -9,7 +9,7 @@ tags: [AI, Self-host, Docker, Compose, Engine]
 
 Run the AI engine alongside your Stirling PDF server. You need Docker Compose, a language model provider, an embedding provider, and a shared secret for the connection.
 
-This setup uses the default hosted providers. For local models, see [Model Providers](./Model-Providers.md). To use AI without hosting an engine, see [Stirling Cloud AI](./Stirling-Cloud-AI.md).
+This setup uses the default hosted providers, Claude and VoyageAI. For GPT, another service or local models, see [Model Providers](./Model-Providers.md). To use AI without hosting an engine, see [Stirling Cloud AI](./Stirling-Cloud-AI.md).
 
 ## Step 1: Configure the containers
 
