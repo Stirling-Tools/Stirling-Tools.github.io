@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Production Deployment Guide | Stirling PDF</title>
+<meta name="description" content="Deploy Stirling PDF on your own server for a team or organization, from installation to monitoring">
+<link rel="canonical" href="https://docs.stirlingpdf.com/Production-Deployment-Guide/">
+<link rel="icon" href="/img/stirling-mark.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:title" content="Production Deployment Guide | Stirling PDF">
+<meta property="og:description" content="Deploy Stirling PDF on your own server for a team or organization, from installation to monitoring">
+<meta property="og:image" content="https://docs.stirlingpdf.com/img/Stirling_PDF_App_Icon_-_Favicon_2-f8d8fab3.png">
+<meta property="og:url" content="https://docs.stirlingpdf.com/Production-Deployment-Guide/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://app.termly.io">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&family=Alumni+Sans:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<script src="https://app.termly.io/resource-blocker/aa66d813-045f-4a28-b465-6aab431924d6" type="text/javascript" data-autoblock="on"></script>
+<script async src="https://widget.kapa.ai/kapa-widget.bundle.js"
+  data-website-id="32633e81-a72c-4df4-9cb9-c6cd3a0899cb"
+  data-project-name="Stirling PDF"
+  data-project-color="#8E3131"
+  data-project-logo="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2026.961%2029.046%22%3E%3Cpath%20d%3D%22M%200%2014.489%20L%2017.69%200%20L%2017.69%2013.531%20L%200%2028.02%20L%200%2014.489%20Z%22%20fill%3D%22rgb(173%2C115%2C115)%22%2F%3E%3Cpath%20d%3D%22M%209.25%2015.498%20L%2026.961%200.991%20L%2026.961%2014.539%20L%209.25%2029.046%20Z%22%20fill%3D%22rgb(142%2C49%2C49)%22%2F%3E%3C%2Fsvg%3E"
+  data-view-mode="sidebar"
+  data-button-bg-color="#000000"
+  data-button-text-color="#ffffff"
+  data-color-scheme-selector="[data-theme='dark']"></script>
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_qy9V53BkvTATJESFrSBvg8Rw5m3KvYuTmmk9IojIjyZ',{api_host:'https://eu.i.posthog.com',capture_pageview:false});
+</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="navbar">
+  <div class="navbar-inner">
+    <button class="menu-toggle" aria-label="Toggle navigation">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <a class="brand" href="https://stirling.com/">
+      <img src="/img/stirling-mark.svg" alt="" width="27" height="29">
+      <span class="brand-name">Stirling</span>
+    </a>
+    <nav class="navbar-center">
+      <div class="nav-item">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Product <svg class="nav-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-menu">
+          <a class="nav-menu-item" href="https://stirling.com/#editor">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/><path d="M13 3v6h6"/><path d="m17.5 11.5 3 3-4.5 4.5H13v-3z"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">PDF Editor</span><span class="nav-menu-desc">60+ PDF operations</span></span>
+          </a>
+          <a class="nav-menu-item" href="https://stirling.com/#processor">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">PDF Processor</span><span class="nav-menu-desc">Automated PDF pipelines</span></span>
+          </a>
+          <a class="nav-menu-item" href="https://stirling.com/#infrastructure">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V6"/><path d="M4.5 12v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">PDF Server</span><span class="nav-menu-desc">Infrastructure for teams</span></span>
+          </a>
+          <a class="nav-menu-item" href="https://stirling.com/book-a-demo">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">Book a demo</span><span class="nav-menu-desc">Walk through it with our team.</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Company <svg class="nav-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-menu">
+          <a class="nav-menu-item" href="https://stirling.com/about">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 20a6.2 6.2 0 0 1 12.4 0"/><path d="M16.5 5.3a3.2 3.2 0 0 1 0 5.9M18 14.4a6.2 6.2 0 0 1 3.2 5.6"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">About</span><span class="nav-menu-desc">Who we are</span></span>
+          </a>
+          <a class="nav-menu-item" href="https://stirling.com/careers">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">Careers</span><span class="nav-menu-desc">Come build with us</span></span>
+          </a>
+          <a class="nav-menu-item" href="https://stirling.com/help-center">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a8 8 0 0 1-8 8H4l2.2-2.9A8 8 0 1 1 21 12z"/><path d="M9 11h6M9 14.5h4"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">Help center</span><span class="nav-menu-desc">Guides and support</span></span>
+          </a>
+          <a class="nav-menu-item" href="https://stirling.com/legal/terms-of-service">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M5 7h14M7 7l-3 6h6zM17 7l-3 6h6z"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">Legal</span><span class="nav-menu-desc">Terms and policies</span></span>
+          </a>
+        </div>
+      </div>
+      <a href="https://stirling.com/pricing">Pricing</a>
+      <a href="https://stirling.com/download">Download</a>
+      <a href="/" class="active">Docs</a>
+    </nav>
+    <nav class="navbar-links">
+      <button class="ask-ai" type="button" onclick="window.Kapa&&window.Kapa.open()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"/></svg>
+        <span>Ask AI</span>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="https://github.com/Stirling-Tools/Stirling-PDF" target="_blank" rel="noopener" class="gh-star" aria-label="Star on GitHub">
+        <svg width="24" height="24" viewBox="0 0 24 23.406" fill="currentColor"><path d="M 12 0 C 5.37 0 0 5.373 0 12 C 0 17.303 3.438 21.8 8.205 23.385 C 8.805 23.498 9.025 23.127 9.025 22.808 C 9.025 22.523 9.015 21.768 9.01 20.768 C 5.672 21.492 4.968 19.158 4.968 19.158 C 4.422 17.773 3.633 17.403 3.633 17.403 C 2.546 16.659 3.717 16.674 3.717 16.674 C 4.922 16.758 5.555 17.91 5.555 17.91 C 6.625 19.745 8.364 19.215 9.05 18.908 C 9.158 18.132 9.467 17.603 9.81 17.303 C 7.145 17.003 4.344 15.971 4.344 11.374 C 4.344 10.063 4.809 8.993 5.579 8.153 C 5.444 7.85 5.039 6.63 5.684 4.977 C 5.684 4.977 6.689 4.655 8.984 6.207 C 9.944 5.941 10.964 5.808 11.984 5.803 C 13.004 5.808 14.024 5.941 14.984 6.207 C 17.264 4.655 18.269 4.977 18.269 4.977 C 18.914 6.63 18.509 7.85 18.389 8.153 C 19.154 8.993 19.619 10.063 19.619 11.374 C 19.619 15.983 16.814 16.998 14.144 17.293 C 14.564 17.663 14.954 18.398 14.954 19.523 C 14.954 21.135 14.939 22.413 14.939 22.808 C 14.939 23.127 15.154 23.503 15.764 23.385 C 20.565 21.795 24 17.3 24 12 C 24 5.373 18.627 0 12 0 Z"/></svg>
+        <span class="gh-star-count" data-star-count>89.1k</span>
+      </a>
+      <a class="navbar-login" href="https://stirling.com/app/login">Log in</a>
+      <a class="navbar-cta" href="https://stirling.com/app/signup">Sign up</a>
+    </nav>
+  </div>
+</header>
+<div class="layout">
+<aside class="sidebar"><div class="sidebar-search"><div id="docsearch"></div></div><nav class="sidebar-nav"><ul><li><a class="side-link" href="/">Getting Started</a></li>
+<li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">Installation</button>
+        <button class="side-caret" type="button" aria-label="Expand Installation">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Installation/Versions/">Versions</a></li>
+<li><a class="side-link" href="/Installation/Docker%20Install/">Docker Guide</a></li>
+<li><a class="side-link" href="/Installation/Kubernetes%20Install/">Kubernetes Guide</a></li>
+<li><a class="side-link" href="/Installation/Mac%20Installation/">Mac Installation Guide</a></li>
+<li><a class="side-link" href="/Installation/Unix%20Installation/">Unix Installation Guide</a></li>
+<li><a class="side-link" href="/Installation/Windows%20Installation/">Windows Guide</a></li>
+<li><a class="side-link" href="/Installation/Development%20Setup/">Development Setup Guide</a></li>
+<li><a class="side-link" href="/Installation/Managed%20Deployment/">Managed Desktop Deployment</a></li>
+<li><a class="side-link" href="/Installation/Path%20Structure/">Path Structure</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/Migration/Overview/">Migration from V1 to V2</a>
+        <button class="side-caret" type="button" aria-label="Expand Migration from V1 to V2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Migration/Settings-Changes/">Settings Changes from V1 to V2</a></li>
+<li><a class="side-link" href="/Migration/New-Features/">New Features in V2</a></li>
+<li><a class="side-link" href="/Migration/Breaking-Changes/">Breaking Changes in V2</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/Configuration/">Configuration</a>
+        <button class="side-caret" type="button" aria-label="Expand Configuration">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">Security &amp; SSO</button>
+        <button class="side-caret" type="button" aria-label="Expand Security &amp; SSO">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Configuration/Security/System%20and%20Security/">System and Security</a></li>
+<li><a class="side-link" href="/Configuration/Security/Single%20Sign-On%20Configuration/">Single Sign-On Configuration</a></li>
+<li><a class="side-link" href="/Configuration/Security/OAuth%20SSO%20Configuration/">OAuth SSO Configuration</a></li>
+<li><a class="side-link" href="/Configuration/Security/SAML%20SSO%20Configuration/">SAML SSO Configuration</a></li>
+<li><a class="side-link" href="/Configuration/Security/Sign%20with%20custom%20files/">Sign with custom files</a></li>
+<li><a class="side-link" href="/Configuration/Security/SSRF-Protection/">SSRF-Protection</a></li>
+<li><a class="side-link" href="/Configuration/Security/fail2ban/">Fail2Ban Integration</a></li>
+<li><a class="side-link" href="/Configuration/Security/Audit%20Logging/">Audit Logging</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">Storage &amp; Database</button>
+        <button class="side-caret" type="button" aria-label="Expand Storage &amp; Database">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Configuration/Storage/DATABASE/">Database Backups</a></li>
+<li><a class="side-link" href="/Configuration/Storage/External%20Database/">External Database</a></li>
+<li><a class="side-link" href="/Configuration/Storage/File-Sharing-Storage/">File Sharing and Storage</a></li>
+<li><a class="side-link" href="/Configuration/Storage/Folder%20Scanning/">Folder Scanning</a></li>
+<li><a class="side-link" href="/Configuration/Storage/Google%20Drive%20File%20Picker/">Google Drive File Picker</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">Automation &amp; Integrations</button>
+        <button class="side-caret" type="button" aria-label="Expand Automation &amp; Integrations">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Configuration/Automation/Pipeline/">Pipeline Automation (Automate)</a></li>
+<li><a class="side-link" href="/Configuration/Automation/MCP%20Server/">MCP Server</a></li>
+<li><a class="side-link" href="/Configuration/Automation/Telegram%20Bot/">Telegram Bot Integration</a></li>
+<li><a class="side-link" href="/Configuration/Automation/Usage%20Monitoring/">Usage Monitoring</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">Customisation</button>
+        <button class="side-caret" type="button" aria-label="Expand Customisation">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Configuration/Customisation/UI%20Customisation/">UI Customisation</a></li>
+<li><a class="side-link" href="/Configuration/Customisation/Endpoint%20or%20Feature%20Customisation/">Endpoint or Feature Customisation</a></li>
+<li><a class="side-link" href="/Configuration/Customisation/Extra-Settings/">Custom Settings Configuration</a></li>
+<li><a class="side-link" href="/Configuration/Customisation/Other%20Customisations/">Other Customisations</a></li>
+<li><a class="side-link" href="/Configuration/Customisation/Keyboard-Shortcuts/">Keyboard-Shortcuts</a></li>
+<li><a class="side-link" href="/Configuration/Customisation/Mobile-Scanner/">Mobile Scanner Configuration</a></li>
+<li><a class="side-link" href="/Configuration/Customisation/PDF%20to%20CBR%20Conversion/">PDF to CBR Conversion</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">Performance &amp; Operations</button>
+        <button class="side-caret" type="button" aria-label="Expand Performance &amp; Operations">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Configuration/Operations/OCR/">OCR (Optical Character Recognition)</a></li>
+<li><a class="side-link" href="/Configuration/Operations/Performance-Optimization/">Performance Optimization &amp; Sizing</a></li>
+<li><a class="side-link" href="/Configuration/Operations/Process-Limits/">Process-Limits</a></li>
+<li><a class="side-link" href="/Configuration/Operations/LibreOffice-Parallel-Processing/">LibreOffice Parallel Processing</a></li>
+<li><a class="side-link" href="/Configuration/Operations/Diagnostics/">Diagnostics &amp; Reporting Issues</a></li>
+<li><a class="side-link" href="/Configuration/Operations/Clustering/">Clustering</a></li></ul>
+    </li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/Processor/">Processor</a>
+        <button class="side-caret" type="button" aria-label="Expand Processor">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Processor/Setup-and-Access/">Setup and access</a></li>
+<li><a class="side-link" href="/Processor/Getting-Started/">Create your first pipeline</a></li>
+<li><a class="side-link" href="/Processor/Sources/">Sources</a></li>
+<li><a class="side-link" href="/Processor/Pipelines/">Pipelines</a></li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/Processor/Policies/">Policies</a>
+        <button class="side-caret" type="button" aria-label="Expand Policies">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Processor/Policies/Ingestion/">Ingestion</a></li>
+<li><a class="side-link" href="/Processor/Policies/Security/">Security</a></li>
+<li><a class="side-link" href="/Processor/Policies/Classification/">Classification</a></li>
+<li><a class="side-link" href="/Processor/Policies/Compliance/">Compliance</a></li>
+<li><a class="side-link" href="/Processor/Policies/Routing/">Routing</a></li></ul>
+    </li>
+<li><a class="side-link" href="/Processor/Processing-Folders/">Processing folders</a></li>
+<li><a class="side-link" href="/Processor/Documents/">Documents</a></li>
+<li><a class="side-link" href="/Processor/Review/">Review</a></li>
+<li><a class="side-link" href="/Processor/Integrations/">Integrations</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">AI</button>
+        <button class="side-caret" type="button" aria-label="Expand AI">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/AI/AI%20Overview/">AI Overview</a></li>
+<li><a class="side-link" href="/AI/Self-Hosting%20the%20AI%20Engine/">Self-Hosting the AI Engine</a></li>
+<li><a class="side-link" href="/AI/Stirling%20Cloud%20AI/">Stirling Cloud AI</a></li>
+<li><a class="side-link" href="/AI/Model%20Providers/">Model Providers</a></li>
+<li><a class="side-link" href="/AI/AI%20Settings%20Reference/">AI Settings Reference</a></li>
+<li><a class="side-link" href="/AI/Documents%20and%20Retrieval/">Documents and Retrieval</a></li>
+<li><a class="side-link" href="/AI/AI%20Security/">AI Security</a></li>
+<li><a class="side-link" href="/AI/AI%20Tools/">AI Tools</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/functionality/">Tools</a>
+        <button class="side-caret" type="button" aria-label="Expand Tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Functionality/Convert/">Convert</a></li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/Functionality/Page-Operations/">Page Operations</a>
+        <button class="side-caret" type="button" aria-label="Expand Page Operations">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Functionality/Page-Operations/redact/">Redaction</a></li></ul>
+    </li>
+<li><a class="side-link" href="/Functionality/Recommended-Tools/">Recommended Tools</a></li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/Functionality/Security/">Security</a>
+        <button class="side-caret" type="button" aria-label="Expand Security">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Functionality/Security/Certificate-Signing/">Certificate Signing</a></li>
+<li><a class="side-link" href="/Functionality/Security/Sign/">Sign PDF (Handwritten Signatures)</a></li>
+<li><a class="side-link" href="/Functionality/Security/Shared-Signing/">Shared Signing</a></li></ul>
+    </li>
+<li><a class="side-link" href="/Functionality/Compare/">Compare PDFs</a></li>
+<li><a class="side-link" href="/Functionality/Compress/">Compress PDF</a></li>
+<li><a class="side-link" href="/Functionality/Content-Editing/">Content &amp; Editing</a></li>
+<li><a class="side-link" href="/Functionality/Features%20Pipeline/">Features Pipeline</a></li>
+<li><a class="side-link" href="/Functionality/OCR/">OCR (Optical Character Recognition)</a></li>
+<li><a class="side-link" href="/Functionality/Advanced-Tools/">Advanced Tools</a></li>
+<li><a class="side-link" href="/Functionality/Multi-Tool/">Multi-Tool Workbench</a></li>
+<li><a class="side-link" href="/Functionality/Read-and-Annotate/">Read &amp; Annotate PDFs</a></li>
+<li><a class="side-link" href="/Functionality/Fill-Form/">Fill Form</a></li>
+<li><a class="side-link" href="/Functionality/Mobile-Scanner/">Mobile Scanner</a></li>
+<li><a class="side-link" href="/Functionality/The%20Technologies/">The Technologies</a></li></ul>
+    </li>
+<li><a class="side-link active" href="/Production-Deployment-Guide/">Production Deployment Guide</a></li>
+<li><a class="side-link" href="/API/">API</a></li>
+<li><a class="side-link" href="/Modes%20and%20Licensing/">Modes</a></li>
+<li><a class="side-link" href="/Paid-Offerings/">Paid Offerings</a></li>
+<li><a class="side-link" href="/Stirling%20Account%20Link/">Account linking</a></li>
+<li><a class="side-link" href="/FAQ/">FAQ</a></li>
+<li><a class="side-link" href="/Contribute/">Contribute</a></li>
+<li><a class="side-link" href="/analytics-telemetry/">Analytics and Telemetry</a></li></ul></nav></aside>
+<main class="content" id="content">
+  <article class="doc">
+    
+    <h1>Production Deployment Guide</h1>
+<p>This guide takes you from installation to a secured, monitored Stirling PDF server for your team or organization. Features that need a paid plan are marked where they appear.</p>
+<hr>
+<h2 id="step-1-choose-your-deployment-path" class="anchor-heading">Step 1: Choose Your Deployment Path<a class="anchor-link" href="#step-1-choose-your-deployment-path" aria-label="Direct link">#</a></h2><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Use it when</th>
+<th>Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Docker Compose</strong> (recommended)</td>
+<td>You are setting up a production server</td>
+<td><a href="#docker-compose-setup">Docker Compose setup</a></td>
+</tr>
+<tr>
+<td><strong>Docker Run</strong></td>
+<td>You want a quick trial or a single container</td>
+<td><a href="#docker-run-setup">Docker Run setup</a></td>
+</tr>
+<tr>
+<td><strong>Kubernetes</strong></td>
+<td>You already run Kubernetes and need scaling or high availability</td>
+<td><a href="/Installation/Kubernetes%20Install/">Kubernetes Guide</a></td>
+</tr>
+<tr>
+<td><strong>Bare metal / JAR</strong></td>
+<td>Docker is not available</td>
+<td><a href="/Installation/Unix%20Installation/">Unix Installation Guide</a></td>
+</tr>
+</tbody>
+</table>
+<p>Allow at least 2 GB of RAM (4 GB recommended) and 10 GB of disk space. A JAR installation also needs Java 25 or later, plus LibreOffice and Tesseract for conversions and OCR.</p>
+<hr>
+<h2 id="step-2-installation" class="anchor-heading">Step 2: Installation<a class="anchor-link" href="#step-2-installation" aria-label="Direct link">#</a></h2><div class="tabs" data-group="deployment-type" data-sync="true" id="tabs-0"><div class="tab-list" role="tablist"><button role="tab" class="tab-btn active" data-value="docker-compose" aria-selected="true">Docker Compose (Recommended)</button><button role="tab" class="tab-btn" data-value="docker-run" aria-selected="false">Docker Run</button><button role="tab" class="tab-btn" data-value="kubernetes" aria-selected="false">Kubernetes</button><button role="tab" class="tab-btn" data-value="bare-metal" aria-selected="false">Bare Metal / JAR</button></div><div role="tabpanel" class="tab-panel active" data-value="docker-compose">
+<h3 id="docker-compose-setup" class="anchor-heading">Docker Compose Setup<a class="anchor-link" href="#docker-compose-setup" aria-label="Direct link">#</a></h3><h4 id="21-create-docker-composeyml" class="anchor-heading">2.1: Create docker-compose.yml<a class="anchor-link" href="#21-create-docker-composeyml" aria-label="Direct link">#</a></h4><p>Create a directory for the deployment:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">mkdir</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -p</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/stirling-pdf</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/stirling-pdf</span></span></code></pre></div>
+<p>Create <code>docker-compose.yml</code>:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">services</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  stirling-pdf</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    image</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    container_name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">stirling-pdf</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    ports</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'8080:8080'</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    volumes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">./stirling-data/tessdata:/usr/share/tessdata</span><span style="color:#6A737D;--shiki-dark:#6A737D">    # OCR language files</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">./stirling-data/configs:/configs</span><span style="color:#6A737D;--shiki-dark:#6A737D">                 # Settings and database</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">./stirling-data/logs:/logs</span><span style="color:#6A737D;--shiki-dark:#6A737D">                       # Application logs</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">./stirling-data/customFiles:/customFiles:rw</span><span style="color:#6A737D;--shiki-dark:#6A737D">      # Custom branding files</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">./stirling-data/pipeline:/pipeline</span><span style="color:#6A737D;--shiki-dark:#6A737D">               # Automation configs</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    environment</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">SECURITY_ENABLELOGIN=true</span><span style="color:#6A737D;--shiki-dark:#6A737D">            # Require sign-in</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">SYSTEM_DEFAULTLOCALE=en-US</span><span style="color:#6A737D;--shiki-dark:#6A737D">           # Default UI language for new users</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">SYSTEM_GOOGLEVISIBILITY=false</span><span style="color:#6A737D;--shiki-dark:#6A737D">        # Hide from search engines</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">SYSTEM_ROOTURIPATH=/</span><span style="color:#6A737D;--shiki-dark:#6A737D">                 # Base URL path</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">SYSTEMFILEUPLOADLIMIT=2GB</span><span style="color:#6A737D;--shiki-dark:#6A737D">            # Max upload size; numeric part must be 0-999</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    restart</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">unless-stopped</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    deploy</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      resources</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        limits</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">          memory</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">4G</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">          cpus</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'2.0'</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        reservations</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">          memory</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">2G</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">          cpus</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'1.0'</span></span></code></pre></div>
+<p>The <code>deploy</code> block is optional. Adjust the limits to your server.</p>
+<h4 id="22-start-stirling-pdf" class="anchor-heading">2.2: Start Stirling PDF<a class="anchor-link" href="#22-start-stirling-pdf" aria-label="Direct link">#</a></h4><div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> up</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -d</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ps</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> logs</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -f</span></span></code></pre></div>
+<h4 id="23-verify-installation" class="anchor-heading">2.3: Verify Installation<a class="anchor-link" href="#23-verify-installation" aria-label="Direct link">#</a></h4><p>Open <code>http://your-server-ip:8080</code> in a browser. The Stirling PDF sign-in page confirms the server is running; continue to Step 3.</p>
+<p>If it does not load:</p>
+<ul>
+<li>Check the firewall allows port 8080, for example <code>sudo ufw allow 8080</code>.</li>
+<li>Check the logs with <code>docker compose logs</code>.</li>
+<li>Check that the container can write to the mounted <code>stirling-data</code> directories.</li>
+</ul>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="docker-run">
+<h3 id="docker-run-setup" class="anchor-heading">Docker Run Setup<a class="anchor-link" href="#docker-run-setup" aria-label="Direct link">#</a></h3><h4 id="21-create-data-directory-and-run-container" class="anchor-heading">2.1: Create Data Directory and Run Container<a class="anchor-link" href="#21-create-data-directory-and-run-container" aria-label="Direct link">#</a></h4><div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">mkdir</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -p</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/stirling-data</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> run</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -d</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  --name</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> stirling-pdf</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  -p</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 8080:8080</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  -v</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/stirling-data/tessdata:/usr/share/tessdata</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  -v</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/stirling-data/configs:/configs</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  -v</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/stirling-data/logs:/logs</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  -v</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/stirling-data/customFiles:/customFiles:rw</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  -e</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> SECURITY_ENABLELOGIN=</span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  -e</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> SYSTEM_DEFAULTLOCALE=en-US</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  -e</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> SYSTEM_GOOGLEVISIBILITY=</span><span style="color:#005CC5;--shiki-dark:#79B8FF">false</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  -e</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> SYSTEMFILEUPLOADLIMIT=2GB</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  --restart</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> unless-stopped</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest</span></span></code></pre></div>
+<h4 id="22-verify-installation" class="anchor-heading">2.2: Verify Installation<a class="anchor-link" href="#22-verify-installation" aria-label="Direct link">#</a></h4><div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ps</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> grep</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> stirling-pdf</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> logs</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -f</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> stirling-pdf</span></span></code></pre></div>
+<p>Open <code>http://your-server-ip:8080</code> in a browser. The Stirling PDF sign-in page confirms the server is running; continue to Step 3.</p>
+<p>If it does not load:</p>
+<ul>
+<li>Check the firewall allows port 8080, for example <code>sudo ufw allow 8080</code>.</li>
+<li>Check the logs with <code>docker logs stirling-pdf</code>.</li>
+<li>Check that the container can write to the mounted <code>stirling-data</code> directories.</li>
+</ul>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="kubernetes">
+<h3 id="kubernetes-setup" class="anchor-heading">Kubernetes Setup<a class="anchor-link" href="#kubernetes-setup" aria-label="Direct link">#</a></h3><p>A Kubernetes deployment needs persistent volume claims, a Deployment and Service, ingress or a load balancer, and resource limits.</p>
+<p>Follow the <a href="/Installation/Kubernetes%20Install/">Kubernetes Installation Guide</a> for complete manifests, namespace setup, TLS, and autoscaling.</p>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="bare-metal">
+<h3 id="bare-metal-setup" class="anchor-heading">Bare Metal Setup<a class="anchor-link" href="#bare-metal-setup" aria-label="Direct link">#</a></h3><p>A bare metal installation needs Java 25 or later, LibreOffice for conversions, Tesseract for OCR, and a service manager such as systemd.</p>
+<p>Follow the <a href="/Installation/Unix%20Installation/">Unix Installation Guide</a> for dependency installation, JAR setup, and systemd configuration.</p>
+</div></div>
+<hr>
+<h2 id="step-3-initial-login-admin-setup" class="anchor-heading">Step 3: Initial Login &amp; Admin Setup<a class="anchor-link" href="#step-3-initial-login-admin-setup" aria-label="Direct link">#</a></h2><h3 id="31-first-time-login" class="anchor-heading">3.1: First-Time Login<a class="anchor-link" href="#31-first-time-login" aria-label="Direct link">#</a></h3><p>Open your Stirling PDF address and sign in with the default administrator account:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span>Username: admin</span></span>
+<span class="line"><span>Password: stirling</span></span></code></pre></div>
+<p>You are asked to set a new password on first sign-in. Use a strong password of 12 or more characters.</p>
+<div class="admonition admonition-tip"><div class="admonition-heading"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg><span>Customizing Default Credentials</span></div><div class="admonition-content">
+<p>Set your own initial administrator <strong>before first startup</strong>:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">environment</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">SECURITY_INITIALLOGIN_USERNAME=youradmin</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">SECURITY_INITIALLOGIN_PASSWORD=YourSecurePassword123!</span></span></code></pre></div>
+<p>These values only apply when the database is first created. Change the password in the app afterwards.</p>
+</div></div>
+<h3 id="32-verify-admin-access" class="anchor-heading">3.2: Verify Admin Access<a class="anchor-link" href="#32-verify-admin-access" aria-label="Direct link">#</a></h3><p>Open <strong>Settings</strong> from your account at the bottom of the quick access bar on the left. Administrators also see the <strong>Workspace</strong>, <strong>Server</strong>, and <strong>Monitoring</strong> groups. Other users see only their own preferences.</p>
+<p>If the server sections are missing:</p>
+<ul>
+<li>Check the logs with <code>docker logs stirling-pdf</code>.</li>
+<li>Confirm <code>SECURITY_ENABLELOGIN=true</code> is set.</li>
+<li>Confirm you signed in with the initial administrator account.</li>
+</ul>
+<p>Consider <a href="/Configuration/Security/Single%20Sign-On%20Configuration/">single sign-on</a> so your identity provider manages passwords.</p>
+<hr>
+<h2 id="step-4-configure-essential-settings" class="anchor-heading">Step 4: Configure Essential Settings<a class="anchor-link" href="#step-4-configure-essential-settings" aria-label="Direct link">#</a></h2><p>Change these settings in <code>settings.yml</code>, or as an administrator in <strong>Settings</strong>.</p>
+<h3 id="41-general-settings" class="anchor-heading">4.1: General Settings<a class="anchor-link" href="#41-general-settings" aria-label="Direct link">#</a></h3><h4 id="system-locale-language" class="anchor-heading">System Locale &amp; Language<a class="anchor-link" href="#system-locale-language" aria-label="Direct link">#</a></h4><div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">system</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  defaultLocale</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">en-US</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # or en-GB, de-DE, fr-FR, etc.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">ui</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  languages</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: []  </span><span style="color:#6A737D;--shiki-dark:#6A737D"># Empty = all languages enabled. Or specify: ["en_GB", "de_DE", "fr_FR"]</span></span></code></pre></div>
+<p>The default locale applies to new users. <code>ui.languages</code> limits which languages users can choose.</p>
+<h4 id="search-engine-visibility" class="anchor-heading">Search Engine Visibility<a class="anchor-link" href="#search-engine-visibility" aria-label="Direct link">#</a></h4><div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">system</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  googlevisibility</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">false</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # Prevents search engines from indexing your site</span></span></code></pre></div>
+<h4 id="file-upload-limits" class="anchor-heading">File Upload Limits<a class="anchor-link" href="#file-upload-limits" aria-label="Direct link">#</a></h4><div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">system</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  fileUploadLimit</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">2GB</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # numeric part must be 0-999, followed by KB, MB or GB</span></span></code></pre></div>
+<p>The numeric part is limited to 0-999, so <code>2000MB</code> is rejected and leaves the limit unset. Use <code>2GB</code> instead. An empty value means no limit.</p>
+<h4 id="legal-compliance" class="anchor-heading">Legal &amp; Compliance<a class="anchor-link" href="#legal-compliance" aria-label="Direct link">#</a></h4><p>Link your own policies from the app footer, or leave a value empty to hide the link:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">legal</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  termsAndConditions</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">https://yourcompany.com/tos</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  privacyPolicy</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">https://yourcompany.com/privacy</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  accessibilityStatement</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">''</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  cookiePolicy</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">''</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  impressum</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">''</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # required in some countries, such as Germany</span></span></code></pre></div>
+<h4 id="update-notifications" class="anchor-heading">Update Notifications<a class="anchor-link" href="#update-notifications" aria-label="Direct link">#</a></h4><p><code>showUpdate</code> and <code>showUpdateOnlyAdmin</code> both default to <code>true</code>, so only administrators see update notifications. To turn them off for everyone:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">system</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  showUpdate</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">false</span></span></code></pre></div>
+<p>To show update notifications to every user, keep <code>showUpdate: true</code> and set <code>showUpdateOnlyAdmin: false</code>.</p>
+<h4 id="process-limits" class="anchor-heading">Process Limits<a class="anchor-link" href="#process-limits" aria-label="Direct link">#</a></h4><p>Limit how many conversions and OCR jobs run at once so they fit your server's capacity:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">processExecutor</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  sessionLimit</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    libreOfficeSessionLimit</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">1</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    tesseractSessionLimit</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">1</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    pythonOpenCvSessionLimit</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">8</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  timeoutMinutes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    libreOfficetimeoutMinutes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">30</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    tesseractTimeoutMinutes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">30</span></span></code></pre></div>
+<h3 id="42-security-settings" class="anchor-heading">4.2: Security Settings<a class="anchor-link" href="#42-security-settings" aria-label="Direct link">#</a></h3><p>Open <strong>Settings → Server → Sign-in &amp; security</strong>.</p>
+<h4 id="user-registration-control" class="anchor-heading">User Registration Control<a class="anchor-link" href="#user-registration-control" aria-label="Direct link">#</a></h4><p>By default, only administrators add users (see <a href="#step-6-user-management">Step 6</a>). To send email invitations, configure mail:</p>
+<div class="tabs" data-group="config-methods" data-sync="true" id="tabs-1"><div class="tab-list" role="tablist"><button role="tab" class="tab-btn active" data-value="settings" aria-selected="true">Settings File</button><button role="tab" class="tab-btn" data-value="env" aria-selected="false">Environment Variables</button></div><div role="tabpanel" class="tab-panel active" data-value="settings">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">mail</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  enabled</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  enableInvites</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  host</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">smtp.gmail.com</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  port</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">587</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  username</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">noreply@yourcompany.com</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  password</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">${MAIL_PASSWORD}</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # Use environment variable</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  from</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">noreply@yourcompany.com</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  startTlsEnable</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # STARTTLS upgrade after connecting (port 587)</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="env">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">MAIL_ENABLED</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">true</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">MAIL_ENABLEINVITES</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">true</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">MAIL_HOST</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">smtp.gmail.com</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">MAIL_PORT</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">587</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">MAIL_USERNAME</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">noreply@yourcompany.com</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">MAIL_PASSWORD</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">your-app-password</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">MAIL_FROM</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">noreply@yourcompany.com</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">MAIL_STARTTLSENABLE</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">true</span></span></code></pre></div>
+</div></div>
+<h4 id="single-sign-on" class="anchor-heading">Single Sign-On<a class="anchor-link" href="#single-sign-on" aria-label="Direct link">#</a></h4><p>Stirling PDF supports OAuth2 / OpenID Connect providers such as Google, GitHub, and Keycloak, and SAML 2.0 providers such as Okta and Azure AD. OAuth2 is free on every plan; SAML 2.0 requires an Enterprise license.</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">security</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  enableLogin</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  loginMethod</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">oauth2</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # or 'saml2' or 'all'</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  oauth2</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    enabled</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    autoCreateUser</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # Create users on first sign-in</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    blockRegistration</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">false</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # Set true to require admin pre-registration</span></span></code></pre></div>
+<p>See the <a href="/Configuration/Security/Single%20Sign-On%20Configuration/">SSO Configuration Guide</a> for provider examples.</p>
+<h4 id="login-security-settings" class="anchor-heading">Login Security Settings<a class="anchor-link" href="#login-security-settings" aria-label="Direct link">#</a></h4><div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">security</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  loginAttemptCount</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">5</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # Lock account after 5 failed attempts</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  loginResetTimeMinutes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">120</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # Unlock after 2 hours</span></span></code></pre></div>
+<ul>
+<li>JWT lifetimes are configurable with <code>security.jwt.tokenExpiryMinutes</code> and <code>security.jwt.desktopTokenExpiryMinutes</code>, both in minutes.</li>
+<li>Password length and complexity rules are not configurable. Use SSO to apply your organization's password policy.</li>
+</ul>
+<h3 id="43-feature-control" class="anchor-heading">4.3: Feature Control<a class="anchor-link" href="#43-feature-control" aria-label="Direct link">#</a></h3><p>Open <strong>Settings → Server → System</strong> and go to <strong>Endpoint Management</strong> to choose which PDF tools users can see. All PDF tools are enabled by default. AI features are controlled separately by <code>aiEngine</code> and are off by default; see <a href="#step-11-optional-document-automation-ai">Step 11</a>.</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">endpoints</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  toRemove</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'add-password'</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'remove-password'</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'change-permissions'</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  groupsToRemove</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'LibreOffice'</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # Disables all LibreOffice-based conversions</span></span></code></pre></div>
+<p>In <strong>Endpoint Management</strong>, pick the tools under <strong>Disabled Endpoints</strong>, or whole groups under <strong>Disabled Endpoint Groups</strong>, then save. See <a href="/Configuration/Customisation/Endpoint%20or%20Feature%20Customisation/">Endpoint Customisation</a> for every tool ID.</p>
+<h3 id="44-save-and-apply-settings" class="anchor-heading">4.4: Save and Apply Settings<a class="anchor-link" href="#44-save-and-apply-settings" aria-label="Direct link">#</a></h3><p>Select <strong>Save</strong> on each settings page. Some settings need a restart, and Stirling PDF tells you when. To restart:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Docker Compose</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> restart</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Docker Run</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> restart</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> stirling-pdf</span></span></code></pre></div>
+<hr>
+<h2 id="step-5-https-domain-setup" class="anchor-heading">Step 5: HTTPS &amp; Domain Setup<a class="anchor-link" href="#step-5-https-domain-setup" aria-label="Direct link">#</a></h2><div class="admonition admonition-danger"><div class="admonition-heading"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg><span>Production Requirement</span></div><div class="admonition-content">
+<p><strong>Never run in production without HTTPS.</strong> User credentials and PDF files will be transmitted in plain text over the network.</p>
+</div></div>
+<p>Use HTTPS for access to Stirling PDF. You can terminate HTTPS at your existing reverse proxy or load balancer, or configure it directly in Stirling PDF.</p>
+<h3 id="reverse-proxy-integration" class="anchor-heading">Reverse proxy integration<a class="anchor-link" href="#reverse-proxy-integration" aria-label="Direct link">#</a></h3><ul>
+<li>Route requests to Stirling PDF's HTTP port (<code>8080</code> by default), using an address reachable from your proxy.</li>
+<li>Preserve the public hostname and pass the original HTTPS scheme in <code>X-Forwarded-Proto</code>. If the upstream <code>Host</code> differs from the public hostname, also pass <code>X-Forwarded-Host</code>. These values are used when constructing login redirects.</li>
+<li>Match the proxy's upload limit to the uploads you allow in Stirling PDF, and allow enough time for document processing.</li>
+<li>For a subdirectory such as <code>/pdf</code>, set <code>SYSTEM_ROOTURIPATH=/pdf</code> and forward requests with that prefix intact.</li>
+</ul>
+<p>Use your proxy or hosting provider's documentation for certificate issuance, renewal and DNS setup.</p>
+<h3 id="https-directly-in-stirling-pdf" class="anchor-heading">HTTPS directly in Stirling PDF<a class="anchor-link" href="#https-directly-in-stirling-pdf" aria-label="Direct link">#</a></h3><p>Place your certificate keystore in the mounted <code>configs/</code> directory and configure <code>server.ssl</code> in <code>configs/custom_settings.yml</code>. Set <code>server.port</code> to the HTTPS port and publish that port in your container configuration.</p>
+<p>See <a href="/Configuration/Customisation/Extra-Settings/#ssltls-configuration">SSL/TLS Configuration</a> for the Stirling PDF settings and examples.</p>
+<hr>
+<h2 id="step-6-user-management" class="anchor-heading">Step 6: User Management<a class="anchor-link" href="#step-6-user-management" aria-label="Direct link">#</a></h2><h3 id="61-user-roles" class="anchor-heading">6.1: User Roles<a class="anchor-link" href="#61-user-roles" aria-label="Direct link">#</a></h3><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Can do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Admin</strong></td>
+<td>Use every enabled tool, manage users, change server settings, and view usage.</td>
+</tr>
+<tr>
+<td><strong>User</strong></td>
+<td>Use the enabled tools and change their own preferences.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-adding-users" class="anchor-heading">6.2: Adding Users<a class="anchor-link" href="#62-adding-users" aria-label="Direct link">#</a></h3><p>Open <strong>Settings → Workspace → Users</strong> and select <strong>Invite people</strong>. You can add several people at once.</p>
+<ul>
+<li><strong>Invite by email</strong> sends each person a link to join and set their own password. This needs <a href="#user-registration-control">mail configured</a>.</li>
+<li><strong>Create account directly</strong> sets a username and password for them. Share the password securely and turn on <strong>Require a password change on first login</strong>.</li>
+</ul>
+<p>Choose each person's role and team before sending.</p>
+<h3 id="63-managing-users" class="anchor-heading">6.3: Managing Users<a class="anchor-link" href="#63-managing-users" aria-label="Direct link">#</a></h3><p>From <strong>Settings → Workspace → Users</strong> you can reset a password, change a role, disable an account, or remove a member. Disabled users cannot sign in. Removing a member cannot be undone.</p>
+<hr>
+<h2 id="step-7-monitoring-usage-tracking" class="anchor-heading">Step 7: Monitoring &amp; Usage Tracking<a class="anchor-link" href="#step-7-monitoring-usage-tracking" aria-label="Direct link">#</a></h2><h3 id="71-logs" class="anchor-heading">7.1: Logs<a class="anchor-link" href="#71-logs" aria-label="Direct link">#</a></h3><div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Docker Compose</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> logs</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -f</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> stirling-pdf</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Docker Run</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> logs</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -f</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> stirling-pdf</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Last 100 lines</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> logs</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --tail</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 100</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> stirling-pdf</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Errors only</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> logs</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> stirling-pdf</span><span style="color:#D73A49;--shiki-dark:#F97583"> 2>&#x26;1</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> grep</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ERROR</span></span></code></pre></div>
+<p>Look for errors, repeated warnings about disk space or memory, and failed sign-in attempts.</p>
+<p>To limit log size, or forward logs to a collector such as the ELK Stack, Splunk, Graylog, or Datadog, configure a Docker logging driver:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">services</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  stirling-pdf</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    logging</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      driver</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"json-file"</span><span style="color:#6A737D;--shiki-dark:#6A737D">   # local rotation; does not forward</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      options</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        max-size</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"10m"</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        max-file</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"3"</span></span></code></pre></div>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">services</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  stirling-pdf</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    logging</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      driver</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">syslog</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      options</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        syslog-address</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"tcp://your-syslog-server:514"</span></span></code></pre></div>
+<h3 id="72-health-checks" class="anchor-heading">7.2: Health Checks<a class="anchor-link" href="#72-health-checks" aria-label="Direct link">#</a></h3><p><code>/api/v1/info/status</code> is always reachable without signing in. Use it for load balancer health checks and uptime monitors such as Uptime Robot or Pingdom:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">curl</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> http://localhost:8080/api/v1/info/status</span></span></code></pre></div>
+<p>Request counts are available at <code>/api/v1/info/requests/all</code> and <code>/api/v1/info/requests/all/unique</code>. They need a signed-in user or an API key, and <code>metrics.enabled: true</code> (the default).</p>
+<p>Also watch disk space for the data directories:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">df</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -h</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">du</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -sh</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ./stirling-data/</span><span style="color:#005CC5;--shiki-dark:#79B8FF">*</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> stats</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> stirling-pdf</span></span></code></pre></div>
+<h3 id="73-prometheus-team-enterprise" class="anchor-heading">7.3: Prometheus (Team / Enterprise)<a class="anchor-link" href="#73-prometheus-team-enterprise" aria-label="Direct link">#</a></h3><p>Team and Enterprise licenses include a Prometheus endpoint with HTTP request counts, grouped by endpoint, request method, and session. See <a href="/Configuration/Automation/Usage%20Monitoring/#prometheus-monitoring-configuration">Usage Monitoring</a> for setup.</p>
+<hr>
+<h2 id="step-8-backup-disaster-recovery" class="anchor-heading">Step 8: Backup &amp; Disaster Recovery<a class="anchor-link" href="#step-8-backup-disaster-recovery" aria-label="Direct link">#</a></h2><h3 id="81-what-to-backup" class="anchor-heading">8.1: What to Backup<a class="anchor-link" href="#81-what-to-backup" aria-label="Direct link">#</a></h3><table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Location</th>
+<th>Frequency</th>
+<th>Importance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>User database (if local)</strong></td>
+<td><code>./stirling-data/configs/stirling-pdf-DB-&lt;schema-version&gt;.mv.db</code></td>
+<td>Daily</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td><strong>Settings file</strong></td>
+<td><code>./stirling-data/configs/settings.yml</code></td>
+<td>After changes</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td><strong>Custom files</strong></td>
+<td><code>./stirling-data/customFiles/</code></td>
+<td>After changes</td>
+<td>High</td>
+</tr>
+<tr>
+<td><strong>OCR languages</strong></td>
+<td><code>./stirling-data/tessdata/</code></td>
+<td>Weekly</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td><strong>Logs</strong></td>
+<td><code>./stirling-data/logs/</code></td>
+<td>Optional</td>
+<td>Low</td>
+</tr>
+</tbody>
+</table>
+<p>Without an external database, Stirling PDF stores users in a local H2 file named <code>stirling-pdf-DB-&lt;schema-version&gt;.mv.db</code>, for example <code>stirling-pdf-DB-2.3.232.mv.db</code>. The simplest backup is the whole <code>configs/</code> directory.</p>
+<div class="admonition admonition-tip"><div class="admonition-heading"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg><span>Team/Enterprise Recommendation</span></div><div class="admonition-content">
+<p>Team and Enterprise deployments should use an <a href="/Configuration/Storage/External%20Database/">external PostgreSQL database</a> instead of the local H2 file, and back it up with your usual database tooling.</p>
+</div></div>
+<hr>
+<h2 id="step-9-performance-optimization" class="anchor-heading">Step 9: Performance Optimization<a class="anchor-link" href="#step-9-performance-optimization" aria-label="Direct link">#</a></h2><p>For resource sizing recommendations, scaling guidance, and fine tuning, see the dedicated <a href="/Configuration/Operations/Performance-Optimization/">Performance Optimization &amp; Sizing</a> guide.</p>
+<hr>
+<h2 id="step-10-paid-plans-teamenterprise" class="anchor-heading">Step 10: Paid Plans (Team/Enterprise)<a class="anchor-link" href="#step-10-paid-plans-teamenterprise" aria-label="Direct link">#</a></h2><p>Team and Enterprise plans add features for organizations, including:</p>
+<ul>
+<li><strong>SAML 2.0 single sign-on</strong> (Enterprise), with providers such as Okta and Azure AD.</li>
+<li><strong>External PostgreSQL database</strong> for reliability and scale.</li>
+<li><strong>Prometheus metrics</strong> and <strong>Usage Analytics</strong> under <strong>Settings → Monitoring</strong>.</li>
+</ul>
+<p>See <a href="/Paid-Offerings/">Paid Offerings</a> for the full comparison, <a href="https://stirling.com/pricing" target="_blank" rel="noopener">pricing</a>, or email <a href="mailto:support@stirlingpdf.com">support@stirlingpdf.com</a>.</p>
+<hr>
+<h2 id="step-11-optional-document-automation-ai" class="anchor-heading">Step 11: Optional - Document Automation &amp; AI<a class="anchor-link" href="#step-11-optional-document-automation-ai" aria-label="Direct link">#</a></h2><h3 id="111-stirling-processor" class="anchor-heading">11.1: Stirling Processor<a class="anchor-link" href="#111-stirling-processor" aria-label="Direct link">#</a></h3><p>Sign in through a web browser and select <strong>Processor</strong> in the quick access bar on the left. It is not currently accessible from the desktop app, although we will be adding it for desktop apps connected to supported environments. Administrators and team leaders have access by default. Default users or environments without login will not be able to access Processor. Allow server folders before creating a folder workflow.</p>
+<p>Follow <a href="/Processor/Setup-and-Access/">Setup and access</a>, then <a href="/Processor/Getting-Started/">Create your first pipeline</a>.</p>
+<h3 id="112-ai-features" class="anchor-heading">11.2: AI Features<a class="anchor-link" href="#112-ai-features" aria-label="Direct link">#</a></h3><p>AI is off by default. Choose where it runs under <strong>Settings → Server → AI Engine</strong>:</p>
+<ul>
+<li><strong>Run your own engine:</strong> host the AI engine on an internal network with your own model providers. Follow <a href="/AI/Self-Hosting%20the%20AI%20Engine/">Self-Hosting the AI Engine</a>.</li>
+<li><strong>Use Stirling Cloud AI:</strong> no engine or provider keys; the work runs on Stirling Cloud and is billed to the linked account. Follow <a href="/AI/Stirling%20Cloud%20AI/">Stirling Cloud AI</a>.</li>
+</ul>
+<p>See <a href="/AI/AI%20Overview/">AI Overview</a> for the available features.</p>
+<hr>
+<h2 id="recommended-steps" class="anchor-heading">Recommended Steps<a class="anchor-link" href="#recommended-steps" aria-label="Direct link">#</a></h2><ul>
+<li><strong>Learn Stirling PDF:</strong> the <a href="/">Getting Started Guide</a> and the <a href="/functionality/">Tool Reference</a>.</li>
+<li><strong>Configure further:</strong> <a href="/Configuration/Operations/OCR/">OCR languages</a>, <a href="/Configuration/Automation/Pipeline/">Pipeline Automation</a>, the <a href="/API/">API</a>, and <a href="/Configuration/Operations/LibreOffice-Parallel-Processing/">LibreOffice Parallel Processing</a>.</li>
+<li><strong>Harden security:</strong> <a href="/Configuration/Security/fail2ban/">Fail2Ban</a>, an <a href="/Configuration/Storage/External%20Database/">External Database</a>, and <a href="/Configuration/Security/System%20and%20Security/">System and Security</a> settings.</li>
+<li><strong>Keep it running:</strong> test restoring your backups, and watch logs, disk space, and performance.</li>
+</ul>
+<h2 id="resources" class="anchor-heading">Resources<a class="anchor-link" href="#resources" aria-label="Direct link">#</a></h2><ul>
+<li><strong>Documentation:</strong> <a href="https://docs.stirlingpdf.com">https://docs.stirlingpdf.com</a></li>
+<li><strong>GitHub:</strong> <a href="https://github.com/Stirling-Tools/Stirling-PDF" target="_blank" rel="noopener">https://github.com/Stirling-Tools/Stirling-PDF</a></li>
+<li><strong>Issue Tracker:</strong> <a href="https://github.com/Stirling-Tools/Stirling-PDF/issues" target="_blank" rel="noopener">https://github.com/Stirling-Tools/Stirling-PDF/issues</a></li>
+<li><strong>Release Notes:</strong> <a href="https://github.com/Stirling-Tools/Stirling-PDF/releases" target="_blank" rel="noopener">https://github.com/Stirling-Tools/Stirling-PDF/releases</a></li>
+<li><strong>Discord:</strong> <a href="https://discord.gg/HYmhKj45pU" target="_blank" rel="noopener">https://discord.gg/HYmhKj45pU</a></li>
+</ul>
+<hr>
+<h2 id="troubleshooting-common-issues" class="anchor-heading">Troubleshooting Common Issues<a class="anchor-link" href="#troubleshooting-common-issues" aria-label="Direct link">#</a></h2><h3 id="authentication-issues" class="anchor-heading">Authentication Issues<a class="anchor-link" href="#authentication-issues" aria-label="Direct link">#</a></h3><p><strong>Problem:</strong> Can't log in as admin</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li>Check logs: <code>docker logs stirling-pdf | grep ERROR</code></li>
+<li>Verify <code>SECURITY_ENABLELOGIN=true</code> is set</li>
+<li>If another administrator can sign in, use <strong>Settings → Workspace → Users</strong> to reset the affected account's password.</li>
+</ol>
+<h3 id="performance-issues" class="anchor-heading">Performance Issues<a class="anchor-link" href="#performance-issues" aria-label="Direct link">#</a></h3><p><strong>Problem:</strong> Slow processing, timeouts</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li>Check resource limits: <code>docker stats stirling-pdf</code></li>
+<li>Increase JVM heap - see <a href="/Configuration/Operations/Performance-Optimization/">Performance Optimization</a></li>
+<li>Increase LibreOffice instances if document conversions are slow - see <a href="/Configuration/Operations/LibreOffice-Parallel-Processing/">LibreOffice Parallel Processing</a></li>
+<li>Use SSD storage for temporary files</li>
+<li>Run the built-in <a href="/Configuration/Operations/Diagnostics/">diagnostics tool</a> and check application logs</li>
+</ol>
+<h3 id="httpscertificate-issues" class="anchor-heading">HTTPS/Certificate Issues<a class="anchor-link" href="#httpscertificate-issues" aria-label="Direct link">#</a></h3><p><strong>Problem:</strong> Certificate errors, HTTPS not working</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li>For direct HTTPS, check the Stirling PDF logs and verify the keystore path, password and certificate alias.</li>
+<li>Behind a proxy, verify the upstream address and forwarded hostname and scheme. See <a href="#step-5-https-domain-setup">HTTPS &amp; Domain Setup</a>.</li>
+</ol>
+<h3 id="file-upload-issues" class="anchor-heading">File Upload Issues<a class="anchor-link" href="#file-upload-issues" aria-label="Direct link">#</a></h3><p><strong>Problem:</strong> Can't upload large files</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li>Check that the proxy's upload limit allows the file size configured in Stirling PDF.</li>
+<li>Raise the Stirling PDF limit: <code>system.fileUploadLimit: 2GB</code> (env <code>SYSTEMFILEUPLOADLIMIT=2GB</code>)</li>
+<li>Check disk space: <code>df -h</code></li>
+<li>Check whether the proxy closes the request before processing finishes.</li>
+</ol>
+<h3 id="need-more-help" class="anchor-heading">Need More Help?<a class="anchor-link" href="#need-more-help" aria-label="Direct link">#</a></h3><p>Run the built-in <a href="/Configuration/Operations/Diagnostics/">diagnostics tool</a> inside your Docker container to collect logs, configuration, and system information into a shareable archive.</p>
+<ul>
+<li><strong>Community support:</strong> <a href="https://discord.gg/HYmhKj45pU" target="_blank" rel="noopener">Discord</a> and <a href="https://github.com/Stirling-Tools/Stirling-PDF/issues" target="_blank" rel="noopener">GitHub Issues</a></li>
+<li><strong>Priority support:</strong> included with Team and Enterprise plans, via <a href="mailto:support@stirlingpdf.com">support@stirlingpdf.com</a></li>
+</ul>
+
+    <div class="doc-source">
+      <a href="https://github.com/Stirling-Tools/Stirling-Tools.github.io/edit/main/docs/Server-Admin-Onboarding.md" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+        Edit this page on GitHub
+      </a>
+    </div>
+  </article>
+  <nav class="pager"><a class="pager-link pager-prev" href="/Functionality/The%20Technologies/">
+        <span class="pager-dir">&larr; Previous</span>
+        <span class="pager-title">The Technologies</span>
+      </a><a class="pager-link pager-next" href="/API/">
+        <span class="pager-dir">Next &rarr;</span>
+        <span class="pager-title">API</span>
+      </a></nav>
+</main>
+<aside class="toc"><div class="toc-title">On this page</div><ul><li class="toc-l3"><a href="#docker-compose-setup">Docker Compose Setup</a></li>
+<li class="toc-l3"><a href="#docker-run-setup">Docker Run Setup</a></li>
+<li class="toc-l3"><a href="#kubernetes-setup">Kubernetes Setup</a></li>
+<li class="toc-l3"><a href="#bare-metal-setup">Bare Metal Setup</a></li>
+<li class="toc-l2"><a href="#step-1-choose-your-deployment-path">Step 1: Choose Your Deployment Path</a></li>
+<li class="toc-l2"><a href="#step-2-installation">Step 2: Installation</a></li>
+<li class="toc-l2"><a href="#step-3-initial-login-admin-setup">Step 3: Initial Login &amp; Admin Setup</a></li>
+<li class="toc-l3"><a href="#31-first-time-login">3.1: First-Time Login</a></li>
+<li class="toc-l3"><a href="#32-verify-admin-access">3.2: Verify Admin Access</a></li>
+<li class="toc-l2"><a href="#step-4-configure-essential-settings">Step 4: Configure Essential Settings</a></li>
+<li class="toc-l3"><a href="#41-general-settings">4.1: General Settings</a></li>
+<li class="toc-l3"><a href="#42-security-settings">4.2: Security Settings</a></li>
+<li class="toc-l3"><a href="#43-feature-control">4.3: Feature Control</a></li>
+<li class="toc-l3"><a href="#44-save-and-apply-settings">4.4: Save and Apply Settings</a></li>
+<li class="toc-l2"><a href="#step-5-https-domain-setup">Step 5: HTTPS &amp; Domain Setup</a></li>
+<li class="toc-l3"><a href="#reverse-proxy-integration">Reverse proxy integration</a></li>
+<li class="toc-l3"><a href="#https-directly-in-stirling-pdf">HTTPS directly in Stirling PDF</a></li>
+<li class="toc-l2"><a href="#step-6-user-management">Step 6: User Management</a></li>
+<li class="toc-l3"><a href="#61-user-roles">6.1: User Roles</a></li>
+<li class="toc-l3"><a href="#62-adding-users">6.2: Adding Users</a></li>
+<li class="toc-l3"><a href="#63-managing-users">6.3: Managing Users</a></li>
+<li class="toc-l2"><a href="#step-7-monitoring-usage-tracking">Step 7: Monitoring &amp; Usage Tracking</a></li>
+<li class="toc-l3"><a href="#71-logs">7.1: Logs</a></li>
+<li class="toc-l3"><a href="#72-health-checks">7.2: Health Checks</a></li>
+<li class="toc-l3"><a href="#73-prometheus-team-enterprise">7.3: Prometheus (Team / Enterprise)</a></li>
+<li class="toc-l2"><a href="#step-8-backup-disaster-recovery">Step 8: Backup &amp; Disaster Recovery</a></li>
+<li class="toc-l3"><a href="#81-what-to-backup">8.1: What to Backup</a></li>
+<li class="toc-l2"><a href="#step-9-performance-optimization">Step 9: Performance Optimization</a></li>
+<li class="toc-l2"><a href="#step-10-paid-plans-teamenterprise">Step 10: Paid Plans (Team/Enterprise)</a></li>
+<li class="toc-l2"><a href="#step-11-optional-document-automation-ai">Step 11: Optional - Document Automation &amp; AI</a></li>
+<li class="toc-l3"><a href="#111-stirling-processor">11.1: Stirling Processor</a></li>
+<li class="toc-l3"><a href="#112-ai-features">11.2: AI Features</a></li>
+<li class="toc-l2"><a href="#recommended-steps">Recommended Steps</a></li>
+<li class="toc-l2"><a href="#resources">Resources</a></li>
+<li class="toc-l2"><a href="#troubleshooting-common-issues">Troubleshooting Common Issues</a></li>
+<li class="toc-l3"><a href="#authentication-issues">Authentication Issues</a></li>
+<li class="toc-l3"><a href="#performance-issues">Performance Issues</a></li>
+<li class="toc-l3"><a href="#httpscertificate-issues">HTTPS/Certificate Issues</a></li>
+<li class="toc-l3"><a href="#file-upload-issues">File Upload Issues</a></li>
+<li class="toc-l3"><a href="#need-more-help">Need More Help?</a></li></ul></aside>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="footer-wordmark" href="https://stirling.com/">
+          <img src="/img/stirling-mark.svg" alt="" width="20" height="22">
+          <span>Stirling</span>
+        </a>
+        <p class="footer-tagline">The Secure PDF Processor</p>
+        <div class="footer-social">
+          <a href="https://discord.com/invite/Cn8pWhQRxZ" target="_blank" rel="noopener" aria-label="Discord">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.07.07 0 0 0-.08.04c-.21.38-.44.87-.6 1.25a18.3 18.3 0 0 0-5.5 0 12.6 12.6 0 0 0-.61-1.25.08.08 0 0 0-.08-.04 19.7 19.7 0 0 0-4.88 1.52.07.07 0 0 0-.03.03C.53 9.05-.32 13.58.1 18.06c0 .02.01.04.03.05a19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.22-2a.08.08 0 0 0-.04-.11 13.1 13.1 0 0 1-1.87-.9.08.08 0 0 1-.01-.12c.13-.1.25-.19.37-.29a.07.07 0 0 1 .08-.01c3.93 1.8 8.18 1.8 12.06 0a.07.07 0 0 1 .08 0c.12.11.25.2.37.3a.08.08 0 0 1 0 .12 12.3 12.3 0 0 1-1.88.9.08.08 0 0 0-.04.1c.36.7.77 1.37 1.22 2a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6.02-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03zM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42c1.22 0 2.18 1.1 2.16 2.42 0 1.34-.94 2.42-2.16 2.42z"/></svg>
+          </a>
+          <a href="https://x.com/StirlingPDF" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/stirling-pdf/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          </a>
+          <a href="https://github.com/Stirling-Tools/Stirling-PDF" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .3.21.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-title">Product</div>
+          <a href="https://stirling.com/#1">Features</a>
+          <a href="https://stirling.com/pricing">Pricing</a>
+          <a href="https://stirling.com/download">Download</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-title">Resources</div>
+          <a href="/">Docs</a>
+          <a href="https://registry.scalar.com/@stirlingpdf/apis/stirling-pdf-processing-api/" target="_blank" rel="noopener">API</a>
+          <a href="https://github.com/Stirling-Tools/Stirling-PDF/releases" target="_blank" rel="noopener">Changelog</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-title">Company</div>
+          <a href="https://stirling.com/about">About</a>
+          <a href="https://stirling.com/contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <a href="https://stirling.com/legal/terms-of-service">Terms of Service</a>
+        <a href="https://stirling.com/legal/privacy-policy">Privacy Policy</a>
+      </div>
+      <div class="footer-copyright">&copy; 2026 Stirling PDF, Inc.</div>
+    </div>
+  </div>
+</footer>
+<div class="sidebar-backdrop"></div>
+<script>window.__DOCS_BUNDLE__ = "/_content/bundle-461cff3a84cb.json";</script>
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+<script>
+  docsearch({
+    container: '#docsearch',
+    appId: 'NJB9CKQAIT',
+    apiKey: 'c67f84bf0cdec4d1962ac4e0d65fb4e5',
+    indexName: 'stirlingpdf',
+    transformItems: function(items){
+      return items
+        .map(function(item){
+          return Object.assign({}, item, { url: item.url.replace(/^https?:\/\/[^/]+/, '').replace(/^\/docs\//, '/') });
+        })
+        .filter(function(item){ return item.url.indexOf('/1.5/') !== 0; });
+    }
+  });
+</script>
+<script src="/assets/main.js"></script>
+<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=5d074971-2ecb-4c54-8397-30c0f91896b3" height="1" width="1" style="display:none" alt="">
+</body>
+</html>

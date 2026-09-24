@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unix Installation Guide | Stirling PDF</title>
+<meta name="description" content="Documentation for Stirling PDF - your locally hosted one-stop-shop for all your PDF needs.">
+<link rel="canonical" href="https://docs.stirlingpdf.com/Installation/Unix%20Installation/">
+<link rel="icon" href="/img/stirling-mark.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:title" content="Unix Installation Guide | Stirling PDF">
+<meta property="og:description" content="Documentation for Stirling PDF - your locally hosted one-stop-shop for all your PDF needs.">
+<meta property="og:image" content="https://docs.stirlingpdf.com/img/Stirling_PDF_App_Icon_-_Favicon_2-f8d8fab3.png">
+<meta property="og:url" content="https://docs.stirlingpdf.com/Installation/Unix%20Installation/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://app.termly.io">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&family=Alumni+Sans:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<script src="https://app.termly.io/resource-blocker/aa66d813-045f-4a28-b465-6aab431924d6" type="text/javascript" data-autoblock="on"></script>
+<script async src="https://widget.kapa.ai/kapa-widget.bundle.js"
+  data-website-id="32633e81-a72c-4df4-9cb9-c6cd3a0899cb"
+  data-project-name="Stirling PDF"
+  data-project-color="#8E3131"
+  data-project-logo="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2026.961%2029.046%22%3E%3Cpath%20d%3D%22M%200%2014.489%20L%2017.69%200%20L%2017.69%2013.531%20L%200%2028.02%20L%200%2014.489%20Z%22%20fill%3D%22rgb(173%2C115%2C115)%22%2F%3E%3Cpath%20d%3D%22M%209.25%2015.498%20L%2026.961%200.991%20L%2026.961%2014.539%20L%209.25%2029.046%20Z%22%20fill%3D%22rgb(142%2C49%2C49)%22%2F%3E%3C%2Fsvg%3E"
+  data-view-mode="sidebar"
+  data-button-bg-color="#000000"
+  data-button-text-color="#ffffff"
+  data-color-scheme-selector="[data-theme='dark']"></script>
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_qy9V53BkvTATJESFrSBvg8Rw5m3KvYuTmmk9IojIjyZ',{api_host:'https://eu.i.posthog.com',capture_pageview:false});
+</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="navbar">
+  <div class="navbar-inner">
+    <button class="menu-toggle" aria-label="Toggle navigation">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <a class="brand" href="https://stirling.com/">
+      <img src="/img/stirling-mark.svg" alt="" width="27" height="29">
+      <span class="brand-name">Stirling</span>
+    </a>
+    <nav class="navbar-center">
+      <div class="nav-item">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Product <svg class="nav-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-menu">
+          <a class="nav-menu-item" href="https://stirling.com/#editor">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/><path d="M13 3v6h6"/><path d="m17.5 11.5 3 3-4.5 4.5H13v-3z"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">PDF Editor</span><span class="nav-menu-desc">60+ PDF operations</span></span>
+          </a>
+          <a class="nav-menu-item" href="https://stirling.com/#processor">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">PDF Processor</span><span class="nav-menu-desc">Automated PDF pipelines</span></span>
+          </a>
+          <a class="nav-menu-item" href="https://stirling.com/#infrastructure">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V6"/><path d="M4.5 12v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">PDF Server</span><span class="nav-menu-desc">Infrastructure for teams</span></span>
+          </a>
+          <a class="nav-menu-item" href="https://stirling.com/book-a-demo">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">Book a demo</span><span class="nav-menu-desc">Walk through it with our team.</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Company <svg class="nav-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-menu">
+          <a class="nav-menu-item" href="https://stirling.com/about">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 20a6.2 6.2 0 0 1 12.4 0"/><path d="M16.5 5.3a3.2 3.2 0 0 1 0 5.9M18 14.4a6.2 6.2 0 0 1 3.2 5.6"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">About</span><span class="nav-menu-desc">Who we are</span></span>
+          </a>
+          <a class="nav-menu-item" href="https://stirling.com/careers">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">Careers</span><span class="nav-menu-desc">Come build with us</span></span>
+          </a>
+          <a class="nav-menu-item" href="https://stirling.com/help-center">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a8 8 0 0 1-8 8H4l2.2-2.9A8 8 0 1 1 21 12z"/><path d="M9 11h6M9 14.5h4"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">Help center</span><span class="nav-menu-desc">Guides and support</span></span>
+          </a>
+          <a class="nav-menu-item" href="https://stirling.com/legal/terms-of-service">
+            <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M5 7h14M7 7l-3 6h6zM17 7l-3 6h6z"/></svg></span>
+            <span class="nav-menu-text"><span class="nav-menu-title">Legal</span><span class="nav-menu-desc">Terms and policies</span></span>
+          </a>
+        </div>
+      </div>
+      <a href="https://stirling.com/pricing">Pricing</a>
+      <a href="https://stirling.com/download">Download</a>
+      <a href="/" class="active">Docs</a>
+    </nav>
+    <nav class="navbar-links">
+      <button class="ask-ai" type="button" onclick="window.Kapa&&window.Kapa.open()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"/></svg>
+        <span>Ask AI</span>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="https://github.com/Stirling-Tools/Stirling-PDF" target="_blank" rel="noopener" class="gh-star" aria-label="Star on GitHub">
+        <svg width="24" height="24" viewBox="0 0 24 23.406" fill="currentColor"><path d="M 12 0 C 5.37 0 0 5.373 0 12 C 0 17.303 3.438 21.8 8.205 23.385 C 8.805 23.498 9.025 23.127 9.025 22.808 C 9.025 22.523 9.015 21.768 9.01 20.768 C 5.672 21.492 4.968 19.158 4.968 19.158 C 4.422 17.773 3.633 17.403 3.633 17.403 C 2.546 16.659 3.717 16.674 3.717 16.674 C 4.922 16.758 5.555 17.91 5.555 17.91 C 6.625 19.745 8.364 19.215 9.05 18.908 C 9.158 18.132 9.467 17.603 9.81 17.303 C 7.145 17.003 4.344 15.971 4.344 11.374 C 4.344 10.063 4.809 8.993 5.579 8.153 C 5.444 7.85 5.039 6.63 5.684 4.977 C 5.684 4.977 6.689 4.655 8.984 6.207 C 9.944 5.941 10.964 5.808 11.984 5.803 C 13.004 5.808 14.024 5.941 14.984 6.207 C 17.264 4.655 18.269 4.977 18.269 4.977 C 18.914 6.63 18.509 7.85 18.389 8.153 C 19.154 8.993 19.619 10.063 19.619 11.374 C 19.619 15.983 16.814 16.998 14.144 17.293 C 14.564 17.663 14.954 18.398 14.954 19.523 C 14.954 21.135 14.939 22.413 14.939 22.808 C 14.939 23.127 15.154 23.503 15.764 23.385 C 20.565 21.795 24 17.3 24 12 C 24 5.373 18.627 0 12 0 Z"/></svg>
+        <span class="gh-star-count" data-star-count>89.1k</span>
+      </a>
+      <a class="navbar-login" href="https://stirling.com/app/login">Log in</a>
+      <a class="navbar-cta" href="https://stirling.com/app/signup">Sign up</a>
+    </nav>
+  </div>
+</header>
+<div class="layout">
+<aside class="sidebar"><div class="sidebar-search"><div id="docsearch"></div></div><nav class="sidebar-nav"><ul><li><a class="side-link" href="/">Getting Started</a></li>
+<li class="side-category open">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">Installation</button>
+        <button class="side-caret" type="button" aria-label="Expand Installation">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Installation/Versions/">Versions</a></li>
+<li><a class="side-link" href="/Installation/Docker%20Install/">Docker Guide</a></li>
+<li><a class="side-link" href="/Installation/Kubernetes%20Install/">Kubernetes Guide</a></li>
+<li><a class="side-link" href="/Installation/Mac%20Installation/">Mac Installation Guide</a></li>
+<li><a class="side-link active" href="/Installation/Unix%20Installation/">Unix Installation Guide</a></li>
+<li><a class="side-link" href="/Installation/Windows%20Installation/">Windows Guide</a></li>
+<li><a class="side-link" href="/Installation/Development%20Setup/">Development Setup Guide</a></li>
+<li><a class="side-link" href="/Installation/Managed%20Deployment/">Managed Desktop Deployment</a></li>
+<li><a class="side-link" href="/Installation/Path%20Structure/">Path Structure</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/Migration/Overview/">Migration from V1 to V2</a>
+        <button class="side-caret" type="button" aria-label="Expand Migration from V1 to V2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Migration/Settings-Changes/">Settings Changes from V1 to V2</a></li>
+<li><a class="side-link" href="/Migration/New-Features/">New Features in V2</a></li>
+<li><a class="side-link" href="/Migration/Breaking-Changes/">Breaking Changes in V2</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/Configuration/">Configuration</a>
+        <button class="side-caret" type="button" aria-label="Expand Configuration">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">Security &amp; SSO</button>
+        <button class="side-caret" type="button" aria-label="Expand Security &amp; SSO">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Configuration/Security/System%20and%20Security/">System and Security</a></li>
+<li><a class="side-link" href="/Configuration/Security/Single%20Sign-On%20Configuration/">Single Sign-On Configuration</a></li>
+<li><a class="side-link" href="/Configuration/Security/OAuth%20SSO%20Configuration/">OAuth SSO Configuration</a></li>
+<li><a class="side-link" href="/Configuration/Security/SAML%20SSO%20Configuration/">SAML SSO Configuration</a></li>
+<li><a class="side-link" href="/Configuration/Security/Sign%20with%20custom%20files/">Sign with custom files</a></li>
+<li><a class="side-link" href="/Configuration/Security/SSRF-Protection/">SSRF-Protection</a></li>
+<li><a class="side-link" href="/Configuration/Security/fail2ban/">Fail2Ban Integration</a></li>
+<li><a class="side-link" href="/Configuration/Security/Audit%20Logging/">Audit Logging</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">Storage &amp; Database</button>
+        <button class="side-caret" type="button" aria-label="Expand Storage &amp; Database">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Configuration/Storage/DATABASE/">Database Backups</a></li>
+<li><a class="side-link" href="/Configuration/Storage/External%20Database/">External Database</a></li>
+<li><a class="side-link" href="/Configuration/Storage/File-Sharing-Storage/">File Sharing and Storage</a></li>
+<li><a class="side-link" href="/Configuration/Storage/Folder%20Scanning/">Folder Scanning</a></li>
+<li><a class="side-link" href="/Configuration/Storage/Google%20Drive%20File%20Picker/">Google Drive File Picker</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">Automation &amp; Integrations</button>
+        <button class="side-caret" type="button" aria-label="Expand Automation &amp; Integrations">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Configuration/Automation/Pipeline/">Pipeline Automation (Automate)</a></li>
+<li><a class="side-link" href="/Configuration/Automation/MCP%20Server/">MCP Server</a></li>
+<li><a class="side-link" href="/Configuration/Automation/Telegram%20Bot/">Telegram Bot Integration</a></li>
+<li><a class="side-link" href="/Configuration/Automation/Usage%20Monitoring/">Usage Monitoring</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">Customisation</button>
+        <button class="side-caret" type="button" aria-label="Expand Customisation">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Configuration/Customisation/UI%20Customisation/">UI Customisation</a></li>
+<li><a class="side-link" href="/Configuration/Customisation/Endpoint%20or%20Feature%20Customisation/">Endpoint or Feature Customisation</a></li>
+<li><a class="side-link" href="/Configuration/Customisation/Extra-Settings/">Custom Settings Configuration</a></li>
+<li><a class="side-link" href="/Configuration/Customisation/Other%20Customisations/">Other Customisations</a></li>
+<li><a class="side-link" href="/Configuration/Customisation/Keyboard-Shortcuts/">Keyboard-Shortcuts</a></li>
+<li><a class="side-link" href="/Configuration/Customisation/Mobile-Scanner/">Mobile Scanner Configuration</a></li>
+<li><a class="side-link" href="/Configuration/Customisation/PDF%20to%20CBR%20Conversion/">PDF to CBR Conversion</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">Performance &amp; Operations</button>
+        <button class="side-caret" type="button" aria-label="Expand Performance &amp; Operations">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Configuration/Operations/OCR/">OCR (Optical Character Recognition)</a></li>
+<li><a class="side-link" href="/Configuration/Operations/Performance-Optimization/">Performance Optimization &amp; Sizing</a></li>
+<li><a class="side-link" href="/Configuration/Operations/Process-Limits/">Process-Limits</a></li>
+<li><a class="side-link" href="/Configuration/Operations/LibreOffice-Parallel-Processing/">LibreOffice Parallel Processing</a></li>
+<li><a class="side-link" href="/Configuration/Operations/Diagnostics/">Diagnostics &amp; Reporting Issues</a></li>
+<li><a class="side-link" href="/Configuration/Operations/Clustering/">Clustering</a></li></ul>
+    </li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/Processor/">Processor</a>
+        <button class="side-caret" type="button" aria-label="Expand Processor">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Processor/Setup-and-Access/">Setup and access</a></li>
+<li><a class="side-link" href="/Processor/Getting-Started/">Create your first pipeline</a></li>
+<li><a class="side-link" href="/Processor/Sources/">Sources</a></li>
+<li><a class="side-link" href="/Processor/Pipelines/">Pipelines</a></li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/Processor/Policies/">Policies</a>
+        <button class="side-caret" type="button" aria-label="Expand Policies">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Processor/Policies/Ingestion/">Ingestion</a></li>
+<li><a class="side-link" href="/Processor/Policies/Security/">Security</a></li>
+<li><a class="side-link" href="/Processor/Policies/Classification/">Classification</a></li>
+<li><a class="side-link" href="/Processor/Policies/Compliance/">Compliance</a></li>
+<li><a class="side-link" href="/Processor/Policies/Routing/">Routing</a></li></ul>
+    </li>
+<li><a class="side-link" href="/Processor/Processing-Folders/">Processing folders</a></li>
+<li><a class="side-link" href="/Processor/Documents/">Documents</a></li>
+<li><a class="side-link" href="/Processor/Review/">Review</a></li>
+<li><a class="side-link" href="/Processor/Integrations/">Integrations</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <button class="side-link side-cat-label" type="button">AI</button>
+        <button class="side-caret" type="button" aria-label="Expand AI">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/AI/AI%20Overview/">AI Overview</a></li>
+<li><a class="side-link" href="/AI/Self-Hosting%20the%20AI%20Engine/">Self-Hosting the AI Engine</a></li>
+<li><a class="side-link" href="/AI/Stirling%20Cloud%20AI/">Stirling Cloud AI</a></li>
+<li><a class="side-link" href="/AI/Model%20Providers/">Model Providers</a></li>
+<li><a class="side-link" href="/AI/AI%20Settings%20Reference/">AI Settings Reference</a></li>
+<li><a class="side-link" href="/AI/Documents%20and%20Retrieval/">Documents and Retrieval</a></li>
+<li><a class="side-link" href="/AI/AI%20Security/">AI Security</a></li>
+<li><a class="side-link" href="/AI/AI%20Tools/">AI Tools</a></li></ul>
+    </li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/functionality/">Tools</a>
+        <button class="side-caret" type="button" aria-label="Expand Tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Functionality/Convert/">Convert</a></li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/Functionality/Page-Operations/">Page Operations</a>
+        <button class="side-caret" type="button" aria-label="Expand Page Operations">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Functionality/Page-Operations/redact/">Redaction</a></li></ul>
+    </li>
+<li><a class="side-link" href="/Functionality/Recommended-Tools/">Recommended Tools</a></li>
+<li class="side-category">
+      <div class="side-category-row">
+        <a class="side-link side-cat-label" href="/Functionality/Security/">Security</a>
+        <button class="side-caret" type="button" aria-label="Expand Security">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <ul class="side-sub"><li><a class="side-link" href="/Functionality/Security/Certificate-Signing/">Certificate Signing</a></li>
+<li><a class="side-link" href="/Functionality/Security/Sign/">Sign PDF (Handwritten Signatures)</a></li>
+<li><a class="side-link" href="/Functionality/Security/Shared-Signing/">Shared Signing</a></li></ul>
+    </li>
+<li><a class="side-link" href="/Functionality/Compare/">Compare PDFs</a></li>
+<li><a class="side-link" href="/Functionality/Compress/">Compress PDF</a></li>
+<li><a class="side-link" href="/Functionality/Content-Editing/">Content &amp; Editing</a></li>
+<li><a class="side-link" href="/Functionality/Features%20Pipeline/">Features Pipeline</a></li>
+<li><a class="side-link" href="/Functionality/OCR/">OCR (Optical Character Recognition)</a></li>
+<li><a class="side-link" href="/Functionality/Advanced-Tools/">Advanced Tools</a></li>
+<li><a class="side-link" href="/Functionality/Multi-Tool/">Multi-Tool Workbench</a></li>
+<li><a class="side-link" href="/Functionality/Read-and-Annotate/">Read &amp; Annotate PDFs</a></li>
+<li><a class="side-link" href="/Functionality/Fill-Form/">Fill Form</a></li>
+<li><a class="side-link" href="/Functionality/Mobile-Scanner/">Mobile Scanner</a></li>
+<li><a class="side-link" href="/Functionality/The%20Technologies/">The Technologies</a></li></ul>
+    </li>
+<li><a class="side-link" href="/Production-Deployment-Guide/">Production Deployment Guide</a></li>
+<li><a class="side-link" href="/API/">API</a></li>
+<li><a class="side-link" href="/Modes%20and%20Licensing/">Modes</a></li>
+<li><a class="side-link" href="/Paid-Offerings/">Paid Offerings</a></li>
+<li><a class="side-link" href="/Stirling%20Account%20Link/">Account linking</a></li>
+<li><a class="side-link" href="/FAQ/">FAQ</a></li>
+<li><a class="side-link" href="/Contribute/">Contribute</a></li>
+<li><a class="side-link" href="/analytics-telemetry/">Analytics and Telemetry</a></li></ul></nav></aside>
+<main class="content" id="content">
+  <article class="doc">
+    
+    <h1>Unix Installation</h1>
+<p>Stirling PDF on Linux is available as a <strong>native desktop application</strong> or as a <strong>server</strong> using the JAR file.</p>
+<h2 id="desktop-application-recommended-for-personal-use" class="anchor-heading">Desktop Application (Recommended for Personal Use)<a class="anchor-link" href="#desktop-application-recommended-for-personal-use" aria-label="Direct link">#</a></h2><p>A desktop application for Linux with local PDF tools and optional access to a connected server.</p>
+<h3 id="what-you-get" class="anchor-heading">What You Get<a class="anchor-link" href="#what-you-get" aria-label="Direct link">#</a></h3><ul>
+<li>✅ <strong>Native Linux application</strong> - Integrated with your desktop environment</li>
+<li>✅ <strong>Open PDFs directly</strong> - Double-click any PDF to open in Stirling-PDF</li>
+<li>✅ <strong>No login required</strong> - Install and start using PDF tools right away</li>
+<li>✅ <strong>Local processing where supported</strong> - Tools served by the local backend run on your device. Tools routed to Stirling Cloud or a connected server send their inputs to that server.</li>
+<li>✅ <strong>Optional server connection</strong> - Connect to Stirling Cloud or your own self-hosted server for advanced tools like OCR and document conversions</li>
+<li>✅ <strong>All local tools included</strong> - Merge, split, rotate, sign, and more work without any server</li>
+<li>✅ <strong>No browser needed</strong> - Standalone application</li>
+</ul>
+<h3 id="installation" class="anchor-heading">Installation<a class="anchor-link" href="#installation" aria-label="Direct link">#</a></h3><p>Pick whichever package format matches your distribution.</p>
+<div class="tabs" data-group="linux-install" data-sync="true" id="tabs-0"><div class="tab-list" role="tablist"><button role="tab" class="tab-btn active" data-value="deb" aria-selected="true">DEB (Debian/Ubuntu)</button><button role="tab" class="tab-btn" data-value="rpm" aria-selected="false">RPM (Fedora/RHEL)</button><button role="tab" class="tab-btn" data-value="appimage" aria-selected="false">AppImage</button><button role="tab" class="tab-btn" data-value="aur" aria-selected="false">AUR (Arch)</button></div><div role="tabpanel" class="tab-panel active" data-value="deb">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">wget</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://files.stirlingpdf.com/linux-installer.deb</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> dpkg</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -i</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> linux-installer.deb</span></span></code></pre></div>
+<p>Launch via your application menu or <code>stirling-pdf</code> from the terminal.</p>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="rpm">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">wget</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://files.stirlingpdf.com/linux-installer.rpm</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> dnf</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ./linux-installer.rpm</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="appimage">
+<p>No install required - download, mark executable, run:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">wget</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://files.stirlingpdf.com/linux-installer.AppImage</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">chmod</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> +x</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> linux-installer.AppImage</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">./linux-installer.AppImage</span></span></code></pre></div>
+<p>If you see <code>fuse: device not found</code> on Ubuntu 22.04+, install FUSE:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> apt-get</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> libfuse2</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="aur">
+<p>Install via any AUR helper:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">paru</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -S</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> stirling-pdf-desktop</span></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># or: yay -S stirling-pdf-desktop</span></span></code></pre></div>
+<p>Package: <a href="https://aur.archlinux.org/packages/stirling-pdf-desktop" target="_blank" rel="noopener">stirling-pdf-desktop</a>.</p>
+</div></div>
+<h3 id="connecting-to-a-server" class="anchor-heading">Connecting to a server<a class="anchor-link" href="#connecting-to-a-server" aria-label="Direct link">#</a></h3><p>The desktop app works fully offline for local PDF tools like merging, splitting, rotating, and signing. If you need advanced server-side features like OCR or document format conversions, you can connect to a server at any time. See <a href="/Modes%20and%20Licensing/">Modes</a> for how each mode is licensed.</p>
+<p><strong>Stirling Cloud</strong></p>
+<ul>
+<li>Sign in with your Stirling Cloud account</li>
+<li>Gives access to advanced tools powered by server-side processing</li>
+<li>See <a href="/Modes%20and%20Licensing/">Modes</a> for what this mode includes</li>
+</ul>
+<p><strong>Self-hosted Server</strong></p>
+<ul>
+<li>Enter the URL of your own Stirling-PDF server instance (e.g., <code>http://192.168.1.53:8080</code>)</li>
+<li>Full control over your data and processing</li>
+<li>Useful for team deployments or when you want all features on your own infrastructure</li>
+</ul>
+<h3 id="managed-deployment-mdm" class="anchor-heading">Managed deployment (MDM)<a class="anchor-link" href="#managed-deployment-mdm" aria-label="Direct link">#</a></h3><p>To pre-configure and lock the app across managed Linux desktops - server URL, connection lock, and update behaviour - see <a href="/Installation/Managed%20Deployment/">Managed Desktop Deployment</a>.</p>
+<hr>
+<h2 id="server-version-for-hosting-and-sharing" class="anchor-heading">Server Version (For Hosting and Sharing)<a class="anchor-link" href="#server-version-for-hosting-and-sharing" aria-label="Direct link">#</a></h2><p>To run the application without Docker/Podman, you will need to manually install all dependencies and build the necessary components.</p>
+<p>Note that some dependencies might not be available in the standard repositories of all Linux distributions, and may require additional steps to install.</p>
+<p>The following guide assumes you have a basic understanding of using a command line interface in your operating system.</p>
+<p>It should work on most Linux distributions and MacOS. For Windows, you might need to use Windows Subsystem for Linux (WSL) for certain steps.
+The amount of dependencies is to actually reduce overall size, ie installing LibreOffice sub components rather than full LibreOffice package.</p>
+<p>You could theoretically use a Distrobox/Toolbox, if your Distribution has old or not all Packages. But you might just as well use the Docker Container then.</p>
+<h3 id="step-1-prerequisites" class="anchor-heading">Step 1: Prerequisites<a class="anchor-link" href="#step-1-prerequisites" aria-label="Direct link">#</a></h3><p>Install the following software, if not already installed:</p>
+<ul>
+<li>Java 25 or later</li>
+<li>Use the included Gradle wrapper (<code>./gradlew</code>).</li>
+<li>Git</li>
+<li>Python 3.8 (with pip)</li>
+<li>Make</li>
+<li>GCC/G++</li>
+<li>Automake</li>
+<li>Autoconf</li>
+<li>libtool</li>
+<li>pkg-config</li>
+<li>zlib1g-dev</li>
+<li>libleptonica-dev</li>
+</ul>
+<div class="tabs" data-group="unix-systems" data-sync="true" id="tabs-1"><div class="tab-list" role="tablist"><button role="tab" class="tab-btn active" data-value="debian" aria-selected="true">Debian-based Systems</button><button role="tab" class="tab-btn" data-value="fedora" aria-selected="false">Fedora-based Systems</button><button role="tab" class="tab-btn" data-value="nix" aria-selected="false">Nix Package Manager</button></div><div role="tabpanel" class="tab-panel active" data-value="debian">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> apt-get</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> update</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> apt-get</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -y</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> automake</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> autoconf</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> libtool</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    libleptonica-dev</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> pkg-config</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> zlib1g-dev</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> make</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> g++</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    openjdk-25-jdk</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> python3</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> python3-pip</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="fedora">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> dnf</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -y</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> automake</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> autoconf</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> libtool</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    leptonica-devel</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> pkg-config</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> zlib-devel</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> make</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> gcc-c++</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    java-25-openjdk</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> python3</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> python3-pip</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="nix">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">nix-channel</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --update</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">nix-env</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -iA</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.jdk25</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.python38</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    nixpkgs.gnumake</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.libgcc</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.automake</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    nixpkgs.autoconf</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.libtool</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.pkg-config</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    nixpkgs.zlib</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.leptonica</span></span></code></pre></div>
+</div></div>
+<h3 id="step-2-clone-and-build-jbig2enc-only-required-for-certain-ocr-functionality" class="anchor-heading">Step 2: Clone and Build jbig2enc (Only required for certain OCR functionality)<a class="anchor-link" href="#step-2-clone-and-build-jbig2enc-only-required-for-certain-ocr-functionality" aria-label="Direct link">#</a></h3><div class="tabs" data-group="unix-systems" data-sync="true" id="tabs-2"><div class="tab-list" role="tablist"><button role="tab" class="tab-btn active" data-value="debian" aria-selected="true">Debian</button><button role="tab" class="tab-btn" data-value="fedora" aria-selected="false">Fedora</button><button role="tab" class="tab-btn" data-value="nix" aria-selected="false">Nix Package Manager</button></div><div role="tabpanel" class="tab-panel active" data-value="debian">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">mkdir</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/.git</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/.git</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> clone</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://github.com/agl/jbig2enc.git</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> jbig2enc</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">./autogen.sh</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">./configure</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">make</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> make</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="fedora">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">mkdir</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/.git</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/.git</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> clone</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://github.com/agl/jbig2enc.git</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> jbig2enc</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">./autogen.sh</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">./configure</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">make</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> make</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="nix">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">nix-env</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -iA</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.jbig2enc</span></span></code></pre></div>
+</div></div>
+<h3 id="step-3-install-additional-software" class="anchor-heading">Step 3: Install Additional Software<a class="anchor-link" href="#step-3-install-additional-software" aria-label="Direct link">#</a></h3><p>Next we need to install LibreOffice for conversions, tesseract for OCR, and opencv for pattern recognition functionality.</p>
+<p>Install the following software:</p>
+<ul>
+<li>libreoffice (libreoffice-core libreoffice-common libreoffice-writer libreoffice-calc libreoffice-impress)</li>
+<li>python3-uno</li>
+<li>unoserver</li>
+<li>pngquant</li>
+<li>tesseract</li>
+<li>opencv-python-headless</li>
+</ul>
+<div class="tabs" data-group="unix-systems" data-sync="true" id="tabs-3"><div class="tab-list" role="tablist"><button role="tab" class="tab-btn active" data-value="debian" aria-selected="true">Debian-based Systems</button><button role="tab" class="tab-btn" data-value="fedora" aria-selected="false">Fedora-based Systems</button><button role="tab" class="tab-btn" data-value="nix" aria-selected="false">Nix Package Manager</button></div><div role="tabpanel" class="tab-panel active" data-value="debian">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> apt-get</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -y</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> libreoffice-writer</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> libreoffice-calc</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> libreoffice-impress</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> tesseract-ocr</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">pip3</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> uno</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> opencv-python-headless</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> unoserver</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> pngquant</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> WeasyPrint</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --break-system-packages</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="fedora">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> dnf</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -y</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> libreoffice-writer</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> libreoffice-calc</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> libreoffice-impress</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> tesseract</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">pip3</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> uno</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> opencv-python-headless</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> unoserver</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> pngquant</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> WeasyPrint</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="nix">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">nix-env</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -iA</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.libreoffice</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.tesseract</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.poppler_utils</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">pip3</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> uno</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> opencv-python-headless</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> unoserver</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> pngquant</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> WeasyPrint</span></span></code></pre></div>
+</div></div>
+<h3 id="step-4-grab-latest-stirling-pdf-jar" class="anchor-heading">Step 4: Grab latest Stirling PDF Jar<a class="anchor-link" href="#step-4-grab-latest-stirling-pdf-jar" aria-label="Direct link">#</a></h3><p>Stirling PDF comes in three different JAR files:</p>
+<p><strong>Stirling-PDF-with-login.jar</strong> (Recommended - Full Features):</p>
+<ul>
+<li>Download: <a href="https://files.stirlingpdf.com/Stirling-PDF-with-login.jar" target="_blank" rel="noopener">Stirling-PDF-with-login.jar</a></li>
+<li>Bundles frontend UI + backend server in one file</li>
+<li><strong>Includes authentication and additional features</strong> - requires user login (default credentials: <code>admin</code> / <code>stirling</code>)</li>
+<li><strong>Recommended for all users</strong> - personal, shared, or enterprise deployments</li>
+</ul>
+<p><strong>Stirling-PDF.jar</strong> (Plain JAR - Basic Features):</p>
+<ul>
+<li>Download: <a href="https://files.stirlingpdf.com/Stirling-PDF.jar" target="_blank" rel="noopener">Stirling-PDF.jar</a></li>
+<li>Bundles frontend UI + backend server in one file</li>
+<li><strong>Basic version</strong> - no authentication, core features only</li>
+<li>Only use if you require no login at all and don't mind missing certain features</li>
+</ul>
+<p><strong>Stirling-PDF-server.jar</strong> (Backend Only - <strong>Advanced</strong>):</p>
+<ul>
+<li>Download: <a href="https://files.stirlingpdf.com/Stirling-PDF-server.jar" target="_blank" rel="noopener">Stirling-PDF-server.jar</a></li>
+<li>Backend server only (no bundled UI)</li>
+<li><strong>No authentication</strong> - API access only</li>
+<li>For desktop app backend, custom frontend, or API integrations</li>
+</ul>
+<p>Example download and setup:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> wget</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://files.stirlingpdf.com/Stirling-PDF.jar</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> chmod</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> +x</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Stirling-PDF.jar</span></span></code></pre></div>
+<h3 id="step-4b-clone-the-stirling-pdf-repository" class="anchor-heading">Step 4b: Clone the Stirling-PDF Repository<a class="anchor-link" href="#step-4b-clone-the-stirling-pdf-repository" aria-label="Direct link">#</a></h3><p>You need the repository to get the <code>scripts</code> folder, which contains Python scripts used by OpenCV for certain PDF operations.</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> clone</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://github.com/Stirling-Tools/Stirling-PDF.git</span></span></code></pre></div>
+<h3 id="step-5-move-jar-and-scripts-to-desired-location" class="anchor-heading">Step 5: Move JAR and Scripts to Desired Location<a class="anchor-link" href="#step-5-move-jar-and-scripts-to-desired-location" aria-label="Direct link">#</a></h3><p>Move the downloaded JAR file and the <code>scripts</code> folder from the cloned repository to a desired location, for example, <code>/opt/Stirling-PDF/</code>.
+The <code>scripts</code> folder is required for the Python scripts using OpenCV.</p>
+<div class="tabs" data-group="user-type" data-sync="true" id="tabs-4"><div class="tab-list" role="tablist"><button role="tab" class="tab-btn active" data-value="debian" aria-selected="true">Debian (Root)</button><button role="tab" class="tab-btn" data-value="fedora" aria-selected="false">Fedora (Root)</button><button role="tab" class="tab-btn" data-value="nix" aria-selected="false">Nix (Non-root)</button></div><div role="tabpanel" class="tab-panel active" data-value="debian">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> mkdir</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -p</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /opt/Stirling-PDF</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> mv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Stirling-PDF.jar</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /opt/Stirling-PDF/</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> cp</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -r</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Stirling-PDF/scripts</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /opt/Stirling-PDF/</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">echo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "JAR and scripts installed."</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="fedora">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> mkdir</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -p</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /opt/Stirling-PDF</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> mv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Stirling-PDF.jar</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /opt/Stirling-PDF/</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> cp</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -r</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Stirling-PDF/scripts</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /opt/Stirling-PDF/</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">echo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "JAR and scripts installed."</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="nix">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">mkdir</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -p</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/Stirling-PDF</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">mv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Stirling-PDF.jar</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/Stirling-PDF/</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">cp</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -r</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Stirling-PDF/scripts</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/Stirling-PDF/</span></span></code></pre></div>
+</div></div>
+<h3 id="step-6-ocr-language-support" class="anchor-heading">Step 6: OCR Language Support<a class="anchor-link" href="#step-6-ocr-language-support" aria-label="Direct link">#</a></h3><p>If you plan to use the OCR (Optical Character Recognition) functionality, you might need to install language packs for Tesseract if running non-english scanning.</p>
+<div class="tabs" data-group="unix-systems" data-sync="true" id="tabs-5"><div class="tab-list" role="tablist"><button role="tab" class="tab-btn active" data-value="debian" aria-selected="true">Debian-based Systems</button><button role="tab" class="tab-btn" data-value="fedora" aria-selected="false">Fedora-based Systems</button><button role="tab" class="tab-btn" data-value="nix" aria-selected="false">Nix Package Manager</button><button role="tab" class="tab-btn" data-value="manual" aria-selected="false">Manual Installation</button></div><div role="tabpanel" class="tab-panel active" data-value="debian">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> apt</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> update</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> &#x26;&#x26;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\</span></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># All languages</span></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># sudo apt install -y 'tesseract-ocr-*'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Find languages:</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">apt</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> search</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> tesseract-ocr-</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># View installed languages:</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">dpkg-query</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -W</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 'tesseract-ocr-*'</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> sed</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 's/tesseract-ocr-//g'</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="fedora">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># All languages</span></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># sudo dnf install -y tesseract-langpack-*</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Find languages:</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">dnf</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> search</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -C</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> tesseract-langpack-</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># View installed languages:</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">rpm</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -qa</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> grep</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> tesseract-langpack</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> sed</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 's/tesseract-langpack-//g'</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="nix">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">nix-env</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -iA</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nixpkgs.tesseract</span></span></code></pre></div>
+<p>Note: Nix Package Manager pre-installs almost all the language packs when tesseract is installed.</p>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="manual">
+<ol>
+<li>Download the desired language pack(s) by selecting the <code>.traineddata</code> file(s) for the language(s) you need.</li>
+<li>Place the <code>.traineddata</code> files in the Tesseract tessdata directory: <code>/usr/share/tessdata</code></li>
+<li>Please view <a href="https://tesseract.readthedocs.io/en/latest/installation.html" target="_blank" rel="noopener">tesseract install guide</a> for more info.</li>
+</ol>
+<p><strong>IMPORTANT:</strong> DO NOT REMOVE EXISTING <code>eng.traineddata</code>, IT'S REQUIRED.</p>
+</div></div>
+<h3 id="step-7-run-stirling-pdf" class="anchor-heading">Step 7: Run Stirling PDF<a class="anchor-link" href="#step-7-run-stirling-pdf" aria-label="Direct link">#</a></h3><div class="tabs" data-group="unix-systems" data-sync="true" id="tabs-6"><div class="tab-list" role="tablist"><button role="tab" class="tab-btn active" data-value="debian" aria-selected="true">Debian-based Systems</button><button role="tab" class="tab-btn" data-value="fedora" aria-selected="false">Fedora-based Systems</button><button role="tab" class="tab-btn" data-value="nix" aria-selected="false">Nix Package Manager</button></div><div role="tabpanel" class="tab-panel active" data-value="debian">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">java</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -jar</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /opt/Stirling-PDF/Stirling-PDF.jar</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="fedora">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">java</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -jar</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /opt/Stirling-PDF/Stirling-PDF.jar</span></span></code></pre></div>
+</div>
+<div role="tabpanel" class="tab-panel" data-value="nix">
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">java</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -jar</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/Stirling-PDF/Stirling-PDF.jar</span></span></code></pre></div>
+<p>Since libreoffice, soffice, and conversion tools have their dbus_tmp_dir set as <code>dbus_tmp_dir=&quot;/run/user/$(id -u)/libreoffice-dbus&quot;</code>, you get the following error:
+<code>[Thread-7] INFO  s.s.SPDF.utils.ProcessExecutor - mkdir: cannot create directory '/run/user/1501': Permission denied</code>
+To resolve this, use:
+<code>bash     mkdir temp     export DBUS_SESSION_BUS_ADDRESS=&quot;unix:path=./temp&quot;   </code></p>
+</div></div>
+<h3 id="step-8-adding-a-desktop-icon" class="anchor-heading">Step 8: Adding a Desktop Icon<a class="anchor-link" href="#step-8-adding-a-desktop-icon" aria-label="Direct link">#</a></h3><p>This desktop entry launches the JAR in a terminal. Open <code>http://localhost:8080</code> in your browser after the server has started. Adjust the JAR path if you installed it elsewhere.</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">mkdir</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -p</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/.local/share/applications</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">cat</span><span style="color:#D73A49;--shiki-dark:#F97583"> ></span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/.local/share/applications/Stirling-PDF.desktop</span><span style="color:#D73A49;--shiki-dark:#F97583"> &#x3C;&#x3C;</span><span style="color:#032F62;--shiki-dark:#9ECBFF">'EOF'</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">[Desktop Entry]</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">Name=Stirling PDF</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">GenericName=PDF tools</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">Categories=Office;</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">Exec=java -jar /opt/Stirling-PDF/Stirling-PDF.jar</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">Path=/opt/Stirling-PDF</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">Icon=application-pdf</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">Keywords=pdf;</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">Type=Application</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">NoDisplay=false</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">Terminal=true</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">EOF</span></span></code></pre></div>
+<p>Stop the server with Ctrl+C in its terminal.</p>
+<h3 id="optional-changing-the-host-and-port" class="anchor-heading">Optional: Changing the Host and Port<a class="anchor-link" href="#optional-changing-the-host-and-port" aria-label="Direct link">#</a></h3><p>To override the default configuration, you can add the following to the <code>configs/custom_settings.yml</code> file inside your install directory (for example, <code>/opt/Stirling-PDF/configs/custom_settings.yml</code>):</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">server</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  address</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">0.0.0.0</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  port</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">3000</span></span></code></pre></div>
+<p>For systemd add in the .env file (see run as service for setting environment variables):</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">SERVER_ADDRESS</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"0.0.0.0"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">SERVER_PORT</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"3000"</span></span></code></pre></div>
+<p><strong>Note:</strong> The file <code>custom_settings.yml</code> is created after the first application launch. To have it before that, you can create the directory and add the file yourself.</p>
+<h3 id="optional-run-stirling-pdf-as-a-service-requires-root" class="anchor-heading">Optional: Run Stirling PDF as a service (requires root).<a class="anchor-link" href="#optional-run-stirling-pdf-as-a-service-requires-root" aria-label="Direct link">#</a></h3><p>First create a .env file, where you can store environment variables:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span>touch /opt/Stirling-PDF/.env</span></span></code></pre></div>
+<p>In this file you can add all variables, one variable per line, as stated in the main readme (for example SYSTEM_DEFAULTLOCALE=&quot;de-DE&quot;).</p>
+<p>Create a new file where we store our service settings and open it with nano editor:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span>nano /etc/systemd/system/stirlingpdf.service</span></span></code></pre></div>
+<p>Paste this content, make sure to update the filename of the jar-file. Press Ctrl+S and Ctrl+X to save and exit the nano editor:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span>[Unit]</span></span>
+<span class="line"><span>Description=Stirling-PDF service</span></span>
+<span class="line"><span>After=syslog.target network.target</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[Service]</span></span>
+<span class="line"><span>SuccessExitStatus=143</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>User=root</span></span>
+<span class="line"><span>Group=root</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Type=simple</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>EnvironmentFile=/opt/Stirling-PDF/.env</span></span>
+<span class="line"><span>WorkingDirectory=/opt/Stirling-PDF</span></span>
+<span class="line"><span>ExecStart=/usr/bin/java -jar /opt/Stirling-PDF/Stirling-PDF.jar</span></span>
+<span class="line"><span>ExecStop=/bin/kill -15 $MAINPID</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[Install]</span></span>
+<span class="line"><span>WantedBy=multi-user.target</span></span></code></pre></div>
+<p>Notify systemd that it has to rebuild its internal service database (you have to run this command every time you make a change in the service file):</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span>sudo systemctl daemon-reload</span></span></code></pre></div>
+<p>Enable the service to tell the service to start it automatically:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span>sudo systemctl enable stirlingpdf.service</span></span></code></pre></div>
+<p>See the status of the service:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span>sudo systemctl status stirlingpdf.service</span></span></code></pre></div>
+<p>Manually start/stop/restart the service:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span>sudo systemctl start stirlingpdf.service</span></span>
+<span class="line"><span>sudo systemctl stop stirlingpdf.service</span></span>
+<span class="line"><span>sudo systemctl restart stirlingpdf.service</span></span></code></pre></div>
+<h3 id="starting-unoserver-alongside-stirling-pdf" class="anchor-heading">Starting unoserver alongside Stirling PDF<a class="anchor-link" href="#starting-unoserver-alongside-stirling-pdf" aria-label="Direct link">#</a></h3><p>To ensure that unoserver is running alongside Stirling PDF, you need to start it with the following command:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">unoserver</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --port</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 2003</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --interface</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 0.0.0.0</span></span></code></pre></div>
+<p>You can add this command to your startup script or systemd service file to ensure it starts automatically with Stirling PDF.</p>
+<h3 id="customizing-paths-in-settingsyml" class="anchor-heading">Customizing Paths in settings.yml<a class="anchor-link" href="#customizing-paths-in-settingsyml" aria-label="Direct link">#</a></h3><p>If the install path is different, it can be customized in <code>settings.yml</code>:</p>
+<div class="codeblock"><button class="codeblock-copy" type="button" aria-label="Copy code"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="codeblock-lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">system</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  customPaths</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    pipeline</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      watchedFoldersDir</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">""</span><span style="color:#6A737D;--shiki-dark:#6A737D"> #Defaults to /pipeline/watchedFolders</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      finishedFoldersDir</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">""</span><span style="color:#6A737D;--shiki-dark:#6A737D"> #Defaults to /pipeline/finishedFolders</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    operations</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      weasyprint</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">""</span><span style="color:#6A737D;--shiki-dark:#6A737D"> #Defaults to /opt/venv/bin/weasyprint</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      unoconvert</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">""</span><span style="color:#6A737D;--shiki-dark:#6A737D"> #Defaults to /opt/venv/bin/unoconvert</span></span></code></pre></div>
+
+    <div class="doc-source">
+      <a href="https://github.com/Stirling-Tools/Stirling-Tools.github.io/edit/main/docs/Installation/Unix.md" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+        Edit this page on GitHub
+      </a>
+    </div>
+  </article>
+  <nav class="pager"><a class="pager-link pager-prev" href="/Installation/Mac%20Installation/">
+        <span class="pager-dir">&larr; Previous</span>
+        <span class="pager-title">Mac Installation Guide</span>
+      </a><a class="pager-link pager-next" href="/Installation/Windows%20Installation/">
+        <span class="pager-dir">Next &rarr;</span>
+        <span class="pager-title">Windows Guide</span>
+      </a></nav>
+</main>
+<aside class="toc"><div class="toc-title">On this page</div><ul><li class="toc-l2"><a href="#desktop-application-recommended-for-personal-use">Desktop Application (Recommended for Personal Use)</a></li>
+<li class="toc-l3"><a href="#what-you-get">What You Get</a></li>
+<li class="toc-l3"><a href="#installation">Installation</a></li>
+<li class="toc-l3"><a href="#connecting-to-a-server">Connecting to a server</a></li>
+<li class="toc-l3"><a href="#managed-deployment-mdm">Managed deployment (MDM)</a></li>
+<li class="toc-l2"><a href="#server-version-for-hosting-and-sharing">Server Version (For Hosting and Sharing)</a></li>
+<li class="toc-l3"><a href="#step-1-prerequisites">Step 1: Prerequisites</a></li>
+<li class="toc-l3"><a href="#step-2-clone-and-build-jbig2enc-only-required-for-certain-ocr-functionality">Step 2: Clone and Build jbig2enc (Only required for certain OCR functionality)</a></li>
+<li class="toc-l3"><a href="#step-3-install-additional-software">Step 3: Install Additional Software</a></li>
+<li class="toc-l3"><a href="#step-4-grab-latest-stirling-pdf-jar">Step 4: Grab latest Stirling PDF Jar</a></li>
+<li class="toc-l3"><a href="#step-4b-clone-the-stirling-pdf-repository">Step 4b: Clone the Stirling-PDF Repository</a></li>
+<li class="toc-l3"><a href="#step-5-move-jar-and-scripts-to-desired-location">Step 5: Move JAR and Scripts to Desired Location</a></li>
+<li class="toc-l3"><a href="#step-6-ocr-language-support">Step 6: OCR Language Support</a></li>
+<li class="toc-l3"><a href="#step-7-run-stirling-pdf">Step 7: Run Stirling PDF</a></li>
+<li class="toc-l3"><a href="#step-8-adding-a-desktop-icon">Step 8: Adding a Desktop Icon</a></li>
+<li class="toc-l3"><a href="#optional-changing-the-host-and-port">Optional: Changing the Host and Port</a></li>
+<li class="toc-l3"><a href="#optional-run-stirling-pdf-as-a-service-requires-root">Optional: Run Stirling PDF as a service (requires root).</a></li>
+<li class="toc-l3"><a href="#starting-unoserver-alongside-stirling-pdf">Starting unoserver alongside Stirling PDF</a></li>
+<li class="toc-l3"><a href="#customizing-paths-in-settingsyml">Customizing Paths in settings.yml</a></li></ul></aside>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="footer-wordmark" href="https://stirling.com/">
+          <img src="/img/stirling-mark.svg" alt="" width="20" height="22">
+          <span>Stirling</span>
+        </a>
+        <p class="footer-tagline">The Secure PDF Processor</p>
+        <div class="footer-social">
+          <a href="https://discord.com/invite/Cn8pWhQRxZ" target="_blank" rel="noopener" aria-label="Discord">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.07.07 0 0 0-.08.04c-.21.38-.44.87-.6 1.25a18.3 18.3 0 0 0-5.5 0 12.6 12.6 0 0 0-.61-1.25.08.08 0 0 0-.08-.04 19.7 19.7 0 0 0-4.88 1.52.07.07 0 0 0-.03.03C.53 9.05-.32 13.58.1 18.06c0 .02.01.04.03.05a19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.22-2a.08.08 0 0 0-.04-.11 13.1 13.1 0 0 1-1.87-.9.08.08 0 0 1-.01-.12c.13-.1.25-.19.37-.29a.07.07 0 0 1 .08-.01c3.93 1.8 8.18 1.8 12.06 0a.07.07 0 0 1 .08 0c.12.11.25.2.37.3a.08.08 0 0 1 0 .12 12.3 12.3 0 0 1-1.88.9.08.08 0 0 0-.04.1c.36.7.77 1.37 1.22 2a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6.02-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03zM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42c1.22 0 2.18 1.1 2.16 2.42 0 1.34-.94 2.42-2.16 2.42z"/></svg>
+          </a>
+          <a href="https://x.com/StirlingPDF" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/stirling-pdf/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          </a>
+          <a href="https://github.com/Stirling-Tools/Stirling-PDF" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .3.21.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-title">Product</div>
+          <a href="https://stirling.com/#1">Features</a>
+          <a href="https://stirling.com/pricing">Pricing</a>
+          <a href="https://stirling.com/download">Download</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-title">Resources</div>
+          <a href="/">Docs</a>
+          <a href="https://registry.scalar.com/@stirlingpdf/apis/stirling-pdf-processing-api/" target="_blank" rel="noopener">API</a>
+          <a href="https://github.com/Stirling-Tools/Stirling-PDF/releases" target="_blank" rel="noopener">Changelog</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-title">Company</div>
+          <a href="https://stirling.com/about">About</a>
+          <a href="https://stirling.com/contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <a href="https://stirling.com/legal/terms-of-service">Terms of Service</a>
+        <a href="https://stirling.com/legal/privacy-policy">Privacy Policy</a>
+      </div>
+      <div class="footer-copyright">&copy; 2026 Stirling PDF, Inc.</div>
+    </div>
+  </div>
+</footer>
+<div class="sidebar-backdrop"></div>
+<script>window.__DOCS_BUNDLE__ = "/_content/bundle-461cff3a84cb.json";</script>
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+<script>
+  docsearch({
+    container: '#docsearch',
+    appId: 'NJB9CKQAIT',
+    apiKey: 'c67f84bf0cdec4d1962ac4e0d65fb4e5',
+    indexName: 'stirlingpdf',
+    transformItems: function(items){
+      return items
+        .map(function(item){
+          return Object.assign({}, item, { url: item.url.replace(/^https?:\/\/[^/]+/, '').replace(/^\/docs\//, '/') });
+        })
+        .filter(function(item){ return item.url.indexOf('/1.5/') !== 0; });
+    }
+  });
+</script>
+<script src="/assets/main.js"></script>
+<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=5d074971-2ecb-4c54-8397-30c0f91896b3" height="1" width="1" style="display:none" alt="">
+</body>
+</html>
