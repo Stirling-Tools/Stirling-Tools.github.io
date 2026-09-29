@@ -1,0 +1,1115 @@
+/* Design mirrored from the Stirling portal "Developer docs" surface
+   (frontend/editor/src/portal/views/DeveloperDocs.css) with its token values
+   inlined, since this site has no runtime theme system. */
+
+:root {
+  --c-bg: #f5f4f1;
+  --c-bg-raised: #ffffff;
+  --c-surface: #fafafa;
+  --c-bg-subtle: #f3f4f6;
+  --c-hover: #f9fafb;
+  --c-text: #373530;
+  --c-text-muted: #4b5563;
+  --c-text-subtle: #646b76;
+  --c-border: #f0f0f0;
+  --c-border-subtle: #e5e7eb;
+  --c-primary: #3b82f6;
+  --c-primary-hover: #2563eb;
+  --c-brand: #af3434;
+  --c-success: #16a34a;
+  --c-danger: #dc2626;
+  --c-warning: #d97706;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+  --motion-fast: 0.15s ease;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "Fira Code", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  --navbar-h: 4.625rem;
+}
+
+[data-theme="dark"] {
+  --c-bg: #141416;
+  --c-bg-raised: #131315;
+  --c-surface: #1a1a1d;
+  --c-bg-subtle: #1f1f23;
+  --c-hover: #1f2937;
+  --c-text: #fafafa;
+  --c-text-muted: #a1a1aa;
+  --c-text-subtle: #8b8b94;
+  --c-border: #28282d;
+  --c-border-subtle: rgba(255, 255, 255, 0.07);
+  --c-primary: #3b82f6;
+  --c-primary-hover: #1d4ed8;
+  --c-danger: #ef4444;
+  --c-warning: #f59e0b;
+  --c-success: #22c55e;
+}
+
+* { box-sizing: border-box; }
+
+/* Theme-aware scrollbars (page + sidebar/toc rails) */
+:root { --scrollbar-thumb: #d1d5db; --scrollbar-thumb-hover: #9ca3af; }
+[data-theme="dark"] { --scrollbar-thumb: #3f3f46; --scrollbar-thumb-hover: #52525b; }
+html { scrollbar-color: var(--scrollbar-thumb) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--scrollbar-thumb-hover); background-clip: content-box; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--c-bg-raised);
+  color: var(--c-text);
+  border-radius: var(--radius-md);
+}
+.skip-link:focus { left: 0.5rem; top: 0.5rem; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Navigation progress bar - only appears if a swap takes over ~150ms. */
+.nav-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  z-index: 60;
+  background: var(--c-primary);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+.nav-progress.active {
+  opacity: 1;
+  animation: nav-progress-grow 1.4s ease-out forwards;
+}
+@keyframes nav-progress-grow {
+  0% { transform: scaleX(0); }
+  60% { transform: scaleX(0.75); }
+  100% { transform: scaleX(0.92); }
+}
+
+/* Focused headings after a navigation shouldn't show a focus ring. */
+.doc h1:focus { outline: none; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-size: 16px;
+  /* Matches stirling.com's text rendering (thinner, crisper on dark). */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Navbar — mirrors the stirling.com site header (light, translucent) ──── */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--navbar-h);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 1px 0 0;
+  font-family: "Inter", var(--font-sans);
+}
+/* Dark theme keeps the same shape, inverted. */
+[data-theme="dark"] .navbar {
+  background: rgba(20, 20, 22, 0.95);
+  box-shadow: rgba(255, 255, 255, 0.08) 0 1px 0 0;
+}
+
+.navbar-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  max-width: 77.5rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  background: none;
+  color: var(--c-text);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+}
+.menu-toggle:hover { background: var(--c-hover); }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #121212;
+  white-space: nowrap;
+}
+[data-theme="dark"] .brand { color: #fafafa; }
+.brand img { display: block; height: 29px; width: auto; }
+.brand-name {
+  font-family: "Alumni Sans", var(--font-sans);
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.navbar-center {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: 1.5rem;
+}
+.navbar-center > a {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #121212;
+  text-decoration: none;
+  transition: opacity var(--motion-fast);
+}
+[data-theme="dark"] .navbar-center > a { color: #fafafa; }
+.navbar-center > a:hover { opacity: 0.65; }
+.navbar-center > a.active { opacity: 0.55; }
+
+/* Dropdown menus (Product / Company) - panel metrics measured off
+   stirling.com: 324px wide, 24px radius, 16px padding, hairline + soft shadow,
+   centred under the trigger. Rows are 58px with a title and description. */
+.nav-item { position: relative; display: flex; align-items: center; }
+
+.nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #121212;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--motion-fast);
+}
+[data-theme="dark"] .nav-trigger { color: #fafafa; }
+.nav-trigger:hover { opacity: 0.65; }
+.nav-caret { transition: transform var(--motion-fast); }
+.nav-item.open .nav-caret { transform: rotate(180deg); }
+
+.nav-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 324px;
+  display: none;
+  flex-direction: column;
+  padding: 16px;
+  margin-top: 12px;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 20px 0;
+  z-index: 60;
+}
+/* Invisible bridge so the menu survives the gap under the trigger. */
+.nav-menu::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+[data-theme="dark"] .nav-menu {
+  background: #1a1a1d;
+  box-shadow: rgba(255, 255, 255, 0.08) 0 0 0 1px, rgba(0, 0, 0, 0.5) 0 2px 20px 0;
+}
+.nav-item:hover .nav-menu,
+.nav-item:focus-within .nav-menu,
+.nav-item.open .nav-menu { display: flex; }
+
+.nav-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 58px;
+  padding: 0 8px;
+  border-radius: 14px;
+  text-decoration: none;
+}
+/* Hover lifts the row into a card with the same 1px hairline ring the panel
+   itself uses, rather than a grey fill. */
+.nav-menu-item { transition: box-shadow var(--motion-fast), background var(--motion-fast); }
+/* Row text must not inherit the top-level link fade. */
+.nav-menu-item:hover { opacity: 1; }
+.nav-menu-item:hover {
+  background: #f4f4f5;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
+}
+[data-theme="dark"] .nav-menu-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: rgba(255, 255, 255, 0.1) 0 0 0 1px;
+}
+/* Keyboard users get a stronger, unambiguous ring - the hover hairline is too
+   faint to serve as a focus indicator on its own. */
+.nav-menu-item:focus-visible,
+.nav-trigger:focus-visible,
+.navbar-center a:focus-visible,
+.navbar-login:focus-visible,
+.navbar-cta:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 2px;
+  border-radius: 14px;
+}
+.nav-menu-item:focus-visible { outline-offset: -1px; }
+
+.nav-menu-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #f4f4f5;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
+  /* Glyphs are near-black like stirling.com, not grey. */
+  color: #121212;
+}
+[data-theme="dark"] .nav-menu-icon {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: rgba(255, 255, 255, 0.08) 0 0 0 1px;
+  color: #fafafa;
+}
+
+.nav-menu-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.nav-menu-title { font-size: 0.9375rem; font-weight: 500; color: #121212; }
+[data-theme="dark"] .nav-menu-title { color: #fafafa; }
+.nav-menu-desc { font-size: 0.8125rem; font-weight: 500; color: #525252; }
+[data-theme="dark"] .nav-menu-desc { color: #a1a1aa; }
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+
+.ask-ai {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #121212;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--motion-fast);
+}
+[data-theme="dark"] .ask-ai { color: #fafafa; }
+.ask-ai:hover { opacity: 0.65; }
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: #525252;
+  background: none;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: color var(--motion-fast), background var(--motion-fast);
+}
+.theme-toggle:hover { color: #121212; background: rgba(0, 0, 0, 0.05); }
+[data-theme="dark"] .theme-toggle { color: #a1a1aa; }
+[data-theme="dark"] .theme-toggle:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }
+
+.icon-moon { display: none; }
+[data-theme="dark"] .icon-moon { display: block; }
+[data-theme="dark"] .icon-sun { display: none; }
+
+.gh-star {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #121212;
+  text-decoration: none;
+}
+[data-theme="dark"] .gh-star { color: #fafafa; }
+.gh-star-count {
+  font-family: "Geist", var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #525252;
+  transition: color var(--motion-fast);
+}
+[data-theme="dark"] .gh-star-count { color: #a1a1aa; }
+.gh-star:hover .gh-star-count { color: #121212; }
+[data-theme="dark"] .gh-star:hover .gh-star-count { color: #fff; }
+
+/* Log in: ghost pill. Sign up: solid dark pill. */
+.navbar-login,
+.navbar-cta {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 64px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--motion-fast), opacity var(--motion-fast);
+}
+
+.navbar-login {
+  color: #262626;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.navbar-login:hover { background: #f5f5f5; }
+[data-theme="dark"] .navbar-login {
+  color: #e5e5e5;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+[data-theme="dark"] .navbar-login:hover { background: rgba(255, 255, 255, 0.08); }
+
+.navbar-cta {
+  color: #fff;
+  background: #121212;
+}
+.navbar-cta:hover { opacity: 0.85; }
+[data-theme="dark"] .navbar-cta { color: #121212; background: #fafafa; }
+
+/* ── Layout: sidebar / content / toc ─────────────────────────────────────── */
+
+.layout {
+  display: grid;
+  grid-template-columns: 17rem minmax(0, 1fr) 15rem;
+  max-width: 100rem;
+  margin: 0 auto;
+}
+/* Align the sidebar edge with the navbar brand on wide screens. */
+@media (min-width: 90rem) {
+  .layout { padding: 0 60px; }
+}
+
+/* ── Left nav ────────────────────────────────────────────────────────────── */
+
+.sidebar {
+  position: sticky;
+  top: var(--navbar-h);
+  height: calc(100vh - var(--navbar-h));
+  overflow-y: auto;
+  border-right: 1px solid var(--c-border-subtle);
+  padding: 1.25rem 0 2rem;
+  scrollbar-width: thin;
+}
+
+.sidebar-search { padding: 0 0.75rem 0.75rem; }
+
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+}
+
+.side-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.35rem 0.75rem 0.35rem 1rem;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--c-text-subtle);
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  transition: background var(--motion-fast), color var(--motion-fast);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.side-link:hover { background: var(--c-hover); color: var(--c-text); }
+.side-link.active {
+  background: color-mix(in srgb, var(--c-primary) 12%, var(--c-surface));
+  color: var(--c-primary);
+  font-weight: 600;
+}
+
+/* Category header row: label + caret */
+.side-category { margin-top: 0.4rem; }
+.side-category-row { display: flex; align-items: stretch; }
+.side-cat-label {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-subtle);
+  padding: 0.4rem 0.25rem 0.4rem 1rem;
+}
+.side-cat-label:hover { color: var(--c-text-muted); }
+.side-cat-label.active { color: var(--c-primary); background: none; }
+
+.side-caret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  border: none;
+  background: none;
+  color: var(--c-text-subtle);
+  cursor: pointer;
+}
+.side-caret svg { transition: transform var(--motion-fast); }
+.side-category.open > .side-category-row .side-caret svg { transform: rotate(90deg); }
+
+/* Nested items: indented with a guide line */
+.side-sub {
+  display: none !important;
+  margin: 0.125rem 0 0.25rem 1.1rem !important;
+  padding-left: 0.4rem !important;
+  border-left: 1px solid var(--c-border-subtle);
+}
+.side-category.open > .side-sub { display: flex !important; }
+.side-sub .side-link { padding-left: 0.6rem; }
+.side-sub .side-cat-label { padding-left: 0.6rem; }
+
+/* ── Content ─────────────────────────────────────────────────────────────── */
+
+/* Body is navbar / layout / footer stacked; layout grows so the footer
+   sits at the bottom even on short pages. */
+body { display: flex; flex-direction: column; min-height: 100vh; }
+.layout { flex: 1; width: 100%; }
+
+.content {
+  min-width: 0;
+  padding: 2rem 2.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.doc {
+  width: 100%;
+  max-width: 46rem;
+  margin: 0 auto;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--c-text-muted);
+  flex: 1;
+}
+
+.doc-title,
+.doc h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--c-text);
+  margin: 0 0 1rem;
+}
+
+.doc h2,
+.doc h3,
+.doc h4 {
+  color: var(--c-text);
+  font-weight: 650;
+  line-height: 1.25;
+  margin: 1.75rem 0 0.75rem;
+  scroll-margin-top: calc(var(--navbar-h) + 1rem);
+}
+.doc h2 {
+  font-size: 1.3125rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--c-border-subtle);
+}
+.doc h3 { font-size: 1.0625rem; }
+.doc h4 { font-size: 0.9375rem; }
+.doc > :first-child { margin-top: 0; }
+
+.anchor-heading .anchor-link {
+  margin-left: 0.4rem;
+  color: var(--c-text-subtle);
+  opacity: 0;
+  text-decoration: none;
+  font-weight: 400;
+  transition: opacity var(--motion-fast);
+}
+.anchor-heading:hover .anchor-link { opacity: 1; }
+.anchor-link:hover { color: var(--c-primary); }
+
+.doc p, .doc ul, .doc ol { margin: 0 0 0.875rem; }
+.doc li { margin: 0.25rem 0; }
+.doc li > p { margin-bottom: 0.25rem; }
+
+.doc a { color: var(--c-primary); text-decoration: none; }
+.doc a:hover { text-decoration: underline; }
+
+.doc code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--c-bg-subtle);
+  border: 1px solid var(--c-border-subtle);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+}
+
+.doc blockquote {
+  margin: 0 0 0.875rem;
+  padding: 0.125rem 0.875rem;
+  border-left: 3px solid var(--c-primary);
+  background: var(--c-bg-subtle);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  color: var(--c-text-subtle);
+}
+.doc blockquote p { margin: 0.5rem 0; }
+/* Headings inside callout boxes: no section-sized margins or rules. */
+.doc blockquote h2, .doc blockquote h3, .doc blockquote h4,
+.doc .admonition h2, .doc .admonition h3, .doc .admonition h4 {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 0.9375rem;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.doc img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--c-border-subtle);
+}
+
+.doc hr {
+  border: none;
+  border-top: 1px solid var(--c-border-subtle);
+  margin: 1.5rem 0;
+}
+/* Docs often write "---" right before "## Heading"; the h2 already draws its
+   own hairline, so drop the hr to avoid double divider lines. */
+.doc hr:has(+ h2),
+.doc > hr:first-child { display: none; }
+
+.doc table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.8125rem;
+  margin: 0 0 0.875rem;
+  display: block;
+  overflow-x: auto;
+}
+.doc th, .doc td {
+  border: 1px solid var(--c-border-subtle);
+  padding: 0.4rem 0.625rem;
+  text-align: left;
+  vertical-align: top;
+}
+.doc th { background: var(--c-bg-subtle); font-weight: 600; }
+
+.doc details {
+  margin: 0 0 0.875rem;
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.875rem;
+  background: var(--c-surface);
+}
+.doc summary { cursor: pointer; font-weight: 600; color: var(--c-text); }
+
+/* ── Code blocks ─────────────────────────────────────────────────────────── */
+
+.codeblock {
+  position: relative;
+  margin: 0 0 0.875rem;
+}
+
+.codeblock-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--c-text-subtle);
+  background: var(--c-bg-subtle);
+  border: 1px solid var(--c-border-subtle);
+  border-bottom: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  padding: 0.4rem 0.875rem;
+}
+.codeblock-title + button + .shiki,
+.codeblock-title ~ pre.shiki { border-radius: 0 0 var(--radius-md) var(--radius-md); }
+
+.codeblock pre.shiki {
+  margin: 0;
+  padding: 0.875rem 4rem 0.875rem 0.875rem;
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  background: var(--c-bg-subtle) !important;
+}
+.codeblock pre.shiki code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  font-family: var(--font-mono);
+}
+
+/* Shiki dual themes: swap CSS variables in dark mode */
+[data-theme="dark"] .codeblock pre.shiki,
+[data-theme="dark"] .codeblock pre.shiki span {
+  color: var(--shiki-dark) !important;
+}
+
+.codeblock-lang {
+  position: absolute;
+  top: 0.45rem;
+  right: 2.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--c-text-subtle);
+  user-select: none;
+  pointer-events: none;
+}
+.codeblock-title ~ .codeblock-lang { display: none; }
+
+.codeblock-copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--c-text-subtle);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--motion-fast), color var(--motion-fast);
+  z-index: 1;
+}
+.codeblock:hover .codeblock-copy,
+.codeblock-copy:focus-visible { opacity: 1; }
+/* Touch devices have no hover: keep the button visible. */
+@media (hover: none) { .codeblock-copy { opacity: 1; } }
+.codeblock-copy:hover { color: var(--c-text); }
+.codeblock-copy.copied { color: var(--c-success); opacity: 1; }
+.codeblock-title ~ .codeblock-copy { top: 2.6rem; }
+
+/* ── Admonitions ─────────────────────────────────────────────────────────── */
+
+/* Portal-style callout: neutral subtle surface, type-coloured left bar only. */
+.admonition {
+  --adm-color: var(--c-text-subtle);
+  margin: 0 0 0.875rem;
+  padding: 0.75rem 0.875rem;
+  border-left: 3px solid var(--adm-color);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: var(--c-bg-subtle);
+  font-size: 0.875rem;
+}
+.admonition-note { --adm-color: var(--c-text-subtle); }
+.admonition-info { --adm-color: var(--c-primary); }
+.admonition-tip { --adm-color: var(--c-success); }
+.admonition-warning, .admonition-caution { --adm-color: var(--c-warning); }
+.admonition-danger { --adm-color: var(--c-danger); }
+
+.admonition-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--adm-color);
+  margin-bottom: 0.375rem;
+}
+.admonition-content > :last-child { margin-bottom: 0; }
+.admonition-content > :first-child { margin-top: 0; }
+
+/* ── Tabs ────────────────────────────────────────────────────────────────── */
+
+.tabs { margin: 0 0 0.875rem; }
+
+.tab-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--c-border-subtle);
+  margin-bottom: 0.75rem;
+}
+
+.tab-btn {
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--c-text-subtle);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  transition: color var(--motion-fast);
+}
+.tab-btn:hover { color: var(--c-text); }
+.tab-btn.active {
+  color: var(--c-primary);
+  font-weight: 600;
+  border-bottom-color: var(--c-primary);
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.tab-panel > :last-child { margin-bottom: 0; }
+
+/* ── ToC (right rail) ────────────────────────────────────────────────────── */
+
+.toc {
+  position: sticky;
+  top: var(--navbar-h);
+  height: calc(100vh - var(--navbar-h));
+  overflow-y: auto;
+  padding: 1.5rem 0.75rem;
+  scrollbar-width: thin;
+}
+
+.toc-title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-subtle);
+  padding: 0 0.5rem 0.5rem;
+}
+
+.toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+}
+
+.toc a {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  border-left: 2px solid transparent;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: var(--c-text-subtle);
+  text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.toc-l3 a { padding-left: 1.25rem; font-size: 0.75rem; }
+.toc a:hover { color: var(--c-text); }
+.toc a.active {
+  color: var(--c-primary);
+  border-left-color: var(--c-primary);
+  font-weight: 600;
+}
+
+/* ── Edit-this-page footer link (portal "view source" style) ─────────────── */
+
+.doc-source {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--c-border-subtle);
+  font-size: 0.8125rem;
+}
+.doc-source a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--c-text-subtle);
+  text-decoration: none;
+}
+.doc-source a:hover { color: var(--c-primary); text-decoration: underline; }
+
+/* ── Pager ───────────────────────────────────────────────────────────────── */
+
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  max-width: 46rem;
+  width: 100%;
+  margin: 2.5rem auto 0;
+}
+
+.pager-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+  text-decoration: none;
+  transition: border-color var(--motion-fast);
+}
+.pager-link:hover { border-color: var(--c-primary); }
+.pager-next { text-align: right; }
+.pager-dir { font-size: 0.75rem; color: var(--c-text-subtle); }
+.pager-title { font-size: 0.875rem; font-weight: 600; color: var(--c-primary); }
+
+/* ── Footer — matches the stirling.com site footer (always dark) ─────────── */
+
+.footer {
+  margin-top: 4rem;
+  background: #000;
+  font-family: "Geist", var(--font-sans);
+  padding: 40px 0 32px;
+}
+
+.footer-inner {
+  max-width: 100rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+@media (min-width: 90rem) {
+  .footer-inner { padding: 0 60px; }
+}
+
+.footer-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2.5rem 4rem;
+}
+
+.footer-brand { display: flex; flex-direction: column; gap: 0.625rem; }
+
+.footer-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #fff;
+  font-family: "Alumni Sans", "Geist", var(--font-sans);
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.footer-tagline {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-social { display: flex; align-items: center; gap: 0.875rem; margin-top: 0.375rem; }
+.footer-social a {
+  color: rgba(255, 255, 255, 0.6);
+  transition: color var(--motion-fast);
+  display: inline-flex;
+}
+.footer-social a:hover { color: #fff; }
+
+.footer-cols { display: flex; flex-wrap: wrap; gap: 2.5rem 4.5rem; }
+
+.footer-col { display: flex; flex-direction: column; gap: 0.625rem; min-width: 7rem; }
+
+.footer-title {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #fafafa;
+  margin-bottom: 0.25rem;
+}
+
+.footer-col a {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.footer-col a:hover { color: #fff; }
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.footer-legal a:hover { color: #fff; }
+
+.footer-copyright { font-size: 0.875rem; color: rgba(255, 255, 255, 0.6); }
+
+/* ── Algolia DocSearch button restyled as the portal search input ────────── */
+
+/* Restyled as the portal's sidebar search input: magnifier + placeholder,
+   left-aligned, no key chips. Ctrl+K still opens it. */
+.sidebar-search .DocSearch-Button {
+  width: 100%;
+  margin: 0;
+  padding: 0.4rem 0.6rem;
+  justify-content: flex-start;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--c-text-subtle);
+  background: var(--c-bg-subtle);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color var(--motion-fast);
+}
+.sidebar-search .DocSearch-Button:hover,
+.sidebar-search .DocSearch-Button:focus {
+  border-color: var(--c-primary);
+  box-shadow: none;
+  background: var(--c-bg-subtle);
+  color: var(--c-text-subtle);
+}
+.sidebar-search .DocSearch-Button-Container { flex: none; }
+.sidebar-search .DocSearch-Search-Icon {
+  width: 14px;
+  height: 14px;
+  color: var(--c-text-subtle) !important;
+}
+.sidebar-search .DocSearch-Button-Placeholder {
+  display: block;
+  font-size: 0.8125rem;
+  padding: 0 0 0 0.45rem;
+}
+.sidebar-search .DocSearch-Button-Keys { display: none; }
+
+:root {
+  --docsearch-primary-color: var(--c-primary);
+  --docsearch-logo-color: var(--c-primary);
+}
+[data-theme="dark"] {
+  --docsearch-modal-background: var(--c-surface);
+  --docsearch-footer-background: var(--c-bg-raised);
+  --docsearch-hit-background: var(--c-bg-subtle);
+  --docsearch-hit-color: var(--c-text-muted);
+  --docsearch-text-color: var(--c-text);
+  --docsearch-modal-shadow: none;
+  --docsearch-footer-shadow: none;
+  --docsearch-searchbox-background: var(--c-bg-subtle);
+  --docsearch-searchbox-focus-background: var(--c-bg-subtle);
+  --docsearch-key-gradient: var(--c-bg-subtle);
+  --docsearch-key-shadow: none;
+  --docsearch-muted-color: var(--c-text-subtle);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 72rem) {
+  .layout { grid-template-columns: 17rem minmax(0, 1fr); }
+  .toc { display: none; }
+}
+
+@media (max-width: 60rem) {
+  .layout { grid-template-columns: 1fr; }
+  .menu-toggle { display: inline-flex; }
+
+  .sidebar {
+    position: fixed;
+    top: var(--navbar-h);
+    left: 0;
+    bottom: 0;
+    width: min(20rem, 85vw);
+    height: auto;
+    background: var(--c-bg-raised);
+    border-right: 1px solid var(--c-border-subtle);
+    transform: translateX(-102%);
+    transition: transform 0.2s ease;
+    z-index: 40;
+  }
+  body.nav-open .sidebar { transform: translateX(0); }
+
+  .sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: var(--navbar-h) 0 0 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 30;
+  }
+  body.nav-open .sidebar-backdrop { display: block; }
+  body.nav-open { overflow: hidden; }
+
+  .content { padding: 1.25rem 1.25rem 0; }
+}
+
+/* Drop the star chip first so the nav links survive down to ~1024, which is
+   where stirling.com still shows them. */
+@media (max-width: 75rem) {
+  .gh-star { display: none; }
+}
+
+@media (max-width: 60rem) {
+  .navbar-center,
+  .navbar-login { display: none; }
+}
+
+/* Keep the Sign up CTA through tablet widths; only drop it on phones. */
+@media (max-width: 30rem) {
+  .navbar-cta { display: none; }
+}
+
+@media (max-width: 40rem) {
+  .pager { grid-template-columns: 1fr; }
+  .ask-ai span { display: none; }
+  .brand-name { display: none; }
+}

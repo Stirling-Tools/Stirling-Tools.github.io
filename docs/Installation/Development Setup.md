@@ -237,7 +237,7 @@ Translations use TOML files, one per locale:
 1. Navigate to `frontend/editor/public/locales/<lang>/translation.toml`
 2. **Important**: Only update `en-US/translation.toml`. `en-US` is the source/primary locale and the language used when a translation is missing (`fallbackLng: "en-US"`).
 3. Edit `translation.toml`, adding keys under the relevant feature/tool.
-4. For counts, use ICU-style plural suffixes on the key (`_one`, `_other`, and `_zero` where needed).
+4. For counts, use i18next plural suffixes on the key (`_one`, `_other`, and `_zero` where needed).
 5. Other languages are managed separately by the community.
 
 ### Adding a New PDF Tool
@@ -262,7 +262,7 @@ See the repository's `ADDING_TOOLS.md` for detailed instructions. Quick overview
 
 - **npm install fails**: Delete `node_modules` and `package-lock.json`, then run `npm install` again
 - **Proxy errors**: Ensure backend is running on port 8080
-- **Memory issues with large PDFs**: This is expected during development; memory management is optimized in production builds
+- **Memory issues with large PDFs**: Check Java heap and container memory limits, and reduce the number of simultaneous operations.
 
 ### Docker Issues
 

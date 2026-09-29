@@ -1,7 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run docusaurus:*)",
       "Bash(cat:*)",
       "Bash(tree:*)",
       "Bash(find:*)",

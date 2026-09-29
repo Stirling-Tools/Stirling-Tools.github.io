@@ -1,20 +1,20 @@
 ---
-sidebar_position: 5
+sidebar_position: 8
 id: Paid-Offerings
 title: Paid Offerings
-description: Server and Enterprise paid plans for Stirling PDF
+description: Team and Enterprise paid plans for Stirling PDF
 tags:
   - Enterprise
-  - Server
+  - Team
   - Paid
   - Pricing
 
 ---
 # Stirling PDF Paid Offerings
 
-Stirling PDF offers Server and Enterprise paid plans. These provide the same great software with added features, streamlined license management, and support options.
+Stirling PDF offers Team and Enterprise paid plans. These provide the same great software with added features, streamlined license management, and support options.
 
-> This page covers **self-hosted** Server and Enterprise licensing (a flat-rate or per-seat license key, no credits). Stirling Cloud is a separate, credit-based offering - see [Modes](./Modes-and-Licensing.md) for how the deployment modes compare.
+> This page covers **self-hosted** Team and Enterprise licensing. See [Account linking](./Stirling-Account-Link.md) for processing allowances and [pricing](https://www.stirling.com/pricing) for all plans.
 
 ## Available Plans
 
@@ -24,34 +24,40 @@ Stirling PDF offers Server and Enterprise paid plans. These provide the same gre
 - **Features**:
   - Self-hosted deployment
   - All PDF operations
+  - [OAuth2 SSO](./Configuration/Security/OAuth%20SSO%20Configuration.md) (Google, GitHub, Keycloak, any OIDC provider)
   - Community support
   - Regular updates
 - **Perfect for**: Personal use, small teams, or evaluation
 
-### Server Plan
+### Team Plan
 - **Cost**: $99/month or $999/year (save $189 with annual billing)
 - **Available billing**: Monthly or Yearly
-- **Users**: Unlimited users (flat rate regardless of user count)
-- **Value**: The more users you have, the better the value (e.g., 100 users = $1/user/month)
+- **Users**: 100 users included. Add capacity in blocks of 100 users as your team grows
+- **Value**: One bill for the whole team instead of per-seat licenses (100 users works out under $1 per user per month)
 - **Features**:
   - Self-hosted deployment
   - All PDF operations
-  - Unlimited users - no per-seat charges
+  - 100 users included, with capacity added in blocks of 100
+  - One bill instead of per-seat licenses
   - Community support
   - Regular updates
   - Support tickets via support@stirlingpdf.com
-  - [External Database](./Configuration/External%20Database.md) support for optimized deployments and load-balancing
+  - [External Database](./Configuration/Storage/External%20Database.md) support for optimized deployments and load-balancing
   - Google Drive integration
-  - [OAuth2 SSO](./Configuration/OAuth%20SSO%20Configuration.md) (Google, GitHub, Keycloak, any OIDC provider)
-- **Perfect for**: Organizations with many users who want predictable, flat-rate pricing
+  - [OAuth2 SSO](./Configuration/Security/OAuth%20SSO%20Configuration.md) (Google, GitHub, Keycloak, any OIDC provider)
+- **Perfect for**: Teams and organizations that want predictable, block-based pricing without tracking individual seats
 
 ### Enterprise Plan
-- **Cost**: Base server price + per-seat licensing (check [stirling.com/pricing](https://stirling.com/pricing))
-- **Available billing**: Monthly or Yearly (save with annual billing)
-- **Users**: Per-seat licensing (flexible scaling)
+- **Cost**: Custom pricing - [contact sales](https://www.stirling.com/contact-us) for a quote
+- **Available billing**: Agreed as part of your contract
+- **Users**: Sized to your organization, with volume discounts as you scale
 - **Features**:
-  - All Server Plan features, plus:
-  - [SAML2 SSO](./Configuration/SAML%20SSO%20Configuration/SAML%20SSO%20Configuration.md) (Okta, Azure AD, etc.) with automated login handling
+  - All Team Plan features, plus:
+  - Air-gapped / offline deployment, activated with a [certificate file](#option-2-certificate-file-air-gapped-offline) instead of an online key check
+  - Uptime SLAs
+  - Custom procurement, security review, and contract terms
+  - Volume discounts
+  - [SAML2 SSO](./Configuration/Security/SAML%20SSO%20Configuration.md) (Okta, Azure AD, etc.) with automated login handling
   - Custom automated metadata handling
   - Priority support tickets via support@stirlingpdf.com
   - 1:1 meetings with the Stirling PDF team (from registered email domain)
@@ -59,19 +65,19 @@ Stirling PDF offers Server and Enterprise paid plans. These provide the same gre
   - Prometheus endpoint for advanced usage monitoring
   - Usage Monitoring UI
   - Audit logs
-  - SLA guarantee
   - Custom integrations support
   - Dedicated account manager
-- **Perfect for**: Large enterprises requiring priority support, SLA guarantees, and per-seat licensing
+- **Perfect for**: Regulated environments and large organizations that need air-gapped deployment, uptime SLAs, and an agreement to match
+- **Evaluating?** [Book a demo](https://www.stirling.com/book-a-demo) to see the Enterprise features in action
 
 ## Purchasing a License
 
 ### In-App Purchase (Recommended)
 
-Stirling PDF offers streamlined in-app purchasing and license activation:
+Stirling PDF offers streamlined in-app purchasing and license activation. This covers the Team plan; Enterprise is quoted and issued by sales rather than bought in-app.
 
-1. **Navigate to Settings**: Log in as an admin and go to Settings → Plan
-2. **Select Your Plan**: Choose between Server (unlimited users) or Enterprise (per-seat) plans
+1. **Navigate to Settings**: Sign in as the organization owner and go to **Settings → Workspace → Usage & Billing**
+2. **Select Your Plan**: Choose the Team plan (100 users included, capacity added in blocks of 100)
 3. **Choose Billing Period**: Select monthly or yearly billing (yearly saves money)
 4. **Complete Checkout**: You'll be redirected to Stripe's secure checkout
 5. **Automatic Activation**: After payment, your license key is automatically retrieved and activated
@@ -88,7 +94,7 @@ Stirling PDF offers streamlined in-app purchasing and license activation:
 
 If you prefer to purchase outside the app or have questions:
 
-1. Visit [stirling.com/contact](https://stirling.com/contact) or email support@stirlingpdf.com
+1. Visit [stirling.com/contact-us](https://www.stirling.com/contact-us) or email support@stirlingpdf.com
 2. Our team will assist you with your purchase
 3. You'll receive your license key via email
 4. Follow manual activation steps below
@@ -107,8 +113,8 @@ Stirling PDF accepts two manual activation inputs from the admin UI: a license *
 
 If you purchased via the website and received a license key by email:
 
-1. **Admin Settings**: Log in as an admin and navigate to Settings → Plan
-2. **Open License Input**: Expand the "Got a license key or certificate file?" section
+1. **Open Usage & Billing**: Sign in as the organization owner and go to **Settings → Workspace → Usage & Billing**
+2. **Open License Input**: Next to **License key**, select **Add**, or **Update** if a license is already installed
 3. **Select Input Type**: Make sure "License Key" is selected
 4. **Enter License Key**: Paste your license key in the provided field
 5. **Activate**: Save to apply the license
@@ -118,8 +124,8 @@ If you purchased via the website and received a license key by email:
 
 If you received a `.lic` or `.cert` certificate file (typically issued for Enterprise customers who need to activate without outbound internet access):
 
-1. **Admin Settings**: Log in as an admin and navigate to Settings → Plan
-2. **Open License Input**: Expand the "Got a license key or certificate file?" section
+1. **Open Usage & Billing**: Sign in as the organization owner and go to **Settings → Workspace → Usage & Billing**
+2. **Open License Input**: Next to **License key**, select **Add**, or **Update** if a license is already installed
 3. **Select Input Type**: Switch to "Certificate File"
 4. **Choose File**: Click "Choose License File" and select your `.lic` or `.cert` file (must start with `-----BEGIN LICENSE FILE-----`)
 5. **Upload**: The file is uploaded, validated, saved to your `configs/` folder, and activated automatically. Any previous certificate is backed up to `configs/backup/`
@@ -165,8 +171,8 @@ To reference a certificate file from `settings.yml` instead of uploading via the
 
 Stirling PDF includes a convenient billing management interface:
 
-1. Navigate to Settings → Plan
-2. On your current plan, click "Manage"
+1. Sign in as the organization owner and go to **Settings → Workspace → Usage & Billing**
+2. Select **Manage Billing**
 3. You'll be redirected to Stripe's customer portal where you can:
    - Update payment methods
    - View invoices
@@ -180,7 +186,6 @@ Once activated, you can customize premium features in your `settings.yml`:
 ```yaml
 premium:
   proFeatures:
-    ssoAutoLogin: false
     customMetadata:
       autoUpdateMetadata: false
       author: username
@@ -198,22 +203,24 @@ premium:
 Stirling PDF uses an **installation-based licensing model**:
 
 - Each license is tied to a specific installation (identified by machine fingerprint)
-- **Server Plan**: Flat-rate pricing with unlimited users for one installation
-  - $99/month = unlimited users (great value for larger teams)
-  - Example: 100 users = only $1 per user per month
-  - Example: 500 users = only $0.20 per user per month
-- **Enterprise Plan**: Base installation license + per-seat user licensing
-- **Named User Model**: For Enterprise, seats represent unique users who can log in
-  - Example: A company with 10 employees who use Stirling PDF needs 10 seats
+- **Team Plan**: $99/month covers one installation with 100 users included
+  - Capacity is added in blocks of 100 users, so you get one bill instead of per-seat licenses
+  - Example: 100 users = under $1 per user per month
+- **Enterprise Plan**: Capacity and terms are set in your contract, with volume discounts as you scale
+  - [Contact sales](https://www.stirling.com/contact-us) for a quote covering your user count, deployment model, and SLA
 
 ## Upgrading Your Plan
 
-You can upgrade from Free → Server or Server → Enterprise at any time:
+You can upgrade from Free → Team at any time:
 
-1. Navigate to Settings → Plan
+1. Sign in as the organization owner and go to **Settings → Workspace → Usage & Billing**
 2. On the plan tier you want, click "Upgrade"
 3. Complete checkout
 4. Your existing license will be automatically upgraded
+
+Moving Team → Enterprise goes through sales - [contact sales](https://www.stirling.com/contact-us).
+
+Adding more user capacity to an existing Team plan is coming soon as an in-app feature. Until it lands, email support@stirlingpdf.com and we'll add the block for you.
 
 **Note**: When upgrading, your new plan starts immediately and you'll be credited for any unused time on your previous plan.
 
@@ -223,32 +230,38 @@ You can upgrade from Free → Server or Server → Enterprise at any time:
 - GitHub Issues: [github.com/Stirling-Tools/Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF)
 - Discord: Join our community server
 
-### Email Support (Server & Enterprise)
+### Email Support (Team & Enterprise)
 - Email: support@stirlingpdf.com
-- Response time: 1-2 business days (Server), Priority response (Enterprise)
+- Response time: 1-2 business days (Team), Priority response (Enterprise)
 
 ### Enterprise Support
 - Priority email support
 - 1:1 meetings with Stirling PDF team
 - Dedicated account manager
-- SLA guarantees
+- Uptime SLAs agreed in your contract
 
 ## Frequently Asked Questions
 
 **Q: Can I try before I buy?**
-A: Yes! The Free plan includes all features for up to 5 users. Test thoroughly before upgrading.
+A: The Free plan supports up to 5 users and includes the free PDF tools. Premium features require the corresponding paid plan. If you'd rather be walked through the paid features first, [book a demo](https://www.stirling.com/book-a-demo).
 
 **Q: What happens if I cancel?**
 A: Your license remains active until the end of your billing period, then reverts to Free plan limits.
+
+**Q: What happens when we pass 100 users?**
+A: The Team plan includes 100 users. When you need more, capacity is added in blocks of 100 - you stay on one bill rather than buying individual seats. Adding a block from inside the app is coming soon; in the meantime, email support@stirlingpdf.com.
+
+**Q: How is Enterprise priced?**
+A: Custom, based on your user count, deployment model, and the terms you need. It is not sold in-app - [contact sales](https://www.stirling.com/contact-us) for a quote. Volume discounts apply as you scale. If you want to see it working first, [book a demo](https://www.stirling.com/book-a-demo).
 
 **Q: Can I move my license to a different server?**
 A: Contact support@stirlingpdf.com for license transfers. Enterprise customers have more flexibility.
 
 **Q: Do I need an internet connection?**
-A: License activation requires internet for initial verification. Enterprise customers can request offline certificate files.
+A: License activation requires internet for initial verification. Enterprise customers running air-gapped can request offline certificate files instead.
 
 **Q: What's the difference between monthly and yearly billing?**
-A: Yearly billing offers significant savings. For Server plan: $999/year vs $1,188/year monthly (save $189 = almost 2 months free).
+A: Yearly billing offers significant savings. For Team plan: $999/year vs $1,188/year monthly (save $189 = almost 2 months free).
 
 **Q: How do I get an invoice?**
 A: Invoices are automatically sent via email and accessible through the Billing Portal.
@@ -258,7 +271,7 @@ A: Invoices are automatically sent via email and accessible through the Billing 
 If you're upgrading from Stirling PDF V1 with an existing license:
 
 1. Your existing license key will continue to work
-2. You can enter it manually via Settings → Plan
+2. You can enter it manually in **Settings → Workspace → Usage & Billing**
 3. Or, re-activate through the in-app purchase flow
 4. Contact support@stirlingpdf.com if you encounter any issues
 
@@ -267,4 +280,3 @@ If you're upgrading from Stirling PDF V1 with an existing license:
 For pricing details, visit [stirling.com/pricing](https://stirling.com/pricing)
 
 For technical support, email support@stirlingpdf.com
-

@@ -3,12 +3,10 @@ sidebar_position: 2
 id: Docker Install
 title: Docker Guide
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Docker Installation for Stirling PDF
 
-Run Stirling PDF in Docker for easy self-hosting, automatic updates, and flexible deployment.
+Docker packages Stirling PDF and its dependencies in a container. Update it by pulling the desired image and recreating the container.
 
 ## Quick Start
 
@@ -20,7 +18,7 @@ docker run -d \
   --name stirling-pdf \
   -p 8080:8080 \
   -v ./stirling-data:/configs \
-  stirlingtools/stirling-pdf:latest
+  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
 
 </TabItem>
@@ -31,7 +29,7 @@ Create `docker-compose.yml`:
 ```yaml
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     container_name: stirling-pdf
     ports:
       - '8080:8080'
@@ -69,19 +67,19 @@ Change this password immediately after first login. If you want the no-login exp
 | **Fat** | `latest-fat` | Everything + extra fonts & tools | Highest quality conversions, full format support |
 | **Ultra-Lite** | `latest-ultra-lite` | Core features only | Limited resources, minimal size |
 
-**Most users should use `latest`** - it has everything you need.
+Start with `latest` for the standard toolset; choose another image when its included dependencies suit your workload.
 
 ### When to use each version:
 
 **Standard (`latest`)** - You want all PDF features, have normal server specs, or you're not sure which to pick.
 
-**Fat (`latest-fat`)** - You need the highest quality conversions with full font support, every conversion format, and all optional tools. Disk space isn't a concern.
+**Fat (`latest-fat`)** - Includes additional fonts and optional conversion dependencies. It uses more disk space; conversion results still depend on the input files and installed fonts.
 
 **Ultra-Lite (`latest-ultra-lite`)** - Running on very limited hardware (Raspberry Pi, low-end VPS), want fastest startup, or only need basic PDF operations.
 
 To use a different version, just change the tag:
 ```bash
-docker run -d stirlingtools/stirling-pdf:latest-ultra-lite
+docker run -d docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest-ultra-lite
 ```
 
 ## Full Setup (With All Features)
@@ -101,7 +99,7 @@ docker run -d \
   -v ./stirling-data/pipeline:/pipeline \
   -e SECURITY_ENABLELOGIN=false \
   -e SYSTEM_DEFAULTLOCALE=en-GB \
-  stirlingtools/stirling-pdf:latest
+  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
 
 </TabItem>
@@ -112,7 +110,7 @@ Create `docker-compose.yml`:
 ```yaml
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     container_name: stirling-pdf
     ports:
       - '8080:8080'
@@ -149,7 +147,7 @@ docker-compose up -d
 ```bash
 docker stop stirling-pdf
 docker rm stirling-pdf
-docker pull stirlingtools/stirling-pdf:latest
+docker pull docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 # Then run your original docker run command
 ```
 
@@ -290,9 +288,10 @@ ports:
 
 ## Next Steps
 
-- **Add OCR Languages**: See [OCR Configuration](../Configuration/OCR.md)
-- **Enable Authentication**: See [Security Settings](../Configuration/System%20and%20Security.md)
-- **Setup Automation**: See [Pipeline Configuration](../Configuration/Pipeline.md)
+- **Add OCR Languages**: See [OCR Configuration](../Configuration/Operations/OCR.md)
+- **Enable Authentication**: See [Security Settings](../Configuration/Security/System%20and%20Security.md)
+- **Setup Automation**: See [Pipeline Configuration](../Configuration/Automation/Pipeline.md)
+- **Add AI**: See [AI Overview](../AI/AI-Overview.md)
 - **More Settings**: See [Configuration](../Configuration/Configuration.md)
 
 ## Troubleshooting
@@ -304,7 +303,7 @@ ports:
 
 **Permission errors with volumes?**
 - Make sure the directories exist
-- Check folder permissions: `chmod -R 755 ./stirling-data`
+- Check the container's runtime UID/GID and ensure it has write access to the mounted directories. Mode `755` grants write access only to the owner; changing the mode alone does not correct ownership.
 
 **Container keeps restarting?**
 - Check logs: `docker logs stirling-pdf`

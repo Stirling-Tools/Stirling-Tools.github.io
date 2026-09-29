@@ -2,8 +2,6 @@
 sidebar_position: 2
 description: Convert files to and from PDF format
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Convert
 
@@ -46,7 +44,7 @@ eBook and Outlook (MSG) inputs are converted to PDF on the self-hosted server (e
 | **eBook** | EPUB, AZW3 |
 | **Comics** | CBZ, CBR |
 
-PDF to Excel extracts tabular data and writes one worksheet per detected table. PDF to eBook (EPUB/AZW3) uses the bundled Calibre runtime. PDF/X is the print-optimized variant of PDF/A and is chosen from the same Archive / Print option (it needs Ghostscript, which is in the standard Docker image).
+PDF to Excel extracts tabular data and writes one worksheet per detected table. PDF to eBook (EPUB/AZW3) uses the bundled Calibre runtime. PDF/X is a separate standard for print exchange, not a variant of the archival PDF/A standard. Both are available through Archive / Print; PDF/X conversion requires Ghostscript.
 
 ---
 
@@ -77,7 +75,7 @@ PDF to Excel extracts tabular data and writes one worksheet per detected table. 
 
 ## Automation and API conversions
 
-A few conversions have no button in the Convert tool. They run only through the [API](../../API.md) and the [Automate / pipeline](../../Configuration/Pipeline.md) workflow.
+A few conversions have no button in the Convert tool. They run only through the [API](../../API.md) and the [Automate / pipeline](../../Configuration/Automation/Pipeline.md) workflow.
 
 - **PDF to vector / page-description formats** - export a PDF as EPS, PS, PCL, or XPS for print and publishing workflows.
 - **PostScript to PDF** - turn PostScript files (PS, EPS, EPSF) into PDF, with an optional print-oriented (prepress) profile.
@@ -104,6 +102,7 @@ See the [API reference](../../API.md) for the exact parameters of these conversi
     ```bash
     curl -X POST http://stirling-pdf:8080/api/v1/convert/pdf/word \
       -F "fileInput=@document.pdf" \
+      -F "outputFormat=docx" \
       -o output.docx
     ```
   </TabItem>

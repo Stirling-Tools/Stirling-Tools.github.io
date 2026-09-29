@@ -4,8 +4,6 @@ id: Shared-Signing
 title: Shared Signing
 description: Collaborative multi-participant PDF signing workflows with digital certificates and wet signatures
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Shared Signing
 
@@ -15,18 +13,18 @@ Shared Signing is currently in **alpha**. Functionality may change, and some fea
 
 Shared Signing lets a document owner send a PDF to multiple registered users for signing. Each participant reviews the document, applies their signature, and submits it back. The owner tracks progress and finalizes the document once all signatures are collected.
 
-Shared Signing builds on storage. With the **local** storage provider it needs **no license** - just turn on `security.enableLogin`, `storage.enabled`, and `storage.signing.enabled`. The managed certificate options (Personal and Server certificates) require a Pro/Enterprise license; without one, participants sign by uploading their own certificate (P12/PKCS12 or JKS). The **database** and **s3** storage providers also require a Pro/Enterprise license. See [Modes](../../Modes-and-Licensing.md) for details.
+Shared Signing builds on storage. With the **local** storage provider it needs **no license** - just turn on `security.enableLogin`, `storage.enabled`, and `storage.signing.enabled`. The managed certificate options (Personal and Server certificates) require a Pro/Enterprise license; without one, participants sign by uploading their own certificate (P12/PKCS12, JKS or PEM). The **database** and **s3** storage providers also require a Pro/Enterprise license. See [Modes](../../Modes-and-Licensing.md) for details.
 
 ---
 
 ## What You Can Do
 
 - **Invite multiple signers** -- add registered users as participants to a signing session
-- **Flexible signing options** -- participants can use the server certificate, their personal certificate, or upload their own (P12, JKS, PEM)
+- **Flexible signing options** -- participants can use the server certificate, their personal certificate, or upload their own (P12/PFX, JKS or PEM)
 - **Handwritten signatures** -- participants can draw, type, or upload a wet signature overlay and place it on any page
 - **Track progress** -- see who has signed, viewed, or declined in real time
 - **Summary page** -- optionally append a page to the final PDF listing all signers, timestamps, and details
-- **Data cleanup** -- sensitive signature and certificate data is automatically cleared from the server after finalization
+- **Finalization cleanup** -- uploaded certificate files, their passwords and stored wet-signature images are removed from the server
 
 ---
 
@@ -98,7 +96,7 @@ From there they can:
 | **Personal Certificate** | Auto-generated for the participant | No |
 | **P12 / PKCS12 / PFX** | Participant's own certificate file | Yes (+ password) |
 | **JKS** | Java KeyStore file | Yes (+ password) |
-| **PEM** | PEM certificate + private key | Yes |
+| **PEM** | PEM private key + certificate | Yes (+ password if the key is encrypted) |
 
 3. **Add wet signatures** (optional) -- draw, type, or upload a handwritten signature and position it on any page. Multiple signatures can be placed across different pages.
 4. **Submit** their signature
@@ -131,7 +129,7 @@ Finalization is a one-time operation. Participants who haven't signed will be sk
 2. If enabled, a summary page is appended showing each participant's name, email, status, timestamp, reason, and certificate type
 3. Each participant's digital certificate is applied to the document
 4. The signed PDF is saved and available for download
-5. Sensitive data (signature images, certificate files, passwords) is permanently cleared from the server
+5. Uploaded certificate files, their passwords and stored wet-signature images are removed from the server automatically. The session record and the original file are kept.
 
 ### Step 5: Download the Signed PDF
 
@@ -144,7 +142,7 @@ After finalization, download the completed PDF from the session detail view or t
 - **One-time signing** -- after signing or declining, participants are automatically downgraded to read-only access and cannot re-sign
 - **Certificate validation** -- uploaded certificates are validated at submission time. Trust chain validation is configurable (see [Certificate Signing](./Certificate-Signing.md))
 - **Audit trail** -- all participant actions are recorded (viewed, signed, declined) with timestamps
-- **Post-finalization cleanup** -- wet signature images, certificate files, and passwords are permanently removed from the database after finalization. Only the final signed PDF is retained
+- **Post-finalization cleanup** -- uploaded certificate files, their passwords and stored wet-signature images are removed from the server automatically. The session record and the original file are kept
 
 ---
 
@@ -201,14 +199,14 @@ security:
   validation:
     trust:
       serverAsAnchor: true       # Trust server-generated certificates
-      useSystemTrust: true       # Trust OS certificate store
+      useSystemTrust: true       # Trust the Java runtime's default trust store
       useMozillaBundle: true     # Trust Mozilla CA bundle
     revocation:
       mode: none                 # Options: none, ocsp, crl, ocsp+crl
       hardFail: false            # Fail if revocation check is inconclusive
 ```
 
-See [Certificate Signing - Configuration](./Certificate-Signing.md#configuration-examples) for detailed trust chain configuration.
+See [Certificate Signing - Configuration](./Certificate-Signing.md#configuration-example) for detailed trust chain configuration.
 
 ---
 
@@ -273,7 +271,7 @@ You don't need any of this for normal use - the whole workflow above runs from t
 
 ## Related
 
-- [File Sharing and Storage](../../Configuration/File%20Sharing%20and%20Storage.md) -- Configure storage, sharing, and quotas
+- [File Sharing and Storage](../../Configuration/Storage/File%20Sharing%20and%20Storage.md) -- Configure storage, sharing, and quotas
 - [Certificate Signing](./Certificate-Signing.md) -- Individual certificate signing and validation
 - [Sign (Handwritten)](./Sign.md) -- Non-cryptographic visual signatures
-- [System and Security Settings](../../Configuration/System%20and%20Security.md) -- Server certificates, JWT, sessions
+- [System and Security Settings](../../Configuration/Security/System%20and%20Security.md) -- Server certificates, JWT, sessions

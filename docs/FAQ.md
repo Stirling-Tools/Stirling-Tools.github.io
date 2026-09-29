@@ -1,9 +1,7 @@
 ---
-sidebar_position: 8
+sidebar_position: 9
 title: FAQ
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Frequently Asked Questions
 
@@ -11,7 +9,7 @@ import TabItem from '@theme/TabItem';
 This is often caused by your NGINX configuration. NGINX's default file upload size is 1MB, and any file larger than this will cause an .htm file to be downloaded instead. To fix this issue, you should modify your NGINX configuration to increase the maximum file upload size.
 
 ### Q2: Can I customize the appearance and language of the Stirling PDF application?
-Yes, Stirling PDF provides several environment variables to allow customization of the application, custom HTML, CSS and other settings such as the visibility to search engines. Please refer to the [UI Customisation](./Configuration/UI%20Customisation.md) section for more details.
+Yes, Stirling PDF provides several environment variables to allow customization of the application, custom HTML, CSS and other settings such as the visibility to search engines. Please refer to the [UI Customisation](./Configuration/Customisation/UI%20Customisation.md) section for more details.
 
 ### Q3: I want to add a new feature to Stirling PDF. How can I contribute?
 We welcome contributions from the community! Please open an issue on our GitHub page to discuss any large features before making any changes. Any small changes are fully welcome without discussion! After the feature has been discussed and approved, you can make the changes and submit a pull request.
@@ -21,16 +19,16 @@ All feedback and suggestions are appreciated. It is best to submit these via a G
 You can also reach out in discord but without a ticket to track it the request can often get lost!
 
 ### Q5: I found a bug in Stirling PDF. Where can I report it?
-Please report any bugs or issues you encounter through our [GitHub Issues page](https://github.com/Stirling-Tools/Stirling-PDF/issues). Be sure to include as much detail as possible so we can diagnose and resolve the issue quickly. If you're running Docker, use the built-in [diagnostics tool](./Configuration/Diagnostics.md) to collect logs, configuration, and system information into a shareable archive.
+Please report any bugs or issues you encounter through our [GitHub Issues page](https://github.com/Stirling-Tools/Stirling-PDF/issues). Be sure to include as much detail as possible so we can diagnose and resolve the issue quickly. If you're running Docker, use the built-in [diagnostics tool](./Configuration/Operations/Diagnostics.md) to collect logs, configuration, and system information into a shareable archive.
 
 ### Q6: My Stirling PDF is using high RAM at idle. How can I optimize memory usage?
 Stirling PDF's memory usage can be optimized in several ways:
 
 - **Use the Ultra Lite version:** Pull the `latest-ultra-lite` tag from Docker Hub or GitHub, which is specifically designed for lower-end hardware.
-- **Tune memory allocation:** See the [Fine Tuning](./Configuration/Performance-Optimization.md#fine-tuning) section of the Performance Optimization guide for how to adjust memory limits.
-- **Reduce LibreOffice instances:** Each idle LibreOffice UNO server instance uses approximately 50 MB. The default session limit is 1. See [LibreOffice Parallel Processing](./Configuration/LibreOffice-Parallel-Processing.md) for details.
+- **Tune memory allocation:** See the [Fine Tuning](./Configuration/Operations/Performance-Optimization.md#fine-tuning) section of the Performance Optimization guide for how to adjust memory limits.
+- **Reduce LibreOffice instances:** Each idle LibreOffice UNO server instance uses approximately 50 MB. The default session limit is 1. See [LibreOffice Parallel Processing](./Configuration/Operations/LibreOffice-Parallel-Processing.md) for details.
 
-For detailed sizing recommendations, see the [Performance Optimization](./Configuration/Performance-Optimization.md) guide.
+For detailed sizing recommendations, see the [Performance Optimization](./Configuration/Operations/Performance-Optimization.md) guide.
 
 ### Q7: I'm experiencing connection errors when pulling from docker.stirlingpdf.com
 
@@ -47,7 +45,7 @@ No, we track no data without your explicit consent. You can see how, when, and w
 
 ### Q9: When I upload a file, where is it processed?
 
-Uploads go to the server or desktop instance you're using, not to Stirling servers. The macOS/Windows desktop apps process files locally - even when you pick the Stirling Cloud sign-in today - so your PDFs stay on your device unless you point the app to a remote self-hosted server. Planned SaaS-assisted features (for desktop app) will be opt-in when they arrive.
+Processing depends on the connection mode and tool. Self-hosted operations run on your server. Desktop operations run on the local backend where supported; when connected to Stirling Cloud or a remote self-hosted server, operations can send files to that server. See Q12 below for the desktop routing rules.
 
 ### Q10: What are the different JAR files and which should I use?
 
@@ -88,18 +86,18 @@ To disable authentication in the with-login version:
     docker run -d \
       -p 8080:8080 \
       -e SECURITY_ENABLELOGIN=false \
-      stirlingtools/stirling-pdf:latest
+      docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
     ```yaml
     environment:
-      SECURITY_ENABLELOGIN: false
+      SECURITY_ENABLELOGIN: "false"
     ```
   </TabItem>
   <TabItem value="jar-property" label="JAR (Java Property)">
     ```bash
-    java -jar Stirling-PDF-with-login.jar -DSECURITY_ENABLELOGIN=false
+    java -Dsecurity.enableLogin=false -jar Stirling-PDF-with-login.jar
     ```
   </TabItem>
   <TabItem value="jar-env" label="JAR (Environment Variable)">
@@ -110,14 +108,14 @@ To disable authentication in the with-login version:
   </TabItem>
 </Tabs>
 
-For more details, see the [System and Security Configuration](./Configuration/System%20and%20Security.md#running-without-authentication) documentation.
+For more details, see the [System and Security Configuration](./Configuration/Security/System%20and%20Security.md#running-without-authentication) documentation.
 
 ### Q12: Where do my files go on the desktop app, and what does "uploading to server" mean?
 
 The desktop app runs a small Stirling PDF backend **inside the app on your own computer** (localhost). The Connection mode you pick (Settings -> Connection) decides where each tool runs:
 
 - **Local-only** (default; not signed in, no server connected): every tool runs on the local backend and your files never leave your device. If you use a tool the local backend can't perform (OCR, Office conversions, and similar), the file is **not** sent anywhere - the app stops and asks you to sign in to Stirling Cloud or connect to a self-hosted server.
-- **Signed in to Stirling Cloud**: server-side tools are processed on Stirling's cloud (transient, not stored).
+- **Signed in to Stirling Cloud**: supported local operations still run locally; operations unavailable locally can be routed to Stirling Cloud.
 - **Connected to a self-hosted server**: server-side tools go only to your own server.
 
 Bottom line: in local-only mode a server-side tool is either run locally or blocked with a prompt - it is never silently uploaded anywhere.
@@ -137,4 +135,3 @@ Stripe's script loads only for the in-app purchase / billing UI. No PDF or docum
 ### Q16: Is a specific feature supported?
 
 We are continuously improving Stirling PDF, and the exact feature you're looking for might not be available yet - for example, a native Android app or in-app PDF translation. You can raise a feature request for any and all features on our [GitHub issues page](https://github.com/Stirling-Tools/Stirling-PDF/issues) with `[Feature Request]` in the title.
-

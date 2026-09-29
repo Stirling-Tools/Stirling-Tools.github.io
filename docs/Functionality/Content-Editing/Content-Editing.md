@@ -42,12 +42,12 @@ Tools for adding, extracting, and modifying content within PDF documents.
 
 - **Change Metadata**: Edit a PDF's document details such as author, title, subject, keywords, and creation date. You can also add or remove these fields.
 
-- **Get ALL Info on PDF**: See everything there is to know about a PDF, including:
+- **Get ALL Info on PDF**: Inspect PDF information, including:
   - PDF version and file size
   - Page count and dimensions
   - Fonts used
   - Security settings and permissions
-  - Complete metadata
+  - Document metadata
   - Export all information in JSON format
 
 ---

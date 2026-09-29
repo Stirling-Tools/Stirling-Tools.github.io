@@ -45,7 +45,7 @@ Spot the differences between two versions of a document. The comparison is text-
 
 ## Compress
 
-Shrink a PDF's file size (typically 10-90% smaller) by choosing how much quality you want to keep.
+Reduce a PDF's file size by choosing a compression level. The reduction depends on its existing compression and content; review the result for acceptable quality.
 
 **[Compress Guide →](./Compress.md)**
 

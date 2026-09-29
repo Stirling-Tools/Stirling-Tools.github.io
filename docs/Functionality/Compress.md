@@ -28,7 +28,7 @@ Reduce PDF file size by compressing images, optimizing structure, and removing u
 | Option | Description |
 |--------|-------------|
 | **Optimize Level** (1-9) | Controls compression aggressiveness. Higher = smaller file, lower quality. Levels 1-3 are light, 4-5 are moderate, 6+ trigger additional compression passes |
-| **Expected Output Size** | Set a target file size (e.g. `25MB`) and the tool will automatically adjust the optimize level to hit it |
+| **Expected Output Size** | Set a target file size (e.g. `25MB`). The tool adjusts compression within a bounded number of attempts; reaching the target is not guaranteed. |
 | **Grayscale** | Convert all images to grayscale. Can significantly reduce size for color documents where color isn't needed |
 | **Linearize** | Optimize PDF for fast web viewing  - reorders the file so the first page loads before the entire file is downloaded |
 | **Normalize** | Normalize internal PDF structure for better compatibility |

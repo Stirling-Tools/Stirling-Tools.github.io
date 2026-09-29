@@ -4,8 +4,6 @@ slug: /Configuration
 title: Configuration Guide
 description: Configure Stirling PDF using environment variables, settings files, or in-app settings
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Configuration Guide
 
@@ -15,13 +13,13 @@ Stirling PDF can be configured in three ways, depending on your deployment and p
 
 ### 1. In-App Settings (Recommended)
 
-If you have login enabled, admins can configure everything through the Settings menu in the application.
+With login enabled, administrators can configure the settings exposed in the application's Settings menu. Other server settings use the configuration file or environment variables.
 
 **To use:**
 1. Set `SECURITY_ENABLELOGIN=true`
 2. Log in as admin
 3. Go to Settings → configure through UI
-4. Changes apply immediately, no restart needed
+4. Save changes and follow any restart prompt to apply pending server settings
 
 **Best for:** Production deployments with admin users
 
@@ -36,7 +34,7 @@ Configure via Docker environment variables or system environment variables.
 docker run -d \
   -e SECURITY_ENABLELOGIN=true \
   -e SYSTEM_DEFAULTLOCALE=en-US \
-  stirlingtools/stirling-pdf:latest
+  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
 
 **Best for:** Docker deployments, infrastructure-as-code, initial setup
@@ -92,7 +90,7 @@ Configure user login:
 
 Default credentials: `admin` / `stirling` (change immediately after first login)
 
-For more details, see [System and Security Configuration](./System%20and%20Security.md).
+For more details, see [System and Security Configuration](./Security/System%20and%20Security.md).
 
 ### Language & Localization
 
@@ -150,22 +148,17 @@ If `defaultLocale` is left empty (the default), the browser-detected language is
   <TabItem value="settings" label="Settings File">
     ```yaml
     system:
-      fileUploadLimit: "500MB"  # Number (0-999) followed by KB, MB, or GB. Empty = no limit
-    spring:
-      servlet:
-        multipart:
-          max-file-size: 2000MB
-          max-request-size: 2000MB
+      fileUploadLimit: "500MB"  # 0-999 followed by KB, MB or GB. Empty = no limit
     ```
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
-    SYSTEM_MAXFILESIZE=500        # Size in MB (valid range 1-999)
-    SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=2000MB
-    SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=2000MB
+    SYSTEM_FILEUPLOADLIMIT=500MB
     ```
   </TabItem>
 </Tabs>
+
+The limit applies to each file and to the whole request. If it is unset, the limit is 2000 MB.
 
 ### Memory Management
 
@@ -181,16 +174,16 @@ For advanced features and specific use cases, see these detailed guides:
 
 ### Authentication & Security
 
-**[Single Sign-On (SSO)](./Single%20Sign-On%20Configuration.md)**
-- OAuth2 (Google, GitHub, Keycloak, OIDC) - Server tier
+**[Single Sign-On (SSO)](./Security/Single%20Sign-On%20Configuration.md)**
+- OAuth2 (Google, GitHub, Keycloak, OIDC) - free on every plan
 - SAML2 (Okta, Azure AD) - Enterprise tier
 - Complete configuration examples
 
-**[System and Security](./System%20and%20Security.md)**
+**[System and Security](./Security/System%20and%20Security.md)**
 - Server certificates
 - JWT configuration
 
-**[Fail2Ban Integration](./Fail2Ban.md)**
+**[Fail2Ban Integration](./Security/Fail2Ban.md)**
 - Protect against brute-force attacks
 - Auto-ban after failed login attempts
 
@@ -198,52 +191,64 @@ For advanced features and specific use cases, see these detailed guides:
 
 ### Features & Customization
 
-**[UI Customization](./UI%20Customisation.md)**
+**[UI Customization](./Customisation/UI%20Customisation.md)**
 - Branding and logos
 - Theme customization
 - Custom styling
 
-**[Endpoint/Feature Control](./Endpoint%20or%20Feature%20Customisation.md)**
+**[Endpoint/Feature Control](./Customisation/Endpoint%20or%20Feature%20Customisation.md)**
 - Enable/disable specific tools
 - Control feature availability by user/role
 
-**[Pipeline (Automation)](./Pipeline.md)**
+**[Pipeline (Automation)](./Automation/Pipeline.md)**
 - Automated workflows
 - Folder scanning
 - Batch processing
 - Multi-step operations
 
+**[Stirling Processor](../Processor/Processor.md)**
+- Connect sources and automate document processing
+- Setup: [Sources](../Processor/Sources.md), [Policies](../Processor/Policies/Policies.md), [Pipelines](../Processor/Pipelines.md), [Integrations](../Processor/Integrations.md)
+- Processing activity: [Documents](../Processor/Documents.md)
+- Folder permissions and network access: [Setup and access](../Processor/Setup-and-Access.md)
+
+**[AI Overview](../AI/AI-Overview.md)**
+- Available AI features and setup
+- Running it: [Self-Hosting the AI Engine](../AI/Self-Hosting-the-AI-Engine.md), [Model Providers](../AI/Model-Providers.md), [Documents and Retrieval](../AI/Documents-and-RAG.md)
+- Configuration options: [AI Settings Reference](../AI/AI-Settings-Reference.md)
+- Securing and scoping it: [AI Security](../AI/AI-Security.md), [AI Tools](../AI/AI-Tools.md)
+
 ---
 
 ### Integration & Storage
 
-**[External Database](./External%20Database.md)**
-- PostgreSQL configuration (Pro/Enterprise)
+**[External Database](./Storage/External%20Database.md)**
+- PostgreSQL configuration (Server or Enterprise)
 - Database migration
 - Backup strategies
 
-**[Google Drive File Picker](./Google%20Drive%20File%20Picker.md)**
+**[Google Drive File Picker](./Storage/Google%20Drive%20File%20Picker.md)**
 - Direct Google Drive integration
 - OAuth setup
 
-**[MCP Server](../Advanced%20Configuration/MCP-Server.md)**
+**[MCP Server](./Automation/MCP-Server.md)**
 - Expose Stirling PDF tools over the Model Context Protocol
 - OAuth2 or API-key authentication
 - Operation allow/deny lists
 
-**[S3 / Object Storage](./File%20Sharing%20and%20Storage.md)**
+**[S3 / Object Storage](./Storage/File%20Sharing%20and%20Storage.md)**
 - Store uploads and job artifacts in S3-compatible object storage
 - Shared storage for multi-node deployments
 
-**[Telegram Bot](./Telegram%20Bot.md)**
+**[Telegram Bot](./Automation/Telegram%20Bot.md)**
 - Run a Telegram bot that processes PDFs sent in chat
 
-**[OCR Configuration](./OCR.md)**
+**[OCR Configuration](./Operations/OCR.md)**
 - Tesseract language packs
 - OCR optimization
 
-**[Usage Monitoring](./Usage%20Monitoring.md)**
-- Prometheus metrics (Pro/Enterprise)
+**[Usage Monitoring](./Automation/Usage%20Monitoring.md)**
+- Prometheus metrics (Enterprise)
 - Application monitoring
 - Performance tracking
 
@@ -251,13 +256,17 @@ For advanced features and specific use cases, see these detailed guides:
 
 ### Performance & Scaling
 
-**[Performance Optimization & Sizing](./Performance-Optimization.md)**
+**[Performance Optimization & Sizing](./Operations/Performance-Optimization.md)**
 - Resource sizing, JVM tuning, memory model, and scaling guidance
 
-**[Process Limits](./Process-Limits.md)**
+**[Clustering](./Operations/Clustering.md)**
+- The `cluster` settings block and the Valkey backplane
+- Several nodes behind a load balancer with a shared database and object store
+
+**[Process Limits](./Operations/Process-Limits.md)**
 - Session limits and timeouts for external tools
 
-**[LibreOffice Parallel Processing](./LibreOffice-Parallel-Processing.md)**
+**[LibreOffice Parallel Processing](./Operations/LibreOffice-Parallel-Processing.md)**
 - Configure multiple LibreOffice instances for faster document conversion
 - Local UNO server pool and remote UNO server endpoints
 
@@ -265,7 +274,7 @@ For advanced features and specific use cases, see these detailed guides:
 
 ### Diagnostics & Support
 
-**[Diagnostics & Reporting Issues](./Diagnostics.md)**
+**[Diagnostics & Reporting Issues](./Operations/Diagnostics.md)**
 - Built-in diagnostics tool for Docker containers
 - How to report issues via GitHub, Discord, and email
 
@@ -273,16 +282,21 @@ For advanced features and specific use cases, see these detailed guides:
 
 ### Other Configuration
 
-**[Folder Scanning](./FolderScanning.md)**
+**[Folder Scanning](./Storage/FolderScanning.md)**
 - Watch folders for automatic processing
 
-**[Custom Signature Files](./Sign%20with%20custom%20files.md)**
+**[Custom Signature Files](./Security/Sign%20with%20custom%20files.md)**
 - Pre-loaded signatures for quick signing
 
-**[Extra Settings](./Extra-Settings.md)**
+**[Account linking](../Stirling-Account-Link.md)**
+- Link a self-hosted deployment to a Stirling account for metered work
+- Processing allowances and synchronization
+
+**[Extra Settings](./Customisation/Extra-Settings.md)**
 - Logging configuration
 - Server settings (port, SSL/TLS)
 - Advanced Spring Boot settings
+- `custom_settings.yml`, which overrides `settings.yml`
 
 ---
 
@@ -290,9 +304,10 @@ For advanced features and specific use cases, see these detailed guides:
 
 When the same setting is defined in multiple places, this is the order of precedence (highest to lowest):
 
-1. **Environment Variables**
-2. **settings.yml / In-App Settings**
-3. **Default values**
+1. **Environment Variables**, with the exception of `SYSTEMFILEUPLOADLIMIT` and `SYSTEM_MAXFILESIZE`, which apply only when `system.fileUploadLimit` has resolved empty
+2. **custom_settings.yml** (see [Extra Settings](./Customisation/Extra-Settings.md))
+3. **settings.yml / In-App Settings**
+4. **Default values**
 
 ---
 
@@ -315,6 +330,7 @@ SECURITY_ENABLELOGIN=true
 - Uppercase everything
 - Replace `.` with `_`
 - Nested properties become `PARENT_CHILD`
+- Drop camelCase boundaries and hyphens, so `pdfEditor.fallback-font` becomes `PDFEDITOR_FALLBACKFONT`
 
 ---
 
@@ -322,7 +338,7 @@ SECURITY_ENABLELOGIN=true
 
 ### Settings Not Applied
 
-1. Check configuration priority (env vars override settings.yml)
+1. Check configuration priority (env vars override `custom_settings.yml`, which overrides `settings.yml`), remembering that `SYSTEMFILEUPLOADLIMIT` and `SYSTEM_MAXFILESIZE` are the exception and lose to either file
 2. Restart container after changing environment variables
 3. Check logs: `docker logs stirling-pdf | grep ERROR`
 4. Verify file permissions on `/configs` volume
@@ -343,4 +359,4 @@ If missing:
 - **Production Deployment:** See [Production Deployment Guide](../Server-Admin-Onboarding.md)
 - **API Usage:** See [API Documentation](../API.md)
 - **Tool Reference:** See [Functionality](../Functionality/Functionality.md)
-- **Troubleshooting:** See [Diagnostics & Reporting Issues](./Diagnostics.md)
+- **Troubleshooting:** See [Diagnostics & Reporting Issues](./Operations/Diagnostics.md)

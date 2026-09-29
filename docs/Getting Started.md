@@ -1,71 +1,36 @@
 ---
 sidebar_position: 0
 slug: /
+id: Getting Started
+title: Welcome to Stirling PDF
+sidebar_label: Getting Started
+description: What Stirling PDF is, how to install it, and where to go next in the documentation
+tags:
+  - Getting Started
+  - Installation
+  - Overview
+  - Self-host
+---
+
+# Welcome to Stirling PDF
+
+Stirling PDF provides tools for signing, converting, merging, editing, OCR and redaction, with self-hosted and desktop deployment options.
+
 ---
 
 ## Benefits of Stirling PDF
-- **Extensive PDF Functionality:** Access 60+ tools, including signing, converting, merging, and more.
-- **Advanced Customization:** Deep customization, themes, and environment variables.
-- **Enterprise Features:** SSO, user management, and permission controls.
-- **Data Security:** Local file processing with automatic deletion post-task.
-- **Scalability & Automation:** Batch processing with Docker and Kubernetes support.
-- **API Integration:** Use APIs for automation and external integrations.
-- **Open-Source:** Community-driven with frequent updates and GitHub support.
+
+- **Extensive PDF Functionality:** 55+ tools covering signing, converting, merging, editing, OCR, and redaction.
+- **Stateful Workspace:** Upload once and chain tools together, with full undo and redo history.
+- **Runs Anywhere:** Docker, bare metal, Kubernetes, or native desktop apps for Windows, macOS, and Linux.
+- **Processing location:** Self-hosted tools process files on your instance. Desktop tools use the local backend where supported; tools routed to Stirling Cloud or a connected server send their inputs there.
+- **Configure In-App:** Change settings from the UI, or drive everything with environment variables and `settings.yml`.
+- **Automation & Integration:** REST API and an MCP server for AI assistants.
+- **Stirling Processor:** Connect sources and automate document processing.
+- **AI Engine:** Ask questions about documents, create PDFs, and classify files.
+- **Enterprise Features:** SAML SSO, user management, permission controls, and audit logging. OAuth2 SSO is free on every plan.
+- **Self-Hosted:** Community-driven with frequent updates and GitHub support.
 - **Multi-Language Support:** Available in 40+ languages with active translations.
-
-## Welcome to Stirling PDF
-
-:::tip Upgrading from V1?
-See the **[Migration Guide](./Migration/Overview)** for what's new and how to upgrade smoothly.
-:::
-
-Stirling PDF is a locally hosted web application that allows you to perform various operations on PDF files. With 60+ tools, flexible deployment options, and enterprise features, it's the comprehensive PDF solution for individuals and organizations.
-
----
-
-## What's New in V2
-
-V2 brings major improvements to performance, workflow, and deployment flexibility:
-
-- **Stateful Processing** - Upload once, use across multiple tools without re-uploading
-- **Undo & Redo** - Full version history for page editing
-- **Native Desktop Apps** - Fast startup, "Open with" integration, offline capable
-- **In-App Settings** - Configure everything through the UI, no file editing needed
-
----
-
-## Documentation Guide
-
-### For Individual Users
-
-**[Tool Reference](./Functionality/Functionality.md)**
-Browse all 60+ PDF tools with descriptions
-
----
-
-### For Organizations & IT Teams
-
-**[Production Deployment Guide](./Server-Admin-Onboarding.md)**
-Complete walkthrough: installation - configuration - security - monitoring
-
-**[Paid Offerings (Server & Enterprise)](./Paid-Offerings)**
-External databases, Google Drive integration, SSO, advanced monitoring, and priority support
-
-**[Configuration Options](./Configuration/Extra-Settings.md)**
-All configuration options for Docker and server deployments
-
----
-
-### For Developers & Integration
-
-**[API Documentation](./API.md)**
-Integrate Stirling PDF into your applications and workflows
-
-**[Configuration](./Configuration/System%20and%20Security.md)**
-SSO, certificates, security settings, and more
-
-**[Contribute Guide](./Contribute.md)**
-Help improve Stirling PDF - development setup and guidelines
 
 ---
 
@@ -96,7 +61,7 @@ Recommended for server deployments and organizations:
 docker run -d \
   -p 8080:8080 \
   -v ./stirling-data:/configs \
-  stirlingtools/stirling-pdf:latest
+  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
 
 **Available versions:**
@@ -121,8 +86,54 @@ For bare metal installations or environments without Docker:
 
 ---
 
-## Quick Links
+## Documentation Guide
 
-- **Questions?** Check our **[FAQ](./FAQ.md)**
-- **Issues?** Report on **[GitHub](https://github.com/Stirling-Tools/Stirling-PDF/issues)**
-- **Community?** Join our **[Discord](https://discord.gg/Cn8pWhQRxZ)**
+### For Individual Users
+
+**[Tool Reference](./Functionality/Functionality.md)**
+Browse all 55+ PDF tools with descriptions
+
+**[Migration Guide](./Migration/Overview.md)**
+The upgrade path from Stirling PDF V1 to V2, and what to check before you upgrade
+
+---
+
+### For Organizations & IT Teams
+
+**[Production Deployment Guide](./Server-Admin-Onboarding.md)**
+Complete walkthrough: installation - configuration - security - monitoring
+
+**[Stirling Processor](./Processor/Processor.md)**
+Sources, policies, and pipelines that run document work on a schedule, on a folder drop, or on demand
+
+**[AI Overview](./AI/AI-Overview.md)**
+AI features, model providers, and self-hosted setup
+
+**[Paid Offerings (Team & Enterprise)](./Paid-Offerings.md)**
+External databases, Google Drive integration, SSO, advanced monitoring, and priority support
+
+**[Configuration Options](./Configuration/Customisation/Extra-Settings.md)**
+All configuration options for Docker and server deployments
+
+---
+
+### For Developers & Integration
+
+**[API Documentation](./API.md)**
+Integrate Stirling PDF into your applications and workflows
+
+**[Configuration](./Configuration/Security/System%20and%20Security.md)**
+SSO, certificates, security settings, and more
+
+**[Contribute Guide](./Contribute.md)**
+Help improve Stirling PDF - development setup and guidelines
+
+---
+
+## Related Documentation
+
+- **[FAQ](./FAQ.md)** - answers to the questions that come up most often
+- **[Tool Reference](./Functionality/Functionality.md)** - every PDF tool, with descriptions
+- **[Production Deployment Guide](./Server-Admin-Onboarding.md)** - installation, configuration, security, and monitoring end to end
+- **[GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues)** - report a bug or request a feature
+- **[Discord](https://discord.gg/Cn8pWhQRxZ)** - community support and discussion
