@@ -105,7 +105,7 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
     6. Sign and download
 
     - Expired and not-yet-valid certificates cannot be selected, and signing rejects them for every certificate source.
-    - Hardware signing is available inside automations.
+    - Hardware signing is not available inside automations. They run on the server the desktop is connected to, which cannot reach a key held on your machine, so a step that signs with one is refused before anything, the PIN included, is sent.
 
     **Requirements**
 
@@ -201,6 +201,7 @@ Leave the upload empty and the built-in mark is used, as before.
 The image always keeps its proportions, so a logo is never stretched to fill its strip. The details keep a usable share of the box whatever shape the logo is, so a wide banner cannot squeeze out the signer's name. **Behind the text** is the one position where the two overlap: the logo is drawn faded underneath so the details stay readable.
 
 When **Repeat it on every page** is also on, the marks on the other pages carry the same logo, so they match the real signature.
+
 #### Repeating It on Every Page
 
 Long documents are often initialled on every page so a reader can see the whole thing was signed. **Repeat it on every page** does that.
@@ -212,6 +213,8 @@ Each mark links to the signed page, so a reader can click it to reach the signat
 :::
 
 This option needs a box to have been drawn first, since there has to be a shape to repeat.
+
+On a document that is already signed, only the new signature is drawn and the other pages are left alone. Marks added there would be changes made after the earlier signature, and a validator would report the document as modified since it was signed.
 
 ---
 
