@@ -112,7 +112,7 @@ When the mode is set by an administrator through a provisioning file (see [Manag
 
 ### Automated Installation
 
-For silent or headless installs and pre-configuring the app for managed fleets - server URL, connection lock, and update mode via MSI or `winget` parameters, or a provisioning file - see [Managed Desktop Deployment](./Managed%20Deployment.md).
+For silent installs and managed fleets, see [Managed Desktop Deployment](./Managed%20Deployment.md). It covers server and update settings, required sign-in, Stirling Cloud-only accounts, and enforcing local document processing through MSI properties or a provisioning file.
 
 ### Desktop app troubleshooting
 

@@ -84,7 +84,7 @@ The desktop app works fully offline for local PDF tools like merging, splitting,
 
 ### Managed deployment (MDM)
 
-To pre-configure and lock the app across managed Linux desktops - server URL, connection lock, and update behaviour - see [Managed Desktop Deployment](./Managed%20Deployment.md).
+To configure managed Linux desktops, including server and update settings, required sign-in, Stirling Cloud-only accounts, and local document processing, see [Managed Desktop Deployment](./Managed%20Deployment.md).
 
 ---
 
