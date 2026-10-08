@@ -148,6 +148,20 @@ For an existing installation, including one installed from the EXE, deploy the J
 
 When the MSI enables Cloud-only sign-in, it removes any previous self-hosted URL and connection lock from its provisioning output. When editing JSON directly, remove the `serverUrl` field yourself.
 
+### Reinstalls and changing account types
+
+MSI properties update the existing provisioning file. A reinstall with only `STIRLING_REQUIRE_SIGN_IN=1` keeps any existing server URL and connection lock, as well as document privacy policies. Reinstalling does not reset omitted settings.
+
+To switch a Cloud-only installation to a self-hosted server, explicitly remove the Cloud-only restriction in the same installation:
+
+```powershell
+msiexec.exe /i "Stirling-PDF-windows-x86_64.msi" /qn ALLUSERS=1 STIRLING_SERVER_URL="https://pdf.example.com" STIRLING_LOCK_CONNECTION=1 STIRLING_CLOUD_ONLY=0
+```
+
+Required sign-in and local-processing restrictions remain in effect unless you explicitly change them. Supplying a server URL while leaving an existing `cloudOnly: true` policy enabled is a conflict and stops installation.
+
+If the existing provisioning file is corrupt, the installer stops without replacing it: it cannot recover omitted policies safely. As an administrator, back up that file and replace it with valid JSON containing the complete intended policy, then retry the installation. The error identifies the file. Use the provisioning examples above and explicitly specify the desired values of all three sign-in and privacy policies.
+
 ---
 
 ## macOS (Jamf / MDM)
@@ -214,7 +228,7 @@ Use a desktop build that includes the managed-policy implementation from [Stirli
 
 ## Provisioning errors and recovery
 
-An invalid machine provisioning file prevents startup. Correct its JSON or conflicting settings and restart; the app does not fall back to guest access. Settings-store failures also prevent startup. If the sign-in screen cannot load policy settings, it offers **Retry** without opening the workspace.
+An invalid machine provisioning file prevents startup. A native error dialog identifies the failure and gives recovery instructions before the workspace or backend starts. Dismissing the dialog closes the app. Correct its JSON or conflicting settings and restart; the app does not fall back to guest access. Settings-store failures show the same dialog. If the sign-in screen cannot load policy settings, it offers **Retry** without opening the workspace.
 
 Invalid per-user provisioning is backed up beside the original as `stirling-provisioning.invalid-*.json` before any settings change. A warning gives the recovery path and explains how to correct it and save it again as `stirling-provisioning.json`. The app continues with existing settings. If the backup or quarantine fails, startup remains blocked.
 
