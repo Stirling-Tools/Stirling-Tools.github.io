@@ -47,7 +47,7 @@ You can write this file yourself (it is only a few lines), or on Windows let the
 | `serverUrl` | string | URL of a self-hosted server, including `http://` or `https://`. Provisioning this field selects self-hosted mode; it does not select Stirling Cloud mode. |
 | `lockConnectionMode` | boolean | `true` stops users changing the server or connection mode in Settings. Only takes effect when `serverUrl` is also set. |
 | `requireSignIn` | boolean | Requires a verified account session before users can access the workspace or background file processing. Hides guest access and returns to sign-in after logout or session expiry. Defaults to `false`. |
-| `saasOnly` | boolean | Restricts account connections to Stirling Cloud and removes self-hosted sign-in. On its own, it still permits guest use. Defaults to `false`. |
+| `cloudOnly` | boolean | Restricts account connections to Stirling Cloud and removes self-hosted sign-in. On its own, it still permits guest use. Defaults to `false`. |
 | `localProcessingOnly` | boolean | Keeps document operations on the device, hides tools and conversion formats unavailable locally, and disables server document storage and sharing. Account and billing requests remain available. Defaults to `false`. |
 | `loginAgreementEnabled` | boolean | `true` enables the login agreement/disclaimer dialog. It only turns the feature on - the text is supplied separately (see note below), and with no text nothing is shown. Can be set on its own (no `serverUrl` needed), so it also applies to local, no-login desktop installs. |
 | `updateMode` | string | How the built-in updater behaves: `prompt` (default - ask the user), `auto` (download and install silently on startup), or `disabled` (never check or show update UI). |
@@ -61,12 +61,12 @@ The three sign-in and privacy policies are independent. Omitted policy fields pr
 ```json
 {
   "requireSignIn": true,
-  "saasOnly": true,
+  "cloudOnly": true,
   "localProcessingOnly": true
 }
 ```
 
-Use `requireSignIn` and `saasOnly` together to require a Stirling Cloud account. Add `localProcessingOnly` when documents must stay on the device even while signed in. With `requireSignIn` alone, either Stirling Cloud or a self-hosted account is allowed.
+Use `requireSignIn` and `cloudOnly` together to require a Stirling Cloud account. Add `localProcessingOnly` when documents must stay on the device even while signed in. With `requireSignIn` alone, either Stirling Cloud or a self-hosted account is allowed.
 
 ### Require sign-in to a specific self-hosted server
 
@@ -75,11 +75,11 @@ Use `requireSignIn` and `saasOnly` together to require a Stirling Cloud account.
   "serverUrl": "https://pdf.example.com",
   "lockConnectionMode": true,
   "requireSignIn": true,
-  "saasOnly": false
+  "cloudOnly": false
 }
 ```
 
-The existing connection lock still allows local fallback unless `requireSignIn` is enabled. A JSON file combining `saasOnly: true` with a nonempty `serverUrl` is invalid. Add `localProcessingOnly: true` to require local document processing while using the self-hosted account.
+The existing connection lock still allows local fallback unless `requireSignIn` is enabled. A JSON file combining `cloudOnly: true` with a nonempty `serverUrl` is invalid. Add `localProcessingOnly: true` to require local document processing while using the self-hosted account.
 
 :::note The login agreement flag only enables it
 `loginAgreementEnabled` / `STIRLING_LOGIN_AGREEMENT` switches the feature on; it does not carry the disclaimer text. The dialog stays hidden until text is available - from the server the desktop connects to, or for a local bundled backend from a `customFiles/disclaimer/<locale>.md` file or the `LEGAL_LOGINAGREEMENT_FALLBACKTEXT` setting. With no text configured, nothing is shown. See [Login Agreement](../Configuration/Security/System%20and%20Security.md).
@@ -146,7 +146,7 @@ msiexec.exe /i "Stirling-PDF-windows-x86_64.msi" /qn ALLUSERS=1 STIRLING_REQUIRE
 
 For an existing installation, including one installed from the EXE, deploy the JSON example above to `%PROGRAMDATA%\Stirling-PDF\stirling-provisioning.json` as an administrator and restart the app. The MSI properties do not need to be passed to the EXE.
 
-When the MSI enables SaaS-only sign-in, it removes any previous self-hosted URL and connection lock from its provisioning output. When editing JSON directly, remove the `serverUrl` field yourself.
+When the MSI enables Cloud-only sign-in, it removes any previous self-hosted URL and connection lock from its provisioning output. When editing JSON directly, remove the `serverUrl` field yourself.
 
 ---
 
@@ -209,7 +209,7 @@ Use a desktop build that includes the managed-policy implementation from [Stirli
 | Policy to test | Expected result |
 | --- | --- |
 | `requireSignIn: true` | With no valid session, startup shows sign-in. Guest access is absent. After signing in and then signing out, both the workspace and sidebar disappear. |
-| `saasOnly: true` | Self-hosted sign-in and connection choices are absent. Stirling Cloud sign-in works. Guest use remains available unless `requireSignIn` is also enabled. |
+| `cloudOnly: true` | Self-hosted sign-in and connection choices are absent. Stirling Cloud sign-in works. Guest use remains available unless `requireSignIn` is also enabled. |
 | `localProcessingOnly: true` | While signed in, local tools remain available. Once local capabilities load, unsupported tools and conversion formats are hidden; server library, sharing, and shared signing are unavailable. |
 
 ## Provisioning errors and recovery
