@@ -112,7 +112,7 @@ On Windows you do not have to write the JSON by hand. The MSI installer (and `wi
 | `STIRLING_SERVER_URL` | Server URL the app connects to | `http://192.168.1.53:8080` |
 | `STIRLING_LOCK_CONNECTION` | Lock the connection so users cannot change it (`1` = locked) | `1` |
 | `STIRLING_REQUIRE_SIGN_IN` | Require sign-in before using the app (`1` = enabled, `0` = disabled) | `1` |
-| `STIRLING_SAAS_ONLY` | Restrict accounts to Stirling Cloud (`1` = enabled, `0` = disabled) | `1` |
+| `STIRLING_CLOUD_ONLY` | Restrict accounts to Stirling Cloud (`1` = enabled, `0` = disabled) | `1` |
 | `STIRLING_LOCAL_PROCESSING_ONLY` | Keep document operations on the device (`1` = enabled, `0` = disabled) | `1` |
 | `STIRLING_LOGIN_AGREEMENT` | Enable the login agreement/disclaimer dialog (`1` = enabled). The text is supplied separately; the flag alone shows nothing. | `1` |
 | `STIRLING_UPDATE_MODE` | Set and lock the update mode (`prompt`, `auto`, or `disabled`) | `disabled` |
@@ -141,7 +141,7 @@ winget install StirlingTools.StirlingPDF `
 Run the MSI in **system context** for a device installation. For example, from PowerShell:
 
 ```powershell
-msiexec.exe /i "Stirling-PDF-windows-x86_64.msi" /qn ALLUSERS=1 STIRLING_REQUIRE_SIGN_IN=1 STIRLING_SAAS_ONLY=1 STIRLING_LOCAL_PROCESSING_ONLY=1
+msiexec.exe /i "Stirling-PDF-windows-x86_64.msi" /qn ALLUSERS=1 STIRLING_REQUIRE_SIGN_IN=1 STIRLING_CLOUD_ONLY=1 STIRLING_LOCAL_PROCESSING_ONLY=1
 ```
 
 For an existing installation, including one installed from the EXE, deploy the JSON example above to `%PROGRAMDATA%\Stirling-PDF\stirling-provisioning.json` as an administrator and restart the app. The MSI properties do not need to be passed to the EXE.
