@@ -154,7 +154,7 @@ async function main() {
   fs.writeFileSync(path.join(outDir, '404.html'),
     render404({ tree, siteUrl: SITE_URL }).split(BUNDLE_TOKEN).join(bundleUrl));
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-    pages.map(p => `  <url><loc>${SITE_URL}${href(p.url)}</loc></url>`).join('\n') +
+    pages.filter(p => !p.unlisted).map(p => `  <url><loc>${SITE_URL}${href(p.url)}</loc></url>`).join('\n') +
     `\n</urlset>\n`;
   fs.writeFileSync(path.join(outDir, 'sitemap.xml'), sitemap);
   fs.copyFileSync(path.join(root, 'CNAME'), path.join(outDir, 'CNAME'));

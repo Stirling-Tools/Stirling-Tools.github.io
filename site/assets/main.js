@@ -408,6 +408,8 @@
     doc.title = fragment.title ? fragment.title + ' | Stirling PDF' : 'Stirling PDF';
     var desc = doc.querySelector('meta[name="description"]');
     if (desc && fragment.description) desc.setAttribute('content', fragment.description);
+    var robots = doc.querySelector('meta[name="robots"]');
+    if (robots) robots.setAttribute('content', fragment.unlisted ? 'noindex, follow' : 'index, follow');
     var canon = doc.querySelector('link[rel="canonical"]');
     if (canon) canon.setAttribute('href', location.origin + location.pathname);
 
