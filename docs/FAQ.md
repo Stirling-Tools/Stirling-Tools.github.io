@@ -118,7 +118,9 @@ The desktop app runs a small Stirling PDF backend **inside the app on your own c
 - **Signed in to Stirling Cloud**: supported local operations still run locally; operations unavailable locally can be routed to Stirling Cloud.
 - **Connected to a self-hosted server**: server-side tools go only to your own server.
 
-Bottom line: in local-only mode a server-side tool is either run locally or blocked with a prompt - it is never silently uploaded anywhere.
+In local-only mode, a server-side tool is either run locally or blocked with a prompt; it is never silently uploaded anywhere.
+
+Administrators can also enforce [`localProcessingOnly`](./Installation/Managed%20Deployment.md#document-privacy) while users are signed in to Stirling Cloud or a self-hosted server. This policy hides unavailable local tools and conversions and disables server document storage, sharing, and shared signing. Account and billing requests remain available.
 
 ### Q13: Can I remove an existing watermark from a PDF?
 
