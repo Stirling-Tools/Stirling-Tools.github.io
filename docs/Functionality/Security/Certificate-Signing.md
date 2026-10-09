@@ -93,7 +93,7 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
     Restart the application after uploading, regenerating or deleting the keystore, or validation on this instance will not reflect the change - see [Trust Sources](#trust-sources).
   </TabItem>
   <TabItem value="device" label="This Device (Desktop)">
-    Sign with a certificate held on your own machine - a USB token or smart card (PKCS#11), or the Windows certificate store. The private key never leaves the device.
+    Sign with a certificate held on your own machine - a USB token or smart card (PKCS#11), or the Windows certificate store. The private key never leaves the device. This is independent of what the desktop is connected to: whether you are working offline, signed in to Stirling Cloud, or pointed at your own self-hosted server, the certificate is read and used on your own machine. Only the signed PDF continues through the rest of your workflow.
 
     1. Go to **Sign with Certificate** tool
     2. Upload PDF
@@ -105,7 +105,7 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
     6. Sign and download
 
     - Expired and not-yet-valid certificates cannot be selected, and signing rejects them for every certificate source.
-    - Hardware signing is available inside automations.
+    - Hardware signing is not available inside automations. They run on the server the desktop is connected to, which cannot reach a key held on your machine, so a step that signs with one is refused before anything, the PIN included, is sent.
 
     **Requirements**
 
@@ -150,15 +150,71 @@ Digitally sign PDFs with X.509 certificates and validate existing signatures aga
 
 | Mode | Result |
 |---|---|
-| Visible | Draws a signature box on the page you choose |
+| Visible | Draws a box on the page, showing details from your certificate and an optional logo |
 | Invisible | No page content, signature is still cryptographic |
 
 - `pageNumber` is 1-indexed. Defaults: **Show signature** off, **Show logo** on, page 1.
-- The **Location** value is not drawn in the box.
-- **Show logo** overlays a fixed image that ships with the application; it is not a place to supply your own.
+- The **Location** value is drawn only when you tick it - see [Choosing What the Box Shows](#choosing-what-the-box-shows).
+- **Show logo** draws the built-in Stirling PDF mark unless you upload your own - see [Using Your Own Logo](#using-your-own-logo).
 - Signing refuses an expired or not-yet-valid certificate, whichever source it came from.
 - Signing does not embed an RFC 3161 timestamp. For proof of when the document was signed, run [Timestamp PDF](#timestamping-pdfs) on the signed file afterwards.
 - To strip signatures from a PDF, use the **Remove Certificate Sign** tool (`POST /api/v1/security/remove-cert-sign`).
+
+#### Placing the Signature
+
+By default the box goes where it always has, on the page you choose. To put it somewhere specific — a printed signature line on a form, for instance — select **Draw the box on the document** and either drag a rectangle across the page or click one corner and then the opposite one.
+
+The page you draw on becomes the page that gets signed, so the page number updates to match. Press `Esc` to leave placement mode without placing anything.
+
+Text inside the box scales to fit whatever size you draw, so it never spills over the surrounding content.
+
+#### Choosing What the Box Shows
+
+Certificates carry more than a name. Tick the fields you want printed inside the box:
+
+| | |
+|--------|--------|
+| Signer name | Organisation |
+| Organisational unit | Country |
+| Email | Issued by |
+| Issuer organisation | Serial number |
+| Valid from | Valid until |
+| Signature algorithm | Signing date |
+| Reason | Location |
+
+Fields your certificate doesn't carry are skipped rather than drawn blank, so you can tick a field without checking your keystore first. Ticking nothing shows the signer name, signing date and reason, as before.
+
+#### Using Your Own Logo
+
+The box can carry your organisation's logo instead of the built-in Stirling PDF mark. Upload a **PNG or JPEG** and choose where it sits:
+
+| Position | Result |
+|--------|--------|
+| Left of the text | Logo in a column down the left, details beside it |
+| Right of the text | The same, mirrored |
+| Above the text | Logo in a band across the top, details underneath |
+| Below the text | Logo in a band across the bottom |
+| Behind the text (watermark) | Logo fills the box, faded, with the details drawn on top |
+
+Leave the upload empty and the built-in mark is used, as before.
+
+The image always keeps its proportions, so a logo is never stretched to fill its strip. The details keep a usable share of the box whatever shape the logo is, so a wide banner cannot squeeze out the signer's name. **Behind the text** is the one position where the two overlap: the logo is drawn faded underneath so the details stay readable.
+
+When **Repeat it on every page** is also on, the marks on the other pages carry the same logo, so they match the real signature.
+
+#### Repeating It on Every Page
+
+Long documents are often initialled on every page so a reader can see the whole thing was signed. **Repeat it on every page** does that.
+
+:::caution Only one page is really signed
+A PDF signature lives in a single place, so only the page you drew on carries the actual signature. The other pages get a mark that looks the same but is not a signature and will not be reported by a validator.
+
+Each mark links to the signed page, so a reader can click it to reach the signature and check its properties.
+:::
+
+This option needs a box to have been drawn first, since there has to be a shape to repeat.
+
+On a document that is already signed, only the new signature is drawn and the other pages are left alone. Marks added there would be changes made after the earlier signature, and a validator would report the document as modified since it was signed.
 
 ---
 
