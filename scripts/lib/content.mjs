@@ -10,7 +10,18 @@ export function loadContent(docsDir) {
   const pages = [];
   flattenPages(tree, pages);
   pages.sort((a, b) => a.url.localeCompare(b.url));
-  return { tree, pages };
+  return { tree: listedNavigation(tree), pages };
+}
+
+function listedNavigation(node) {
+  const items = node.items
+    .map(item => item.type === 'doc' ? item : listedNavigation(item))
+    .filter(item => item.type === 'doc' ? !item.unlisted : item.indexPage || item.items.length);
+  return {
+    ...node,
+    indexPage: node.indexPage?.unlisted ? null : node.indexPage,
+    items,
+  };
 }
 
 function walkDir(dir, rootDir) {
@@ -69,6 +80,7 @@ function walkDir(dir, rootDir) {
       sidebarLabel: fm.sidebar_label ?? fm.title ?? id,
       position: typeof fm.sidebar_position === 'number' ? fm.sidebar_position : Infinity,
       description: fm.description ?? null,
+      unlisted: fm.unlisted === true,
       body: content,
       isIndex,
     };

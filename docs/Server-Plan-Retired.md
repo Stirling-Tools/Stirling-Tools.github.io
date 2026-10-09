@@ -1,8 +1,7 @@
 ---
-sidebar_position: 8.1
 id: Server-Plan-Retired
 title: The Server plan has been replaced by Team
-sidebar_label: Upgrading from the Server purchase screen
+unlisted: true
 description: Why Server purchases are closed, how to update Stirling PDF, and what this means for existing subscriptions.
 ---
 

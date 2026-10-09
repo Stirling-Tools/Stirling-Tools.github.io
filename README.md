@@ -29,6 +29,7 @@ The site will be available at `http://localhost:3000`. Re-run `npm run build` af
 All content lives in `/docs` as extended markdown. Supported syntax:
 
 - Frontmatter: `title`, `id`, `slug`, `sidebar_position`, `sidebar_label`, `description`
+- `unlisted: true` keeps a page accessible by URL but excludes it from sidebar navigation, previous/next links and the sitemap, and adds `noindex` for search engines.
 - Folders become sidebar categories; `_category_.json` sets the label and order; a file named like its folder is the category index page
 - Admonitions: `:::note`, `:::tip`, `:::info`, `:::warning`, `:::caution`, `:::danger` (with optional `[Title]`)
 - Tabs: `<Tabs groupId="...">` / `<TabItem value="..." label="...">` (selection syncs across groups and persists)

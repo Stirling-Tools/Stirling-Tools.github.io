@@ -37,7 +37,7 @@ export function navKey(url) {
   return clean === '' ? '/' : clean;
 }
 
-function head({ title, description, url, siteUrl }) {
+function head({ title, description, url, siteUrl, unlisted = false }) {
   const fullTitle = title ? `${title} | Stirling PDF` : 'Stirling PDF Documentation';
   const desc = description ?? 'Documentation for Stirling PDF - your locally hosted one-stop-shop for all your PDF needs.';
   return `<!doctype html>
@@ -47,6 +47,7 @@ function head({ title, description, url, siteUrl }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapeHtml(fullTitle)}</title>
 <meta name="description" content="${escapeHtml(desc)}">
+<meta name="robots" content="${unlisted ? 'noindex, follow' : 'index, follow'}">
 <link rel="canonical" href="${siteUrl}${href(url)}">
 <link rel="icon" href="/img/stirling-mark.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico">
@@ -325,6 +326,7 @@ export function renderFragment({ page, bodyHtml, prev, next, headings, editUrl }
   return {
     title: page.title,
     description: page.description ?? '',
+    unlisted: page.unlisted,
     article: articleInner({ page, bodyHtml, editUrl }),
     toc: tocInner(headings),
     pager: pagerInner(prev, next),
@@ -332,7 +334,7 @@ export function renderFragment({ page, bodyHtml, prev, next, headings, editUrl }
 }
 
 export function renderPage({ page, bodyHtml, tree, prev, next, headings, siteUrl, editUrl }) {
-  return `${head({ title: page.title, description: page.description, url: page.url, siteUrl })}
+  return `${head({ title: page.title, description: page.description, url: page.url, siteUrl, unlisted: page.unlisted })}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 ${navbar()}
