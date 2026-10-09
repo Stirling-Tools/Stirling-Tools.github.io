@@ -16,6 +16,8 @@ Stirling PDF offers Team and Enterprise paid plans. These provide the same great
 
 > This page covers **self-hosted** Team and Enterprise licensing. See [Account linking](./Stirling-Account-Link.md) for processing allowances and [pricing](https://www.stirling.com/pricing) for all plans.
 
+Still seeing a Server purchase option in an older installation? [Read how to update and purchase Team](./Server-Plan-Retired.md). Existing Server subscriptions are not cancelled by the closure of new purchases.
+
 ## Available Plans
 
 ### Free Plan
