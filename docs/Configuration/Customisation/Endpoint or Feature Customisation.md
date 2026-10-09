@@ -198,6 +198,7 @@ Use these exact kebab-case IDs with `endpoints.toRemove` in settings.yml.
 - `fill` - Fill Form Fields
 - `modify-fields` - Modify Form Fields
 - `delete-fields` - Delete Form Fields
+- `xfa-sync` - Sync Hybrid XFA Form Data
 
 ### Multi-Tool & Automation
 - `multi-tool` - Multi-Tool Workbench

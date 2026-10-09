@@ -34,6 +34,48 @@ Fill Form works with fields that are already in the PDF; it does not add new fie
 
 ---
 
+## Hybrid XFA Forms (Adobe LiveCycle)
+
+Many government and corporate forms are made with Adobe LiveCycle Designer. They carry every field twice: as regular PDF form fields, which Stirling PDF and most viewers show, and as an XFA copy, which Adobe Acrobat and Reader show instead. Filling only the regular fields would leave Acrobat showing the old data.
+
+When you open such a form, Stirling PDF shows a **Hybrid XFA form** notice and lets you choose what saving does:
+
+| Mode | What happens | Use it when |
+|---|---|---|
+| **Sync XFA** (default) | Your values are copied into the XFA data, so Acrobat shows the same as every other viewer. The form keeps its LiveCycle behaviour. | Almost always |
+| **Remove XFA** | The XFA copy is deleted, so every viewer, Acrobat included, shows the regular fields. LiveCycle scripts, calculations and validation stop working. | Syncing fails, or you want one set of fields for good |
+| **Leave untouched** | The XFA copy is kept as it was. Acrobat keeps showing the old data. | You need the XFA exactly as it was |
+
+With **Sync XFA** or **Remove XFA**, Stirling PDF also removes the form's *Reader extended features* signature: any save invalidates it, and leaving it in place makes Reader warn that the document has changed since it was created.
+
+Adding, changing or deleting fields (the Create and Modify modes) cannot be carried into the XFA copy, so with **Sync XFA** those saves remove it, as **Remove XFA** does. Flattening a form removes it too.
+
+**Dynamic XFA forms** are built entirely in XFA and have no regular fields; other viewers show only a "Please wait..." page. Stirling PDF says so when you open one: only Adobe Acrobat or Reader can fill them.
+
+### What a sync covers
+
+- Text fields, including rich-text fields, whose formatting is kept.
+- Checkboxes, stored with the on and off values the form defines (often `1` and `0`).
+- Radio button groups, stored with the value of the chosen option.
+- Dropdowns and lists, stored with the value the form saves rather than the text it displays.
+- Fields that share one value, such as an ID repeated on every page: the one you edited wins, and the others are updated to match.
+
+Not synced: fields the form never stores (Acrobat shows them empty or with their default), image and signature fields, and numeric or date fields you did not edit, whose stored value is kept as it was.
+
+### Repairing a form that is already out of step
+
+`POST /api/v1/form/xfa-sync` takes a hybrid PDF whose XFA data no longer matches its fields, brings it in line, and returns a JSON report listing every field with its XFA value before and after, plus the updated PDF as base64:
+
+```bash
+curl -s -F "file=@form.pdf" http://localhost:8080/api/v1/form/xfa-sync -o report.json
+jq -r .pdf report.json | base64 -d > form-synced.pdf
+jq '.fields[] | select(.status == "updated")' report.json
+```
+
+Add `-F "includePdf=false"` to get the report alone, or `-F "mode=strip"` to remove the XFA instead. The other form endpoints (`/fill`, `/add-fields`, `/edit-fields`, `/modify-fields`, `/delete-fields`) take the same choice as `xfaMode`: `sync` (the default), `strip` or `none`.
+
+---
+
 ## Notes
 
 - Runs in your self-hosted Stirling PDF instance with no external service or credits required. See [Modes](../Modes-and-Licensing.md).
