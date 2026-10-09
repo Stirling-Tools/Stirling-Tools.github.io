@@ -34,7 +34,7 @@ Closing Server to new purchases does not cancel an existing subscription or auto
 
 You do not need to buy a second subscription because you reached this page. If you want to move an existing subscription to Team, contact [support@stirlingpdf.com](mailto:support@stirlingpdf.com) before purchasing so we can help you avoid duplicate billing.
 
-If you have already paid but cannot find or activate your licence, contact support with the email address used for the purchase.
+If you have already paid but cannot find or activate your license, contact support with the email address used for the purchase.
 
 ## Unable to update yet?
 
