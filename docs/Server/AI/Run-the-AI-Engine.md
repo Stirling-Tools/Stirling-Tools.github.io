@@ -51,8 +51,10 @@ services:
       STIRLING_ENGINE_SHARED_SECRET: replace-with-a-long-random-string
       ANTHROPIC_API_KEY: your-anthropic-api-key
       VOYAGE_API_KEY: your-voyageai-api-key
-    volumes: ['./stirling-engine-data:/app/engine/data']
+    volumes: ['stirling-engine-data:/app/engine/data']
     stop_grace_period: 30s
+volumes:
+  stirling-engine-data:
 ```
 
 - Set the same long, random shared secret on both services. The engine refuses requests without it; see [AI security](./AI-Security.md#authenticate-the-connection).

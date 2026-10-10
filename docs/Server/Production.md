@@ -13,8 +13,8 @@ Work through this list before you open a Stirling PDF server to your team.
 
 - Use the `latest` or `latest-fat` image, the Helm chart, or `Stirling-PDF-with-login.jar`. See [Install with Docker](./Install/Docker.md), [Install on Kubernetes](./Install/Kubernetes.md) or [Install with Java (JAR)](./Install/JAR.md).
 - Pin a version tag instead of `latest` so upgrades happen when you choose.
-- Mount at least `/configs`, and `/customFiles` if you use branding or signature files.
-- Give it 4 CPUs and 8 GB of memory (4 GB minimum), 16 GB or more for larger teams, and more if you turn on the AI engine in `latest-fat`. See [Performance](./Operations/Performance.md#sizing).
+- Mount at least `/configs` and `/storage`, and `/customFiles` if you use branding or signature files.
+- Give it 4 CPUs and 4 GB of memory (6 GB for `latest-fat`), 16 GB or more for larger teams, and more if you turn on the AI engine in `latest-fat`. See [Performance](./Operations/Performance.md#sizing).
 
 ## 2. Secure the admin account
 
@@ -98,6 +98,7 @@ server {
 
 - Back up the whole `configs/` folder. It holds your settings, generated keys and the built-in database.
 - The built-in database also writes a backup every night to `configs/backup/db/`. Copy those off the server too.
+- Back up `storage/`. It holds the files users save on the server.
 - Back up `customFiles/` if you use it.
 - On Team or Enterprise you can use PostgreSQL instead: see [Database](./Storage/Database.md).
 

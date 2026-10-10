@@ -11,11 +11,11 @@ Size your server for the heaviest tools your users run. PDF processing is memory
 
 ## Sizing
 
-Allow at least 4 GB of memory, 8 GB recommended. For larger teams, use 16 GB or more.
+Allow at least 4 GB of memory. For larger teams, use 16 GB or more.
 
 | Users | CPU | Memory | Disk |
 |---|---|---|---|
-| 1-10 | 2-4 cores | 8 GB (4 GB minimum) | 10 GB |
+| 1-10 | 2-4 cores | 4 GB | 10 GB |
 | 10-50 | 4-8 cores | 8-16 GB | 50 GB, SSD recommended |
 | 50+ | 8+ cores | 16 GB or more | 100 GB+, SSD |
 
@@ -31,11 +31,11 @@ services:
     deploy:
       resources:
         limits:
-          memory: 8G
+          memory: 4G
           cpus: '4.0'
 ```
 
-The ultra-lite image needs less memory. If you turn on the fat image's built-in AI engine, give it more.
+The ultra-lite image needs about 2 GB and the fat image about 6 GB. If you turn on the fat image's built-in AI engine, give it more.
 
 Some tools cost far more than others:
 
@@ -68,10 +68,10 @@ To set the heap yourself in Docker, use `JAVA_CUSTOM_OPTS`, not `JAVA_TOOL_OPTIO
 services:
   stirling-pdf:
     environment:
-      JAVA_CUSTOM_OPTS: "-Xmx4g"
+      JAVA_CUSTOM_OPTS: "-Xmx2g"
 ```
 
-When running the JAR, pass `-Xmx4g` to `java` directly. Either way, leave at least a third of the machine's or container's memory outside the heap for the other tools.
+When running the JAR, pass `-Xmx2g` to `java` directly. Either way, leave at least a third of the machine's or container's memory outside the heap for the other tools.
 
 ## More than one server
 

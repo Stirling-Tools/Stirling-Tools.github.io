@@ -36,7 +36,7 @@ In Docker, mount the storage folder so files survive container updates:
 
 ```yaml
 volumes:
-  - ./stirling-storage:/storage
+  - ./stirling-data/storage:/storage
 ```
 
 ## Storage providers

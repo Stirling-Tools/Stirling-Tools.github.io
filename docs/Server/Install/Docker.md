@@ -28,8 +28,9 @@ services:
       - ./stirling-data/logs:/logs
       - ./stirling-data/customFiles:/customFiles
       - ./stirling-data/pipeline:/pipeline
+      - ./stirling-data/storage:/storage
       - ./stirling-data/tessdata:/usr/share/tessdata
-    mem_limit: 8g
+    mem_limit: 4g
     restart: unless-stopped
 ```
 
@@ -50,8 +51,9 @@ docker run -d \
   -v ./stirling-data/logs:/logs \
   -v ./stirling-data/customFiles:/customFiles \
   -v ./stirling-data/pipeline:/pipeline \
+  -v ./stirling-data/storage:/storage \
   -v ./stirling-data/tessdata:/usr/share/tessdata \
-  --memory 8g \
+  --memory 4g \
   --restart unless-stopped \
   docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
 ```
@@ -65,8 +67,8 @@ Open `http://localhost:8080` and sign in as `admin` / `stirling`. You are asked 
 
 | Tag | Login and admin settings | Includes | Suggested memory |
 |---|---|---|---|
-| `latest` | Yes | Every tool except PDF to CBR (needs rar), with LibreOffice, Tesseract, OCRmyPDF, WeasyPrint, Calibre, Ghostscript, QPDF and ImageMagick | 8 GB (4 GB minimum) |
-| `latest-fat` | Yes | Everything in `latest`, plus the bundled AI engine | As `latest`, more with AI turned on |
+| `latest` | Yes | Every tool except PDF to CBR (needs rar), with LibreOffice, Tesseract, OCRmyPDF, WeasyPrint, Calibre, Ghostscript, QPDF and ImageMagick | 4 GB |
+| `latest-fat` | Yes | Everything in `latest`, plus the bundled AI engine | 6 GB, more with AI turned on |
 | `latest-ultra-lite` | No | Core PDF tools only. No OCR, Office, HTML or ebook conversions | 2 GB |
 
 Start with `latest`. Switch images by changing the tag and recreating the container. Your volumes carry over.
@@ -97,7 +99,7 @@ docker pull ghcr.io/stirling-tools/stirling-pdf:latest
 | `/logs` | Log files. |
 | `/customFiles` | Branding overrides and signature files. See [UI and branding](../Customisation/Branding.md). |
 | `/pipeline` | Watched and finished folders for [folder scanning](../Storage/Folder-Scanning.md). |
-| `/storage` | Files users save on the server, when [file storage](../Storage/File-Storage.md) is on. |
+| `/storage` | Files users save on the server. [File storage](../Storage/File-Storage.md) is on by default, so always mount this. |
 | `/usr/share/tessdata` | Extra OCR language files. See [OCR languages](../Operations/OCR-Languages.md). |
 
 The container runs as UID and GID `1000`. If your host folders belong to another user, set `PUID` and `PGID` to that user's IDs. `UMASK` (default `022`) sets permissions on new files.
@@ -216,6 +218,7 @@ Volume=%h/stirling-pdf/configs:/configs:Z
 Volume=%h/stirling-pdf/logs:/logs:Z
 Volume=%h/stirling-pdf/customFiles:/customFiles:Z
 Volume=%h/stirling-pdf/pipeline:/pipeline:Z
+Volume=%h/stirling-pdf/storage:/storage:Z
 Volume=%h/stirling-pdf/tessdata:/usr/share/tessdata:Z
 UserNS=keep-id:uid=1000,gid=1000
 AutoUpdate=registry

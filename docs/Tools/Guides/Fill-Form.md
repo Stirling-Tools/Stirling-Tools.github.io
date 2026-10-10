@@ -40,6 +40,6 @@ In **Modify**, select a field to change its properties, drag it to a new positio
 2. Choose a **Detection sensitivity**: **Strict**, **Balanced** (recommended) or **Thorough**.
 3. Click **Detect form fields** and review the result. If nothing is found, undo, switch to **Thorough** and run it again.
 
-Docker images include the detection model. Otherwise an admin installs it under **Settings → Server → System → AI Form Detection**.
+The standard and fat Docker images include the detection model. The ultra-lite image and the JAR downloads can't run Auto Form Detection. If the model is missing on a standard or fat image, an admin can install it under **Settings → Server → System → AI Form Detection**.
 
 To lock or unlock form fields, use **Flatten** or **Unlock PDF Forms** ([Signing and security tools](../Security/Security.md)).

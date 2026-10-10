@@ -100,4 +100,6 @@ Setting up a server instead? See [Install with Java (JAR)](../Server/Install/JAR
 
 You can change this later in **Settings → Connection Mode**. If a tool says **Backend starting up...**, wait a few seconds.
 
-To install silently or pre-configure many machines, see [Managed deployment](./Managed-Deployment.md).
+## Automated installation (MSI installer)
+
+To install silently or pre-configure many machines, see [Managed deployment](./Managed-Deployment.md#windows-intune-sccm-group-policy).

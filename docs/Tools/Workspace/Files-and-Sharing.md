@@ -9,7 +9,7 @@ description: Keep files on the server with the File library, organise them in fo
 
 The **File library** keeps your files on the server and lets you share them with other users.
 
-You need to be signed in. On Stirling Cloud, guests can't store or share files. In the desktop app, sign in to Stirling Cloud or connect to a self-hosted server. On a self-hosted server, an admin has to turn on file storage and sharing ([File storage and sharing](../../Server/Storage/File-Storage.md)).
+You need to be signed in. On Stirling Cloud, guests can't store or share files. In the desktop app, sign in to Stirling Cloud or connect to a self-hosted server. On a self-hosted server, file storage is on by default, but an admin has to turn on sharing ([File storage and sharing](../../Server/Storage/File-Storage.md)).
 
 ## Open the File library
 

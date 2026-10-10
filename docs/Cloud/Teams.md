@@ -44,6 +44,8 @@ An owner can't leave until they transfer ownership. If a team has no owner, a me
 
 In **Settings → Workspace → Users**, select **Transfer ownership** on the member and confirm. You become a member. The plan and credits stay with the team.
 
+If the team has connected self-hosted servers, start the transfer on the server instead: open **Settings → Workspace → Users** there and change the recipient's role to **Org Owner**.
+
 ## Connected self-hosted servers
 
 A self-hosted server can share your team's processing allowance. Its admin starts the link from the server ([Connect to Stirling Cloud](../Server/Licensing/Connect-to-Stirling-Cloud.md)), which opens **Connect this server?** on Stirling Cloud. The team owner approves it:

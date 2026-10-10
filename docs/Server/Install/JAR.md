@@ -179,6 +179,8 @@ sudo dnf install -y libreoffice-writer libreoffice-calc libreoffice-impress libr
 pip3 install unoserver weasyprint opencv-python-headless
 ```
 
+Stirling PDF needs QPDF 12 or newer and ImageMagick 7 (the `magick` command). The packages in Ubuntu 24.04 and Debian 12 are older, so the tools that use them stay turned off. Check the startup log, and install newer builds (for example with Homebrew) if you need them.
+
 Stirling PDF reads Tesseract languages from `/usr/share/tesseract-ocr/5/tessdata`. If your distribution puts them elsewhere, set `system.tessdataDir` in `configs/settings.yml` or the `TESSDATA_PREFIX` environment variable. To add languages, see [OCR languages](../Operations/OCR-Languages.md).
 
 </TabItem>

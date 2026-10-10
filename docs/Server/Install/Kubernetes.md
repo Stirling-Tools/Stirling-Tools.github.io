@@ -21,7 +21,7 @@ Put your overrides in `values.yaml`. The chart's [default values.yaml](https://g
 
 ```yaml
 image:
-  tag: "latest"          # the chart defaults to its own app version
+  tag: "3.1.0"           # the chart defaults to its own app version
 
 persistence:
   enabled: true
@@ -31,25 +31,35 @@ deployment:
   extraVolumeMounts:
     - name: storage-volume   # the volume the chart creates when persistence is enabled
       mountPath: /configs
+      subPath: configs
+    - name: storage-volume
+      mountPath: /storage
+      subPath: storage
 
 envs:
   - name: SYSTEM_DEFAULTLOCALE
     value: en-GB
 ```
 
-- **image.tag:** set `latest`, or a version tag to pin a release. The standard image has login and admin settings. See [Choose an image](./Docker.md#choose-an-image).
-- **Persistence:** Stirling PDF keeps users, `settings.yml` and its built-in database in `/configs`. Without a persistent volume they are lost when the pod restarts. Enabling persistence creates the volume, and `extraVolumeMounts` mounts it at `/configs`.
+- **image.tag:** a version tag pins the release, so you choose when to upgrade. You can set `latest` instead, but see [Upgrade](#upgrade). The standard image has login and admin settings. See [Choose an image](./Docker.md#choose-an-image).
+- **Persistence:** Stirling PDF keeps users, `settings.yml` and its built-in database in `/configs`, and files users save on the server in `/storage`. Without a persistent volume they are lost when the pod restarts. Enabling persistence creates the volume, and `extraVolumeMounts` mounts a folder of it at each path.
 - **envs:** any setting can be passed as an environment variable. See [Configuration](../Configuration.md) for the naming rule.
 
-The chart also has `ingress`, `resources` and `rootPath` options. Give the pod at least 4 GB of memory, 8 GB recommended (see [Sizing](../Operations/Performance.md#sizing)).
+The chart also has `ingress`, `resources` and `rootPath` options. Give the pod at least 4 GB of memory (see [Sizing](../Operations/Performance.md#sizing)).
 
 ## Upgrade
 
+Change `image.tag` in `values.yaml` to the new version, then run:
+
 ```bash
 helm repo update
-helm upgrade stirling-pdf stirling-pdf/stirling-pdf-chart --namespace stirling-pdf --reuse-values
+helm upgrade stirling-pdf stirling-pdf/stirling-pdf-chart --namespace stirling-pdf -f values.yaml
 ```
 
-If you pinned `image.tag`, change it in `values.yaml` and pass `-f values.yaml` instead of `--reuse-values`.
+If you use `latest`, the tag never changes, so `helm upgrade` does not restart the pod or pull the new image. Set `image.pullPolicy: Always` in `values.yaml` and apply it with the command above. After that, restart the pod to upgrade:
+
+```bash
+kubectl rollout restart deployment/stirling-pdf-stirling-pdf-chart --namespace stirling-pdf
+```
 
 To run several replicas behind one service, see [Clustering](../Operations/Clustering.md).

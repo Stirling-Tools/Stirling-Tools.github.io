@@ -60,11 +60,12 @@ A standalone Valkey is a single point of failure: no node starts while it is dow
 
 ## Health checks
 
-- `GET /api/v1/info/status` needs no sign-in and returns `{"status": "UP"}`. Use it for container and load balancer checks.
-- If Valkey is unreachable, job and file requests return HTTP 503 while that check can still report healthy, so monitor Valkey separately.
+- `GET /actuator/health` needs no sign-in. It returns HTTP 503 with `"status": "DOWN"` when the node cannot reach Valkey, so use it for load balancer checks. It also reports `DOWN` if another dependency, such as the database, fails.
+- `GET /api/v1/info/status` needs no sign-in and always returns `{"status": "UP"}` while the app is running. Use it as a simple liveness check.
+- If Valkey is unreachable, job and file requests return HTTP 503.
 
 ## Limits
 
 - Job results live on the node that ran the job. A request for them on another node returns HTTP 410, which is why session affinity is required.
-- Rate limits apply per node.
+- Per-user rate limits are counted once across the whole cluster, through Valkey.
 - Pause Processor work before restarting a node. A restart interrupts documents that Processor is handling across the cluster.

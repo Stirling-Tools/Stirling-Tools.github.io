@@ -14,7 +14,7 @@ Open Stirling PDF in a web browser and select **Processor** in the left bar. On 
 
 On a self-hosted server, Processor is only in builds that include it. If there is no **Processor** in the left bar, your build doesn't have it. [Folder scanning](../Server/Storage/Folder-Scanning.md) watches server folders without it.
 
-If the button is greyed out with **Ask an admin for processor access**, your account does not have access yet.
+If the button is greyed out with **Ask an admin for processor access**, your account does not have access yet. On a self-hosted server, Processor also needs login turned on. With login off, the button stays greyed out for everyone. See [Processor server settings](../Server/Automation/Processor-Settings.md).
 
 ## Who can open and manage it
 

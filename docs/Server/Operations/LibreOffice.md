@@ -11,7 +11,9 @@ Office conversions (Word, Excel, PowerPoint and similar, to and from PDF) run th
 
 ## Local workers
 
-Stirling PDF starts its own pool of workers. Set the pool size with `libreOfficeSessionLimit`:
+In the Docker images, Stirling PDF starts its own workers on the first office conversion and stops them after 2 minutes idle. Change the idle time with `UNO_IDLE_TIMEOUT_SECONDS`, or set `UNO_DEMAND_ENABLED=false` to keep them running. Without Docker, start the workers yourself as shown in [Workers without Docker](#workers-without-docker).
+
+Set the pool size with `libreOfficeSessionLimit`:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
@@ -24,8 +26,8 @@ Stirling PDF starts its own pool of workers. Set the pool size with `libreOffice
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
-    PROCESSEXECUTOR_AUTOUNOSERVER=true
-    PROCESSEXECUTOR_SESSIONLIMIT_LIBREOFFICESESSIONLIMIT=4
+    PROCESS_EXECUTOR_AUTO_UNO_SERVER=true
+    PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT=4
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
@@ -33,13 +35,13 @@ Stirling PDF starts its own pool of workers. Set the pool size with `libreOffice
     services:
       stirling-pdf:
         environment:
-          PROCESSEXECUTOR_AUTOUNOSERVER: "true"
-          PROCESSEXECUTOR_SESSIONLIMIT_LIBREOFFICESESSIONLIMIT: 4
+          PROCESS_EXECUTOR_AUTO_UNO_SERVER: "true"
+          PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT: 4
     ```
   </TabItem>
 </Tabs>
 
-Start with one worker per two CPU cores. Each extra worker adds about 50 MB of memory while idle, and more while converting.
+Start with one worker per two CPU cores. With `UNO_DEMAND_ENABLED=false`, each extra worker adds about 50 MB of memory while idle, and more while converting.
 
 ## Remote workers
 
@@ -77,14 +79,14 @@ Then turn off the local pool, list the workers and restart Stirling PDF. As envi
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
-    PROCESSEXECUTOR_AUTOUNOSERVER=false
-    PROCESSEXECUTOR_SESSIONLIMIT_LIBREOFFICESESSIONLIMIT=2
-    PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_HOST=unoserver1
-    PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_PORT=2003
-    PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_HOSTLOCATION=remote
-    PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_HOST=unoserver2
-    PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_PORT=2003
-    PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_HOSTLOCATION=remote
+    PROCESS_EXECUTOR_AUTO_UNO_SERVER=false
+    PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT=2
+    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST=unoserver1
+    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_PORT=2003
+    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST_LOCATION=remote
+    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST=unoserver2
+    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_PORT=2003
+    PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST_LOCATION=remote
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
@@ -92,19 +94,19 @@ Then turn off the local pool, list the workers and restart Stirling PDF. As envi
     services:
       stirling-pdf:
         environment:
-          PROCESSEXECUTOR_AUTOUNOSERVER: "false"
-          PROCESSEXECUTOR_SESSIONLIMIT_LIBREOFFICESESSIONLIMIT: 2
-          PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_HOST: unoserver1
-          PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_PORT: 2003
-          PROCESSEXECUTOR_UNOSERVERENDPOINTS_0_HOSTLOCATION: remote
-          PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_HOST: unoserver2
-          PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_PORT: 2003
-          PROCESSEXECUTOR_UNOSERVERENDPOINTS_1_HOSTLOCATION: remote
+          PROCESS_EXECUTOR_AUTO_UNO_SERVER: "false"
+          PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT: 2
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST: unoserver1
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_PORT: 2003
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_0_HOST_LOCATION: remote
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST: unoserver2
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_PORT: 2003
+          PROCESS_EXECUTOR_UNO_SERVER_ENDPOINTS_1_HOST_LOCATION: remote
     ```
   </TabItem>
 </Tabs>
 
-Set `libreOfficeSessionLimit` to the number of workers, or some will sit idle.
+Every listed worker is used. Set `libreOfficeSessionLimit` to the number of workers to avoid a startup warning. It also caps conversions that fall back to running LibreOffice directly.
 
 ### Worker settings
 
