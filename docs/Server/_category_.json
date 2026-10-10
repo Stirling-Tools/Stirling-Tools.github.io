@@ -1,0 +1,9 @@
+{
+  "label": "Self-hosted server",
+  "short": "Server",
+  "space": "server",
+  "icon": "server",
+  "position": 3,
+  "group": "setup",
+  "description": "Run Stirling PDF on your own infrastructure"
+}

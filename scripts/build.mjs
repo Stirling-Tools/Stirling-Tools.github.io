@@ -2,6 +2,7 @@
 // Renders docs/*.md into ./build, wiring up Kapa AI, Algolia, PostHog,
 // Scarf and Termly, and emitting the content bundle the client router uses.
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -11,14 +12,17 @@ import { renderPage, render404, renderFragment, BUNDLE_TOKEN, navKey, href } fro
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const docsDir = path.join(root, 'docs');
-const outDir = path.join(root, 'build');
+// --check renders into a throwaway dir so parallel link checks never clash over ./build.
+const CHECK = process.argv.includes('--check');
+const outDir = CHECK ? fs.mkdtempSync(path.join(os.tmpdir(), 'docs-check-')) : path.join(root, 'build');
 const SITE_URL = 'https://docs.stirlingpdf.com';
 
 async function main() {
   await initHighlighter();
   const md = createRenderer();
-  const { tree, pages } = loadContent(docsDir);
-  const ordered = navOrder(tree);
+  const { tree, pages, spaces } = loadContent(docsDir);
+  // prev/next never crosses from one space into another
+  const chains = new Map(spaces.map(s => [s.id, navOrder(s.node)]));
 
   // file path (relative to docs/, forward slashes) -> page, for .md link resolution
   const byFile = new Map();
@@ -29,6 +33,15 @@ async function main() {
   // doc-id lookup: some links reference a doc by id, e.g. "./analytics-telemetry"
   const byId = new Map();
   for (const p of pages) byId.set(p.docId, p);
+
+  const broken = [];
+  const anchorChecks = [];
+  const anchorsByUrl = new Map();
+  const pageUrls = new Set(pages.map(p => p.url.replace(/\/$/, '').toLowerCase()));
+  const redirectsPath = path.join(root, 'redirects.json');
+  const redirectUrls = new Set(fs.existsSync(redirectsPath)
+    ? Object.keys(JSON.parse(fs.readFileSync(redirectsPath, 'utf8'))).map(u => u.replace(/\/$/, '').toLowerCase())
+    : []);
 
   const resolveLink = (rawHref, page) => {
     if (/^(https?:|mailto:|#)/.test(rawHref)) return rawHref;
@@ -47,9 +60,17 @@ async function main() {
       noSlash + '/' + path.posix.basename(noSlash) + '.md'];
     for (const c of candidates) {
       const hit = byFile.get(c) ?? byId.get(c.replace(/\.mdx?$/, ''));
-      if (hit) return href(hit.url) + (hash ? '#' + hash : '');
+      if (hit) {
+        if (hash) anchorChecks.push({ from: path.relative(docsDir, page.file), url: hit.url, hash, raw: rawHref });
+        return href(hit.url) + (hash ? '#' + hash : '');
+      }
     }
-    // images / static assets keep their path
+    // A built page URL or redirect is fine; anything else that isn't a static asset is broken.
+    const asUrl = '/' + noSlash;
+    const isAsset = /\.(png|jpe?g|gif|svg|webp|mp4|pdf|json|ya?ml|zip)$/i.test(noSlash);
+    if (!isAsset && !pageUrls.has(asUrl.toLowerCase()) && !redirectUrls.has(asUrl.toLowerCase())) {
+      broken.push(`${path.relative(docsDir, page.file)} -> ${rawHref}`);
+    }
     return rawHref;
   };
 
@@ -78,26 +99,29 @@ async function main() {
       return self.renderToken(tokens, idx, options);
     })();
 
-    const renderInner = (src) => md.render(preprocess(src, renderInner), env);
-    const bodyHtml = md.render(preprocess(page.body, renderInner), env);
+    const resolve = (h) => resolveLink(h, page);
+    const renderInner = (src) => md.render(preprocess(src, renderInner, resolve), env);
+    const bodyHtml = md.render(preprocess(page.body, renderInner, resolve), env);
 
-    const idx = ordered.indexOf(page);
-    const prev = idx > 0 ? ordered[idx - 1] : null;
-    const next = idx >= 0 && idx < ordered.length - 1 ? ordered[idx + 1] : null;
+    const chain = chains.get(page.space) ?? [];
+    const idx = chain.indexOf(page);
+    const prev = idx > 0 ? chain[idx - 1] : null;
+    const next = idx >= 0 && idx < chain.length - 1 ? chain[idx + 1] : null;
 
     const relPath = path.relative(root, page.file).split(path.sep).join('/');
     const editUrl = 'https://github.com/Stirling-Tools/Stirling-Tools.github.io/edit/main/' +
       relPath.split('/').map(encodeURIComponent).join('/');
 
+    anchorsByUrl.set(page.url, new Set(env.headings.map(h => h.id)));
     const headings = env.headings.filter(h => h.level <= 3);
 
     const html = renderPage({
-      page, bodyHtml, tree, prev, next, editUrl, headings,
+      page, bodyHtml, spaces, prev, next, editUrl, headings,
       siteUrl: SITE_URL,
     });
     rendered.push({ url: page.url, html });
 
-    const fragment = renderFragment({ page, bodyHtml, prev, next, headings, editUrl });
+    const fragment = renderFragment({ page, bodyHtml, spaces, prev, next, headings, editUrl });
     fragments[navKey(page.url)] = fragment;
 
     // Standalone fragment file: the fallback used for clicks that land before
@@ -152,7 +176,7 @@ async function main() {
 
   // 404 + sitemap
   fs.writeFileSync(path.join(outDir, '404.html'),
-    render404({ tree, siteUrl: SITE_URL }).split(BUNDLE_TOKEN).join(bundleUrl));
+    render404({ spaces, siteUrl: SITE_URL }).split(BUNDLE_TOKEN).join(bundleUrl));
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
     pages.filter(p => !p.unlisted).map(p => `  <url><loc>${SITE_URL}${href(p.url)}</loc></url>`).join('\n') +
     `\n</urlset>\n`;
@@ -161,7 +185,17 @@ async function main() {
   // Browsers request /favicon.ico at the root regardless of link tags.
   fs.copyFileSync(path.join(root, 'static', 'img', 'favicon.ico'), path.join(outDir, 'favicon.ico'));
 
-  console.log(`Built ${count} pages -> ${outDir}`);
+  console.log(`Built ${count} pages${CHECK ? ' (check only)' : ' -> ' + outDir}`);
+  if (CHECK) fs.rmSync(outDir, { recursive: true, force: true });
+  for (const a of anchorChecks) {
+    const ids = anchorsByUrl.get(a.url);
+    if (ids && !ids.has(decodeURIComponent(a.hash))) broken.push(`${a.from} -> ${a.raw} (missing anchor)`);
+  }
+  if (broken.length) {
+    const uniq = [...new Set(broken)];
+    console.error(`\n${uniq.length} broken internal link(s):\n  ` + uniq.join('\n  '));
+    if (process.argv.includes('--strict')) process.exit(1);
+  }
 }
 
 function writeJson(urlPath, data) {

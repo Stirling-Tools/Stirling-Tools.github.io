@@ -1,0 +1,45 @@
+---
+sidebar_position: 15
+title: Fill forms
+description: Fill in PDF forms, add or edit form fields, export form data, and detect fields automatically.
+sidebar_label: Fill forms
+---
+
+# Fill forms
+
+The **Form Editor** tool fills in a PDF's form fields in the viewer. It can also add new fields, edit existing ones, and export what was entered.
+
+Open a PDF and select **Form Editor**, then choose a **Form editor mode**: **Fill**, **Create** or **Modify**. A PDF with no fields opens in **Create**.
+
+## Fill in a form
+
+1. In **Fill**, click each field on the page (or in the field list) and enter a value.
+2. Turn on **Flatten after filling** to lock the answers into the page.
+3. Click **Save** or press **Ctrl+S** (**Cmd+S** on a Mac) to write the values into the PDF. Required fields must be filled first.
+
+To export the entered values, click **JSON**, **CSV** or **XLSX**. If fields don't show up correctly, click **Re-scan fields**.
+
+## Add fields
+
+1. Switch to **Create**.
+2. Pick a field type (**Text**, **Checkbox**, **Dropdown**, **List box**, **Radio**, **Button** or **Signature**), then draw it on the page. Press **Esc** to stop drawing.
+3. Press and hold **Hold to preview** to see the fields without editing outlines.
+4. Click **Add *n* field(s) to PDF**, where *n* is the number of fields you drew.
+
+A **Signature** field is only a placeholder that marks where a signature belongs. To sign, use [Sign](../Security/Sign.md) or [Certificate signing](../Security/Certificate-Signing.md).
+
+## Edit fields
+
+In **Modify**, select a field to change its properties, drag it to a new position, or delete it. You can set its **Field name**, **Label**, **Tooltip**, **Default value**, **Font size**, and whether it is **Required** or **Read-only**. Text fields also have **Multi-line** and **Max length (comb)**, dropdowns and lists have **Options**, and buttons have a **Button action**. Click **Save *n* change(s)** when you're done.
+
+## Detect fields automatically
+
+**Auto Form Detection** finds text fields, checkboxes and signature areas in a flat PDF and makes them fillable.
+
+1. Open **Auto Form Detection**.
+2. Choose a **Detection sensitivity**: **Strict**, **Balanced** (recommended) or **Thorough**.
+3. Click **Detect form fields** and review the result. If nothing is found, undo, switch to **Thorough** and run it again.
+
+Docker images include the detection model. Otherwise an admin installs it under **Settings → Server → System → AI Form Detection**.
+
+To lock or unlock form fields, use **Flatten** or **Unlock PDF Forms** ([Signing and security tools](../Security/Security.md)).

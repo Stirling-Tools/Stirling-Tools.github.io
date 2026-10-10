@@ -1,71 +1,49 @@
 ---
 sidebar_position: 1
 title: Setup and access
-description: Configure Processor access, folder permissions, and required services.
+description: >-
+  Open Processor, see who can use and manage it, and how pipeline runs are
+  counted on Stirling Cloud and self-hosted servers.
 ---
 
 # Setup and access
 
 ## Open Processor
 
-Open Stirling PDF in a web browser and select **Processor** in the quick access bar on the left. It is not currently accessible from the desktop app, although we will be adding it for desktop apps connected to supported environments.
+Open Stirling PDF in a web browser and select **Processor** in the left bar. On Stirling Cloud you can also go straight to [stirling.com/app/processor](https://stirling.com/app/processor). Processor is not part of the desktop app.
 
-Administrators and team leaders have access by default. Default users or environments without login will not be able to access Processor.
+On a self-hosted server, Processor is only in builds that include it. If there is no **Processor** in the left bar, your build doesn't have it. [Folder scanning](../Server/Storage/Folder-Scanning.md) watches server folders without it.
 
-See the [Production Deployment Guide](../Server-Admin-Onboarding.md) for the underlying server setup.
+If the button is greyed out with **Ask an admin for processor access**, your account does not have access yet.
 
 ## Who can open and manage it
 
-| Action | Who can do it |
-|---|---|
-| Open Processor | Administrators and team leaders by default. Other users need to be given access. |
-| Create, edit, pause, or delete [sources](./Sources.md) and [pipelines](./Pipelines.md), or start a pipeline with **Run now** | Administrators on self-hosted deployments. Team leaders on Stirling Cloud. |
-| Run a [pipeline](./Pipelines.md) on your own files in the editor | Every member of the pipeline's team. |
-| Check processing in [Documents](./Documents.md) | Anyone who can open Processor, to confirm pipelines ran and troubleshoot problems. It shows processing records, never the documents themselves. |
-| [View pipeline failures](./Review.md) | Everyone sees failures from their own runs, so they can fix them. Administrators on self-hosted deployments, and team leaders on Stirling Cloud, also handle failures from the team's pipelines, including scheduled and folder-watch runs. |
+| Action | Stirling Cloud | Self-hosted server |
+|---|---|---|
+| Open Processor | The team owner. Invited members cannot be given access. | Administrators and team leaders by default. An administrator can give other users access. |
+| Create, edit, pause or delete [sources](./Sources.md) and [pipelines](./Pipelines.md), or start a pipeline with **Run now** | The team owner | Administrators |
+| Run a [pipeline](./Pipelines.md) on your own files in the editor | Every team member | Every member of the pipeline's team |
+| Check processing in [Documents](./Documents.md) | Anyone who can open Processor | Anyone who can open Processor |
+| Handle [failures](./Review.md) | Everyone handles failures from their own runs. The team owner also handles the team's pipeline failures. | Everyone handles failures from their own runs. Administrators also handle the team's pipeline failures, including scheduled and folder-watch runs. |
 
-Pipelines and sources belong to their owning team.
+Pipelines and sources belong to their owning team. For the other differences on Stirling Cloud, see [Processor and AI on Cloud](../Cloud/Processor-and-AI.md).
 
-## Account linking
+### Give someone access on a self-hosted server
 
-To use your team's cloud processing allowance on a self-hosted server, follow [Account linking](../Stirling-Account-Link.md). The guide explains how to connect, what is synchronized, and how to manage the connection. Enterprise does not require linking.
+An administrator opens **Settings → Workspace → Users**, then either:
 
-## Allow server folders
+- selects **+ Processor** in the user's **Capabilities** column, or
+- chooses **Grant Processor to team** from a team's menu.
 
-A **Folder** source uses a path on the server, or inside the container.
+To change who has access by default, see [Processor server settings](../Server/Automation/Processor-Settings.md#who-can-open-processor).
 
-1. Mount or create separate input and output directories.
-2. Give the Stirling PDF process permission to read the input and write the output. **Delete the file** mode also needs permission to remove originals.
-3. Add their parent directory in the **Folder Access** section of **Settings → Server → System**, or set `policies.allowedFolderRoots` with one of the methods below.
-4. Restart Stirling PDF after changing the allowed folders.
+## Credits
 
-<Tabs groupId="config-methods">
-  <TabItem value="settings" label="Settings File">
-    ```yaml
-    policies:
-      allowedFolderRoots:
-        - /data/processor
-    ```
-  </TabItem>
-  <TabItem value="env" label="Environment Variables">
-    ```bash
-    POLICIES_ALLOWEDFOLDERROOTS=/data/processor
-    ```
-  </TabItem>
-  <TabItem value="docker-compose" label="Docker Compose">
-    ```yaml
-    services:
-      stirling-pdf:
-        environment:
-          POLICIES_ALLOWEDFOLDERROOTS: /data/processor
-        volumes:
-          - ./processor:/data/processor
-    ```
-  </TabItem>
-</Tabs>
+Pipeline runs use credits. Manual tools in the editor never do.
 
-Separate several directories with commas in an environment variable, for example `/data/processor,/mnt/scans`. An environment variable replaces the list in the settings file.
+- **Stirling Cloud:** runs draw on your team's monthly free credits. For more, the team owner turns on the Processor plan. See [Plans, credits and billing](../Cloud/Plans-and-Billing.md).
+- **Self-hosted:** runs use the server's monthly free credits. An administrator can connect the server to a Stirling Cloud team to share that team's allowance; see [Connect to Stirling Cloud](../Server/Licensing/Connect-to-Stirling-Cloud.md). An Enterprise licence includes processing on the server, so connecting is optional.
 
-For a container, mount your host's directory at `/data/processor` and enter paths such as `/data/processor/inbox` and `/data/processor/processed` in the UI.
+## Server settings
 
-The list is empty by default; Stirling PDF's own storage and watched folders are always allowed. Every signed-in user can set up [processing folders](./Processing-Folders.md) under these directories, so allow only directories all your users may use. Processing folders keep the original of every file they replace. Folder access is unavailable on Stirling Cloud.
+On a self-hosted server, an administrator decides which server folders **Folder** sources may use, whether sources can reach hosts on the internal network, and how connection secrets are encrypted. See [Processor server settings](../Server/Automation/Processor-Settings.md).

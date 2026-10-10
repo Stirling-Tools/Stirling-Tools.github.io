@@ -1,7 +1,8 @@
 // Markdown -> HTML with the docs' extended syntax:
-// :::type[Title] admonitions, <Tabs>/<TabItem> blocks, Shiki dual-theme code.
+// :::type[Title] admonitions, <Tabs>/<TabItem> and <Cards>/<Card> blocks, Shiki dual-theme code.
 import MarkdownIt from 'markdown-it';
 import { createHighlighter } from 'shiki';
+import { icon } from './icons.mjs';
 
 const LANG_ALIASES = {
   yml: 'yaml', sh: 'bash', shell: 'bash', dockerfile: 'docker',
@@ -113,10 +114,11 @@ const ADMONITION_LABELS = { note: 'Note', tip: 'Tip', info: 'Info', warning: 'Wa
 
 // Pre-pass: convert the non-standard syntax into raw-HTML islands that
 // markdown-it will pass through, recursing so inner markdown still renders.
-export function preprocess(source, renderInner) {
+export function preprocess(source, renderInner, resolveHref = (h) => h) {
   let out = source.replace(/\r\n?/g, '\n');
   // strip MDX imports
   out = out.replace(/^import\s+.*from\s+['"][^'"]+['"];?\s*$/gm, '');
+  out = transformCards(out, renderInner, resolveHref);
   out = transformTabs(out, renderInner);
   out = transformAdmonitions(out, renderInner);
   // <details>/<summary> pass through natively; <br/> ok.
@@ -229,4 +231,32 @@ function renderTabsBlock(block, renderInner, state) {
   const synced = /groupId="/.test(block.attrs);
   return `<div class="tabs" data-group="${escapeHtml(groupId)}" data-sync="${synced}" id="${uid}">` +
     `<div class="tab-list" role="tablist">${tabs}</div>${panels}</div>`;
+}
+
+// <Cards cols="3" compact><Card title="..." href="./x.md" icon="cloud" accent="cloud">text or links</Card></Cards>
+// The title link stretches over the card; links in the body stay clickable.
+function transformCards(src, renderInner, resolveHref) {
+  const blocks = findBalancedBlocks(src, 'Cards');
+  if (!blocks.length) return src;
+  let out = '';
+  let pos = 0;
+  for (const block of blocks) {
+    out += src.slice(pos, block.start);
+    const cols = (block.attrs.match(/cols="(\d)"/) || [])[1] || '2';
+    const cards = findBalancedBlocks(block.inner, 'Card').map((b) => {
+      const attr = (name) => (b.attrs.match(new RegExp(`${name}="([^"]*)"`)) || [])[1] || '';
+      const title = escapeHtml(attr('title'));
+      const link = attr('href') ? resolveHref(attr('href')) : '';
+      const body = b.inner.trim() ? renderInner(dedent(b.inner).trim()) : '';
+      return `<div class="card${link ? ' card-link' : ''}"${attr('accent') ? ` data-accent="${escapeHtml(attr('accent'))}"` : ''}>` +
+        (attr('icon') ? `<span class="card-icon">${icon(attr('icon'), 20)}</span>` : '') +
+        `<div class="card-title">${link ? `<a href="${escapeHtml(link)}">${title}</a>` : title}</div>` +
+        (body ? `<div class="card-body">${body}</div>` : '') +
+        `</div>`;
+    });
+    const compact = /\bcompact\b/.test(block.attrs) ? ' cards-compact' : '';
+    out += `<div class="cards cards-${cols}${compact}">${cards.join('')}</div>\n`;
+    pos = block.end;
+  }
+  return out + src.slice(pos);
 }

@@ -1,4 +1,9 @@
 {
   "label": "Processor",
-  "position": 3
+  "short": "Processor",
+  "space": "processor",
+  "icon": "bolt",
+  "position": 5,
+  "group": "guides",
+  "description": "Automated document pipelines and policies"
 }

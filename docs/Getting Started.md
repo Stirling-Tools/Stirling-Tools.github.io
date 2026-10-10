@@ -1,139 +1,55 @@
 ---
-sidebar_position: 0
 slug: /
 id: Getting Started
-title: Welcome to Stirling PDF
-sidebar_label: Getting Started
-description: What Stirling PDF is, how to install it, and where to go next in the documentation
-tags:
-  - Getting Started
-  - Installation
-  - Overview
-  - Self-host
+title: Stirling PDF documentation
+sidebar_label: Home
+layout: home
+description: Guides for Stirling PDF on Stirling Cloud, the desktop app and self-hosted servers.
 ---
 
-# Welcome to Stirling PDF
+# Stirling PDF documentation
 
-Stirling PDF provides tools for signing, converting, merging, editing, OCR and redaction, with self-hosted and desktop deployment options.
+<p class="lead">Stirling PDF lets you edit, convert, sign, redact and automate PDFs. Use it in your browser, as a desktop app on your own computer, or on your own server.</p>
 
----
+<h2 class="section-label">Pick your setup</h2>
 
-## Benefits of Stirling PDF
+<Cards cols="3">
+<Card title="Cloud" icon="cloud" accent="cloud" href="./Cloud/Cloud.md">
+Stirling Cloud, in your browser with nothing to install. Best if you want to edit or convert a PDF right now.
+</Card>
+<Card title="Desktop" icon="desktop" accent="desktop" href="./Desktop/Desktop.md">
+The app for Windows, macOS and Linux. Best if you want to work on files on your own computer, even offline.
+</Card>
+<Card title="Server" icon="server" accent="server" href="./Server/Server.md">
+Self-hosted with Docker, Kubernetes or Java. Best if every file must stay on your own servers, or you run one instance for your team.
+</Card>
+</Cards>
 
-- **Extensive PDF Functionality:** 55+ tools covering signing, converting, merging, editing, OCR, and redaction.
-- **Stateful Workspace:** Upload once and chain tools together, with full undo and redo history.
-- **Runs Anywhere:** Docker, bare metal, Kubernetes, or native desktop apps for Windows, macOS, and Linux.
-- **Processing location:** Self-hosted tools process files on your instance. Desktop tools use the local backend where supported; tools routed to Stirling Cloud or a connected server send their inputs there.
-- **Configure In-App:** Change settings from the UI, or drive everything with environment variables and `settings.yml`.
-- **Automation & Integration:** REST API and an MCP server for AI assistants.
-- **Stirling Processor:** Connect sources and automate document processing.
-- **AI Engine:** Ask questions about documents, create PDFs, and classify files.
-- **Enterprise Features:** SAML SSO, user management, permission controls, and audit logging. OAuth2 SSO is free on every plan.
-- **Self-Hosted:** Community-driven with frequent updates and GitHub support.
-- **Multi-Language Support:** Available in 40+ languages with active translations.
+Not sure? Try [Stirling Cloud](https://stirling.com/app) first. There is nothing to install and the manual tools are free.
 
----
+<h2 class="section-label">Guides for every setup</h2>
 
-## Installation
+<Cards cols="2">
+<Card title="User guide" icon="tools" accent="tools" href="./Tools/Tools.md">
+Every PDF tool, your files, sharing and the AI assistant.
+</Card>
+<Card title="Processor" icon="bolt" accent="processor" href="./Processor/Processor.md">
+Automate document work with sources, policies and pipelines.
+</Card>
+<Card title="MCP" icon="sparkles" accent="mcp" href="./MCP/MCP.md">
+Let Claude, Codex or VS Code run Stirling PDF tools for you.
+</Card>
+<Card title="Developers" icon="code" href="./Developers/Developers.md">
+REST API, Pipeline API and contributing.
+</Card>
+</Cards>
 
-Choose how you want to run Stirling PDF based on your needs:
+<h2 class="section-label">Get help</h2>
 
-### Desktop Applications
+<Cards cols="3" compact>
+<Card title="FAQ" icon="help" href="./Tools/FAQ.md"></Card>
+<Card title="Ask the community on Discord" icon="chat" href="https://discord.gg/Cn8pWhQRxZ"></Card>
+<Card title="Report a bug on GitHub" icon="link" href="https://github.com/Stirling-Tools/Stirling-PDF/issues"></Card>
+</Cards>
 
-Native apps with system integration:
-
-| Platform | Download | Guide |
-|----------|----------|-------|
-| **Windows** | [Installer](https://files.stirlingpdf.com/win-installer.exe) | [Windows Guide](./Installation/Windows.md) |
-| **Mac** (Universal) | [DMG](https://files.stirlingpdf.com/mac-installer.dmg) | [Mac Guide](./Installation/Mac.md) |
-| **Linux** | [DEB](https://files.stirlingpdf.com/linux-installer.deb) | [Unix Guide](./Installation/Unix.md) |
-
-**Features:** Fast startup, "Open with" integration, no login required, optional server connection for advanced tools
-
----
-
-### Docker Deployment
-
-Recommended for server deployments and organizations:
-
-**Quick Start:**
-```bash
-docker run -d \
-  -p 8080:8080 \
-  -v ./stirling-data:/configs \
-  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
-```
-
-**Available versions:**
-- `latest` - Standard version (recommended)
-- `latest-fat` - Extra fonts and tools for highest quality conversions and full format support
-- `latest-ultra-lite` - Minimal size for resource-constrained environments
-
-**Full guide:** [Docker Installation Guide](./Installation/Docker%20Install.md)
-
----
-
-### Manual Server Setup
-
-For bare metal installations or environments without Docker:
-
-1. Download `Stirling-PDF.jar`
-2. Install Java 25+
-3. Install dependencies (LibreOffice, Tesseract for OCR)
-4. Run the JAR file
-
-**Full guide:** [Unix Installation Guide](./Installation/Unix.md)
-
----
-
-## Documentation Guide
-
-### For Individual Users
-
-**[Tool Reference](./Functionality/Functionality.md)**
-Browse all 55+ PDF tools with descriptions
-
-**[Migration Guide](./Migration/Overview.md)**
-The upgrade path from Stirling PDF V1 to V2, and what to check before you upgrade
-
----
-
-### For Organizations & IT Teams
-
-**[Production Deployment Guide](./Server-Admin-Onboarding.md)**
-Complete walkthrough: installation - configuration - security - monitoring
-
-**[Stirling Processor](./Processor/Processor.md)**
-Sources, policies, and pipelines that run document work on a schedule, on a folder drop, or on demand
-
-**[AI Overview](./AI/AI-Overview.md)**
-AI features, model providers, and self-hosted setup
-
-**[Paid Offerings (Team & Enterprise)](./Paid-Offerings.md)**
-External databases, Google Drive integration, SSO, advanced monitoring, and priority support
-
-**[Configuration Options](./Configuration/Customisation/Extra-Settings.md)**
-All configuration options for Docker and server deployments
-
----
-
-### For Developers & Integration
-
-**[API Documentation](./API.md)**
-Integrate Stirling PDF into your applications and workflows
-
-**[Configuration](./Configuration/Security/System%20and%20Security.md)**
-SSO, certificates, security settings, and more
-
-**[Contribute Guide](./Contribute.md)**
-Help improve Stirling PDF - development setup and guidelines
-
----
-
-## Related Documentation
-
-- **[FAQ](./FAQ.md)** - answers to the questions that come up most often
-- **[Tool Reference](./Functionality/Functionality.md)** - every PDF tool, with descriptions
-- **[Production Deployment Guide](./Server-Admin-Onboarding.md)** - installation, configuration, security, and monitoring end to end
-- **[GitHub Issues](https://github.com/Stirling-Tools/Stirling-PDF/issues)** - report a bug or request a feature
-- **[Discord](https://discord.gg/Cn8pWhQRxZ)** - community support and discussion
+You can also select **Ask AI** at the top of any page to ask the docs a question.

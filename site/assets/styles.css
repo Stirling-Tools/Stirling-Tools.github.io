@@ -445,6 +445,101 @@ body {
 
 .sidebar-search { padding: 0 0.75rem 0.75rem; }
 
+/* Space sections: compact rows with a solid icon, pages nested underneath.
+   Setups, Tools, Processor and MCP get a hue; Developers stays neutral. */
+[data-accent] { --accent: #52525b; }
+[data-accent="cloud"] { --accent: #0369a1; }
+[data-accent="desktop"] { --accent: #6d28d9; }
+[data-accent="server"] { --accent: #047857; }
+[data-accent="processor"] { --accent: #b45309; }
+[data-accent="tools"] { --accent: #be185d; }
+[data-accent="mcp"] { --accent: #4338ca; }
+[data-theme="dark"] [data-accent] { --accent: #a1a1aa; }
+[data-theme="dark"] [data-accent="cloud"] { --accent: #38bdf8; }
+[data-theme="dark"] [data-accent="desktop"] { --accent: #a78bfa; }
+[data-theme="dark"] [data-accent="server"] { --accent: #34d399; }
+[data-theme="dark"] [data-accent="processor"] { --accent: #fbbf24; }
+[data-theme="dark"] [data-accent="tools"] { --accent: #f472b6; }
+[data-theme="dark"] [data-accent="mcp"] { --accent: #818cf8; }
+
+.space-nav { padding: 0 0.75rem; }
+.space-group {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-subtle);
+  padding: 0.9rem 0.5rem 0.3rem;
+}
+.space-group:first-child { padding-top: 0.2rem; }
+/* Home row: same shape as a space header, neutral icon, highlighted on the home page. */
+.space-home {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 36px;
+  padding: 0 0.45rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  text-decoration: none;
+  --accent: #52525b;
+}
+.space-home:hover { background: var(--c-hover); color: var(--c-text); }
+.space-home:focus-visible { outline: 2px solid var(--c-primary); outline-offset: -2px; }
+body[data-layout="home"] .space-home { color: var(--c-text); font-weight: 600; background: var(--c-hover); }
+[data-theme="dark"] .space-home { --accent: #a1a1aa; }
+.space-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 36px;
+  padding: 0 0.3rem 0 0.45rem;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--c-text-muted);
+}
+.space-head:hover { background: var(--c-hover); color: var(--c-text); }
+.space-head:focus-visible { outline: 2px solid var(--c-primary); outline-offset: -2px; }
+.space-name { flex: 1; }
+.space-chev { flex: none; display: grid; place-items: center; width: 1.75rem; color: var(--c-text-subtle); transition: transform var(--motion-fast); }
+.space.open .space-chev { transform: rotate(90deg); }
+.space-icon { flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; background: var(--accent); color: #fff; }
+[data-theme="dark"] .space-icon { background: color-mix(in srgb, var(--accent) 55%, #000); }
+.space.active > .space-head { color: var(--c-text); font-weight: 600; }
+.space-body { display: none; padding: 1px 0 0.4rem 1.2rem; }
+.space.open .space-body { display: block; }
+
+/* Page rows: inset and rounded; the current page takes its space's colour. */
+/* Comfortable click targets: ~32px rows, wider carets. */
+.space .side-link { border-radius: 6px; padding: 0.45rem 0.75rem 0.45rem 0.6rem; min-height: 32px; }
+.space .side-link.active {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 13%, var(--c-surface));
+}
+[data-theme="dark"] .space .side-link.active { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+.space .side-category { margin-top: 0.1rem; }
+.space .side-cat-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--c-text-muted);
+  padding: 0.45rem 0.25rem 0.45rem 0.6rem;
+}
+.space .side-cat-label:hover { color: var(--c-text); }
+.space .side-caret { border-radius: 6px; width: 2rem; }
+.space .side-caret:hover { background: var(--c-hover); }
+.space .side-sub { margin-left: 0.85rem !important; }
+
 .sidebar-nav ul {
   list-style: none;
   margin: 0;
@@ -544,6 +639,25 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
   color: var(--c-text-muted);
   flex: 1;
 }
+
+/* Which space the page belongs to, above the title. */
+.doc a.doc-space {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+  padding: 0.15rem 0.6rem 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--c-text-subtle);
+  background: var(--c-bg-subtle);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: color var(--motion-fast), border-color var(--motion-fast);
+}
+.doc a.doc-space:hover { color: var(--c-primary); border-color: var(--c-primary); text-decoration: none; }
+.doc a.doc-space .icon { color: var(--accent); }
 
 .doc-title,
 .doc h1 {
@@ -773,40 +887,139 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
 .admonition-content > :last-child { margin-bottom: 0; }
 .admonition-content > :first-child { margin-top: 0; }
 
+/* ── Cards ───────────────────────────────────────────────────────────────── */
+
+.cards {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0 0 1.25rem;
+}
+.cards-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cards-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+  transition: border-color var(--motion-fast), box-shadow var(--motion-fast);
+}
+.card-link:hover {
+  border-color: var(--c-primary);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+.card-icon {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-bottom: 0.65rem;
+  border-radius: 10px;
+  background: var(--c-bg-subtle);
+  box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
+  color: var(--c-text);
+}
+[data-theme="dark"] .card-icon { box-shadow: rgba(255, 255, 255, 0.08) 0 0 0 1px; }
+.card-link:hover .card-icon { color: var(--c-primary); }
+.card[data-accent] .card-icon { color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); box-shadow: none; }
+.card-link[data-accent]:hover { border-color: var(--accent); }
+.card-title {
+  font-size: 0.9375rem;
+  font-weight: 650;
+  line-height: 1.3;
+  color: var(--c-text);
+  margin-bottom: 0.25rem;
+}
+.doc .card-title a { color: inherit; text-decoration: none; }
+/* Stretch the title link over the whole card. */
+.card-title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.card-body { font-size: 0.8125rem; line-height: 1.55; color: var(--c-text-subtle); }
+.card-body > :last-child { margin-bottom: 0; }
+.card-body p { margin: 0 0 0.5rem; }
+.card-body ul { margin: 0.25rem 0 0; padding-left: 1rem; }
+.card-body li { margin: 0.15rem 0; }
+/* Links inside the body sit above the stretched title link. */
+.card-body a { position: relative; z-index: 1; }
+/* Compact: icon beside a one-line title, for quick links. */
+.cards-compact .card { flex-direction: row; align-items: center; gap: 0.75rem; padding: 0.7rem 0.9rem; }
+.cards-compact .card-icon { width: 2rem; height: 2rem; margin: 0; flex: none; }
+.cards-compact .card-title { margin: 0; font-size: 0.875rem; font-weight: 600; }
+
+/* ── Home layout: no ToC rail, wider content for the product picker ──────── */
+
+body[data-layout="home"] .toc,
+body[data-layout="home"] .pager { display: none; }
+body[data-layout="home"] .doc { max-width: 58rem; }
+.doc .lead { font-size: 1.0625rem; color: var(--c-text-muted); margin-bottom: 1.5rem; }
+.doc h2.section-label,
+.doc .section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-subtle);
+  border: none;
+  margin: 2rem 0 0.75rem;
+  padding: 0;
+}
+
 /* ── Tabs ────────────────────────────────────────────────────────────────── */
 
 .tabs { margin: 0 0 0.875rem; }
 
+/* Folder tabs joined to a bordered panel, so the choice clearly owns the content below. */
+.tabs { --tab-border: #d4d4d8; }
+[data-theme="dark"] .tabs { --tab-border: rgba(255, 255, 255, 0.14); }
 .tab-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
-  border-bottom: 1px solid var(--c-border-subtle);
-  margin-bottom: 0.75rem;
+  padding: 0 0.5rem;
+  border-bottom: 1px solid var(--tab-border);
 }
 
 .tab-btn {
-  padding: 0.4rem 0.75rem;
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--c-text-subtle);
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
+  position: relative;
+  min-height: 40px;
+  padding: 0.5rem 1.1rem;
   margin-bottom: -1px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  background: none;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
   cursor: pointer;
-  transition: color var(--motion-fast);
+  transition: background var(--motion-fast), color var(--motion-fast);
 }
-.tab-btn:hover { color: var(--c-text); }
+.tab-btn:hover { color: var(--c-text); background: var(--c-hover); }
+.tab-btn:focus-visible { outline: 2px solid var(--c-primary); outline-offset: -2px; }
 .tab-btn.active {
-  color: var(--c-primary);
+  color: var(--c-text);
   font-weight: 600;
-  border-bottom-color: var(--c-primary);
+  background: var(--c-bg);
+  border-color: var(--tab-border);
+  box-shadow: inset 0 2px 0 var(--c-primary);
 }
 
 .tab-panel { display: none; }
-.tab-panel.active { display: block; }
+.tab-panel.active {
+  display: block;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--tab-border);
+  border-top: 0;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
 .tab-panel > :last-child { margin-bottom: 0; }
 
 /* ── ToC (right rail) ────────────────────────────────────────────────────── */
@@ -1058,6 +1271,10 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
 @media (max-width: 72rem) {
   .layout { grid-template-columns: 17rem minmax(0, 1fr); }
   .toc { display: none; }
+}
+
+@media (max-width: 44rem) {
+  .cards-2, .cards-3 { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 60rem) {
