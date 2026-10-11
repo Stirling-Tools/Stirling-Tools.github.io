@@ -37,11 +37,7 @@ Authentication and base URLs are the same as for the [REST API](./API.md). Pipel
 
 ## Start from an Automate export
 
-An export is a starting point only. Endpoints ignore parameter names they don't know, so rename each step's parameters to the endpoint's field names before you use it, for example `compressionLevel` to `optimizeLevel` for Compress.
-
-Build the workflow in the [Automate](../Tools/Guides/Automate.md) tool and click **Export for Folder Scanning**. It downloads `<name>.folder-scan.json` with each step's endpoint path filled in.
-
-The other button, **Export**, saves `<name>.automate.json` in the app's own format (an `operations` list with tool IDs). That file is only for importing back into Automate and does not work with the API.
+Build the workflow in [Automate](../Tools/Guides/Automate.md) and click **Export for Folder Scanning**, not **Export**. This downloads `<name>.folder-scan.json` with each step's endpoint path filled in. Before you use it, rename each step's parameters to the endpoint's field names, for example `compressionLevel` to `optimizeLevel` for Compress, as endpoints ignore names they don't know.
 
 ## Operations
 
@@ -51,7 +47,7 @@ A step can call any tool endpoint under `/api/v1/general/`, `/misc/`, `/security
 - Multi-file operations such as `/api/v1/general/merge-pdfs` get every file in one call.
 - A file of a type a step can't take is dropped from the run, and the server logs it.
 - `/api/v1/integration/external-api-call` sends the file to a saved **Custom API** connection, passed by its ID as `connectionId`. Only self-hosted admins can create these ([Integrations](../Processor/Integrations.md)).
-- AI steps (`/api/v1/ai/tools/...`) need AI. It is on for Stirling Cloud; on a self-hosted server an admin must set it up ([AI on your server](../Server/AI/AI.md)).
+- AI steps (`/api/v1/ai/tools/...`) need [AI set up](../Server/AI/AI.md) on a self-hosted server.
 
 ## Filters
 

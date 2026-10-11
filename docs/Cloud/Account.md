@@ -9,25 +9,17 @@ description: Sign in to Stirling Cloud or use it as a guest, and manage your pas
 
 ## Sign in
 
-On the sign-in page, choose one of:
-
-- **Sign in with Google** or **Sign in with GitHub**.
-- **Use magic link instead**: enter your email, select **Send Magic Link** and open the link in the email.
-- Your email and password, then **Login**.
+Go to [stirling.com/app](https://stirling.com/app) and enter your email and password, or choose **Sign in with Google**, **Sign in with GitHub** or **Use magic link instead** (Stirling emails you a sign-in link).
 
 To use the same account in the desktop app, see [Connection modes](../Desktop/Connection-Modes.md).
 
 ## Create an account
 
-1. Select **Create an account**.
-2. Sign up with Google or GitHub, or enter your email and a password (at least 6 characters) twice.
-3. Select **Sign Up**, and open the confirmation link if one is emailed to you.
+Select **Create an account** on the sign-in page. Sign up with Google or GitHub, or with your email and a password of at least 6 characters, then open the confirmation link if one is emailed to you.
 
 ## Reset your password
 
-1. On the sign-in page, select **Forgot your password?**.
-2. Enter your email and select **Send reset link**.
-3. Open the link in the email, enter a new password twice and select **Update password**.
+Select **Forgot your password?** on the sign-in page and follow the link in the email.
 
 ## Use Stirling as a guest
 
@@ -37,11 +29,11 @@ To keep a guest account, open **Settings → Account Settings → Overview**, fi
 
 ## Change your password
 
-Open **Settings → Account Settings → Passwords & Security**, select **Change password**, enter the new password twice and select **Update password**.
+Open **Settings → Account Settings → Passwords & Security** and select **Change password**.
 
 ## Sign out
 
-Open **Settings → Account Settings → Overview**, select **Log out**, then confirm with **Sign out**.
+Open **Settings → Account Settings → Overview** and select **Log out**.
 
 ## Delete your account
 

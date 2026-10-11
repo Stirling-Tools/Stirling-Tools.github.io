@@ -7,7 +7,7 @@ description: Default keyboard shortcuts for tools and the PDF viewer, and how to
 
 # Keyboard shortcuts
 
-Use shortcuts to open tools and move around the PDF viewer. On a Mac, use **⌘** for **Ctrl** and **⌥** for **Alt**.
+On a Mac, use **⌘** for **Ctrl** and **⌥** for **Alt**.
 
 ## Tool shortcuts
 

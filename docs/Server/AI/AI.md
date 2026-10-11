@@ -7,13 +7,13 @@ sidebar_label: Overview
 
 # AI on your server
 
-AI is off by default in every image. The `latest-fat` image bundles an AI engine but starts it only when AI is on. To turn AI on, choose where it runs, then choose which capabilities your users get. For what users can do with AI, see [AI assistant](../../Tools/Guides/AI-Assistant.md).
+AI is off by default in every image. For what users can do with AI, see [AI assistant](../../Tools/Guides/AI-Assistant.md).
 
 ## Choose where AI runs
 
 1. Sign in as an administrator and open **Settings → Server → AI Engine**.
 2. Under **Connection**, choose an option.
-3. Select **Save Changes**, then **Restart Now**. Connection changes apply after a restart. With the `latest-fat` image, restart the container instead (`docker compose restart`), because **Restart Now** does not start the bundled engine.
+3. Select **Save Changes**, then **Restart Now**. With the `latest-fat` image, restart the container instead (`docker compose restart`), because **Restart Now** does not start the bundled engine.
 
 ![AI connection settings with Off, Run your own engine, and Use Stirling Cloud AI](/img/ai/connection-modes.png)
 
@@ -25,7 +25,7 @@ AI is off by default in every image. The `latest-fat` image bundles an AI engine
 
 Without an Enterprise licence, AI tools count against the server's monthly [processing allowance](../Licensing/Connect-to-Stirling-Cloud.md#processing-allowance), even with your own engine and provider key.
 
-**Status** at the top of the page shows whether the engine or Stirling Cloud is reachable and accepts this server. For what each option sends off the server, see [AI security](./AI-Security.md).
+For what each option sends off the server, see [AI security](./AI-Security.md).
 
 The settings page needs login enabled; otherwise set `aiEngine.enabled` and `aiEngine.mode` in `settings.yml`:
 
@@ -49,14 +49,14 @@ The settings page needs login enabled; otherwise set `aiEngine.enabled` and `aiE
 
 All six capabilities are on by default. To turn one off, switch it off under **Capabilities** on the same page, then save and restart. Capabilities that are off are hidden in the app.
 
-| Capability | Setting | Controls |
-|---|---|---|
-| **Chat assistant** | `aiEngine.features.chat` | The assistant chat. |
-| **Document questions** | `aiEngine.features.documentQuestions` | Answers grounded in an uploaded document. |
-| **Create PDF from prompt** | `aiEngine.features.createPdf` | Generating a new PDF from a description. |
-| **Math auditor** | `aiEngine.features.mathAuditor` | Checking documents for numerical errors. |
-| **PDF comment agent** | `aiEngine.features.pdfComment` | AI review comments and annotations. |
-| **Document classification** | `aiEngine.features.classify` | Labelling documents by type or content. |
+| Capability | Setting |
+|---|---|
+| **Chat assistant** | `aiEngine.features.chat` |
+| **Document questions** | `aiEngine.features.documentQuestions` |
+| **Create PDF from prompt** | `aiEngine.features.createPdf` |
+| **Math auditor** | `aiEngine.features.mathAuditor` |
+| **PDF comment agent** | `aiEngine.features.pdfComment` |
+| **Document classification** | `aiEngine.features.classify` |
 
 For example, to turn off PDF creation:
 

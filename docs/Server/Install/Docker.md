@@ -61,14 +61,14 @@ docker run -d \
 </TabItem>
 </Tabs>
 
-Open `http://localhost:8080` and sign in as `admin` / `stirling`. You are asked to set a new password straight away. See [First login](../Server.md#first-login) for other options.
+Open `http://localhost:8080` and sign in as `admin` / `stirling` (see [First login](../Server.md#first-login)).
 
 ## Choose an image
 
 | Tag | Login and admin settings | Includes | Suggested memory |
 |---|---|---|---|
 | `latest` | Yes | Every tool except PDF to CBR (needs rar), with LibreOffice, Tesseract, OCRmyPDF, WeasyPrint, Calibre, Ghostscript, QPDF and ImageMagick | 4 GB |
-| `latest-fat` | Yes | Everything in `latest`, plus the bundled AI engine | 6 GB, more with AI turned on |
+| `latest-fat` | Yes | Everything in `latest`, plus the bundled AI engine, which stays off until you [turn it on](../AI/Run-the-AI-Engine.md#use-the-fat-image) | 6 GB, more with AI turned on |
 | `latest-ultra-lite` | No | Core PDF tools only. No OCR, Office, HTML or ebook conversions | 2 GB |
 
 Start with `latest`. Switch images by changing the tag and recreating the container. Your volumes carry over.

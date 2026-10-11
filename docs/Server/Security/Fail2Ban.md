@@ -9,7 +9,7 @@ description: Block IP addresses that repeatedly fail to sign in, using Fail2Ban 
 
 <Badge>Login required</Badge>
 
-Use Fail2Ban to block IP addresses after repeated failed sign-ins. Stirling PDF logs failed sign-ins with the client's IP address, and Fail2Ban bans the source IP when it sees too many.
+Stirling PDF logs failed sign-ins with the client's IP address, so Fail2Ban can ban IPs that fail too often. Behind a reverse proxy, the proxy must set `X-Forwarded-For` to the client's address, replacing any value the client sent (in nginx, `proxy_set_header X-Forwarded-For $remote_addr;`). Otherwise failures are logged with the proxy's IP, or with an IP the client made up.
 
 This is separate from the built-in lockout, which locks the user account rather than the IP address ([Sign-in and security](./Sign-in-and-Security.md)).
 

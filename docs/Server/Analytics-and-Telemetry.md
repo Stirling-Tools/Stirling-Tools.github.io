@@ -7,7 +7,7 @@ description: What anonymous usage data a self-hosted server can send, how the co
 
 # Analytics and telemetry
 
-Stirling PDF can send anonymous usage data to help improve the product. On your server, the admin decides whether analytics are on, and each user then decides in a cookie banner whether their browser takes part. Document contents are never sent.
+Stirling PDF can send anonymous usage data to help improve the product. Document contents are never sent.
 
 ## What is collected
 
@@ -23,11 +23,7 @@ When login is enabled, the server also records which tools each user runs, in it
 
 ## The consent banner
 
-When analytics are on, each user sees **How we use Cookies** on their first visit:
-
-- **Okay** allows PostHog and the Scarf pixel.
-- **No Thanks** keeps only the necessary cookies, so the browser sends nothing.
-- **Manage preferences** lets them choose each service, then **Accept all**, **Reject all** or **Save preferences**.
+When analytics are on, each user sees a cookie banner, **How we use Cookies**, on their first visit. **No Thanks** keeps only the necessary cookies, so their browser sends nothing. **Manage preferences** lets them allow PostHog and the Scarf pixel separately.
 
 Users can change their choice later in **Settings → About → Cookie Preferences → Manage**. The banner only controls the browser. Server data follows the admin setting.
 
@@ -35,7 +31,7 @@ Users can change their choice later in **Settings → About → Cookie Preferenc
 
 If `system.enableAnalytics` is not set, the first admin to open the app is asked **Do you want to help make Stirling PDF better?** Their answer applies to the whole server. Nothing is sent until someone answers.
 
-To change it later, open **Settings → Server → Legal & privacy**, switch **Enable Analytics** under **Analytics & Tracking**, select **Save Changes** and restart when asked. **Enable Metrics** on the same card controls the server's own usage endpoints, not data sent to Stirling.
+To change it later, switch **Enable Analytics** in **Settings → Server → Legal & privacy** and restart when asked. **Enable Metrics** next to it controls the server's own usage endpoints, not data sent to Stirling.
 
 Or set it in `settings.yml` or environment variables:
 
@@ -53,4 +49,4 @@ Or set it in `settings.yml` or environment variables:
   </TabItem>
 </Tabs>
 
-`enableAnalytics: false` turns everything off and hides the banner. `enablePosthog` and `enableScarf` only apply when analytics are on; leave them unset to allow both.
+`enableAnalytics: false` turns everything off and hides the banner. With analytics on, set `enablePosthog` or `enableScarf` (`SYSTEM_ENABLEPOSTHOG`, `SYSTEM_ENABLESCARF`) to `false` to turn off just that service.

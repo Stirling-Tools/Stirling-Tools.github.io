@@ -44,12 +44,11 @@ Each person or link gets a role: **Editor** (the default), **Commenter** or **Vi
 
 Under **Shared users**, enter their **Username or email** and click **Add**.
 
-On Stirling Cloud, the person needs a Stirling Cloud account. On a self-hosted server, they need an account on that server. Remove access at any time with **Remove**.
+They need an account on the server you're using (on Stirling Cloud, a Stirling Cloud account). Remove access at any time with **Remove**.
 
 ### Share with a link
 
-1. Pick a **Role** for the link.
-2. Click **Generate Link**, then **Copy**.
+Pick a **Role**, click **Generate Link**, then **Copy**.
 
 Anyone with the link must sign in before they can open it. They can then click **Open in Stirling PDF** or **Download**. Links expire after a set number of days (on a self-hosted server an admin sets this, 3 by default). To stop a link working, click **Remove link**.
 

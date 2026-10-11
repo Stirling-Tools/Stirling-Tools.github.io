@@ -7,9 +7,9 @@ description: Install the rar program so a self-hosted Stirling PDF server can co
 
 # PDF to CBR conversion
 
-Converting PDFs to CBR needs the `rar` command-line program, which Stirling PDF does not ship. Without it, the `pdf-to-cbr` tool is turned off. PDF to CBZ needs nothing extra.
+Converting PDFs to CBR needs the `rar` command-line program, which Stirling PDF does not ship. At startup, Stirling PDF turns the `pdf-to-cbr` tool on only if it finds `rar` on the `PATH`. PDF to CBZ needs nothing extra.
 
-At startup, Stirling PDF looks for `rar` on the `PATH` and turns the tool on if it finds it. RAR is shareware that needs a licence after its trial period; see the [RAR licence](https://www.win-rar.com/winrarlicense.html?L=0).
+RAR is shareware that needs a licence after its trial period; see the [RAR licence](https://www.win-rar.com/winrarlicense.html?L=0).
 
 ## Install rar
 

@@ -7,14 +7,9 @@ sidebar_label: Settings changes
 
 # Settings changes
 
-You don't need to edit `settings.yml` by hand to upgrade. On every start, the server rewrites it to match the current settings template:
+You don't need to edit `settings.yml` by hand to upgrade. The server updates it on every start, keeps your values and adds new settings with their defaults. If the file has fewer than 31 lines, the server saves it as a `.bak` and starts from the defaults, so put short overrides in `custom_settings.yml` or environment variables instead. See [settings.yml](../Configuration.md#settingsyml).
 
-- Your values are kept for every setting that still exists.
-- New settings are added with their defaults.
-- Settings that no longer exist are removed. Commented-out entries come back with their default value.
-- A file with fewer than 31 lines is treated as invalid: it is saved as `settings.yml.<timestamp>.bak` and replaced with the defaults. Put short overrides in `custom_settings.yml` or environment variables instead.
-
-Environment variables still override the file, using the same naming, for example `UI_APPNAMENAVBAR` for `ui.appNameNavbar`. A variable for a removed setting does nothing.
+Environment variables still override the file. A variable for a removed setting does nothing.
 
 ## Removed and renamed settings
 
@@ -48,9 +43,4 @@ These only affect a new settings file. An upgraded file keeps your values.
 
 `storage` ([File storage and sharing](../Storage/File-Storage.md)) is new and on by default when login is on.
 
-These new sections are off by default:
-
-- `aiEngine`: [AI on your server](../AI/AI.md)
-- `mcp`: [MCP server settings](../Automation/MCP-Server.md)
-- `cluster`: [Clustering](../Operations/Clustering.md)
-- `telegram`: [Telegram bot](../Automation/Telegram-Bot.md)
+`toolRecommendations` is new and on by default. With login on, it records which tools each user runs, in your own database. See [Analytics and telemetry](../Analytics-and-Telemetry.md#what-is-collected).

@@ -81,7 +81,7 @@ These are sent to your engine when you save, with no restart. They are not used 
 
 ## AI engine environment variables
 
-Set these on the engine container, or on the Stirling PDF container when you use the `latest-fat` image. `STIRLING_ENGINE_SHARED_SECRET` also goes on Stirling PDF; see [AI security](./AI-Security.md#authenticate-the-connection).
+Set these on the engine container, or on the Stirling PDF container when you use the `latest-fat` image.
 
 | Variable | Default | Purpose |
 |---|---|---|

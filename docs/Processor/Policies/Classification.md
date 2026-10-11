@@ -10,7 +10,7 @@ description: >-
 
 The Classification policy uses AI to work out what each document is, such as an invoice, contract or resume, and tags its metadata with the matching types. Tagged documents are easier to file and search, and [Routing](./Routing.md) can send each type to its own destination.
 
-Classification needs AI classification turned on. On a self-hosted server, an administrator sets up AI with **Document classification** turned on ([AI on your server](../../Server/AI/AI.md)).
+On a self-hosted server, Classification needs an administrator to set up AI with **Document classification** turned on ([AI on your server](../../Server/AI/AI.md)).
 
 ## Set up Classification
 

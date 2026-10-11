@@ -16,7 +16,7 @@ Not in the desktop app; see [Setup and access](./Setup-and-Access.md).
 
 ## Start here
 
-Follow [Create your first pipeline](./Getting-Started.md) to build, test and switch on a compression pipeline.
+Follow [Create your first pipeline](./Getting-Started.md).
 
 ## Find your way around
 

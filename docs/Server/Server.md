@@ -7,7 +7,7 @@ description: Run Stirling PDF on your own server with Docker, Kubernetes or Java
 
 # Self-hosted server
 
-Run Stirling PDF on your own hardware or cloud account. Your team uses it in a browser or the desktop app, files are processed on your server, and you control users, features and updates.
+Run Stirling PDF on your own hardware or cloud account. Your team uses it in a browser or the desktop app.
 
 ## Pick a build
 
@@ -35,7 +35,7 @@ Username: admin
 Password: stirling
 ```
 
-The **First Time Login** window then asks you to set a new password of at least 8 characters. The first admin is also asked **Do you want to help make Stirling PDF better?**, which decides whether the server sends anonymous usage data: see [Analytics and telemetry](./Analytics-and-Telemetry.md).
+The **First Time Login** window then asks you to set a new password of at least 8 characters. The first admin is also asked whether to send anonymous usage data: see [Analytics and telemetry](./Analytics-and-Telemetry.md).
 
 To create your own first admin instead, set `SECURITY_INITIALLOGIN_USERNAME` and `SECURITY_INITIALLOGIN_PASSWORD` before the first start. They are only used while the database has no users.
 

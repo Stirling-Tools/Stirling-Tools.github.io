@@ -8,9 +8,9 @@ description: >-
 
 # Create your first pipeline
 
-Build, test and switch on a pipeline that compresses PDFs. You need [management access](./Setup-and-Access.md#who-can-open-and-manage-it).
+You need [management access](./Setup-and-Access.md#who-can-open-and-manage-it).
 
-The editor walkthrough works on Stirling Cloud and self-hosted servers. The folder walkthrough needs a self-hosted server, because Stirling Cloud has no Folder sources.
+The folder walkthrough needs a self-hosted server. On Stirling Cloud, use an [Amazon S3 source](./Sources.md#s3) instead.
 
 ## Compress editor downloads
 
@@ -21,11 +21,11 @@ The editor walkthrough works on Stirling Cloud and self-hosted servers. The fold
 5. Select **Create pipeline**.
 6. Open a PDF in the editor and download it. The download is the compressed file.
 
-An editor pipeline runs for everyone in your team, and each run uses credits ([Credits](./Setup-and-Access.md#credits)). To read from or deliver to storage instead, connect an [Amazon S3 source](./Sources.md#s3).
+An editor pipeline runs for everyone in your team, and each run uses credits ([Credits](./Setup-and-Access.md#credits)).
 
 ## Compress files from a server folder
 
-This walkthrough compresses PDFs from a server folder and delivers them to a second folder. An administrator must first allow the folders you use ([Processor server settings](../Server/Automation/Processor-Settings.md#allow-server-folders)).
+An administrator must first allow the folders you use ([Processor server settings](../Server/Automation/Processor-Settings.md#allow-server-folders)).
 
 ### 1. Connect an inbox
 

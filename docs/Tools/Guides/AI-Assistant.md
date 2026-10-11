@@ -33,4 +33,4 @@ When it changes a file, the result is saved as a new version of that file. Merge
 | **PDF comment agent** | Adds review comments to a PDF based on your instructions. |
 | **Create PDF from prompt** | Creates a new PDF from a description. |
 
-For what AI sends and where, see [Files and privacy](../../Cloud/Files-and-Privacy.md) on Stirling Cloud. On a self-hosted server, your admin decides where AI runs.
+For what AI sends on Stirling Cloud, see [Files and privacy](../../Cloud/Files-and-Privacy.md#what-ai-tools-send).

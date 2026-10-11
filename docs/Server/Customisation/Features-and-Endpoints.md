@@ -11,9 +11,7 @@ Remove tools you don't want people to use, or that your server can't run. A remo
 
 ## Remove tools
 
-1. Open **Settings → Server → System → Endpoint Management**.
-2. Pick tools under **Disabled Endpoints**, or whole groups under **Disabled Endpoint Groups**.
-3. Select **Save Changes**, then **Restart Now**.
+In **Settings → Server → System → Endpoint Management**, pick tools under **Disabled Endpoints** or whole groups under **Disabled Endpoint Groups**, then select **Save Changes** and **Restart Now**.
 
 Or set them in configuration. As environment variables, separate values with commas:
 
@@ -79,7 +77,7 @@ These groups are named after what a tool needs to run. When a program is missing
 | `tesseract` | `auto-rotate-pdf`, `ocr-pdf` |
 | `Pdftohtml` | `pdf-to-html`, `pdf-to-markdown` |
 | `veraPDF` | `accessibility-report`, `pdf-to-ua`, `validate-compliance`, `verify-pdf` |
-| `Java` | Tools that run on built-in Java code, such as `merge-pdfs`, `split-pages`, `compress-pdf` and `pdf-to-img` |
+| `Java` | Built-in tools that need no extra program, such as `merge-pdfs`, `split-pages`, `compress-pdf` and `pdf-to-img`. Removing this group turns off most of the app. |
 | `Javascript` | `adjust-contrast`, `compare`, `rearrange-pages`, `sign`, `text-editor-pdf` |
 | `rar` | `pdf-to-cbr` (see [PDF to CBR conversion](./PDF-to-CBR.md)) |
 | `CLI` | `compress-pdf`, `extract-image-scans`, `file-to-pdf`, `html-to-pdf`, `ocr-pdf`, `pdf-to-html`, `pdf-to-pdfa`, `pdf-to-presentation`, `pdf-to-rtf`, `pdf-to-word`, `pdf-to-xml`, `repair`, `url-to-pdf`. The ultra-lite image removes this group. |

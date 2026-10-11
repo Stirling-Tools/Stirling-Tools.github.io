@@ -7,7 +7,7 @@ description: Download and install Stirling PDF Desktop on Windows, macOS or Linu
 
 # Install the desktop app
 
-Download the installer for your system, run it, then open Stirling PDF. You don't need Java or an account.
+You don't need Java or an account. To run Stirling PDF as a server instead, see [Self-hosted server](../Server/Server.md).
 
 <Tabs groupId="os">
 <TabItem value="windows" label="Windows" default>
@@ -90,14 +90,14 @@ paru -S stirling-pdf-desktop
 
 ## First launch
 
-1. On **Welcome to Stirling Desktop**, select **Next →**.
-2. On **Sign in to Stirling**, choose one:
-   - Sign in to use [Stirling Cloud](./Connection-Modes.md#sign-in-to-stirling-cloud).
-   - Select **or connect to a self-hosted account** to use [your organisation's server](./Connection-Modes.md#connect-to-a-self-hosted-server).
-   - Select **Continue without signing in** to work in Local Only mode.
+On first launch, **Sign in to Stirling** gives three choices:
+
+- Sign in to use [Stirling Cloud](./Connection-Modes.md#sign-in-to-stirling-cloud).
+- Select **or connect to a self-hosted account** to use [your organisation's server](./Connection-Modes.md#connect-to-a-self-hosted-server).
+- Select **Continue without signing in** to work in Local Only mode.
 
 You can change this later in **Settings → Connection Mode**. If a tool says **Backend starting up...**, wait a few seconds.
 
 ## Automated installation (MSI installer)
 
-To install silently or pre-configure many machines, see [Managed deployment](./Managed-Deployment.md#windows-intune-sccm-group-policy).
+If the update prompt shows **Administrator permissions required**, see [Updates](./Updates-and-Data.md#updates). To install silently or pre-configure many machines, see [Managed deployment](./Managed-Deployment.md#windows-intune-sccm-group-policy).

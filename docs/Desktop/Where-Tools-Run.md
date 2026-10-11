@@ -16,15 +16,13 @@ Whether your file leaves your computer depends on your [connection mode](./Conne
 
 ## Stirling Cloud
 
-- Tools run on your computer whenever the built-in engine can run them. The rest are sent to Stirling Cloud and show a cloud badge.
+- Tools run on your computer whenever the built-in engine can run them. The rest show a cloud badge and are sent to Stirling Cloud ([Files and privacy](../Cloud/Files-and-Privacy.md)).
 - Running tools by hand doesn't use credits. AI, processing folders and pipelines always use Stirling Cloud and use credits ([Plans, credits and billing](../Cloud/Plans-and-Billing.md)).
-
-See [What AI tools send](../Cloud/Files-and-Privacy.md#what-ai-tools-send) and [Storage and retention](../Cloud/Files-and-Privacy.md#storage-and-retention).
 
 ## Self-Hosted
 
 - Every tool runs on your server, even ones your computer could run.
-- If the server can't be reached, tools the built-in engine supports run on your computer until it's back.
+- If the server can't be reached, a **Your Stirling-PDF server is unreachable** banner appears and tools the built-in engine supports run on your computer until it's back.
 - Tools your server has turned off appear dimmed.
 
 ## Tools that usually need Cloud or a server
@@ -34,10 +32,6 @@ See [What AI tools send](../Cloud/Files-and-Privacy.md#what-ai-tools-send) and [
 - Converting PDF to Word, PowerPoint, RTF, HTML, Markdown, XML, PDF/A, EPUB or CBR
 - **Repair**, **Detect & Split Scanned Photos** and **Replace & Invert Color**
 - The **Convert images to line art** option in **Compress**
-
-## Signing with a USB token or smart card
-
-The **USB Token** and **Windows certificate store** options in [Certificate signing](../Tools/Security/Certificate-Signing.md#on-the-desktop-app) exist only in the desktop app, in Local Only or Stirling Cloud mode. The key never leaves your device.
 
 ## Features that need Cloud or a server
 

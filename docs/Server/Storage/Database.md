@@ -7,7 +7,7 @@ description: Back up and restore the built-in H2 database, or connect Stirling P
 
 # Database
 
-Stirling PDF keeps users, teams and activity records in a database. By default it uses a built-in H2 database file in `configs/`. You can switch to your own PostgreSQL server instead. Both are managed in **Settings → Server → Database**.
+Stirling PDF keeps users, teams and activity records in a database: a built-in H2 database by default, or your own PostgreSQL server. Both are managed in **Settings → Server → Database**.
 
 ## Built-in database
 
@@ -17,31 +17,12 @@ The database file is `configs/stirling-pdf-DB-2.3.232.mv.db` (the number is the 
 
 The server exports the built-in database as a SQL file every day at midnight, and again after changes to user accounts. Backups are saved as `backup_*.sql` in `configs/backup/db/`. Older ones are deleted automatically, leaving the six most recent.
 
-Change the schedule with a cron expression (seconds, minutes, hours, day, month, weekday):
+To change the schedule, set `system.databaseBackup.cron` (`SYSTEM_DATABASEBACKUP_CRON`) to a six-field cron expression that starts with seconds. The default is `0 0 0 * * ?`.
 
-<Tabs groupId="config-methods">
-  <TabItem value="settings" label="Settings File">
-    ```yaml
-    system:
-      databaseBackup:
-        cron: "0 0 0 * * ?"   # daily at midnight
-    ```
-  </TabItem>
-  <TabItem value="env" label="Environment Variable">
-    ```bash
-    SYSTEM_DATABASEBACKUP_CRON="0 0 0 * * ?"
-    ```
-  </TabItem>
-</Tabs>
-
-In **Settings → Server → Database → Backups & Restore** you can:
-
-- **Create backup** now
-- download or delete a backup from the list
-- restore a backup with **Upload & import**, which asks for a confirmation code
+In **Settings → Server → Database → Backups & Restore** you can create, download, delete and restore backups. **Import** next to a listed backup restores it straight away. **Upload & import** restores a `.sql` file you choose and asks for a confirmation code first.
 
 :::warning
-Importing a backup replaces all current data. Keep copies of the backup folder off the server, and test a restore on a separate instance from time to time.
+Importing a backup replaces all current data. Keep copies of the backup folder off the server.
 :::
 
 Backups and restores are only available for the built-in database. With an external database, use your database's own backup tools.

@@ -7,7 +7,7 @@ description: Size CPU, memory and disk for a self-hosted Stirling PDF server and
 
 # Performance
 
-Size your server for the heaviest tools your users run. PDF processing is memory-hungry: a single large PDF can take many times its file size in memory while it is processed.
+PDF processing is memory-hungry: a single large PDF can take many times its file size in memory while it is processed.
 
 ## Sizing
 
@@ -43,7 +43,7 @@ Some tools cost far more than others:
 | PDF to image | Moderate | Very high |
 | PDF/A conversion, compression | Moderate | High |
 
-If your users mostly OCR or convert office files, size up and raise the matching [process limits](./Process-Limits.md). To run several office conversions at once, see [LibreOffice parallel processing](./LibreOffice.md).
+If your users mostly OCR or convert office files, size up and raise the matching [process limits](./Process-Limits.md). To run several office conversions at once, see [LibreOffice parallel processing](./LibreOffice.md). For several servers, see [Clustering](./Clustering.md).
 
 ## Java memory
 
@@ -58,13 +58,4 @@ services:
       JAVA_CUSTOM_OPTS: "-XX:MaxRAMPercentage=50"
 ```
 
-To set the heap yourself in Docker, use `JAVA_CUSTOM_OPTS`, not `JAVA_TOOL_OPTIONS`, which the image overwrites:
-
-```yaml
-services:
-  stirling-pdf:
-    environment:
-      JAVA_CUSTOM_OPTS: "-Xmx2g"
-```
-
-When running the JAR, pass `-Xmx2g` to `java` directly. Either way, leave at least a third of the machine's or container's memory outside the heap for the other tools.
+For a fixed heap size, use `-Xmx2g` in `JAVA_CUSTOM_OPTS` instead. Do not use `JAVA_TOOL_OPTIONS`, which the image overwrites. When running the JAR, pass `-Xmx2g` to `java` directly. Either way, leave at least a third of the machine's or container's memory outside the heap for the other tools.

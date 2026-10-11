@@ -21,7 +21,7 @@ Put your overrides in `values.yaml`. The chart's [default values.yaml](https://g
 
 ```yaml
 image:
-  tag: "3.1.0"           # the chart defaults to its own app version
+  tag: "3.1.0"           # the chart's default image is an older release
 
 persistence:
   enabled: true
@@ -40,11 +40,11 @@ envs:
     value: en-GB
 ```
 
-- **image.tag:** a version tag pins the release, so you choose when to upgrade. You can set `latest` instead, but see [Upgrade](#upgrade). The standard image has login and admin settings. See [Choose an image](./Docker.md#choose-an-image).
+- **image.tag:** a version tag pins the release, so you choose when to upgrade. For the fat or ultra-lite image, see [Choose an image](./Docker.md#choose-an-image).
 - **Persistence:** Stirling PDF keeps users, `settings.yml` and its built-in database in `/configs`, and files users save on the server in `/storage`. Without a persistent volume they are lost when the pod restarts. Enabling persistence creates the volume, and `extraVolumeMounts` mounts a folder of it at each path.
 - **envs:** any setting can be passed as an environment variable. See [Configuration](../Configuration.md) for the naming rule.
 
-The chart also has `ingress`, `resources` and `rootPath` options. Give the pod at least 4 GB of memory (see [Sizing](../Operations/Performance.md#sizing)).
+Give the pod at least 4 GB of memory with `resources.limits.memory` (see [Sizing](../Operations/Performance.md#sizing)). For a sub-path, set the chart's `rootPath` option rather than `SYSTEM_ROOTURIPATH`, so the health checks use it too.
 
 ## Upgrade
 

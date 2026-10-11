@@ -16,7 +16,7 @@ description: Where Stirling Cloud processes and stores your files, what AI tools
 | AI tools and the AI assistant | Stirling's servers, plus an AI provider for the text the feature needs. |
 | Processor pipelines | Stirling's servers, reading from and writing to the storage you connect. |
 
-Files you open in the editor stay in your browser's storage until you remove them. They are not saved to Stirling Cloud unless you choose to.
+Files you open in the editor stay in your browser's storage until you remove them. They are saved to Stirling Cloud only if you are signed in and choose to upload or share them. Share links open only for signed-in users ([My files and sharing](../Tools/Workspace/Files-and-Sharing.md)).
 
 ## What AI tools send
 

@@ -9,7 +9,7 @@ id: Integrations
 
 # Integrations
 
-Integrations connect Stirling PDF to other services. Save a connection once under **Processor → Integrations**, then use it in sources and pipelines.
+Save a connection once under **Processor → Integrations**, then use it in sources and pipelines.
 
 ![Storage integrations with connected and available services](/img/processor/integrations.png)
 
@@ -103,11 +103,5 @@ Paths, headers, messages, and JSON bodies can include these values, filled in fo
 | **SFTP** | Host, port, username, password or private key; optional passphrase and host-key fingerprint | SFTP input |
 | **FTP / FTPS** | Host, port, username, password, encryption and connection mode | FTP input |
 | **SMB / Network share** | Host, share, credentials, and any required domain | Network-drive input |
-
-## Vector databases
-
-Save a **Vector database** connection (Weaviate or Pinecone), then create a [Vector database source](./Sources.md#vector-databases) that uses it and select that source as the destination in [Ingestion](./Policies/Ingestion.md). The database generates embeddings for the chunks it receives.
-
-## Server settings
 
 Connection secrets are encrypted at rest. On a self-hosted server, the encryption key and connections to internal addresses are administrator settings; see [Processor server settings](../Server/Automation/Processor-Settings.md).

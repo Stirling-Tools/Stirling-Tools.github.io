@@ -7,7 +7,7 @@ description: Build on Stirling PDF with the REST API and the Pipeline API, or co
 
 # Developers
 
-Use Stirling PDF from your own code or AI assistant, on Stirling Cloud (`https://api.stirling.com`) or a self-hosted server. Both expose the same REST API, authenticated with an `X-API-KEY` header.
+Call Stirling PDF tools from your own code on Stirling Cloud or a self-hosted server, or contribute to the project.
 
 <Cards cols="2">
 <Card title="REST API" icon="code" href="./API.md">

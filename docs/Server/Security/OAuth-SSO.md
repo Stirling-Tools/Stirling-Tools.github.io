@@ -9,7 +9,7 @@ description: Let users sign in to your server with Google, GitHub, Keycloak, Aut
 
 <Badge>Login required</Badge>
 
-Let users sign in with an identity provider. This page covers OAuth2 / OIDC (all plans); for SAML (Enterprise) see [SAML single sign-on](./SAML-SSO.md).
+OAuth2 / OIDC works on every plan. For SAML (Enterprise), see [SAML single sign-on](./SAML-SSO.md). Both need a build with login ([Sign-in and security](./Sign-in-and-Security.md)).
 
 ## Before you start
 
@@ -23,10 +23,9 @@ Let users sign in with an identity provider. This page covers OAuth2 / OIDC (all
 3. Restart Stirling PDF.
 4. In a private browser window, open the login page and select **Sign in with** your provider. With `autoCreateUser: true`, the first sign-in creates the account.
 5. Sign in as an admin with your password, open **Settings → Workspace → Users** and set the new user's role to **Admin**.
-6. Optional: set `security.loginMethod: oauth2` to turn off password sign-in.
 
 :::warning
-If you switch to `oauth2` before any SSO user is an admin, nobody can reach the admin settings. New SSO users get the normal user role.
+To turn off password sign-in, set `security.loginMethod: oauth2` and restart, but only after an SSO user has the Admin role. Otherwise nobody can reach the admin settings.
 :::
 
 ## Provider settings
@@ -53,7 +52,7 @@ Every provider uses these shared settings:
 </Tabs>
 
 :::warning
-With the defaults, anyone who can sign in to your provider gets an account and uses a seat. For GitHub, and Google with an **External** consent screen, that is anyone with an account. Limit sign-in at the provider, or set `blockRegistration: true` and add users first.
+With the defaults, anyone who can sign in to your provider gets an account and uses a seat. For GitHub, and Google with an **External** consent screen, that is anyone with an account. Limit sign-in at the provider, or set `blockRegistration: true` and add people first in **Settings → Workspace → Users → Invite people → Create account directly**, with **Sign-in method** set to **OAuth2 / SSO**.
 :::
 
 Add one or more of the providers below under `security.oauth2`. Each configured provider gets its own sign-in button.

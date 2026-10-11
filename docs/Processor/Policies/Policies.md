@@ -8,7 +8,7 @@ description: >-
 
 # Policies
 
-Policies are ready-made pipelines with a simple setup form: [Ingestion](./Ingestion.md), [Security](./Security.md), [Classification](./Classification.md), [Compliance](./Compliance.md) and [Routing](./Routing.md). Instead of building a flowchart step by step, you switch on the actions you want, choose where documents come from and where results go, and save.
+Policies are ready-made pipelines with a simple setup form: [Ingestion](./Ingestion.md), [Security](./Security.md), [Classification](./Classification.md), [Compliance](./Compliance.md) and [Routing](./Routing.md).
 
 Every policy you set up is saved as an ordinary [pipeline](../Pipelines.md). It leaves **Templates**, appears under **All pipelines** and runs the same way.
 
@@ -20,6 +20,6 @@ Every policy you set up is saved as an ordinary [pipeline](../Pipelines.md). It 
 4. Choose the documents to process, when to run, and where results go.
 5. Select **Create pipeline**.
 
-For more control, select **Customise** to open the same pipeline in the full [pipeline builder](../Pipelines.md), keeping everything set so far. There you can add or reorder steps, pick from every tool, call [integrations](../Integrations.md) or write your own [routing rules](./Routing.md). Once the pipeline goes beyond what the form supports, it opens in the builder from then on.
+For more control, select **Customise** to open the same pipeline in the full [pipeline builder](../Pipelines.md), keeping everything set so far. Once the pipeline goes beyond what the form supports, it opens in the builder from then on.
 
 When documents come from the editor, [Enforce as policy](../Pipelines.md#enforce-as-policy) is on by default for every policy except Classification, so files that fail are blocked. Turn it off in the setup form to let them through with a warning.

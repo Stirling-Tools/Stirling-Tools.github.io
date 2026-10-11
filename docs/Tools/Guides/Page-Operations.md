@@ -14,7 +14,7 @@ To edit pages visually with thumbnails, see [Workspace and Page Editor](../Works
 **Merge** joins two or more PDFs into one, in the order shown. Drag files to reorder them, or use **Sort By** (**File Name** or **Date Modified**, ascending or descending). Options:
 
 - **Generate table of contents in the merged file?** adds clickable bookmarks named after the original files.
-- **Remove digital signature in the merged file?** removes signatures.
+- **Remove digital signature in the merged file?** strips signatures, which merging breaks anyway.
 
 **Create Portfolio** is the alternative when the files should stay separate: it bundles them into one PDF portfolio, whatever their type.
 

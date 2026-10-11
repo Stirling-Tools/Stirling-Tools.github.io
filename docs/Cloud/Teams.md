@@ -24,8 +24,7 @@ Owners manage the team in **Settings → Workspace → Users**. Members see it u
 
 ## Invite members
 
-1. Open **Settings → Workspace → Users**.
-2. Select **Invite people**, enter the email address and select **Send invite**.
+Select **Invite people**, enter the email address and select **Send invite**.
 
 The person signs in or creates an account with the invited address, then selects **Accept** on the banner.
 
@@ -38,11 +37,11 @@ The person signs in or creates an account with the invited address, then selects
 - **Members:** select **Leave Team** to return to your personal team.
 - **Owners:** select **Remove from team** on a member. They keep their account but lose access to the team.
 
-An owner can't leave until they transfer ownership. If a team has no owner, a member can select **Become team owner**.
+If a team has no owner, a member can select **Become team owner**.
 
 ## Transfer ownership
 
-In **Settings → Workspace → Users**, select **Transfer ownership** on the member and confirm. You become a member. The plan and credits stay with the team.
+Select **Transfer ownership** on the member and confirm. You become a member. The plan and credits stay with the team.
 
 If the team has connected self-hosted servers, start the transfer on the server instead: open **Settings → Workspace → Users** there and change the recipient's role to **Org Owner**.
 

@@ -9,7 +9,7 @@ description: Use Stirling PDF in your browser at stirling.com/app, with nothing 
 
 Stirling Cloud is Stirling PDF hosted for you at [stirling.com/app](https://stirling.com/app). Sign in, or select **Skip →** to try it as a guest ([Account and sign-in](./Account.md)).
 
-The bar on the left switches between **Reader**, **Editor** and **Processor**. Your avatar at the bottom opens **Settings** for your account, team, API keys and billing.
+Your avatar at the bottom of the left bar opens **Settings** for your account, team, API keys and billing.
 
 Manual tools are free. Automation, AI and API calls use credits ([Plans, credits and billing](./Plans-and-Billing.md)).
 

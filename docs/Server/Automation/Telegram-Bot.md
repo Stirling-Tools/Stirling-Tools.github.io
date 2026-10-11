@@ -7,10 +7,10 @@ description: Let people send PDFs to a Telegram bot that runs them through a sav
 
 # Telegram bot
 
-Run a Telegram bot that takes PDFs from chats, processes them with a pipeline JSON on your server, and sends the result back. It works on every licence tier.
+Stirling PDF can run a Telegram bot that saves each PDF sent to it into a [watched folder](../Storage/Folder-Scanning.md), then sends back the result of that folder's pipeline JSON. It only makes outbound HTTPS calls to `api.telegram.org`, so you don't need to open a port or set up a webhook.
 
 :::warning Community feature
-Community-built beta, not covered by Team or Enterprise support; settings may change.
+Community-built beta, available on every licence tier but not covered by Team or Enterprise support; settings may change.
 :::
 
 ## 1. Create the bot
@@ -23,7 +23,7 @@ To use the bot in groups, also send `/setprivacy` to BotFather, select your bot 
 
 ## 2. Configure Stirling PDF
 
-Open **Settings → Server → Integrations → Telegram Bot**, or edit the `telegram` block that is already in `settings.yml`:
+Open **Settings → Server → Integrations → Telegram Bot** <Badge>Login required</Badge>, or edit the `telegram` block that is already in `settings.yml`:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
@@ -49,15 +49,15 @@ Restart Stirling PDF after changing these settings.
 
 ## 3. Add a pipeline JSON
 
-The bot does nothing until the chat's inbox folder contains at least one `.json` pipeline file.
+The bot only processes files once the chat's inbox folder has a `.json` pipeline file.
 
-- The inbox is `/pipeline/watchedFolders/telegram/`. With `customFolderSuffix: true`, each chat gets its own subfolder named after its chat ID.
+- Each chat's inbox is `/pipeline/watchedFolders/telegram/<chat ID>/` by default.
 - The subfolder is created the first time a chat sends the bot a PDF. Send one (the bot replies that no JSON configuration file was found), then look for the new folder. [@userinfobot](https://t.me/userinfobot) also tells you your user ID.
 - Build the workflow in the [Automate](../../Tools/Guides/Automate.md) tool, select **Export for Folder Scanning**, and put the downloaded file in the folder. Any `.json` filename works.
 
 ## 4. Send a PDF
 
-Send the bot a PDF. It acknowledges the file, runs the pipeline and replies with the result. `/start` returns a welcome message.
+Send the bot a PDF. The result comes back in the same chat.
 
 - Only `application/pdf` files are accepted, up to 20 MB (a Telegram bot limit).
 - If the pipeline produces several files, each arrives as a separate message.
@@ -89,6 +89,6 @@ All keys sit under `telegram`.
 | `allowUserIDs` | `[]` | Allowed Telegram user IDs. |
 | `enableAllowChannelIDs` | `true` | Apply `allowChannelIDs` to channels. |
 | `allowChannelIDs` | `[]` | Allowed channel IDs, usually negative, such as `-1001234567890`. |
-| `processingTimeoutSeconds` | `180` | How long to wait for a pipeline result. |
+| `processingTimeoutSeconds` | `180` | How long to wait for a pipeline result. Folder scanning runs once a minute, so keep it at 90 or more. |
 | `pollingIntervalMillis` | `2000` | How often to check for a result. |
 | `feedback.user.*`, `feedback.channel.*` | all `true` | Status replies in private chats and channels: `noValidDocument`, `errorProcessing`, `errorMessage`, `processing`. Set to `false` to cut noise. |

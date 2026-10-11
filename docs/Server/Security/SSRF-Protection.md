@@ -7,9 +7,9 @@ description: Stop the server fetching internal addresses or cloud metadata when 
 
 # SSRF protection
 
-SSRF protection stops users from making your server fetch addresses they shouldn't reach, such as `http://192.168.1.1/admin` or the cloud metadata service at `http://169.254.169.254/`. It applies when the server loads remote content referenced in files it converts, such as HTML, SVG and office documents. URL to PDF always blocks private and local addresses, but ignores these settings.
+SSRF protection stops users from making your server fetch addresses they shouldn't reach, such as `http://192.168.1.1/admin` or the cloud metadata service at `http://169.254.169.254/`. It applies when the server loads remote content referenced in files it converts, such as HTML, SVG and office documents. Setting `system.disableSanitize: true` turns these checks off. URL to PDF always blocks private and local addresses, but ignores these settings.
 
-It is on by default at `MEDIUM`, which suits most servers. Change it in **Settings → Server → Sign-in & security → HTML URL Security**, or under `system.html.urlSecurity`.
+Configure SSRF protection in **Settings → Server → Sign-in & security → HTML URL Security**, or under `system.html.urlSecurity`.
 
 :::warning
 URL to PDF is off by default because of these risks (**Enable URL to PDF** in **Settings → Server → Advanced → Feature Flags**, or `system.enableUrlToPDF`). Only turn it on for internal use.

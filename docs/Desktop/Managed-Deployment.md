@@ -7,7 +7,7 @@ sidebar_label: Managed deployment
 
 # Managed deployment
 
-Use a provisioning file to roll out the desktop app pre-configured: point every machine at your self-hosted server, stop users changing it, and control updates. It works with any deployment or MDM tool.
+Use a provisioning file to roll out the desktop app pre-configured: point every machine at your self-hosted server, stop users changing it, and control updates.
 
 Your server must have login turned on, with an account or single sign-on for each user ([Sign-in and security](../Server/Security/Sign-in-and-Security.md)).
 
@@ -47,7 +47,7 @@ Every field is optional:
 `loginAgreementEnabled` only switches the dialog on. With no text, nothing is shown. When connected to a server, the server supplies the text ([Sign-in and security](../Server/Security/Sign-in-and-Security.md)). For Local Only use, save the text as Markdown in `customFiles/disclaimer/` inside the user folder above, for example `customFiles/disclaimer/en.md`.
 :::
 
-On all-users Windows installs the app can't update itself, so use `updateMode: "disabled"` and push new versions with your deployment tool. A locked update setting shows **Managed by administrator** in Settings.
+On all-users Windows installs the app can't update itself, so use `updateMode: "disabled"` and push new versions with your deployment tool.
 
 ## Windows (Intune, SCCM, Group Policy)
 

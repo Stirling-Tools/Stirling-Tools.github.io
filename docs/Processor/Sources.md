@@ -51,7 +51,7 @@ Folder, S3 and network inputs have an **After processing** setting under **Advan
 
 | Option | What happens |
 |---|---|
-| **Delete the file** (S3: **Delete the object**). Default. | Removes the original once every pipeline using it has processed and delivered it. Files that fail stay in place and are not retried until they change or someone selects **Process ignored files in source** from the pipeline's **More actions** menu. |
+| **Delete the file** (default; S3: **Delete the object**) | Removes the original once every pipeline using it has processed and delivered it. Files that fail stay in place and are not retried until they change or someone selects **Process ignored files in source** from the pipeline's **More actions** menu. |
 | **Keep it, and only process it again if it changes** (S3 and network: **Keep originals; process changes once**) | Leaves the original in place and processes each version once. |
 | **Keep it, and process it again every scan** (S3 and network: **Leave it in place**) | Leaves the original in place and processes it again on every run. |
 
@@ -59,7 +59,7 @@ Deleting originals needs delete permission on the folder, bucket or share.
 
 ## Folder
 
-Folder sources are only available on self-hosted servers. Under **Folder**, enter a path on the server, such as `/data/processor/inbox`. An administrator must allow the folder first; if you see **This folder isn't allowed**, ask them to add it ([Processor server settings](../Server/Automation/Processor-Settings.md#allow-server-folders)).
+Under **Folder**, enter a path on the server, such as `/data/processor/inbox`. An administrator must allow the folder first; if you see **This folder isn't allowed**, ask them to add it ([Processor server settings](../Server/Automation/Processor-Settings.md#allow-server-folders)).
 
 **Folder depth** selects the top level only or subfolders too. **Change detection** under **Advanced** decides when a file counts as changed: **File Metadata** (the default) compares size and date; **File Metadata & Content** also checks the contents, which is slower but more accurate.
 
@@ -107,7 +107,7 @@ An accepted delivery returns **202**. That confirms receipt, not that the pipeli
 
 ## Vector databases
 
-A vector database source receives the searchable chunks an [Ingestion](./Policies/Ingestion.md) pipeline prepares. Choose a saved **Database connection** ([Integrations](./Integrations.md#vector-databases)) and the **Collection / index name**, then select this source as the Ingestion destination.
+A vector database source receives the searchable chunks an [Ingestion](./Policies/Ingestion.md) pipeline prepares. Choose a saved **Database connection** ([Integrations](./Integrations.md)) and the **Collection / index name**, then select this source as the Ingestion destination.
 
 ## Delete a source
 

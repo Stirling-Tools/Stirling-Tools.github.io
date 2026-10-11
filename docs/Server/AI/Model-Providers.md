@@ -103,7 +103,7 @@ Set `OPENAI_API_KEY` on the engine container, or on the Stirling PDF container w
 To keep all model traffic on your own network, point both the language model and embeddings at local endpoints, such as Ollama or another OpenAI-compatible server.
 
 - The language model must support structured output (JSON schema).
-- Base URLs must be reachable from the engine container; see [AI security](./AI-Security.md#where-document-content-goes).
+- Base URLs must be reachable from the engine container.
 - Leave key fields empty only when the endpoint needs no authentication.
 
 For example, with language and embedding models served at separate OpenAI-compatible endpoints:

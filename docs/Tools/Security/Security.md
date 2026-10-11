@@ -6,14 +6,13 @@ sidebar_label: Overview
 ---
 # Signing and security tools
 
-Use these tools to sign PDFs, control who can open or change them, and check signatures. In the tool picker they sit under **Signing**, **Document Security**, **Verification** and **Removal**.
+In the tool picker, these tools sit under **Signing**, **Document Security**, **Verification** and **Removal**.
 
 ## Signing
 
 - **Sign** - draw, type or upload a signature and place it on the page. See [Sign](./Sign.md).
 - **Sign with Certificate** - add a digital signature that proves who signed and shows if the file is changed later. See [Certificate signing](./Certificate-Signing.md).
 - **Timestamp PDF** - add a trusted RFC 3161 timestamp that proves the PDF existed at a point in time. See [Timestamping PDFs](./Certificate-Signing.md#timestamping-pdfs).
-
 
 ## Document security
 

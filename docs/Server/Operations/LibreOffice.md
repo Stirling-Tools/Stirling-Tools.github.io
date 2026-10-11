@@ -123,11 +123,11 @@ Every listed worker is used. Set `libreOfficeSessionLimit` to the number of work
 |---|---|---|
 | `UNOSERVER_PORT` | `2003` | Listen port. |
 | `UNOSERVER_INTERFACE` | `0.0.0.0` | Listen address. `127.0.0.1` restricts it to the same host. |
-| `UNOSERVER_CONVERSION_TIMEOUT` | `1800` | Longest conversion, in seconds. Keep it in line with `libreOfficetimeoutMinutes` (30 minutes by default). |
+| `UNOSERVER_CONVERSION_TIMEOUT` | `1800` | Longest conversion, in seconds. Keep it in line with [`libreOfficetimeoutMinutes`](./Process-Limits.md#timeouts) (30 minutes by default). |
 | `UNOSERVER_RECYCLE_INTERVAL_SECONDS` | `0` (off) | Restart LibreOffice on a schedule to limit memory growth, for example `3600` for hourly. Minimum 60. |
 | `UNOSERVER_IDLE_TIMEOUT_SECONDS` | `0` (off) | Stop the worker after this many idle seconds. Keep it at `0` for remote workers, because nothing can start them again. |
 
-The image includes hyphenation for common European languages. For Chinese, Japanese and Korean documents, build it with `--build-arg INSTALL_CJK_FONTS=true` (about 120 MB larger).
+For Chinese, Japanese and Korean documents, build the image with `--build-arg INSTALL_CJK_FONTS=true` (about 120 MB larger).
 
 ## Workers without Docker
 

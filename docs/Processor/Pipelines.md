@@ -40,7 +40,7 @@ For a step-by-step example, see [Create your first pipeline](./Getting-Started.m
 
 Each tool must accept the previous step's output format. A tool can appear more than once, with separate settings for each step.
 
-See also [Integrations](./Integrations.md#use-an-integration-in-a-pipeline), [Ingestion](./Policies/Ingestion.md), [Classification](./Policies/Classification.md) and [Routing](./Policies/Routing.md).
+Integration steps are under **Add a tool → Send to another system** ([Integrations](./Integrations.md#use-an-integration-in-a-pipeline)). A **Classify** step uses AI to label documents for [routing](./Policies/Routing.md); see [Classification](./Policies/Classification.md).
 
 Upload supporting files, such as stamp images or signing certificates, in the step settings. They are saved for future runs and shared within the team. Files must be non-empty and no larger than **50 MB**. Referenced files cannot be deleted until removed from the pipeline.
 
@@ -71,6 +71,6 @@ Open a pipeline to edit it, then select **Save changes**.
 
 ## Destinations
 
-Folder and S3 destinations save processed files, using a new filename when one already exists. Vector database destinations receive prepared chunks from an [Ingestion](./Policies/Ingestion.md) pipeline. On Stirling Cloud, destinations are Amazon S3 or a vector database.
+Folder and S3 destinations save processed files, using a new filename when one already exists. Vector database destinations receive prepared chunks from an [Ingestion](./Policies/Ingestion.md) pipeline.
 
 Editor pipelines can return the modified document to the editor. With [routing](./Policies/Routing.md), the fallback destination receives unmatched files.

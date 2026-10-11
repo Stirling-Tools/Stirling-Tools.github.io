@@ -41,7 +41,7 @@ Open **Settings → Server → System → Branding & appearance**, or set the ke
   </TabItem>
 </Tabs>
 
-The same card also holds the language and upload limit settings described in [Configuration](../Configuration.md), and **Frontend URL** (`system.frontendUrl`), the address used in invite emails, share links and mobile QR codes.
+The same card also holds the language, upload limit and **Frontend URL** (`system.frontendUrl`) settings described in [Common settings](../Configuration.md#common-settings).
 
 ## Replace icons and logos
 

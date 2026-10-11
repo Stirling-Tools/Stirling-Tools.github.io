@@ -30,12 +30,12 @@ On a self-hosted server, an admin sets up the server certificate, which certific
 5. Click **Sign PDF**.
 
 - Expired or not-yet-valid certificates are refused.
-- PDF viewers show a self-signed certificate, such as one the server generated itself, as unverified.
+- PDF viewers show self-signed certificates as unverified.
 - For proof of when the file was signed, run [Timestamp PDF](#timestamping-pdfs) afterwards.
 
 ## On the desktop app
 
-The desktop app can sign with a certificate in the Windows certificate store, or on a USB token or smart card (PKCS#11). This works in **Local Only** and **Stirling Cloud** mode ([Where your tools run](../../Desktop/Where-Tools-Run.md#signing-with-a-usb-token-or-smart-card)).
+The desktop app can sign with a certificate in the Windows certificate store, or on a USB token or smart card (PKCS#11). This works in **Local Only** and **Stirling Cloud** mode.
 
 1. In **Certificate source**, choose **This device**.
 2. Choose the type:
@@ -51,7 +51,7 @@ Common drivers (OpenSC, YubiKey, SafeNet, IDPrime, SoftHSM2) are found automatic
 ## Validating signatures
 
 1. Open the signed PDF and pick **Validate PDF Signature**.
-2. Optional: under **Custom Certificate File X.509 (Optional)**, add a certificate (`.cer`, `.crt`, `.pem` or `.der`) to check the signatures against.
+2. Optional: under **Custom Certificate File X.509 (Optional)**, add a certificate (`.cer`, `.crt`, `.pem` or `.der`) to check the signatures against. It replaces the usual trusted certificate authorities for that check.
 3. Click **Validate Signatures**.
 
 Each signature gets a status:

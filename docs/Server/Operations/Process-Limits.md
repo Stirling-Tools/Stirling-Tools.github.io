@@ -31,7 +31,7 @@ Change them under **Settings → Server → Advanced → Process Executor Limits
 | `installAppSessionLimit` | `1` | Internal install tasks |
 | `ffmpegSessionLimit` | `2` | Video output (not in `settings.yml` by default) |
 
-Raise limits on a large server with many users. Lower them on a small one: each copy uses its own memory and CPU, and LibreOffice is especially memory-hungry. Change one limit at a time and watch the server. For more LibreOffice capacity, see [LibreOffice parallel processing](./LibreOffice.md).
+Raise limits on a large server with many users. Lower them on a small one: each copy uses its own memory and CPU, and LibreOffice is especially memory-hungry. For more LibreOffice capacity, see [LibreOffice parallel processing](./LibreOffice.md).
 
 ## Timeouts
 

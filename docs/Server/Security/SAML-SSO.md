@@ -36,7 +36,7 @@ Put all three files in your mounted `configs` folder:
 configs/
 ├── private_key.key        # SP private key, keep it secret
 ├── certificate.crt        # SP certificate
-└── idp-certificate.pem    # IdP certificate
+└── idp-certificate.pem    # IdP certificate, PEM, downloaded from your IdP
 ```
 
 ## 2. Configure Stirling PDF
@@ -108,7 +108,7 @@ Set the NameID format to `email` or `unspecified`. The username is taken from th
 1. In a private browser window, open Stirling PDF and select **Sign in with** your provider.
 2. Sign in at the IdP. You return to Stirling PDF with a new account (if `autoCreateUser` is `true`).
 3. Sign in as an admin with your password, open **Settings → Workspace → Users** and set the SAML user's role to **Admin**.
-4. Optional: set `security.loginMethod: saml2` and restart to turn off password sign-in.
+4. Optional: once a SAML user has the Admin role, set `security.loginMethod: saml2` and restart to turn off password sign-in. Doing it earlier leaves nobody able to reach the admin settings.
 
 With `blockRegistration: true`, add people first in **Settings → Workspace → Users → Invite people → Create account directly**, with **Sign-in method** set to **SAML 2.0**.
 

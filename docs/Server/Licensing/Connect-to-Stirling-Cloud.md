@@ -56,4 +56,4 @@ If the server can't confirm its plan with Stirling Cloud for 3 days, the Team fe
 ## Manage or disconnect
 
 - **Account connection** lists this server and the team's other connected servers. **Manage on stirling.com** opens them in Stirling Cloud, where the team owner can rename or remove them (see [Teams](../../Cloud/Teams.md)).
-- **Disconnect this instance** stops using the team's plan and allowance. Files on the server are kept. To reconnect, follow the steps above.
+- **Disconnect this instance** stops using the team's plan and allowance. Files on the server are kept.

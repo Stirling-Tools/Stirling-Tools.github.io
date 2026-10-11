@@ -28,7 +28,7 @@ OCR (optical character recognition) finds the text in scanned or photographed pa
 
 | Option | What it does |
 |--------|--------------|
-| **Compatibility Mode** | Uses "sandwich PDF" output. Files are larger, but work better with some languages and older PDF software. |
+| **Compatibility Mode** | Makes larger files that work better with some languages and older PDF software. |
 | **Create a text file** | Also saves the recognised text as a separate .txt file. |
 | **Deskew pages** | Straightens tilted pages before recognition. |
 | **Clean input file** | Removes noise and boosts contrast before recognition. |

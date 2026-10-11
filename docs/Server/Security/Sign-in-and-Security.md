@@ -7,9 +7,9 @@ description: Turn login on or off, set the first admin, add users, set lockout a
 
 # Sign-in and security
 
-Control who can sign in to your server, how long sessions last, and the email and legal settings that go with accounts. Most of these settings are in **Settings → Server → Sign-in & security**.
+Most settings on this page are in **Settings → Server → Sign-in & security**.
 
-Login is on by default in the builds that include it: the `latest` and `latest-fat` Docker images and `Stirling-PDF-with-login.jar`. The `latest-ultra-lite` image, `Stirling-PDF.jar` and `Stirling-PDF-server.jar` have no login, users or admin settings.
+Login is on by default. Some builds, such as `latest-ultra-lite`, have no login at all ([Pick a build](../Server.md#pick-a-build)).
 
 API keys are covered in [REST API](../../Developers/API.md#authentication), and the server signing certificate and signature trust in [Signing certificates and trust](./Signing.md).
 
@@ -73,7 +73,7 @@ The Free plan allows 5 users ([Plans and licences](../Licensing/Plans-and-Licenc
   </TabItem>
 </Tabs>
 
-To run without login, set `SECURITY_ENABLELOGIN=false`. The other features in your build stay available. To also hide the **Settings** button from everyone, set `system.showSettingsWhenNoLogin: false`. The desktop app can only connect to a server that has login on.
+To run without login, set `SECURITY_ENABLELOGIN=false`. Anyone who can reach the server can then use it, and features that need accounts, such as server file storage, turn off. To also hide the **Settings** button from everyone, set `system.showSettingsWhenNoLogin: false`. The desktop app can only connect to a server that has login on.
 
 ## Session length
 
@@ -102,11 +102,11 @@ The app renews its sign-in token while it is open. Change the lifetimes under **
 
 ## Single sign-on
 
-Users can sign in with an identity provider instead of a password. OAuth2 / OIDC works on every plan; SAML needs Enterprise. See [OAuth2 / OIDC single sign-on](./OAuth-SSO.md) and [SAML single sign-on](./SAML-SSO.md).
+See [OAuth2 / OIDC single sign-on](./OAuth-SSO.md) (every plan) and [SAML single sign-on](./SAML-SSO.md) (Enterprise).
 
 ## Email configuration
 
-Email is optional. The server uses it for:
+The server sends email for:
 
 - **Invite by email** in **Settings → Workspace → Users**
 - the **Email the user about the reset** option when an admin resets a password
@@ -205,4 +205,4 @@ Links to your legal pages appear in **Settings → About**. Edit them in **Setti
   </TabItem>
 </Tabs>
 
-Each value is a URL. The other three links are hidden when empty; an empty privacy policy or terms link falls back to Stirling's own page.
+Each value is a URL. `accessibilityStatement`, `cookiePolicy` and `impressum` are hidden when empty. `termsAndConditions` and `privacyPolicy` link to Stirling's own pages by default, and fall back to them when empty.

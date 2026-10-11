@@ -22,7 +22,7 @@ If the button is greyed out with **Ask an admin for processor access**, your acc
 
 | Action | Stirling Cloud | Self-hosted server |
 |---|---|---|
-| Open Processor | The team owner. Invited members cannot be given access. | Administrators and team leaders by default. An administrator can give other users access. |
+| Open Processor | The team owner. Invited members cannot be given access. | Administrators and team leaders by default. An administrator can [give other users access](../Server/Automation/Processor-Settings.md#who-can-open-processor). |
 | Create, edit, pause or delete [sources](./Sources.md) and [pipelines](./Pipelines.md), or start a pipeline with **Run now** | The team owner | Administrators |
 | Run a [pipeline](./Pipelines.md) on your own files in the editor | Every team member | Every member of the pipeline's team |
 

@@ -42,21 +42,4 @@ Enter the values in **Settings → Server → Integrations → Google Drive**, o
   </TabItem>
 </Tabs>
 
-## Hide the button when Drive is off
-
-If you don't set up Google Drive, you can hide its button from users. Turn on **Hide Google Drive** in **Settings → Server → System → Branding & appearance**, or set:
-
-<Tabs groupId="config-methods">
-  <TabItem value="settings" label="Settings File">
-    ```yaml
-    ui:
-      hideDisabledTools:
-        googleDrive: true
-    ```
-  </TabItem>
-  <TabItem value="env" label="Environment Variable">
-    ```bash
-    UI_HIDEDISABLEDTOOLS_GOOGLEDRIVE=true
-    ```
-  </TabItem>
-</Tabs>
+If you don't set up Google Drive, turn on **Hide Google Drive** (`ui.hideDisabledTools.googleDrive`) in **Settings → Server → System → Branding & appearance** to hide its button.

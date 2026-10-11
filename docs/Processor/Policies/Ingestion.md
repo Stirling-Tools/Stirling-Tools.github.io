@@ -10,7 +10,7 @@ description: >-
 
 The Ingestion policy prepares documents for knowledge search. Open **Processor → Pipelines**, find **Ingestion** under **Templates**, and select **Set up**.
 
-The default chain runs OCR, then prepares searchable chunks. Preparing chunks needs the AI engine. On a self-hosted server, an administrator must [run the AI engine](../../Server/AI/Run-the-AI-Engine.md) on the server; chunking does not work through Stirling Cloud AI.
+The default chain runs OCR, then prepares searchable chunks with the AI engine. On a self-hosted server, an administrator must [run the AI engine](../../Server/AI/Run-the-AI-Engine.md); chunking does not work through Stirling Cloud AI.
 
 ## Configure processing
 

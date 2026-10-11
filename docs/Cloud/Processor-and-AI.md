@@ -7,24 +7,18 @@ description: Who can open the Processor on Stirling Cloud, what differs from a s
 
 # Processor and AI on Cloud
 
-On Stirling Cloud the Processor and AI tools are ready to use, with nothing to set up. For how they work, see [Processor](../Processor/Processor.md) and [AI assistant](../Tools/Guides/AI-Assistant.md).
+For how the Processor and AI tools work, see [Processor](../Processor/Processor.md) and [AI assistant](../Tools/Guides/AI-Assistant.md).
 
 ## Open the Processor
 
-Select **Processor** in the left bar, or **Open PDF Processor** at the bottom of the sidebar.
-
-- **Team owners** can open it, including you on your own personal team.
-- **Invited members** can't. Their **Processor** button shows **Ask an admin for processor access**.
-- **Guests** are asked to create an account.
+Select **Processor** in the left bar. Only the team owner can open it, including you on your own personal team. Invited members see **Ask an admin for processor access**, and guests are asked to create an account. See [Setup and access](../Processor/Setup-and-Access.md).
 
 To build your first pipeline, see [Create your first pipeline](../Processor/Getting-Started.md).
 
 ## What is different on Cloud
 
-- **Sources:** every source type except **Folder**.
-- **Outputs:** Amazon S3 or a vector database, not a folder. See [Sources](../Processor/Sources.md) and [Integrations](../Processor/Integrations.md).
-- **Integrations:** **Custom API** connections are not available.
+Stirling Cloud has no **Folder** sources or destinations and no **Custom API** integrations ([Sources](../Processor/Sources.md), [Integrations](../Processor/Integrations.md)).
 
 ## AI on Cloud
 
-AI tools are on for every signed-in account. Guests can't use them. AI requests, pipelines and policies use team credits and pause at the limit ([Plans, credits and billing](./Plans-and-Billing.md)). For what AI providers receive, see [Files and privacy](./Files-and-Privacy.md#what-ai-tools-send).
+AI tools are on for every signed-in account. AI requests, pipelines and policies use team credits and pause at the limit ([Plans, credits and billing](./Plans-and-Billing.md)). For what AI providers receive, see [Files and privacy](./Files-and-Privacy.md#what-ai-tools-send).

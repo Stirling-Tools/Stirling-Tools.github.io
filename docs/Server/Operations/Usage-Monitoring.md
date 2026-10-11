@@ -19,13 +19,9 @@ These endpoints return JSON. With login on, every endpoint except `/api/v1/info/
 | `GET /api/v1/info/health` | The same as `status`. |
 | `GET /api/v1/info/uptime` | Time since the server started. |
 | `GET /api/v1/info/requests` | POST request count, for one endpoint with `?endpoint=` or for all. |
-| `GET /api/v1/info/requests/unique` | Unique sessions making POST requests to one endpoint. |
 | `GET /api/v1/info/requests/all` | POST request counts for every endpoint. |
-| `GET /api/v1/info/requests/all/unique` | Unique sessions for every endpoint's POST requests. |
-| `GET /api/v1/info/load` | GET request count, for one endpoint with `?endpoint=` or for all. |
-| `GET /api/v1/info/load/unique` | Unique sessions making GET requests to one endpoint. |
-| `GET /api/v1/info/load/all` | GET request counts for every endpoint. |
-| `GET /api/v1/info/load/all/unique` | Unique sessions for every endpoint's GET requests. |
+| `GET /api/v1/info/load`, `GET /api/v1/info/load/all` | The same, for GET requests. |
+| Any `requests` or `load` endpoint plus `/unique` | Unique sessions instead of requests, for example `/api/v1/info/requests/all/unique`. |
 | `GET /api/v1/info/wau` | Weekly active users. Only when login is off. |
 
 Counts reset when the server restarts. To turn off everything except `status` and `health`, set `metrics.enabled: false` (`METRICS_ENABLED=false`); the other endpoints then return HTTP 403.

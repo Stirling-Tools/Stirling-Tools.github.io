@@ -19,7 +19,7 @@ Processing folders are personal: only you can see them. Presets marked **Require
    - Click **Process a folder** in the left rail.
    - In the **File library**, open a folder's menu and choose **Process files in this folder...**. This skips step 2.
 2. Choose the folder. Pick one under **Server storage**, or create a new one, then click **Choose processing**.
-3. Pick a preset and adjust its settings. The presets are the same policy types the Processor uses ([Policies](../../Processor/Policies/Policies.md)).
+3. Pick a preset and adjust its settings ([what each preset does](../../Processor/Policies/Policies.md)).
 4. Click **Enable processing**.
 
 Files already in the folder and any you add later are processed on the server. The folder shows how many files are **Ready**, **Processing**, **Failed** or **Queued**.
@@ -36,7 +36,7 @@ Open the folder's menu in the File library:
 
 ## In the desktop app
 
-Sign in to Stirling Cloud or connect a self-hosted server first ([Connection modes](../../Desktop/Connection-Modes.md)). Until you do, the app shows **Sign in to Stirling Cloud or connect a self-hosted server to process folders.**
+Sign in to Stirling Cloud or connect a self-hosted server first ([Connection modes](../../Desktop/Connection-Modes.md)).
 
-- The setup also offers **On this computer**: click it and choose any folder on your computer. The app watches that folder while it's running and signed in, and sends new or changed PDFs to Stirling Cloud or your server for processing.
+- To use a folder on your computer, choose **On this computer** in the setup. The app watches that folder while it's running and signed in, and sends new or changed PDFs to Stirling Cloud or your server for processing.
 - **Try processing your downloads folder** classifies the PDFs already in your Downloads folder and opens the results in the app. The files in Downloads aren't changed.

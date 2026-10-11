@@ -9,7 +9,7 @@ sidebar_label: Documents & RAG
 
 <Badge>Login required</Badge>
 
-Document questions search an indexed copy of each document. When you [run your own engine](./Run-the-AI-Engine.md), the engine stores that copy, and this page covers where and for how long. With [Stirling Cloud AI](./Use-Stirling-Cloud-AI.md#document-questions), Stirling Cloud stores it instead and these settings don't apply.
+Document questions search an indexed copy of each document. When you [run your own engine](./Run-the-AI-Engine.md), the engine stores that copy. With [Stirling Cloud AI](./Use-Stirling-Cloud-AI.md#document-questions), Stirling Cloud stores it instead and these settings don't apply.
 
 Document questions need an [embedding provider](./Model-Providers.md#embeddings).
 
@@ -56,7 +56,7 @@ For PostgreSQL, create a database with the pgvector extension, give the engine's
   </TabItem>
 </Tabs>
 
-With either store, mount a persistent volume at `/app/engine/data`, or at `/opt/stirling-engine/data` in the `latest-fat` image, which the standard volumes don't cover. It also holds saved AI settings. Without it, indexed documents are lost when the container is recreated. Set `stop_grace_period: 30s` so the engine can shut down cleanly. Restart the engine after changing these variables.
+With either store, mount a persistent volume at `/app/engine/data`, or at `/opt/stirling-engine/data` in the `latest-fat` image, which the standard volumes don't cover. It also holds saved AI settings. Set `stop_grace_period: 30s` so the engine can shut down cleanly. Restart the engine after changing these variables.
 
 ## How long documents are kept
 

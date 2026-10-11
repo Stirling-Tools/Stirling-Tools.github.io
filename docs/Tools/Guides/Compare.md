@@ -11,17 +11,13 @@ Compare shows the wording changes between two versions of a PDF. Removed words a
 
 ## Compare two PDFs
 
-1. Open **Compare**.
-2. Under **Original PDF**, pick the older version.
-3. Under **Edited PDF**, pick the newer version. Use **Swap** if you picked them the wrong way round.
-4. Click **Compare**.
+1. In **Compare**, under **Original PDF**, pick the older version.
+2. Under **Edited PDF**, pick the newer version. Use **Swap** if you picked them the wrong way round.
+3. Click **Compare**.
 
 ## Review the result
 
-- **Place side by side** / **Stack vertically** switch the layout of the two panes.
-- **Link scroll** keeps both panes in step. **Unlink scroll** lets you scroll and pan each pane on its own.
-- The **Additions** and **Deletions** dropdowns list every change. Pick one to jump to it, or search the list.
-- Zoom with the scroll wheel or a pinch, and drag to pan.
+The **Additions** and **Deletions** dropdowns list every change. Pick one to jump to it, or search the list.
 
 ## Limitations
 

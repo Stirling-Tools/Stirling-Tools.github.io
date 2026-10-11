@@ -52,7 +52,7 @@ The tool prints the archive path when it finishes, in a `Created tar.gz` line. C
 docker cp <container_name>:/configs/stirling-diagnostics-20260917-120000.tar.gz ./
 ```
 
-The archive holds `summary.txt` (what was collected, and the version) and a `bundle/` folder with logs, configs, system information, metrics and directory listings, including the installed OCR languages.
+The archive holds `summary.txt` (what was collected, and the version) and a `bundle/` folder with the collected files.
 
 ## AOT diagnostics
 

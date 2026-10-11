@@ -25,7 +25,7 @@ To change how updates work, go to **Settings → Preferences → Software Update
 
 If **Software Updates** shows **Managed by administrator**, or isn't there, your IT team controls updates ([Managed deployment](./Managed-Deployment.md)).
 
-With a package manager you can also update with it:
+If you installed with a package manager, you can also update with it:
 
 ```bash
 winget upgrade StirlingTools.StirlingPDF   # Windows

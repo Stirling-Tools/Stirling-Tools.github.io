@@ -7,7 +7,7 @@ sidebar_label: Overview
 
 # Upgrading from V1
 
-V2 replaced the V1 web interface with a new app. Settings, users, API keys and the database carry over, but the database is upgraded in place, so back up first. These steps take a V1 server straight to the current release.
+Settings, users, API keys and the database carry over, but the database is upgraded in place, so back up first. These steps take a V1 server straight to the current release.
 
 ## Before you upgrade
 
@@ -85,4 +85,4 @@ Check that:
 3. If you use an external database, restore its pre-upgrade backup.
 4. Start the V1 image tag or JAR you noted before upgrading.
 
-Don't point V1 at a database that V2 has already upgraded. Always restore the backup.
+Don't start V1 against a database the new version has already upgraded.

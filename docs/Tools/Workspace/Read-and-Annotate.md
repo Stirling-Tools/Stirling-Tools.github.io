@@ -7,18 +7,16 @@ sidebar_label: Read & annotate
 
 # Read and annotate
 
-Open a PDF in the viewer to read it, search it and mark it up. Two tools use the viewer:
+Two tools open the viewer:
 
 - **Read** (under **Document Review** in the tool picker) opens the file for reading and commenting. You can also click **Reader** in the left rail.
 - **Annotate** (under **General**) opens the viewer with the annotation tools in the side panel.
 
 ## Viewer
 
-- Go to a page with **First Page**, **Previous Page**, **Next Page**, **Last Page** or by typing a page number.
-- Zoom in and out, or switch between **Single Page View** and **Dual Page View**.
+- Switch between **Single Page View** and **Dual Page View**.
 - Open the **Bookmarks**, **Attachments** and **Comments** sidebars.
-- Search the text, select it and click **Copy**.
-- Print with **Print PDF**.
+- Search the text, select it and click **Copy**, or print with **Print PDF**.
 
 For shortcuts, see [Keyboard shortcuts](./Keyboard-Shortcuts.md#pdf-viewer-shortcuts).
 
@@ -38,7 +36,7 @@ To sign a PDF, use [Sign](../Security/Sign.md) instead.
 
 ## Comments
 
-Place comments with **Comment**, **Insert Text** or **Replace Text**. The **Comments** sidebar lists them by page, in reading order. From there you can:
+The **Comments** sidebar lists comments by page, in reading order. From there you can:
 
 - reply to a comment
 - click **Locate in document** to jump to it

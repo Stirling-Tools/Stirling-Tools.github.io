@@ -27,7 +27,7 @@ task install
 task dev
 ```
 
-`task install` installs the frontend and AI engine dependencies. Gradle fetches the backend's own. `task dev` starts the backend and frontend together on free ports, 8080 and 5173 when they are available, and opens the browser. The frontend dev server sends API calls to the backend. To start the AI engine as well, run `task dev:all`.
+`task install` installs the frontend and AI engine dependencies. Gradle fetches the backend's own. `task dev` starts the backend and frontend together on free ports, 8080 and 5173 when they are available, and opens the browser. To start the AI engine as well, run `task dev:all`.
 
 To run parts on their own, use separate terminals:
 
@@ -51,7 +51,7 @@ task fix
 task check
 ```
 
-`task fix` formats and auto-fixes the backend, frontend and engine. `task check` runs format checks, linting, type checks and tests, and must pass. Keep one change per pull request and use the PR template.
+`task fix` formats and auto-fixes the code, and `task check` must pass. Keep one change per pull request and use the PR template.
 
 ## Build
 

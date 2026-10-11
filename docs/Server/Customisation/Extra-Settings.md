@@ -7,7 +7,7 @@ description: Use custom_settings.yml for logging, HTTPS, ports, header limits, a
 
 # Extra settings
 
-`custom_settings.yml` holds server settings that `settings.yml` does not cover, such as logging, HTTPS and the port. It sits next to `settings.yml` (`/configs/custom_settings.yml` in Docker), is created empty on first start, and overrides `settings.yml` where both set the same key. It takes standard Spring Boot property names. Restart Stirling PDF after editing it.
+`custom_settings.yml` holds server settings that `settings.yml` does not cover, such as logging, HTTPS and the port. It sits next to `settings.yml` (`/configs/custom_settings.yml` in Docker) and overrides it where both set the same key ([Which setting wins](../Configuration.md#which-setting-wins)). Restart Stirling PDF after editing it.
 
 ## Logging
 
@@ -17,14 +17,12 @@ logging:
     root: INFO
 ```
 
-To troubleshoot, raise one area at a time and set it back afterwards, because debug logging is large and slows the server:
+Single sign-on logging is covered on the [OAuth](../Security/OAuth-SSO.md) and [SAML](../Security/SAML-SSO.md) pages. For other problems, raise one area at a time and set it back afterwards, because debug logging is large and slows the server:
 
 ```yaml
 logging:
   level:
     stirling.software: DEBUG                        # general problems
-    org.springframework.security: DEBUG             # sign-in problems
-    stirling.software.proprietary.security: DEBUG   # sign-in problems
 ```
 
 ## Port and session length

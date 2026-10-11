@@ -2,7 +2,7 @@
 title: Processor server settings
 sidebar_label: Processor settings
 sidebar_position: 2
-description: Every server-side Processor setting on a self-hosted server - access, allowed folders, private network targets, webhooks, the credential key and record retention.
+description: Every server-side Processor setting on a self-hosted server - access, allowed folders, private network targets, webhooks and the credential key.
 ---
 
 # Processor server settings
@@ -23,14 +23,14 @@ Admins always have access. Who else gets it depends on `security.portal.defaultA
 | `ORG_ALL` | Every signed-in user |
 | `EXPLICIT_ONLY` | Only people and teams you grant access |
 
-To grant access on top of the default, open **Settings → Workspace → Users** and select **+ Processor** on a person, or **Grant Processor to team** on a team. People without access see "Ask an admin for processor access".
+To grant access on top of the default, open **Settings → Workspace → Users** and select **+ Processor** on a person, or **Grant Processor to team** on a team.
 
 ## Allow server folders
 
 Folder sources and folder outputs can only use directories under the allowed folder roots. The list is empty by default, which turns them off. Stirling PDF's own file storage and pipeline watched folders are always allowed, and its config directory never is. [Processing folders](../../Tools/Workspace/Processing-Folders.md) set up in the app use server file storage instead ([File storage and sharing](../Storage/File-Storage.md)).
 
 1. Mount or create separate input and output directories.
-2. Give the Stirling PDF process read access to the input and write access to the output. A source set to **After processing → Delete the file** (the default) deletes originals after a successful run, so it also needs delete permission.
+2. Give the Stirling PDF process read access to the input and write access to the output, plus delete access on the input if the source deletes originals (the default).
 3. Add the parent directory under **Settings → Server → System → Folder Access → Allowed folder roots**, or set `policies.allowedFolderRoots`.
 4. Restart Stirling PDF.
 
@@ -64,7 +64,7 @@ services:
 ```
 
 :::warning
-Every signed-in user, not only admins, can attach folder processing to directories under these roots through the API, which lists their contents and replaces files in place. Only allow directories all your users may touch.
+Every signed-in user can attach folder processing to directories under these roots through the API, which lists their contents and replaces files in place. Only allow directories all your users may touch.
 :::
 
 ### Watch a network share
@@ -128,16 +128,9 @@ To move an existing server to the variable, use the contents of `credential-encr
 
 On a [cluster](../Operations/Clustering.md), every node must have the same `STIRLING_CREDENTIAL_ENCRYPTION_KEY`. A node with `cluster.enabled: true` refuses to start without it.
 
-## Processing record retention
-
-The Processor **Documents** view shows processing records from the audit log. Without an Enterprise licence they are kept for at most 30 days. With Enterprise, retention follows `premium.enterpriseFeatures.audit.retentionDays` (default `90`; `0` keeps them forever). See [Audit logging](../Security/Audit-Logging.md).
-
 ## AI features
 
-Ingestion and Classification pipelines need AI turned on for the server. See [AI on your server](../AI/AI.md).
-
-- **Ingestion** needs your own AI engine; it doesn't work with Stirling Cloud AI. It also needs DocParse (`docparse.enabled`, on by default). The built-in knowledge base needs an embedding provider; exporting chunks or sending them to your own vector database does not.
-- **Classification** needs the classification capability on (`aiEngine.features.classify`, on by default).
+Ingestion and Classification need AI set up on the server ([AI on your server](../AI/AI.md)). Ingestion also needs DocParse (`docparse.enabled`, on by default). See [Ingestion](../../Processor/Policies/Ingestion.md) and [Classification](../../Processor/Policies/Classification.md) for what each one needs.
 
 ## Usage allowance
 

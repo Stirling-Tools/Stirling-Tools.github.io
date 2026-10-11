@@ -11,7 +11,7 @@ Redact permanently deletes sensitive text and areas from a PDF, not just hides t
 
 ## Automatic redaction
 
-1. Choose **Automatic**.
+1. Under **Redaction Method**, choose **Automatic**.
 2. Under **Words to Redact**, type a word or phrase and click **Add**. Repeat for each one.
 3. (Optional) Under **Advanced**, set:
    - **Use Regex** - treat each entry as a regular expression.
@@ -39,7 +39,7 @@ With **Use Regex** on, these patterns find common personal data:
 
 ## Manual redaction
 
-1. Choose **Manual**. The document opens in the viewer.
+1. Under **Redaction Method**, choose **Manual**. The document opens in the viewer.
 2. Set the **Redaction Color**.
 3. Select text, or draw an area over images, signatures or anything else, to mark it. Marks stay pending until you apply them.
 4. To drop a pending mark, select it and click **Remove this mark**.

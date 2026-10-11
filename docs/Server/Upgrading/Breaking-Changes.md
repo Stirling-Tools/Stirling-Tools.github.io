@@ -7,7 +7,7 @@ sidebar_label: Breaking changes
 
 # Breaking changes
 
-Check this list before you upgrade a V1 server. Most servers only need the backup and upgrade steps in [Upgrading from V1](./Upgrading.md).
+Most servers only need the backup and upgrade steps in [Upgrading from V1](./Upgrading.md).
 
 ## New web interface
 
@@ -41,7 +41,7 @@ The JAR now needs Java 25 instead of Java 17. Docker images include the right Ja
 
 ## Database
 
-The built-in and external databases are upgraded in place on first start. Back up before upgrading and restore that backup if you roll back. See [Roll back](./Upgrading.md#roll-back).
+The built-in and external databases are upgraded in place on first start, so rolling back needs your backup. See [Roll back](./Upgrading.md#roll-back).
 
 ## API
 

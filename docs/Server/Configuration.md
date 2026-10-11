@@ -48,12 +48,13 @@ With login turned off, the admin pages are read-only (set `system.showSettingsWh
 
 ## settings.yml
 
-Stirling PDF writes `settings.yml` with the standard options and their defaults on first start. Edit it and restart to apply changes.
+Edit `settings.yml` and restart to apply changes.
 
 On every start the file is rebuilt from the shipped template, keeping your values:
 
 - A commented-out entry comes back with its default value. To turn something off, change its value instead.
 - Keys that aren't in the shipped file are removed. Put them in `custom_settings.yml` or set them as environment variables, like the settings marked * in [Processor server settings](./Automation/Processor-Settings.md).
+- A file with fewer than 31 lines is treated as invalid: it is saved as `settings.yml.<timestamp>.bak` and replaced with the defaults. Put short overrides in `custom_settings.yml` instead.
 
 ## Environment variables
 
@@ -64,7 +65,7 @@ Turn a `settings.yml` path into a variable name: join the levels with underscore
 | `security.enableLogin` | `SECURITY_ENABLELOGIN` |
 | `security.initialLogin.username` | `SECURITY_INITIALLOGIN_USERNAME` |
 | `system.customPaths.operations.soffice` | `SYSTEM_CUSTOMPATHS_OPERATIONS_SOFFICE` |
-| `endpoints.toRemove` (a list) | `ENDPOINTS_TOREMOVE=img-to-pdf,remove-pages` |
+| `endpoints.toRemove` (a list) | `ENDPOINTS_TOREMOVE`, comma-separated, such as `img-to-pdf,remove-pages` |
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">

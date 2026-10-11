@@ -25,4 +25,4 @@ The page displays up to **40** recent file-operation records. A file processed s
 
 Documents shows processing records, not the files themselves: files cannot be opened or downloaded from here. On Stirling Cloud you see your team's records. On a self-hosted server you see records for the whole server.
 
-On Stirling Cloud, Stirling sets how long records are kept. On a self-hosted server, it depends on the licence ([Processor server settings](../Server/Automation/Processor-Settings.md#processing-record-retention)), and full audit searches are in [Audit logging](../Server/Security/Audit-Logging.md).
+On a self-hosted server, records are kept for up to 30 days without an Enterprise licence. For retention settings and full audit searches, see [Audit logging](../Server/Security/Audit-Logging.md).

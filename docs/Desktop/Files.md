@@ -2,7 +2,7 @@
 title: Opening and saving files
 sidebar_label: Files
 sidebar_position: 4
-description: Open PDFs in the desktop app, make it your default PDF app, save changes back to disk, use more than one window and print.
+description: Open PDFs in the desktop app, make it your default PDF app, save changes back to disk and use more than one window.
 ---
 
 # Opening and saving files
@@ -21,10 +21,9 @@ Go to **Settings → Preferences → Editor defaults** and select **Set as Defau
 
 ## Save your changes
 
-- Select **Save** in the top bar, or press **Ctrl+S** (**Cmd+S** on macOS), to write over the file you opened.
-- **Save As** saves a copy to a new location.
+Select **Save** in the top bar, or press **Ctrl+S** (**Cmd+S** on macOS), to write over the file you opened. Use **Save As** for a copy.
 
-If you close the window with unsaved changes, the app offers **Save and close**, **Discard changes and close** or **Cancel**.
+Closing a window with unsaved changes asks whether to save first.
 
 If another program changes an open file while you have unsaved edits, **File changed on disk** asks you to choose **Keep my changes** or **Use the disk version**.
 
@@ -32,8 +31,4 @@ If another program changes an open file while you have unsaved edits, **File cha
 
 Press **Ctrl+N** (**Cmd+N** on macOS) for a new window, or choose **Open in new window** from a file's menu in the **File library**. Windows and macOS only.
 
-## Print
-
-Open the file in the viewer and select **Print PDF**.
-
-See [Keyboard shortcuts](../Tools/Workspace/Keyboard-Shortcuts.md) for more shortcuts.
+See [Desktop app shortcuts](../Tools/Workspace/Keyboard-Shortcuts.md#desktop-app-shortcuts).

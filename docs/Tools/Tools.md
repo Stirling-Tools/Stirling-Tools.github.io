@@ -54,7 +54,7 @@ The most-used tools sit at the top of the picker. Each one has a keyboard shortc
 - **[Crop PDF](./Guides/Page-Operations.md#page-size-and-layout)** - trim pages to the area you want.
 - **[Rotate](./Guides/Page-Operations.md#reorder-and-rotate)** - turn pages.
 - **[Auto Rotate](./Guides/Page-Operations.md#reorder-and-rotate)** - detect each page's orientation and turn it upright.
-- **[Split](./Guides/Page-Operations.md#split)** - split a PDF by page numbers, chapters, sections, file size, page or document count, or divider sheets.
+- **[Split](./Guides/Page-Operations.md#split)** - split one PDF into several files.
 - **[Reorganize Pages](./Guides/Page-Operations.md#reorder-and-rotate)** - rearrange, duplicate or delete pages.
 - **[Adjust page size/scale](./Guides/Page-Operations.md#page-size-and-layout)** - change the page size and how big the content sits on it.
 - **[Add Page Numbers](./Guides/Page-Operations.md#add-to-pages)** - number pages in a set position and format.

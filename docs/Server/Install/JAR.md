@@ -7,7 +7,7 @@ description: Run the Stirling PDF server as a Java application on Windows, macOS
 
 # Install with Java (JAR)
 
-Run the server as a plain Java application when Docker isn't an option. You install Java and the conversion tools yourself. If you can use Docker, the image has everything built in: see [Install with Docker](./Docker.md).
+Run the server as a plain Java application when Docker isn't an option. You install Java and the conversion tools that the [Docker image](./Docker.md) has built in.
 
 ## Choose a JAR
 
@@ -61,7 +61,7 @@ Put the JAR in its own folder, open a terminal there and run:
 java -jar Stirling-PDF-with-login.jar
 ```
 
-Open `http://localhost:8080` and sign in as `admin` / `stirling`. You are asked to set a new password straight away. Other people on your network use `http://<server-ip>:8080`.
+Open `http://localhost:8080` and sign in as `admin` / `stirling` (see [First login](../Server.md#first-login)). Others on your network use `http://<server-ip>:8080`.
 
 Stirling PDF keeps its settings, database and logs in folders such as `configs/` and `logs/` inside the folder you start it from, so always start it from the same place. See [Configuration](../Configuration.md#file-locations).
 

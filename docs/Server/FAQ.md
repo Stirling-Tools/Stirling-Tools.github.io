@@ -9,12 +9,7 @@ description: Answers to common questions and problems when running a self-hosted
 
 ## `docker pull` from docker.stirlingpdf.com fails. What now?
 
-Pull the same image from Docker Hub or GitHub instead:
-
-```bash
-docker pull stirlingtools/stirling-pdf:latest
-docker pull ghcr.io/stirling-tools/stirling-pdf:latest
-```
+Pull the same image from Docker Hub (`stirlingtools/stirling-pdf`) or GitHub (`ghcr.io/stirling-tools/stirling-pdf`) instead. See [Other registries](./Install/Docker.md#other-registries).
 
 ## How do I turn login on or off?
 

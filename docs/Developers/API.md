@@ -56,7 +56,7 @@ An admin can set one server-wide key for scripts and automation platforms that h
   </TabItem>
 </Tabs>
 
-Requests with this key run as a built-in API user. It only matters when login is enabled ([Sign-in and security](../Server/Security/Sign-in-and-Security.md)); without login the API is open.
+Requests with this key run as a built-in API user. It only applies when [login is enabled](../Server/Security/Sign-in-and-Security.md).
 
 ## Endpoints
 
