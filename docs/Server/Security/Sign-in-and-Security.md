@@ -159,14 +159,14 @@ Show a disclaimer that users must accept after signing in, or on launch when log
     ```yaml
     legal:
       loginAgreement:
-        enabled: false              # turn the agreement on
+        enabled: true               # turn the agreement on
         showInAnonymousMode: true   # set false to hide it when login is off
         fallbackText: ""            # Markdown used when no language file matches
     ```
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
-    LEGAL_LOGINAGREEMENT_ENABLED=false
+    LEGAL_LOGINAGREEMENT_ENABLED=true
     LEGAL_LOGINAGREEMENT_SHOWINANONYMOUSMODE=true
     LEGAL_LOGINAGREEMENT_FALLBACKTEXT=""
     ```

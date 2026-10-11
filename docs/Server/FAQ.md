@@ -46,6 +46,10 @@ See [Performance](./Operations/Performance.md).
 
 Only when an admin opens the checkout to buy a plan. No documents are sent to Stripe.
 
+## How do I check the logs?
+
+Run `docker logs stirling-pdf`, or open the `logs` folder (the `/logs` volume in Docker). The first error usually names the cause.
+
 ## Getting help
 
 Run [Diagnostics](./Operations/Diagnostics.md) to collect logs and settings into one archive, then see the [FAQ](../Tools/FAQ.md) for where to report the problem.

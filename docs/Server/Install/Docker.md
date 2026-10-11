@@ -67,7 +67,7 @@ Open `http://localhost:8080` and sign in as `admin` / `stirling` (see [First log
 
 | Tag | Login and admin settings | Includes | Suggested memory |
 |---|---|---|---|
-| `latest` | Yes | Every tool except PDF to CBR (needs rar), with LibreOffice, Tesseract, OCRmyPDF, WeasyPrint, Calibre, Ghostscript, QPDF and ImageMagick | 4 GB |
+| `latest` | Yes | LibreOffice, Tesseract, OCRmyPDF, WeasyPrint, Calibre, Ghostscript, QPDF and ImageMagick. No rar, so no PDF to CBR | 4 GB |
 | `latest-fat` | Yes | Everything in `latest`, plus the bundled AI engine, which stays off until you [turn it on](../AI/Run-the-AI-Engine.md#use-the-fat-image) | 6 GB, more with AI turned on |
 | `latest-ultra-lite` | No | Core PDF tools only. No OCR, Office, HTML or ebook conversions | 2 GB |
 
@@ -227,4 +227,4 @@ The `:Z` label is needed on SELinux distributions such as Fedora and RHEL. `User
 </TabItem>
 </Tabs>
 
-If the container won't start or the page won't load, see the [Server FAQ](../FAQ.md).
+If the container won't start or the page won't load, [check the logs](../FAQ.md#how-do-i-check-the-logs).

@@ -7,7 +7,7 @@ description: Remove individual tools or whole groups of tools from the app and A
 
 # Turn features on or off
 
-Remove tools you don't want people to use, or that your server can't run. A removed tool disappears from the app and its API endpoint is switched off for everyone on the server.
+Remove tools you don't want people to use, or that your server can't run. A removed tool is greyed out in the app (or hidden, see below) and its API endpoint is switched off for everyone on the server.
 
 ## Remove tools
 

@@ -44,7 +44,7 @@ Open **Settings** from your account avatar at the bottom of the left bar. **Pref
 
 Select **Save Changes**. If a change needs a restart, choose **Restart Now** or **Restart Later**.
 
-With login turned off, the admin pages are read-only (set `system.showSettingsWhenNoLogin: false` to hide them). Builds without login have no admin pages, so use the file or environment variables.
+With login turned off, the admin pages are greyed out, so use the file or environment variables.
 
 ## settings.yml
 
@@ -108,7 +108,7 @@ For server options such as port, HTTPS and logging, see [Extra settings](./Custo
 
 ## File locations
 
-In Docker these folders are at the root of the container (`/configs`, `/logs` and so on), ready to mount as volumes. A JAR creates them in the folder you start it from. To keep them somewhere else, set `STIRLING_BASE_PATH`.
+In Docker these folders are at the root of the container (`/configs`, `/logs` and so on), ready to mount as volumes. A JAR creates them in the folder you start it from.
 
 | Folder | Contents |
 |---|---|

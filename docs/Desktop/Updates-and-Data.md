@@ -69,7 +69,7 @@ Sign-in tokens are kept in Keychain.
 </TabItem>
 </Tabs>
 
-To report a problem, zip the log folders and attach them to a GitHub issue ([How do I report a bug or ask for a feature?](../Tools/FAQ.md#how-do-i-report-a-bug-or-ask-for-a-feature)), with the **Current Frontend Version** from **Settings → Preferences → Software Updates**.
+To report a problem, zip the log folders and attach them to a GitHub issue ([How do I report a bug or ask for a feature?](../Tools/FAQ.md#how-do-i-report-a-bug-or-ask-for-a-feature)), with the **Desktop Version** from **Settings → Preferences → Software Updates**.
 
 ## Uninstall
 
@@ -81,7 +81,7 @@ Open Windows **Settings → Apps → Installed apps**, find **Stirling PDF** and
 </TabItem>
 <TabItem value="macos" label="macOS">
 
-Quit the app and drag **Stirling PDF** from **Applications** to the **Trash**. With Homebrew, run `brew uninstall --cask stirling-tools/stirling-pdf/stirling-pdf` (add `--zap` to also delete its data).
+Quit the app and drag **Stirling PDF** from **Applications** to the **Trash**. With Homebrew, run `brew uninstall --cask stirling-tools/stirling-pdf/stirling-pdf`.
 
 </TabItem>
 <TabItem value="linux" label="Linux">

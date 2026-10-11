@@ -64,10 +64,10 @@ Brand images are served from `/modern-logo/`, so put your versions in `customFil
 | `StirlingPDFLogoBlackText.svg`, `StirlingPDFLogoWhiteText.svg`, `StirlingPDFLogoGreyText.svg` | Logo with text, for light, dark and muted backgrounds |
 | `logo-tooltip.svg` | Small logo in tooltips |
 
-Other files served from the app root, such as `manifest.json`, can be replaced the same way, for example `customFiles/static/manifest.json`. Reload the app afterwards, clearing the browser cache if the old image still shows.
+Other files at the app root, such as `manifest.json`, can be replaced the same way. Restart Stirling PDF after adding a file, then hard-reload the browser.
 
 :::note
-The Stirling logo in the file sidebar and on the landing page is built into the app and cannot be replaced this way.
+Some Stirling logos are built into the app and cannot be replaced.
 :::
 
 ## Add custom CSS

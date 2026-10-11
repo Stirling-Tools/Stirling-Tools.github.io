@@ -23,13 +23,12 @@ Change them under **Settings → Server → Advanced → Process Executor Limits
 | `ocrMyPdfSessionLimit` | `2` | OCR with OCRmyPDF |
 | `pdfToHtmlSessionLimit` | `1` | PDF to HTML and Markdown |
 | `ghostscriptSessionLimit` | `8` | Compression, repair and other Ghostscript tools |
-| `qpdfSessionLimit` | `4` in `settings.yml`, `2` if unset | Repair and compression |
+| `qpdfSessionLimit` | `4` in `settings.yml`, `2` if unset | PDF/A conversion, repair and compression |
 | `imageMagickSessionLimit` | `4` | Line-art conversion in Compress |
 | `pythonOpenCvSessionLimit` | `8` | Image processing, such as scan extraction |
 | `weasyPrintSessionLimit` | `16` | HTML to PDF |
 | `calibreSessionLimit` | `1` | E-book conversion |
 | `installAppSessionLimit` | `1` | Internal install tasks |
-| `ffmpegSessionLimit` | `2` | Video output (not in `settings.yml` by default) |
 
 Raise limits on a large server with many users. Lower them on a small one: each copy uses its own memory and CPU, and LibreOffice is especially memory-hungry. For more LibreOffice capacity, see [LibreOffice parallel processing](./LibreOffice.md).
 
@@ -37,7 +36,7 @@ Raise limits on a large server with many users. Lower them on a small one: each 
 
 All timeouts are in minutes and default to `30`, except `pdfToHtmltimeoutMinutes` (`20`) and `installApptimeoutMinutes` (`60`). The keys in `settings.yml` are:
 
-`libreOfficetimeoutMinutes`, `pdfToHtmltimeoutMinutes`, `pythonOpenCvtimeoutMinutes`, `weasyPrinttimeoutMinutes`, `installApptimeoutMinutes`, `calibretimeoutMinutes`, `imageMagickTimeoutMinutes`, `tesseractTimeoutMinutes`, `qpdfTimeoutMinutes`, `ghostscriptTimeoutMinutes`, `ocrMyPdfTimeoutMinutes`, and `ffmpegTimeoutMinutes` (not in `settings.yml` by default).
+`libreOfficetimeoutMinutes`, `pdfToHtmltimeoutMinutes`, `pythonOpenCvtimeoutMinutes`, `weasyPrinttimeoutMinutes`, `installApptimeoutMinutes`, `calibretimeoutMinutes`, `imageMagickTimeoutMinutes`, `tesseractTimeoutMinutes`, `qpdfTimeoutMinutes`, `ghostscriptTimeoutMinutes` and `ocrMyPdfTimeoutMinutes`.
 
 Frequent timeouts usually mean the server is short of CPU or memory.
 
