@@ -100,7 +100,7 @@ Restart the container or service after changing a variable.
 | `system.defaultLocale` | empty | Language for users who haven't picked one, such as `de-DE`. Empty uses the browser language, then `en-US`. |
 | `ui.languages` | `[]` (all) | Languages users can choose, such as `["de_DE", "fr_FR"]`. |
 | `system.fileUploadLimit` | empty (2000 MB) | Largest upload per request: a number from 0 to 999 plus `KB`, `MB` or `GB`, such as `2GB`. |
-| `system.backendUrl`, `system.frontendUrl` | empty | Public addresses of the server and the web app. `backendUrl` is required for single sign-on callbacks. `frontendUrl` is used in invite emails, share links and mobile QR codes, and falls back to `backendUrl`. |
+| `system.backendUrl`, `system.frontendUrl` | empty | Public addresses of the server and the web app. `backendUrl` is required for SAML single sign-on. `frontendUrl` is used in invite emails, share links, mobile QR codes and the redirect after SAML sign-in, and falls back to `backendUrl`. |
 | `system.googlevisibility` | `false` | Let search engines index the server. |
 | `system.showUpdate`, `system.showUpdateOnlyAdmin` | `true`, `true` | Show new-version notices, to admins only. |
 

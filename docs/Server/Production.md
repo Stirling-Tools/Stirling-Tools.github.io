@@ -30,7 +30,7 @@ description: What to set up before a Stirling PDF server goes live for a team - 
 
 **HTTPS in Stirling PDF itself:** put your keystore in `configs/` and set `server.ssl` in `custom_settings.yml`. See [Extra settings](./Customisation/Extra-Settings.md).
 
-Then set the public addresses the server hands out in links. `backendUrl` is required for single sign-on, and `frontendUrl` is used in invite emails, share links and mobile QR codes:
+Then set the public addresses the server hands out in links. `backendUrl` is required for SAML single sign-on, and `frontendUrl` is used in invite emails, share links, mobile QR codes and the redirect after SAML sign-in:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">

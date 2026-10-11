@@ -188,7 +188,7 @@ If an SSO attempt fails, or after a user signs out, the browser shows the login 
 |---|---|
 | Redirect URI error from the provider, or `OAuth2 Authentication error` in the server log | The callback URL registered with the provider must match exactly, including the provider name at the end. |
 | Issuer error in the server log at startup | Check that `<issuer>/.well-known/openid-configuration` returns JSON and that the server can reach it. |
-| Signed in, but sent to the wrong address | Check the reverse proxy forwards the `X-Forwarded-*` headers, and set `system.backendUrl` to the public URL. |
+| Signed in, but sent to the wrong address | Check the reverse proxy forwards the `X-Forwarded-*` headers. |
 | No account created | Set `autoCreateUser: true`, or add the user first when `blockRegistration` is `true`. Check you haven't reached your user limit. |
 | "Attribute value for 'email' cannot be null" | The provider doesn't send the claim named in `useAsUsername` (common with ADFS and Entra ID). See below. |
 

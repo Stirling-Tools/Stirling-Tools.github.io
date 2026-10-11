@@ -15,7 +15,7 @@ Let users sign in through a SAML 2.0 identity provider (IdP) such as Okta, Micro
 
 - `/configs` mounted as a volume.
 - An active Enterprise licence ([Plans and licences](../Licensing/Plans-and-Licences.md)).
-- `system.backendUrl` set to your public URL, such as `https://pdf.example.com`. SAML uses it to build every URL it sends to the IdP. Check that `https://pdf.example.com/api/v1/info/status` loads.
+- `system.backendUrl` set to your public URL, such as `https://pdf.example.com`. SAML uses it to build every URL it sends to the IdP. Users return to `system.frontendUrl` after signing in, if set. Check that `https://pdf.example.com/api/v1/info/status` loads.
 - A reverse proxy, if any, that forwards the `X-Forwarded-Proto`, `X-Forwarded-Host` and `X-Forwarded-Port` headers ([nginx example](../Production.md#example-nginx)).
 
 ## 1. Create the certificates

@@ -26,7 +26,7 @@ On a self-hosted server, an admin sets up the server certificate, which certific
    | PEM | A private key (`.pem`, `.der`, `.key`) and a certificate (`.pem`, `.der`, `.crt`, `.cer`) |
    | JKS | A Java keystore (`.jks`, `.keystore`) |
 
-4. In **Signature Appearance**, choose **Invisible** or **Visible**. For a visible signature, set **Reason**, **Location**, **Name**, **Page Number** and **Logo** (**No Logo** or **Show Logo**).
+4. In **Signature Appearance**, choose **Invisible** or **Visible**. For a visible signature, set **Reason**, **Page Number** and **Logo** (**No Logo** or **Show Logo**). The box shows the certificate name, the date and the reason. **Name** and **Location** are saved in the signature details only.
 5. Click **Sign PDF**.
 
 Good to know:
