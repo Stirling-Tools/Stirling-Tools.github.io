@@ -169,7 +169,7 @@ In the Keycloak admin console, create an OpenID Connect client in your realm, tu
   </TabItem>
 </Tabs>
 
-`useAsUsername` must be one of `email`, `mail`, `name`, `username`, `preferred_username`, `uid`, `login`, `nickname`, `given_name`, `middle_name`, `family_name`, `preferred_name` or `profile`. Other claims, such as `sub`, `upn` or `oid`, stop sign-in working.
+`useAsUsername` must be one of `email`, `mail`, `name`, `username`, `preferred_username`, `uid`, `login`, `nickname`, `given_name`, `middle_name`, `family_name`, `preferred_name` or `profile`. Other claims, like `sub`, `upn` or `oid`, stop the server starting.
 
 The issuer must serve `/.well-known/openid-configuration`. For this example the callback URL is `https://pdf.example.com/login/oauth2/code/authentik`. In Authentik, create an **OAuth2/OpenID Provider** with that redirect URI, then an **Application** that uses it.
 

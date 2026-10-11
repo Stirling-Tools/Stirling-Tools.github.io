@@ -43,7 +43,7 @@ If a team has no owner, a member can select **Become team owner**.
 
 Select **Transfer ownership** on the member and confirm. You become a member. The plan and credits stay with the team.
 
-If the team has connected self-hosted servers, start the transfer on the server instead: open **Settings → Workspace → Users** there and change the recipient's role to **Org Owner**.
+If the team has connected self-hosted servers, start the transfer on the server instead: open **Settings → Workspace → Users** there and change the recipient's role to **Organisation Owner**.
 
 ## Connected self-hosted servers
 

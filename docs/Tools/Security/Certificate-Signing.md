@@ -46,7 +46,7 @@ The desktop app can sign with a certificate in the Windows certificate store, or
 Tokens lock after a few wrong PINs. Check your PIN before you click **List certificates**.
 :::
 
-Common drivers (OpenSC, YubiKey, SafeNet, IDPrime, SoftHSM2) are found automatically. For any other driver, set the `STIRLING_PKCS11_LIBRARIES` environment variable to its full path (comma-separated for several) and restart the app.
+Common drivers (OpenSC, YubiKey, SoftHSM2) are found automatically. For any other driver, set the `STIRLING_PKCS11_LIBRARIES` environment variable to its full path (comma-separated for several) and restart the app.
 
 ## Validating signatures
 
@@ -57,7 +57,7 @@ Common drivers (OpenSC, YubiKey, SafeNet, IDPrime, SoftHSM2) are found automatic
 Each signature gets a status:
 
 - **Valid** - the signature is intact and the signer's certificate is trusted.
-- **Valid, signer not verified** (**Unverified** in lists) - the signature is intact, but the certificate isn't trusted or its status can't be confirmed. The result lists why.
+- **Valid, signer not verified** (**Unverified** in lists) - the signature is intact, but a trust check failed. The result lists why.
 - **Invalid** - the cryptographic check failed.
 
 You can download the results as a PDF report, CSV or JSON.

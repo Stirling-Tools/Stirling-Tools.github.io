@@ -7,7 +7,7 @@ sidebar_label: Model providers
 
 # Model providers
 
-Choose the providers your own AI engine uses under **Models & Providers** and **Documents & RAG** in **Settings → Server → AI Engine**, or in `settings.yml`. Saved changes are sent to the engine straight away, without a restart, while `aiEngine.pushConfigToEngine` is `true` (the default).
+Choose the providers your own AI engine uses under **Models & Providers** and **Documents & RAG** in **Settings → Server → AI Engine**, or in `settings.yml`. Changes saved on the settings page reach the engine without a restart, while `aiEngine.pushConfigToEngine` is `true` (the default).
 
 Language models answer questions and plan edits. Embedding models make document text searchable. Each can use a different provider. Changing a provider keeps the old model names, so also enter model names from the new provider.
 

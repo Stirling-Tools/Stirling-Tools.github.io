@@ -18,7 +18,7 @@ Stirling PDF uses OCRmyPDF when it is installed, as it is in the standard and fa
 
 The server downloads them from the [tesseract-ocr/tessdata](https://github.com/tesseract-ocr/tessdata) repository, so it needs internet access. If the folder is not writable, the app gives you download links instead; save the files into the tessdata folder yourself.
 
-In Docker, the tessdata folder is inside the container, so languages downloaded this way are lost when the container is recreated. Use a volume, below, for languages you want to keep.
+In Docker, use a volume, below, instead.
 
 ## Add languages with a Docker volume
 

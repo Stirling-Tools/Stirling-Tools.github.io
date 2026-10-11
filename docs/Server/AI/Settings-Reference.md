@@ -90,8 +90,8 @@ Set these on the engine container, or on the Stirling PDF container when you use
 | `STIRLING_REQUIRE_USER_ID` | `false` | Reject requests without a signed-in user. |
 | `STIRLING_ALLOW_CONFIG_PUSH` | `true` | Accept settings saved in Stirling PDF. |
 | `STIRLING_ENGINE_WORKERS` | `4` in the engine image, `2` in the fat image | Number of engine worker processes. |
-| `STIRLING_SMART_MODEL`, `STIRLING_FAST_MODEL` | `anthropic:claude-haiku-4-5` | Models in `provider:model` form, used when Stirling PDF does not push settings. |
-| `STIRLING_RAG_EMBEDDING_MODEL` | `voyageai:voyage-4` | Embedding model in `provider:model` form, used when Stirling PDF does not push settings. |
+| `STIRLING_SMART_MODEL`, `STIRLING_FAST_MODEL` | `anthropic:claude-haiku-4-5` | Models in `provider:model` form. |
+| `STIRLING_RAG_EMBEDDING_MODEL` | `voyageai:voyage-4` | Embedding model in `provider:model` form. |
 | `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `VOYAGE_API_KEY` | empty | Provider keys, used when the matching key in AI settings is empty. |
 
 Document store variables are in [Documents and retrieval](./Documents-and-RAG.md).

@@ -64,7 +64,7 @@ Operations live at `/api/v1/<category>/<operation>`, for example `/api/v1/misc/c
 
 - A few tools, such as the viewer and drawing a signature, run only in the browser and have no endpoint.
 - Some operations exist only in the API: PDF to PostScript, EPS, PCL or XPS (`/api/v1/convert/pdf/vector`, with `outputFormat` set to `ps`, `eps`, `pcl` or `xps`), PostScript or EPS to PDF (`/api/v1/convert/vector/pdf`), decompressing a PDF's streams (`/api/v1/misc/decompress-pdf`) and the `normalize` option of `/api/v1/misc/compress-pdf`.
-- File storage and sharing (`/api/v1/storage/...`) is in Swagger UI and `/v1/api-docs`, but not in the Processing API reference. On a self-hosted server it needs [File storage and sharing](../Server/Storage/File-Storage.md) turned on.
+- File storage and sharing (`/api/v1/storage/...`) is in Swagger UI and `/v1/api-docs`, but not in the Processing API reference. On a self-hosted server it needs login ([File storage and sharing](../Server/Storage/File-Storage.md)).
 - `GET /api/v1/info/status` is a health check that needs no key. On a self-hosted server, the uptime and request-count endpoints are listed in [Usage monitoring](../Server/Operations/Usage-Monitoring.md).
 - Add `?async=true` to a tool call to get a job ID back instead of the file. Poll `GET /api/v1/general/job/{jobId}`, then download the output from `GET /api/v1/general/job/{jobId}/result`.
 - To run several tools in one request, use the [Pipeline API](./Pipeline-API.md). To let an AI assistant call the tools, use the [MCP server](../MCP/MCP.md).

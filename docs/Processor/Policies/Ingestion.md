@@ -48,7 +48,7 @@ Start with the defaults and check retrieval against your documents before changi
 
 ## Check readiness and originals
 
-Fix the cause and select **Check again**. On a self-hosted server, an administrator can open the engine settings from **Open AI settings**. To run OCR without the engine, turn off **Prepare for knowledge search**.
+Resolve any readiness messages and select **Check again**. On a self-hosted server, an administrator can open the engine settings from **Open AI settings**.
 
 Choose what happens to originals with the source's [After processing](../Sources.md#decide-what-happens-to-originals) setting. When a [processing folder](../../Tools/Workspace/Processing-Folders.md) delivers to a vector database, originals are kept.
 

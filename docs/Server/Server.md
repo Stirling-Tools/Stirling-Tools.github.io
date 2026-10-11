@@ -35,11 +35,11 @@ Username: admin
 Password: stirling
 ```
 
-The **First Time Login** window then asks you to set a new password of at least 8 characters. The first admin is also asked whether to send anonymous usage data: see [Analytics and telemetry](./Analytics-and-Telemetry.md).
+You are then asked to set a new password of at least 8 characters. The first admin is also asked whether to send anonymous usage data: see [Analytics and telemetry](./Analytics-and-Telemetry.md).
 
 To create your own first admin instead, set `SECURITY_INITIALLOGIN_USERNAME` and `SECURITY_INITIALLOGIN_PASSWORD` before the first start. They are only used while the database has no users.
 
-To run with no login at all, set `SECURITY_ENABLELOGIN=false`. Anyone who can reach the server can then use it, and admin settings become read-only.
+To run with no login at all, set `SECURITY_ENABLELOGIN=false`. Anyone who can reach the server can then use it.
 
 The free plan covers up to 5 users. Team and Enterprise add seats and features: see [Plans and licences](./Licensing/Plans-and-Licences.md).
 

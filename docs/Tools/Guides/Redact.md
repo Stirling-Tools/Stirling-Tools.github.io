@@ -24,7 +24,7 @@ Automatic mode can redact several files at once: select them in the file manager
 
 ### Patterns for personal data
 
-With **Use Regex** on, these patterns find common personal data:
+With **Use Regex** on, try these patterns:
 
 | Type | Example pattern |
 | --- | --- |

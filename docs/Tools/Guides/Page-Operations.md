@@ -24,7 +24,7 @@ To edit pages visually with thumbnails, see [Workspace and Page Editor](../Works
 
 | Method | Splits |
 |--------|--------|
-| **Page Numbers** | After each page you enter. `3,7` splits after pages 3 and 7; a range such as `3-8` splits before page 3 and after page 8 |
+| **Page Numbers** | After each page you enter. `3,7` gives pages 1-3, 4-7 and 8 to the end. A range splits after every page in it |
 | **Chapters** | At each bookmark, using the document's outline |
 | **Sections** | Each page into a grid of horizontal and vertical pieces, for example halves or quarters |
 | **File Size** | Into parts under a maximum size, for example `10MB` |
@@ -45,7 +45,7 @@ To edit pages visually with thumbnails, see [Workspace and Page Editor](../Works
 - **Remove Pages** - deletes the pages you enter.
 - **Remove Blank pages** - finds and removes pages with little or no content. Tick **Include detected blank pages** to also get a PDF of the removed pages so you can check them.
 
-In **Extract Pages** and **Remove Pages**, enter single pages and ranges such as `1,3,5-8`, open ranges such as `5-` (page 5 to the end), or expressions such as `2n-1` (odd pages).
+In **Extract Pages** and **Remove Pages**, enter single pages and ranges such as `1,3,5-8`, or expressions such as `2n-1` (odd pages).
 
 ## Page size and layout
 

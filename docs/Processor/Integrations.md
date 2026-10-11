@@ -19,7 +19,7 @@ Save a connection once under **Processor → Integrations**, then use it in sour
 2. Give the connection a name and enter its address and credentials.
 3. Select **Save connection**. The **Works with** column then shows where you can use it.
 
-On a self-hosted server, anyone who can open Processor can connect notification, security and audit services. Storage connections need an administrator or team owner, and Custom API needs an administrator.
+On a self-hosted server, only administrators and team owners can connect services, and Custom API needs an administrator.
 
 ## Use an integration in a pipeline
 

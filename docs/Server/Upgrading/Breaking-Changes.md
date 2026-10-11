@@ -33,7 +33,7 @@ Some settings were removed or renamed, including `ui.appName` and the `pdf-organ
 - The Free plan allows 5 users. An upgraded server keeps its current number of users as its limit if that is higher, but can't add users beyond it without Team or Enterprise.
 - SAML sign-in needs Enterprise. Existing single sign-on users keep it.
 - Some admin features need Team or Enterprise. See [Plans and licences](../Licensing/Plans-and-Licences.md).
-- Licence settings carry over. Old `enterpriseEdition` settings move to `premium` automatically.
+- Old `enterpriseEdition` settings in `settings.yml` move to `premium` automatically.
 
 ## Java 25 for the JAR
 

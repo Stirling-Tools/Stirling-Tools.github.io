@@ -17,8 +17,6 @@ PDF processing is memory-hungry: a single large PDF can take many times its file
 | 10-50 | 4-8 cores | 8-16 GB | 50 GB, SSD recommended |
 | 50+ | 8+ cores | 16 GB or more | 100 GB+, SSD |
 
-Plan about 2 GB for each large PDF to image job and 1 GB for each large merge running at once. OCR and Office conversions queue (see [process limits](./Process-Limits.md)), so they add time rather than memory.
-
 When a server runs out of memory the container stops and every running job fails, so keep `restart: unless-stopped` set.
 
 Set a memory limit on the container so Stirling PDF can size itself (see below):

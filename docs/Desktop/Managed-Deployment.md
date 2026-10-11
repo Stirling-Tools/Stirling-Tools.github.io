@@ -58,7 +58,7 @@ The x64 MSI accepts these properties and writes the provisioning file for you:
 | `STIRLING_SERVER_URL` | Server URL | `https://pdf.example.com` |
 | `STIRLING_LOCK_CONNECTION` | Lock the connection (`1`, `true`, `yes` or `y`) | `1` |
 | `STIRLING_LOGIN_AGREEMENT` | Turn on the login agreement dialog (`1`, `true`, `yes` or `y`) | `1` |
-| `STIRLING_UPDATE_MODE` | `prompt`, `auto` or `disabled`. Any other value makes the install fail. | `disabled` |
+| `STIRLING_UPDATE_MODE` | `prompt`, `auto` or `disabled`. An invalid value makes the install fail. | `disabled` |
 | `INSTALLDIR` | Custom install folder | `C:\CustomPath\Stirling PDF` |
 | `ALLUSERS` | Install for all users | `1` |
 

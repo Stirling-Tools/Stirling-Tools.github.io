@@ -13,7 +13,7 @@ AI is off by default in every image. For what users can do with AI, see [AI assi
 
 1. Sign in as an administrator and open **Settings → Server → AI Engine**.
 2. Under **Connection**, choose an option.
-3. Select **Save Changes**, then **Restart Now**. With the `latest-fat` image, restart the container instead (`docker compose restart`), because **Restart Now** does not start the bundled engine.
+3. Select **Save Changes**, then **Restart Now**. For your own engine on `latest-fat`, restart the container instead, because **Restart Now** does not start the bundled engine.
 
 ![AI connection settings with Off, Run your own engine, and Use Stirling Cloud AI](/img/ai/connection-modes.png)
 
