@@ -7,8 +7,6 @@ description: Download and install Stirling PDF Desktop on Windows, macOS or Linu
 
 # Install the desktop app
 
-You don't need Java or an account. To run Stirling PDF as a server instead, see [Self-hosted server](../Server/Server.md).
-
 <Tabs groupId="os">
 <TabItem value="windows" label="Windows" default>
 

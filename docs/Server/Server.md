@@ -7,7 +7,7 @@ description: Run Stirling PDF on your own server with Docker, Kubernetes or Java
 
 # Self-hosted server
 
-Run Stirling PDF on your own hardware or cloud account. Your team uses it in a browser or the desktop app.
+Run Stirling PDF on your own servers, on-premises or with your own cloud provider. Your team uses it in a browser or the desktop app.
 
 ## Pick a build
 
