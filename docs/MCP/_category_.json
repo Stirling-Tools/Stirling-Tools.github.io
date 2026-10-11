@@ -1,0 +1,9 @@
+{
+  "label": "MCP",
+  "short": "MCP",
+  "space": "mcp",
+  "icon": "sparkles",
+  "position": 6,
+  "group": "guides",
+  "description": "Let AI assistants run Stirling PDF tools"
+}

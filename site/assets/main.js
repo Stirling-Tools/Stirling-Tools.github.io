@@ -134,9 +134,21 @@
     });
   }
 
+  function setSectionOpen(sec, open) {
+    sec.classList.toggle('open', open);
+    sec.querySelector('.space-head').setAttribute('aria-expanded', String(open));
+  }
+
   doc.addEventListener('click', function (e) {
     var t = e.target;
     if (!t || !t.closest) return;
+
+    var secHead = t.closest('.space-head');
+    if (secHead) {
+      var sec = secHead.closest('.space');
+      setSectionOpen(sec, !sec.classList.contains('open'));
+      return;
+    }
 
     // Sidebar category expand/collapse
     var caret = t.closest('.side-caret');
@@ -361,6 +373,18 @@
     progress.classList.remove('active');
   }
 
+  // Mark the current space's section and open it; others keep whatever the reader chose.
+  function setSpace(space, layout) {
+    space = space || '';
+    doc.body.setAttribute('data-space', space);
+    if (layout !== undefined) doc.body.setAttribute('data-layout', layout || '');
+    doc.querySelectorAll('.space[data-space]').forEach(function (sec) {
+      var on = sec.getAttribute('data-space') === space;
+      sec.classList.toggle('active', on);
+      if (on) setSectionOpen(sec, true);
+    });
+  }
+
   function setSidebarActive(key) {
     doc.querySelectorAll('.side-link.active').forEach(function (a) { a.classList.remove('active'); });
     var links = doc.querySelectorAll('.sidebar-nav a.side-link');
@@ -414,6 +438,7 @@
     if (canon) canon.setAttribute('href', location.origin + location.pathname);
 
     currentKey = key;
+    setSpace(fragment.space, fragment.layout);
     setSidebarActive(key);
     applyStoredTabs(article);
     rebuildSpy();

@@ -1,7 +1,9 @@
 ---
 sidebar_position: 4
 title: Compliance
-description: Strip hidden data, convert to PDF/A for archiving, and validate every document against the standard.
+description: >-
+  Strip hidden data, convert to PDF/A for archiving, and validate every document
+  against the standard.
 ---
 
 # Compliance
@@ -20,7 +22,7 @@ The Compliance policy prepares documents for long-term archiving. It strips hidd
 3. Choose the documents to process and where results go.
 4. Select **Create pipeline**.
 
-To stop files that fail the check from leaving the editor, turn on [Enforce as policy](../Pipelines.md#enforce-as-policy).
+[Enforce as policy](../Pipelines.md#enforce-as-policy) is on by default, so files that fail the check cannot leave the editor.
 
 ## Before you roll it out
 

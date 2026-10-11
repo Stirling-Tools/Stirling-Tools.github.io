@@ -7,7 +7,7 @@ description: Why Server purchases are closed, how to update Stirling PDF, and wh
 
 # The Server plan has been replaced by the Team plan
 
-**The legacy Server plan is no longer available for new purchases.** The [Team plan](./Paid-Offerings.md) is our current offering for self-hosted deployments.
+**The legacy Server plan is no longer available for new purchases.** The [Team plan](./Server/Licensing/Plans-and-Licences.md) is our current offering for self-hosted deployments.
 
 If you arrived here after selecting the Server plan in Stirling PDF, your installation is showing an older purchase screen. That purchase request has not started a new payment. Update your installation to view and purchase the Team plan.
 
@@ -19,11 +19,11 @@ If you manage the installation:
 
 1. Back up your configuration and database, and review the release notes for the version you are installing.
 2. Update using the instructions for your deployment:
-   - [Docker and Docker Compose](./Installation/Docker%20Install.md#updating-stirling-pdf)
-   - [Kubernetes](./Installation/Kubernetes.md)
-   - [Windows](./Installation/Windows.md), [macOS](./Installation/Mac.md), or [Unix](./Installation/Unix.md)
-   - For installations still on version 1, read the [migration guide](./Migration/Overview.md) before updating.
-3. Reopen Stirling PDF and follow the [Team plan purchase instructions](./Paid-Offerings.md#in-app-purchase-recommended).
+   - [Docker and Docker Compose](./Server/Install/Docker.md#updating-stirling-pdf)
+   - [Kubernetes](./Server/Install/Kubernetes.md)
+   - [Windows, macOS or Linux without Docker](./Server/Install/JAR.md)
+   - For installations still on version 1, read the [migration guide](./Server/Upgrading/Upgrading.md) before updating.
+3. Reopen Stirling PDF and follow the [Team plan purchase instructions](./Server/Licensing/Plans-and-Licences.md#get-team-or-enterprise).
 
 Review [current plans and pricing](https://www.stirling.com/pricing) before purchasing. If the Server plan is still the only paid plan you see after updating, contact [support@stirlingpdf.com](mailto:support@stirlingpdf.com).
 

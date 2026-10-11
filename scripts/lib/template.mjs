@@ -2,6 +2,7 @@
 // Third-party integrations:
 // Termly, Kapa AI widget, Algolia DocSearch, PostHog, Scarf pixel.
 import { escapeHtml } from './markdown.mjs';
+import { icon } from './icons.mjs';
 
 const KAPA = {
   websiteId: '32633e81-a72c-4df4-9cb9-c6cd3a0899cb',
@@ -160,8 +161,8 @@ function navbar() {
 </header>`;
 }
 
-function sidebarHtml(tree, currentUrl) {
-  const renderItems = (items) => items.map(item => {
+function renderItems(items, currentUrl) {
+  return items.map(item => {
     if (item.type === 'doc') {
       const active = item.url === currentUrl ? ' active' : '';
       return `<li><a class="side-link${active}" href="${href(item.url)}">${escapeHtml(item.sidebarLabel)}</a></li>`;
@@ -182,16 +183,31 @@ function sidebarHtml(tree, currentUrl) {
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
         </button>
       </div>
-      <ul class="side-sub">${renderItems(item.items)}</ul>
+      <ul class="side-sub">${renderItems(item.items, currentUrl)}</ul>
     </li>`;
   }).join('\n');
+}
 
-  const top = [];
-  if (tree.indexPage) {
-    const active = tree.indexPage.url === currentUrl ? ' active' : '';
-    top.push(`<li><a class="side-link${active}" href="${href(tree.indexPage.url)}">${escapeHtml(tree.indexPage.sidebarLabel)}</a></li>`);
-  }
-  return `<aside class="sidebar"><div class="sidebar-search"><div id="docsearch"></div></div><nav class="sidebar-nav"><ul>${top.join('')}${renderItems(tree.items)}</ul></nav></aside>`;
+const GROUP_LABELS = { setup: 'Setup', guides: 'Guides' };
+const CHEV = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>';
+
+// Each space is a collapsible section; the current one starts open.
+function sidebarHtml(spaces, page) {
+  const current = page?.space ?? null;
+  const currentUrl = page?.url ?? '__none__';
+  const section = s => {
+    const idx = s.indexPage;
+    const on = s.id === current;
+    const overview = `<li><a class="side-link${idx.url === currentUrl ? ' active' : ''}" href="${href(idx.url)}">${escapeHtml(idx.sidebarLabel)}</a></li>`;
+    return `<section class="space${on ? ' open active' : ''}" data-space="${s.id}" data-accent="${s.id}">
+      <button class="space-head" type="button" aria-expanded="${on}" title="${escapeHtml(s.description)}"><span class="space-icon">${icon(s.icon, 13)}</span><span class="space-name">${escapeHtml(s.short)}</span><span class="space-chev">${CHEV}</span></button>
+      <div class="sidebar-nav space-body" data-space="${s.id}"><ul>${overview}${renderItems(s.node.items, currentUrl)}</ul></div>
+    </section>`;
+  };
+  const groups = [...new Set(spaces.map(s => s.group))];
+  const body = groups.map(g => `<div class="space-group">${GROUP_LABELS[g] ?? g}</div>${spaces.filter(s => s.group === g).map(section).join('')}`).join('');
+  const home = `<a class="space-home" href="${href('/')}"><span class="space-icon">${icon('home', 13)}</span><span class="space-name">Home</span></a>`;
+  return `<aside class="sidebar"><div class="sidebar-search"><div id="docsearch"></div></div><nav class="space-nav" aria-label="Docs">${home}${body}</nav></aside>`;
 }
 
 function categoryContains(cat, url) {
@@ -307,10 +323,17 @@ function scripts() {
 <img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=5d074971-2ecb-4c54-8397-30c0f91896b3" height="1" width="1" style="display:none" alt="">`;
 }
 
-function articleInner({ page, bodyHtml, editUrl }) {
+// Small "which space am I in" link above the title, for readers landing from search.
+function spaceBadge(page, spaces) {
+  const s = spaces.find(x => x.id === page.space);
+  if (!s || s.indexPage === page) return '';
+  return `<a class="doc-space" data-accent="${s.id}" href="${href(s.indexPage.url)}">${icon(s.icon, 14)}<span>${escapeHtml(s.label)}</span></a>`;
+}
+
+function articleInner({ page, bodyHtml, editUrl, spaces }) {
   // Don't duplicate the H1 if the markdown already starts with one.
   const hasH1 = /<h1[\s>]/.test(bodyHtml.slice(0, 500));
-  return `${hasH1 ? '' : `<h1 class="doc-title">${escapeHtml(page.title)}</h1>`}
+  return `${spaceBadge(page, spaces)}${hasH1 ? '' : `<h1 class="doc-title">${escapeHtml(page.title)}</h1>`}
     ${bodyHtml}
     ${editUrl ? `<div class="doc-source">
       <a href="${editUrl}" target="_blank" rel="noopener">
@@ -322,27 +345,29 @@ function articleInner({ page, bodyHtml, editUrl }) {
 
 // The per-page payload the client router swaps in. Only the parts that differ
 // between pages - the shell (navbar, sidebar, footer) is never re-rendered.
-export function renderFragment({ page, bodyHtml, prev, next, headings, editUrl }) {
+export function renderFragment({ page, bodyHtml, spaces, prev, next, headings, editUrl }) {
   return {
     title: page.title,
     description: page.description ?? '',
     unlisted: page.unlisted,
-    article: articleInner({ page, bodyHtml, editUrl }),
+    space: page.space ?? '',
+    layout: page.layout ?? '',
+    article: articleInner({ page, bodyHtml, editUrl, spaces }),
     toc: tocInner(headings),
     pager: pagerInner(prev, next),
   };
 }
 
-export function renderPage({ page, bodyHtml, tree, prev, next, headings, siteUrl, editUrl }) {
+export function renderPage({ page, bodyHtml, spaces, prev, next, headings, siteUrl, editUrl }) {
   return `${head({ title: page.title, description: page.description, url: page.url, siteUrl, unlisted: page.unlisted })}
-<body>
+<body data-space="${page.space ?? ''}" data-layout="${page.layout ?? ''}">
 <a class="skip-link" href="#content">Skip to content</a>
 ${navbar()}
 <div class="layout">
-${sidebarHtml(tree, page.url)}
+${sidebarHtml(spaces, page)}
 <main class="content" id="content">
   <article class="doc">
-    ${articleInner({ page, bodyHtml, editUrl })}
+    ${articleInner({ page, bodyHtml, editUrl, spaces })}
   </article>
   ${pagerHtml(prev, next)}
 </main>
@@ -355,12 +380,12 @@ ${scripts()}
 </html>`;
 }
 
-export function render404({ tree, siteUrl }) {
+export function render404({ spaces, siteUrl }) {
   return `${head({ title: 'Page Not Found', description: null, url: '/404.html', siteUrl })}
-<body>
+<body data-space="">
 ${navbar()}
 <div class="layout">
-${sidebarHtml(tree, '__none__')}
+${sidebarHtml(spaces, null)}
 <main class="content">
   <article class="doc notfound">
     <h1>Page not found</h1>
