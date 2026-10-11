@@ -98,6 +98,4 @@ On first launch, **Sign in to Stirling** gives three choices:
 
 You can change this later in **Settings → Connection Mode**. If a tool says **Backend starting up...**, wait a few seconds.
 
-## Automated installation (MSI installer)
-
-If the update prompt shows **Administrator permissions required**, see [Updates](./Updates-and-Data.md#updates). To install silently or pre-configure many machines, see [Managed deployment](./Managed-Deployment.md#windows-intune-sccm-group-policy).
+<a id="automated-installation-msi-installer"></a>To install silently or pre-configure many machines, see [Managed deployment](./Managed-Deployment.md#windows-intune-sccm-group-policy).
