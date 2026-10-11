@@ -59,6 +59,7 @@ All content lives in `/docs` as extended markdown. Supported syntax:
 - Folders become sidebar categories; `_category_.json` sets the label and order; a file named like its folder is the category index page
 - Admonitions: `:::note`, `:::tip`, `:::info`, `:::warning`, `:::caution`, `:::danger` (with optional `[Title]`)
 - Tabs: `<Tabs groupId="...">` / `<TabItem value="..." label="...">` (selection syncs across groups and persists)
+- Pills: `<Badge>Login required</Badge>` after a heading, in a table cell or in a list item. Headings keep their anchor.
 - Cards: `<Cards cols="2|3">` / `<Card title="..." icon="..." href="./page.md">text</Card>` (icons in `scripts/lib/icons.mjs`)
 - Code fences with syntax highlighting (Shiki, light + dark) and copy buttons
 

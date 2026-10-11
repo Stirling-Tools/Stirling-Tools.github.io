@@ -7,9 +7,11 @@ sidebar_label: Processing folders
 
 # Processing folders
 
+<Badge>Login required</Badge>
+
 A processing folder runs the same processing on every file you put in it, for example classifying documents ([My files and sharing](./Files-and-Sharing.md)).
 
-Processing folders are personal: only you can see them. You need to be signed in, and presets marked **Requires AI engine** only work when AI is available. On Stirling Cloud, processing uses your team's credits ([Plans, credits and billing](../../Cloud/Plans-and-Billing.md)).
+Processing folders are personal: only you can see them. Presets marked **Requires AI engine** only work when AI is available. On Stirling Cloud, processing uses your team's credits ([Plans, credits and billing](../../Cloud/Plans-and-Billing.md)).
 
 ## Set up a folder
 

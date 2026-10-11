@@ -7,11 +7,13 @@ description: Let users keep files on your server and share them, choose local, d
 
 # File storage and sharing
 
+<Badge>Login required</Badge>
+
 Let signed-in users keep files on the server in **My Files** and share them with each other. How users work with their files is in [My files and sharing](../../Tools/Workspace/Files-and-Sharing.md).
 
 ## File storage settings
 
-File storage is on by default (needs [login](../Security/Sign-in-and-Security.md)). To turn it off, clear **Enable Server File Storage** in **Settings → Server → System → File Storage & Sharing**, or set `storage.enabled: false`:
+File storage is on by default. To turn it off, clear **Enable Server File Storage** in **Settings → Server → System → File Storage & Sharing**, or set `storage.enabled: false`:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">

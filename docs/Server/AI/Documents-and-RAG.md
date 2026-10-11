@@ -7,9 +7,11 @@ sidebar_label: Documents & RAG
 
 # Documents and retrieval
 
+<Badge>Login required</Badge>
+
 Document questions search an indexed copy of each document. When you [run your own engine](./Run-the-AI-Engine.md), the engine stores that copy, and this page covers where and for how long. With [Stirling Cloud AI](./Use-Stirling-Cloud-AI.md#document-questions), Stirling Cloud stores it instead and these settings don't apply.
 
-Document questions need login enabled and an [embedding provider](./Model-Providers.md#embeddings).
+Document questions need an [embedding provider](./Model-Providers.md#embeddings).
 
 ## Retrieval settings
 

@@ -7,7 +7,9 @@ description: Every server-side Processor setting on a self-hosted server - acces
 
 # Processor server settings
 
-Server settings that control [Processor](../../Processor/Processor.md) on a self-hosted server. Only admins can change them. Processor needs login enabled.
+<Badge>Login required</Badge>
+
+Server settings that control [Processor](../../Processor/Processor.md) on a self-hosted server. Only admins can change them.
 
 Settings marked * aren't in `settings.yml`; set them as environment variables or in `custom_settings.yml` ([Extra settings](../Customisation/Extra-Settings.md)). Restart after any change.
 

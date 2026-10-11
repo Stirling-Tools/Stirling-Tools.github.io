@@ -27,9 +27,9 @@ volumes:
   - ./customFiles:/customFiles
 ```
 
-## Server certificate
+## Server certificate <Badge>Login required</Badge>
 
-The server certificate lets users choose **Server** as the certificate source in **Sign with Certificate**, so they can sign without a certificate of their own. It needs a build with login and is on by default. To turn it off, set `system.serverCertificate.enabled: false`.
+The server certificate lets users choose **Server** as the certificate source in **Sign with Certificate**, so they can sign without a certificate of their own. It is on by default. To turn it off, set `system.serverCertificate.enabled: false`.
 
 On first start the server creates a self-signed certificate and keeps it in `configs/server-certificate.p12`. Change it in **Settings → Server → System → Certificate Signing**, or in `settings.yml`. Changes apply after a restart.
 

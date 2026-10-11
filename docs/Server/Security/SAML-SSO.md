@@ -7,11 +7,13 @@ description: Connect your server to a SAML 2.0 identity provider such as Okta, E
 
 # SAML single sign-on
 
+<Badge>Login required</Badge>
+
 Let users sign in through a SAML 2.0 identity provider (IdP) such as Okta, Microsoft Entra ID (Azure AD), Google Workspace, OneLogin or Authentik. SAML needs an Enterprise licence.
 
 ## Before you start
 
-- A build with login, with `/configs` mounted as a volume ([Sign-in and security](./Sign-in-and-Security.md)).
+- `/configs` mounted as a volume.
 - An active Enterprise licence ([Plans and licences](../Licensing/Plans-and-Licences.md)).
 - `system.backendUrl` set to your public URL, such as `https://pdf.example.com`. SAML uses it to build every URL it sends to the IdP. Check that `https://pdf.example.com/api/v1/info/status` loads.
 - A reverse proxy, if any, that forwards the `X-Forwarded-Proto`, `X-Forwarded-Host` and `X-Forwarded-Port` headers ([nginx example](../Production.md#example-nginx)).

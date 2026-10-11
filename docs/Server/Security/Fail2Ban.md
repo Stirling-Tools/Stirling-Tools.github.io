@@ -7,6 +7,8 @@ description: Block IP addresses that repeatedly fail to sign in, using Fail2Ban 
 
 # Fail2Ban
 
+<Badge>Login required</Badge>
+
 Use Fail2Ban to block IP addresses after repeated failed sign-ins. Stirling PDF logs failed sign-ins with the client's IP address, and Fail2Ban bans the source IP when it sees too many.
 
 This is separate from the built-in lockout, which locks the user account rather than the IP address ([Sign-in and security](./Sign-in-and-Security.md)).
@@ -14,7 +16,6 @@ This is separate from the built-in lockout, which locks the user account rather 
 ## Prerequisites
 
 - Fail2Ban installed on the host.
-- Login turned on (the default).
 - Optional: turn off the built-in account lockout so Fail2Ban alone handles failed attempts:
 
 <Tabs groupId="config-methods">

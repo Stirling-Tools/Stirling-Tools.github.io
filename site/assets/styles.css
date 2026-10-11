@@ -659,6 +659,24 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
 .doc a.doc-space:hover { color: var(--c-primary); border-color: var(--c-primary); text-decoration: none; }
 .doc a.doc-space .icon { color: var(--accent); }
 
+/* <Badge> pill, e.g. "Login required" after a heading or in a table cell */
+.badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0;
+  white-space: nowrap;
+  vertical-align: middle;
+  color: var(--c-text-subtle);
+  background: var(--c-bg-subtle);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-pill);
+}
+p > .badge:first-child, td > .badge:first-child, li > .badge:first-child { margin-left: 0; }
+
 .doc-title,
 .doc h1 {
   font-size: 1.75rem;

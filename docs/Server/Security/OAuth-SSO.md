@@ -7,7 +7,9 @@ description: Let users sign in to your server with Google, GitHub, Keycloak, Aut
 
 # OAuth2 / OIDC single sign-on
 
-Let users sign in with an identity provider. This page covers OAuth2 / OIDC (all plans); for SAML (Enterprise) see [SAML single sign-on](./SAML-SSO.md). Both need a build with login ([Sign-in and security](./Sign-in-and-Security.md)).
+<Badge>Login required</Badge>
+
+Let users sign in with an identity provider. This page covers OAuth2 / OIDC (all plans); for SAML (Enterprise) see [SAML single sign-on](./SAML-SSO.md).
 
 ## Before you start
 

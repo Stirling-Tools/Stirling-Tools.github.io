@@ -8,13 +8,15 @@ description: >-
 
 # Setup and access
 
+<Badge>Login required</Badge>
+
 ## Open Processor
 
 Open Stirling PDF in a web browser and select **Processor** in the left bar. On Stirling Cloud you can also go straight to [stirling.com/app/processor](https://stirling.com/app/processor). Processor is not part of the desktop app.
 
 On a self-hosted server, Processor is only in builds that include it. If there is no **Processor** in the left bar, your build doesn't have it. [Folder scanning](../Server/Storage/Folder-Scanning.md) watches server folders without it.
 
-If the button is greyed out with **Ask an admin for processor access**, your account does not have access yet. On a self-hosted server, Processor also needs login turned on. With login off, the button stays greyed out for everyone. See [Processor server settings](../Server/Automation/Processor-Settings.md).
+If the button is greyed out with **Ask an admin for processor access**, your account does not have access yet.
 
 ## Who can open and manage it
 

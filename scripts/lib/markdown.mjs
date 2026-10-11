@@ -1,5 +1,5 @@
 // Markdown -> HTML with the docs' extended syntax:
-// :::type[Title] admonitions, <Tabs>/<TabItem> and <Cards>/<Card> blocks, Shiki dual-theme code.
+// :::type[Title] admonitions, <Tabs>/<TabItem> and <Cards>/<Card> blocks, <Badge> pills, Shiki dual-theme code.
 import MarkdownIt from 'markdown-it';
 import { createHighlighter } from 'shiki';
 import { icon } from './icons.mjs';
@@ -84,10 +84,14 @@ export function createRenderer() {
   return md;
 }
 
+// Badge text is left out so a pill in a heading doesn't change its anchor or ToC entry
 function plainText(inlineToken) {
-  return inlineToken.children
-    ? inlineToken.children.filter(t => t.type === 'text' || t.type === 'code_inline').map(t => t.content).join('')
-    : inlineToken.content;
+  if (!inlineToken.children) return inlineToken.content;
+  let inBadge = false;
+  return inlineToken.children.filter(t => {
+    if (t.type === 'html_inline') inBadge = t.content.startsWith('<span class="badge"') || (inBadge && t.content !== '</span>');
+    return !inBadge && (t.type === 'text' || t.type === 'code_inline');
+  }).map(t => t.content).join('').trim();
 }
 
 export function slugify(text) {
@@ -121,8 +125,15 @@ export function preprocess(source, renderInner, resolveHref = (h) => h) {
   out = transformCards(out, renderInner, resolveHref);
   out = transformTabs(out, renderInner);
   out = transformAdmonitions(out, renderInner);
+  out = transformBadges(out);
   // <details>/<summary> pass through natively; <br/> ok.
   return out;
+}
+
+// <Badge>Login required</Badge> -> pill; code spans and fences are left alone
+function transformBadges(src) {
+  return src.split(/(```[\s\S]*?```|`[^`\n]*`)/).map((part, i) => i % 2 ? part
+    : part.replace(/<Badge>([^<]+)<\/Badge>/g, (_, text) => `<span class="badge">${escapeHtml(text.trim())}</span>`)).join('');
 }
 
 function transformAdmonitions(src, renderInner) {
