@@ -7,6 +7,8 @@ sidebar_label: All tools
 
 # All tools
 
+Every tool in the app, grouped as the tool picker shows them. To find one fast, type its name in **Search tools...** at the top of the picker.
+
 Not every tool is available everywhere. In the desktop app, tools with a cloud badge need Stirling Cloud or a server ([Where your tools run](../Desktop/Where-Tools-Run.md)). On a self-hosted server, an admin can turn tools off ([Turn features on or off](../Server/Customisation/Features-and-Endpoints.md)).
 
 ## Quick access

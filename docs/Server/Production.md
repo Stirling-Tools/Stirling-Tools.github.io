@@ -95,7 +95,7 @@ server {
 ## 6. Back up
 
 - Back up the whole `configs/` folder. It holds your settings, generated keys and the built-in database.
-- The built-in database also writes a nightly backup to `configs/backup/db/`.
+- The built-in database also writes a nightly backup to `configs/backup/db/`. Copy those off the server too.
 - Back up `storage/`. It holds the files users save on the server.
 - Back up `customFiles/` if you use it.
 - On Team or Enterprise you can use PostgreSQL instead: see [Database](./Storage/Database.md).

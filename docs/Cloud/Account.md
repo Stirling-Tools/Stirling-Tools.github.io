@@ -19,7 +19,7 @@ Select **Create an account** on the sign-in page. Sign up with Google or GitHub,
 
 ## Reset your password
 
-Select **Forgot your password?** on the sign-in page and follow the link in the email.
+Select **Forgot your password?** on the sign-in page. Enter your email and select **Send reset link**, then follow the link in the email.
 
 ## Use Stirling as a guest
 

@@ -23,7 +23,11 @@ When login is enabled, the server also records which tools each user runs, in it
 
 ## The consent banner
 
-When analytics are on, each user sees a cookie banner, **How we use Cookies**, on their first visit. **No Thanks** keeps only the necessary cookies, so their browser sends nothing. **Manage preferences** lets them allow PostHog and the Scarf pixel separately.
+When analytics are on, each user sees **How we use Cookies** on their first visit:
+
+- **Okay** allows PostHog and the Scarf pixel.
+- **No Thanks** keeps only the necessary cookies, so the browser sends nothing.
+- **Manage preferences** lets them choose each service, then **Accept all**, **Reject all** or **Save preferences**.
 
 Users can change their choice later in **Settings → About → Cookie Preferences → Manage**. The banner only controls the browser. Server data follows the admin setting.
 

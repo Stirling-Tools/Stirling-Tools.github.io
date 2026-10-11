@@ -7,7 +7,7 @@ description: Switch the desktop app between Local Only, Stirling Cloud and Self-
 
 # Connection modes
 
-Change the mode in **Settings → Connection Mode** (select the account row at the bottom of the left sidebar to open Settings).
+The connection mode decides where your tools run and which account you use. Change the mode in **Settings → Connection Mode** (select the account row at the bottom of the left sidebar to open Settings).
 
 | Mode | Sign-in | Where tools run |
 |---|---|---|

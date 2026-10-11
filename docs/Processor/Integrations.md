@@ -104,4 +104,6 @@ Paths, headers, messages, and JSON bodies can include these values, filled in fo
 | **FTP / FTPS** | Host, port, username, password, encryption and connection mode | FTP input |
 | **SMB / Network share** | Host, share, credentials, and any required domain | Network-drive input |
 
+## Server settings
+
 Connection secrets are encrypted at rest. On a self-hosted server, the encryption key and connections to internal addresses are administrator settings; see [Processor server settings](../Server/Automation/Processor-Settings.md).

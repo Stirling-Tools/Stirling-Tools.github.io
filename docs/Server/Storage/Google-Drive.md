@@ -41,5 +41,3 @@ Enter the values in **Settings → Server → Integrations → Google Drive**, o
     ```
   </TabItem>
 </Tabs>
-
-If you don't set up Google Drive, turn on **Hide Google Drive** (`ui.hideDisabledTools.googleDrive`) in **Settings → Server → System → Branding & appearance** to hide its button.

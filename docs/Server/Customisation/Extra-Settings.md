@@ -22,7 +22,7 @@ Single sign-on logging is covered on the [OAuth](../Security/OAuth-SSO.md) and [
 ```yaml
 logging:
   level:
-    stirling.software: DEBUG                        # general problems
+    stirling.software: DEBUG  # general problems
 ```
 
 ## Port and session length

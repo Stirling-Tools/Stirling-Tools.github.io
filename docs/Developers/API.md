@@ -22,7 +22,7 @@ Every server-side tool in Stirling PDF has a REST endpoint. Send the file as `mu
   <TabItem value="self-hosted" label="Self-hosted">
 
 - **Base URL:** your server's address, plus its sub-path if the admin set one ([Extra settings](../Server/Customisation/Extra-Settings.md)), for example `http://localhost:8080` or `https://example.com/pdf`.
-- **API key:** <Badge>Login required</Badge> sign in and open **Settings → Preferences → API Keys**. With login off, the API needs no key.
+- **API key:** sign in and open **Settings → Preferences → API Keys**. With login off, the API needs no key. <Badge>Login required</Badge>
 - **Reference:** `/swagger-ui/index.html` on your server lists every endpoint your build has and lets you try calls. The OpenAPI spec is at `/v1/api-docs`.
 
   </TabItem>

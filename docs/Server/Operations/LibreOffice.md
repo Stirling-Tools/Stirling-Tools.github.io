@@ -131,7 +131,7 @@ For Chinese, Japanese and Korean documents, build the image with `--build-arg IN
 
 ## Workers without Docker
 
-On a bare-metal server, start extra workers with the `unoserver` Python package, giving each its own ports:
+On a bare-metal server, start workers with the `unoserver` Python package, giving each its own ports:
 
 ```bash
 pip install unoserver

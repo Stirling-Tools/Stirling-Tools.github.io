@@ -7,7 +7,7 @@ description: Call Stirling Cloud from your own code with an API key, or connect 
 
 # API and MCP
 
-Guests can't use the API or MCP, so [create an account](./Account.md) first.
+Run PDF tools from your own scripts, or let an AI assistant such as Claude use them over MCP. Guests can't use the API or MCP, so [create an account](./Account.md) first.
 
 ## Get an API key
 

@@ -7,7 +7,7 @@ sidebar_label: Breaking changes
 
 # Breaking changes
 
-Most servers only need the backup and upgrade steps in [Upgrading from V1](./Upgrading.md).
+Check this list before you upgrade a V1 server. Most servers only need the backup and upgrade steps in [Upgrading from V1](./Upgrading.md).
 
 ## New web interface
 

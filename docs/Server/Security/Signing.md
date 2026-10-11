@@ -100,8 +100,12 @@ Restart after changing the certificate. Give `server-cert.cer` to anyone who nee
 </Tabs>
 
 - Trust sources load at startup, so restart after changing them.
+- To trust your own certificate authority, add it to the Java runtime's trust store.
+- A certificate a user uploads in the tool replaces all of these for that one check.
 
 ### Revocation checking
+
+Revocation checks are off by default.
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">

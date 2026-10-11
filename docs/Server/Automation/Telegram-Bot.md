@@ -21,9 +21,9 @@ Community-built beta, available on every licence tier but not covered by Team or
 
 To use the bot in groups, also send `/setprivacy` to BotFather, select your bot and choose **Disable**. Otherwise the bot only sees commands and mentions in groups.
 
-## 2. Configure Stirling PDF
+## 2. Configure Stirling PDF <Badge>Login required</Badge>
 
-Open **Settings → Server → Integrations → Telegram Bot** <Badge>Login required</Badge>, or edit the `telegram` block that is already in `settings.yml`:
+Open **Settings → Server → Integrations → Telegram Bot**, or edit the `telegram` block that is already in `settings.yml`:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">

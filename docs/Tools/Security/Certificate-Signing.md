@@ -29,6 +29,8 @@ On a self-hosted server, an admin sets up the server certificate, which certific
 4. In **Signature Appearance**, choose **Invisible** or **Visible**. For a visible signature, set **Reason**, **Location**, **Name**, **Page Number** and **Logo** (**No Logo** or **Show Logo**).
 5. Click **Sign PDF**.
 
+Good to know:
+
 - Expired or not-yet-valid certificates are refused.
 - PDF viewers show self-signed certificates as unverified.
 - For proof of when the file was signed, run [Timestamp PDF](#timestamping-pdfs) afterwards.
@@ -41,6 +43,7 @@ The desktop app can sign with a certificate in the Windows certificate store, or
 2. Choose the type:
    - **Windows certificate store** (Windows only) - pick a **Certificate** from the list. Windows asks for your PIN when you sign.
    - **USB Token** - pick the **PKCS#11 driver**, enter the **Token PIN**, set **Slot (optional)** if needed, then click **List certificates** and pick one.
+3. Continue with **Signature Appearance** and click **Sign PDF**.
 
 :::warning
 Tokens lock after a few wrong PINs. Check your PIN before you click **List certificates**.

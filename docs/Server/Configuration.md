@@ -67,6 +67,8 @@ Turn a `settings.yml` path into a variable name: join the levels with underscore
 | `system.customPaths.operations.soffice` | `SYSTEM_CUSTOMPATHS_OPERATIONS_SOFFICE` |
 | `endpoints.toRemove` (a list) | `ENDPOINTS_TOREMOVE`, comma-separated, such as `img-to-pdf,remove-pages` |
 
+The same settings both ways:
+
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
     ```yaml

@@ -9,7 +9,7 @@ description: Let users sign in to your server with Google, GitHub, Keycloak, Aut
 
 <Badge>Login required</Badge>
 
-OAuth2 / OIDC works on every plan. For SAML (Enterprise), see [SAML single sign-on](./SAML-SSO.md). Both need a build with login ([Sign-in and security](./Sign-in-and-Security.md)).
+OAuth2 / OIDC works on every plan. For SAML (Enterprise), see [SAML single sign-on](./SAML-SSO.md).
 
 ## Before you start
 

@@ -27,7 +27,7 @@ Sign in to Stirling Cloud or connect to a server.
 When a file stays on your computer and when it doesn't.
 </Card>
 <Card title="Opening and saving files" icon="folder" href="./Files.md">
-Default PDF app, saving, windows and printing.
+Default PDF app, saving and windows.
 </Card>
 <Card title="Updates, data and uninstall" icon="upgrade" href="./Updates-and-Data.md">
 Update settings, data folders and logs.

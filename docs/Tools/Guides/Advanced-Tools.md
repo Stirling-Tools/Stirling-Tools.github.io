@@ -11,7 +11,7 @@ sidebar_label: Advanced tools
 
 ### Automate
 
-See [Automate](./Automate.md).
+Chain several tools into a workflow you can save and run again. See [Automate](./Automate.md).
 
 ### Auto Rename PDF File
 
@@ -53,4 +53,4 @@ Tries to fix a corrupt or damaged PDF, for example one that won't open.
 
 ## Developer Tools
 
-- **Show Javascript** - lists any JavaScript embedded in a PDF.
+**Show Javascript** - lists any JavaScript embedded in a PDF.

@@ -21,7 +21,7 @@ The AI assistant answers questions about the files in your workspace and runs to
 2. Click **Open Stirling AI assistant** at the bottom right. The **AI Assistant** panel opens.
 3. Type in **What do you want to do?** and click **Send message**, or pick a suggestion under **Get started**, such as **Compress this document**.
 
-When it changes a file, the result is saved as a new version of that file. Merged, split or new files are added to the workspace as new files.
+The assistant works on the files in your workspace. When it changes a file, the result is saved as a new version of that file. Merged, split or new files are added to the workspace as new files.
 
 ## What it can do
 

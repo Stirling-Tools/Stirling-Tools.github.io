@@ -38,7 +38,7 @@ On a self-hosted server, your admin decides whether analytics are on at all. If 
 Files in your workspace are kept in your browser, or on your computer in the desktop app. They're only stored on a server if you save them there ([My files and sharing](./Workspace/Files-and-Sharing.md)).
 
 - **Stirling Cloud:** viewing, rearranging pages and managing files happen in your browser. Tools such as compress, OCR and convert send the file to Stirling's servers and return the result. See [Files and privacy](../Cloud/Files-and-Privacy.md).
-- **Desktop app:** it depends on the connection mode. In **Local Only** mode nothing leaves your computer, and a tool that can't run locally is blocked, not uploaded. See [Where your tools run](../Desktop/Where-Tools-Run.md).
+- **Desktop app:** in **Local Only** mode nothing leaves your computer, and a tool that can't run locally is blocked, not uploaded. See [Where your tools run](../Desktop/Where-Tools-Run.md).
 - **Self-hosted server:** tools run on your organisation's server.
 
 ## Can I remove an existing watermark?

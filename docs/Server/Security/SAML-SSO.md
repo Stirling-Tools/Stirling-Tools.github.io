@@ -20,6 +20,14 @@ Let users sign in through a SAML 2.0 identity provider (IdP) such as Okta, Micro
 
 ## 1. Create the certificates
 
+SAML uses three files:
+
+| File | Purpose | Where it comes from |
+|---|---|---|
+| SP private key | Signs requests Stirling PDF sends to the IdP | You generate it |
+| SP certificate | Lets the IdP check those requests | You generate it and upload it to the IdP |
+| IdP certificate | Lets Stirling PDF check the IdP's responses | Download it from your IdP, in PEM format |
+
 Generate the key pair if you don't have one:
 
 ```bash

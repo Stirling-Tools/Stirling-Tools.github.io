@@ -31,4 +31,4 @@ If another program changes an open file while you have unsaved edits, **File cha
 
 Press **Ctrl+N** (**Cmd+N** on macOS) for a new window, or choose **Open in new window** from a file's menu in the **File library**. Windows and macOS only.
 
-See [Desktop app shortcuts](../Tools/Workspace/Keyboard-Shortcuts.md#desktop-app-shortcuts).
+See [Desktop app shortcuts](../Tools/Workspace/Keyboard-Shortcuts.md#desktop-app-shortcuts) for more shortcuts.

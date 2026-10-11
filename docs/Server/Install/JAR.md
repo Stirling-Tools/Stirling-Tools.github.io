@@ -171,6 +171,8 @@ sudo apt-get install -y libreoffice-writer libreoffice-calc libreoffice-impress 
 pip3 install unoserver weasyprint opencv-python-headless --break-system-packages
 ```
 
+Stirling PDF ignores QPDF older than 12 and ImageMagick older than 7, which is what Ubuntu 24.04 and Debian 12 install.
+
 Fedora:
 
 ```bash
@@ -178,8 +180,6 @@ sudo dnf install -y libreoffice-writer libreoffice-calc libreoffice-impress libr
   tesseract ocrmypdf ghostscript qpdf ImageMagick poppler-utils python3-pip
 pip3 install unoserver weasyprint opencv-python-headless
 ```
-
-Stirling PDF ignores QPDF older than 12 and ImageMagick older than 7, which is what Ubuntu 24.04 and Debian 12 install.
 
 Stirling PDF reads Tesseract languages from `/usr/share/tesseract-ocr/5/tessdata`. If your distribution puts them elsewhere, set `system.tessdataDir` in `configs/settings.yml` or the `TESSDATA_PREFIX` environment variable. To add languages, see [OCR languages](../Operations/OCR-Languages.md).
 

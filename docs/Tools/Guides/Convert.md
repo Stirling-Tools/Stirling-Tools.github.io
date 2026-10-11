@@ -39,6 +39,8 @@ Image options: **Color Type** (**Color**, **Grayscale** or **Black & White**), *
 | Standards | PDF/A (archiving), PDF/X (print), PDF/UA (accessible) |
 | eBook and comics | EPUB, AZW3, CBZ, CBR |
 
+Notes on some targets:
+
 - **Images** - set **Color Type**, **DPI** (72-600, default 300) and **Output**: **Multiple** (default) for one image per page, or **Single** for one image containing all pages.
 - **Word, PowerPoint and Excel** - run [OCR](./OCR.md) on scans first.
 - **PDF/A** - pick the level (default PDF/A-2b). **Strict Mode** stops with an error if the result does not fully conform. Digital signatures are removed.

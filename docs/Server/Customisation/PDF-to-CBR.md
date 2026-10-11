@@ -18,7 +18,7 @@ RAR is shareware that needs a licence after its trial period; see the [RAR licen
     Debian and Ubuntu have `rar` in the `non-free` repository:
 
     ```bash
-    sudo apt install rar      # Debian / Ubuntu
+    sudo apt install rar
     ```
 
     Or download "RAR for Linux x64" from [rarlab.com](https://www.rarlab.com/download.htm) and copy the `rar` binary to `/usr/local/bin/`.

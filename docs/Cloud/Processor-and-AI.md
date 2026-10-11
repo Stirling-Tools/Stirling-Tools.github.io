@@ -11,7 +11,7 @@ For how the Processor and AI tools work, see [Processor](../Processor/Processor.
 
 ## Open the Processor
 
-Select **Processor** in the left bar. Only the team owner can open it, including you on your own personal team. Invited members see **Ask an admin for processor access**, and guests are asked to create an account. See [Setup and access](../Processor/Setup-and-Access.md).
+Select **Processor** in the left bar. The team owner can open it, including you on your own personal team. Invited members see **Ask an admin for processor access**, and guests are asked to create an account. See [Setup and access](../Processor/Setup-and-Access.md).
 
 To build your first pipeline, see [Create your first pipeline](../Processor/Getting-Started.md).
 
