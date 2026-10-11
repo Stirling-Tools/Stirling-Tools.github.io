@@ -35,7 +35,7 @@ Guides for using Stirling, from single tools to everyday tasks.
 Classify, standardise and route thousands of PDFs at once. Fully automated.
 </Card>
 <Card title="MCP" icon="sparkles" accent="mcp" href="./MCP/MCP.md">
-Let Claude, Codex or VS Code run Stirling tools for you.
+Let Claude, GPT and other agents run Stirling tools for you.
 </Card>
 <Card title="Developers" icon="code" href="./Developers/Developers.md">
 Every PDF operation, callable from your own code with the REST API.
