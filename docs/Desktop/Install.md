@@ -2,7 +2,7 @@
 title: Install the desktop app
 sidebar_label: Install
 sidebar_position: 1
-description: Download and install Stirling PDF Desktop on Windows, macOS or Linux, including winget, Homebrew and AUR, and what happens on first launch.
+description: Download and install Stirling PDF Desktop on Windows, macOS or Linux, including winget, Scoop, Homebrew and AUR, and what happens on first launch.
 ---
 
 # Install the desktop app
@@ -23,6 +23,15 @@ Requires Windows 10 or 11.
 ```powershell
 winget install StirlingTools.StirlingPDF
 ```
+
+**Scoop (x64)**
+
+```powershell
+scoop bucket add stirling-pdf https://github.com/Stirling-Tools/homebrew-stirling-pdf
+scoop install stirling-pdf/stirling-pdf
+```
+
+Update with `scoop update stirling-pdf`.
 
 **Windows on ARM**
 
