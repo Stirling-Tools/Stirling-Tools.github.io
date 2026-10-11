@@ -7,15 +7,13 @@ sidebar_label: Convert
 
 # Convert
 
-Convert turns files into PDFs and PDFs into other formats.
-
 ## Convert a file
 
 1. Select one or more files and open **Convert**.
 2. **Convert from** is filled in from the files you selected. Pick the target format under **Convert to**.
 3. Set any options for that conversion, then click **Convert Files**.
 
-If you select files of different types, **Convert from** shows **Any** and they are all converted to PDF.
+If you select files of different types, they are all converted to PDF.
 
 ## Convert to PDF
 
@@ -40,8 +38,6 @@ Image options: **Color Type** (**Color**, **Grayscale** or **Black & White**), *
 | Web | HTML, XML |
 | Standards | PDF/A (archiving), PDF/X (print), PDF/UA (accessible) |
 | eBook and comics | EPUB, AZW3, CBZ, CBR |
-
-Notes on some targets:
 
 - **Images** - set **Color Type**, **DPI** (72-600, default 300) and **Output**: **Multiple** (default) for one image per page, or **Single** for one image containing all pages.
 - **Word, PowerPoint and Excel** - run [OCR](./OCR.md) on scans first.

@@ -13,7 +13,6 @@ Let users sign in with an identity provider. This page covers OAuth2 / OIDC (all
 
 ## Before you start
 
-- Set `system.backendUrl` to the public address of your server, such as `https://pdf.example.com`, and check that `https://pdf.example.com/api/v1/info/status` loads.
 - If you use a reverse proxy, make it forward the `X-Forwarded-Proto`, `X-Forwarded-Host` and `X-Forwarded-Port` headers ([nginx example](../Production.md#example-nginx)). The callback URL is built from the address the browser used.
 - The callback (redirect) URL to register with your provider is `https://pdf.example.com/login/oauth2/code/<provider>`, where `<provider>` is `google`, `github`, `keycloak`, or your `security.oauth2.provider` value for any other provider. It must match exactly.
 
@@ -52,8 +51,6 @@ Every provider uses these shared settings:
     ```
   </TabItem>
 </Tabs>
-
-With `blockRegistration: true`, add people first in **Settings → Workspace → Users → Invite people → Create account directly**, with **Sign-in method** set to **OAuth2 / SSO**.
 
 :::warning
 With the defaults, anyone who can sign in to your provider gets an account and uses a seat. For GitHub, and Google with an **External** consent screen, that is anyone with an account. Limit sign-in at the provider, or set `blockRegistration: true` and add users first.

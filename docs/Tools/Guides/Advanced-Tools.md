@@ -7,21 +7,15 @@ sidebar_label: Advanced tools
 
 # Advanced tools
 
-These are the tools under **Automation**, **Advanced Formatting** and **Developer Tools** in the tool picker.
-
 ## Automation
 
 ### Automate
 
-Chain several tools into a workflow you can save and run again. See [Automate](./Automate.md).
+See [Automate](./Automate.md).
 
 ### Auto Rename PDF File
 
 Renames a PDF from the title found near the start of the document. Run [OCR](./OCR.md) on scans first.
-
-### Auto Form Detection
-
-Finds text fields, checkboxes and signature areas and turns them into fillable form fields. See [Fill forms](./Fill-Form.md#detect-fields-automatically).
 
 ## Advanced Formatting
 
@@ -60,4 +54,3 @@ Tries to fix a corrupt or damaged PDF, for example one that won't open.
 ## Developer Tools
 
 - **Show Javascript** - lists any JavaScript embedded in a PDF.
-- **API**, **Automated Folder Scanning**, **SSO Guide** and **Air-gapped Setup** open the matching documentation.

@@ -15,7 +15,6 @@ description: Use custom_settings.yml for logging, HTTPS, ports, header limits, a
 logging:
   level:
     root: INFO
-    stirling.software: INFO
 ```
 
 To troubleshoot, raise one area at a time and set it back afterwards, because debug logging is large and slows the server:
@@ -26,9 +25,6 @@ logging:
     stirling.software: DEBUG                        # general problems
     org.springframework.security: DEBUG             # sign-in problems
     stirling.software.proprietary.security: DEBUG   # sign-in problems
-    org.springframework.security.oauth2: DEBUG      # OAuth2 / OIDC single sign-on
-    org.springframework.security.saml2: TRACE       # SAML single sign-on
-    org.opensaml: DEBUG                             # SAML single sign-on
 ```
 
 ## Port and session length
@@ -100,8 +96,6 @@ To create a self-signed certificate for testing:
 ```bash
 keytool -genkeypair -alias stirling -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore configs/keystore.p12 -validity 365
 ```
-
-Use a certificate from a trusted certificate authority in production.
 
 ## Large request headers (HTTP 431)
 

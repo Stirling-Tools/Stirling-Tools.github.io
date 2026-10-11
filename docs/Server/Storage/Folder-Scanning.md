@@ -54,7 +54,6 @@ pipeline/
 
 ## How files are processed
 
-- Every 60 seconds the server checks each job folder and processes the files in it.
 - Files still being copied in are skipped and picked up on a later check.
 - Files whose type the workflow can't accept are skipped and left in place.
 - While a file is being processed it sits in a `processing` subfolder of the job folder.

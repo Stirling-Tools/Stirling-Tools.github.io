@@ -43,16 +43,12 @@ Or set it in `settings.yml` or environment variables:
   <TabItem value="settings" label="Settings File">
     ```yaml
     system:
-      enableAnalytics: false # true, false, or null to ask the first admin
-      enablePosthog: false   # optional: turn off PostHog only
-      enableScarf: false     # optional: turn off the Scarf pixel only
+      enableAnalytics: false
     ```
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
     SYSTEM_ENABLEANALYTICS=false
-    SYSTEM_ENABLEPOSTHOG=false   # optional
-    SYSTEM_ENABLESCARF=false     # optional
     ```
   </TabItem>
 </Tabs>

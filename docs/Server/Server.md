@@ -41,8 +41,6 @@ To create your own first admin instead, set `SECURITY_INITIALLOGIN_USERNAME` and
 
 To run with no login at all, set `SECURITY_ENABLELOGIN=false`. Anyone who can reach the server can then use it, and admin settings become read-only.
 
-Admins change server settings in **Settings**, in `settings.yml` or with environment variables: see [Configuration](./Configuration.md).
-
 The free plan covers up to 5 users. Team and Enterprise add seats and features: see [Plans and licences](./Licensing/Plans-and-Licences.md).
 
 ## Next steps

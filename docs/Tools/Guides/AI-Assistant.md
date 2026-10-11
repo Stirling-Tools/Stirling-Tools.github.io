@@ -21,9 +21,7 @@ The AI assistant answers questions about the files in your workspace and runs to
 2. Click **Open Stirling AI assistant** at the bottom right. The **AI Assistant** panel opens.
 3. Type in **What do you want to do?** and click **Send message**, or pick a suggestion under **Get started**, such as **Compress this document**.
 
-The assistant works on the files in your workspace. When it changes a file, the result is saved as a new version of that file. Merged, split or new files are added to the workspace as new files. **Clear chat** starts a new conversation.
-
-AI can make mistakes, so check the result before you share it.
+When it changes a file, the result is saved as a new version of that file. Merged, split or new files are added to the workspace as new files.
 
 ## What it can do
 
@@ -34,6 +32,5 @@ AI can make mistakes, so check the result before you share it.
 | **Math auditor** | Checks a document for calculation errors, such as table totals that don't add up. |
 | **PDF comment agent** | Adds review comments to a PDF based on your instructions. |
 | **Create PDF from prompt** | Creates a new PDF from a description. |
-| **Document classification** | Identifies what kind of document a file is and tags it. [Processing folders](../Workspace/Processing-Folders.md) and the Processor's [Classification](../../Processor/Policies/Classification.md) policy use it. |
 
 For what AI sends and where, see [Files and privacy](../../Cloud/Files-and-Privacy.md) on Stirling Cloud. On a self-hosted server, your admin decides where AI runs.

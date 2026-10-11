@@ -7,15 +7,13 @@ sidebar_label: All tools
 
 # All tools
 
-Every tool in the app, grouped as the tool picker shows them. To find one fast, type its name in **Search tools...** at the top of the picker.
-
 Not every tool is available everywhere. In the desktop app, tools with a cloud badge need Stirling Cloud or a server ([Where your tools run](../Desktop/Where-Tools-Run.md)). On a self-hosted server, an admin can turn tools off ([Turn features on or off](../Server/Customisation/Features-and-Endpoints.md)).
 
 ## Quick access
 
 The most-used tools sit at the top of the picker. Each one has a keyboard shortcut ([Keyboard shortcuts](./Workspace/Keyboard-Shortcuts.md)).
 
-- **[PDF Text Editor](./Guides/Content-Editing.md#pdf-text-editor)** (alpha) - edit the existing text and images in a PDF.
+- **[PDF Text Editor](./Guides/Content-Editing.md#pdf-text-editor)** - edit the existing text and images in a PDF.
 - **[Page Editor](./Workspace/Page-Editor.md)** (**PDF Multi Tool** in the picker) - rotate, reorder, delete, split and insert blank pages.
 - **[Merge](./Guides/Page-Operations.md#merge)** - combine several PDFs into one.
 - **[Compare](./Guides/Compare.md)** - show the text differences between two PDFs.
@@ -29,7 +27,6 @@ The most-used tools sit at the top of the picker. Each one has a keyboard shortc
 - **[Sign with Certificate](./Security/Certificate-Signing.md#sign-with-a-certificate)** - add a digital signature that proves who signed and shows later changes.
 - **[Timestamp PDF](./Security/Certificate-Signing.md#timestamping-pdfs)** - add an RFC 3161 timestamp that proves when the PDF existed.
 - **[Sign](./Security/Sign.md)** - add a drawn, typed or image signature.
-
 
 ## Document security
 

@@ -7,8 +7,6 @@ sidebar_label: AI security
 
 # AI security
 
-Secure the connection between Stirling PDF and your own AI engine, and control where document content goes.
-
 ## Keep the engine private
 
 Don't publish port **5001** or route it through your public reverse proxy. Only Stirling PDF needs to reach the engine. The bundled engine in the `latest-fat` image listens only inside its container.

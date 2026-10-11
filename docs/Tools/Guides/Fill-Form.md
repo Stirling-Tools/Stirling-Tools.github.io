@@ -7,8 +7,6 @@ sidebar_label: Fill forms
 
 # Fill forms
 
-The **Form Editor** tool fills in a PDF's form fields in the viewer. It can also add new fields, edit existing ones, and export what was entered.
-
 Open a PDF and select **Form Editor**, then choose a **Form editor mode**: **Fill**, **Create** or **Modify**. A PDF with no fields opens in **Create**.
 
 ## Fill in a form

@@ -13,8 +13,6 @@ Run a Telegram bot that takes PDFs from chats, processes them with a pipeline JS
 Community-built beta, not covered by Team or Enterprise support; settings may change.
 :::
 
-The bot saves each file into a [watched folder](../Storage/Folder-Scanning.md), where the pipeline JSON in that folder processes it. It only makes outbound HTTPS calls to `api.telegram.org`, so you don't need to open a port or set up a webhook.
-
 ## 1. Create the bot
 
 1. In Telegram, open [@BotFather](https://t.me/BotFather) and send `/newbot`.
@@ -34,8 +32,7 @@ Open **Settings → Server → Integrations → Telegram Bot**, or edit the `tel
       enabled: true
       botToken: "your-token-from-botfather"
       botUsername: "your_bot_username"
-      customFolderSuffix: true       # one inbox folder per chat
-      allowUserIDs: [123456789]      # only these users may use the bot
+      allowUserIDs: [123456789]
     ```
   </TabItem>
   <TabItem value="env" label="Environment Variable">
@@ -43,7 +40,6 @@ Open **Settings → Server → Integrations → Telegram Bot**, or edit the `tel
     TELEGRAM_ENABLED=true
     TELEGRAM_BOTTOKEN=your-token-from-botfather
     TELEGRAM_BOTUSERNAME=your_bot_username
-    TELEGRAM_CUSTOMFOLDERSUFFIX=true
     TELEGRAM_ALLOWUSERIDS=123456789
     ```
   </TabItem>
@@ -74,7 +70,7 @@ Send the bot a PDF. It acknowledges the file, runs the pipeline and replies with
 | Channels | Channels listed in `allowChannelIDs`. An empty list allows every channel. |
 | Groups and supergroups | Always allowed. To keep the bot out of groups, send BotFather `/setjoingroups` and choose **Disable**. |
 
-`enableAllowUserIDs` and `enableAllowChannelIDs` are on by default but only take effect once their list has at least one ID. On a shared server, always fill in at least one list.
+On a shared server, always fill in at least one list.
 
 To post in a channel, add the bot as a channel admin with permission to post messages.
 

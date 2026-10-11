@@ -85,8 +85,6 @@ chmod +x linux-installer.AppImage
 paru -S stirling-pdf-desktop
 ```
 
-Setting up a server instead? See [Install with Java (JAR)](../Server/Install/JAR.md).
-
 </TabItem>
 </Tabs>
 

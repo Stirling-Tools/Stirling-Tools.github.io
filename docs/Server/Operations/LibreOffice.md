@@ -119,20 +119,15 @@ Every listed worker is used. Set `libreOfficeSessionLimit` to the number of work
 
 ### The stirling-unoserver image
 
-Use `latest`, or pin a version such as `1.0.1`.
-
 | Variable | Default | Purpose |
 |---|---|---|
 | `UNOSERVER_PORT` | `2003` | Listen port. |
 | `UNOSERVER_INTERFACE` | `0.0.0.0` | Listen address. `127.0.0.1` restricts it to the same host. |
 | `UNOSERVER_CONVERSION_TIMEOUT` | `1800` | Longest conversion, in seconds. Keep it in line with `libreOfficetimeoutMinutes` (30 minutes by default). |
 | `UNOSERVER_RECYCLE_INTERVAL_SECONDS` | `0` (off) | Restart LibreOffice on a schedule to limit memory growth, for example `3600` for hourly. Minimum 60. |
-| `UNOSERVER_UNO_PORT` | `2002` | Internal LibreOffice port. |
 | `UNOSERVER_IDLE_TIMEOUT_SECONDS` | `0` (off) | Stop the worker after this many idle seconds. Keep it at `0` for remote workers, because nothing can start them again. |
 
 The image includes hyphenation for common European languages. For Chinese, Japanese and Korean documents, build it with `--build-arg INSTALL_CJK_FONTS=true` (about 120 MB larger).
-
-To cap a worker's CPU and memory, use normal Docker limits such as `cpus: "2.0"` and `memory: 1g`.
 
 ## Workers without Docker
 
@@ -145,5 +140,3 @@ unoserver --port 2004 --uno-port 2104 &
 ```
 
 Then list them as endpoints on `127.0.0.1` with `hostLocation: local`.
-
-Conversion timeouts are set with the other [process limits](./Process-Limits.md).

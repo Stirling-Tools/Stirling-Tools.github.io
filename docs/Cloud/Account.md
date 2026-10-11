@@ -7,8 +7,6 @@ description: Sign in to Stirling Cloud or use it as a guest, and manage your pas
 
 # Account and sign-in
 
-Sign in to [stirling.com/app](https://stirling.com/app) or use it as a guest. Account settings open from your avatar at the bottom of the left bar.
-
 ## Sign in
 
 On the sign-in page, choose one of:
@@ -24,8 +22,6 @@ To use the same account in the desktop app, see [Connection modes](../Desktop/Co
 1. Select **Create an account**.
 2. Sign up with Google or GitHub, or enter your email and a password (at least 6 characters) twice.
 3. Select **Sign Up**, and open the confirmation link if one is emailed to you.
-
-Each new account starts with its own personal team ([Teams](./Teams.md)).
 
 ## Reset your password
 

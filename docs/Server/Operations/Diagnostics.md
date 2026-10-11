@@ -15,7 +15,7 @@ The Docker images include a diagnostics tool that gathers logs, configuration, s
 docker exec -it <container_name> diag
 ```
 
-`debug`, `diagnostic`, `diagnostics` and `stirling-diagnostics` do the same. The tool needs an interactive terminal, so keep the `-it` flags.
+The tool needs an interactive terminal, so keep the `-it` flags.
 
 Choose a mode when prompted:
 

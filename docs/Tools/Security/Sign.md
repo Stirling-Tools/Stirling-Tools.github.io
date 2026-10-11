@@ -27,15 +27,3 @@ To reuse a saved signature, pick it under **Your signatures** and click the page
 
 - Signed in, you can keep up to 20 signatures. Without signing in, up to 10 are kept in this browser.
 - Admins can set **Who can use it** to **Everyone** to share a signature with all users. Shared signatures appear under **Shared**.
-
-## Ask others to sign
-
-
-## Visual vs digital signatures
-
-| | Sign (this tool) | [Sign with Certificate](./Certificate-Signing.md) |
-|---|---|---|
-| **Security** | Visual only, can be copied | Cryptographic |
-| **Proves who signed** | No | Yes |
-| **Shows later changes** | No | Yes |
-| **Needs a certificate** | No | Yes |

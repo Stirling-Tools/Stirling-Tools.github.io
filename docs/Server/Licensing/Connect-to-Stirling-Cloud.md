@@ -16,10 +16,6 @@ Linking gives the server:
 - The team's processing allowance, in place of the server's own 1,000 units a month.
 - Access to Stirling Cloud AI. See [Use Stirling Cloud AI from your server](../AI/Use-Stirling-Cloud-AI.md).
 
-:::note
-**Account connection** is only in builds that include the Processor. If **Settings → Workspace** shows **Plan** but no **Account connection**, this build can't link.
-:::
-
 ## Processing allowance
 
 Using the tools by hand never counts. These do:

@@ -7,8 +7,6 @@ sidebar_label: Use Stirling Cloud AI
 
 # Use Stirling Cloud AI from your server
 
-Run your server's AI on Stirling Cloud instead of hosting an engine.
-
 :::note
 Using Stirling Cloud in the browser or the desktop app? AI is already included there, with nothing to set up. See [AI assistant](../../Tools/Guides/AI-Assistant.md).
 :::

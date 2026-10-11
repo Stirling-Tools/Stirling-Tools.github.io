@@ -7,7 +7,7 @@ description: Run Stirling PDF in Docker, choose an image, keep your data in volu
 
 # Install with Docker
 
-Docker is the recommended way to run a Stirling PDF server. The standard image includes nearly every conversion tool, so there is nothing else to install.
+Docker is the recommended way to run a Stirling PDF server.
 
 ## Quick start
 
@@ -73,9 +73,6 @@ Open `http://localhost:8080` and sign in as `admin` / `stirling`. You are asked 
 
 Start with `latest`. Switch images by changing the tag and recreating the container. Your volumes carry over.
 
-- **`latest-fat`**: AI is off by default. Set `AIENGINE_ENABLED=true` (or turn AI on in **Settings** and restart the container) to start the engine, then add your model provider keys. See [Run the AI engine](../AI/Run-the-AI-Engine.md#use-the-fat-image).
-- **`latest-ultra-lite`** is built without login, so it has no users, single sign-on or admin settings. Configure it with environment variables or `settings.yml`.
-
 All images are built for `amd64` and `arm64`.
 
 ### Pin a version
@@ -103,10 +100,6 @@ docker pull ghcr.io/stirling-tools/stirling-pdf:latest
 | `/usr/share/tessdata` | Extra OCR language files. See [OCR languages](../Operations/OCR-Languages.md). |
 
 The container runs as UID and GID `1000`. If your host folders belong to another user, set `PUID` and `PGID` to that user's IDs. `UMASK` (default `022`) sets permissions on new files.
-
-## Memory and Java options
-
-The container sizes the Java heap from its memory limit, so set a limit (`mem_limit` or `--memory`) rather than tuning the heap by hand. Add extra JVM flags with `JAVA_CUSTOM_OPTS`. [Performance](../Operations/Performance.md) covers sizing in detail.
 
 ## Common settings
 

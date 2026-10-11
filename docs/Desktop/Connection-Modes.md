@@ -19,7 +19,7 @@ See [Where your tools run](./Where-Tools-Run.md) for details.
 
 ## Local Only
 
-You get this mode if you select **Continue without signing in** on first launch, or log out. Your files stay on your computer.
+You get this mode if you select **Continue without signing in** on first launch, or log out.
 
 ## Sign in to Stirling Cloud
 
@@ -43,5 +43,3 @@ On macOS, allow the **Local Network** prompt the first time you connect to a ser
 ## Switch modes or sign out
 
 Select **Log Out** in **Settings → Connection Mode** to return to Local Only. To move between Stirling Cloud and a server, log out, then sign in with the other option.
-
-If your server can't be reached, a **Your Stirling-PDF server is unreachable** banner appears, and tools the app can run on your computer keep working.

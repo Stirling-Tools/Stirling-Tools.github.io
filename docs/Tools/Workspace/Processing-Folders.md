@@ -40,7 +40,3 @@ Sign in to Stirling Cloud or connect a self-hosted server first ([Connection mod
 
 - The setup also offers **On this computer**: click it and choose any folder on your computer. The app watches that folder while it's running and signed in, and sends new or changed PDFs to Stirling Cloud or your server for processing.
 - **Try processing your downloads folder** classifies the PDFs already in your Downloads folder and opens the results in the app. The files in Downloads aren't changed.
-
-## For server admins
-
-On a self-hosted server, processing folders store files in the server's file storage, which an admin turns on ([File storage and sharing](../../Server/Storage/File-Storage.md)). AI presets need AI set up ([AI on your server](../../Server/AI/AI.md)).

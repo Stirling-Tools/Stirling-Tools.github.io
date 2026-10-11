@@ -54,5 +54,3 @@ These new sections are off by default:
 - `mcp`: [MCP server settings](../Automation/MCP-Server.md)
 - `cluster`: [Clustering](../Operations/Clustering.md)
 - `telegram`: [Telegram bot](../Automation/Telegram-Bot.md)
-
-For every setting and where it lives, see [Configuration](../Configuration.md).

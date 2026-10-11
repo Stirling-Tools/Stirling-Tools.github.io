@@ -25,7 +25,6 @@ image:
 
 persistence:
   enabled: true
-  size: 8Gi
 
 deployment:
   extraVolumeMounts:

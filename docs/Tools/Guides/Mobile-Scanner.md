@@ -7,8 +7,6 @@ sidebar_label: Mobile scanner
 
 # Mobile scanner
 
-Scan paper documents with your phone, or send photos from it, straight into Stirling PDF.
-
 ## Scan from your phone
 
 1. On your computer, click the QR code button next to **Add Files** (**Open Files** in the desktop app). Its tooltip is **Upload from Mobile**. In the file picker, the same option is called **From your phone**.

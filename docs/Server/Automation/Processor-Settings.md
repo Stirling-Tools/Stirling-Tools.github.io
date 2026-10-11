@@ -69,8 +69,6 @@ Every signed-in user, not only admins, can attach folder processing to directori
 
 ### Watch a network share
 
-Either mount the share as a folder or have Processor connect to it over SMB.
-
 - **Mount it.** Mount the SMB or NFS share on the host, or as a Docker volume, under an allowed root such as `/data/processor/inbox`. Then use a [Folder source](../../Processor/Sources.md#folder) with the **Folder watch** trigger. New files on network mounts can wait up to `policies.watchReconcileSeconds` before they run.
 - **Connect over SMB.** Use an **SMB / Network share** connection with a **Network drive** source ([SFTP, FTP and SMB](../../Processor/Sources.md#sftp-ftp-and-smb)). Nothing is mounted, but the source only runs on the **Manual only** or **Scheduled** trigger ([Inputs and triggers](../../Processor/Pipelines.md#inputs-and-triggers)). For a file server on your internal network, add its hostname to `POLICIES_ALLOWEDPRIVATENETWORKHOSTS` ([Private network targets](#private-network-targets)).
 
@@ -98,7 +96,7 @@ S3, SFTP, FTP, SMB, API and vector database connections cannot point at loopback
 | `policies.allowPrivateS3Endpoints`* | `POLICIES_ALLOWPRIVATES3ENDPOINTS` | `false` | S3-compatible endpoints on internal addresses, such as a self-hosted MinIO. |
 | `policies.allowedPrivateNetworkHosts`* | `POLICIES_ALLOWEDPRIVATENETWORKHOSTS` | empty | Named internal SFTP, FTP and SMB servers. Exact hostnames, separated by commas. |
 | `policies.allowPrivateNetworkSources`* | `POLICIES_ALLOWPRIVATENETWORKSOURCES` | `false` | Every internal SFTP, FTP and SMB host. Prefer the named list above. |
-| `policies.allowPrivateApiEndpoints`* | `POLICIES_ALLOWPRIVATEAPIENDPOINTS` | `false` | API and vector database connections on internal addresses. Any user can create these connections, so enable it only when the service really is internal. |
+| `policies.allowPrivateApiEndpoints`* | `POLICIES_ALLOWPRIVATEAPIENDPOINTS` | `false` | API and vector database connections on internal addresses. |
 | `policies.allowCustomApiIntegrations`* | `POLICIES_ALLOWCUSTOMAPIINTEGRATIONS` | `true` | Admins creating **Custom API** connections. Turning it off stops new ones being created or edited; existing ones keep running until you disable them. |
 
 For example, to allow one internal SFTP server:

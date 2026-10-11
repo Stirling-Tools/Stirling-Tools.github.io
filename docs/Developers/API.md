@@ -7,7 +7,7 @@ description: Call Stirling PDF tools over HTTP on Stirling Cloud or a self-hoste
 
 # REST API
 
-Every server-side tool in Stirling PDF has a REST endpoint. Send the file as `multipart/form-data` with your API key in the `X-API-KEY` header, and the response is the processed file.
+Every server-side tool in Stirling PDF has a REST endpoint. Send the file as `multipart/form-data` and the response is the processed file.
 
 ## Base URL, keys and reference
 
@@ -27,8 +27,6 @@ Every server-side tool in Stirling PDF has a REST endpoint. Send the file as `mu
 
   </TabItem>
 </Tabs>
-
-The **API** tool in the app (under **Developer Tools**) opens the same reference.
 
 ## Authentication
 

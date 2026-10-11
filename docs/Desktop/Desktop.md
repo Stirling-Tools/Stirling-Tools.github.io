@@ -16,8 +16,6 @@ The desktop app runs the Stirling PDF editor and most tools on your own computer
 | macOS 10.15 or later (Apple silicon and Intel) | [DMG](https://files.stirlingpdf.com/mac-installer.dmg) |
 | Linux (x86_64) | [DEB](https://files.stirlingpdf.com/linux-installer.deb) · [RPM](https://files.stirlingpdf.com/linux-installer.rpm) · [AppImage](https://files.stirlingpdf.com/linux-installer.AppImage) |
 
-For winget, Homebrew and AUR, see [Install the desktop app](./Install.md).
-
 <Cards cols="3">
 <Card title="Install" icon="download" href="./Install.md">
 Installers, package managers and first launch.

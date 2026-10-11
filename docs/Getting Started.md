@@ -9,7 +9,7 @@ description: Guides for Stirling PDF on Stirling Cloud, the desktop app and self
 
 # Stirling PDF documentation
 
-<p class="lead">Stirling PDF lets you edit, convert, sign, redact and automate PDFs. Use it in your browser, as a desktop app on your own computer, or on your own server.</p>
+<p class="lead">Stirling PDF lets you edit, convert, sign, redact and automate PDFs.</p>
 
 <h2 class="section-label">Pick your setup</h2>
 
@@ -25,7 +25,7 @@ Self-hosted with Docker, Kubernetes or Java. Best if every file must stay on you
 </Card>
 </Cards>
 
-Not sure? Try [Stirling Cloud](https://stirling.com/app) first. There is nothing to install and the manual tools are free.
+Not sure? Try [Stirling Cloud](https://stirling.com/app) first. The manual tools are free.
 
 <h2 class="section-label">Guides for every setup</h2>
 

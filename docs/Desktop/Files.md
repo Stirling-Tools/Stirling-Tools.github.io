@@ -7,8 +7,6 @@ description: Open PDFs in the desktop app, make it your default PDF app, save ch
 
 # Opening and saving files
 
-The desktop app works on the files on your computer: open a PDF, edit it, and save it back to the same file.
-
 ## Open files
 
 - Double-click a PDF, or right-click it and choose **Open with → Stirling PDF**.

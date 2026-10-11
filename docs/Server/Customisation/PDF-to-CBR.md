@@ -15,11 +15,10 @@ At startup, Stirling PDF looks for `rar` on the `PATH` and turns the tool on if 
 
 <Tabs groupId="os">
   <TabItem value="linux" label="Linux">
-    Debian and Ubuntu have `rar` in the `non-free` repository; Fedora and RHEL have it in RPM Fusion non-free:
+    Debian and Ubuntu have `rar` in the `non-free` repository:
 
     ```bash
     sudo apt install rar      # Debian / Ubuntu
-    sudo dnf install rar      # Fedora / RHEL, after enabling RPM Fusion non-free
     ```
 
     Or download "RAR for Linux x64" from [rarlab.com](https://www.rarlab.com/download.htm) and copy the `rar` binary to `/usr/local/bin/`.
@@ -42,4 +41,4 @@ services:
       - /usr/local/bin/rar:/usr/local/bin/rar:ro
 ```
 
-A Windows `rar.exe` cannot run in the container. Check it with `docker exec -it <container_name> rar`, then restart the container.
+Check it with `docker exec -it <container_name> rar`, then restart the container.

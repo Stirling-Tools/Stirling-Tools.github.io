@@ -72,8 +72,6 @@ Check that:
 - tools you disabled are still disabled (see [Settings changes](./Settings-Changes.md#removed-and-renamed-settings) if one came back)
 - your API integrations and any branding still work
 
-Admins can now change most settings in the app under **Settings** instead of editing `settings.yml`. See [Configuration](../Configuration.md).
-
 ## Roll back
 
 1. Stop the server.

@@ -86,7 +86,7 @@ volumes:
   </TabItem>
 </Tabs>
 
-- `allowPrivateEndpoints: false` makes the server refuse to start if `endpoint` resolves to a private, loopback or link-local address. Leave it `false` for any internet-facing provider.
+- `allowPrivateEndpoints: false` makes the server refuse to start if `endpoint` resolves to a private, loopback or link-local address.
 - Set `requestChecksumCalculation: WHEN_REQUIRED` if uploads fail with an unsupported `x-amz-checksum-*` header. Set `responseChecksumValidation: WHEN_REQUIRED` if downloads report false checksum mismatches.
 
 | Provider | `endpoint` | `region` | `pathStyleAccess` | Notes |
@@ -97,8 +97,6 @@ volumes:
 | Supabase Storage | `https://<project>.supabase.co/storage/v1/s3` | your project region | `true` | |
 | Backblaze B2 | `https://s3.<region>.backblazeb2.com` | your region | `false` | On B2 accounts older than July 2025, set `requestChecksumCalculation: WHEN_REQUIRED` if uploads fail. |
 | DigitalOcean Spaces | `https://<region>.digitaloceanspaces.com` | your region | `false` | 5 GB limit per object. |
-
-Clustered servers can keep job results in the same bucket ([Clustering](../Operations/Clustering.md)).
 
 ## Turn on sharing
 
@@ -133,7 +131,6 @@ Sharing needs storage. Use the toggles in **File Storage & Sharing**, or:
 - Email sharing needs [email](../Security/Sign-in-and-Security.md#email-configuration) set up and share links turned on. Sharing with an email address that has no account sends that person a share link.
 - Expired links and orphaned files are cleaned up once a day.
 
-
 ## Quotas
 
 <Tabs groupId="config-methods">
@@ -155,7 +152,7 @@ Sharing needs storage. Use the toggles in **File Storage & Sharing**, or:
   </TabItem>
 </Tabs>
 
-`-1` means no limit. When a file is replaced, only the change in size counts. Anything over a limit is rejected with HTTP 413.
+`-1` means no limit. When a file is replaced, only the change in size counts.
 
 ## Troubleshooting
 

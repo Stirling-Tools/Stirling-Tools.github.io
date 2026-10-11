@@ -7,7 +7,7 @@ description: Answers for every Stirling PDF product - reporting bugs, getting he
 
 # FAQ
 
-Questions that apply to Stirling Cloud, the desktop app and self-hosted servers. For running a server, see the [Server FAQ](../Server/FAQ.md).
+For running a server, see the [Server FAQ](../Server/FAQ.md).
 
 ## Get help
 
@@ -28,7 +28,7 @@ Usage analytics are opt-in, and Stirling PDF never tracks the content of your do
 
 To change your choice later, click **Manage** next to **Cookie Preferences**:
 
-- **Stirling Cloud:** in **Settings → Legal**. See [Files and privacy](../Cloud/Files-and-Privacy.md) for how your files and data are handled.
+- **Stirling Cloud:** in **Settings → Legal**.
 - **Desktop app and self-hosted servers:** in **Settings → About**.
 
 On a self-hosted server, your admin decides whether analytics are on at all. If they're off, you won't see the banner ([Analytics and telemetry](../Server/Analytics-and-Telemetry.md)).

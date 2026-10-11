@@ -7,8 +7,6 @@ description: Where Stirling PDF server settings live, in-app Settings, settings.
 
 # Configuration
 
-Change server settings in the app, in `settings.yml`, or with environment variables.
-
 | Method | Use it for | Notes |
 |---|---|---|
 | **Settings** in the app | Day-to-day changes | Admins only, on builds with login. Changes are saved to `settings.yml`. |
@@ -67,8 +65,6 @@ Turn a `settings.yml` path into a variable name: join the levels with underscore
 | `security.initialLogin.username` | `SECURITY_INITIALLOGIN_USERNAME` |
 | `system.customPaths.operations.soffice` | `SYSTEM_CUSTOMPATHS_OPERATIONS_SOFFICE` |
 | `endpoints.toRemove` (a list) | `ENDPOINTS_TOREMOVE=img-to-pdf,remove-pages` |
-
-The same settings both ways:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">

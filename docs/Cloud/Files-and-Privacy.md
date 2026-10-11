@@ -7,8 +7,6 @@ description: Where Stirling Cloud processes and stores your files, what AI tools
 
 # Files and privacy
 
-Some Stirling Cloud tools run in your browser and others send your file to Stirling's servers.
-
 ## Where your files are processed
 
 | What you do | Where it happens |
@@ -19,10 +17,6 @@ Some Stirling Cloud tools run in your browser and others send your file to Stirl
 | Processor pipelines | Stirling's servers, reading from and writing to the storage you connect. |
 
 Files you open in the editor stay in your browser's storage until you remove them. They are not saved to Stirling Cloud unless you choose to.
-
-## Saving and sharing files
-
-Signed-in users can store a file on Stirling Cloud with **Upload to Server** and share it from **Manage sharing**. Share links work only for signed-in users. See [My files and sharing](../Tools/Workspace/Files-and-Sharing.md).
 
 ## What AI tools send
 

@@ -15,7 +15,6 @@ This is separate from the built-in lockout, which locks the user account rather 
 
 ## Prerequisites
 
-- Fail2Ban installed on the host.
 - Optional: turn off the built-in account lockout so Fail2Ban alone handles failed attempts:
 
 <Tabs groupId="config-methods">

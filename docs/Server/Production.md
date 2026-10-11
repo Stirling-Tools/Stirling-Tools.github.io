@@ -7,8 +7,6 @@ description: What to set up before a Stirling PDF server goes live for a team - 
 
 # Production checklist
 
-Work through this list before you open a Stirling PDF server to your team.
-
 ## 1. Install a login build and pin the version
 
 - Use the `latest` or `latest-fat` image, the Helm chart, or `Stirling-PDF-with-login.jar`. See [Install with Docker](./Install/Docker.md), [Install on Kubernetes](./Install/Kubernetes.md) or [Install with Java (JAR)](./Install/JAR.md).
@@ -113,9 +111,3 @@ server {
 
 - Tune how many OCR and Office jobs run at once in [Process limits](./Operations/Process-Limits.md) and [LibreOffice parallel processing](./Operations/LibreOffice.md). For several nodes, see [Clustering](./Operations/Clustering.md) (Team and Enterprise).
 - Back up `configs/` before each update. Coming from V1? Read [Upgrading from V1](./Upgrading/Upgrading.md) first.
-
-## Optional extras
-
-- [AI on your server](./AI/AI.md)
-- [Processor server settings](./Automation/Processor-Settings.md)
-- [Connect to Stirling Cloud](./Licensing/Connect-to-Stirling-Cloud.md)

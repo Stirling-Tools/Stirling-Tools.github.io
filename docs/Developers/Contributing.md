@@ -65,9 +65,8 @@ task check
 ## Adding a tool
 
 1. Add the backend endpoint ([Adding a new feature to the backend](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/DeveloperGuide.md#adding-a-new-feature-to-the-backend-api) in the Developer Guide).
-2. Add the frontend tool: its parameters and operation hooks, a settings component and an entry in the tool registry ([ADDING_TOOLS.md](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/ADDING_TOOLS.md)).
+2. Add the frontend tool ([ADDING_TOOLS.md](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/ADDING_TOOLS.md)).
 3. Add the tool's text to the `en-US` `translation.toml` only. Other languages are handled separately.
-4. Run `task fix` and `task check`.
 
 The [Developer Guide](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/DeveloperGuide.md) covers the architecture, and the [devGuide folder](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/devGuide) has guides on error handling, comments and more.
 

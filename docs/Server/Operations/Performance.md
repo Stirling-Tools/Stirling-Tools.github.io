@@ -11,8 +11,6 @@ Size your server for the heaviest tools your users run. PDF processing is memory
 
 ## Sizing
 
-Allow at least 4 GB of memory. For larger teams, use 16 GB or more.
-
 | Users | CPU | Memory | Disk |
 |---|---|---|---|
 | 1-10 | 2-4 cores | 4 GB | 10 GB |
@@ -34,8 +32,6 @@ services:
           memory: 4G
           cpus: '4.0'
 ```
-
-The ultra-lite image needs about 2 GB and the fat image about 6 GB. If you turn on the fat image's built-in AI engine, give it more.
 
 Some tools cost far more than others:
 
@@ -72,7 +68,3 @@ services:
 ```
 
 When running the JAR, pass `-Xmx2g` to `java` directly. Either way, leave at least a third of the machine's or container's memory outside the heap for the other tools.
-
-## More than one server
-
-For more capacity or failover, run several nodes behind a load balancer; see [Clustering](./Clustering.md). An external database needs a Team or Enterprise licence; see [Database](../Storage/Database.md).

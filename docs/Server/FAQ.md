@@ -7,10 +7,6 @@ description: Answers to common questions and problems when running a self-hosted
 
 # Server FAQ
 
-## Which image or JAR should I use?
-
-The Docker `latest` image, or `Stirling-PDF-with-login.jar` if you can't use Docker. See [Pick a build](./Server.md#pick-a-build).
-
 ## `docker pull` from docker.stirlingpdf.com fails. What now?
 
 Pull the same image from Docker Hub or GitHub instead:
@@ -47,14 +43,9 @@ Your reverse proxy is rejecting the upload: nginx allows 1 MB by default. Raise 
 ## Why does Stirling PDF use so much memory when idle?
 
 - The Docker image sizes the Java heap from the container's memory limit, or from the host's RAM if there is no limit. Set a limit with `mem_limit` or `--memory`.
-- Each idle LibreOffice worker uses about 50 MB. The default is one (`processExecutor.sessionLimit.libreOfficeSessionLimit`).
 - `latest-ultra-lite` uses the least memory.
 
 See [Performance](./Operations/Performance.md).
-
-## Can I change the look and the language?
-
-Yes. See [UI and branding](./Customisation/Branding.md). Set the default language with `system.defaultLocale` and limit the choice with `ui.languages` (see [Common settings](./Configuration.md#common-settings)).
 
 ## Why does my server make requests to js.stripe.com?
 

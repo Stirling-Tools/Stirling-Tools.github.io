@@ -17,7 +17,6 @@ Document questions need an [embedding provider](./Model-Providers.md#embeddings)
 
 These are under **Documents & RAG** in **Settings → Server → AI Engine**:
 
-- **Embedding provider** and **Embedding model**: see [Model providers](./Model-Providers.md#embeddings).
 - **Top K**: document chunks returned per search. Default `20`.
 - **Max searches**: searches the assistant may run before it answers. Default `5`; `0` turns document search off.
 

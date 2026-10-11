@@ -11,8 +11,6 @@ id: Pipelines
 
 A pipeline is a saved workflow: where documents come from, the steps to run and where the results go. Open **Processor → Pipelines** to manage your pipelines and policies.
 
-To chain tools from your own code in a single HTTP request, use the [Pipeline API](../Developers/Pipeline-API.md).
-
 ![Pipelines list and template gallery](/img/processor/pipelines.png)
 
 ## Create a workflow
@@ -34,7 +32,7 @@ For a step-by-step example, see [Create your first pipeline](./Getting-Started.m
 | Input | Triggers |
 |---|---|
 | **Editor** | **Every upload** or **Every export**; see [Editor](./Sources.md#editor) |
-| **Folder** (self-hosted only) | **Manual only**, **Scheduled** or **Folder watch** |
+| **Folder** | **Manual only**, **Scheduled** or **Folder watch** |
 | **Amazon S3**, **SFTP**, **FTP**, **Network drive** | **Manual only** or **Scheduled** |
 | **Webhook** | **webhook** (runs as each signed delivery arrives), **Manual only** or **Scheduled**; see [Webhooks](./Sources.md#webhooks) |
 

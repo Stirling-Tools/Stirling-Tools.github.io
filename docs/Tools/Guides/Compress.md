@@ -7,8 +7,6 @@ sidebar_label: Compress
 
 # Compress
 
-Compress makes PDFs smaller. Higher compression can lower image quality.
-
 ## Compress a PDF
 
 1. Select one or more PDFs and open **Compress**.

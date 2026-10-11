@@ -22,7 +22,6 @@ Follow [Create your first pipeline](./Getting-Started.md) to build, test and swi
 
 | Page | Use it to |
 |---|---|
-| **Home** | See documents flowing from your sources through your pipelines over the last 24 hours. |
 | [Sources](./Sources.md) | Connect folders, storage services and webhooks. |
 | [Pipelines](./Pipelines.md) | Build, test, pause and edit workflows. |
 | [Policies](./Policies/Policies.md) | Set up ready-made pipelines: Ingestion, Security, Classification, Compliance and Routing. |

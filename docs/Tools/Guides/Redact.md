@@ -9,8 +9,6 @@ sidebar_label: Redact
 
 Redact permanently deletes sensitive text and areas from a PDF, not just hides them. Keep a copy of the original.
 
-At the top of the Redact panel, **Redaction Method** switches between **Automatic** (find and remove words or patterns) and **Manual** (mark text or areas yourself).
-
 ## Automatic redaction
 
 1. Choose **Automatic**.

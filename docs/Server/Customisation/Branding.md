@@ -7,8 +7,6 @@ description: Rename the app, replace its icons and logos, and add your own CSS o
 
 # UI and branding
 
-Change the app name, icons, logos and styling that people see on your server.
-
 ## Branding settings
 
 Open **Settings → Server → System → Branding & appearance**, or set the keys in `settings.yml`:
@@ -26,16 +24,11 @@ Open **Settings → Server → System → Branding & appearance**, or set the ke
     ```yaml
     ui:
       appNameNavbar: "Acme PDF"
-    system:
-      showUpdate: true
-      showUpdateOnlyAdmin: true
     ```
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
     UI_APPNAMENAVBAR="Acme PDF"
-    SYSTEM_SHOWUPDATE=true
-    SYSTEM_SHOWUPDATEONLYADMIN=true
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
@@ -44,8 +37,6 @@ Open **Settings → Server → System → Branding & appearance**, or set the ke
       stirling-pdf:
         environment:
           UI_APPNAMENAVBAR: Acme PDF
-          SYSTEM_SHOWUPDATE: "true"
-          SYSTEM_SHOWUPDATEONLYADMIN: "true"
     ```
   </TabItem>
 </Tabs>
@@ -72,7 +63,6 @@ Brand images are served from `/modern-logo/`, so put your versions in `customFil
 | `StirlingPDFLogoNoTextLight.svg`, `StirlingPDFLogoNoTextDark.svg` | Logo mark without text, for light and dark themes |
 | `StirlingPDFLogoBlackText.svg`, `StirlingPDFLogoWhiteText.svg`, `StirlingPDFLogoGreyText.svg` | Logo with text, for light, dark and muted backgrounds |
 | `logo-tooltip.svg` | Small logo in tooltips |
-| `Firstpage.png` | First-page preview image |
 
 Other files served from the app root, such as `manifest.json`, can be replaced the same way, for example `customFiles/static/manifest.json`. Reload the app afterwards, clearing the browser cache if the old image still shows.
 
@@ -98,15 +88,6 @@ The app does not load a stylesheet from `customFiles` on its own. To add one, se
    ```
 
 4. Restart Stirling PDF. The log shows `Using custom index.html from: /customFiles/static/index.html`.
-
-For example, to lift the Google Drive picker above the file manager:
-
-```css
-.picker-dialog,
-.picker-dialog-bg {
-  z-index: 9999 !important;
-}
-```
 
 :::warning Repeat after every upgrade
 `index.html` refers to asset filenames that change with each release, so an old copy breaks the app after an upgrade. Save a fresh copy and add your `<link>` line again every time you upgrade.

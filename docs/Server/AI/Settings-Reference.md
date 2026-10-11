@@ -47,7 +47,7 @@ Changes to these apply after a restart.
 
 | Key | Default | Purpose |
 |---|---|---|
-| `aiEngine.enabled` | `false` | Turn AI on. Off in every image, including `latest-fat`. |
+| `aiEngine.enabled` | `false` | Turn AI on. |
 | `aiEngine.mode` | `SELF_HOSTED` | Where AI runs: `SELF_HOSTED` for [your own engine](./Run-the-AI-Engine.md), `CLOUD` for [Stirling Cloud AI](./Use-Stirling-Cloud-AI.md). |
 | `aiEngine.url` | `http://localhost:5001` | Address of your own engine. |
 | `aiEngine.cloudDocumentIndexing` | `false` | Stirling Cloud AI only. Let Stirling Cloud store indexed document text so document questions work. |

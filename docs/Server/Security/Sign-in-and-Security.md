@@ -38,15 +38,12 @@ To choose the first admin yourself, set these before the first start:
 
 This account isn't asked to change its password. Both settings are ignored once the database has users.
 
-Users are stored in the server's database, by default a file in `configs/`, so mount that folder and back it up ([Database](../Storage/Database.md)).
-
 ## Add users
 
 1. Open **Settings → Workspace → Users** and select **Invite people**.
 2. Choose how to add them:
    - **Invite by email** creates the account and emails a sign-in link with a temporary password. It needs [email](#email-configuration) set up.
    - **Create account directly** lets you set the username, **Sign-in method** (**Password**, **OAuth2 / SSO** or **SAML 2.0**), role and team. For password accounts, **Require a password change on first login** is ticked by default.
-3. To change someone's role later, use the role menu in their row.
 
 The Free plan allows 5 users ([Plans and licences](../Licensing/Plans-and-Licences.md)).
 
@@ -66,18 +63,12 @@ The Free plan allows 5 users ([Plans and licences](../Licensing/Plans-and-Licenc
     security:
       enableLogin: true
       loginMethod: all
-      loginAttemptCount: 5
-      loginResetTimeMinutes: 120
-      xFrameOptions: DENY
     ```
   </TabItem>
   <TabItem value="env" label="Environment Variable">
     ```bash
     SECURITY_ENABLELOGIN=true
     SECURITY_LOGINMETHOD=all
-    SECURITY_LOGINATTEMPTCOUNT=5
-    SECURITY_LOGINRESETTIMEMINUTES=120
-    SECURITY_XFRAMEOPTIONS=DENY
     ```
   </TabItem>
 </Tabs>

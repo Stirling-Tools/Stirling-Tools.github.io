@@ -94,18 +94,6 @@ Set the provider and all three model names on Stirling PDF:
     AIENGINE_RAG_EMBEDDINGMODEL=text-embedding-3-small
     ```
   </TabItem>
-  <TabItem value="docker-compose" label="Docker Compose">
-    ```yaml
-    services:
-      stirling-pdf:
-        environment:
-          AIENGINE_MODELS_PROVIDER: openai
-          AIENGINE_MODELS_SMARTMODEL: gpt-4o
-          AIENGINE_MODELS_FASTMODEL: gpt-4o-mini
-          AIENGINE_RAG_EMBEDDINGPROVIDER: openai
-          AIENGINE_RAG_EMBEDDINGMODEL: text-embedding-3-small
-    ```
-  </TabItem>
 </Tabs>
 
 Set `OPENAI_API_KEY` on the engine container, or on the Stirling PDF container with the `latest-fat` image. It covers both the language models and embeddings.

@@ -7,8 +7,6 @@ sidebar_label: Run the AI engine
 
 # Run the AI engine
 
-Host the AI engine yourself so AI requests go to model providers you choose. Either use the `latest-fat` image, which bundles the engine, or run the engine as its own container next to Stirling PDF.
-
 By default the engine uses Anthropic (Claude) for language models and VoyageAI for embeddings, so you need an API key for each. For GPT, other services or local models, see [Model providers](./Model-Providers.md). To use AI without hosting anything, see [Use Stirling Cloud AI from your server](./Use-Stirling-Cloud-AI.md).
 
 ## Use the fat image
@@ -59,7 +57,6 @@ volumes:
 
 - Set the same long, random shared secret on both services. The engine refuses requests without it; see [AI security](./AI-Security.md#authenticate-the-connection).
 - Don't publish port **5001**. Only Stirling PDF needs to reach it.
-- The volume holds the document store and saved AI settings.
 - In production, pin both images to the same release version instead of `latest` and upgrade them together.
 
 If Stirling PDF runs outside this Compose file (a JAR install, Kubernetes or another host), set **AI engine URL** (`aiEngine.url`) to an address it can reach, and keep that address on a private network. Set `STIRLING_ENGINE_SHARED_SECRET` as an environment variable on the Stirling PDF server; it can't go in `settings.yml`.

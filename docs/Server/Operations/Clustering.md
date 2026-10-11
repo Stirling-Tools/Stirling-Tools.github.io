@@ -7,7 +7,7 @@ description: Run several Stirling PDF nodes behind a load balancer so the servic
 
 # Clustering
 
-Run more than one Stirling PDF node behind a load balancer. A single server leaves `cluster.enabled` at `false` and needs nothing on this page.
+Run more than one Stirling PDF node behind a load balancer.
 
 ## Prerequisites
 
@@ -54,7 +54,6 @@ Run more than one Stirling PDF node behind a load balancer. A single server leav
 | `cluster.valkey.tls.enabled` | `CLUSTER_VALKEY_TLS_ENABLED` | `false` | TLS for sentinel and cluster modes. |
 | `cluster.valkey.tls.skipCertVerification` | `CLUSTER_VALKEY_TLS_SKIPCERTVERIFICATION` | `false` | Skip certificate checks. Development only. |
 | `cluster.node.internalAddress` | `CLUSTER_NODE_INTERNALADDRESS` | empty | `host:port` other nodes use to reach this one. Falls back to `POD_IP`, then the hostname's address; the node stops if none works. |
-| `storage.s3.allowPrivateEndpoints` | `STORAGE_S3_ALLOWPRIVATEENDPOINTS` | `false` | Set to `true` for MinIO or another bucket on your internal network. |
 
 A standalone Valkey is a single point of failure: no node starts while it is down. Use sentinel or cluster mode for high availability.
 

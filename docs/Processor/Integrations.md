@@ -2,7 +2,7 @@
 sidebar_position: 10
 title: Integrations
 description: >-
-  Connect Processor to storage, security scanners, audit logs, e-signature,
+  Connect Processor to storage, security scanners, audit logs,
   notifications and any HTTP API.
 id: Integrations
 ---

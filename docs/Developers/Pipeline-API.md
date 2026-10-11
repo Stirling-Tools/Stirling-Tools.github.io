@@ -75,7 +75,7 @@ This pipeline OCRs only PDFs that contain an image. `skip-text` leaves pages tha
   "name": "OCR PDFs containing images",
   "pipeline": [
     {"operation": "/api/v1/filter/filter-contains-image", "parameters": {"pageNumbers": "all"}},
-    {"operation": "/api/v1/misc/ocr-pdf", "parameters": {"languages": ["eng"], "ocrType": "skip-text", "ocrRenderType": "hocr"}}
+    {"operation": "/api/v1/misc/ocr-pdf", "parameters": {"languages": ["eng"], "ocrType": "skip-text"}}
   ]
 }
 ```

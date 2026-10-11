@@ -17,17 +17,8 @@ Let users sign in through a SAML 2.0 identity provider (IdP) such as Okta, Micro
 - An active Enterprise licence ([Plans and licences](../Licensing/Plans-and-Licences.md)).
 - `system.backendUrl` set to your public URL, such as `https://pdf.example.com`. SAML uses it to build every URL it sends to the IdP. Check that `https://pdf.example.com/api/v1/info/status` loads.
 - A reverse proxy, if any, that forwards the `X-Forwarded-Proto`, `X-Forwarded-Host` and `X-Forwarded-Port` headers ([nginx example](../Production.md#example-nginx)).
-- `security.loginMethod: all` until a SAML user has the Admin role, so you can still sign in with a password.
 
 ## 1. Create the certificates
-
-SAML uses three files:
-
-| File | Purpose | Where it comes from |
-|---|---|---|
-| SP private key | Signs requests Stirling PDF sends to the IdP | You generate it |
-| SP certificate | Lets the IdP check those requests | You generate it and upload it to the IdP |
-| IdP certificate | Lets Stirling PDF check the IdP's responses | Download it from your IdP, in PEM format |
 
 Generate the key pair if you don't have one:
 
@@ -111,8 +102,6 @@ Give your IdP these values (replace `stirling` if you changed `registrationId`):
 Many IdPs can import the metadata file instead: download it from `https://pdf.example.com/saml2/service-provider-metadata/stirling`. For single logout, Stirling PDF sends logout requests to `idpSingleLogoutUrl` and expects the response at `https://pdf.example.com/login`.
 
 Set the NameID format to `email` or `unspecified`. The username is taken from the first attribute found in this order: `username`, `emailaddress`, `name`, `upn`, `uid`, then the NameID. Full claim URIs such as `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` also work. Other attributes, such as groups or roles, are not used.
-
-If you change `registrationId` later, update every URL in your IdP.
 
 ## 4. Test and promote an admin
 

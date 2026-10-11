@@ -12,7 +12,7 @@ sidebar_label: Content & editing
 **PDF Text Editor** lets you edit the existing text and images of a PDF. Click **Save PDF** to apply your changes to the file in your workspace, or **Download** to save a copy.
 
 :::warning[Alpha]
-The PDF Text Editor is in alpha. Fonts and layout can shift slightly, so check the result and keep your original.
+Fonts and layout can shift slightly, so check the result and keep your original.
 :::
 
 ## Images
@@ -25,7 +25,7 @@ To split a scan of several photos into separate images, use [Detect & Split Scan
 ## Stamps & annotations
 
 - **Add Text** - type your text, click on the page to place it, then click **Apply Text**.
-- **Add Stamp to PDF** - add a text or image stamp. Set its position (or drag it in the preview), size, rotation, opacity and margin. Stamp text can include dynamic variables such as the current date, the file name or the page number. Use `\n` for a new line.
+- **Add Stamp to PDF** - add a text or image stamp. Set its position (or drag it in the preview), size, rotation, opacity and margin. Stamp text can include dynamic variables such as the current date, the file name or the page number.
 - **Annotate** - highlight, draw, and add notes and shapes in the viewer. See [Read and annotate](../Workspace/Read-and-Annotate.md).
 
 ## Remove content

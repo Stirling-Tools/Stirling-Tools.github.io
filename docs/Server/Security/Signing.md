@@ -58,9 +58,7 @@ curl -X POST https://pdf.example.com/api/v1/admin/server-certificate/upload \
 | Request | What it does |
 |---|---|
 | `GET /api/v1/admin/server-certificate/info` | Subject, issuer and validity of the current certificate |
-| `GET /api/v1/admin/server-certificate/enabled` | Whether the feature is turned on |
 | `POST /api/v1/admin/server-certificate/generate` | Replace the current certificate with a new self-signed one |
-| `DELETE /api/v1/admin/server-certificate` | Remove the current certificate |
 | `GET /api/v1/admin/server-certificate/certificate` | Download the public certificate as `server-cert.cer` |
 
 Restart after changing the certificate. Give `server-cert.cer` to anyone who needs to trust your signatures in other software.
@@ -102,12 +100,8 @@ Restart after changing the certificate. Give `server-cert.cer` to anyone who nee
 </Tabs>
 
 - Trust sources load at startup, so restart after changing them.
-- To trust your own certificate authority, add it to the Java runtime's trust store.
-- A certificate a user uploads in the tool replaces all of these for that one check.
 
 ### Revocation checking
-
-Revocation checks are off by default.
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
@@ -161,5 +155,3 @@ If the revocation status can't be found, `hardFail: false` lets validation conti
 </Tabs>
 
 Any other URL is rejected with "TSA URL is not in the allowed list".
-
-To turn off individual signing tools, see [Turn features on or off](../Customisation/Features-and-Endpoints.md).

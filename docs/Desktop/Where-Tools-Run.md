@@ -29,13 +29,15 @@ See [What AI tools send](../Cloud/Files-and-Privacy.md#what-ai-tools-send) and [
 
 ## Tools that usually need Cloud or a server
 
-These usually aren't available locally:
-
 - OCR
 - Converting Office documents, eBooks, HTML, web pages or email to PDF
 - Converting PDF to Word, PowerPoint, RTF, HTML, Markdown, XML, PDF/A, EPUB or CBR
 - **Repair**, **Detect & Split Scanned Photos** and **Replace & Invert Color**
 - The **Convert images to line art** option in **Compress**
+
+## Signing with a USB token or smart card
+
+The **USB Token** and **Windows certificate store** options in [Certificate signing](../Tools/Security/Certificate-Signing.md#on-the-desktop-app) exist only in the desktop app, in Local Only or Stirling Cloud mode. The key never leaves your device.
 
 ## Features that need Cloud or a server
 
@@ -43,7 +45,3 @@ These usually aren't available locally:
 - **Classify** - Stirling Cloud only.
 - **Processing folders and pipelines** - see [Processing folders](../Tools/Workspace/Processing-Folders.md).
 - **Processor** - not in the desktop app. Use it in a web browser ([Processor](../Processor/Processor.md)).
-
-## Signing with a USB token or smart card
-
-The **USB Token** and **Windows certificate store** options in [Certificate signing](../Tools/Security/Certificate-Signing.md#on-the-desktop-app) exist only in the desktop app, in Local Only or Stirling Cloud mode. The key never leaves your device.

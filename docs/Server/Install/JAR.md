@@ -115,7 +115,7 @@ At startup, Stirling PDF looks for these programs and turns off any tool whose p
 | ImageMagick | The **Convert images to line art** option in **Compress** |
 | Python 3 with OpenCV | Detect and split scanned photos |
 | WeasyPrint | HTML, Markdown, email and URL to PDF |
-| unoserver | Faster Office conversions (optional) |
+| unoserver | Faster Office conversions |
 | pdftohtml (Poppler) | PDF to HTML and Markdown |
 | Calibre | eBooks to and from PDF |
 | rar | PDF to CBR |
@@ -236,7 +236,7 @@ If a program is installed but not on the PATH, set its full path under `system.c
 
 ## Change the port or address
 
-Set it in `configs/custom_settings.yml` (create the file if it doesn't exist), or as environment variables, for example in the `.env` file above:
+Set it in `configs/custom_settings.yml`, or as environment variables, for example in the `.env` file above:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">

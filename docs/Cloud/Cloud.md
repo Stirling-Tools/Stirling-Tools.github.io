@@ -22,4 +22,4 @@ Manual tools are free. Automation, AI and API calls use credits ([Plans, credits
 <Card title="API and MCP" icon="code" href="./API-and-MCP.md">Call Stirling from code or an AI assistant.</Card>
 </Cards>
 
-To learn the tools, see the [User guide](../Tools/Tools.md). You can also sign in to Stirling Cloud from the [desktop app](../Desktop/Desktop.md).
+To learn the tools, see the [User guide](../Tools/Tools.md).
