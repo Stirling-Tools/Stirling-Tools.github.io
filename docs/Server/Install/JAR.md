@@ -1,6 +1,6 @@
 ---
 title: Install with Java (JAR)
-sidebar_label: Java (JAR)
+sidebar_label: Bare bones (JAR)
 sidebar_position: 3
 description: Run the Stirling PDF server as a Java application on Windows, macOS or Linux, with the conversion tools installed yourself.
 ---
