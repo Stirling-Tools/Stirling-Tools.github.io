@@ -1,14 +1,16 @@
 ---
 sidebar_position: 3
 title: Classification
-description: Identify each document's type with AI and tag it for filing, search, and routing.
+description: >-
+  Identify each document's type with AI and tag it for filing, search, and
+  routing.
 ---
 
 # Classification
 
-The Classification policy uses AI to work out what each document is, such as an invoice, contract, or resume, and tags its metadata with the matching types. Tagged documents are easier to file and search, and [Routing](./Routing.md) can send each type to its own destination.
+The Classification policy uses AI to work out what each document is, such as an invoice, contract or resume, and tags its metadata with the matching types. Tagged documents are easier to file and search, and [Routing](./Routing.md) can send each type to its own destination.
 
-Classification needs the [AI engine](../../AI/AI-Overview.md) with classification turned on. Until then, classification is unavailable.
+On a self-hosted server, Classification needs an administrator to set up AI with **Document classification** turned on ([AI on your server](../../Server/AI/AI.md)).
 
 ## Set up Classification
 

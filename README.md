@@ -24,23 +24,51 @@ npm start
 
 The site will be available at `http://localhost:3000`. Re-run `npm run build` after editing to see changes.
 
+3. Check links before opening a pull request:
+```bash
+npm run check
+```
+
+This renders every page without touching `./build` and fails on broken internal links or missing `#anchors`.
+
+## Structure
+
+The docs are split into product spaces so readers only see what applies to them. Each space is a top-level folder with its own sidebar, picked with the switcher at the top of the sidebar:
+
+| Folder | Space | Audience |
+|---|---|---|
+| `docs/Cloud` | Stirling Cloud | People using stirling.com/app |
+| `docs/Desktop` | Desktop app | Windows, macOS and Linux app users |
+| `docs/Server` | Self-hosted server | Admins running their own server |
+| `docs/Tools` | User guide | How to use the tools, in every product |
+| `docs/Processor` | Processor | Processor pipelines and policies |
+| `docs/Developers` | Developers | API, MCP and contributing |
+
+Keep server settings (`settings.yml`, environment variables, Docker) in `docs/Server`. Other spaces link to it instead of repeating it.
+
+A space is declared in its folder's `_category_.json` with `space`, `short`, `icon`, `group` and `description`. `docs/Getting Started.md` is the home page (`layout: home`).
+
+When you move or rename a page, add its old URL to `redirects.json` so existing links keep working.
+
 ## Editing content
 
 All content lives in `/docs` as extended markdown. Supported syntax:
 
-- Frontmatter: `title`, `id`, `slug`, `sidebar_position`, `sidebar_label`, `description`
+- Frontmatter: `title`, `sidebar_position`, `sidebar_label`, `description` (plus `slug`/`id` to override the URL)
+- `unlisted: true` keeps a page accessible by URL but excludes it from sidebar navigation, previous/next links and the sitemap, and adds `noindex` for search engines.
 - Folders become sidebar categories; `_category_.json` sets the label and order; a file named like its folder is the category index page
 - Admonitions: `:::note`, `:::tip`, `:::info`, `:::warning`, `:::caution`, `:::danger` (with optional `[Title]`)
 - Tabs: `<Tabs groupId="...">` / `<TabItem value="..." label="...">` (selection syncs across groups and persists)
+- Pills: `<Badge>Login required</Badge>` after a heading, in a table cell or in a list item. Headings keep their anchor.
+- Cards: `<Cards cols="2|3">` / `<Card title="..." icon="..." href="./page.md">text</Card>` (icons in `scripts/lib/icons.mjs`)
 - Code fences with syntax highlighting (Shiki, light + dark) and copy buttons
-
-URLs match the scheme the site has always used, so existing links and the Algolia index keep working.
 
 ## Layout / design
 
 - `scripts/build.mjs` - build entry: walks `/docs`, resolves links, writes `./build`
-- `scripts/lib/content.mjs` - content walker, nav tree, URL computation
-- `scripts/lib/markdown.mjs` - markdown rendering (admonitions, tabs, Shiki)
+- `scripts/lib/content.mjs` - content walker, nav tree, product spaces, URL computation
+- `scripts/lib/markdown.mjs` - markdown rendering (admonitions, tabs, cards, Shiki)
+- `scripts/lib/icons.mjs` - icons for the product switcher and cards
 - `scripts/lib/template.mjs` - page shell (navbar, sidebar, ToC, footer, integrations)
 - `site/assets/styles.css` - all styling (design tokens mirrored from the Stirling portal)
 - `site/assets/main.js` - theme toggle, tabs, drawer, copy buttons, scroll-spy
@@ -51,7 +79,8 @@ Contributions are welcome! To add or update documentation:
 
 1. Create or edit markdown files in the `docs/` directory
 2. Preview changes locally (`npm run build` then `npm start`)
-3. Submit a pull request
+3. Run `npm run check`
+4. Submit a pull request
 
 ## Deployment
 

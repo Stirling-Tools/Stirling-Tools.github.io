@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "start": "node scripts/serve.mjs",
-    "serve": "node scripts/serve.mjs"
+    "serve": "node scripts/serve.mjs",
+    "check": "node scripts/build.mjs --check --strict"
   },
   "dependencies": {},
   "devDependencies": {

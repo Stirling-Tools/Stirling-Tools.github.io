@@ -1,0 +1,9 @@
+{
+  "label": "Developers",
+  "short": "Developers",
+  "space": "developers",
+  "icon": "code",
+  "position": 7,
+  "group": "guides",
+  "description": "REST API, Pipeline API and contributing"
+}

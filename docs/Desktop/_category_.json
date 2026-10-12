@@ -1,0 +1,9 @@
+{
+  "label": "Desktop app",
+  "short": "Desktop",
+  "space": "desktop",
+  "icon": "desktop",
+  "position": 2,
+  "group": "setup",
+  "description": "The Windows, macOS and Linux app"
+}

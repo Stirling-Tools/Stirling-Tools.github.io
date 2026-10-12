@@ -10,7 +10,34 @@ export function loadContent(docsDir) {
   const pages = [];
   flattenPages(tree, pages);
   pages.sort((a, b) => a.url.localeCompare(b.url));
-  return { tree, pages };
+  // Unlisted pages stay out of every sidebar and prev/next chain
+  const listed = listedNavigation(tree);
+
+  // Top-level folders whose _category_.json has "space" are spaces:
+  // each gets its own sidebar and prev/next chain.
+  const spaces = listed.items
+    .filter(i => i.type === 'category' && i.space)
+    .map(node => ({ ...node.space, label: node.label, node, indexPage: node.indexPage }));
+  for (const s of spaces) {
+    if (!s.indexPage) throw new Error(`Space "${s.id}" needs an index page`);
+  }
+  // Assign spaces from the full tree so unlisted pages keep their space styling
+  for (const node of tree.items) {
+    if (node.type === 'category' && node.space) navOrder(node).forEach(p => { p.space = node.space.id; });
+  }
+  for (const p of pages) p.space ??= null;
+  return { tree: listed, pages, spaces };
+}
+
+function listedNavigation(node) {
+  const items = node.items
+    .map(item => item.type === 'doc' ? item : listedNavigation(item))
+    .filter(item => item.type === 'doc' ? !item.unlisted : item.indexPage || item.items.length);
+  return {
+    ...node,
+    indexPage: node.indexPage?.unlisted ? null : node.indexPage,
+    items,
+  };
 }
 
 function walkDir(dir, rootDir) {
@@ -30,6 +57,15 @@ function walkDir(dir, rootDir) {
     const cat = JSON.parse(fs.readFileSync(catFile, 'utf8'));
     if (cat.label) node.label = cat.label;
     if (typeof cat.position === 'number') node.position = cat.position;
+    if (rel !== '' && !rel.includes('/') && cat.space) {
+      node.space = {
+        id: cat.space,
+        icon: cat.icon ?? 'book',
+        short: cat.short ?? cat.label ?? dirName,
+        description: cat.description ?? '',
+        group: cat.group ?? 'setup',
+      };
+    }
     if (cat.link && cat.link.type === 'doc') catLink = cat.link.id;
   }
 
@@ -69,6 +105,8 @@ function walkDir(dir, rootDir) {
       sidebarLabel: fm.sidebar_label ?? fm.title ?? id,
       position: typeof fm.sidebar_position === 'number' ? fm.sidebar_position : Infinity,
       description: fm.description ?? null,
+      unlisted: fm.unlisted === true,
+      layout: fm.layout ?? null,
       body: content,
       isIndex,
     };
@@ -100,6 +138,7 @@ function flattenPages(node, out) {
 }
 
 // Ordered list for prev/next navigation, following sidebar order.
+// Pass a space's node to get just that space's chain.
 export function navOrder(tree) {
   const out = [];
   const visit = (node) => {

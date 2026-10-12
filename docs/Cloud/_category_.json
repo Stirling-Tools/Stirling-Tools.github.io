@@ -1,0 +1,9 @@
+{
+  "label": "Stirling Cloud",
+  "short": "Cloud",
+  "space": "cloud",
+  "icon": "cloud",
+  "position": 1,
+  "group": "setup",
+  "description": "Stirling PDF in your browser at stirling.com"
+}
