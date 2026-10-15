@@ -138,7 +138,9 @@ msiexec.exe /i "Stirling-PDF-windows-x86_64.msi" /qn ALLUSERS=1 STIRLING_SERVER_
 
 Required sign-in and local-processing restrictions remain in effect unless you explicitly change them. Supplying a server URL while leaving an existing `cloudOnly: true` policy enabled is a conflict and stops installation.
 
-If the existing provisioning file is corrupt, the installer stops without replacing it: it cannot recover omitted policies safely. As an administrator, back up that file and replace it with valid JSON containing the complete intended policy, then retry the installation. The error identifies the file. Use the provisioning examples above and explicitly specify the desired values of all three sign-in and privacy policies.
+The MSI reads and updates the provisioning file only when at least one of these properties has a nonempty value: `STIRLING_SERVER_URL`, `STIRLING_LOGIN_AGREEMENT`, `STIRLING_UPDATE_MODE`, `STIRLING_REQUIRE_SIGN_IN`, `STIRLING_CLOUD_ONLY`, or `STIRLING_LOCAL_PROCESSING_ONLY`. With none supplied, the installer leaves the file untouched; an invalid machine file is reported by the app at startup instead.
+
+If that provisioning step runs and the existing file is corrupt, installation stops without replacing it: omitted policies cannot be recovered safely. As an administrator, back up the file and replace it with valid JSON containing the complete intended policy, then retry the installation. The error identifies the file. Use the provisioning examples above and explicitly specify the desired values of all three sign-in and privacy policies.
 
 ## macOS (Jamf, MDM)
 
