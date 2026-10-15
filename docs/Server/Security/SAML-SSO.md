@@ -16,7 +16,7 @@ Let users sign in through a SAML 2.0 identity provider (IdP) such as Okta, Micro
 - `/configs` mounted as a volume.
 - An active Enterprise licence ([Plans and licences](../Licensing/Plans-and-Licences.md)).
 - `system.backendUrl` set to your public URL, such as `https://pdf.example.com`. SAML uses it to build every URL it sends to the IdP. Users return to `system.frontendUrl` after signing in, if set. Check that `https://pdf.example.com/api/v1/info/status` loads.
-- A reverse proxy, if any, that forwards the `X-Forwarded-Proto`, `X-Forwarded-Host` and `X-Forwarded-Port` headers ([nginx example](../Production.md#example-nginx)).
+- A reverse proxy, if any, that forwards the `X-Forwarded-Proto`, `X-Forwarded-Host` and `X-Forwarded-Port` headers ([nginx example](../Production.md#example-nginx)). If it can't, see [Behind a proxy that hides the public URL](#behind-a-proxy-that-hides-the-public-url).
 
 ## 1. Create the certificates
 
@@ -122,13 +122,34 @@ With `blockRegistration: true`, add people first in **Settings → Workspace →
 
 To send users straight to the IdP without the login page, see [Send users straight to the provider](./OAuth-SSO.md#send-users-straight-to-the-provider).
 
+## Behind a proxy that hides the public URL
+
+If a proxy such as Microsoft Entra application proxy (Azure App Proxy) reaches Stirling PDF over plain HTTP or an internal address, set `security.saml2.redirectBaseUrl` to the address users open, including any context path. It replaces `system.backendUrl` for the entity ID, ACS URL, login link and logout URLs, so SAML can use the public address while `backendUrl` stays internal. Needs version 3.2.0 or later.
+
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    security:
+      saml2:
+        redirectBaseUrl: https://pdf.example.com
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    SECURITY_SAML2_REDIRECTBASEURL=https://pdf.example.com
+    ```
+  </TabItem>
+</Tabs>
+
+Leave it empty to use `system.backendUrl`. A value that isn't a full `http://` or `https://` URL is ignored.
+
 ## Troubleshooting
 
 | Problem | Fix |
 |---|---|
 | SAML sign-in is refused for licence reasons | Check the Enterprise licence is active ([Plans and licences](../Licensing/Plans-and-Licences.md)). |
 | Response signature error in the server log | `idpCert` doesn't match the IdP's signing certificate, is expired, or isn't PEM (it must start with `-----BEGIN CERTIFICATE-----`). Download it again. |
-| ACS URL mismatch | Set `system.backendUrl` to the public HTTPS URL, check the proxy forwards the `X-Forwarded-*` headers, and make sure `registrationId` matches the URLs in the IdP. |
+| ACS URL mismatch | Set `system.backendUrl` (or `security.saml2.redirectBaseUrl`) to the public HTTPS URL, check the proxy forwards the `X-Forwarded-*` headers, and make sure `registrationId` matches the URLs in the IdP. |
 | Certificate file not found | Check the file exists at that path inside the container, the `configs` volume is mounted, and the file is readable. |
 | No account created | Set `autoCreateUser: true`, or add the user first when `blockRegistration` is `true`. Check you haven't reached your user limit. |
 | Redirect loop after sign-in | Clear cookies and check `system.backendUrl` matches the address users open. |

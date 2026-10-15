@@ -36,6 +36,7 @@ These only affect a new settings file. An upgraded file keeps your values.
 | Setting | Why it matters |
 |---|---|
 | `system.backendUrl`, `system.frontendUrl` | `backendUrl` is required for SSO callbacks. `frontendUrl` is used in invite and share links and when connecting to Stirling Cloud. See [OAuth2 / OIDC single sign-on](../Security/OAuth-SSO.md). |
+| `security.oauth2.redirectBaseUrl`, `security.saml2.redirectBaseUrl` | Optional, from 3.2.0. Pin the public URL used in SSO callbacks when a reverse proxy hides HTTPS or the public host. See [OAuth2 / OIDC single sign-on](../Security/OAuth-SSO.md#behind-a-proxy-that-hides-the-public-url). |
 | `system.corsAllowedOrigins` | Left empty, it allows every origin. List your own origins to restrict it. |
 | `security.xFrameOptions` | With login on, the default `DENY` stops other sites embedding Stirling PDF. |
 | `mail.enableInvites` | Invite users by email. Needs `mail.enabled` and login. See [Sign-in and security](../Security/Sign-in-and-Security.md). |

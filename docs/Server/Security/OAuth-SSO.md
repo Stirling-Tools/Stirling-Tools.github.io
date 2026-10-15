@@ -13,7 +13,7 @@ OAuth2 / OIDC works on every plan. For SAML (Enterprise), see [SAML single sign-
 
 ## Before you start
 
-- If you use a reverse proxy, make it forward the `X-Forwarded-Proto`, `X-Forwarded-Host` and `X-Forwarded-Port` headers ([nginx example](../Production.md#example-nginx)). The callback URL is built from the address the browser used.
+- If you use a reverse proxy, make it forward the `X-Forwarded-Proto`, `X-Forwarded-Host` and `X-Forwarded-Port` headers ([nginx example](../Production.md#example-nginx)). The callback URL is built from the address the browser used. If your proxy can't send these headers, set a [redirect base URL](#behind-a-proxy-that-hides-the-public-url).
 - The callback (redirect) URL to register with your provider is `https://pdf.example.com/login/oauth2/code/<provider>`, where `<provider>` is `google`, `github`, `keycloak`, or your `security.oauth2.provider` value for any other provider. It must match exactly.
 
 ## Set up single sign-on
@@ -182,13 +182,38 @@ To skip the Stirling PDF login page, turn on **SSO Auto Login** in **Settings â†
 
 If an SSO attempt fails, or after a user signs out, the browser shows the login page instead for the rest of that session.
 
+## Behind a proxy that hides the public URL
+
+Some proxies, such as Microsoft Entra application proxy (Azure App Proxy), reach Stirling PDF over plain HTTP without `X-Forwarded-*` headers. The callback URL then starts with `http://` or the internal address, and the provider rejects it (Entra shows `AADSTS50011`).
+
+Set `redirectBaseUrl` to the address users open, including any context path. Needs version 3.2.0 or later.
+
+<Tabs groupId="config-methods">
+  <TabItem value="settings" label="Settings File">
+    ```yaml
+    security:
+      oauth2:
+        redirectBaseUrl: https://pdf.example.com
+    ```
+  </TabItem>
+  <TabItem value="env" label="Environment Variable">
+    ```bash
+    SECURITY_OAUTH2_REDIRECTBASEURL=https://pdf.example.com
+    ```
+  </TabItem>
+</Tabs>
+
+- Every provider's callback becomes `https://pdf.example.com/login/oauth2/code/<provider>`, whatever address the request arrives on.
+- After signing in or out, users return to this address, or to `system.frontendUrl` if that is set.
+- Leave it empty to build URLs from each request. A value that isn't a full `http://` or `https://` URL is ignored.
+
 ## Troubleshooting
 
 | Problem | Fix |
 |---|---|
-| Redirect URI error from the provider, or `OAuth2 Authentication error` in the server log | The callback URL registered with the provider must match exactly, including the provider name at the end. |
+| Redirect URI error from the provider, or `OAuth2 Authentication error` in the server log | The callback URL registered with the provider must match exactly, including the provider name at the end. If the provider shows an `http://` or internal address, see [Behind a proxy that hides the public URL](#behind-a-proxy-that-hides-the-public-url). |
 | Issuer error in the server log at startup | Check that `<issuer>/.well-known/openid-configuration` returns JSON and that the server can reach it. |
-| Signed in, but sent to the wrong address | Check the reverse proxy forwards the `X-Forwarded-*` headers. |
+| Signed in, but sent to the wrong address | Check the reverse proxy forwards the `X-Forwarded-*` headers, or set `redirectBaseUrl`. |
 | No account created | Set `autoCreateUser: true`, or add the user first when `blockRegistration` is `true`. Check you haven't reached your user limit. |
 | "Attribute value for 'email' cannot be null" | The provider doesn't send the claim named in `useAsUsername` (common with ADFS and Entra ID). See below. |
 
