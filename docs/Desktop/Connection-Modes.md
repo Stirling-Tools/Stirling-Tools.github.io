@@ -17,6 +17,8 @@ The connection mode decides where your tools run and which account you use. Chan
 
 See [Where your tools run](./Where-Tools-Run.md) for details.
 
+On a [managed installation](./Managed-Deployment.md), your administrator can require sign-in, remove self-hosted connections, or require local document processing in either signed-in mode. These policies override the defaults below. When sign-in is required, signing out returns to the sign-in screen and closes access to the workspace.
+
 ## Local Only
 
 You get this mode if you select **Continue without signing in** on first launch, or log out.

@@ -9,6 +9,8 @@ description: Which desktop app tools run on your computer, which go to Stirling 
 
 Whether your file leaves your computer depends on your [connection mode](./Connection-Modes.md).
 
+If your administrator enables [local document processing](./Managed-Deployment.md#document-privacy), documents stay on the device in every mode. Tools and conversion formats unavailable locally are hidden once capabilities load, and cloud fallback, server storage and shared signing are unavailable. Account and billing requests remain available. The defaults below apply when this policy is not enabled.
+
 ## Local Only
 
 - Every tool runs on your computer. Nothing is uploaded.

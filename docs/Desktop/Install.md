@@ -97,7 +97,7 @@ paru -S stirling-pdf-desktop
 
 ## First launch
 
-On first launch, **Sign in to Stirling** gives three choices:
+On an unmanaged installation, **Sign in to Stirling** gives three choices:
 
 - Sign in to use [Stirling Cloud](./Connection-Modes.md#sign-in-to-stirling-cloud).
 - Select **or connect to a self-hosted account** to use [your organisation's server](./Connection-Modes.md#connect-to-a-self-hosted-server).
@@ -105,4 +105,4 @@ On first launch, **Sign in to Stirling** gives three choices:
 
 You can change this later in **Settings → Connection Mode**. If a tool says **Backend starting up...**, wait a few seconds.
 
-<a id="automated-installation-msi-installer"></a>To install silently or pre-configure many machines, see [Managed deployment](./Managed-Deployment.md#windows-intune-sccm-group-policy).
+<a id="automated-installation-msi-installer"></a>Administrators can require sign-in, restrict accounts to Stirling Cloud, and keep document processing local. For silent installation and these policies, see [Managed deployment](./Managed-Deployment.md#windows-intune-sccm-group-policy).

@@ -9,6 +9,8 @@ description: Stirling PDF for Windows, macOS and Linux - downloads, connection m
 
 The desktop app runs the Stirling PDF editor and most tools on your own computer, with no account needed. For tools that can't run locally, sign in to Stirling Cloud or connect to your organisation's server ([Connection modes](./Connection-Modes.md)).
 
+On a [managed installation](./Managed-Deployment.md), your administrator can require sign-in, restrict account choices, or keep all document processing on the device.
+
 | System | Download |
 |---|---|
 | Windows 10 or 11 (x64) | [MSI installer](https://files.stirlingpdf.com/win-installer.exe) |
@@ -33,7 +35,7 @@ Default PDF app, saving and windows.
 Update settings, data folders and logs.
 </Card>
 <Card title="Managed deployment" icon="settings" href="./Managed-Deployment.md">
-Pre-configure the app on many machines.
+Require sign-in, restrict account choices, keep documents local, and pre-configure many machines.
 </Card>
 <Card title="User guide" icon="tools" href="../Tools/Tools.md">
 How to use every tool.
