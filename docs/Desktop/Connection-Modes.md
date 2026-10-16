@@ -21,7 +21,7 @@ On a [managed installation](./Managed-Deployment.md), your administrator can req
 
 ## Local Only
 
-You get this mode if you select **Continue without signing in** on first launch, or log out.
+You get this mode if you select **Continue without signing in** on first launch, or log out. If your administrator requires sign-in, Local Only mode is unavailable.
 
 ## Sign in to Stirling Cloud
 
@@ -44,4 +44,4 @@ On macOS, allow the **Local Network** prompt the first time you connect to a ser
 
 ## Switch modes or sign out
 
-Select **Log Out** in **Settings → Connection Mode** to return to Local Only. To move between Stirling Cloud and a server, log out, then sign in with the other option.
+Select **Log Out** in **Settings → Connection Mode** to return to Local Only, or to the sign-in screen if your administrator requires sign-in. To move between Stirling Cloud and a server, log out, then sign in with the other option, if your administrator allows it.

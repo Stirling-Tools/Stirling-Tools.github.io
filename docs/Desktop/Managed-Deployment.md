@@ -116,11 +116,13 @@ The MSI is [Stirling-PDF-windows-x86_64.msi](https://files.stirlingpdf.com/win-i
 
 ### Intune: require Cloud sign-in and keep documents local
 
-Run the MSI in **system context** for a device installation. For example, from PowerShell:
+In Intune, set **Install behavior** to **System** so the installer has permission to install for all users and write the settings that apply to the whole device. Use the following installation command:
 
 ```powershell
-msiexec.exe /i "Stirling-PDF-windows-x86_64.msi" /qn ALLUSERS=1 STIRLING_REQUIRE_SIGN_IN=1 STIRLING_CLOUD_ONLY=1 STIRLING_LOCAL_PROCESSING_ONLY=1
+msiexec.exe /i "Stirling-PDF-windows-x86_64.msi" /qn ALLUSERS=1 STIRLING_REQUIRE_SIGN_IN=1 STIRLING_CLOUD_ONLY=1 STIRLING_LOCAL_PROCESSING_ONLY=1 STIRLING_UPDATE_MODE=disabled
 ```
+
+This installs the app for all users, requires Stirling Cloud sign-in, and keeps document processing on the device. Updates are managed through Intune. For a manual installation with the same settings, run the command from PowerShell as an administrator.
 
 For an existing installation, including one installed from the EXE, deploy the JSON example above to `%PROGRAMDATA%\Stirling-PDF\stirling-provisioning.json` as an administrator and restart the app. The MSI properties do not need to be passed to the EXE.
 
@@ -154,7 +156,7 @@ The same sign-in and document privacy policies apply on Windows, macOS and Linux
 
 ## Document privacy
 
-`localProcessingOnly` applies to both Stirling Cloud and self-hosted accounts. Signing in does not permit documents to be sent to either server. Local tools are shown immediately while the bundled backend starts; once its capabilities are known, unsupported tools and conversion formats are removed regardless of the user's visibility preferences. Unavailable local operations have no cloud fallback.
+`localProcessingOnly` applies to both Stirling Cloud and self-hosted accounts. Signing in does not permit documents to be sent to either server. Local tools are shown while the app starts. Once the app has checked which tools can run on the device, unsupported tools and conversion formats are hidden, even if the user has chosen to show unavailable tools. Operations that cannot run locally are blocked.
 
 The policy disables:
 
@@ -166,31 +168,31 @@ The policy disables:
 
 Local files, local signing, and mounted local folders remain available. Cached server files and folders are hidden without being deleted, and the library's local view is labelled **Local files**. Sign-in, account management, and billing remain available.
 
-The desktop request layer also blocks remote document destinations, redirects, and stale actions that could send document data off the device. This is an application policy: it does not prevent other programs from accessing or transmitting files, or prevent someone from opening the SaaS website outside the desktop app. Existing server documents are not deleted.
+This policy applies to the desktop app. It does not control other programs or document processing in the browser version of Stirling Cloud. Existing server documents are not deleted.
 
 ## Sessions and offline use
 
-Required sign-in is checked before the workspace, navigation sidebar, and background file handlers become available. Previously completed onboarding and saved guest preferences cannot bypass it. Logout and session expiry return to sign-in.
+When sign-in is required, users must sign in before opening the workspace or processing files, including files opened from Windows Explorer or another file manager. This also applies to users who previously used the app without an account. Signing out returns them to the sign-in screen.
 
-A new app session must verify its account with the selected authentication server. A verified, unexpired session can continue using local tools while offline. Successful authenticated refreshes retain verification; temporary refresh failures, including rate limiting, retain access until token expiry. Authentication rejection revokes access. Tokens from another server, anonymous Cloud accounts, and expired tokens that cannot refresh do not grant access.
+With required sign-in enabled, each time the app starts it needs an internet or server connection to verify the user's account. After verification, users can continue using local tools offline in that app session until their sign-in expires. A successful session renewal extends access. Temporary connection problems or rate limiting during renewal do not end a verified session that is still valid. If the server rejects the sign-in, or the session expires and cannot be renewed, the user must sign in again.
 
-These policies control access to the desktop application. They do not add authentication to its bundled local backend or restrict which Stirling Cloud organisation a user can join.
+These policies control access to the desktop application. They do not add password protection to the local processing service or restrict sign-in to a particular Stirling Cloud organisation or email domain.
 
 ## Verify a deployment
 
-Use a desktop build that includes the managed-policy implementation from [Stirling-PDF #8392](https://github.com/Stirling-Tools/Stirling-PDF/pull/8392). Test the settings on a pilot device before applying them to the fleet. Restart the app between policy changes, and explicitly set other policies to `false` when testing a flag on its own.
+Before rolling out to all users, install your organisation's chosen desktop version on a pilot device and apply the intended settings. Restart the app, then check the behaviour below for each policy you have enabled. Use the same combination of policies that you plan to deploy.
 
-| Policy to test | Expected result |
+| Enabled policy | What to check |
 | --- | --- |
 | `requireSignIn: true` | With no valid session, startup shows sign-in. Guest access is absent. After signing in and then signing out, both the workspace and sidebar disappear. |
 | `cloudOnly: true` | Self-hosted sign-in and connection choices are absent. Stirling Cloud sign-in works. Guest use remains available unless `requireSignIn` is also enabled. |
-| `localProcessingOnly: true` | While signed in, local tools remain available. Once local capabilities load, unsupported tools and conversion formats are hidden; server library, sharing, and shared signing are unavailable. |
+| `localProcessingOnly: true` | While signed in, local tools remain available. Once the app has checked which tools can run on the device, unsupported tools and conversion formats are hidden; server library, sharing, and shared signing are unavailable. |
 
 ## Provisioning errors and recovery
 
-An invalid machine provisioning file prevents startup. A native error dialog identifies the failure and gives recovery instructions before the workspace or backend starts. Dismissing the dialog closes the app. Correct its JSON or conflicting settings and restart; the app does not fall back to guest access. Settings-store failures show the same dialog. If the sign-in screen cannot load policy settings, it offers **Retry** without opening the workspace.
+If the system provisioning file is invalid, the app shows an error with recovery instructions and does not open. Dismissing the error closes the app. Correct the JSON or conflicting settings, then restart. The app also stops with an error if it cannot save the settings. If the sign-in screen cannot load policy settings, select **Retry** after resolving the problem; the workspace stays closed until the settings load.
 
-Invalid per-user provisioning is backed up beside the original as `stirling-provisioning.invalid-*.json` before any settings change. A warning gives the recovery path and explains how to correct it and save it again as `stirling-provisioning.json`. The app continues with existing settings. If the backup or quarantine fails, startup remains blocked.
+An invalid user provisioning file is set aside as `stirling-provisioning.invalid-*.json` in the same folder. A warning identifies the saved file. Correct it and save it again as `stirling-provisioning.json` to apply the settings on the next launch. The app continues with its existing settings unless it cannot safely set aside the invalid file, in which case it stops with an error.
 
 ## Changing or removing managed settings
 
