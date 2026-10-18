@@ -200,13 +200,13 @@ function sidebarHtml(spaces, page) {
     const on = s.id === current;
     const overview = `<li><a class="side-link${idx.url === currentUrl ? ' active' : ''}" href="${href(idx.url)}">${escapeHtml(idx.sidebarLabel)}</a></li>`;
     return `<section class="space${on ? ' open active' : ''}" data-space="${s.id}" data-accent="${s.id}">
-      <button class="space-head" type="button" aria-expanded="${on}" title="${escapeHtml(s.description)}"><span class="space-icon">${icon(s.icon, 13)}</span><span class="space-name">${escapeHtml(s.short)}</span><span class="space-chev">${CHEV}</span></button>
+      <button class="space-head" type="button" aria-expanded="${on}" title="${escapeHtml(s.description)}"><span class="space-icon">${icon(s.icon, 16)}</span><span class="space-name">${escapeHtml(s.short)}</span><span class="space-chev">${CHEV}</span></button>
       <div class="sidebar-nav space-body" data-space="${s.id}"><ul>${overview}${renderItems(s.node.items, currentUrl)}</ul></div>
     </section>`;
   };
   const groups = [...new Set(spaces.map(s => s.group))];
   const body = groups.map(g => `<div class="space-group">${GROUP_LABELS[g] ?? g}</div>${spaces.filter(s => s.group === g).map(section).join('')}`).join('');
-  const home = `<a class="space-home" href="${href('/')}"><span class="space-icon">${icon('home', 13)}</span><span class="space-name">Home</span></a>`;
+  const home = `<a class="space-home" href="${href('/')}"><span class="space-icon">${icon('home', 16)}</span><span class="space-name">Home</span></a>`;
   return `<aside class="sidebar"><div class="sidebar-search"><div id="docsearch"></div></div><nav class="space-nav" aria-label="Docs">${home}${body}</nav></aside>`;
 }
 

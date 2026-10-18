@@ -217,7 +217,7 @@
     // Copy button
     var copy = t.closest('.codeblock-copy');
     if (copy) {
-      var pre = copy.parentElement.querySelector('pre');
+      var pre = copy.closest('.codeblock').querySelector('pre');
       // clipboard is unavailable on non-secure origins
       if (!pre || !navigator.clipboard) return;
       navigator.clipboard.writeText(pre.innerText).then(function () {

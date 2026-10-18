@@ -45,13 +45,17 @@ export function createRenderer() {
     const titleMatch = info.match(/title="([^"]+)"/);
     const html = highlight(token.content.replace(/\n$/, ''), lang);
     const inner = html ?? `<pre class="shiki"><code>${escapeHtml(token.content)}</code></pre>`;
-    const langLabel = lang && lang !== 'txt' ? lang : '';
+    const normalisedLang = LANG_ALIASES[lang.toLowerCase()] ?? lang.toLowerCase();
+    const label = titleMatch
+      ? `<span class="codeblock-title">${escapeHtml(titleMatch[1])}</span>`
+      : normalisedLang && normalisedLang !== 'txt'
+        ? `<span class="codeblock-lang">${escapeHtml(lang)}</span>`
+        : '';
     return `<div class="codeblock">` +
-      (titleMatch ? `<div class="codeblock-title">${escapeHtml(titleMatch[1])}</div>` : '') +
+      `<div class="codeblock-head">` + label +
       `<button class="codeblock-copy" type="button" aria-label="Copy code">` +
       `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>` +
-      `</button>` +
-      (langLabel ? `<span class="codeblock-lang">${escapeHtml(langLabel)}</span>` : '') +
+      `</button></div>` +
       inner + `</div>\n`;
   };
 
