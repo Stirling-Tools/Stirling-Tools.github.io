@@ -61,7 +61,7 @@ function head({ title, description, url, siteUrl, unlisted = false }) {
 <link rel="preconnect" href="https://app.termly.io">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&family=Alumni+Sans:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Geist:wght@400;500;600;700&family=Alumni+Sans:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/styles.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 <script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
@@ -96,7 +96,7 @@ function navbar() {
     </a>
     <nav class="navbar-center">
       <div class="nav-item">
-        <button class="nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Product <svg class="nav-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Product<svg class="nav-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="nav-menu">
           <a class="nav-menu-item" href="https://stirling.com/#editor">
             <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/><path d="M13 3v6h6"/><path d="m17.5 11.5 3 3-4.5 4.5H13v-3z"/></svg></span>
@@ -117,7 +117,7 @@ function navbar() {
         </div>
       </div>
       <div class="nav-item">
-        <button class="nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Company <svg class="nav-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Company<svg class="nav-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="nav-menu">
           <a class="nav-menu-item" href="https://stirling.com/about">
             <span class="nav-menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 20a6.2 6.2 0 0 1 12.4 0"/><path d="M16.5 5.3a3.2 3.2 0 0 1 0 5.9M18 14.4a6.2 6.2 0 0 1 3.2 5.6"/></svg></span>

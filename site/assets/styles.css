@@ -121,6 +121,7 @@ body {
   background: var(--c-bg);
   color: var(--c-text);
   font-size: 16px;
+  font-optical-sizing: none;
   /* Matches stirling.com's text rendering (thinner, crisper on dark). */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -138,7 +139,9 @@ body {
   -webkit-backdrop-filter: blur(6px);
   box-shadow: rgba(0, 0, 0, 0.06) 0 1px 0 0;
   font-family: "Inter", var(--font-sans);
+  font-variation-settings: "opsz" 32;
 }
+.navbar button { font-variation-settings: inherit; }
 /* Dark theme keeps the same shape, inverted. */
 [data-theme="dark"] .navbar {
   background: rgba(20, 20, 22, 0.95);
@@ -153,7 +156,7 @@ body {
   height: 100%;
   max-width: 77.5rem;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 2px 20px 0;
 }
 
 .menu-toggle {
@@ -202,7 +205,6 @@ body {
 }
 [data-theme="dark"] .navbar-center > a { color: #fafafa; }
 .navbar-center > a:hover { opacity: 0.65; }
-.navbar-center > a.active { opacity: 0.55; }
 
 /* Dropdown menus (Product / Company) - panel metrics measured off
    stirling.com: 324px wide, 24px radius, 16px padding, hairline + soft shadow,
@@ -212,7 +214,7 @@ body {
 .nav-trigger {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 4px;
   padding: 0;
   font-family: inherit;
   font-size: 0.9375rem;
@@ -368,11 +370,17 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #121212;
+  margin-right: 2px;
+  color: #525252;
   text-decoration: none;
+  transition: color var(--motion-fast);
 }
-[data-theme="dark"] .gh-star { color: #fafafa; }
+[data-theme="dark"] .gh-star { color: #a1a1aa; }
+.gh-star:hover { color: #121212; }
+[data-theme="dark"] .gh-star:hover { color: #fff; }
 .gh-star-count {
+  position: relative;
+  top: 1px;
   font-family: "Geist", var(--font-sans);
   font-size: 0.9375rem;
   font-weight: 500;
@@ -401,13 +409,13 @@ body {
 .navbar-login {
   color: #262626;
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 .navbar-login:hover { background: #f5f5f5; }
 [data-theme="dark"] .navbar-login {
   color: #e5e5e5;
   background: transparent;
-  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 [data-theme="dark"] .navbar-login:hover { background: rgba(255, 255, 255, 0.08); }
 
