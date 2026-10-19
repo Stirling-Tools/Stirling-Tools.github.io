@@ -56,8 +56,7 @@
   var starEl = doc.querySelector('[data-star-count]');
   if (starEl) {
     var renderStars = function (n) {
-      starEl.textContent = n >= 10000 ? Math.round(n / 1000) + 'k'
-        : n >= 1000 ? (Math.round(n / 100) / 10) + 'k' : String(n);
+      starEl.textContent = n >= 1000 ? (Math.round(n / 100) / 10) + 'k' : String(n);
     };
     try {
       var cached = JSON.parse(localStorage.getItem('gh-stars') || 'null');
@@ -217,7 +216,7 @@
     // Copy button
     var copy = t.closest('.codeblock-copy');
     if (copy) {
-      var pre = copy.parentElement.querySelector('pre');
+      var pre = copy.closest('.codeblock').querySelector('pre');
       // clipboard is unavailable on non-secure origins
       if (!pre || !navigator.clipboard) return;
       navigator.clipboard.writeText(pre.innerText).then(function () {
