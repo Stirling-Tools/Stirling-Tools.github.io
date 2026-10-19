@@ -909,6 +909,20 @@ p > .badge:first-child, td > .badge:first-child, li > .badge:first-child { margi
   background: var(--c-bg-subtle);
   color: var(--c-text);
 }
+.card[data-accent="cloud"] { --accent: #0369a1; }
+.card[data-accent="desktop"] { --accent: #6d28d9; }
+.card[data-accent="server"] { --accent: #047857; }
+.card[data-accent="processor"] { --accent: #b45309; }
+.card[data-accent="tools"] { --accent: #be185d; }
+.card[data-accent="mcp"] { --accent: #4338ca; }
+[data-theme="dark"] .card[data-accent="cloud"] { --accent: #38bdf8; }
+[data-theme="dark"] .card[data-accent="desktop"] { --accent: #a78bfa; }
+[data-theme="dark"] .card[data-accent="server"] { --accent: #34d399; }
+[data-theme="dark"] .card[data-accent="processor"] { --accent: #fbbf24; }
+[data-theme="dark"] .card[data-accent="tools"] { --accent: #f472b6; }
+[data-theme="dark"] .card[data-accent="mcp"] { --accent: #818cf8; }
+.card[data-accent] .card-icon { color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.card-link[data-accent]:hover { border-color: var(--accent); }
 
 .card-title {
   font-size: 0.9375rem;
