@@ -40,14 +40,14 @@ envs:
 - **resources:** the image sizes the Java heap from the memory limit, so always set one. Give the pod at least 4 GB (see [Sizing](../Operations/Performance.md#sizing)).
 - **envs:** any setting can be passed as an environment variable. See [Configuration](../Configuration.md) for the naming rule.
 
-For a sub-path, set the chart's `rootPath` option rather than `SYSTEM_ROOTURIPATH`, so the health checks use it too. The chart can also create an `ingress` or a Gateway API `httpRoute`.
+For a sub-path, set the chart's `rootPath` option, not `SYSTEM_ROOTURIPATH`. The chart can also create an `ingress` or a Gateway API `httpRoute`.
 
 ## Change settings
 
 - Set any setting from `settings.yml` as an environment variable in `envs`. See [Configuration](../Configuration.md) for the naming rule.
 - Keep secrets, such as an SSO client secret, in a Kubernetes Secret and read them with `valueFrom`, or load a whole Secret with `envsFrom`.
 - Apply changes with `helm upgrade` (see [Upgrade](#upgrade)). The pods restart with the new settings.
-- With one pod and `persistence` on, the admin UI also works: it saves `settings.yml` on the volume. With several pods, use `envs` only, because the UI saves to one pod.
+- With one pod and `persistence` on, the admin UI also works. With several pods, use `envs` only.
 
 For example, Google sign-in (see [OAuth2 / OIDC single sign-on](../Security/OAuth-SSO.md) and [SAML single sign-on](../Security/SAML-SSO.md) for other providers):
 
@@ -70,11 +70,11 @@ envs:
 
 ## Clustering
 
-To run several replicas, set `replicaCount: 2` or more (or turn on `autoscaling`) and `cluster.enabled: true`. `cluster.enabled` does not add pods by itself. Start from the [multi-node example](https://github.com/Stirling-Tools/Stirling-PDF-chart/blob/main/charts/stirling-pdf/examples/multi-node.yaml). The chart wires the [cluster settings](../Operations/Clustering.md) from the values below and refuses to install if one is missing. It does not install PostgreSQL, Valkey or S3 for you.
+To run several replicas, set `replicaCount: 2` or more (or turn on `autoscaling`) and `cluster.enabled: true`. Start from the [multi-node example](https://github.com/Stirling-Tools/Stirling-PDF-chart/blob/main/charts/stirling-pdf/examples/multi-node.yaml). The chart wires the [cluster settings](../Operations/Clustering.md) from the values below. It does not install PostgreSQL, Valkey or S3.
 
 ### Licence
 
-- A Team or Enterprise licence. Cluster mode does not start without one.
+- Requires a Team or Enterprise licence.
 - Set `premium.enabled: true` and `premium.existingSecret` (or `premium.key`).
 
 ### PostgreSQL
@@ -85,15 +85,15 @@ To run several replicas, set `replicaCount: 2` or more (or turn on `autoscaling`
 ### Valkey or Redis
 
 - Coordinates the pods: locks, the list of running pods, which pod owns each job, and per-user rate limits.
-- It is not a cache. Run it with `maxmemory-policy noeviction`, or evicted keys break locks and pod registration.
+- Run it with `maxmemory-policy noeviction`.
 - No pod starts while it is down.
 - Set `externalValkey.host`, plus `tls`, `username` and `existingSecret` if it needs them.
 
 ### S3-compatible bucket
 
-- Holds short-lived job files, such as tool results and files passed between steps, so any pod can serve them. A pod's own disk is not shared and is lost when the pod restarts.
+- Holds short-lived job files, such as tool results and files passed between steps, so any pod can serve them.
 - Also holds files users save on the server.
-- Add a lifecycle rule that deletes objects under `transient/` after a day. Scope it to that prefix: saved files live elsewhere in the bucket.
+- Add a lifecycle rule that deletes objects under `transient/` only, after a day.
 - Set `externalS3.bucket`, `region` and `existingSecret`. On AWS, leave `existingSecret` and the keys empty to use the pod's IAM role (IRSA) instead.
 - For MinIO, SeaweedFS or another in-cluster server, also set `endpoint`, `pathStyleAccess: true` and `allowPrivateEndpoints: true`.
 
@@ -105,14 +105,13 @@ To run several replicas, set `replicaCount: 2` or more (or turn on `autoscaling`
 ### Shared keys
 
 - Every pod needs the same encryption keys. The chart generates them once and keeps them across upgrades in the `stirling-pdf-stirling-pdf-chart-keys` Secret.
-- Back that Secret up. Without it, encrypted data in the database cannot be read.
+- Back that Secret up.
 - For `helm template` or GitOps, create your own and set `sharedKeys.existingSecret`.
 
 ### Settings and storage
 
 - Change settings through `envs`, not the admin UI. See [Change settings](#change-settings).
-- Leave `persistence` off. The state lives in PostgreSQL and S3, and several pods cannot share a ReadWriteOnce volume.
-
+- Leave `persistence` off.
 
 ## Upgrade
 
@@ -126,8 +125,8 @@ helm upgrade stirling-pdf stirling-pdf/stirling-pdf-chart --namespace stirling-p
 <details>
 <summary>Upgrading from chart 3.x</summary>
 
-- Always pass your values file with `-f`. `--reuse-values` skips the new chart's defaults, so the upgrade fails; use `--reset-then-reuse-values` if you need it.
-- Chart 4 mounts the volume at `/configs` itself. If your `values.yaml` mounts `storage-volume` at `/configs` and `/storage` with `deployment.extraVolumeMounts`, keep those mounts and add this to `envs`, or files users saved on the server no longer show up:
+- Pass your values file with `-f`, or use `--reset-then-reuse-values`. `--reuse-values` fails.
+- Chart 4 mounts the volume at `/configs` itself. If your `values.yaml` mounts `storage-volume` at `/configs` and `/storage` with `deployment.extraVolumeMounts`, keep those mounts and add this to `envs`:
 
 ```yaml
 envs:
