@@ -70,46 +70,76 @@ envs:
 
 ## Clustering
 
-To run several replicas, set `replicaCount: 2` or more (or turn on `autoscaling`) and `cluster.enabled: true`. Start from the [multi-node example](https://github.com/Stirling-Tools/Stirling-PDF-chart/blob/main/charts/stirling-pdf/examples/multi-node.yaml). The chart wires the [cluster settings](../Operations/Clustering.md) from the values below. It does not install PostgreSQL, Valkey or S3.
+Run several pods behind one service. The chart does not install PostgreSQL, Valkey or S3: bring your own.
 
-### Licence
+### 1. Create the Secrets
 
-- Requires a Team or Enterprise licence.
-- Set `premium.enabled: true` and `premium.existingSecret` (or `premium.key`).
+Each `existingSecret` value names a Kubernetes Secret you create, so passwords and keys stay out of `values.yaml`:
 
-### PostgreSQL
+```bash
+kubectl create namespace stirling-pdf
+kubectl create secret generic stirling-licence --namespace stirling-pdf --from-literal=premium-key=<licence-key>
+kubectl create secret generic stirling-db --namespace stirling-pdf --from-literal=password=<database-password>
+kubectl create secret generic stirling-valkey --namespace stirling-pdf --from-literal=password=<valkey-password>
+kubectl create secret generic stirling-s3 --namespace stirling-pdf --from-literal=access-key=<access-key> --from-literal=secret-key=<secret-key>
+```
 
-- Holds users, teams, settings and job records, so every pod sees the same data.
-- Set `externalDatabase.host` and `externalDatabase.existingSecret`. Use `externalDatabase.jdbcUrl` instead for options such as `?sslmode=require`.
+If Valkey has no password, skip `stirling-valkey` and its `existingSecret` line below.
 
-### Valkey or Redis
+### 2. values.yaml
 
-- Coordinates the pods: locks, the list of running pods, which pod owns each job, and per-user rate limits.
-- Run it with `maxmemory-policy noeviction`.
-- No pod starts while it is down.
-- Set `externalValkey.host`, plus `tls`, `username` and `existingSecret` if it needs them.
+```yaml
+replicaCount: 2
 
-### S3-compatible bucket
+cluster:
+  enabled: true
 
-- Holds short-lived job files, such as tool results and files passed between steps, so any pod can serve them.
-- Also holds files users save on the server.
-- Add a lifecycle rule that deletes objects under `transient/` only, after a day.
-- Set `externalS3.bucket`, `region` and `existingSecret`. On AWS, leave `existingSecret` and the keys empty to use the pod's IAM role (IRSA) instead.
-- For MinIO, SeaweedFS or another in-cluster server, also set `endpoint`, `pathStyleAccess: true` and `allowPrivateEndpoints: true`.
+premium:
+  enabled: true
+  existingSecret: stirling-licence
 
-### Sticky sessions
+externalDatabase:
+  host: postgres.example.internal
+  existingSecret: stirling-db
 
-- Only the pod that ran an async job can return its result. Other pods answer HTTP 410.
-- The chart adds a sticky cookie for Traefik and ingress-nginx. For any other load balancer or Gateway, turn on cookie-based session affinity yourself.
+externalValkey:
+  host: valkey.example.internal
+  existingSecret: stirling-valkey
 
-### Shared keys
+externalS3:
+  bucket: stirling-pdf
+  region: us-east-1
+  existingSecret: stirling-s3
 
-- Every pod needs the same encryption keys. The chart generates them once and keeps them across upgrades in the `stirling-pdf-stirling-pdf-chart-keys` Secret.
-- Back that Secret up.
-- For `helm template` or GitOps, create your own and set `sharedKeys.existingSecret`.
+resources:
+  requests:
+    cpu: "1"
+    memory: 4Gi
+  limits:
+    memory: 4Gi
+```
 
-### Settings and storage
+Install it with the `helm install` command at the top of this page.
 
+- **Autoscaling:** replace `replicaCount` with `autoscaling.enabled: true`.
+- **PostgreSQL:** the database and user default to `stirling`. For options such as `?sslmode=require`, set `externalDatabase.jdbcUrl` instead of `host`.
+- **Valkey TLS:** set `externalValkey.tls: true`.
+- **S3 on AWS:** remove `existingSecret` to use the pod's IAM role (IRSA).
+- **MinIO, SeaweedFS or another in-cluster S3:** also set `endpoint`, `pathStyleAccess: true` and `allowPrivateEndpoints: true`.
+
+### What each part is for
+
+- **Licence:** Team or Enterprise, required for cluster mode.
+- **PostgreSQL:** users, teams, settings and job records shared by every pod.
+- **Valkey or Redis:** coordinates the pods: locks, the list of running pods, which pod owns each job, and rate limits. Run it with `maxmemory-policy noeviction`.
+- **S3:** short-lived job files any pod can serve, and files users save on the server.
+- **Shared keys:** the encryption keys every pod shares. The chart generates them once and keeps them in the `stirling-pdf-stirling-pdf-chart-keys` Secret.
+
+### Before going live
+
+- Add an S3 lifecycle rule that deletes objects under `transient/` only, after a day.
+- The chart turns on sticky sessions for Traefik and ingress-nginx. For any other load balancer or Gateway, turn on cookie-based session affinity yourself.
+- Back up the `stirling-pdf-stirling-pdf-chart-keys` Secret. For `helm template` or GitOps, create your own with the keys `credential-encryption-key` (`openssl rand -base64 32`), `automatically-generated-key` and `automatically-generated-uuid` (any UUIDs), and set `sharedKeys.existingSecret`.
 - Change settings through `envs`, not the admin UI. See [Change settings](#change-settings).
 - Leave `persistence` off.
 
