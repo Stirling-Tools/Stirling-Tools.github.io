@@ -28,7 +28,7 @@ persistence:
 
 resources:
   limits:
-    memory: 4Gi
+    memory: 8Gi
 
 envs:
   - name: SYSTEM_DEFAULTLOCALE
@@ -37,7 +37,7 @@ envs:
 
 - **image.tag:** pins the Stirling PDF version. Left empty, the chart's own version is used. For the fat or ultra-lite image, see [Choose an image](./Docker.md#choose-an-image).
 - **persistence:** Stirling PDF keeps users, `settings.yml` and its built-in database in `/configs`. Enabling persistence mounts a volume there, and the chart keeps files users save on the server in `/configs/storage` on the same volume. Without it they are lost when the pod restarts.
-- **resources:** always set a memory limit. Give the pod at least 4 GB (see [Sizing](../Operations/Performance.md#sizing)).
+- **resources:** always set a memory limit. We recommend 8 GB or more for production (see [Sizing](../Operations/Performance.md#sizing)).
 - **envs:** any setting can be passed as an environment variable. See [Configuration](../Configuration.md) for the naming rule.
 
 For a sub-path, set the chart's `rootPath` option. The chart can also create an `ingress` or a Gateway API `httpRoute`.
@@ -114,9 +114,9 @@ externalS3:
 resources:
   requests:
     cpu: "1"
-    memory: 4Gi
+    memory: 8Gi
   limits:
-    memory: 4Gi
+    memory: 8Gi
 ```
 
 Install it with the `helm install` command at the top of this page.
