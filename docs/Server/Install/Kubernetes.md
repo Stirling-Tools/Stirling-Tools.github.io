@@ -17,34 +17,30 @@ helm install stirling-pdf stirling-pdf/stirling-pdf-chart --namespace stirling-p
 
 ## values.yaml
 
-Put your overrides in `values.yaml`. The chart's [default values.yaml](https://github.com/Stirling-Tools/Stirling-PDF-chart/blob/main/charts/stirling-pdf/values.yaml) lists every option with comments.
+Put your overrides in `values.yaml`. The chart's [default values.yaml](https://github.com/Stirling-Tools/Stirling-PDF-chart/blob/main/charts/stirling-pdf/values.yaml) lists every option with comments, and its [examples](https://github.com/Stirling-Tools/Stirling-PDF-chart/tree/main/charts/stirling-pdf/examples) cover a single node and a cluster.
 
 ```yaml
 image:
-  tag: "3.1.0"           # the chart's default image is an older release
+  tag: "3.2.0"
 
 persistence:
   enabled: true
 
-deployment:
-  extraVolumeMounts:
-    - name: storage-volume   # the volume the chart creates when persistence is enabled
-      mountPath: /configs
-      subPath: configs
-    - name: storage-volume
-      mountPath: /storage
-      subPath: storage
+resources:
+  limits:
+    memory: 4Gi
 
 envs:
   - name: SYSTEM_DEFAULTLOCALE
     value: en-GB
 ```
 
-- **image.tag:** a version tag pins the release, so you choose when to upgrade. For the fat or ultra-lite image, see [Choose an image](./Docker.md#choose-an-image).
-- **Persistence:** Stirling PDF keeps users, `settings.yml` and its built-in database in `/configs`, and files users save on the server in `/storage`. Without a persistent volume they are lost when the pod restarts. Enabling persistence creates the volume, and `extraVolumeMounts` mounts a folder of it at each path.
+- **image.tag:** left empty, the chart runs the Stirling PDF version it was released with, so upgrading the chart also upgrades the app. A version tag pins the release, so you choose when to upgrade. For the fat or ultra-lite image, see [Choose an image](./Docker.md#choose-an-image).
+- **persistence:** Stirling PDF keeps users, `settings.yml` and its built-in database in `/configs`. Enabling persistence mounts a volume there, and the chart keeps files users save on the server in `/configs/storage` on the same volume. Without it they are lost when the pod restarts.
+- **resources:** the image sizes the Java heap from the memory limit, so always set one. Give the pod at least 4 GB (see [Sizing](../Operations/Performance.md#sizing)).
 - **envs:** any setting can be passed as an environment variable. See [Configuration](../Configuration.md) for the naming rule.
 
-Give the pod at least 4 GB of memory with `resources.limits.memory` (see [Sizing](../Operations/Performance.md#sizing)). For a sub-path, set the chart's `rootPath` option rather than `SYSTEM_ROOTURIPATH`, so the health checks use it too.
+For a sub-path, set the chart's `rootPath` option rather than `SYSTEM_ROOTURIPATH`, so the health checks use it too. The chart can also create an `ingress` or a Gateway API `httpRoute`.
 
 ## Upgrade
 
@@ -55,10 +51,26 @@ helm repo update
 helm upgrade stirling-pdf stirling-pdf/stirling-pdf-chart --namespace stirling-pdf -f values.yaml
 ```
 
+Always pass your values file with `-f`. `--reuse-values` skips the new chart's defaults, so an upgrade to chart 4 with it fails; use `--reset-then-reuse-values` instead if you need it.
+
 If you use `latest`, the tag never changes, so `helm upgrade` does not restart the pod or pull the new image. Set `image.pullPolicy: Always` in `values.yaml` and apply it with the command above. After that, restart the pod to upgrade:
 
 ```bash
 kubectl rollout restart deployment/stirling-pdf-stirling-pdf-chart --namespace stirling-pdf
 ```
 
-To run several replicas behind one service, see [Clustering](../Operations/Clustering.md).
+### From chart 3.x
+
+Chart 4 mounts the volume at `/configs` itself. If your `values.yaml` mounts `storage-volume` at `/configs` and `/storage` with `deployment.extraVolumeMounts`, keep those mounts and add this to `envs`, or files users saved on the server no longer show up:
+
+```yaml
+envs:
+  - name: STORAGE_LOCAL_BASEPATH
+    value: /storage
+```
+
+## Clustering
+
+To run several replicas, set `replicaCount: 2` or more (or turn on `autoscaling`) and `cluster.enabled: true`, with a licence and your own PostgreSQL, Valkey (or Redis) and S3 bucket. `cluster.enabled` does not add pods by itself. The chart wires the [cluster settings](../Operations/Clustering.md) from its `premium`, `externalDatabase`, `externalValkey` and `externalS3` values and generates the keys every pod shares. Start from the [multi-node example](https://github.com/Stirling-Tools/Stirling-PDF-chart/blob/main/charts/stirling-pdf/examples/multi-node.yaml).
+
+Back up the `stirling-pdf-stirling-pdf-chart-keys` Secret the chart creates, or set `sharedKeys.existingSecret` to your own. Without it, encrypted data in the database cannot be read.
