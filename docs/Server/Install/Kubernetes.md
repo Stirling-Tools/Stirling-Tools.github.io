@@ -35,12 +35,12 @@ envs:
     value: en-GB
 ```
 
-- **image.tag:** left empty, the chart runs the Stirling PDF version it was released with, so upgrading the chart also upgrades the app. A version tag pins the release, so you choose when to upgrade. For the fat or ultra-lite image, see [Choose an image](./Docker.md#choose-an-image).
+- **image.tag:** pins the Stirling PDF version. Left empty, the chart's own version is used. For the fat or ultra-lite image, see [Choose an image](./Docker.md#choose-an-image).
 - **persistence:** Stirling PDF keeps users, `settings.yml` and its built-in database in `/configs`. Enabling persistence mounts a volume there, and the chart keeps files users save on the server in `/configs/storage` on the same volume. Without it they are lost when the pod restarts.
-- **resources:** the image sizes the Java heap from the memory limit, so always set one. Give the pod at least 4 GB (see [Sizing](../Operations/Performance.md#sizing)).
+- **resources:** always set a memory limit. Give the pod at least 4 GB (see [Sizing](../Operations/Performance.md#sizing)).
 - **envs:** any setting can be passed as an environment variable. See [Configuration](../Configuration.md) for the naming rule.
 
-For a sub-path, set the chart's `rootPath` option, not `SYSTEM_ROOTURIPATH`. The chart can also create an `ingress` or a Gateway API `httpRoute`.
+For a sub-path, set the chart's `rootPath` option. The chart can also create an `ingress` or a Gateway API `httpRoute`.
 
 ## Change settings
 
@@ -74,7 +74,7 @@ Run several pods behind one service. The chart does not install PostgreSQL, Valk
 
 ### 1. Create the Secrets
 
-Each `existingSecret` value names a Kubernetes Secret you create, so passwords and keys stay out of `values.yaml`:
+Each `existingSecret` value below names a Kubernetes Secret holding a password or key:
 
 ```bash
 kubectl create namespace stirling-pdf
@@ -140,7 +140,7 @@ Install it with the `helm install` command at the top of this page.
 - Add an S3 lifecycle rule that deletes objects under `transient/` only, after a day.
 - The chart turns on sticky sessions for Traefik and ingress-nginx. For any other load balancer or Gateway, turn on cookie-based session affinity yourself.
 - Back up the `stirling-pdf-stirling-pdf-chart-keys` Secret. For `helm template` or GitOps, create your own with the keys `credential-encryption-key` (`openssl rand -base64 32`), `automatically-generated-key` and `automatically-generated-uuid` (any UUIDs), and set `sharedKeys.existingSecret`.
-- Change settings through `envs`, not the admin UI. See [Change settings](#change-settings).
+- Change settings through `envs`. See [Change settings](#change-settings).
 - Leave `persistence` off.
 
 ## Upgrade
@@ -169,7 +169,7 @@ envs:
 <details>
 <summary>Upgrading when you use the latest tag</summary>
 
-The tag never changes, so `helm upgrade` does not restart the pod or pull the new image. Set `image.pullPolicy: Always` in `values.yaml` and apply it with the command above. After that, restart the pod to upgrade:
+Set `image.pullPolicy: Always` in `values.yaml`, apply it with the command above, then restart the pod to upgrade:
 
 ```bash
 kubectl rollout restart deployment/stirling-pdf-stirling-pdf-chart --namespace stirling-pdf
