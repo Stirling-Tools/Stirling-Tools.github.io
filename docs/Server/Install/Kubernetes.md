@@ -71,6 +71,6 @@ envs:
 
 ## Clustering
 
-To run several replicas, set `cluster.enabled: true` with a licence and your own PostgreSQL, Valkey (or Redis) and S3 bucket. The chart wires the [cluster settings](../Operations/Clustering.md) from its `premium`, `externalDatabase`, `externalValkey` and `externalS3` values and generates the keys every pod shares. Start from the [multi-node example](https://github.com/Stirling-Tools/Stirling-PDF-chart/blob/main/charts/stirling-pdf/examples/multi-node.yaml).
+To run several replicas, set `replicaCount: 2` or more (or turn on `autoscaling`) and `cluster.enabled: true`, with a licence and your own PostgreSQL, Valkey (or Redis) and S3 bucket. `cluster.enabled` does not add pods by itself. The chart wires the [cluster settings](../Operations/Clustering.md) from its `premium`, `externalDatabase`, `externalValkey` and `externalS3` values and generates the keys every pod shares. Start from the [multi-node example](https://github.com/Stirling-Tools/Stirling-PDF-chart/blob/main/charts/stirling-pdf/examples/multi-node.yaml).
 
 Back up the `stirling-pdf-stirling-pdf-chart-keys` Secret the chart creates, or set `sharedKeys.existingSecret` to your own. Without it, encrypted data in the database cannot be read.
