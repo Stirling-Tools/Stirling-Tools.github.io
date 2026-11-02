@@ -95,7 +95,7 @@ volumes:
 | MinIO (in-cluster) | `http://minio:9000` | `us-east-1` | `true` | Also set `allowPrivateEndpoints: true`. |
 | Cloudflare R2 | `https://<account>.r2.cloudflarestorage.com` | `auto` | `false` | If uploads fail with a checksum header error, set `requestChecksumCalculation: WHEN_REQUIRED`. |
 | Supabase Storage | `https://<project>.supabase.co/storage/v1/s3` | your project region | `true` | |
-| Neon Object Storage | `https://<branch-id>.storage.<cell>.<region>.aws.neon.tech` | your project region | `true` | |
+| Neon Object Storage | `https://<branch-id>.storage.<cell>.<region>.aws.neon.tech` | your project region | `true` | Copy the endpoint from **Connect** in Neon console (Your project > Object storage). Enter your Neon object storage access key and secret in `accessKey` and `secretKey`. |
 | Backblaze B2 | `https://s3.<region>.backblazeb2.com` | your region | `false` | On B2 accounts older than July 2025, set `requestChecksumCalculation: WHEN_REQUIRED` if uploads fail. |
 | DigitalOcean Spaces | `https://<region>.digitaloceanspaces.com` | your region | `false` | 5 GB limit per object. |
 
