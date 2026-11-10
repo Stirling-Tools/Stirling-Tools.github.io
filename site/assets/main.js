@@ -63,7 +63,9 @@
       if (cached && Date.now() - cached.t < 864e5) {
         renderStars(cached.n);
       } else {
-        fetch('https://api.github.com/repos/Stirling-Tools/Stirling-PDF')
+        fetch('https://api.github.com/repos/Stirling-Tools/Stirling-PDF', {
+          headers: { 'X-GitHub-Api-Version': '2026-03-10' }
+        })
           .then(function (r) { return r.json(); })
           .then(function (d) {
             if (d && typeof d.stargazers_count === 'number') {
