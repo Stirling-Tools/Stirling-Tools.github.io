@@ -15,6 +15,7 @@ A self-hosted server runs on the Free plan until you add Team or Enterprise. Pri
 |---|---|---|---|
 | Users | 5 | 100, more in blocks of 100 | Set by your contract |
 | All PDF tools, REST API, [OAuth2 / OIDC single sign-on](../Security/OAuth-SSO.md), server certificate [signing](../Security/Signing.md) | Yes | Yes | Yes |
+| Unlimited PDF tool calls with an API key (not counted against the [processing allowance](./Connect-to-Stirling-Cloud.md#processing-allowance)) | - | Yes, with a licence key | Yes |
 | [External database](../Storage/Database.md) and [clustering](../Operations/Clustering.md) | - | Yes | Yes |
 | S3 or database [file storage](../Storage/File-Storage.md) | - | Yes | Yes |
 | Prometheus metrics ([usage monitoring](../Operations/Usage-Monitoring.md)) | - | Yes | Yes |
@@ -24,7 +25,14 @@ A self-hosted server runs on the Free plan until you add Team or Enterprise. Pri
 | Database backup and import email notifications | - | - | Yes |
 | Offline activation with a certificate file | - | - | Yes |
 
-Processor automation and AI tools draw on a monthly processing allowance, except on Enterprise. PDF tool calls made with an API key also count, unless the server has a Team licence key. See [Processing allowance](./Connect-to-Stirling-Cloud.md#processing-allowance).
+Free and Team servers have a monthly processing allowance. What uses it depends on the plan:
+
+- **Free:** Processor automation, [Pipeline API](../../Developers/Pipeline-API.md) steps, MCP tool calls, AI tools and PDF tool calls made with an API key.
+- **Team with a licence key:** the same, except PDF tool calls made with an API key. Those are included in the licence and unlimited.
+- **Team through a linked Stirling Cloud team:** the same as Free. There is no licence key, so PDF tool calls made with an API key use the team's allowance.
+- **Enterprise:** nothing is counted.
+
+See [Processing allowance](./Connect-to-Stirling-Cloud.md#processing-allowance).
 
 Licences need a login-capable build (`latest`, `latest-fat` or `Stirling-PDF-with-login.jar`). The `latest-ultra-lite` image and the other JARs have no plans or admin settings.
 

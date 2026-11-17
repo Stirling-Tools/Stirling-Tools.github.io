@@ -20,12 +20,12 @@ Linking gives the server:
 
 Using the tools by hand never counts. These do:
 
-| Work | Counted as |
-|---|---|
-| Processor pipelines and policies | Automation |
-| [Pipeline API](../../Developers/Pipeline-API.md) steps and [MCP](../../MCP/MCP.md) tool calls | Automation |
-| AI tools | AI |
-| PDF tool calls made with an API key | API |
+| Work | Counted as | With a Team licence key |
+|---|---|---|
+| Processor pipelines and policies | Automation | Counted |
+| [Pipeline API](../../Developers/Pipeline-API.md) steps and [MCP](../../MCP/MCP.md) tool calls | Automation | Counted |
+| AI tools | AI | Counted |
+| PDF tool calls made with an API key | API | Not counted, unlimited |
 
 An unlinked server gets 1,000 units a month. A file uses one unit per 25 pages or per 5 MB, whichever gives more. No file uses more than 1,000 units.
 
@@ -33,7 +33,9 @@ When the units run out, automation, AI and API calls stop until the next month. 
 
 A linked server uses the team's allowance and Stirling Cloud's unit rules instead.
 
-Nothing is counted on a server with an Enterprise licence. A Team licence key also makes API tool calls free.
+Nothing is counted on a server with an Enterprise licence.
+
+A Team licence key includes unlimited PDF tool calls made with an API key. A server that gets Team by linking to Stirling Cloud has no licence key, so those calls use the team's allowance like any other counted work.
 
 ## Connect your server
 
