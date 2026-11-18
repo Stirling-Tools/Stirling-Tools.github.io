@@ -14,7 +14,9 @@ A self-hosted server runs on the Free plan until you add Team or Enterprise. Pri
 | Feature | Free | Team | Enterprise |
 |---|---|---|---|
 | Users | 5 | 100, more in blocks of 100 | Set by your contract |
-| All PDF tools, REST API, [OAuth2 / OIDC single sign-on](../Security/OAuth-SSO.md), server certificate [signing](../Security/Signing.md) | Yes | Yes | Yes |
+| All PDF tools, [OAuth2 / OIDC single sign-on](../Security/OAuth-SSO.md), server certificate [signing](../Security/Signing.md) | Yes | Yes | Yes |
+| [REST API](../../Developers/API.md) | Yes, counted | Yes, counted | Yes, unlimited |
+| Monthly [processing allowance](./Connect-to-Stirling-Cloud.md#processing-allowance) (automation, AI and API calls) | 1,000 units, or a linked Cloud team's credits | Same as Free | Unlimited |
 | [External database](../Storage/Database.md) and [clustering](../Operations/Clustering.md) | - | Yes | Yes |
 | S3 or database [file storage](../Storage/File-Storage.md) | - | Yes | Yes |
 | Prometheus metrics ([usage monitoring](../Operations/Usage-Monitoring.md)) | - | Yes | Yes |
@@ -23,8 +25,6 @@ A self-hosted server runs on the Free plan until you add Team or Enterprise. Pri
 | [Audit logging](../Security/Audit-Logging.md) and **Usage Analytics** | - | - | Yes |
 | Database backup and import email notifications | - | - | Yes |
 | Offline activation with a certificate file | - | - | Yes |
-
-On Free and Team, Processor automation, AI tools and PDF tool calls made with an API key use your monthly processing allowance. See [Processing allowance](./Connect-to-Stirling-Cloud.md#processing-allowance).
 
 Licences need a login-capable build (`latest`, `latest-fat` or `Stirling-PDF-with-login.jar`). The `latest-ultra-lite` image and the other JARs have no plans or admin settings.
 
