@@ -112,10 +112,7 @@ There are no dedicated plugins for n8n, Zapier, Make or Power Automate. Use the 
 
 ## Usage allowance
 
-Running regular tools yourself in the app doesn't count. Whether tool calls made with an API key count depends on where Stirling PDF runs:
+Running regular tools yourself in the app doesn't count. Tool calls made with an API key do:
 
 - **Stirling Cloud:** every API-key call uses your team's credits. When the free credits or your spend cap run out, calls return `402` with `PAYG_LIMIT_REACHED`. See [Plans, credits and billing](../Cloud/Plans-and-Billing.md).
-- **Self-hosted with a Team licence key or an Enterprise licence:** API-key tool calls are included and unlimited.
-- **Self-hosted on Free, or on Team through a linked Stirling Cloud team:** calls use the processing allowance, and return `402` with `ACCOUNT_LINK_REQUIRED` when it runs out.
-
-See [Processing allowance](../Server/Licensing/Connect-to-Stirling-Cloud.md#processing-allowance) and [Plans and licences](../Server/Licensing/Plans-and-Licences.md).
+- **Self-hosted on Free or Team:** calls use the server's processing allowance, or the linked Cloud team's credits, and return `402` with `ACCOUNT_LINK_REQUIRED` when it runs out. The Team plan doesn't make API calls unlimited. Calls aren't counted on a server with an Enterprise licence. See [Processing allowance](../Server/Licensing/Connect-to-Stirling-Cloud.md#processing-allowance).
