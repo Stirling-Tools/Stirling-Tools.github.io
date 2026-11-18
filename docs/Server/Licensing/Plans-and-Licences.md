@@ -16,7 +16,7 @@ A self-hosted server runs on the Free plan until you add Team or Enterprise. Pri
 | Users | 5 | 100, more in blocks of 100 | Set by your contract |
 | All PDF tools, [OAuth2 / OIDC single sign-on](../Security/OAuth-SSO.md), server certificate [signing](../Security/Signing.md) | Yes | Yes | Yes |
 | [REST API](../../Developers/API.md) | Yes, counted | Yes, counted | Yes, unlimited |
-| Monthly [processing allowance](./Connect-to-Stirling-Cloud.md#processing-allowance) (automation, AI and API calls) | 1,000 units, or a linked Cloud team's credits | Same as Free | Unlimited |
+| Monthly [processing allowance](./Connect-to-Stirling-Cloud.md#processing-allowance) (automation, AI and API calls) | 1,000 units | 2,500 units | Unlimited |
 | [External database](../Storage/Database.md) and [clustering](../Operations/Clustering.md) | - | Yes | Yes |
 | S3 or database [file storage](../Storage/File-Storage.md) | - | Yes | Yes |
 | Prometheus metrics ([usage monitoring](../Operations/Usage-Monitoring.md)) | - | Yes | Yes |
