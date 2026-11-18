@@ -86,7 +86,7 @@ Claude Desktop through `mcp-remote` (needs Node.js). In OAuth mode, leave out th
 
 To test the connection, run `npx @modelcontextprotocol/inspector`, choose the streamable HTTP transport, enter your `/mcp` URL and add the same header.
 
-PDF tool calls count as automation, so they use the server's allowance even with a Team licence ([Processing allowance](../Server/Licensing/Connect-to-Stirling-Cloud.md#processing-allowance)).
+PDF tool calls count as automation, so they use the server's allowance on the Free and Team plans ([Processing allowance](../Server/Licensing/Connect-to-Stirling-Cloud.md#processing-allowance)).
 
   </TabItem>
 </Tabs>
