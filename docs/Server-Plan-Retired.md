@@ -23,7 +23,7 @@ If you manage the installation:
    - [Kubernetes](./Server/Install/Kubernetes.md)
    - [Windows, macOS or Linux without Docker](./Server/Install/JAR.md)
    - For installations still on version 1, read the [migration guide](./Server/Upgrading/Upgrading.md) before updating.
-3. Reopen Stirling PDF and follow the [Team plan purchase instructions](./Server/Licensing/Plans-and-Licences.md#get-team-or-enterprise).
+3. Reopen Stirling PDF and follow the [Team plan purchase instructions](./Server/Licensing/Plans-and-Licences.md#get-the-team-or-enterprise-plan).
 
 Review [current plans and pricing](https://www.stirling.com/pricing) before purchasing. If the Server plan is still the only paid plan you see after updating, contact [support@stirlingpdf.com](mailto:support@stirlingpdf.com).
 
