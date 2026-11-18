@@ -24,7 +24,7 @@ A self-hosted server runs on the Free plan until you add Team or Enterprise. Pri
 | Database backup and import email notifications | - | - | Yes |
 | Offline activation with a certificate file | - | - | Yes |
 
-On Free and Team, Processor automation, AI tools and PDF tool calls made with an API key use your monthly processing allowance. Team doesn't make API calls unlimited: they use your credits like any other counted work. Nothing is counted on Enterprise. See [Processing allowance](./Connect-to-Stirling-Cloud.md#processing-allowance).
+On Free and Team, Processor automation, AI tools and PDF tool calls made with an API key use your monthly processing allowance. See [Processing allowance](./Connect-to-Stirling-Cloud.md#processing-allowance).
 
 Licences need a login-capable build (`latest`, `latest-fat` or `Stirling-PDF-with-login.jar`). The `latest-ultra-lite` image and the other JARs have no plans or admin settings.
 

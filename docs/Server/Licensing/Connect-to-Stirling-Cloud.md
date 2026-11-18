@@ -33,8 +33,6 @@ When the units run out, automation, AI and API calls stop until the next month. 
 
 A linked server uses the team's allowance and Stirling Cloud's unit rules instead.
 
-Nothing is counted on a server with an Enterprise licence. On Free and Team, PDF tool calls made with an API key always use the allowance.
-
 ## Connect your server
 
 1. Make sure login is on, then sign in to your server as the organization owner.
