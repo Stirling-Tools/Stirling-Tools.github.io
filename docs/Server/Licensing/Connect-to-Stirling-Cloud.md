@@ -31,7 +31,7 @@ An unlinked server gets 1,000 units a month. A file uses one unit per 25 pages o
 
 When the units run out, automation, AI and API calls stop until the next month. Manual tools keep working.
 
-A linked server uses the team's allowance and Stirling Cloud's unit rules instead.
+A linked server uses the team's allowance and Stirling Cloud's unit rules instead. A team on the Team plan gets 2,500 units a month.
 
 ## Connect your server
 
