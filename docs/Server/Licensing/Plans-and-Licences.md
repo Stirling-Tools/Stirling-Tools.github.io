@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: Plans and licences
-description: What Free, Team and Enterprise unlock on a self-hosted server, and how to get, activate and manage a licence.
+description: What Free, Team and Enterprise unlock on a self-hosted server, how to get Team, and how to activate an Enterprise licence.
 sidebar_label: Plans & licences
 ---
 
@@ -25,27 +25,28 @@ A self-hosted server runs on the Free plan until you add Team or Enterprise. Pri
 | Database backup and import email notifications | - | - | Yes |
 | Offline activation with a certificate file | - | - | Yes |
 
-Licences need a login-capable build (`latest`, `latest-fat` or `Stirling-PDF-with-login.jar`). The `latest-ultra-lite` image and the other JARs have no plans or admin settings.
+Team and Enterprise need a login-capable build (`latest`, `latest-fat` or `Stirling-PDF-with-login.jar`). The `latest-ultra-lite` image and the other JARs have no plans or admin settings.
 
 ## User limits
 
 - **Free:** 5 users. A server upgraded from V1 keeps its existing user count as the limit if that is higher.
-- **Licence key:** the key sets the limit.
-- **Linked Cloud team:** the team's purchased users.
+- **Team:** the linked Cloud team's purchased users.
+- **Enterprise:** the licence sets the limit.
 
-When the server reaches its limit, no more users can be added and admins see a notice such as **Team plan needed** or **Your server has more users than your plan covers**. To add a block of users to a Team licence, email support@stirlingpdf.com.
+When the server reaches its limit, no more users can be added and admins see a notice such as **Team plan needed** or **Your server has more users than your plan covers**. To add users on Team, add a block of 100 to the Cloud team's plan. See [Upgrade to Team or add users](../../Cloud/Plans-and-Billing.md#upgrade-to-team-or-add-users).
 
 ## Get Team or Enterprise
 
-In the app, only the organization owner can buy or activate a plan, and login must be on. There are three ways to get Team:
+Only the organization owner can link the server or activate a licence, and login must be on.
 
-- **Buy in the app:** open **Settings → Workspace → Usage & Billing**, select **Upgrade** on Team and pay in the Stripe checkout. The licence key is fetched and activated for you, or the app asks you to paste the key from your email.
-- **Link to Stirling Cloud:** a server linked to a Cloud team that has the Team plan runs as Team with no key. See [Connect to Stirling Cloud](./Connect-to-Stirling-Cloud.md).
-- **Licence key:** if you bought Team outside the app, activate the key from your email as below.
+**Team** comes from Stirling Cloud, not a licence key. Link the server to a Cloud team that has the Team plan and the server runs as Team. See [Connect to Stirling Cloud](./Connect-to-Stirling-Cloud.md), and [Upgrade to Team or add users](../../Cloud/Plans-and-Billing.md#upgrade-to-team-or-add-users) to buy Team for the Cloud team.
 
-Enterprise is sold by the Stirling team: [book a demo](https://stirling.com/book-a-demo) or email support@stirlingpdf.com. You get a licence key, or a certificate file for servers without internet access. Linking to Stirling Cloud never grants Enterprise.
+**Enterprise** is sold by the Stirling team: [book a demo](https://stirling.com/book-a-demo) or email support@stirlingpdf.com. You get a licence key, or a certificate file for servers without internet access. Linking to Stirling Cloud never grants Enterprise.
 
-## Activating your license
+## Activating an Enterprise licence
+
+Server licence keys bought before Team are legacy. They are activated the same way and keep working.
+
 
 1. Sign in as the organization owner and open **Settings → Workspace → Usage & Billing**.
 2. Select **Got a license key or certificate file?**
@@ -80,7 +81,7 @@ For a certificate file, put it in the config folder and point to it with the `fi
 
 ## Billing and the organization owner
 
-- **Invoices, payment method and cancelling:** on **Settings → Workspace → Usage & Billing**, select **Manage** on your current plan to open the Stripe billing portal. Stripe may email you a sign-in link first.
-- **Team through a linked Cloud team:** manage the plan in Stirling Cloud. See [Plans, credits and billing](../../Cloud/Plans-and-Billing.md).
+- **Team:** manage the plan, users, invoices and cancelling in Stirling Cloud. See [Plans, credits and billing](../../Cloud/Plans-and-Billing.md).
+- **A licence bought in the app:** on **Settings → Workspace → Usage & Billing**, select **Manage** on your current plan to open the Stripe billing portal. Stripe may email you a sign-in link first.
 
 Only the organization owner can manage **Usage & Billing** and the link to Stirling Cloud. The owner is the first admin account. To hand it over, open **Settings → Workspace → Users**, set another user's role to **Org Owner** and confirm **Transfer ownership**. The new owner becomes an admin.
