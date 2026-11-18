@@ -39,9 +39,9 @@ When the server reaches its limit, no more users can be added and admins see a n
 
 Only the organization owner can link the server or activate a licence, and login must be on.
 
-**Team** comes from Stirling Cloud, not a licence key. Link the server to a Cloud team that has the Team plan and the server runs as Team. See [Connect to Stirling Cloud](./Connect-to-Stirling-Cloud.md), and [Upgrade to Team or add users](../../Cloud/Plans-and-Billing.md#upgrade-to-team-or-add-users) to buy Team for the Cloud team.
+**Team** comes from Stirling Cloud. Link the server to a Cloud team that has the Team plan and the server runs as Team. See [Connect to Stirling Cloud](./Connect-to-Stirling-Cloud.md), and [Upgrade to Team or add users](../../Cloud/Plans-and-Billing.md#upgrade-to-team-or-add-users) to buy Team for the Cloud team.
 
-**Enterprise** is sold by the Stirling team: [book a demo](https://stirling.com/book-a-demo) or email support@stirlingpdf.com. You get a licence key, or a certificate file for servers without internet access. Linking to Stirling Cloud never grants Enterprise.
+**Enterprise** is sold by the Stirling team: [book a demo](https://stirling.com/book-a-demo) or email support@stirlingpdf.com. You get a licence key, or a certificate file for servers without internet access.
 
 ## Activating an Enterprise licence
 
