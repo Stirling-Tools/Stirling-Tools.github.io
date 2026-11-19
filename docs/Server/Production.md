@@ -16,14 +16,14 @@ description: What to set up before a Stirling PDF server goes live for a team - 
 
 ## 2. Secure the admin account
 
-- Replace the default `admin` password at first sign-in, or create your own first admin before the first start. See [First login](./Server.md#first-login).
+- Finish the setup wizard at first sign-in, or create your own first admin before the first start. See [First login](./Server.md#first-login).
 - Keep `SECURITY_ENABLELOGIN` at its default of `true`.
 
 ## 3. Serve it over HTTPS
 
 **Behind a reverse proxy or load balancer** (most setups):
 
-- Forward requests to port `8080` with the `X-Forwarded-Proto`, `X-Forwarded-Host` and `X-Forwarded-Port` headers.
+- Forward requests to port `8080` with the `X-Forwarded-Proto`, `X-Forwarded-Host` and `X-Forwarded-Port` headers. If it can't, set `security.oauth2.redirectBaseUrl` or `security.saml2.redirectBaseUrl` for single sign-on.
 - Accept uploads as large as `system.fileUploadLimit` (2000 MB by default).
 - Turn off response buffering and allow 30-minute read timeouts for long AI and Processor runs.
 - To serve under a sub-path such as `/pdf`, set `SYSTEM_ROOTURIPATH=/pdf` and forward the prefix unchanged.
@@ -89,6 +89,7 @@ server {
 ## 5. Decide what users can do
 
 - Hide tools you don't want offered: see [Turn features on or off](./Customisation/Features-and-Endpoints.md).
+- Choose whether PDF permissions are enforced and signed PDFs can be changed: see [PDF permissions](./Security/Sign-in-and-Security.md#pdf-permissions).
 - Add your own legal links and login agreement in **Settings → Server → Legal & privacy**.
 - Choose whether anonymous usage data is sent: see [Analytics and telemetry](./Analytics-and-Telemetry.md).
 

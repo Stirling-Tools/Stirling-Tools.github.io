@@ -26,3 +26,11 @@ sidebar_label: Sign
 - To reuse one, pick it under **Your signatures** and click the page.
 - Signed in, you can keep up to 20 signatures. Without signing in, up to 10 are kept in this browser.
 - Admins can set **Who can use it** to **Everyone** to share a signature with all users. Shared signatures appear under **Shared**.
+
+## Request signatures
+
+<Badge>Login required</Badge>
+
+1. Click **Sign** in the left rail, then **Request signatures**.
+2. Choose the PDF, add participants and an optional due date, then click **Send signing request**.
+3. Participants sign in any order. Track requests under **Signing sessions**, then finalize the document once everyone has signed.

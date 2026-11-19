@@ -61,7 +61,7 @@ Put the JAR in its own folder, open a terminal there and run:
 java -jar Stirling-PDF-with-login.jar
 ```
 
-Open `http://localhost:8080` and sign in as `admin` / `stirling` (see [First login](../Server.md#first-login)). Others on your network use `http://<server-ip>:8080`.
+Open `http://localhost:8080` to start the setup wizard (see [First login](../Server.md#first-login)). Others on your network use `http://<server-ip>:8080`.
 
 Stirling PDF keeps its settings, database and logs in folders such as `configs/` and `logs/` inside the folder you start it from, so always start it from the same place. See [Configuration](../Configuration.md#file-locations).
 
@@ -110,7 +110,7 @@ At startup, Stirling PDF looks for these programs and turns off any tool whose p
 |---|---|
 | LibreOffice | Office documents to and from PDF, PDF/A |
 | Tesseract or OCRmyPDF | OCR |
-| Ghostscript | PDF/X, PostScript to and from PDF, PDF to PCL and XPS, **Replace & Invert Color**, scanner effect, repair and stronger compression |
+| Ghostscript | PDF/X, **Replace & Invert Color**, scanner effect, repair and stronger compression |
 | QPDF | Repair and stronger compression |
 | ImageMagick | The **Convert images to line art** option in **Compress** |
 | Python 3 with OpenCV | Detect and split scanned photos |

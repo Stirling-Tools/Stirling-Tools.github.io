@@ -33,7 +33,7 @@ Open **Settings → Account Settings → Passwords & Security** and select **Cha
 
 ## Sign out
 
-Open **Settings → Account Settings → Overview** and select **Log out**.
+Select your avatar in the left bar and choose **Log out**.
 
 ## Delete your account
 

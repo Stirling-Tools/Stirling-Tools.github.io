@@ -49,7 +49,7 @@ In **Extract Pages** and **Remove Pages**, enter single pages and ranges such as
 
 ## Page size and layout
 
-- **Adjust page size/scale** - choose a **Target Page Size** (A0-A6, Letter, Legal or **Keep Original Size**) and a **Scale Factor** for the content. **Page orientation** (**Portrait** or **Landscape**) sets which way round the chosen size is used. It is unavailable with **Keep Original Size**.
+- **Adjust page size/scale** - choose a **Target Page Size** (A0-A6, Letter, Legal, **Custom** width and height, or **Keep Original Size**) and a **Scale Factor** for the content. **Page orientation** (**Portrait** or **Landscape**) sets which way round the chosen size is used. It is unavailable with **Custom** or **Keep Original Size**.
 - **Crop PDF** - drag the crop area on the preview, or click **Auto-crop whitespace**, then **Apply Crop**.
 - **Multi-Page Layout** - places several pages on each sheet, in a grid of rows and columns, with optional borders.
 - **PDF to Single Large Page** - stacks every page into one tall page.

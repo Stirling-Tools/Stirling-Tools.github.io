@@ -22,6 +22,7 @@ Environment variables still override the file. A variable for a removed setting 
 | `security.jwt.enabled`, `keyCleanup`, `keyRetentionDays`, `secureCookie` | Removed. Key cleanup is now `security.jwt.enableKeyCleanup` (default `true`). Sign-in lifetimes are `security.jwt.tokenExpiryMinutes` (default `1440`) and `desktopTokenExpiryMinutes` (default `43200`, for the desktop app). |
 | `security.csrfDisabled` | Removed |
 | `pdf-organizer` in `endpoints.toRemove` | `rearrange-pages`. Change it yourself, or the page reordering tools come back. |
+| `storage.signing.userListScope` | Removed in 3.x |
 
 ## Changed defaults
 
@@ -30,6 +31,7 @@ These only affect a new settings file. An upgraded file keeps your values.
 - `security.enableLogin` is now `true`.
 - `system.showUpdate` and `system.showUpdateOnlyAdmin` are now `true`.
 - `system.defaultLocale` is now empty, which uses the browser language. It was `en-US`.
+- `storage.sharing.enabled` is now `true`.
 
 ## New settings to review
 
@@ -40,6 +42,15 @@ These only affect a new settings file. An upgraded file keeps your values.
 | `security.xFrameOptions` | With login on, the default `DENY` stops other sites embedding Stirling PDF. |
 | `mail.enableInvites` | Invite users by email. Needs `mail.enabled` and login. See [Sign-in and security](../Security/Sign-in-and-Security.md). |
 | `security.validation`, `security.timestamp`, `system.serverCertificate` | Signature checking, timestamp servers and the server signing certificate. See [Signing certificates and trust](../Security/Signing.md). |
+| `security.honorOwnerPasswords`, `security.blockSignedPdfEdits` | PDF permissions and signed PDFs. See [PDF permissions](../Security/Sign-in-and-Security.md#pdf-permissions). |
+| `security.scimToken`, `security.scimDeleteRemovesUser` | SCIM user provisioning. See [SCIM](../Security/Sign-in-and-Security.md#scim-user-provisioning). |
+| `security.oauth2.redirectBaseUrl`, `security.saml2.redirectBaseUrl` | Public URL for SSO callbacks behind a proxy. |
+| `system.setupCompleted` | First-run setup wizard. Added as `true` on upgrade, so upgraded servers skip it. |
+| `system.stirlingOfficeConversion` | Beta Office converter instead of LibreOffice. See [LibreOffice](../Operations/LibreOffice.md#stirling-office-convert). |
+| `system.maxImageMegapixels`, `system.maxPdfaConversionPages` | See [Processing limits](../Operations/Performance.md#processing-limits). |
+| `system.enableFeedback` | Feedback button. |
+| `ui.defaultToolPanelMode`, `ui.defaultStartupView` | Default tool picker mode and startup view for users. |
+| `premium.proFeatures.microsoft` | OneDrive and SharePoint. See [OneDrive and SharePoint](../Storage/OneDrive.md). |
 
 `storage` ([File storage and sharing](../Storage/File-Storage.md)) is new and on by default when login is on.
 

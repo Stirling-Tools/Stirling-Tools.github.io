@@ -27,15 +27,15 @@ So if an environment variable sets a value, changing it in the app has no effect
 
 ## Settings in the app
 
-Open **Settings** from your account avatar at the bottom of the left bar. **Preferences** holds each user's own options and API keys. Admins also see these groups:
+Select your avatar in the left bar, then **Settings**. **Preferences** holds each user's own options and API keys. Admins also see these groups:
 
 | Page | What you can change | Details |
 |---|---|---|
 | **Workspace → Usage & Billing** | Licence key, plan and seats | [Plans and licences](./Licensing/Plans-and-Licences.md) |
 | **Workspace → Users** | Invite people, roles, teams, ownership | [Sign-in and security](./Security/Sign-in-and-Security.md) |
 | **Server → System** | Branding & appearance, User Preference Defaults, Endpoint Management, File Storage & Sharing, Folder Access, Custom Paths, Custom Metadata, Certificate Signing, AI Form Detection | [Turn features on or off](./Customisation/Features-and-Endpoints.md), [UI and branding](./Customisation/Branding.md) |
-| **Server → Sign-in & security** | Login on or off, login method, lockout, single sign-on, audit logging | [Sign-in and security](./Security/Sign-in-and-Security.md) |
-| **Server → Integrations** | Mail, Telegram, Google Drive, mobile upload, MCP server | [Telegram bot](./Automation/Telegram-Bot.md), [MCP server settings](./Automation/MCP-Server.md) |
+| **Server → Sign-in & security** | Login on or off, login method, lockout, single sign-on, PDF permissions, audit logging | [Sign-in and security](./Security/Sign-in-and-Security.md) |
+| **Server → Integrations** | Mail, Telegram, Google Drive, Microsoft 365 (OneDrive & SharePoint), mobile upload, MCP server | [Telegram bot](./Automation/Telegram-Bot.md), [MCP server settings](./Automation/MCP-Server.md) |
 | **Server → AI Engine** | Where AI runs, models, limits | [AI on your server](./AI/AI.md) |
 | **Server → Database** | Connection, backups and restore | [Database](./Storage/Database.md) |
 | **Server → Advanced** | Feature flags, processing, temp files, process limits | [Process limits](./Operations/Process-Limits.md) |
@@ -103,6 +103,8 @@ Restart the container or service after changing a variable.
 | `system.backendUrl`, `system.frontendUrl` | empty | Public addresses of the server and the web app. `backendUrl` is required for SAML single sign-on. `frontendUrl` is used in invite emails, share links, mobile QR codes and the redirect after SAML sign-in, and falls back to `backendUrl`. |
 | `system.googlevisibility` | `false` | Let search engines index the server. |
 | `system.showUpdate`, `system.showUpdateOnlyAdmin` | `true`, `true` | Show new-version notices, to admins only. |
+| `system.setupCompleted` | `false` on a new server | `true` once the first-run setup wizard is finished. |
+| `system.tempFileManagement.baseTmpDir` | empty (`java.io.tmpdir/stirling-pdf`) | Temp file folder. Files older than `maxAgeHours` (`24`) are removed every `cleanupIntervalMinutes` (`30`) and at startup. |
 
 `SYSTEM_ROOTURIPATH` (environment variable only) serves Stirling PDF under a sub-path such as `/pdf`.
 

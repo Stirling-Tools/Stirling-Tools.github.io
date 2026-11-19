@@ -20,7 +20,7 @@ description: The tools the Stirling PDF MCP server exposes, how to call them and
 | `stirling_download` | Returns a stored file by `fileId`, as base64, up to the inline limit. |
 | `stirling_ai` | Runs AI capabilities. Needs AI to be set up. |
 
-Operation IDs are the short endpoint names, such as `compress-pdf`. Each tool lists the operations it has, and an admin can hide some. Filters and the [Pipeline API](../Developers/Pipeline-API.md) aren't available over MCP.
+Operation IDs are the short endpoint names, such as `compress-pdf`; conversions are `{from}-to-{to}`, such as `pdf-to-word`. Each tool lists the operations it has, and an admin can hide some. Filters and the [Pipeline API](../Developers/Pipeline-API.md) aren't available over MCP.
 
 ## Calling a tool
 
@@ -30,7 +30,7 @@ Call `stirling_describe_operation` with an `operation` first to get its paramete
 |---|---|---|
 | `operation` | Yes | The operation ID, for example `compress-pdf`. |
 | `parameters` | No | An object of the operation's parameters. |
-| `file` | No | The input document as base64. The usual way to send a file. |
+| `file` | No | The input document as base64. The usual way to send a file. Requests are capped at 10 MB including base64 on self-hosted servers by default. |
 | `fileName` | No | The original file name with its extension. |
 | `fileId` | No | A file stored with `stirling_upload`, or an earlier result, instead of `file`. |
 

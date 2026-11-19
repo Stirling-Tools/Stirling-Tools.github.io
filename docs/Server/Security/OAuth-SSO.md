@@ -13,7 +13,7 @@ OAuth2 / OIDC works on every plan. For SAML (Enterprise), see [SAML single sign-
 
 ## Before you start
 
-- If you use a reverse proxy, make it forward the `X-Forwarded-Proto`, `X-Forwarded-Host` and `X-Forwarded-Port` headers ([nginx example](../Production.md#example-nginx)). The callback URL is built from the address the browser used.
+- If you use a reverse proxy, make it forward the `X-Forwarded-Proto`, `X-Forwarded-Host` and `X-Forwarded-Port` headers ([nginx example](../Production.md#example-nginx)). The callback URL is built from the address the browser used. If the proxy can't send them, set `security.oauth2.redirectBaseUrl` to your public URL, such as `https://pdf.example.com`.
 - The callback (redirect) URL to register with your provider is `https://pdf.example.com/login/oauth2/code/<provider>`, where `<provider>` is `google`, `github`, `keycloak`, or your `security.oauth2.provider` value for any other provider. It must match exactly.
 
 ## Set up single sign-on
@@ -175,10 +175,7 @@ The issuer must serve `/.well-known/openid-configuration`. For this example the 
 
 ## Send users straight to the provider
 
-To skip the Stirling PDF login page, turn on **SSO Auto Login** in **Settings → Server → Sign-in & security**, or set `security.ssoAutoLogin: true`. It only redirects when:
-
-- `security.loginMethod` is `oauth2` or `saml2`, and
-- exactly one SSO provider is configured.
+To skip the Stirling PDF login page, turn on **SSO Auto Login** in **Settings → Server → Sign-in & security**, or set `security.ssoAutoLogin: true`. It redirects when exactly one SSO provider is configured, even with password login on. Open `/login?all` for the password form.
 
 If an SSO attempt fails, or after a user signs out, the browser shows the login page instead for the rest of that session.
 

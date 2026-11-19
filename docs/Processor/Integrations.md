@@ -37,6 +37,9 @@ Security steps can stop a run: if a scan finds a problem, the document is held b
 | **SFTP** | Storage | Input for sources |
 | **FTP / FTPS** | Storage | Input for sources |
 | **SMB / Network share** | Storage | Input for sources |
+| **OneDrive** | Storage | Input and destination for one user's OneDrive for Business |
+| **SharePoint** | Storage | Input and destination for a SharePoint document library |
+| **Google Workspace** | Storage | Input and destination for Google Drive, through a service account |
 | **Vector database** (Weaviate, Pinecone) | Storage | Destination for [Ingestion](./Policies/Ingestion.md) chunks |
 | **Nextcloud** | Storage | Upload the processed document to a folder |
 | **Jira** | Storage | Attach the processed document to an issue |

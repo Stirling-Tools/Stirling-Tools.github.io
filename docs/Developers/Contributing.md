@@ -7,7 +7,7 @@ description: Set up a Stirling PDF development environment, run it locally and s
 
 # Contributing
 
-Stirling PDF is open-core and lives on [GitHub](https://github.com/Stirling-Tools/Stirling-PDF). Read the repository's [CONTRIBUTING.md](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/CONTRIBUTING.md) first. In particular, comment on (or open) an issue and wait to be assigned before you start work.
+Stirling PDF is open-core and lives on [GitHub](https://github.com/Stirling-Tools/Stirling-PDF). Read the repository's [CONTRIBUTING.md](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/.github/CONTRIBUTING.md) first. In particular, comment on (or open) an issue and wait to be assigned before you start work.
 
 ## Prerequisites
 
@@ -64,15 +64,15 @@ task check
 
 ## Adding a tool
 
-1. Add the backend endpoint ([Adding a new feature to the backend](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/DeveloperGuide.md#adding-a-new-feature-to-the-backend-api) in the Developer Guide).
-2. Add the frontend tool ([ADDING_TOOLS.md](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/ADDING_TOOLS.md)).
+1. Add the backend endpoint ([Adding a new feature to the backend](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/docs/developer/DeveloperGuide.md#adding-a-new-feature-to-the-backend-api) in the Developer Guide).
+2. Add the frontend tool ([ADDING_TOOLS.md](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/docs/developer/ADDING_TOOLS.md)).
 3. Add the tool's text to the `en-US` `translation.toml` only. Other languages are handled separately.
 
-The [Developer Guide](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/DeveloperGuide.md) covers the architecture, and the [devGuide folder](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/devGuide) has guides on error handling, comments and more.
+The [Developer Guide](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/docs/developer/DeveloperGuide.md) covers the architecture, and the [developer docs folder](https://github.com/Stirling-Tools/Stirling-PDF/tree/main/docs/developer) has guides on error handling, comments and more.
 
 ## Translations
 
-Each language has one file at `frontend/editor/public/locales/<language>/translation.toml`. `en-US` is the source: add new text there first. For counts, use i18next plural suffixes on the key, such as `_one` and `_other`. To add or translate a language, see [How to add new languages](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/devGuide/HowToAddNewLanguage.md).
+Each language has one file at `frontend/public/locales/<language>/translation.toml`. `en-US` is the source: add new text there first. For counts, use i18next plural suffixes on the key, such as `_one` and `_other`. To add or translate a language, see [How to add new languages](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/docs/developer/HowToAddNewLanguage.md).
 
 ## Documentation
 

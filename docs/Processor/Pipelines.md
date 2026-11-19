@@ -33,7 +33,7 @@ For a step-by-step example, see [Create your first pipeline](./Getting-Started.m
 |---|---|
 | **Editor** | **Every upload** or **Every export**; see [Editor](./Sources.md#editor) |
 | **Folder** | **Manual only**, **Scheduled** or **Folder watch** |
-| **Amazon S3**, **SFTP**, **FTP**, **Network drive** | **Manual only** or **Scheduled** |
+| **Amazon S3**, **SFTP**, **FTP**, **Network drive**, **OneDrive**, **SharePoint**, **Google Drive** | **Manual only** or **Scheduled** |
 | **Webhook** | **webhook** (runs as each signed delivery arrives), **Manual only** or **Scheduled**; see [Webhooks](./Sources.md#webhooks) |
 
 ## Steps and supporting files
@@ -43,6 +43,8 @@ Each tool must accept the previous step's output format. A tool can appear more 
 Integration steps are under **Add a tool → Send to another system** ([Integrations](./Integrations.md#use-an-integration-in-a-pipeline)). A **Classify** step uses AI to label documents for [routing](./Policies/Routing.md); see [Classification](./Policies/Classification.md).
 
 Upload supporting files, such as stamp images or signing certificates, in the step settings. They are saved for future runs and shared within the team. Files must be non-empty and no larger than **50 MB**. Referenced files cannot be deleted until removed from the pipeline.
+
+A run can have at most 50 steps, and stops if one step produces more than 10,000 files. An administrator can change both ([Run limits](../Server/Automation/Processor-Settings.md#run-limits)).
 
 ## Enforce as policy
 
@@ -71,6 +73,6 @@ Open a pipeline to edit it, then select **Save changes**.
 
 ## Destinations
 
-Folder and S3 destinations save processed files, using a new filename when one already exists. Vector database destinations receive prepared chunks from an [Ingestion](./Policies/Ingestion.md) pipeline.
+Folder, S3, OneDrive, SharePoint and Google Drive destinations save processed files, using a new filename when one already exists. Vector database destinations receive prepared chunks from an [Ingestion](./Policies/Ingestion.md) pipeline.
 
 Editor pipelines can return the modified document to the editor. With [routing](./Policies/Routing.md), the fallback destination receives unmatched files.

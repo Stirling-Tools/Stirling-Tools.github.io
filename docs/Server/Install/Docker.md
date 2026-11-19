@@ -61,7 +61,7 @@ docker run -d \
 </TabItem>
 </Tabs>
 
-Open `http://localhost:8080` and sign in as `admin` / `stirling` (see [First login](../Server.md#first-login)).
+Open `http://localhost:8080` to start the setup wizard (see [First login](../Server.md#first-login)). Restart the container when the wizard asks.
 
 ## Choose an image
 

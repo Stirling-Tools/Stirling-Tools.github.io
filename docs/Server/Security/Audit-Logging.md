@@ -61,6 +61,8 @@ Change the settings in **Settings → Server → Sign-in & security → Audit Lo
 | `2` STANDARD | BASIC plus user actions such as sign-in, sign-out and account changes |
 | `3` VERBOSE | Everything, including background polling requests |
 
+SCIM changes are recorded as user `scim-provisioning`. With [encryption at rest](../Storage/File-Storage.md#encryption-at-rest) on, every decrypt is recorded unless `storage.encryption.auditReads` is `false`.
+
 ## Review the log
 
 Open **Settings → Monitoring → Audit log**. The **Dashboard**, **Audit Events**, **Export** and **Clear Data** tabs let you chart activity, search and filter events, export them as CSV or JSON, and permanently delete all audit data.

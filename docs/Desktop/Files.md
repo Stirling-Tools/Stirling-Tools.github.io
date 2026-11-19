@@ -12,8 +12,9 @@ description: Open PDFs in the desktop app, make it your default PDF app, save ch
 - Double-click a PDF, or right-click it and choose **Open with → Stirling PDF**.
 - In the app, select **Open from computer** in the left sidebar.
 - Drag files onto the app window.
+- Select **Open from OneDrive** or **Open from Google Drive** in the **File library**'s **+** menu, when your server's admin has set them up.
 
-Files you open stay in the app until you remove them.
+Files you open stay in the app until you remove them. If a file changes on disk it reloads (**Updated from disk**); if it's moved or deleted it's removed, unless it has unsaved edits.
 
 ## Make Stirling PDF your default PDF app
 
@@ -21,11 +22,11 @@ Go to **Settings → Preferences → Editor defaults** and select **Set as Defau
 
 ## Save your changes
 
-Select **Save** in the top bar, or press **Ctrl+S** (**Cmd+S** on macOS), to write over the file you opened. Use **Save As** for a copy.
+Select **Save** in the top bar, or press **Ctrl+S** (**Cmd+S** on macOS), to write over the file you opened. For a copy, select the arrow next to **Save** and choose **Save a copy...**.
 
 Closing a window with unsaved changes asks whether to save first.
 
-If another program changes an open file while you have unsaved edits, **File changed on disk** asks you to choose **Keep my changes** or **Use the disk version**.
+On Windows, open files are locked: other programs can read them but not change, move or delete them. On macOS and Linux, if another program changes an open file while you have unsaved edits, **File changed on disk** asks you to choose **Keep my changes** or **Use the disk version**.
 
 ## Work in more than one window
 

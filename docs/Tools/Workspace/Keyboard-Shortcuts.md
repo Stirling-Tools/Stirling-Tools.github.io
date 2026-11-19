@@ -2,7 +2,7 @@
 sidebar_position: 5
 title: Keyboard shortcuts
 sidebar_label: Keyboard shortcuts
-description: Default keyboard shortcuts for tools and the PDF viewer, and how to change them.
+description: Default keyboard shortcuts for tools, the PDF viewer, Page Editor and text editor, and how to change them.
 ---
 
 # Keyboard shortcuts
@@ -52,10 +52,30 @@ Print, select all and zoom work whenever the viewer is open. The rest work while
 | `Ctrl + Z` | Undo |
 | `Ctrl + Shift + Z` or `Ctrl + Y` | Redo |
 | `Home` / `End` | First / last page |
-| `Page Up` / `Page Down` | Previous / next page |
+| `Page Up` / `Page Down` or `←` / `→` | Previous / next page |
 | `Esc` | Close search |
 
 With the **Rotate** tool open, press `←` to rotate left and `→` to rotate right.
+
+## Page Editor shortcuts
+
+| Shortcut | Action |
+|---|---|
+| `Ctrl + Z` | Undo |
+| `Ctrl + Shift + Z` or `Ctrl + Y` | Redo |
+| `Ctrl + D` | Duplicate selected pages |
+| `Delete` or `Backspace` | Delete selected pages |
+
+## PDF Text Editor shortcuts
+
+| Shortcut | Action |
+|---|---|
+| `Ctrl + S` | Save |
+| `Ctrl + Z` | Undo |
+| `Ctrl + Shift + Z` or `Ctrl + Y` | Redo |
+| `Ctrl + F` | Find and replace |
+| `Ctrl + B` / `Ctrl + I` | Bold / italic |
+| `F1` or `?` | Show all shortcuts |
 
 ## Desktop app shortcuts
 

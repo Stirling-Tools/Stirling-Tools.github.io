@@ -53,9 +53,14 @@ Run more than one Stirling PDF node behind a load balancer.
 | `cluster.valkey.nodes` | `CLUSTER_VALKEY_NODES` | empty | Valkey cluster mode: the cluster nodes, such as `valkey-1:6379`. |
 | `cluster.valkey.tls.enabled` | `CLUSTER_VALKEY_TLS_ENABLED` | `false` | TLS for sentinel and cluster modes. |
 | `cluster.valkey.tls.skipCertVerification` | `CLUSTER_VALKEY_TLS_SKIPCERTVERIFICATION` | `false` | Skip certificate checks. Development only. |
+| `cluster.node.id` | `CLUSTER_NODE_ID` | empty | Stable name for this node. Empty generates a new one each start. |
+| `cluster.node.role` | `CLUSTER_NODE_ROLE` | `both` | `web` (serves requests), `worker` (runs jobs) or `both`. |
+| `cluster.valkey.username`, `cluster.valkey.password` | `CLUSTER_VALKEY_USERNAME`, `CLUSTER_VALKEY_PASSWORD` | empty | Override the user and password in `url`. |
+| `cluster.valkey.sentinel.username`, `cluster.valkey.sentinel.password` | `CLUSTER_VALKEY_SENTINEL_USERNAME`, `CLUSTER_VALKEY_SENTINEL_PASSWORD` | empty | Sentinel credentials, separate from the Valkey ones. |
+| `cluster.valkey.commandTimeoutMs` | `CLUSTER_VALKEY_COMMANDTIMEOUTMS` | `2000` | Per-command timeout. |
 | `cluster.node.internalAddress` | `CLUSTER_NODE_INTERNALADDRESS` | empty | `host:port` other nodes use to reach this one. Falls back to `POD_IP`, then the hostname's address; the node stops if none works. |
 
-A standalone Valkey is a single point of failure: no node starts while it is down. Use sentinel or cluster mode for high availability.
+Two deployments sharing one standalone Valkey need different database indexes in `url`, such as `redis://valkey:6379/2`. A standalone Valkey is a single point of failure: no node starts while it is down. Use sentinel or cluster mode for high availability.
 
 ## Health checks
 

@@ -40,6 +40,8 @@ IDs and group names are case-sensitive. The same IDs control which tools the [MC
 
 By default, removed tools stay visible but greyed out. To hide them instead, turn on **Hide unavailable tools by default** and **Hide unavailable conversions by default** under **Settings → Server → System → User Preference Defaults** (`ui.defaultHideUnavailableTools` and `ui.defaultHideUnavailableConversions`). People can change this in their own settings.
 
+The same card sets the default tool picker mode (`ui.defaultToolPanelMode`: `sidebar` or `fullscreen`) and the view on launch (`ui.defaultStartupView`: `tools`, `read` or `automate`).
+
 ## Tool groups
 
 Removing one of these groups removes every tool in it.
@@ -47,7 +49,7 @@ Removing one of these groups removes every tool in it.
 | Group | Tool IDs |
 |---|---|
 | `PageOps` | `add-page-numbers`, `auto-rotate-pdf`, `auto-split-pdf`, `booklet-imposition`, `crop`, `extract-pages`, `merge-pdfs`, `multi-page-layout`, `overlay-pdf`, `pdf-to-single-page`, `rearrange-pages`, `remove-pages`, `rotate-pdf`, `scale-pages`, `split-by-size-or-count`, `split-pages`, `split-pdf-by-chapters`, `split-pdf-by-sections` |
-| `Convert` | `cbz-to-pdf`, `eml-to-pdf`, `file-to-pdf`, `html-to-pdf`, `img-to-pdf`, `json-to-pdf`, `markdown-to-pdf`, `pdf-to-cbz`, `pdf-to-csv`, `pdf-to-epub`, `pdf-to-html`, `pdf-to-img`, `pdf-to-json`, `pdf-to-markdown`, `pdf-to-pdfa`, `pdf-to-presentation`, `pdf-to-rtf`, `pdf-to-text`, `pdf-to-ua`, `pdf-to-vector`, `pdf-to-video`, `pdf-to-word`, `pdf-to-xml`, `url-to-pdf`, `vector-to-pdf` |
+| `Convert` | `cbz-to-pdf`, `eml-to-pdf`, `file-to-pdf`, `html-to-pdf`, `img-to-pdf`, `json-to-pdf`, `markdown-to-pdf`, `pdf-to-cbz`, `pdf-to-csv`, `pdf-to-epub`, `pdf-to-html`, `pdf-to-img`, `pdf-to-json`, `pdf-to-markdown`, `pdf-to-pdfa`, `pdf-to-presentation`, `pdf-to-rtf`, `pdf-to-text`, `pdf-to-ua`, `pdf-to-video`, `pdf-to-word`, `pdf-to-xml`, `url-to-pdf`, `ebook-to-pdf` |
 | `Security` | `accessibility-report`, `add-password`, `add-stamp`, `add-watermark`, `auto-redact`, `cert-sign`, `change-permissions`, `redact`, `remove-cert-sign`, `remove-password`, `sanitize-pdf`, `sign`, `timestamp-pdf`, `unlock-pdf-forms`, `validate-compliance`, `validate-signature`, `verify-pdf` |
 | `Other` | `add-attachments`, `add-image`, `batch-process-attachments`, `compare`, `delete-fields`, `edit-table-of-contents`, `extract-images`, `extract-single-attachment`, `fields`, `fill`, `flatten`, `get-info-on-pdf`, `list-attachments`, `modify-fields`, `multi-tool`, `ocr-pdf`, `remove-annotations`, `remove-blanks`, `replace-invert-pdf`, `text-editor-pdf`, `update-metadata`, `view-pdf` |
 | `Advance` | `adjust-contrast`, `auto-rename`, `compress-pdf`, `extract-image-scans`, `overlay-pdf`, `repair`, `scanner-effect` |
@@ -69,9 +71,9 @@ These groups are named after what a tool needs to run. When a program is missing
 | `Python` | `extract-image-scans`, `file-to-pdf`, `html-to-pdf`, `url-to-pdf` |
 | `OpenCV` | `extract-image-scans` |
 | `Weasyprint` | `eml-to-pdf`, `html-to-pdf`, `markdown-to-pdf`, `url-to-pdf` |
-| `Calibre` | `pdf-to-epub` |
+| `Calibre` | `ebook-to-pdf`, `pdf-to-epub` |
 | `qpdf` | `compress-pdf`, `repair` |
-| `Ghostscript` | `compress-pdf`, `crop`, `pdf-to-vector`, `repair`, `replace-invert-pdf`, `scanner-effect`, `vector-to-pdf` |
+| `Ghostscript` | `compress-pdf`, `crop`, `repair`, `replace-invert-pdf`, `scanner-effect` |
 | `ImageMagick` | `compress-pdf` |
 | `OCRmyPDF` | `ocr-pdf` (runs with either `OCRmyPDF` or `tesseract`) |
 | `tesseract` | `auto-rotate-pdf`, `ocr-pdf` |
@@ -86,4 +88,6 @@ These groups are named after what a tool needs to run. When a program is missing
 
 `url-to-pdf` stays off unless you turn on **Enable URL to PDF** under **Settings → Server → Advanced → Feature Flags** (`system.enableUrlToPDF`). It fetches web pages from your server, so only enable it for trusted internal use.
 
-**Auto Form Detection** (`form-detection`) only runs on the standard and fat Docker images, which ship with a detection model. To install it, open **Settings → Server → System → AI Form Detection** and select **Install** next to the model. For a server without internet access, follow the steps under **Offline / air-gapped install** on the same card. To turn the tool off, switch off **Enable feature** there (`formDetection.enabled`).
+**Auto Form Detection** (`form-detection`) only runs on the standard and fat Docker images, which ship with a detection model. To install it, open **Settings → Server → System → AI Form Detection** and select **Install** next to the model. For a server without internet access, follow the steps under **Offline / air-gapped install** on the same card. To turn the tool off, switch off **Enable feature** there (`formDetection.enabled`). Downloaded models go in `formDetection.modelDir` (default `<configs>/models/form-detection`); `formDetection.preinstalledModelDir` points at models baked into the image.
+
+**Stirling Office Convert** (beta) converts Office files with less memory than LibreOffice. Turn on **Use new Stirling Office conversion** under **Settings → Server → Advanced → Feature Flags** (`system.stirlingOfficeConversion`). Users can switch it per conversion, and API calls can pass `useStirlingOfficeConvert=true|false`.

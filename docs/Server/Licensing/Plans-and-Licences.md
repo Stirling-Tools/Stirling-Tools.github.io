@@ -18,9 +18,11 @@ A self-hosted server runs on the Free plan until you add the Team or Enterprise 
 | Monthly [processing allowance](./Connect-to-Stirling-Cloud.md#processing-allowance) (automation, AI and API calls) | 1,000 units | 2,500 units | Unlimited |
 | [External database](../Storage/Database.md) and [clustering](../Operations/Clustering.md) | - | Yes | Yes |
 | S3 or database [file storage](../Storage/File-Storage.md) | - | Yes | Yes |
+| [Encryption at rest](../Storage/File-Storage.md#encryption-at-rest) for stored files | - | Yes | Yes |
 | Prometheus metrics ([usage monitoring](../Operations/Usage-Monitoring.md)) | - | Yes | Yes |
 | Custom PDF metadata | - | Yes | Yes |
 | [SAML2 single sign-on](../Security/SAML-SSO.md) | - | - | Yes |
+| [SCIM user provisioning](../Security/Sign-in-and-Security.md#scim-user-provisioning) | - | - | Yes |
 | [Audit logging](../Security/Audit-Logging.md) and **Usage Analytics** | - | - | Yes |
 | Database backup and import email notifications | - | - | Yes |
 | Offline activation with a certificate file | - | - | Yes |

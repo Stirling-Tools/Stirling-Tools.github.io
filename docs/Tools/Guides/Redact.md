@@ -16,6 +16,7 @@ Redact permanently deletes sensitive text and areas from a PDF, not just hides t
 3. (Optional) Under **Advanced**, set:
    - **Use Regex** - treat each entry as a regular expression.
    - **Whole Word Search** - match whole words only, so "John" doesn't match "Johnson".
+   - **Case Sensitive Matching** - match capitals exactly.
    - **Box Color** and **Custom Extra Padding** - the look of the redaction boxes.
    - **Convert PDF to PDF-Image** - turns the redacted pages into images so no text at all remains behind the boxes. The text is then no longer selectable or searchable.
 4. Click **Redact**.
