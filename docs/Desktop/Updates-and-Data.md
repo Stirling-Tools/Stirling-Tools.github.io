@@ -66,7 +66,7 @@ Sign-in tokens are kept in Keychain.
 | Folder | What's in it |
 |---|---|
 | `~/.config/Stirling-PDF` | Engine data and logs (`logs/`) |
-| `~/.local/share/stirling.pdf.dev` | Connection mode, server address, update setting, sign-in tokens (`tokens.json`), workspace files and app logs (`logs/`) |
+| `~/.local/share/stirling.pdf.dev` | Connection mode, server address, update setting, workspace files and app logs (`logs/`) |
 
 </TabItem>
 </Tabs>

@@ -14,7 +14,7 @@ description: Open PDFs in the desktop app, make it your default PDF app, save ch
 - Drag files onto the app window.
 - Select **Open from OneDrive** or **Open from Google Drive** in the **File library**'s **+** menu, when your server's admin has set them up.
 
-Files you open stay in the app until you remove them. If a file changes on disk it reloads (**Updated from disk**); if it's moved or deleted it's removed, unless it has unsaved edits.
+Files you open stay in the app until you remove them. If a file changes on disk it reloads (**Updated from disk**), unless it's very large. If it's moved or deleted, an unedited file is removed; otherwise it stays and saving asks for a new location.
 
 ## Make Stirling PDF your default PDF app
 

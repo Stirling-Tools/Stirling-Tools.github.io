@@ -20,8 +20,6 @@ Stirling PDF can send anonymous usage data to help improve the product. Document
 
 PostHog data goes to PostHog's EU servers (`eu.i.posthog.com`). Server data is tied to a random ID for your server, not to users. See the [privacy policy](https://www.stirling.com/legal/privacy-policy).
 
-When login is enabled, the server also records which tools each user runs, in its own database, to rank recommended tools. This stays on your server and doesn't depend on analytics. Set `toolRecommendations.enabled: false` to stop it. `retentionDays` (default `180`) sets how long it is kept, `windowDays` (`30`) and `recentWindowDays` (`7`) how it is scored.
-
 `system.enableFeedback` (default `true`) shows a feedback button that opens stirling.com. Set it to `false` to remove it.
 
 ## The consent banner

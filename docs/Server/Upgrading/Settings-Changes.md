@@ -46,7 +46,6 @@ These only affect a new settings file. An upgraded file keeps your values.
 | `security.scimToken`, `security.scimDeleteRemovesUser` | SCIM user provisioning. See [SCIM](../Security/Sign-in-and-Security.md#scim-user-provisioning). |
 | `security.oauth2.redirectBaseUrl`, `security.saml2.redirectBaseUrl` | Public URL for SSO callbacks behind a proxy. |
 | `system.setupCompleted` | First-run setup wizard. Added as `true` on upgrade, so upgraded servers skip it. |
-| `system.stirlingOfficeConversion` | Beta Office converter instead of LibreOffice. See [LibreOffice](../Operations/LibreOffice.md#stirling-office-convert). |
 | `system.maxImageMegapixels`, `system.maxPdfaConversionPages` | See [Processing limits](../Operations/Performance.md#processing-limits). |
 | `system.enableFeedback` | Feedback button. |
 | `ui.defaultToolPanelMode`, `ui.defaultStartupView` | Default tool picker mode and startup view for users. |
@@ -54,4 +53,4 @@ These only affect a new settings file. An upgraded file keeps your values.
 
 `storage` ([File storage and sharing](../Storage/File-Storage.md)) is new and on by default when login is on.
 
-`toolRecommendations` is new and on by default. With login on, it records which tools each user runs, in your own database. See [Analytics and telemetry](../Analytics-and-Telemetry.md#what-is-collected).
+`toolRecommendations` is new and on by default. With login on, it records which tools each user runs, in your own database.

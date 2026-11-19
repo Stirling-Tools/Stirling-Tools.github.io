@@ -116,7 +116,7 @@ winget install StirlingTools.StirlingPDF `
   --custom "STIRLING_SERVER_URL=https://pdf.example.com STIRLING_LOCK_CONNECTION=1 STIRLING_UPDATE_MODE=disabled"
 ```
 
-The MSI is [Stirling-PDF-windows-x86_64.msi](https://files.stirlingpdf.com/win-installer.exe). An all-users install writes the system file; without `ALLUSERS=1` it writes the user file, which is applied once and can't lock updates. The Windows on ARM installer accepts none of these properties, so deploy the JSON file to `%PROGRAMDATA%\Stirling-PDF\` instead.
+The MSI is [Stirling-PDF-windows-x86_64.msi](https://files.stirlingpdf.com/win-installer.exe). An all-users install writes the system file; with `ALLUSERS` unset or `0` it writes the user file, which is applied once and can't lock updates. The Windows on ARM installer accepts none of these properties, so deploy the JSON file to `%PROGRAMDATA%\Stirling-PDF\` instead.
 
 ### Intune: require Cloud sign-in and keep documents local
 

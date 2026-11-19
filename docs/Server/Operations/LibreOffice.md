@@ -9,10 +9,6 @@ description: Run several LibreOffice workers, locally or in separate containers,
 
 Office conversions (Word, Excel, PowerPoint and similar, to and from PDF) run through LibreOffice, and each conversion uses one CPU core. By default only one runs at a time. To convert several documents at once, run more LibreOffice workers.
 
-## Stirling Office Convert
-
-Turn on **Use new Stirling Office conversion** in **Settings → Server → Advanced** (`system.stirlingOfficeConversion: true`) to use the built-in Stirling Office Convert (beta) by default. Users can still choose either converter per conversion. Keep LibreOffice installed: the conversion tools need it to be available.
-
 ## Local workers
 
 In the Docker images, Stirling PDF starts its own workers on the first office conversion and stops them after 2 minutes idle. Change the idle time with `UNO_IDLE_TIMEOUT_SECONDS`, or set `UNO_DEMAND_ENABLED=false` to keep them running. Without Docker, start the workers yourself as shown in [Workers without Docker](#workers-without-docker).

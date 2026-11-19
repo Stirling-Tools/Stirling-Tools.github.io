@@ -70,7 +70,7 @@ Some Stirling logos are built into the app and cannot be replaced.
 
 ## Text editor fonts
 
-Put `.ttf` or `.otf` files in `customFiles/static/fonts/` to offer them under **Server fonts** in the PDF text editor. They are picked up within 30 seconds, without a restart, and are not served publicly. Files over 64 MB and fonts whose licence forbids embedding are skipped.
+Put `.ttf` or `.otf` files in `customFiles/static/fonts/` to offer them under **Server fonts** in the PDF text editor. Files over 64 MB and fonts whose licence forbids embedding are skipped.
 
 ## Add custom CSS
 
