@@ -15,7 +15,7 @@ API keys are covered in [REST API](../../Developers/API.md#authentication), and 
 
 ## First admin account
 
-When the server starts with an empty user database, it creates the account `admin` with password `stirling`, signs it in and opens a setup wizard. The wizard sets the admin's username and password and the main settings, and can't be skipped. Finishing it sets `system.setupCompleted: true`. Without a persistent `/configs` volume, set `SYSTEM_SETUPCOMPLETED=true`.
+When the server starts with an empty user database, it creates the account `admin` with password `stirling`, signs it in and opens a setup wizard. The wizard sets the admin's username and password and the main settings, and can't be skipped. Finishing it sets `system.setupCompleted: true`.
 
 To choose the first admin yourself, set these before the first start:
 

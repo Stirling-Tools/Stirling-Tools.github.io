@@ -39,7 +39,7 @@ To black out text or areas for good, use [Redact](../Guides/Redact.md).
 
 ## Protected PDFs
 
-When you add a password-protected PDF, enter its password to open it for this session. The file stays protected, and tools that support it keep its passwords and permissions in the result. To save an unprotected copy, choose **Create an unprotected copy** or use **Remove Password**.
+When you add a password-protected PDF, enter its password to open it for this session. The file stays protected, and tools that support it keep its passwords and permissions in the result. To save an unprotected copy, choose **Create an unprotected copy**.
 
 ## Signed PDFs
 

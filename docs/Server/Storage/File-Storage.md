@@ -167,7 +167,7 @@ Team or Enterprise. Encrypts stored files with AES-256.
 | `storage.encryption.enabled` | `false` | Encrypt stored files. |
 | `storage.encryption.auditReads` | `true` | Audit every decrypt. Audit events need Enterprise. |
 
-Back up `configs/file-encryption.key`. Losing it makes every encrypted file unrecoverable.
+Back up the master key (`configs/file-encryption.key`, or `STIRLING_FILE_ENCRYPTION_KEY` if you set one). Losing it makes every encrypted file unrecoverable.
 
 ## Troubleshooting
 

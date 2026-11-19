@@ -15,7 +15,6 @@ Check this list before you upgrade. Most servers only need the backup and upgrad
 - **3.4.0:** fonts in `customFiles/static/fonts/` are no longer served at `/fonts/`. Only the text editor uses them.
 - **3.3.0:** the backend text-editing API was removed (`/api/v1/general/edit-text`, `/api/v1/convert/pdf/text-editor` and related endpoints).
 - **3.3.0:** request bodies sent with `Content-Encoding` are refused with HTTP 400. Send them uncompressed.
-- **3.3.0:** the mobile scanner endpoints need sign-in.
 - **3.3.0:** `security.ssoAutoLogin` redirects to SSO even when password login is on. Open `/login?all` for the password form.
 - **3.2.0:** PDF permission restrictions are enforced unless the permissions password is entered. Set `security.honorOwnerPasswords: false` to turn this off.
 

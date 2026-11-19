@@ -134,7 +134,7 @@ When the MSI enables Cloud-only sign-in, it removes any previous self-hosted URL
 
 ### Reinstalls and changing account types
 
-MSI properties update the existing provisioning file. A reinstall with only `STIRLING_REQUIRE_SIGN_IN=1` keeps any existing server URL and connection lock, as well as document privacy policies. Reinstalling does not reset omitted settings, except that `STIRLING_SERVER_URL` without `STIRLING_LOCK_CONNECTION=1` turns the lock off.
+MSI properties update the existing provisioning file. A reinstall with only `STIRLING_REQUIRE_SIGN_IN=1` keeps any existing server URL and connection lock, as well as document privacy policies. Reinstalling does not reset omitted settings, except that `STIRLING_SERVER_URL` without `STIRLING_LOCK_CONNECTION` turns the lock off.
 
 To switch a Cloud-only installation to a self-hosted server, explicitly remove the Cloud-only restriction in the same installation:
 

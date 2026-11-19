@@ -54,7 +54,7 @@ Folder, S3, network, OneDrive, SharePoint and Google Drive inputs have an **Afte
 
 | Option | What happens |
 |---|---|
-| **Delete the file** (default; S3: **Delete the object**) | Removes the original once every pipeline using it has processed and delivered it. Files that fail stay in place and are not retried until they change or someone selects **Process ignored files in source** from the pipeline's **More actions** menu. |
+| **Delete the file** (default for folders, S3 and network; S3: **Delete the object**) | Removes the original once every pipeline using it has processed and delivered it. Files that fail stay in place and are not retried until they change or someone selects **Process ignored files in source** from the pipeline's **More actions** menu. |
 | **Keep it, and only process it again if it changes** (S3 and network: **Keep originals; process changes once**) | Leaves the original in place and processes each version once. |
 | **Keep it, and process it again every scan** (S3 and network: **Leave it in place**) | Leaves the original in place and processes it again on every run. |
 
