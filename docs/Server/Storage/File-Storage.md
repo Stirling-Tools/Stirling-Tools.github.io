@@ -100,7 +100,7 @@ volumes:
 
 ## Turn on sharing
 
-Sharing needs storage. Use the toggles in **File Storage & Sharing**, or:
+Sharing is on by default and needs storage. Use the toggles in **File Storage & Sharing**, or:
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
@@ -153,6 +153,21 @@ Sharing needs storage. Use the toggles in **File Storage & Sharing**, or:
 </Tabs>
 
 `-1` means no limit. When a file is replaced, only the change in size counts.
+
+## Stirling Sign
+
+Lets users request signatures from others and track them ([Request signatures](../../Tools/Security/Sign.md#request-signatures)). On by default; needs storage and login. With [email](../Security/Sign-in-and-Security.md#email-configuration) set up, participants and requesters are emailed as a request progresses. To turn it off, set `storage.signing.enabled: false`.
+
+## Encryption at rest
+
+Team or Enterprise. Encrypts stored files with AES-256.
+
+| Setting | Default | Purpose |
+|---|---|---|
+| `storage.encryption.enabled` | `false` | Encrypt stored files. |
+| `storage.encryption.auditReads` | `true` | Audit every decrypt. Audit events need Enterprise. |
+
+Back up the master key (`configs/file-encryption.key`, or `STIRLING_FILE_ENCRYPTION_KEY` if you set one). Losing it makes every encrypted file unrecoverable.
 
 ## Troubleshooting
 

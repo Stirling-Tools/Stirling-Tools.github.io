@@ -15,10 +15,10 @@ Not every tool is available everywhere. In the desktop app, tools with a cloud b
 
 The most-used tools sit at the top of the picker. Each one has a keyboard shortcut ([Keyboard shortcuts](./Workspace/Keyboard-Shortcuts.md)).
 
-- **[PDF Text Editor](./Guides/Content-Editing.md#pdf-text-editor)** - edit the existing text and images in a PDF.
+- **[PDF Text Editor](./Guides/Content-Editing.md#pdf-text-editor)** - edit the existing text and images in a PDF. Also opens from **Edit Text** in the viewer.
 - **[Page Editor](./Workspace/Page-Editor.md)** (**PDF Multi Tool** in the picker) - rotate, reorder, delete, split and insert blank pages.
 - **[Merge](./Guides/Page-Operations.md#merge)** - combine several PDFs into one.
-- **[Compare](./Guides/Compare.md)** - show the text differences between two PDFs.
+- **[Compare](./Guides/Compare.md)** - show the text or visual differences between two PDFs.
 - **[Compress](./Guides/Compress.md)** - make a PDF smaller.
 - **[Convert](./Guides/Convert.md)** - convert between PDF and other formats.
 - **[OCR / Cleanup scans](./Guides/OCR.md)** - make scanned PDFs searchable and clean them up.
@@ -34,7 +34,7 @@ The most-used tools sit at the top of the picker. Each one has a keyboard shortc
 
 - **[Add Password](./Security/Security.md#document-security)** - require a password to open the PDF and restrict what people can do.
 - **[Add Watermark](./Security/Security.md#document-security)** - put a text or image watermark across the pages.
-- **[Add Stamp to PDF](./Guides/Content-Editing.md#stamps-annotations)** - add a text or image stamp at a set position.
+- **[Add Stamp to PDF](./Guides/Content-Editing.md#stamps-annotations)** - add a text, image or QR code stamp at a set position.
 - **[Sanitize](./Security/Security.md#document-security)** - remove JavaScript, embedded files and other risky content.
 - **[Flatten](./Security/Security.md#document-security)** - turn form fields and other interactive parts into plain page content.
 - **[Unlock PDF Forms](./Security/Security.md#document-security)** - make read-only form fields editable again.
@@ -44,6 +44,7 @@ The most-used tools sit at the top of the picker. Each one has a keyboard shortc
 
 - **[Get ALL Info on PDF](./Security/Security.md#verification)** - show the version, fonts, page sizes, permissions and metadata.
 - **[Validate PDF Signature](./Security/Certificate-Signing.md#validating-signatures)** - check who signed a PDF and whether it changed afterwards.
+- **[Check PDF accessibility](./Security/Security.md#verification)** - check a PDF against PDF/UA-1 or PDF/UA-2 without changing it.
 
 ## Document review
 

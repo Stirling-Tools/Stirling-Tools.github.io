@@ -14,8 +14,9 @@ Open a PDF in the viewer to read it, search it and mark it up. Two tools open th
 
 ## Viewer
 
-- Switch between **Single Page View** and **Dual Page View**.
-- Open the **Bookmarks**, **Attachments** and **Comments** sidebars.
+- Switch between **Single Page View** and **Dual Page View**, with **Show Cover Page Separately** for dual pages.
+- Zoom with **Fit to width** or **Fit to page**.
+- Open the **Bookmarks**, **Attachments**, **Layers** and **Comments** sidebars.
 - Search the text, select it and click **Copy**.
 - Print with **Print PDF**.
 
@@ -27,7 +28,7 @@ For shortcuts, see [Keyboard shortcuts](./Keyboard-Shortcuts.md#pdf-viewer-short
 |---|---|
 | **Text Markup** | Highlight, Underline, Strikeout, Squiggly |
 | **Drawing** | Pen, Freehand Highlighter |
-| **Shapes** | Square, Circle, Line, Polygon |
+| **Shapes** | Square, Circle, Line, Arrow, Polyline, Polygon |
 | **Comments** | Comment, Insert Text, Replace Text |
 | **Notes & Stamps** | Text box, Note, Add Image |
 
@@ -42,6 +43,7 @@ The **Comments** sidebar lists comments by page, in reading order. From there yo
 - reply to a comment
 - click **Locate in document** to jump to it
 - search comments
+- export them with **Export as CSV**
 - remove every comment with **Clear all comments** (annotations stay in the document)
 
 ## Save your changes

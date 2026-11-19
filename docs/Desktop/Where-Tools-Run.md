@@ -29,7 +29,7 @@ If your administrator enables [local document processing](./Managed-Deployment.m
 
 ## Tools that usually need Cloud or a server
 
-- OCR
+- OCR and **Auto Rotate**
 - Converting Office documents, eBooks, HTML, web pages or email to PDF
 - Converting PDF to Word, PowerPoint, RTF, HTML, Markdown, XML, PDF/A, EPUB or CBR
 - **Repair**, **Detect & Split Scanned Photos** and **Replace & Invert Color**

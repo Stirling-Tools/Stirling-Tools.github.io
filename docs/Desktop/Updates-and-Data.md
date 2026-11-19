@@ -23,7 +23,9 @@ To change how updates work, go to **Settings → Preferences → Software Update
 - **Install updates automatically**
 - **Don't check for updates**
 
-If **Software Updates** shows **Managed by administrator**, or isn't there, your IT team controls updates ([Managed deployment](./Managed-Deployment.md)).
+In Self-Hosted mode, **Software Updates** also shows the **Server Version** and warns when it differs from the app.
+
+If **Software Updates** shows **Managed by administrator**, your IT team controls updates ([Managed deployment](./Managed-Deployment.md)).
 
 If you installed with a package manager, you can also update with it:
 

@@ -15,6 +15,7 @@ Stirling PDF is built on these open-source projects. The full source is on [GitH
 - **JPDFium** - PDFium-based engine for merge, split and reading text and tables
 - **[Tabula](https://github.com/tabulapdf/tabula-java)** - table extraction
 - **[LibreOffice](https://www.libreoffice.org/)** - office document conversion
+- **[veraPDF](https://verapdf.org/)** - PDF/A and PDF/UA validation
 - **[qpdf](https://qpdf.sourceforge.io/)** and **[Ghostscript](https://www.ghostscript.com/)** - PDF optimisation and compression
 - **[OCRmyPDF](https://ocrmypdf.readthedocs.io/)** with **[Tesseract](https://github.com/tesseract-ocr/tesseract)** - text recognition
 - **[Calibre](https://calibre-ebook.com/)** - e-book conversion

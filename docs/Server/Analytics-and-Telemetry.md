@@ -14,12 +14,13 @@ Stirling PDF can send anonymous usage data to help improve the product. Document
 | Source | Sent when | What |
 |---|---|---|
 | Server, to [PostHog](https://posthog.com) | Analytics are on | Server details (app version, OS, Java version, CPU, memory, disk, time zone and locale, Docker or JAR, container or Kubernetes names), selected settings (such as whether login and SSO are on, legal page URLs and the app name), total user count, counts of API calls and PDF operations, and pipeline operation names with file counts |
+| Server MCP endpoint, to PostHog | Analytics are on and the [MCP server](./Automation/MCP-Server.md) is on | Client name and version, tool names, operation, duration and error type. Never tool arguments, results or user IDs. |
 | Browser, to PostHog | Analytics are on and the user accepts | Which tools are used and on how many files, page views, clicks, errors, and browser and device type |
 | Browser, to the [Scarf](https://scarf.sh) pixel | Analytics are on and the user accepts | The path of each page opened, such as `/split-pdf` |
 
 PostHog data goes to PostHog's EU servers (`eu.i.posthog.com`). Server data is tied to a random ID for your server, not to users. See the [privacy policy](https://www.stirling.com/legal/privacy-policy).
 
-When login is enabled, the server also records which tools each user runs, in its own database, to rank recommended tools. This stays on your server. Set `toolRecommendations.enabled: false` to stop it.
+`system.enableFeedback` (default `true`) shows a feedback button that opens stirling.com. Set it to `false` to remove it.
 
 ## The consent banner
 
@@ -33,7 +34,7 @@ Users can change their choice later in **Settings → About → Cookie Preferenc
 
 ## Turn analytics on or off
 
-If `system.enableAnalytics` is not set, the first admin to open the app is asked **Do you want to help make Stirling PDF better?** Their answer applies to the whole server. Nothing is sent until someone answers.
+On a new server, the setup wizard asks the first admin. On an upgraded server where `system.enableAnalytics` is not set, the first admin to open the app is asked **Do you want to help make Stirling PDF better?** Their answer applies to the whole server. Nothing is sent until someone answers.
 
 To change it later, switch **Enable Analytics** in **Settings → Server → Legal & privacy** and restart when asked. **Enable Metrics** next to it controls the server's own usage endpoints, not data sent to Stirling.
 

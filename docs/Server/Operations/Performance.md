@@ -43,6 +43,14 @@ Some tools cost far more than others:
 
 If your users mostly OCR or convert office files, size up and raise the matching [process limits](./Process-Limits.md). To run several office conversions at once, see [LibreOffice parallel processing](./LibreOffice.md). For several servers, see [Clustering](./Clustering.md).
 
+## Processing limits
+
+| Setting | Default | What it does |
+|---|---|---|
+| `system.maxDPI` | `500` | Highest resolution for PDF to image. |
+| `system.maxImageMegapixels` | `0` (a quarter of the Java heap, at most 1 GB) | Largest image one page render may create. |
+| `system.maxPdfaConversionPages` | `20000` | Largest PDF/A or PDF/X conversion. `0` is unlimited. |
+
 ## Java memory
 
 The Docker image sets the Java heap automatically from the container's memory limit, up to 70% of it, leaving the rest for LibreOffice, Tesseract and other tools. Without a limit it sizes from the host's total RAM, so always set one.

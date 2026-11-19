@@ -1,13 +1,22 @@
 ---
 sidebar_position: 1
 title: Breaking changes
-description: Changes since V1 that can break a self-hosted setup, and what to do about each one.
+description: Changes that can break a self-hosted setup, and what to do about each one.
 sidebar_label: Breaking changes
 ---
 
 # Breaking changes
 
-Check this list before you upgrade a V1 server. Most servers only need the backup and upgrade steps in [Upgrading from V1](./Upgrading.md).
+Check this list before you upgrade. Most servers only need the backup and upgrade steps in [Upgrading from V1](./Upgrading.md).
+
+## 3.x
+
+- **3.4.0:** PostScript, EPS, PCL and XPS conversion was removed (`/api/v1/convert/pdf/vector`, `/api/v1/convert/vector/pdf`).
+- **3.4.0:** fonts in `customFiles/static/fonts/` are no longer served at `/fonts/`. Only the text editor uses them.
+- **3.3.0:** the backend text-editing API was removed (`/api/v1/general/edit-text`, `/api/v1/convert/pdf/text-editor` and related endpoints).
+- **3.3.0:** request bodies sent with `Content-Encoding` are refused with HTTP 400. Send them uncompressed.
+- **3.3.0:** `security.ssoAutoLogin` redirects to SSO even when password login is on. Open `/login?all` for the password form.
+- **3.2.0:** PDF permission restrictions are enforced unless the permissions password is entered. Set `security.honorOwnerPasswords: false` to turn this off.
 
 ## New web interface
 

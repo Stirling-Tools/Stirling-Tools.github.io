@@ -15,7 +15,7 @@ API keys are covered in [REST API](../../Developers/API.md#authentication), and 
 
 ## First admin account
 
-When the server starts with an empty user database, it creates the account `admin` with password `stirling`. The first sign-in asks for a new password of at least 8 characters.
+When the server starts with an empty user database, it creates the account `admin` with password `stirling`, signs it in and opens a setup wizard. The wizard sets the admin's username and password and the main settings, and can't be skipped. Finishing it sets `system.setupCompleted: true`.
 
 To choose the first admin yourself, set these before the first start:
 
@@ -75,6 +75,17 @@ The Free plan allows 5 users ([Plans and licences](../Licensing/Plans-and-Licenc
 
 To run without login, set `SECURITY_ENABLELOGIN=false`. Anyone who can reach the server can then use it, and features that need accounts, such as server file storage, turn off. To also hide the **Settings** button from everyone, set `system.showSettingsWhenNoLogin: false`. The desktop app can only connect to a server that has login on.
 
+## PDF permissions
+
+In **Settings → Server → Sign-in & security**:
+
+| Setting | In the app | Default | What it does |
+|---|---|---|---|
+| `security.honorOwnerPasswords` | **Honor PDF permissions** | `true` | Enforce a PDF's permission restrictions unless the permissions password is entered. Opening passwords are always required. |
+| `security.blockSignedPdfEdits` | **Block changes to signed PDFs** | `false` | Signed PDFs can be viewed, printed, converted and signed again, but not changed. Applies in the web and desktop apps, not to API calls or pipelines. |
+
+Environment variables: `SECURITY_HONOROWNERPASSWORDS`, `SECURITY_BLOCKSIGNEDPDFEDITS`.
+
 ## Session length
 
 The app renews its sign-in token while it is open. Change the lifetimes under **JWT Configuration**:
@@ -104,6 +115,14 @@ The app renews its sign-in token while it is open. Change the lifetimes under **
 
 See [OAuth2 / OIDC single sign-on](./OAuth-SSO.md) (every plan) and [SAML single sign-on](./SAML-SSO.md) (Enterprise).
 
+## SCIM user provisioning <Badge>Enterprise</Badge>
+
+Set `security.scimToken` (`SECURITY_SCIMTOKEN`) to a random value of at least 32 characters, for example from `openssl rand -hex 32`. In your identity provider, use `https://pdf.example.com/api/v1/scim/v2` as the base URL and the token as a bearer token.
+
+- Users only, not groups. Admin accounts can't be changed.
+- A delete deactivates the user. Set `security.scimDeleteRemovesUser: true` to erase the user and their files instead.
+- Changes appear in the audit log as `scim-provisioning`.
+
 ## Email configuration
 
 The server sends email for:
@@ -111,6 +130,7 @@ The server sends email for:
 - **Invite by email** in **Settings → Workspace → Users**
 - the **Email the user about the reset** option when an admin resets a password
 - share notifications, when [email sharing](../Storage/File-Storage.md) is on
+- signing requests to participants and requesters
 - database backup and import notifications (Enterprise, see [Database](../Storage/Database.md))
 
 Set it up in **Settings → Server → Integrations → SMTP Mail**, or in `settings.yml`:

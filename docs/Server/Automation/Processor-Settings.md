@@ -27,7 +27,7 @@ To grant access on top of the default, open **Settings → Workspace → Users**
 
 ## Allow server folders
 
-Folder sources and folder outputs can only use directories under the allowed folder roots. The list is empty by default, which turns them off. Stirling PDF's own file storage and pipeline watched folders are always allowed, and its config directory never is. [Processing folders](../../Tools/Workspace/Processing-Folders.md) set up in the app use server file storage instead ([File storage and sharing](../Storage/File-Storage.md)).
+Folder sources and folder outputs can only use directories under the allowed folder roots. The list is empty by default, which turns them off. Stirling PDF's config directory, file storage folder and pipeline watched folders are always refused, even inside an allowed root. [Processing folders](../../Tools/Workspace/Processing-Folders.md) set up in the app use server file storage instead ([File storage and sharing](../Storage/File-Storage.md)).
 
 1. Mount or create separate input and output directories.
 2. Give the Stirling PDF process read access to the input and write access to the output, plus delete access on the input if the source deletes originals (the default).
@@ -113,6 +113,17 @@ POLICIES_ALLOWEDPRIVATENETWORKHOSTS=sftp.internal.example.com
 | `policies.sweepConcurrency`* | `POLICIES_SWEEPCONCURRENCY` | `6` | How many runs from one sweep execute at once; the rest wait as pending. `0` means no limit. |
 | `policies.scheduleSweepSeconds` | `POLICIES_SCHEDULESWEEPSECONDS` | `60` | How often scheduled pipelines are checked for being due. |
 | `policies.watchReconcileSeconds` | `POLICIES_WATCHRECONCILESECONDS` | `300` | How often folder watches re-check for missed files, for example on network mounts. |
+| `policies.watchQuietPeriodMs` | `POLICIES_WATCHQUIETPERIODMS` | `500` | How long a folder watch groups a burst of file events into one run. |
+| `policies.storageFolderSweepSeconds` | `POLICIES_STORAGEFOLDERSWEEPSECONDS` | `60` | How often server processing folders are re-checked. New files run straight away. |
+
+## Run limits
+
+| Setting | Env | Default | Purpose |
+|---|---|---|---|
+| `policies.maxSteps` | `POLICIES_MAXSTEPS` | `50` | Most steps one run may have. `0` means no limit. |
+| `policies.maxFilesPerStep` | `POLICIES_MAXFILESPERSTEP` | `10000` | A run stops when one step produces more files than this. `0` means no limit. |
+| `policies.runExpiryMinutes` | `POLICIES_RUNEXPIRYMINUTES` | `30` | How long a finished run's progress is kept. |
+| `policies.streamTimeoutMs` | `POLICIES_STREAMTIMEOUTMS` | `1800000` | Timeout for live run-progress streams. |
 
 ## Credential encryption key
 

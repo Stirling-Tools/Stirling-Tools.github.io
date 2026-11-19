@@ -1,13 +1,13 @@
 ---
 sidebar_position: 11
 title: Compare
-description: Compare two versions of a PDF and see which words were added or removed.
+description: Compare two versions of a PDF and see which words or visual content changed.
 sidebar_label: Compare
 ---
 
 # Compare
 
-Compare shows the wording changes between two versions of a PDF. Removed words are highlighted in red and added words in green. The comparison runs on your device, so the files are not uploaded.
+Compare shows the changes between two versions of a PDF. Choose **Text Comparison** for wording or **Pixel Comparison** for layout and images. Removed content is highlighted in red and added content in green. The comparison runs on your device, so the files are not uploaded.
 
 ## Compare two PDFs
 
@@ -21,5 +21,4 @@ The **Additions** and **Deletions** dropdowns list every change. Pick one to jum
 
 ## Limitations
 
-- Compare checks extracted text only. Layout, formatting and image changes are not detected.
-- A PDF with no text layer can't be compared. For scanned documents, run [OCR](./OCR.md) on both files first.
+- **Text Comparison** needs a text layer. For scanned documents, run [OCR](./OCR.md) on both files first, or use **Pixel Comparison**.

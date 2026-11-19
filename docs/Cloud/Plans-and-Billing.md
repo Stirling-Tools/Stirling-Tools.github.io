@@ -47,7 +47,7 @@ Or choose **Prepay a year** to buy 12 months of credits at a discount, by card o
 A free team holds up to 5 people. The Team plan adds users in blocks of 100.
 
 1. In **Usage & Billing**, select **Compare plans → Upgrade to Team**, or **Add capacity** on the **Users** row.
-2. Choose **Monthly** or **Yearly** and the number of users, then select **Continue to payment**.
+2. Choose **Monthly** or **Annually** and the number of users, then select **Continue to payment**.
 
 For data residency or SCIM, select **Get an enterprise quote**. Single sign-on through your own identity provider needs a self-hosted server ([OAuth2 / OIDC single sign-on](../Server/Security/OAuth-SSO.md)).
 

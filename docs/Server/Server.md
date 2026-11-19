@@ -28,14 +28,7 @@ Start the `latest` image with the compose file or `docker run` command in [Insta
 
 ## First login
 
-Login is on by default. Sign in with:
-
-```
-Username: admin
-Password: stirling
-```
-
-You are then asked to set a new password of at least 8 characters. The first admin is also asked whether to send anonymous usage data: see [Analytics and telemetry](./Analytics-and-Telemetry.md).
+Login is on by default. The first visit signs you in as the default admin and opens a setup wizard, where you choose the admin's username and password and the main settings, including [analytics](./Analytics-and-Telemetry.md).
 
 To create your own first admin instead, set `SECURITY_INITIALLOGIN_USERNAME` and `SECURITY_INITIALLOGIN_PASSWORD` before the first start. They are only used while the database has no users.
 

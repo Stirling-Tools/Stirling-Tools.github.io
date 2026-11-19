@@ -46,6 +46,4 @@ Notes on some targets:
 - **PDF/A** - pick the level (default PDF/A-2b). **Strict Mode** stops with an error if the result does not fully conform. Digital signatures are removed.
 - **PDF/UA** - tags the PDF for screen readers. Add a description for each image, or the file comes back tagged but not certified.
 
-A few conversions, such as PDF to PostScript, EPS, PCL or XPS, have no option in Convert. They are available through the [REST API](../../Developers/API.md).
-
 In the desktop app, some conversions need Stirling Cloud or a server ([Where your tools run](../../Desktop/Where-Tools-Run.md)).

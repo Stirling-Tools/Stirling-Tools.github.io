@@ -28,10 +28,19 @@ In the tool picker, these tools sit under **Signing**, **Document Security**, **
 
 - **Validate PDF Signature** - check who signed, whether their certificate is trusted and whether the file changed after signing. See [Validating signatures](./Certificate-Signing.md#validating-signatures).
 - **Get ALL Info on PDF** - show the PDF version, fonts, page sizes, permissions, metadata and more, as tables or JSON.
+- **Check PDF accessibility** - check a PDF against **PDF/UA-1** or **PDF/UA-2** without changing it. Each file gets **Pass**, **Partial** or **Fail**, and **Download accessibility report** saves the results as a PDF.
 
 ## Removal
 
-- **Remove Password** - unlock a protected PDF. You need the current password.
+- **Remove Password** - unlock a protected PDF. You need the current password. Permission restrictions are kept.
 - **Remove Certificate Sign** - strip digital signatures, for example so you can edit a signed file.
 
 To black out text or areas for good, use [Redact](../Guides/Redact.md).
+
+## Protected PDFs
+
+When you add a password-protected PDF, enter its password to open it for this session. The file stays protected, and tools that support it keep its passwords and permissions in the result. To save an unprotected copy, choose **Create an unprotected copy**.
+
+## Signed PDFs
+
+If your admin turns on **Block changes to signed PDFs**, digitally signed PDFs show **Signed: edits blocked**. You can still view, print, convert and sign them again, but tools that would change them refuse.

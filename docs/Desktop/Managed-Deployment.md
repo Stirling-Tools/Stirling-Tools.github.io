@@ -41,11 +41,12 @@ Every field is optional:
 | Field | Type | What it does |
 |---|---|---|
 | `serverUrl` | string | Your self-hosted server, including `http://` or `https://` and the port if needed. Sets Self-Hosted mode; use `cloudOnly` to require Stirling Cloud instead. |
-| `lockConnectionMode` | boolean | `true` stops users connecting to a different server or to Stirling Cloud. Only applies when `serverUrl` is set. Users can still choose **Use local tools instead** unless `requireSignIn` is enabled. |
+| `lockConnectionMode` | boolean | `true` stops users connecting to a different server or to Stirling Cloud. Only applies when `serverUrl` is set, and is turned off if omitted alongside it. Users can still choose **Use local tools instead** unless `requireSignIn` is enabled. |
 | `requireSignIn` | boolean | Requires a verified account session before users can access the workspace or background file processing. Hides guest access and returns to sign-in after logout or session expiry. Defaults to `false`. |
 | `cloudOnly` | boolean | Restricts account connections to Stirling Cloud and removes self-hosted sign-in. On its own, it still permits guest use. Defaults to `false`. |
 | `localProcessingOnly` | boolean | Keeps document operations on the device, hides tools and conversion formats unavailable locally, and disables server document storage and sharing. Account and billing requests remain available. Defaults to `false`. |
 | `loginAgreementEnabled` | boolean | `true` turns on the login agreement dialog. Works without `serverUrl`. See the note below. |
+| `blockSignedPdfEdits` | boolean | `true` stops the app changing digitally signed PDFs. They can still be viewed, printed, converted and signed again. When connected to a self-hosted server, the server's setting applies. Defaults to `false`. |
 | `updateMode` | string | `prompt` (default) asks before installing, `auto` installs updates at startup, `disabled` never checks. |
 
 The three sign-in and privacy policies are independent. Omitted policy fields preserve their stored values; explicitly use `false` to clear a previously enabled policy.
@@ -93,9 +94,12 @@ The x64 MSI accepts these properties and writes the provisioning file for you:
 | `STIRLING_CLOUD_ONLY` | Restrict accounts to Stirling Cloud (`1` = enabled, `0` = disabled) | `1` |
 | `STIRLING_LOCAL_PROCESSING_ONLY` | Keep document operations on the device (`1` = enabled, `0` = disabled) | `1` |
 | `STIRLING_LOGIN_AGREEMENT` | Turn on the login agreement dialog (`1`, `true`, `yes` or `y`) | `1` |
+| `STIRLING_BLOCK_SIGNED_PDF_EDITS` | Block changes to signed PDFs (`1` = enabled, `0` = disabled) | `1` |
 | `STIRLING_UPDATE_MODE` | `prompt`, `auto` or `disabled`. An invalid value makes the install fail. | `disabled` |
 | `INSTALLDIR` | Custom install folder | `C:\CustomPath\Stirling PDF` |
 | `ALLUSERS` | Install for all users | `1` |
+
+The `1`/`0` properties also accept `true`/`false`, `yes`/`no` and `y`/`n`; any other value makes the install fail.
 
 ```batch
 msiexec /i "Stirling-PDF-windows-x86_64.msi" /qn ^
@@ -112,7 +116,7 @@ winget install StirlingTools.StirlingPDF `
   --custom "STIRLING_SERVER_URL=https://pdf.example.com STIRLING_LOCK_CONNECTION=1 STIRLING_UPDATE_MODE=disabled"
 ```
 
-The MSI is [Stirling-PDF-windows-x86_64.msi](https://files.stirlingpdf.com/win-installer.exe). An all-users install writes the system file. The Windows on ARM installer accepts none of these properties, so deploy the JSON file to `%PROGRAMDATA%\Stirling-PDF\` instead.
+The MSI is [Stirling-PDF-windows-x86_64.msi](https://files.stirlingpdf.com/win-installer.exe). An all-users install writes the system file; with `ALLUSERS` unset or `0` it writes the user file, which is applied once and can't lock updates. The Windows on ARM installer accepts none of these properties, so deploy the JSON file to `%PROGRAMDATA%\Stirling-PDF\` instead.
 
 ### Intune: require Cloud sign-in and keep documents local
 
@@ -124,13 +128,13 @@ msiexec.exe /i "Stirling-PDF-windows-x86_64.msi" /qn ALLUSERS=1 STIRLING_REQUIRE
 
 This installs the app for all users, requires Stirling Cloud sign-in, and keeps document processing on the device. Updates are managed through Intune. For a manual installation with the same settings, run the command from PowerShell as an administrator.
 
-For an existing installation, including one installed from the EXE, deploy the JSON example above to `%PROGRAMDATA%\Stirling-PDF\stirling-provisioning.json` as an administrator and restart the app. The MSI properties do not need to be passed to the EXE.
+For an existing installation, including Windows on ARM, deploy the JSON example above to `%PROGRAMDATA%\Stirling-PDF\stirling-provisioning.json` as an administrator and restart the app.
 
 When the MSI enables Cloud-only sign-in, it removes any previous self-hosted URL and connection lock from its provisioning output. When editing JSON directly, remove the `serverUrl` field yourself.
 
 ### Reinstalls and changing account types
 
-MSI properties update the existing provisioning file. A reinstall with only `STIRLING_REQUIRE_SIGN_IN=1` keeps any existing server URL and connection lock, as well as document privacy policies. Reinstalling does not reset omitted settings.
+MSI properties update the existing provisioning file. A reinstall with only `STIRLING_REQUIRE_SIGN_IN=1` keeps any existing server URL and connection lock, as well as document privacy policies. Reinstalling does not reset omitted settings, except that `STIRLING_SERVER_URL` without `STIRLING_LOCK_CONNECTION` turns the lock off.
 
 To switch a Cloud-only installation to a self-hosted server, explicitly remove the Cloud-only restriction in the same installation:
 
@@ -140,7 +144,7 @@ msiexec.exe /i "Stirling-PDF-windows-x86_64.msi" /qn ALLUSERS=1 STIRLING_SERVER_
 
 Required sign-in and local-processing restrictions remain in effect unless you explicitly change them. Supplying a server URL while leaving an existing `cloudOnly: true` policy enabled is a conflict and stops installation.
 
-The MSI reads and updates the provisioning file only when at least one of these properties has a nonempty value: `STIRLING_SERVER_URL`, `STIRLING_LOGIN_AGREEMENT`, `STIRLING_UPDATE_MODE`, `STIRLING_REQUIRE_SIGN_IN`, `STIRLING_CLOUD_ONLY`, or `STIRLING_LOCAL_PROCESSING_ONLY`. With none supplied, the installer leaves the file untouched; an invalid machine file is reported by the app at startup instead.
+The MSI reads and updates the provisioning file only when at least one of these properties has a nonempty value: `STIRLING_SERVER_URL`, `STIRLING_LOGIN_AGREEMENT`, `STIRLING_UPDATE_MODE`, `STIRLING_REQUIRE_SIGN_IN`, `STIRLING_CLOUD_ONLY`, `STIRLING_LOCAL_PROCESSING_ONLY`, or `STIRLING_BLOCK_SIGNED_PDF_EDITS`. With none supplied, the installer leaves the file untouched; an invalid machine file is reported by the app at startup instead.
 
 If that provisioning step runs and the existing file is corrupt, installation stops without replacing it: omitted policies cannot be recovered safely. As an administrator, back up the file and replace it with valid JSON containing the complete intended policy, then retry the installation. The error identifies the file. Use the provisioning examples above and explicitly specify the desired values of all three sign-in and privacy policies.
 

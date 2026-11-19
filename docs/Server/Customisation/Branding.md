@@ -16,8 +16,6 @@ Open **Settings → Server → System → Branding & appearance**, or set the ke
 | **Navbar Brand** | `ui.appNameNavbar` | empty (`Stirling PDF`) | The browser tab title and the issuer name shown in authenticator apps for two-factor login. Despite the name, it is not shown in the navigation bar, which shows the logo. |
 | **Show Update Notifications** | `system.showUpdate` | `true` | Show a notice when a new version is available. |
 | **Show Updates to Admins Only** | `system.showUpdateOnlyAdmin` | `true` | Show that notice to admins only. |
-| **Hide Google Drive** | `ui.hideDisabledTools.googleDrive` | `false` | Hide the Google Drive button when Google Drive is off. |
-| **Hide Mobile Scanner** | `ui.hideDisabledTools.mobileQRScanner` | `false` | Hide the mobile upload button when the mobile scanner is off. |
 
 <Tabs groupId="config-methods">
   <TabItem value="settings" label="Settings File">
@@ -45,7 +43,7 @@ The same card also holds the language, upload limit and **Frontend URL** (`syste
 
 ## Replace icons and logos
 
-A file in `customFiles/static/` replaces the file the app serves at the same path. In Docker, mount the folder:
+A file in `customFiles/static/` replaces the file the app serves at the same path, except fonts (see [Text editor fonts](#text-editor-fonts)). In Docker, mount the folder:
 
 ```yaml
 services:
@@ -69,6 +67,10 @@ Other files at the app root, such as `manifest.json`, can be replaced the same w
 :::note
 Some Stirling logos are built into the app and cannot be replaced.
 :::
+
+## Text editor fonts
+
+Put `.ttf` or `.otf` files in `customFiles/static/fonts/` to offer them under **Server fonts** in the PDF text editor. Files over 64 MB and fonts whose licence forbids embedding are skipped.
 
 ## Add custom CSS
 

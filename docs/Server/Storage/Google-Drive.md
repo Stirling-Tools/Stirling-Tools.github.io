@@ -41,3 +41,13 @@ Enter the values in **Settings → Server → Integrations → Google Drive**, o
     ```
   </TabItem>
 </Tabs>
+
+## Connected accounts
+
+To let users connect their Google account for [Processor sources](../../Processor/Sources.md), also set these. Add `https://<server>/api/v1/connected-accounts/callback/google` as an authorised redirect URI, and publish the OAuth app: tokens from an app in testing expire after 7 days. Needs login turned on.
+
+| Setting | Default | Purpose |
+|---|---|---|
+| `clientSecret` | empty | The OAuth client secret. |
+| `allowAccountConnections` | `true` | `false` stops users connecting their own account. |
+| `accountScope` | `drive` | `drive` (every file), `drive.file` (only files users pick or Stirling creates) or `drive.readonly`. |

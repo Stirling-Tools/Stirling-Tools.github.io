@@ -7,7 +7,7 @@ description: Switch the desktop app between Local Only, Stirling Cloud and Self-
 
 # Connection modes
 
-The connection mode decides where your tools run and which account you use. Change the mode in **Settings → Connection Mode** (select the account row at the bottom of the left sidebar to open Settings).
+The connection mode decides where your tools run and which account you use. Change the mode in **Settings → Connection Mode** (select your avatar in the left bar, then **Settings**).
 
 | Mode | Sign-in | Where tools run |
 |---|---|---|
@@ -26,7 +26,7 @@ You get this mode if you select **Continue without signing in** on first launch,
 ## Sign in to Stirling Cloud
 
 1. Go to **Settings → Connection Mode** and select **Sign In**.
-2. On **Sign in to Stirling**, choose **Google** or **GitHub** (finish in your browser), or enter your email and password under **Or continue with email** and select **Login**.
+2. On **Sign in to Stirling**, choose **Google** or **GitHub** (finish in your browser), or enter your email and password under **Or continue with email** and select **Login**. **Forgot your password?** opens the reset page in your browser.
 
 Once signed in, Settings also shows **Workspace** and **Team**. See [Account and sign-in](../Cloud/Account.md).
 
@@ -44,4 +44,4 @@ On macOS, allow the **Local Network** prompt the first time you connect to a ser
 
 ## Switch modes or sign out
 
-Select **Log Out** in **Settings → Connection Mode** to return to Local Only, or to the sign-in screen if your administrator requires sign-in. To move between Stirling Cloud and a server, log out, then sign in with the other option, if your administrator allows it.
+Select your avatar, then **Log out**, to return to Local Only, or to the sign-in screen if your administrator requires sign-in. To move between Stirling Cloud and a server, log out, then sign in with the other option, if your administrator allows it.

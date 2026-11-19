@@ -25,6 +25,9 @@ Select **Connect source**, choose a type, enter its name and settings, then sele
 | **SFTP** | Yes | No |
 | **FTP** | Yes | No |
 | **Network drive** (SMB) | Yes | No |
+| **OneDrive** | Yes | Yes |
+| **SharePoint** | Yes | Yes |
+| **Google Drive** | Yes | Yes |
 | **Webhook** | Yes | No |
 | **Vector database** | No | Yes, for [Ingestion](./Policies/Ingestion.md) |
 
@@ -47,11 +50,11 @@ People can see which pipelines run on their files in the **PDF Processor** panel
 
 ## Decide what happens to originals
 
-Folder, S3 and network inputs have an **After processing** setting under **Advanced**.
+Folder, S3, network, OneDrive, SharePoint and Google Drive inputs have an **After processing** setting under **Advanced**. Cloud drives default to keeping originals.
 
 | Option | What happens |
 |---|---|
-| **Delete the file** (default; S3: **Delete the object**) | Removes the original once every pipeline using it has processed and delivered it. Files that fail stay in place and are not retried until they change or someone selects **Process ignored files in source** from the pipeline's **More actions** menu. |
+| **Delete the file** (default for folders, S3 and network; S3: **Delete the object**) | Removes the original once every pipeline using it has processed and delivered it. Files that fail stay in place and are not retried until they change or someone selects **Process ignored files in source** from the pipeline's **More actions** menu. |
 | **Keep it, and only process it again if it changes** (S3 and network: **Keep originals; process changes once**) | Leaves the original in place and processes each version once. |
 | **Keep it, and process it again every scan** (S3 and network: **Leave it in place**) | Leaves the original in place and processes it again on every run. |
 
@@ -78,6 +81,10 @@ Under **Connection**, select a saved [integration](./Integrations.md) that uses 
 SFTP pins the server's host key on first connect and refuses a changed key. To check the key up front, enter its **Host key fingerprint** in the connection.
 
 A server on your internal network only works once a server administrator allows its hostname ([Processor server settings](../Server/Automation/Processor-Settings.md#private-network-targets)).
+
+## OneDrive, SharePoint and Google Drive
+
+Under **Sign in as**, choose **My account** or an **Organisation connection** set up by an administrator under [Integrations](./Integrations.md). Under **Folder**, paste a folder link or type a path such as `Scans/Inbox`; leave it empty for the top of the drive. SharePoint with your own account needs a folder link. The folder must already exist. An administrator must set up the server first ([OneDrive and SharePoint](../Server/Storage/OneDrive.md), [Google Drive](../Server/Storage/Google-Drive.md#connected-accounts)).
 
 ## Webhooks
 
