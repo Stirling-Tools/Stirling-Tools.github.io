@@ -37,7 +37,7 @@ If your administrator enables [local document processing](./Managed-Deployment.m
 
 ## Features that need Cloud or a server
 
-- **AI assistant** - Stirling Cloud, or your server if its admin has set up AI ([AI assistant](../Tools/Guides/AI-Assistant.md)).
+- **AI assistant** - Stirling Cloud, or your server if its admin has set up AI ([AI assistant](../Tools/Workspace/AI-Assistant.md)).
 - **Classify** - Stirling Cloud only.
 - **Processing folders and pipelines** - see [Processing folders](../Tools/Workspace/Processing-Folders.md).
 - **Processor** - not in the desktop app. Use it in a web browser ([Processor](../Processor/Processor.md)).

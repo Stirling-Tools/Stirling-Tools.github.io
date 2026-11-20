@@ -1,5 +1,5 @@
 ---
-sidebar_position: 14
+sidebar_position: 1
 title: Convert
 description: Convert Office files, images, web pages, email, eBooks and comics to PDF, and PDFs to other formats.
 sidebar_label: Convert
@@ -28,6 +28,10 @@ If you select files of different types, they are all converted to PDF.
 
 Image options: **Color Type** (**Color**, **Grayscale** or **Black & White**), **Fit Option** (**Maintain Aspect Ratio**, **Fit Document to Page** or **Fill Page**), **Auto Rotate**, and **Combine Images** to put all images in one PDF instead of one PDF each.
 
+<Video id="eXCl9q-9mR0" title="Convert Word, Excel and PowerPoint to PDF" />
+
+<Video id="pJnSQE6mxKw" title="Turn images into a PDF" />
+
 ## Convert from PDF
 
 | Type | Formats |
@@ -42,7 +46,7 @@ Image options: **Color Type** (**Color**, **Grayscale** or **Black & White**), *
 Notes on some targets:
 
 - **Images** - set **Color Type**, **DPI** (72-600, default 300) and **Output**: **Multiple** (default) for one image per page, or **Single** for one image containing all pages.
-- **Word, PowerPoint and Excel** - run [OCR](./OCR.md) on scans first.
+- **Word, PowerPoint and Excel** - run [OCR](../Editing/OCR.md) on scans first.
 - **PDF/A** - pick the level (default PDF/A-2b). **Strict Mode** stops with an error if the result does not fully conform. Digital signatures are removed.
 - **PDF/UA** - tags the PDF for screen readers. Add a description for each image, or the file comes back tagged but not certified.
 

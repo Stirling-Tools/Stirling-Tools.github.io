@@ -7,7 +7,7 @@ description: Add Tesseract language packs to a self-hosted Stirling PDF server s
 
 # OCR languages
 
-The [OCR tool](../../Tools/Guides/OCR.md) can only offer languages whose Tesseract language pack is installed on the server. The standard Docker images include English, German, French, Portuguese and Simplified Chinese. The ultra-lite image has no OCR.
+The [OCR tool](../../Tools/Editing/OCR.md) can only offer languages whose Tesseract language pack is installed on the server. The standard Docker images include English, German, French, Portuguese and Simplified Chinese. The ultra-lite image has no OCR.
 
 Stirling PDF uses OCRmyPDF when it is installed, as it is in the standard and fat images, and falls back to Tesseract alone otherwise. The OCR tool's **Processing Options** only work with OCRmyPDF.
 

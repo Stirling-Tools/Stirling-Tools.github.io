@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Certificate signing
 description: Sign PDFs with a digital certificate, check existing signatures and add trusted timestamps.
 sidebar_label: Certificate signing
@@ -64,6 +64,8 @@ Each signature gets a status:
 - **Invalid** - the cryptographic check failed.
 
 You can download the results as a PDF report, CSV or JSON.
+
+<Video id="NDy9a_2mGtY" title="Validate PDF signatures" />
 
 ## Timestamping PDFs
 

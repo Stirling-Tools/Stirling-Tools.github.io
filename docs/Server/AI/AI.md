@@ -7,7 +7,7 @@ sidebar_label: Overview
 
 # AI on your server
 
-AI is off by default in every image. For what users can do with AI, see [AI assistant](../../Tools/Guides/AI-Assistant.md).
+AI is off by default in every image. For what users can do with AI, see [AI assistant](../../Tools/Workspace/AI-Assistant.md).
 
 ## Choose where AI runs
 

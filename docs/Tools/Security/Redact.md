@@ -1,5 +1,5 @@
 ---
-sidebar_position: 19
+sidebar_position: 3.5
 title: Redact
 description: Permanently remove sensitive text and areas from a PDF, automatically or by hand.
 sidebar_label: Redact
@@ -10,6 +10,8 @@ sidebar_label: Redact
 Redact permanently deletes sensitive text and areas from a PDF, not just hides them. Keep a copy of the original.
 
 ## Automatic redaction
+
+<Video id="t9_5awBg0w4" title="Redact private information from a PDF" />
 
 1. Under **Redaction Method**, choose **Automatic**.
 2. Under **Words to Redact**, type a word or phrase and click **Add**. Repeat for each one.

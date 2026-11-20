@@ -1,5 +1,5 @@
 ---
-sidebar_position: 12
+sidebar_position: 2
 title: Compress
 description: Make PDFs smaller by choosing a compression level or a target file size.
 sidebar_label: Compress
@@ -30,4 +30,4 @@ When line art is on, two more settings appear:
 
 If **Convert images to line art** is greyed out, it isn't available where the tool runs.
 
-If a scan needs to be searchable, run [OCR](./OCR.md) before you compress it.
+If a scan needs to be searchable, run [OCR](../Editing/OCR.md) before you compress it.

@@ -7,7 +7,9 @@ sidebar_label: Sign
 
 # Sign
 
-**Sign** adds a visible signature only, which anyone can copy. To prove who signed and detect later changes, use [Sign with Certificate](./Certificate-Signing.md).
+**Sign** places a drawn, typed or uploaded signature on a PDF. It's a visible signature only; to prove who signed and detect later changes, use [Sign with Certificate](./Certificate-Signing.md).
+
+<Video id="tsHWjL1zhPc" title="Sign a PDF yourself" />
 
 ## Add a signature
 
@@ -21,16 +23,11 @@ sidebar_label: Sign
 4. Click the PDF to place the signature. Place it as many times as you need, on any page. Drag a placed signature to move or resize it.
 5. Click **Apply N signatures**. The signed PDF replaces the original in your workspace.
 
+
 ## Saved signatures
 
 - To reuse one, pick it under **Your signatures** and click the page.
 - Signed in, you can keep up to 20 signatures. Without signing in, up to 10 are kept in this browser.
 - Admins can set **Who can use it** to **Everyone** to share a signature with all users. Shared signatures appear under **Shared**.
 
-## Request signatures
-
-<Badge>Login required</Badge>
-
-1. Click **Sign** in the left rail, then **Request signatures**.
-2. Choose the PDF, add participants and an optional due date, then click **Send signing request**.
-3. Participants sign in any order. Track requests under **Signing sessions**, then finalize the document once everyone has signed.
+To collect signatures from other people, see [Request signatures](./Request-Signatures.md).

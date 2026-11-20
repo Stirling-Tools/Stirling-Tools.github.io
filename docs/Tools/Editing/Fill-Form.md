@@ -1,5 +1,5 @@
 ---
-sidebar_position: 15
+sidebar_position: 3
 title: Fill forms
 description: Fill in PDF forms, add or edit form fields, export form data, and detect fields automatically.
 sidebar_label: Fill forms
@@ -10,6 +10,8 @@ sidebar_label: Fill forms
 Open a PDF and select **Form Editor**, then choose a **Form editor mode**: **Fill**, **Create** or **Modify**. A PDF with no fields opens in **Create**.
 
 ## Fill in a form
+
+<Video id="ZBBrq7ubu9w" title="Fill in PDF forms" />
 
 1. In **Fill**, click each field on the page (or in the field list) and enter a value.
 2. Turn on **Flatten after filling** to lock the answers into the page.

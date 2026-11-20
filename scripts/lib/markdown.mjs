@@ -130,8 +130,24 @@ export function preprocess(source, renderInner, resolveHref = (h) => h) {
   out = transformTabs(out, renderInner);
   out = transformAdmonitions(out, renderInner);
   out = transformBadges(out);
+  out = transformVideos(out);
   // <details>/<summary> pass through natively; <br/> ok.
   return out;
+}
+
+// <Video id="YouTubeId" title="..." /> -> lazy 16:9 privacy-enhanced YouTube embed
+function transformVideos(src) {
+  return src.split(/(```[\s\S]*?```|`[^`\n]*`)/).map((part, i) => i % 2 ? part
+    : part.replace(/<Video\s+([^>]*?)\/>/g, (whole, attrs) => {
+      const attr = (name) => (attrs.match(new RegExp(`${name}="([^"]*)"`)) || [])[1] || '';
+      const id = attr('id');
+      if (!/^[\w-]{11}$/.test(id)) return whole;
+      const title = escapeHtml(attr('title') || 'Video');
+      return `<figure class="video-figure"><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0" ` +
+        `title="${title}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" ` +
+        `allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>` +
+        `<figcaption>${title}</figcaption></figure>`;
+    })).join('');
 }
 
 // <Badge>Login required</Badge> -> pill; code spans and fences are left alone

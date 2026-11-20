@@ -1,5 +1,5 @@
 ---
-sidebar_position: 11
+sidebar_position: 2
 title: Compare
 description: Compare two versions of a PDF and see which words or visual content changed.
 sidebar_label: Compare
@@ -10,6 +10,8 @@ sidebar_label: Compare
 Compare shows the changes between two versions of a PDF. Choose **Text Comparison** for wording or **Pixel Comparison** for layout and images. Removed content is highlighted in red and added content in green. The comparison runs on your device, so the files are not uploaded.
 
 ## Compare two PDFs
+
+<Video id="op3aQBdiG_4" title="Compare two versions of a PDF" />
 
 1. In **Compare**, under **Original PDF**, pick the older version.
 2. Under **Edited PDF**, pick the newer version. Use **Swap** if you picked them the wrong way round.

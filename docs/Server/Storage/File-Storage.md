@@ -156,7 +156,7 @@ Sharing is on by default and needs storage. Use the toggles in **File Storage & 
 
 ## Stirling Sign
 
-Lets users request signatures from others and track them ([Request signatures](../../Tools/Security/Sign.md#request-signatures)). On by default; needs storage and login. With [email](../Security/Sign-in-and-Security.md#email-configuration) set up, participants and requesters are emailed as a request progresses. To turn it off, set `storage.signing.enabled: false`.
+Lets users request signatures from others and track them ([Request signatures](../../Tools/Security/Request-Signatures.md)). On by default; needs storage and login. With [email](../Security/Sign-in-and-Security.md#email-configuration) set up, participants and requesters are emailed as a request progresses. To turn it off, set `storage.signing.enabled: false`.
 
 ## Encryption at rest
 

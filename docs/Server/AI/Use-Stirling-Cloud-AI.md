@@ -8,7 +8,7 @@ sidebar_label: Use Stirling Cloud AI
 # Use Stirling Cloud AI from your server
 
 :::note
-If you use Stirling Cloud in the browser or the desktop app, AI is already included. See [AI assistant](../../Tools/Guides/AI-Assistant.md).
+If you use Stirling Cloud in the browser or the desktop app, AI is already included. See [AI assistant](../../Tools/Workspace/AI-Assistant.md).
 :::
 
 ## Before you start

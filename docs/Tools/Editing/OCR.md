@@ -1,5 +1,5 @@
 ---
-sidebar_position: 17
+sidebar_position: 4
 title: OCR
 description: Make scanned PDFs searchable and selectable, and clean up scans, with OCR.
 sidebar_label: OCR
@@ -10,6 +10,8 @@ sidebar_label: OCR
 OCR (optical character recognition) finds the text in scanned or photographed pages and adds it to the PDF, so you can search, select and copy it.
 
 ## Run OCR
+
+<Video id="bQ-Mpx5Bovo" title="Make a scanned PDF searchable with OCR" />
 
 1. Select one or more PDFs and open **OCR / Cleanup scans**.
 2. Under **Languages**, choose every language that appears in the document. At least one is required.
