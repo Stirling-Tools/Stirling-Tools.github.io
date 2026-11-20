@@ -7,7 +7,7 @@ description: Who can open the Processor on Stirling Cloud, what differs from a s
 
 # Processor and AI on Cloud
 
-For how the Processor and AI tools work, see [Processor](../Processor/Processor.md) and [AI assistant](../Tools/Guides/AI-Assistant.md).
+For how the Processor and AI tools work, see [Processor](../Processor/Processor.md) and [AI assistant](../Tools/Workspace/AI-Assistant.md).
 
 ## Open the Processor
 

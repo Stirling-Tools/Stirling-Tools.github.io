@@ -12,4 +12,4 @@ sidebar_label: Auto Rename PDF File
 1. Open **Auto Rename PDF File** and add your files. It renames a whole batch at once.
 2. Click **Auto Rename**. Each file is named after its largest wording, usually the title. Characters that aren't allowed in file names are left out.
 
-A file with no text, like a scan without OCR, keeps its name. Run [OCR](../Guides/OCR.md) on scans first.
+A file with no text, like a scan without OCR, keeps its name. Run [OCR](../Editing/OCR.md) on scans first.

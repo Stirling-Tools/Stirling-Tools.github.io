@@ -1,7 +1,7 @@
 ---
 title: Automate
 sidebar_label: Automate
-sidebar_position: 20
+sidebar_position: 1
 description: Save a chain of tools as an automation and run it on any files, then export or import it as JSON.
 ---
 

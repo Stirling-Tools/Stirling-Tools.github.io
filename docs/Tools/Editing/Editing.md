@@ -13,6 +13,9 @@ sidebar_label: Overview
 - **[Add image](./Add-Image.md)** - place a logo, stamp or photo anywhere on a page.
 - **[Add Text](./Add-Text.md)** - type new text anywhere on a page.
 - **[Add Stamp to PDF](./Add-Stamp.md)** - add a text, image or QR code stamp at a set position.
+- **[Compare](./Compare.md)** - show the text or visual differences between two PDFs.
+- **[Form Editor](./Fill-Form.md)** - fill in, add and edit form fields.
+- **[OCR / Cleanup scans](./OCR.md)** - make scanned PDFs searchable and clean them up.
 - **[Annotate](../Workspace/Read-and-Annotate.md)** - highlight, draw, and add notes and shapes in the viewer.
 
 ## Extract and remove

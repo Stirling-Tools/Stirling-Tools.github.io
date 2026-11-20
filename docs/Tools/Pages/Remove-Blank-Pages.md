@@ -1,17 +1,15 @@
 ---
 sidebar_position: 8
-title: Remove Blank Pages
+title: Remove Blank pages
 description: Find and remove empty pages, such as the blank backs of scanned sheets.
-sidebar_label: Remove Blank Pages
+sidebar_label: Remove Blank pages
 ---
 
-# Remove Blank Pages
+# Remove Blank pages
 
 **Remove Blank pages** finds empty pages, like the blank backs of scanned sheets, and takes them out.
 
 <Video id="uwIVlywZ13g" title="Remove blank pages" />
-
-## Remove blank pages
 
 1. Open **Remove Blank pages** and add your PDF.
 2. Adjust the thresholds if needed (below).

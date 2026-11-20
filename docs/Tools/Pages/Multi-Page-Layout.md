@@ -16,3 +16,5 @@ sidebar_label: Multi-Page Layout
    - **Page arrangement** - fill the grid by columns or by rows. **Reading Direction** can run right to left.
    - **Margins and borders** - space around the sheet and between pages, in points. **Add Borders** draws a line around each page, with **Border Thickness** for its weight.
 4. Click **Submit**.
+
+To print pages as a folded booklet, use [Booklet Imposition](./Booklet.md).

@@ -17,7 +17,7 @@ After a successful run, the input files are deleted from the job folder. Keep a 
 
 ## 1. Export the pipeline
 
-Build the workflow with the **Automate** tool ([Automate](../../Tools/Guides/Automate.md)) and select **Export for Folder Scanning**. This downloads `<name>.folder-scan.json`. The plain **Export** button produces a different format that only works for importing back into Automate.
+Build the workflow with the **Automate** tool ([Automate](../../Tools/Advanced/Automate.md)) and select **Export for Folder Scanning**. This downloads `<name>.folder-scan.json`. The plain **Export** button produces a different format that only works for importing back into Automate.
 
 You can also write the file by hand. Each step names an API `operation` and its `parameters`. `outputDir` and `outputFileName` control where results go, and folder scanning needs both. A minimal file:
 

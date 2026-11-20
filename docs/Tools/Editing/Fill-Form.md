@@ -1,5 +1,5 @@
 ---
-sidebar_position: 15
+sidebar_position: 3
 title: Fill forms
 description: Fill in PDF forms, add or edit form fields, export form data, and detect fields automatically.
 sidebar_label: Fill forms

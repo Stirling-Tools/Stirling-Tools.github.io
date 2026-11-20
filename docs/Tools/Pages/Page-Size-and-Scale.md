@@ -1,11 +1,11 @@
 ---
 sidebar_position: 11
-title: Page size and scale
+title: Adjust page size/scale
 description: Put every page on one paper size and scale the content to fit.
-sidebar_label: Page size and scale
+sidebar_label: Adjust page size/scale
 ---
 
-# Page size and scale
+# Adjust page size/scale
 
 **Adjust page size/scale** puts every page on one paper size and resizes the content to fit.
 

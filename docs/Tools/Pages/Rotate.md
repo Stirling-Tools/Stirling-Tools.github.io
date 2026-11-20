@@ -7,9 +7,9 @@ sidebar_label: Rotate
 
 # Rotate and Auto Rotate
 
-## Rotate
+**Rotate** turns every page of a file by quarter turns. **Auto Rotate** finds sideways or upside-down pages and turns just those upright.
 
-**Rotate** turns every page of a file the same way, in 90-degree steps.
+## Rotate every page
 
 1. Open **Rotate** and add the files you want to turn.
 2. Click **Rotate Counterclockwise** or **Rotate Clockwise** until the preview of the first page reads the right way up.
@@ -17,9 +17,7 @@ sidebar_label: Rotate
 
 To turn only some pages, use the [Page Editor](../Workspace/Page-Editor.md).
 
-## Auto Rotate
-
-**Auto Rotate** finds pages that are sideways or upside down and turns them upright, then shows a report of what it changed.
+## Turn pages upright automatically
 
 1. Open **Auto Rotate** and add your file.
 2. Choose a **Detection method**: **Auto** reads each page's text and uses OCR on pages without usable text, **Text only** is quickest for files that were never scanned, and **OCR only** treats every page as an image.

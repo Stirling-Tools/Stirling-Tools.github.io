@@ -17,3 +17,5 @@ sidebar_label: Overlay PDFs
    - **Fixed Repeat Overlay** takes a set number of pages from each overlay. Enter the numbers under **Overlay Counts (for Fixed Repeat Mode)**, for example a full letterhead on page one and a smaller header after it.
 4. Under **Select Overlay Position**, choose **Foreground** (on top, like a stamp) or **Background** (behind, like letterhead paper).
 5. Click **Submit**.
+
+To repeat text or a logo across every page, use [Add Watermark](../Security/Watermark.md).

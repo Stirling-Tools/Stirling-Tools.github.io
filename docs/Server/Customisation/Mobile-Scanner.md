@@ -7,7 +7,7 @@ description: Turn phone uploads by QR code on or off and choose how uploaded pho
 
 # Mobile scanner settings
 
-Control the [mobile scanner](../../Tools/Guides/Mobile-Scanner.md), which lets people scan a QR code and upload photos from their phone. It is on by default.
+Control the [mobile scanner](../../Tools/Workspace/Mobile-Scanner.md), which lets people scan a QR code and upload photos from their phone. It is on by default.
 
 ## Before you start
 

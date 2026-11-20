@@ -7,11 +7,13 @@ sidebar_label: PDF Text Editor
 
 # PDF Text Editor
 
-**PDF Text Editor** lets you edit the existing text and images of a PDF. Open it from the tool picker, or click **Edit Text** in the viewer's top bar. Click **Save PDF** to apply your changes to the file in your workspace, or **Download** to save a copy.
+**PDF Text Editor** edits the text, tables and images already in a PDF, including scanned pages.
 
 <Video id="T9tGn7lh7p4" title="Edit text in a PDF" />
 
 ## Text
+
+Open **PDF Text Editor** from the tool picker, or click **Edit Text** in the viewer's top bar. Click **Save PDF** to apply your changes to the file in your workspace, or **Download** to save a copy.
 
 - Click inside any text to place a cursor, then type. Double-click a word to replace it.
 - **Font family** lists the matched font, included fonts, **Server fonts** your admin added, and fonts on your device.

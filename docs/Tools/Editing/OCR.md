@@ -1,5 +1,5 @@
 ---
-sidebar_position: 17
+sidebar_position: 4
 title: OCR
 description: Make scanned PDFs searchable and selectable, and clean up scans, with OCR.
 sidebar_label: OCR

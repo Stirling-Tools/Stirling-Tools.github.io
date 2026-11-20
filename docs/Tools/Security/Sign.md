@@ -7,7 +7,9 @@ sidebar_label: Sign
 
 # Sign
 
-**Sign** adds a visible signature only, which anyone can copy. To prove who signed and detect later changes, use [Sign with Certificate](./Certificate-Signing.md).
+**Sign** places a drawn, typed or uploaded signature on a PDF. It's a visible signature only; to prove who signed and detect later changes, use [Sign with Certificate](./Certificate-Signing.md).
+
+<Video id="tsHWjL1zhPc" title="Sign a PDF yourself" />
 
 ## Add a signature
 
@@ -21,7 +23,6 @@ sidebar_label: Sign
 4. Click the PDF to place the signature. Place it as many times as you need, on any page. Drag a placed signature to move or resize it.
 5. Click **Apply N signatures**. The signed PDF replaces the original in your workspace.
 
-<Video id="tsHWjL1zhPc" title="Sign a PDF yourself" />
 
 ## Saved signatures
 

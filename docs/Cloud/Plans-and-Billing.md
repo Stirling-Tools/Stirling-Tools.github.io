@@ -14,7 +14,7 @@ Manual PDF tools on Stirling Cloud are free. Automation, AI and API calls use cr
 | Work | Credits |
 |---|---|
 | Tools you run yourself in the editor and reader | Free |
-| **[Automate](../Tools/Guides/Automate.md)** runs, Processor pipelines and policies, [processing folders](../Tools/Workspace/Processing-Folders.md) | Yes |
+| **[Automate](../Tools/Advanced/Automate.md)** runs, Processor pipelines and policies, [processing folders](../Tools/Workspace/Processing-Folders.md) | Yes |
 | AI tools and the AI assistant | Yes |
 | API calls and MCP actions | Yes |
 

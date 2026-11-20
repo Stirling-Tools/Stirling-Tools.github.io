@@ -1,5 +1,5 @@
 ---
-sidebar_position: 19
+sidebar_position: 3.5
 title: Redact
 description: Permanently remove sensitive text and areas from a PDF, automatically or by hand.
 sidebar_label: Redact

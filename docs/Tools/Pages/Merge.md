@@ -11,8 +11,6 @@ sidebar_label: Merge
 
 <Video id="CLq5hVFxSnQ" title="Merge PDFs: every option" />
 
-## Merge PDFs
-
 1. Open **Merge** and add your files. Click a file in the **PDF Library** to leave it out of the merge, or put it back.
 2. Set the order. Drag files by hand, or use **Sort By** (**File Name** or **Date Modified**, ascending or descending).
 3. Choose any options:

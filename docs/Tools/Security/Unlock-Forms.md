@@ -14,4 +14,4 @@ sidebar_label: Unlock PDF Forms
 1. Open **Unlock PDF Forms** and add your form.
 2. Click **Unlock Forms**. There are no settings.
 
-Every field can now be filled in. Fill it and save, for example with [Fill forms](../Guides/Fill-Form.md).
+Every field can now be filled in. Fill it and save, for example with [Fill forms](../Editing/Fill-Form.md).

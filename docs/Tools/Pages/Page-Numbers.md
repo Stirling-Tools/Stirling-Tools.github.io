@@ -17,3 +17,5 @@ sidebar_label: Add Page Numbers
 4. Under **Customise Appearance**, set the **Margin Size**, **Font Size** and **Font Name**. **Zero-pad Width (Bates Stamping)** adds leading zeros, so a width of 3 shows 2 as `002`.
 5. Under **Custom Text Format**, wrap the number in your own words, using `{n}` for the number and `{total}` for the page count, for example `Page {n} of {total}`.
 6. Click **Add Page Numbers**.
+
+For other text on every page, such as a footer, use [Add Stamp to PDF](../Editing/Add-Stamp.md).

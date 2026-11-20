@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 10
 title: Remove Annotations
 description: Clear every comment, highlight and markup from a PDF in one click.
 sidebar_label: Remove Annotations
@@ -14,4 +14,4 @@ sidebar_label: Remove Annotations
 1. Open **Remove Annotations** and add your PDF.
 2. Click **Remove**. There are no settings.
 
-Every annotation on every page is removed, including links. The text and layout stay. It runs in your browser, so the file isn't uploaded to the server.
+Every annotation on every page is removed, including links. The text and layout stay.

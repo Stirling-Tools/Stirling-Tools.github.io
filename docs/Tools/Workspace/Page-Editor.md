@@ -22,4 +22,4 @@ The **Page Editor** shows every page of every open file as a thumbnail, so you c
 4. Use **Wrap pages**, **Zoom in** and **Zoom out** to change the view, and **Undo** and **Redo** if you change your mind.
 5. Click **Save changes to all files** to apply your edits.
 
-To run the same steps on many files, use [Automate](../Guides/Automate.md).
+To run the same steps on many files, use [Automate](../Advanced/Automate.md).

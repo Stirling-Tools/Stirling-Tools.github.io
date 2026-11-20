@@ -1,5 +1,5 @@
 ---
-sidebar_position: 11
+sidebar_position: 2
 title: Compare
 description: Compare two versions of a PDF and see which words or visual content changed.
 sidebar_label: Compare

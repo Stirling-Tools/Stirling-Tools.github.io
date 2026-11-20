@@ -11,7 +11,7 @@ sidebar_label: Remove Pages
 
 <Video id="_8Dw23RO_xM" title="Remove pages from a PDF" />
 
-1. Open **Remove Pages** and add your PDF. The [Page Editor](../Workspace/Page-Editor.md) shows each page's number.
+1. Open **Remove Pages** and add your PDF.
 2. Under **Pages to Remove**, enter the pages:
    - single pages separated by commas, such as `2,7`
    - ranges such as `5-8`. Leave out the end number, as in `5-`, to run to the last page.

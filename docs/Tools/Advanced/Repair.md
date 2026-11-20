@@ -12,4 +12,4 @@ sidebar_label: Repair
 1. Open **Repair** and add the damaged file.
 2. Click **Repair**. There are no settings. It rewrites the whole file and rebuilds its structure.
 
-If a file is too damaged to rebuild, Repair shows an error instead. Keep the repaired copy in place of the damaged one.
+If a file is too damaged to rebuild, Repair shows an error instead.

@@ -16,3 +16,5 @@ sidebar_label: Change Permissions
    - **Prevent modification** and **Prevent annotation modification** block editing the content and the comments.
    - **Prevent filling in form** locks form fields, and **Prevent assembly of document** blocks adding, removing or rotating pages.
 3. Click **Change Permissions**.
+
+To require a password to open the file, use [Add Password](./Add-Password.md).

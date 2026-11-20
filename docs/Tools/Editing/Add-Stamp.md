@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 7
 title: Add Stamp to PDF
 description: Add a text, image or QR code stamp at one spot on the pages you choose.
 sidebar_label: Add Stamp to PDF

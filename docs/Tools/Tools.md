@@ -18,11 +18,11 @@ The most-used tools sit at the top of the picker. Each one has a keyboard shortc
 - **[PDF Text Editor](./Editing/PDF-Text-Editor.md)** - edit the existing text and images in a PDF. Also opens from **Edit Text** in the viewer.
 - **[Page Editor](./Workspace/Page-Editor.md)** (**PDF Multi Tool** in the picker) - rotate, reorder, delete, split and insert blank pages.
 - **[Merge](./Pages/Merge.md)** - combine several PDFs into one.
-- **[Compare](./Guides/Compare.md)** - show the text or visual differences between two PDFs.
-- **[Compress](./Guides/Compress.md)** - make a PDF smaller.
-- **[Convert](./Guides/Convert.md)** - convert between PDF and other formats.
-- **[OCR / Cleanup scans](./Guides/OCR.md)** - make scanned PDFs searchable and clean them up.
-- **[Redact](./Guides/Redact.md)** - permanently black out text, areas or whole pages.
+- **[Compare](./Editing/Compare.md)** - show the text or visual differences between two PDFs.
+- **[Compress](./Conversion/Compress.md)** - make a PDF smaller.
+- **[Convert](./Conversion/Convert.md)** - convert between PDF and other formats.
+- **[OCR / Cleanup scans](./Editing/OCR.md)** - make scanned PDFs searchable and clean them up.
+- **[Redact](./Security/Redact.md)** - permanently black out text, areas or whole pages.
 
 ## Signing
 
@@ -56,7 +56,7 @@ The most-used tools sit at the top of the picker. Each one has a keyboard shortc
 
 - **[Crop PDF](./Pages/Crop.md)** - trim pages to the area you want.
 - **[Rotate](./Pages/Rotate.md)** - turn pages.
-- **[Auto Rotate](./Pages/Rotate.md#auto-rotate)** - detect each page's orientation and turn it upright.
+- **[Auto Rotate](./Pages/Rotate.md#turn-pages-upright-automatically)** - detect each page's orientation and turn it upright.
 - **[Split](./Pages/Split.md)** - split one PDF into several files.
 - **[Reorganize Pages](./Pages/Reorganize-Pages.md)** - rearrange, duplicate or delete pages.
 - **[Adjust page size/scale](./Pages/Page-Size-and-Scale.md)** - change the page size and how big the content sits on it.
@@ -70,7 +70,7 @@ The most-used tools sit at the top of the picker. Each one has a keyboard shortc
 ## Extraction
 
 - **[Extract Pages](./Pages/Extract-Pages.md)** - save chosen pages as a new PDF.
-- **[Extract Images](./Editing/Extract-Images.md)** - save every image in the PDF to a ZIP file.
+- **[Extract Images](./Editing/Extract-Images.md)** - save every picture in the PDF as its own image file.
 
 ## Removal
 
@@ -83,8 +83,8 @@ The most-used tools sit at the top of the picker. Each one has a keyboard shortc
 
 ## Automation
 
-- **[Auto Form Detection](./Guides/Fill-Form.md#detect-fields-automatically)** - find form fields and make a PDF fillable.
-- **[Automate](./Guides/Automate.md)** - save a chain of tools and run it on any files.
+- **[Auto Form Detection](./Editing/Fill-Form.md#detect-fields-automatically)** - find form fields and make a PDF fillable.
+- **[Automate](./Advanced/Automate.md)** - save a chain of tools and run it on any files.
 - **[Auto Rename PDF File](./Advanced/Auto-Rename.md)** - rename a file from the title found in it.
 
 ## General
@@ -92,7 +92,7 @@ The most-used tools sit at the top of the picker. Each one has a keyboard shortc
 - **[Add Text](./Editing/Add-Text.md)** - type text anywhere on a page.
 - **[Add image](./Editing/Add-Image.md)** - place an image anywhere on a page.
 - **[Annotate](./Workspace/Read-and-Annotate.md)** - highlight, draw, add notes and shapes in the viewer.
-- **[Form Editor](./Guides/Fill-Form.md)** - fill in, add and edit form fields.
+- **[Form Editor](./Editing/Fill-Form.md)** - fill in, add and edit form fields.
 
 ## Advanced formatting
 
@@ -109,4 +109,4 @@ The most-used tools sit at the top of the picker. Each one has a keyboard shortc
 
 ## AI
 
-The AI assistant isn't in the tool list. Open it with the **Open Stirling AI assistant** button in the workspace ([AI assistant](./Guides/AI-Assistant.md)).
+The AI assistant isn't in the tool list. Open it with the **Open Stirling AI assistant** button in the workspace ([AI assistant](./Workspace/AI-Assistant.md)).

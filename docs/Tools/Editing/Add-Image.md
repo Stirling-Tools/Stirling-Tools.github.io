@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 5
 title: Add image
 description: Place a logo, stamp or photo anywhere on a PDF page.
 sidebar_label: Add image

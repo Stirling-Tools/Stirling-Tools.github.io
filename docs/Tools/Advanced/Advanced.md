@@ -7,7 +7,7 @@ sidebar_label: Overview
 
 # Advanced tools
 
-- **[Automate](../Guides/Automate.md)** - save a chain of tools and run it on any files.
+- **[Automate](./Automate.md)** - save a chain of tools and run it on any files.
 - **[Auto Rename PDF File](./Auto-Rename.md)** - rename a file from the title found in it.
 - **[Adjust Colors/Contrast](./Adjust-Colours.md)** - bring faded scans and dull pages back to life.
 - **[Replace & Invert Color](./Replace-Colour.md)** - recolour text and backgrounds, invert, or convert to CMYK.

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 6
 title: Add Text
 description: Type new text anywhere on a PDF, such as a name, a date or a note.
 sidebar_label: Add Text

@@ -11,8 +11,6 @@ sidebar_label: Booklet Imposition
 
 <Video id="2lLef7sfHRQ" title="Print a folded booklet" />
 
-## Make a booklet
-
 1. Open **Booklet Imposition** and add your file.
 2. **Double-sided printing** is on by default, for printers that print both sides. Without one, untick it for **Manual Duplex Mode**: print the **1st Pass**, put the stack back in face down, then print the **2nd Pass** on the backs.
 3. Under **Advanced Options**, set any of:

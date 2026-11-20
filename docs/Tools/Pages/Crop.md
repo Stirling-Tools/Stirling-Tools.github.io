@@ -1,11 +1,11 @@
 ---
 sidebar_position: 10
-title: Crop
+title: Crop PDF
 description: Trim pages down to the area you want to keep, by hand or automatically.
-sidebar_label: Crop
+sidebar_label: Crop PDF
 ---
 
-# Crop
+# Crop PDF
 
 **Crop PDF** trims pages down to just the area you want to keep.
 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 11
 title: Change Metadata
 description: Edit the details stored inside a PDF, such as its title, author and dates.
 sidebar_label: Change Metadata

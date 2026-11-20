@@ -53,7 +53,7 @@ The bot only processes files once the chat's inbox folder has a `.json` pipeline
 
 - Each chat's inbox is `/pipeline/watchedFolders/telegram/<chat ID>/` by default.
 - The subfolder is created the first time a chat sends the bot a PDF. Send one (the bot replies that no JSON configuration file was found), then look for the new folder. [@userinfobot](https://t.me/userinfobot) also tells you your user ID.
-- Build the workflow in the [Automate](../../Tools/Guides/Automate.md) tool, select **Export for Folder Scanning**, and put the downloaded file in the folder. Any `.json` filename works.
+- Build the workflow in the [Automate](../../Tools/Advanced/Automate.md) tool, select **Export for Folder Scanning**, and put the downloaded file in the folder. Any `.json` filename works.
 
 ## 4. Send a PDF
 

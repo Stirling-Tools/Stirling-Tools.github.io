@@ -15,6 +15,7 @@ sidebar_label: Overview
 
 ## Document security
 
+- **[Redact](./Redact.md)** - permanently black out text, areas or whole pages.
 - **[Add Password](./Add-Password.md)** - require a password to open the PDF.
 - **[Change Permissions](./Change-Permissions.md)** - allow or block printing, copying, editing and other actions.
 - **[Add Watermark](./Watermark.md)** - repeat text or an image across every page.
@@ -33,7 +34,6 @@ sidebar_label: Overview
 - **[Remove Password](./Remove-Password.md)** - unlock a protected PDF when you know its password.
 - **[Remove Certificate Sign](./Remove-Certificate-Sign.md)** - strip digital signatures, for example so you can edit a signed file.
 
-To black out text or areas for good, use [Redact](../Guides/Redact.md).
 
 ## Protected PDFs
 

@@ -23,13 +23,13 @@ To edit pages visually as thumbnails, use the [Page Editor](../Workspace/Page-Ed
 ## Remove and extract
 
 - **[Remove Pages](./Remove-Pages.md)** - delete the pages you list.
-- **[Remove Blank Pages](./Remove-Blank-Pages.md)** - find and drop empty pages.
+- **[Remove Blank pages](./Remove-Blank-Pages.md)** - find and drop empty pages.
 - **[Extract Pages](./Extract-Pages.md)** - copy chosen pages into a new PDF.
 
 ## Size and layout
 
-- **[Crop](./Crop.md)** - trim pages to the area you want.
-- **[Page size and scale](./Page-Size-and-Scale.md)** - put every page on one paper size.
+- **[Crop PDF](./Crop.md)** - trim pages to the area you want.
+- **[Adjust page size/scale](./Page-Size-and-Scale.md)** - put every page on one paper size.
 - **[Multi-Page Layout](./Multi-Page-Layout.md)** - fit several pages on each sheet.
 - **[Booklet Imposition](./Booklet.md)** - order pages for printing as a folded booklet.
 - **[PDF to Single Large Page](./Single-Large-Page.md)** - join every page into one long page.

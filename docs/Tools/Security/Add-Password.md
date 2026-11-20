@@ -16,5 +16,5 @@ sidebar_label: Add Password
    - **User Password** - the one people need to open the file.
    - **Owner Password** - gives full access, so whoever has it can change or remove the restrictions.
 3. **Encryption Key Length** sets the strength. 256-bit is strongest; 40-bit only suits very old readers.
-4. To also block actions such as printing or copying text, open **Change Permissions**.
+4. To also block actions such as printing or copying text, open the **Change Permissions** section.
 5. Click **Encrypt**.

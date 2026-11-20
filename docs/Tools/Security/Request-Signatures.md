@@ -7,16 +7,17 @@ sidebar_label: Request signatures
 
 # Request signatures
 
-Shared signing collects signatures from several people on one document.
+**Request signatures** collects signatures from several people on one document. Signing in is required.
+
+<Video id="KeaLJfrter0" title="Request signatures from others" />
 
 ## Send a request
 <Badge>Login required</Badge>
 
 1. Click **Sign** in the left rail, then **Request signatures**.
 2. Choose the PDF, add participants and an optional due date, then click **Send signing request**.
-3. Participants sign in any order. Track requests under **Signing sessions**, then finalize the document once everyone has signed.
+3. Participants sign in any order. Track requests under **Signing sessions**, then finalise the document once everyone has signed.
 
-<Video id="KeaLJfrter0" title="Request signatures from others" />
 
 ## Sign a request sent to you
 

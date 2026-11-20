@@ -37,7 +37,7 @@ Authentication and base URLs are the same as for the [REST API](./API.md). Pipel
 
 ## Start from an Automate export
 
-Build the workflow in [Automate](../Tools/Guides/Automate.md) and click **Export for Folder Scanning**, not **Export**. This downloads `<name>.folder-scan.json` with each step's endpoint path filled in. Before you use it, rename each step's parameters to the endpoint's field names, for example `compressionLevel` to `optimizeLevel` for Compress, as endpoints ignore names they don't know.
+Build the workflow in [Automate](../Tools/Advanced/Automate.md) and click **Export for Folder Scanning**, not **Export**. This downloads `<name>.folder-scan.json` with each step's endpoint path filled in. Before you use it, rename each step's parameters to the endpoint's field names, for example `compressionLevel` to `optimizeLevel` for Compress, as endpoints ignore names they don't know.
 
 ## Operations
 

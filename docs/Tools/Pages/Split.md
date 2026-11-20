@@ -11,8 +11,6 @@ sidebar_label: Split
 
 <Video id="42zRprqa9no" title="Split scanned batches and posters" />
 
-## Split a PDF
-
 1. Open **Split** and add the PDF.
 2. Choose a method and fill in its setting.
 3. Click **Split**. The review panel lists each new file and its size. Use the arrows to step through them.
@@ -21,7 +19,7 @@ sidebar_label: Split
 
 | Method | Splits |
 |--------|--------|
-| **Page Numbers** | After each page you enter. `3,7` gives pages 1-3, 4-7 and 8 to the end. A range splits after every page in it |
+| **Page Numbers** | After each page you enter. `3,7` gives pages 1-3, 4-7 and 8 to the end. A range such as `3-5` splits after each of those pages |
 | **Chapters** | At each bookmark, using the document's outline |
 | **Sections** | Each page into a grid of horizontal and vertical pieces, for example halves or quarters |
 | **File Size** | Into parts under a maximum size, for example `10MB` |
