@@ -1,0 +1,11 @@
+// Cloudflare Workers Builds: serves the built docs as static assets, with a preview per branch
+{
+  "name": "stirling-docs",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./build",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "previews": {}
+}
