@@ -11,6 +11,8 @@ OCR (optical character recognition) finds the text in scanned or photographed pa
 
 ## Run OCR
 
+<Video id="bQ-Mpx5Bovo" title="Make a scanned PDF searchable with OCR" />
+
 1. Select one or more PDFs and open **OCR / Cleanup scans**.
 2. Under **Languages**, choose every language that appears in the document. At least one is required.
 3. Pick an **OCR Mode** and any **Processing Options** (below).

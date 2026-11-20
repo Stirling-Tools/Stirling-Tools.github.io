@@ -21,6 +21,8 @@ sidebar_label: Sign
 4. Click the PDF to place the signature. Place it as many times as you need, on any page. Drag a placed signature to move or resize it.
 5. Click **Apply N signatures**. The signed PDF replaces the original in your workspace.
 
+<Video id="tsHWjL1zhPc" title="Sign a PDF yourself" />
+
 ## Saved signatures
 
 - To reuse one, pick it under **Your signatures** and click the page.
@@ -34,3 +36,17 @@ sidebar_label: Sign
 1. Click **Sign** in the left rail, then **Request signatures**.
 2. Choose the PDF, add participants and an optional due date, then click **Send signing request**.
 3. Participants sign in any order. Track requests under **Signing sessions**, then finalize the document once everyone has signed.
+
+<Video id="KeaLJfrter0" title="Request signatures from others" />
+
+### Sign a request sent to you
+
+When a request is waiting for you, **Sign** in the left rail shows a badge. Open the request, click **Add signature**, place it on the page, then click **Complete and Sign** and choose a certificate.
+
+<Video id="hy3VthVNQM4" title="Sign a document sent to you" />
+
+### Finalise a request
+
+Once everyone has signed, the request shows **Ready to finalise**. Open it and click **Finalise**. You can also finalise early with the signatures you have. The signed PDF opens in your workspace.
+
+<Video id="0hY5pfVksOg" title="Finalise a signing request" />

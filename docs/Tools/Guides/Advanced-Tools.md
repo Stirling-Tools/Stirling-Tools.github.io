@@ -23,6 +23,8 @@ Renames a PDF from the title found near the start of the document. Run [OCR](./O
 
 Adjust contrast, brightness and saturation, and the red, green and blue levels, with a live preview.
 
+<Video id="n_el2UTahSQ" title="Adjust colours and contrast" />
+
 ### Replace & Invert Color
 
 Under **Color operation**, choose:
@@ -35,6 +37,8 @@ Under **Color operation**, choose:
 ### Detect & Split Scanned Photos
 
 Finds each photo on a scanned page and saves it as a separate image. Scan on a plain, light background with a small gap between photos.
+
+<Video id="NyJS90M1080" title="Split scanned photos into separate images" />
 
 ### Overlay PDFs
 

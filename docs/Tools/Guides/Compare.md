@@ -11,6 +11,8 @@ Compare shows the changes between two versions of a PDF. Choose **Text Compariso
 
 ## Compare two PDFs
 
+<Video id="op3aQBdiG_4" title="Compare two versions of a PDF" />
+
 1. In **Compare**, under **Original PDF**, pick the older version.
 2. Under **Edited PDF**, pick the newer version. Use **Swap** if you picked them the wrong way round.
 3. Click **Compare**.

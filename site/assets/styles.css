@@ -667,6 +667,22 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
 }
 p > .badge:first-child, td > .badge:first-child, li > .badge:first-child { margin-left: 0; }
 
+/* <Video> embed, 16:9 */
+.video-figure { margin: 1rem 0 1.5rem; }
+.video-figure figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.8125rem;
+  color: var(--c-text-subtle);
+}
+.video {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--c-bg-subtle);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-lg);
+}
+.video iframe { display: block; width: 100%; height: 100%; border: 0; }
+
 .doc-title,
 .doc h1 {
   font-size: 1.75rem;

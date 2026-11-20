@@ -11,12 +11,16 @@ Add your files to the workspace once, then run as many tools on them as you like
 
 ## The workspace
 
+<Video id="mHbV02mzPMc" title="Getting started with Stirling PDF" />
+
 - Drag files onto the app or click **Add files**. They appear in the file sidebar under **PDF Library**.
 - Workspace files are kept in this browser (in the desktop app, on this computer). To keep a file on the server or share it, see [My files and sharing](./Files-and-Sharing.md).
 - After a tool runs, click **Undo** to restore the files as they were.
 - Each tool run saves a new version of the file. To see earlier versions, open the file's **More actions** menu in the sidebar and choose **Version history**. From there you can open an earlier version in the workspace or remove it.
 
 ## Edit pages in the Page Editor
+
+<Video id="FpGYOcY4q34" title="Rearrange, rotate and delete PDF pages" />
 
 1. Open **Page Editor** from the top bar, or pick **PDF Multi Tool** in the tool picker. Each file gets its own row of page thumbnails.
 2. Select pages with their checkboxes, with **Select All**, or with **Select by Page Numbers**.

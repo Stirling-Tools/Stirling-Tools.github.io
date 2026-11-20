@@ -11,6 +11,8 @@ Redact permanently deletes sensitive text and areas from a PDF, not just hides t
 
 ## Automatic redaction
 
+<Video id="t9_5awBg0w4" title="Redact private information from a PDF" />
+
 1. Under **Redaction Method**, choose **Automatic**.
 2. Under **Words to Redact**, type a word or phrase and click **Add**. Repeat for each one.
 3. (Optional) Under **Advanced**, set:

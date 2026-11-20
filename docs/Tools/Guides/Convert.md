@@ -28,6 +28,10 @@ If you select files of different types, they are all converted to PDF.
 
 Image options: **Color Type** (**Color**, **Grayscale** or **Black & White**), **Fit Option** (**Maintain Aspect Ratio**, **Fit Document to Page** or **Fill Page**), **Auto Rotate**, and **Combine Images** to put all images in one PDF instead of one PDF each.
 
+<Video id="eXCl9q-9mR0" title="Convert Word, Excel and PowerPoint to PDF" />
+
+<Video id="pJnSQE6mxKw" title="Turn images into a PDF" />
+
 ## Convert from PDF
 
 | Type | Formats |

@@ -65,6 +65,8 @@ Each signature gets a status:
 
 You can download the results as a PDF report, CSV or JSON.
 
+<Video id="NDy9a_2mGtY" title="Validate PDF signatures" />
+
 ## Timestamping PDFs
 
 **Timestamp PDF** adds a trusted RFC 3161 timestamp that proves the PDF existed at a point in time.

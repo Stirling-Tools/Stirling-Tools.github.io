@@ -11,6 +11,8 @@ Open a PDF and select **Form Editor**, then choose a **Form editor mode**: **Fil
 
 ## Fill in a form
 
+<Video id="ZBBrq7ubu9w" title="Fill in PDF forms" />
+
 1. In **Fill**, click each field on the page (or in the field list) and enter a value.
 2. Turn on **Flatten after filling** to lock the answers into the page.
 3. Click **Save** or press **Ctrl+S** (**Cmd+S** on a Mac) to write the values into the PDF. Required fields must be filled first.

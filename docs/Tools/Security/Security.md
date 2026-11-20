@@ -24,6 +24,10 @@ In the tool picker, these tools sit under **Signing**, **Document Security**, **
 - **Flatten** - merge form fields and other interactive elements into the page so they can't be edited.
 - **Unlock PDF Forms** - make read-only form fields editable again.
 
+<Video id="o1rlPyG0ozM" title="Password protect a PDF" />
+
+<Video id="uVRh_RHzOyE" title="Unlock read-only form fields" />
+
 ## Verification
 
 - **Validate PDF Signature** - check who signed, whether their certificate is trusted and whether the file changed after signing. See [Validating signatures](./Certificate-Signing.md#validating-signatures).

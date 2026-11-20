@@ -14,6 +14,8 @@ Open a PDF in the viewer to read it, search it and mark it up. Two tools open th
 
 ## Viewer
 
+<Video id="Cfj2Q8bz0BM" title="Reading PDFs in the Viewer" />
+
 - Switch between **Single Page View** and **Dual Page View**, with **Show Cover Page Separately** for dual pages.
 - Zoom with **Fit to width** or **Fit to page**.
 - Open the **Bookmarks**, **Attachments**, **Layers** and **Comments** sidebars.
@@ -35,6 +37,8 @@ For shortcuts, see [Keyboard shortcuts](./Keyboard-Shortcuts.md#pdf-viewer-short
 Use **Select and Edit** to move, resize or change an annotation you've placed.
 
 To sign a PDF, use [Sign](../Security/Sign.md) instead.
+
+<Video id="t6VYlROCjaQ" title="Annotate a PDF" />
 
 ## Comments
 

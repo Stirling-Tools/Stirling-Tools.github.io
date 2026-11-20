@@ -18,6 +18,10 @@ To edit pages visually with thumbnails, see [Workspace and Page Editor](../Works
 
 **Create Portfolio** is the alternative when the files should stay separate: it bundles them into one PDF portfolio, whatever their type.
 
+<Video id="CLq5hVFxSnQ" title="Merge PDFs: every option" />
+
+<Video id="OVEN7szD-hI" title="Create a PDF portfolio" />
+
 ## Split
 
 **Split** breaks one PDF into several files. Choose a method:
@@ -33,11 +37,15 @@ To edit pages visually with thumbnails, see [Workspace and Page Editor](../Works
 | **Page Divider** | At QR code divider sheets placed between documents when scanning a batch |
 | **Printable Chunks** | Each oversized page into tiles of a standard paper size (A4, Letter and so on) for printing as a poster |
 
+<Video id="42zRprqa9no" title="Split scanned batches and posters" />
+
 ## Reorder and rotate
 
 - **Reorganize Pages** - rearrange, duplicate or delete pages. Choose an **Organization mode**, for example **Custom Page Order** (enter an order such as `1,3,2,4-6`), **Reverse Order**, **Duplex Sort** (for scans of all fronts then all backs), **Odd-Even Split**, **Odd-Even Merge** or **Duplicate all pages**.
 - **Rotate** - turns all pages by 90-degree steps with **Rotate Counterclockwise** and **Rotate Clockwise**.
 - **Auto Rotate** - detects each page's orientation and turns it upright, then shows a report of what it changed. **Detection method** is **Auto**, **Text only** or **OCR only**. Tick **Rotate low confidence pages to match** to turn blank or nearly blank pages the same way as the rest.
+
+<Video id="v05M7TE0YIg" title="Reorder PDF pages" />
 
 ## Remove and extract pages
 
@@ -47,6 +55,10 @@ To edit pages visually with thumbnails, see [Workspace and Page Editor](../Works
 
 In **Extract Pages** and **Remove Pages**, enter single pages and ranges such as `1,3,5-8`, or expressions such as `2n-1` (odd pages).
 
+<Video id="_8Dw23RO_xM" title="Remove pages from a PDF" />
+
+<Video id="uwIVlywZ13g" title="Remove blank pages" />
+
 ## Page size and layout
 
 - **Adjust page size/scale** - choose a **Target Page Size** (A0-A6, Letter, Legal, **Custom** width and height, or **Keep Original Size**) and a **Scale Factor** for the content. **Page orientation** (**Portrait** or **Landscape**) sets which way round the chosen size is used. It is unavailable with **Custom** or **Keep Original Size**.
@@ -55,7 +67,15 @@ In **Extract Pages** and **Remove Pages**, enter single pages and ranges such as
 - **PDF to Single Large Page** - stacks every page into one tall page.
 - **Booklet Imposition** - reorders and lays out pages so that, printed double-sided and folded, they read in order.
 
+<Video id="oNqRpi7GCpo" title="Change page size and scale" />
+
+<Video id="uG6FAbmHVIw" title="Crop pages" />
+
+<Video id="2lLef7sfHRQ" title="Print a folded booklet" />
+
 ## Add to pages
 
 - **Add Page Numbers** - choose the position, which pages to number, the starting number and a custom format such as `Page {n}`. **Zero-pad Width (Bates Stamping)** pads numbers to a fixed width, for example `001`.
 - **Manage Attachments** - add, extract, rename or delete files embedded in the PDF.
+
+<Video id="dl2odVlOP44" title="Add and manage attachments" />
