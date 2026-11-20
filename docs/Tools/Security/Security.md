@@ -4,40 +4,34 @@ description: Tools for signing PDFs, protecting them with passwords and permissi
 title: Signing and security tools
 sidebar_label: Overview
 ---
-# Signing and security tools
 
-In the tool picker, these tools sit under **Signing**, **Document Security**, **Verification** and **Removal**.
+# Signing and security tools
 
 ## Signing
 
-- **Sign** - draw, type or upload a signature and place it on the page. See [Sign](./Sign.md).
-- **Sign with Certificate** - add a digital signature that proves who signed and shows if the file is changed later. See [Certificate signing](./Certificate-Signing.md).
-- **Timestamp PDF** - add a trusted RFC 3161 timestamp that proves the PDF existed at a point in time. See [Timestamping PDFs](./Certificate-Signing.md#timestamping-pdfs).
+- **[Sign](./Sign.md)** - draw, type or upload a signature and place it on the page.
+- **[Request signatures](./Request-Signatures.md)** - collect signatures from several people on one document.
+- **[Sign with Certificate](./Certificate-Signing.md)** - add a digital signature that proves who signed. Also covers **Timestamp PDF** and **Validate PDF Signature**.
 
 ## Document security
 
-- **Add Password** - set a **User Password** (needed to open the file) and an **Owner Password** (controls what people can do once it's open).
-- **Change Permissions** - allow or block printing, copying, editing, form filling and other actions.
-- **Add Watermark** - stamp text or an image across the pages.
-- **Add Stamp to PDF** - add a text or image stamp at a set position. See [Content and editing](../Guides/Content-Editing.md).
-- **Sanitize** - remove JavaScript, embedded files, links, metadata and fonts.
-- **Flatten** - merge form fields and other interactive elements into the page so they can't be edited.
-- **Unlock PDF Forms** - make read-only form fields editable again.
-
-<Video id="o1rlPyG0ozM" title="Password protect a PDF" />
-
-<Video id="uVRh_RHzOyE" title="Unlock read-only form fields" />
+- **[Add Password](./Add-Password.md)** - require a password to open the PDF.
+- **[Change Permissions](./Change-Permissions.md)** - allow or block printing, copying, editing and other actions.
+- **[Add Watermark](./Watermark.md)** - repeat text or an image across every page.
+- **[Add Stamp to PDF](../Editing/Add-Stamp.md)** - add a text or image stamp at a set position.
+- **[Sanitize](./Sanitize.md)** - remove JavaScript, embedded files, links, metadata and fonts.
+- **[Flatten](./Flatten.md)** - turn form fields and other interactive parts into plain page content.
+- **[Unlock PDF Forms](./Unlock-Forms.md)** - make read-only form fields fillable again.
 
 ## Verification
 
-- **Validate PDF Signature** - check who signed, whether their certificate is trusted and whether the file changed after signing. See [Validating signatures](./Certificate-Signing.md#validating-signatures).
-- **Get ALL Info on PDF** - show the PDF version, fonts, page sizes, permissions, metadata and more, as tables or JSON.
-- **Check PDF accessibility** - check a PDF against **PDF/UA-1** or **PDF/UA-2** without changing it. Each file gets **Pass**, **Partial** or **Fail**, and **Download accessibility report** saves the results as a PDF.
+- **[Get ALL Info on PDF](./Get-PDF-Info.md)** - a full report on a PDF's details, security, fonts and pages.
+- **[Check PDF accessibility](./Accessibility-Check.md)** - check a PDF against PDF/UA without changing it.
 
 ## Removal
 
-- **Remove Password** - unlock a protected PDF. You need the current password. Permission restrictions are kept.
-- **Remove Certificate Sign** - strip digital signatures, for example so you can edit a signed file.
+- **[Remove Password](./Remove-Password.md)** - unlock a protected PDF when you know its password.
+- **[Remove Certificate Sign](./Remove-Certificate-Sign.md)** - strip digital signatures, for example so you can edit a signed file.
 
 To black out text or areas for good, use [Redact](../Guides/Redact.md).
 

@@ -77,10 +77,10 @@
   "/Contribute": "/Developers/Contributing",
   "/FAQ": "/Tools/FAQ",
   "/functionality": "/Tools/",
-  "/Functionality/Advanced-Tools": "/Tools/Guides/Advanced-Tools",
+  "/Functionality/Advanced-Tools": "/Tools/Advanced/",
   "/Functionality/Compare": "/Tools/Guides/Compare",
   "/Functionality/Compress": "/Tools/Guides/Compress",
-  "/Functionality/Content-Editing/": "/Tools/Guides/Content-Editing",
+  "/Functionality/Content-Editing/": "/Tools/Editing/",
   "/Functionality/Convert/": "/Tools/Guides/Convert",
   "/Functionality/Features Pipeline": "/Tools/Guides/Automate",
   "/Functionality/Fill-Form": "/Tools/Guides/Fill-Form",
@@ -88,7 +88,7 @@
   "/Functionality/Multi-Tool": "/Tools/Workspace/Page-Editor",
   "/Tools/Workspace/Multi-Tool": "/Tools/Workspace/Page-Editor",
   "/Functionality/OCR": "/Tools/Guides/OCR",
-  "/Functionality/Page-Operations/": "/Tools/Guides/Page-Operations",
+  "/Functionality/Page-Operations/": "/Tools/Pages/",
   "/Functionality/Page-Operations/redact": "/Tools/Guides/Redact",
   "/Functionality/Read-and-Annotate": "/Tools/Workspace/Read-and-Annotate",
   "/Functionality/Recommended-Tools": "/Tools/",
@@ -116,5 +116,8 @@
   "/Production-Deployment-Guide": "/Server/Production",
   "/Stirling Account Link": "/Server/Licensing/Connect-to-Stirling-Cloud",
   "/Installation/Kubernetes": "/Server/Install/Kubernetes",
-  "/Configuration/OAuth": "/Server/Security/OAuth-SSO"
+  "/Configuration/OAuth": "/Server/Security/OAuth-SSO",
+  "/Tools/Guides/Page-Operations": "/Tools/Pages/",
+  "/Tools/Guides/Content-Editing": "/Tools/Editing/",
+  "/Tools/Guides/Advanced-Tools": "/Tools/Advanced/"
 }

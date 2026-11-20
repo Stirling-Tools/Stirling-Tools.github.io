@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Certificate signing
 description: Sign PDFs with a digital certificate, check existing signatures and add trusted timestamps.
 sidebar_label: Certificate signing

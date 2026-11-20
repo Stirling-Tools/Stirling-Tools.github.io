@@ -1,24 +1,13 @@
 ---
 sidebar_position: 1
-title: Workspace and Page Editor
-description: How the workspace keeps your files between tools, and how to edit pages visually in the Page Editor.
+title: Page Editor
+description: Edit the pages of one or more PDFs visually, as thumbnails.
 sidebar_label: Page Editor
 ---
 
-# Workspace and Page Editor
+# Page Editor
 
-Add your files to the workspace once, then run as many tools on them as you like. The **Page Editor** lets you edit their pages as thumbnails.
-
-## The workspace
-
-<Video id="mHbV02mzPMc" title="Getting started with Stirling PDF" />
-
-- Drag files onto the app or click **Add files**. They appear in the file sidebar under **PDF Library**.
-- Workspace files are kept in this browser (in the desktop app, on this computer). To keep a file on the server or share it, see [My files and sharing](./Files-and-Sharing.md).
-- After a tool runs, click **Undo** to restore the files as they were.
-- Each tool run saves a new version of the file. To see earlier versions, open the file's **More actions** menu in the sidebar and choose **Version history**. From there you can open an earlier version in the workspace or remove it.
-
-## Edit pages in the Page Editor
+The **Page Editor** shows every page of every open file as a thumbnail, so you can move, rotate, delete, split and insert pages visually.
 
 <Video id="FpGYOcY4q34" title="Rearrange, rotate and delete PDF pages" />
 
