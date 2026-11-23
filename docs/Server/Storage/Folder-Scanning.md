@@ -88,7 +88,7 @@ Change the folders in **Settings → Server → System → Custom Paths**, under
 | `autoPipeline.fileReadiness.sizeCheckDelayMillis` | `500` | Pause between two size checks when detecting a file still being written. |
 | `autoPipeline.fileReadiness.allowedExtensions` | `[]` | Only process these extensions, without the dot, such as `["pdf", "tiff"]`. Empty accepts all. |
 
-A workflow can have at most 50 steps (`policies.maxSteps`) and stops if one step produces more than 10,000 files (`policies.maxFilesPerStep`).
+By default, a workflow can have up to 50 steps and stops if one step produces more than 10,000 files. Administrators can change these limits or set either one to `0` in the [processor settings](../Automation/Processor-Settings.md).
 
 :::warning Check the startup log
 A watched folder that is the same as the finished folder, or inside it, logs a `CRITICAL` processing-loop error. Nested watched folders, or a finished folder inside a watched folder, log warnings.

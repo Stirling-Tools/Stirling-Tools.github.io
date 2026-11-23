@@ -61,6 +61,8 @@ docker run -d \
 </TabItem>
 </Tabs>
 
+Restrict access to port 8080 until you finish setup. The first browser to reach a fresh instance can set the initial admin credentials.
+
 Open `http://localhost:8080` to start the setup wizard (see [First login](../Server.md#first-login)). Restart the container when the wizard asks.
 
 ## Choose an image

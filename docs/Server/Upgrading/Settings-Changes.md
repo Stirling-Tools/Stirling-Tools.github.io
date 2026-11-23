@@ -26,7 +26,7 @@ Environment variables still override the file. A variable for a removed setting 
 
 ## Changed defaults
 
-These only affect a new settings file. An upgraded file keeps your values.
+New settings files use these defaults. Upgrades preserve your existing values and add any missing settings with the new defaults.
 
 - `security.enableLogin` is now `true`.
 - `system.showUpdate` and `system.showUpdateOnlyAdmin` are now `true`.

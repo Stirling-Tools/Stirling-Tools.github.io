@@ -43,4 +43,4 @@ When you add a password-protected PDF, enter its password to open it for this se
 
 ## Signed PDFs
 
-If your admin turns on **Block changes to signed PDFs**, digitally signed PDFs show **Signed: edits blocked**. You can still view, print, convert and sign them again, but tools that would change them refuse.
+If your admin turns on **Block changes to signed PDFs**, digitally signed PDFs show **Signed: edits blocked**. You can still view, print, convert and sign them again, and tools that would change them refuse in the web and desktop apps. See [Sign-in and security](../../Server/Security/Sign-in-and-Security.md) for the scope of this setting, including API calls and pipelines.

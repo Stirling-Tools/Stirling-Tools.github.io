@@ -20,7 +20,7 @@ description: The tools the Stirling PDF MCP server exposes, how to call them and
 | `stirling_download` | Returns a stored file by `fileId`, as base64, up to the inline limit. |
 | `stirling_ai` | Runs AI capabilities. Needs AI to be set up. |
 
-Operation IDs are the short endpoint names, such as `compress-pdf`; conversions are `{from}-to-{to}`, such as `pdf-to-word`. Each tool lists the operations it has, and an admin can hide some. Filters and the [Pipeline API](../Developers/Pipeline-API.md) aren't available over MCP.
+Operation IDs are the short endpoint names, such as `compress-pdf`; conversions are `{from}-to-{to}`, such as `pdf-to-word`. Conversion operations require Stirling PDF 3.4.0 or later. Each tool lists the operations it has, and an admin can hide some. Filters and the [Pipeline API](../Developers/Pipeline-API.md) aren't available over MCP.
 
 ## Calling a tool
 
