@@ -164,10 +164,12 @@ Team or Enterprise. Encrypts stored files with AES-256.
 
 | Setting | Default | Purpose |
 |---|---|---|
-| `storage.encryption.enabled` | `false` | Encrypt stored files. |
+| `storage.encryption.enabled` | `false` | Encrypt new writes. Existing files are encrypted through migration. |
 | `storage.encryption.auditReads` | `true` | Audit every decrypt. Audit events need Enterprise. |
 
-Back up the master key (`configs/file-encryption.key`, or `STIRLING_FILE_ENCRYPTION_KEY` if you set one). Losing it makes every encrypted file unrecoverable.
+Back up the active master key before enabling encryption. The server checks `stirling.security.fileEncryptionKey` first, then `STIRLING_FILE_ENCRYPTION_KEY`, then the generated `configs/file-encryption.key`. Back up the value or file the server actually uses. Losing it makes encrypted files unrecoverable.
+
+Existing files remain readable in plaintext until migrated. After enabling encryption, use an authenticated admin session to start migration with `POST /api/v1/admin/storage-encryption/migrate` and check progress with `GET /api/v1/admin/storage-encryption/migrate/status`. Run the migration on one node in a cluster. If the server restarts, rerun it to resume. The job skips files that are already encrypted.
 
 ## Troubleshooting
 

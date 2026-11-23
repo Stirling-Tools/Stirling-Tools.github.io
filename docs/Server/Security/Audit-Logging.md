@@ -61,7 +61,7 @@ Change the settings in **Settings → Server → Sign-in & security → Audit Lo
 | `2` STANDARD | BASIC plus user actions such as sign-in, sign-out and account changes |
 | `3` VERBOSE | Everything, including background polling requests |
 
-SCIM changes are recorded as user `scim-provisioning`. With [encryption at rest](../Storage/File-Storage.md#encryption-at-rest) on, every decrypt is recorded unless `storage.encryption.auditReads` is `false`.
+SCIM changes are recorded as user `scim-provisioning`. Decrypt events require an Enterprise licence, a nonzero audit level, and [encryption at rest](../Storage/File-Storage.md#encryption-at-rest). Set `storage.encryption.auditReads: false` to turn off logging for successful decrypts.
 
 ## Review the log
 
