@@ -28,6 +28,23 @@ Use **Filter by source** to see where each file lives:
 - From the workspace: open the file's **More actions** menu in the file sidebar and choose **Upload to server**. After you change the file, choose **Update on server** to save the new version.
 - In the File library: select files and choose **Add to Stirling library…**. Files you upload or drop while a server folder is open go straight into that folder.
 
+## OneDrive and SharePoint
+
+When an admin has set up [OneDrive and SharePoint](../../Server/Storage/OneDrive.md), select **+** in the file sidebar, then **Open from OneDrive**. The Microsoft file picker shows **My files**, **Recent** and, for work and school accounts, SharePoint **Shared libraries**.
+
+To save edits back, connect your account once: go to **Settings → Connected accounts**, select **Connect** next to **Microsoft (OneDrive & SharePoint)** and sign in. Saving back needs a work or school account. Files opened from OneDrive show **From OneDrive**, and their **More actions** menu adds:
+
+| Action | Result |
+|---|---|
+| **Update in OneDrive** | Replaces the original. OneDrive keeps the earlier version in its version history. |
+| **Save a copy in OneDrive** | Saves `name (edited).pdf` next to the original. |
+| **Upload to OneDrive...** | Saves to a folder you choose. Available for any file. |
+| **Open in OneDrive** | Opens the original in OneDrive. |
+
+Stirling replaces a file only while it is unchanged in OneDrive since you opened or last saved it. If someone else changed, moved or deleted it, save your version as a copy.
+
+Your connected account also lets your [Processor pipelines](../../Processor/Sources.md#onedrive-sharepoint-and-google-drive) read from and save to OneDrive and SharePoint. If the account shows **Sign in again**, Stirling can no longer reach it and pipelines that use it pause until you sign in.
+
 ## Organise files
 
 - Click **New folder**, then **New folder on the server**. Server folders are private to you.

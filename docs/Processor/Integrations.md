@@ -106,6 +106,10 @@ Paths, headers, messages, and JSON bodies can include these values, filled in fo
 | **SFTP** | Host, port, username, password or private key; optional passphrase and host-key fingerprint | SFTP input |
 | **FTP / FTPS** | Host, port, username, password, encryption and connection mode | FTP input |
 | **SMB / Network share** | Host, share, credentials, and any required domain | Network-drive input |
+| **OneDrive** | Directory (tenant) ID, application (client) ID, client secret, and the **OneDrive owner** (user principal name or object ID) | OneDrive inputs and destinations |
+| **SharePoint** | Directory (tenant) ID, application (client) ID, client secret, **Site URL**; optional **Document library** (blank for the default **Documents** library) | SharePoint inputs and destinations |
+
+OneDrive and SharePoint connections need an app registration with Microsoft Graph application permissions ([Organisation connections](../Server/Storage/OneDrive.md#organisation-connections)). The tenant must be a tenant ID or domain, such as `contoso.onmicrosoft.com`.
 
 ## Server settings
 
